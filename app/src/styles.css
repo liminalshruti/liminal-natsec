@@ -157,8 +157,12 @@ button:hover {
     minmax(420px, 1fr)
     8px
     var(--working-pane-width);
-  grid-template-rows: 36px 1fr 32px;
+  /* SHIP-5: 22px chyron row added above topbar. Total chrome height up
+     22px from prior layout — pane content gets one less row, but the
+     broadcast register pays the cost back in operator-context legibility. */
+  grid-template-rows: 22px 36px 1fr 32px;
   grid-template-areas:
+    "chyron chyron chyron chyron chyron"
     "topbar topbar topbar topbar topbar"
     "substrate resize-left stage resize-right working"
     "command command command command command";
@@ -7911,8 +7915,80 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   color: var(--color-ink-tertiary);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .real-ship-card {
+/* ─── SHIP-5 BROADCAST CHYRON — persistent operating-context lower-third ──
+   Per INSPO_TO_SURFACE_MAP.md SHIP-5 (Source 10 · aerockrose · Sequoia AI
+   Ascent register). Reads as broadcast/operations context, not nav chrome.
+   Archival monotype (mnemonic mono in tracked-out uppercase). One brand
+   anchor + N segment chiclets joined by hairline separators. Persistent
+   across every screen — plays in operator's peripheral vision.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.broadcast-chyron {
+  grid-area: chyron;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 12, 0.96) 0%,
+    rgba(8, 9, 12, 0.88) 100%
+  );
+  border-bottom: 1px solid var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.broadcast-chyron__brand {
+  /* Anchor segment — slightly higher contrast, slab-mono register hint
+     via increased weight. Sets the broadcast ID before the operating
+     context segments. */
+  color: var(--color-ink-primary);
+  letter-spacing: 0.24em;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.broadcast-chyron__sep {
+  /* Hairline vertical separator between segments. 1px solid because
+     dashed reads decorative; the chyron should look like archival
+     printed register, where dividers are inkwork joinery. */
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background: var(--color-edge);
+  flex-shrink: 0;
+}
+
+.broadcast-chyron__seg {
+  flex-shrink: 0;
+  color: var(--color-ink-secondary);
+}
+
+.broadcast-chyron__seg code {
+  /* Filename-as-title segment for the case id — pulls SHIP-4's register
+     into the chyron. Same filename register, broadcast context. */
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.10em;
+  color: var(--color-ink-primary);
+  background: transparent;
+  padding: 0;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+.broadcast-chyron__watch {
+  /* Watch designator on the right edge — operator-network identifier.
+     Slightly muted so it reads as the trailing context, not a CTA. */
+  color: var(--color-ink-tertiary);
+  margin-left: auto;
+}
     animation: none;
   }
 }
