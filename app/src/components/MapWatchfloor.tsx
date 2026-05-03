@@ -177,6 +177,9 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     return inferPhase(load.fixture, Date.parse(effectiveState.clockIso));
   }, [effectiveState, load, isControlled]);
 
+  const hasReplayTimeline =
+    load.kind === "ready" && hasCanonicalReplayTimeline(load.fixture);
+
   useEffect(() => {
     if (isControlled) return;
     if (!effectiveState) return;
@@ -212,6 +215,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   useEffect(() => {
     if (isControlled) return;
     if (load.kind !== "ready") return;
+    if (!hasCanonicalReplayTimeline(load.fixture)) return;
     if (!internalState) return;
     if (!internalState.isPlaying) return;
 
@@ -241,6 +245,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   useEffect(() => {
     if (!isControlled) return;
     if (load.kind !== "ready") return;
+    if (!hasCanonicalReplayTimeline(load.fixture)) return;
     if (!props.scenarioState?.isPlaying) return;
 
     const bounds = timelineBounds(load.fixture);
@@ -355,11 +360,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
         // renders the vessel position; we just lose the ship-shaped overlay.
         loadShipIcons()
           .then((icons) => {
-            if (cancelled || map.isMoving() === false) {
-              for (const { id, img } of icons) {
-                if (!map.hasImage(id)) {
-                  map.addImage(id, img);
-                }
+            if (cancelled) return;
+            for (const { id, img } of icons) {
+              if (!map.hasImage(id)) {
+                map.addImage(id, img);
               }
             }
           })
@@ -492,10 +496,12 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   // --- Phase-driven camera ------------------------------------------------
   useEffect(() => {
     if (!mapReady || load.kind !== "ready" || effectivePhase == null) return;
+    if (!hasCanonicalReplayTimeline(load.fixture)) return;
+    if (props.selectedAlertId || props.selectedCaseId) return;
     if (lastFlownPhaseRef.current === effectivePhase) return;
     lastFlownPhaseRef.current = effectivePhase;
     executeCamera(mapRef.current, flyForPhaseOptions(load.fixture, effectivePhase));
-  }, [effectivePhase, load, mapReady]);
+  }, [effectivePhase, load, mapReady, props.selectedAlertId, props.selectedCaseId]);
 
   // --- Selection-driven camera --------------------------------------------
   useEffect(() => {
@@ -567,7 +573,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       ) : (
         <>
           <div ref={containerRef} className="map-watchfloor-canvas" />
-          {mapReady && load.kind === "ready" && (
+          {mapReady && load.kind === "ready" && hasReplayTimeline && (
             <MapLabels
               map={mapRef.current}
               fixture={load.fixture}
@@ -597,6 +603,10 @@ export default MapWatchfloor;
 
 function scenarioStateSig(state: ScenarioState): string {
   return `${state.phase}|${state.clockIso}|${state.isPlaying ? 1 : 0}`;
+}
+
+function hasCanonicalReplayTimeline(fixture: TracksFixture): boolean {
+  return Boolean(fixture.metadata?.canonical_timestamps && fixture.metadata?.canonical_pings);
 }
 
 // --- Sub-overlays ---------------------------------------------------------
