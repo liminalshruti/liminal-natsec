@@ -1,5 +1,6 @@
 import { ApiError, type ActionEnvelope, type OperationalStore } from "../domain/ontology.ts";
 import { stableId } from "../domain/ids.ts";
+import { safeParseRule } from "../rules/dsl.ts";
 import type { RouteApp } from "./common.ts";
 import { jsonBody, routeError } from "./common.ts";
 
@@ -29,17 +30,31 @@ export function registerActionRoutes(app: RouteApp, store: OperationalStore): vo
         throw new ApiError(400, "INVALID_REVIEW_RULE", "Review rule text is required.");
       }
 
+      const parsed = safeParseRule(ruleText);
+      if (!parsed.ok) {
+        throw new ApiError(
+          400,
+          "INVALID_REVIEW_RULE",
+          parsed.error.message,
+          `line ${parsed.error.line}, column ${parsed.error.column}`
+        );
+      }
+
       const ruleId = body.ruleId ?? body.rule_id ?? stableId("rr", ruleText);
       const action = actionEnvelope("saveReviewRule", {
         rule_id: ruleId,
         rule_text: ruleText,
+        condition_ast: { all: parsed.ast.conditions },
+        effect_ast: parsed.ast.effects,
         author: body.author ?? "operator"
       });
       const result = await store.applyAction(action);
 
       return context.json({
         ...result,
-        rule_id: ruleId
+        rule_id: ruleId,
+        condition_ast: { all: parsed.ast.conditions },
+        effect_ast: parsed.ast.effects
       });
     } catch (error) {
       return routeError(context, error);

@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+.venv-copernicus/
 .pnp
 .pnp.js
 
@@ -22,6 +23,12 @@ test-results/
 config.ini
 config.local.ini
 details.md
+
+# Live-source credential/capability checks; generated from local API credentials.
+fixtures/maritime/live-cache/*auth*.json
+fixtures/maritime/live-cache/*credential*.json
+fixtures/maritime/live-cache/*api-info.json
+fixtures/maritime/live-cache/foundry-ontologies.json
 
 # OS
 .DS_Store

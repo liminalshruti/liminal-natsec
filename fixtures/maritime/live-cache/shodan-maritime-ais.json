@@ -1,0 +1,22 @@
+{
+  "source": "SHODAN",
+  "generated_at": "2026-05-03T02:02:57.738Z",
+  "request": {
+    "url": "https://api.shodan.io/shodan/host/search?key=%3Credacted%3E&query=AIS&facets=country%3A20%2Cport%3A20%2Corg%3A20&minify=true",
+    "method": "GET",
+    "metadata": {
+      "query": "AIS",
+      "note": "Global AIS-related infrastructure search; API key query parameter is redacted from cached metadata."
+    }
+  },
+  "response": {
+    "ok": false,
+    "status": 403,
+    "statusText": "Forbidden",
+    "contentType": "application/json",
+    "bytes": 52
+  },
+  "body": {
+    "error": "Requires membership or higher to access"
+  }
+}

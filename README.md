@@ -114,6 +114,7 @@ Node fallback for tests: `npm test`.
 
 **If you're contributing to the build:**
 - `docs/integration-state.md` — engineered modules → demo beats → pitch language
+- `foundry/seaforge-ontology-spec.md` — Palantir Foundry ontology creation spec
 - `docs/v2/` — locked build baseline (PRD, implementation plan, sequencing plan)
 - `docs/TECHNICAL_PLAN.md` — engineering canon
 - `docs/v3-positioning-patch.md` — track decision, Maven posture, schema delta

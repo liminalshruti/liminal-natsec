@@ -7,6 +7,7 @@ export const NODE_TYPES = [
   "hypothesis",
   "claim",
   "evidence",
+  "sourceIntegrityCheck",
   "actionOption",
   "reviewRule",
   "case"

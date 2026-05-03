@@ -203,8 +203,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
           center: INITIAL_VIEW.center,
           zoom: INITIAL_VIEW.zoom,
           bearing: INITIAL_VIEW.bearing,
-          pitch: INITIAL_VIEW.pitch,
-          attributionControl: { compact: true }
+          pitch: INITIAL_VIEW.pitch
         });
       } catch (err) {
         setLoad({ kind: "error", error: err as Error });
@@ -319,9 +318,6 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   }, [effectiveState, effectivePhase, load, mapReady]);
 
   // --- Phase-driven camera ------------------------------------------------
-  // All camera effects gate on mapReady — calling flyTo/fitBounds before
-  // MapLibre has measured the container yields "Invalid LngLat: (NaN, NaN)"
-  // from screenPointToLocation and tears down the React tree.
   useEffect(() => {
     if (!mapReady || load.kind !== "ready" || effectivePhase == null) return;
     if (lastFlownPhaseRef.current === effectivePhase) return;

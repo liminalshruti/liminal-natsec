@@ -1,0 +1,11 @@
+{
+  "source": "OVERPASS",
+  "generated_at": "2026-05-03T01:49:47.317Z",
+  "attempts": [
+    {
+      "url": "https://overpass-api.de/api/interpreter",
+      "ok": true,
+      "detail": "overpass-hormuz-maritime.json: 200 OK"
+    }
+  ]
+}

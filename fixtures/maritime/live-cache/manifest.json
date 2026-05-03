@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T01:03:57.902Z",
+  "generated_at": "2026-05-03T01:49:47.317Z",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
     "bbox": [
@@ -51,10 +51,17 @@
   "note": "Cached live/public Strait of Hormuz context. No API keys are stored in this directory.",
   "results": [
     {
+      "source": "FOUNDRY",
+      "ok": true,
+      "detail": "foundry-ontologies.json: 200 OK",
+      "fileName": "foundry-ontologies.json"
+    },
+    {
       "source": "GLOBAL_FISHING_WATCH",
-      "ok": false,
-      "detail": "0/3 event caches written.",
+      "ok": true,
+      "detail": "2/4 GFW caches written.",
       "files": [
+        "gfw-vessel-search-irisl.json",
         "gfw-hormuz-gaps.json",
         "gfw-hormuz-port-visits.json",
         "gfw-hormuz-loitering.json"
@@ -67,21 +74,73 @@
       "fileName": "aisstream-hormuz-sample.json"
     },
     {
-      "source": "NAVAREA_IX",
+      "source": "EXA",
+      "ok": true,
+      "detail": "exa-hormuz-osint.json: 200 OK",
+      "fileName": "exa-hormuz-osint.json"
+    },
+    {
+      "source": "SHODAN",
+      "ok": true,
+      "detail": "api-info ok; AIS search blocked/failed.",
+      "files": [
+        "shodan-api-info.json",
+        "shodan-maritime-ais.json"
+      ]
+    },
+    {
+      "source": "OPENSANCTIONS",
+      "ok": true,
+      "detail": "4/4 entity searches cached.",
+      "fileName": "opensanctions-hormuz-maritime-entities.json"
+    },
+    {
+      "source": "COPERNICUS_CDSE_AUTH",
+      "ok": true,
+      "detail": "200; access_token received.",
+      "fileName": "copernicus-cdse-auth.json"
+    },
+    {
+      "source": "COPERNICUS_CDSE_STAC",
+      "ok": true,
+      "detail": "2/2 STAC searches cached.",
+      "files": [
+        "copernicus-cdse-sentinel1-stac.json",
+        "copernicus-cdse-sentinel2-stac.json"
+      ]
+    },
+    {
+      "source": "SENTINEL_HUB",
+      "ok": true,
+      "detail": "auth ok; 2/2 imagery chips cached.",
+      "files": [
+        "sentinelhub-auth.json",
+        "sentinelhub-hormuz-sentinel2-truecolor.png",
+        "sentinelhub-hormuz-sentinel1-vv.png"
+      ]
+    },
+    {
+      "source": "COPERNICUS_MARINE",
       "ok": false,
-      "detail": "failed: fetch failed",
+      "detail": "credential check not completed: copernicusmarine not installed",
+      "fileName": "copernicus-marine-credential-check.json"
+    },
+    {
+      "source": "NAVAREA_IX",
+      "ok": true,
+      "detail": "200; 244631 bytes cached.",
       "fileName": "navarea-ix-warnings.html"
     },
     {
       "source": "UKMTO",
-      "ok": false,
-      "detail": "failed: fetch failed",
+      "ok": true,
+      "detail": "200; 34792 bytes cached.",
       "fileName": "ukmto-home.html"
     },
     {
       "source": "OVERPASS",
-      "ok": false,
-      "detail": "overpass-hormuz-maritime.json: failed: fetch failed",
+      "ok": true,
+      "detail": "overpass-hormuz-maritime.json: 200 OK",
       "fileName": "overpass-hormuz-maritime.json"
     }
   ]

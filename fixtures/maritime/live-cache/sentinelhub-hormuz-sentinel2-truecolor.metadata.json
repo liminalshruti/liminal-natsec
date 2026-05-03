@@ -1,0 +1,32 @@
+{
+  "source": "SENTINEL_HUB_PROCESS",
+  "generated_at": "2026-05-03T02:02:57.738Z",
+  "request": {
+    "url": "https://sh.dataspace.copernicus.eu/api/v1/process",
+    "method": "POST",
+    "metadata": {
+      "dataType": "sentinel-2-l2a",
+      "aoi": "Strait of Hormuz demo AOI",
+      "bbox": [
+        54.4,
+        24.5,
+        57.8,
+        27.2
+      ],
+      "timeRange": {
+        "from": "2026-04-03T02:02:57.739Z",
+        "to": "2026-05-03T02:02:57.739Z"
+      },
+      "outputFormat": "image/png",
+      "token_cached": false
+    }
+  },
+  "response": {
+    "ok": true,
+    "status": 200,
+    "statusText": "OK",
+    "contentType": "image/png",
+    "bytes": 671226
+  },
+  "fileName": "sentinelhub-hormuz-sentinel2-truecolor.png"
+}

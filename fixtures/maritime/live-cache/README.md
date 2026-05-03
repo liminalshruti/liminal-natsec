@@ -13,10 +13,26 @@ node scripts/cache-hormuz-sources.mjs
 Expected source files:
 
 - `aisstream-hormuz-sample.json` — bounded AISstream WebSocket sample.
+- `foundry-ontologies.json` — Foundry token reachability and visible ontology metadata, when access allows it.
+- `exa-hormuz-osint.json` — Exa web/news search results for Hormuz maritime context.
+- `gfw-vessel-search-irisl.json` — lightweight Global Fishing Watch Vessel API key/capability check.
 - `gfw-hormuz-gaps.json` — Global Fishing Watch AIS-off/gap event query.
 - `gfw-hormuz-port-visits.json` — Global Fishing Watch port visit event query.
 - `gfw-hormuz-loitering.json` — Global Fishing Watch loitering event query.
+- `shodan-api-info.json` — Shodan key/account capability check.
+- `shodan-maritime-ais.json` — Shodan AIS-related infrastructure search.
+- `opensanctions-hormuz-maritime-entities.json` — OpenSanctions searches for maritime/sanctions entities relevant to Hormuz.
+- `copernicus-cdse-auth.json` — CDSE credential check with tokens stripped.
+- `copernicus-cdse-sentinel1-stac.json` — recent Sentinel-1 GRD STAC metadata over Hormuz.
+- `copernicus-cdse-sentinel2-stac.json` — recent Sentinel-2 L2A STAC metadata over Hormuz.
+- `sentinelhub-auth.json` — Sentinel Hub OAuth check with tokens stripped.
+- `sentinelhub-hormuz-sentinel2-truecolor.png` — Sentinel-2 true-color demo chip when Process API succeeds.
+- `sentinelhub-hormuz-sentinel1-vv.png` — Sentinel-1 VV demo chip when Process API succeeds.
+- `copernicus-marine-credential-check.json` — Copernicus Marine credential/toolbox check.
+- `copernicus-marine-hormuz-currents.nc` — small Copernicus Marine surface-current sample near Hormuz, when subset succeeds.
+- `copernicus-marine-hormuz-currents.metadata.json` — request/response metadata for the currents sample.
 - `navarea-ix-warnings.html` — public NAVAREA IX warning page snapshot.
 - `ukmto-home.html` — public UKMTO page snapshot.
 - `overpass-hormuz-maritime.json` — OSM/Overpass maritime context.
+- `overpass-hormuz-maritime.attempts.json` — Overpass endpoint fallback attempt summary.
 - `manifest.json` — cache generation summary.

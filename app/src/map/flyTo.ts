@@ -160,20 +160,19 @@ export function executeCamera(
   if (!map || !options) return;
   try {
     if (options.kind === "fly") {
-      map.flyTo({
+      // MapLibre v5.24.x's flyTo animation can corrupt transform.zoom to NaN
+      // when the next camera op fires during an in-progress animation —
+      // observable in the SeaForge replay (phase advances in seconds, so
+      // animations chain rapidly). easeTo with a short duration is stable
+      // here; jumpTo is the absolute fallback. We pick easeTo so the camera
+      // still feels animated to a viewer.
+      map.easeTo({
         center: options.center,
         zoom: options.zoom,
-        speed: options.speed,
-        curve: options.curve,
-        duration: options.duration
+        duration: 600
       });
       return;
     }
-    // Convert bounds → flyTo via cameraForBounds. Direct fitBounds in
-    // MapLibre v5 (5.24.x) corrupts the transform during initial layout —
-    // transform.zoom becomes NaN, project() returns NaN, and HTML overlays
-    // anchored via map.project lose their positions. flyTo with a
-    // pre-computed center+zoom is stable.
     const cam = map.cameraForBounds(options.bounds, {
       padding: options.padding ?? 80,
       maxZoom: options.maxZoom ?? 10
@@ -190,12 +189,10 @@ export function executeCamera(
             (camCenter as { lon?: number }).lon!,
           (camCenter as { lat: number }).lat
         ];
-    map.flyTo({
+    map.easeTo({
       center,
       zoom: cam.zoom,
-      speed: 0.8,
-      curve: 1.4,
-      duration: options.duration ?? 1200
+      duration: 700
     });
   } catch (err) {
     // eslint-disable-next-line no-console

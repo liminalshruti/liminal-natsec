@@ -51,6 +51,7 @@ describe("graph-spine schema contracts", () => {
 
     assert.equal(node.type, "claim");
     assert.ok(NODE_TYPES.includes("actionOption"));
+    assert.ok(NODE_TYPES.includes("sourceIntegrityCheck"));
     assert.ok(EDGE_TYPES.includes("CONTRADICTS"));
 
     assert.throws(

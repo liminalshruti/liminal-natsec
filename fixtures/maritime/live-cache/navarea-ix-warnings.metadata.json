@@ -1,6 +1,8 @@
 {
   "source": "NAVAREA_IX",
-  "generated_at": "2026-05-03T01:03:57.902Z",
+  "generated_at": "2026-05-03T01:49:47.317Z",
   "url": "https://hydrography.paknavy.gov.pk/navarea-ix-warnings/",
-  "error": "fetch failed"
+  "status": 200,
+  "ok": true,
+  "bytes": 244631
 }

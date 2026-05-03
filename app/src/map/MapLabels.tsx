@@ -44,25 +44,6 @@ export function MapLabels({ map, fixture, phase }: MapLabelsProps) {
   if (!map || !fixture || phase == null) return <div ref={containerRef} className="map-labels-layer" />;
 
   const labels = computeLabels(fixture, phase);
-  if (typeof window !== "undefined") {
-    (window as unknown as { __map?: maplibregl.Map; __mlDebug?: unknown }).__map = map;
-    (window as unknown as { __mlDebug?: unknown }).__mlDebug = {
-      phase,
-      labelCount: labels.length,
-      labelInfo: labels.map((l) => ({ id: l.id, visible: l.visible, lonLat: l.lonLat })),
-      hasMap: !!map,
-      hasFixture: !!fixture,
-      hasMetadata: !!fixture.metadata,
-      sampleProject: (() => {
-        try {
-          const p = map.project([31.42018, 34.88112]);
-          return { x: p.x, y: p.y, xIsNaN: Number.isNaN(p.x), yIsNaN: Number.isNaN(p.y) };
-        } catch (e) {
-          return { err: String(e) };
-        }
-      })()
-    };
-  }
 
   return (
     <div ref={containerRef} className="map-labels-layer" data-tick={tick} aria-hidden="true">

@@ -1,0 +1,697 @@
+{
+  "source": "GLOBAL_FISHING_WATCH",
+  "generated_at": "2026-05-03T02:02:57.738Z",
+  "request": {
+    "url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=IRISL&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+    "method": "GET",
+    "metadata": {
+      "query": "IRISL",
+      "dataset": "public-global-vessel-identity:latest",
+      "note": "Lightweight GFW key/capability check against the Vessel API."
+    }
+  },
+  "response": {
+    "ok": true,
+    "status": 200,
+    "statusText": "OK",
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 11876
+  },
+  "body": {
+    "limit": 10,
+    "since": "FGluY2x1ZGVfY29udGV4dF91dWlkDXF1ZXJ5QW5kRmV0Y2gBFjRkbU9jNnVWUV9pLXp3VjR5UlZLUFEAAAAAASoMaBZlaXdhQWZvYlJleXJGN1kxRUk0YnZB",
+    "total": 202,
+    "entries": [
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 1,
+        "registryInfo": [
+          {
+            "id": "c66896ec96b6a466abe542cff3460f2c",
+            "sourceCode": [
+              "USA"
+            ],
+            "ssvid": "367610650",
+            "flag": "USA",
+            "shipname": "IRISH",
+            "nShipname": "IRISH",
+            "callsign": "WDH3763",
+            "imo": "9721841",
+            "latestVesselInfo": true,
+            "transmissionDateFrom": "2014-04-16T17:10:24Z",
+            "transmissionDateTo": "2026-03-31T23:25:33Z",
+            "geartypes": [
+              "SUPPLY_VESSEL"
+            ],
+            "lengthM": 54.3,
+            "tonnageGt": null,
+            "vesselInfoReference": "882296c38badc2198b16a90214202e20",
+            "extraFields": []
+          }
+        ],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "a4dd7c061-1cb1-1e8d-5e56-21c54ad5a5e8",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2014,
+                "yearTo": 2018
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2014,
+                "yearTo": 2018
+              }
+            ]
+          },
+          {
+            "vesselId": "ad9f778c1-1e27-1b57-c65d-7010b34529f8",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2020
+              },
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2021,
+                "yearTo": 2021
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2026
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2021,
+                "yearTo": 2021
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2026
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2020
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "ad9f778c1-1e27-1b57-c65d-7010b34529f8",
+            "ssvid": "367610650",
+            "shipname": "IRISH",
+            "nShipname": "IRISH",
+            "flag": "USA",
+            "callsign": "WDH3763",
+            "imo": "9721841",
+            "messagesCounter": 2650894,
+            "positionsCounter": 644104,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2017-09-12T16:35:36Z",
+            "transmissionDateTo": "2026-04-30T23:25:40Z"
+          },
+          {
+            "id": "a4dd7c061-1cb1-1e8d-5e56-21c54ad5a5e8",
+            "ssvid": "367610650",
+            "shipname": "IRISH",
+            "nShipname": "IRISH",
+            "flag": "USA",
+            "callsign": "WDH3763",
+            "imo": null,
+            "messagesCounter": 57648,
+            "positionsCounter": 34607,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2014-04-16T17:10:24Z",
+            "transmissionDateTo": "2018-04-25T05:51:10Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "f2921ff39-9d20-fda9-3ce9-9a18e45439e6",
+            "geartypes": [
+              {
+                "name": "PASSENGER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2016,
+                "yearTo": 2017
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "PASSENGER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2016,
+                "yearTo": 2017
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "f2921ff39-9d20-fda9-3ce9-9a18e45439e6",
+            "ssvid": "338211594",
+            "shipname": "IRISH",
+            "nShipname": "IRISH",
+            "flag": "USA",
+            "callsign": null,
+            "imo": null,
+            "messagesCounter": 1712,
+            "positionsCounter": 725,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2016-06-04T14:43:29Z",
+            "transmissionDateTo": "2017-03-01T16:02:43Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "9bd2dbe60-05cf-87d1-fbfd-3bf917fa7f6a",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2024
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2024
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "9bd2dbe60-05cf-87d1-fbfd-3bf917fa7f6a",
+            "ssvid": "408900859",
+            "shipname": "IRISH",
+            "nShipname": "IRISH",
+            "flag": "BHR",
+            "callsign": "BH11223",
+            "imo": null,
+            "messagesCounter": 85820,
+            "positionsCounter": 20983,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2022-04-04T06:44:15Z",
+            "transmissionDateTo": "2024-01-14T07:45:19Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "07e2a82b9-9d4a-9ca1-9f6b-18db309c09f9",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2026
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2026
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "07e2a82b9-9d4a-9ca1-9f6b-18db309c09f9",
+            "ssvid": "264163508",
+            "shipname": "IRIS 5",
+            "nShipname": "IRIS5",
+            "flag": "ROU",
+            "callsign": "YP3508",
+            "imo": null,
+            "messagesCounter": 2433082,
+            "positionsCounter": 705321,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2022-09-27T09:36:40Z",
+            "transmissionDateTo": "2026-04-29T12:07:57Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 1,
+        "registryInfo": [
+          {
+            "id": "aa76cad9012a8d9806e23642cd20dc8e",
+            "sourceCode": [
+              "IMO"
+            ],
+            "ssvid": "249949000",
+            "flag": "MLT",
+            "shipname": "IRIS1",
+            "nShipname": "IRIS1",
+            "callsign": "9H5807",
+            "imo": "7910838",
+            "latestVesselInfo": true,
+            "transmissionDateFrom": "2012-01-02T12:53:34Z",
+            "transmissionDateTo": "2012-12-21T08:29:39Z",
+            "geartypes": [
+              "CARGO"
+            ],
+            "lengthM": null,
+            "tonnageGt": 1532,
+            "vesselInfoReference": "35e918a1428ecb699c0a84cdbcd96df1",
+            "extraFields": []
+          }
+        ],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "15c67a5cb-bc0c-70cd-f604-a8f7a926d14f",
+            "geartypes": [
+              {
+                "name": "CARGO",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2013
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "CARGO",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2013
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "15c67a5cb-bc0c-70cd-f604-a8f7a926d14f",
+            "ssvid": "249949000",
+            "shipname": "IRIS 1",
+            "nShipname": "IRIS1",
+            "flag": "MLT",
+            "callsign": "9H5807",
+            "imo": "7910838",
+            "messagesCounter": 29829,
+            "positionsCounter": 11373,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2012-01-02T13:00:35Z",
+            "transmissionDateTo": "2013-04-17T14:13:56Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 1,
+        "registryInfo": [
+          {
+            "id": "2db6df15eb8d5ca4cad2ad8b9cc374e4",
+            "sourceCode": [
+              "GFW-REVIEW",
+              "ICCAT",
+              "IMO",
+              "ISSF",
+              "RESEARCH-PAPER"
+            ],
+            "ssvid": "627066000",
+            "flag": "GHA",
+            "shipname": "IRISJ",
+            "nShipname": "IRISJ",
+            "callsign": "9GJD",
+            "imo": "8214310",
+            "latestVesselInfo": true,
+            "transmissionDateFrom": "2017-03-05T04:02:14Z",
+            "transmissionDateTo": "2026-03-17T17:44:51Z",
+            "geartypes": [
+              "TUNA_PURSE_SEINES"
+            ],
+            "lengthM": 55.2,
+            "tonnageGt": 768,
+            "vesselInfoReference": "8ca00cf038e18e5f3b47fc0d7f1c2d9d",
+            "extraFields": []
+          }
+        ],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "150fadd82-23a0-9280-0acf-f8590262a320",
+            "geartypes": [
+              {
+                "name": "TUNA_PURSE_SEINES",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2014,
+                "yearTo": 2014
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "FISHING",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2014,
+                "yearTo": 2014
+              }
+            ]
+          },
+          {
+            "vesselId": "64254bdf9-92ff-30aa-3186-169ca16bc136",
+            "geartypes": [
+              {
+                "name": "TUNA_PURSE_SEINES",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2015,
+                "yearTo": 2026
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "FISHING",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2015,
+                "yearTo": 2026
+              }
+            ]
+          },
+          {
+            "vesselId": "d4a329d0c-c808-2f34-9686-0a1b3c1b9fb0",
+            "geartypes": [
+              {
+                "name": "TUNA_PURSE_SEINES",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2013,
+                "yearTo": 2014
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "FISHING",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2013,
+                "yearTo": 2014
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "64254bdf9-92ff-30aa-3186-169ca16bc136",
+            "ssvid": "627066000",
+            "shipname": "IRIS-J",
+            "nShipname": "IRISJ",
+            "flag": "GHA",
+            "callsign": "9GJD",
+            "imo": "8214310",
+            "messagesCounter": 2394231,
+            "positionsCounter": 1056307,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2015-07-19T09:02:07Z",
+            "transmissionDateTo": "2026-04-30T23:58:24Z"
+          },
+          {
+            "id": "d4a329d0c-c808-2f34-9686-0a1b3c1b9fb0",
+            "ssvid": "627066000",
+            "shipname": "CAP LOPEZ",
+            "nShipname": "CAPLOPEZ",
+            "flag": "GHA",
+            "callsign": "9GJD",
+            "imo": null,
+            "messagesCounter": 4436,
+            "positionsCounter": 2321,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2013-11-06T15:08:17Z",
+            "transmissionDateTo": "2014-06-28T01:49:08Z"
+          },
+          {
+            "id": "150fadd82-23a0-9280-0acf-f8590262a320",
+            "ssvid": "627066000",
+            "shipname": null,
+            "nShipname": null,
+            "flag": "GHA",
+            "callsign": "9GJD",
+            "imo": null,
+            "messagesCounter": 3501,
+            "positionsCounter": 1776,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2014-02-16T07:22:24Z",
+            "transmissionDateTo": "2014-04-27T09:41:39Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "8b702ca8d-dbe7-1750-17a3-6394b6074897",
+            "geartypes": [
+              {
+                "name": "CARGO",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2025,
+                "yearTo": 2026
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "CARGO",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2025,
+                "yearTo": 2026
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "8b702ca8d-dbe7-1750-17a3-6394b6074897",
+            "ssvid": "538011838",
+            "shipname": "IRIS I",
+            "nShipname": "IRIS1",
+            "flag": "MHL",
+            "callsign": "V7A3550",
+            "imo": "9341172",
+            "messagesCounter": 974758,
+            "positionsCounter": 297473,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2025-08-04T06:44:56Z",
+            "transmissionDateTo": "2026-04-30T23:58:35Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "11d404284-42be-3567-08d0-af11b4a55080",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2019,
+                "yearTo": 2026
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2019,
+                "yearTo": 2026
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "11d404284-42be-3567-08d0-af11b4a55080",
+            "ssvid": "271046645",
+            "shipname": "IRIS Y",
+            "nShipname": "IRISY",
+            "flag": "TUR",
+            "callsign": "TCA5406",
+            "imo": null,
+            "messagesCounter": 586115,
+            "positionsCounter": 157712,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2019-05-21T14:09:10Z",
+            "transmissionDateTo": "2026-04-30T23:58:35Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "a4cefffe8-8365-ba93-ba7b-4733f9b51d5c",
+            "geartypes": [
+              {
+                "name": "PASSENGER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2022
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "PASSENGER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2022
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "a4cefffe8-8365-ba93-ba7b-4733f9b51d5c",
+            "ssvid": "257855790",
+            "shipname": "IRIS 3",
+            "nShipname": "IRIS3",
+            "flag": "NOR",
+            "callsign": null,
+            "imo": null,
+            "messagesCounter": 664,
+            "positionsCounter": 193,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2017-06-27T08:40:16Z",
+            "transmissionDateTo": "2022-05-30T11:06:44Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "d62c6de61-1485-4570-c052-946599cde616",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2017
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2017
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "d62c6de61-1485-4570-c052-946599cde616",
+            "ssvid": "264162406",
+            "shipname": "IRIS-2",
+            "nShipname": "IRIS2",
+            "flag": "ROU",
+            "callsign": "YP2406",
+            "imo": null,
+            "messagesCounter": 117661,
+            "positionsCounter": 45403,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2012-01-03T16:42:13Z",
+            "transmissionDateTo": "2017-07-01T17:58:05Z"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "query": "IRISL",
+      "normalizedQuery": "IRISL",
+      "didYouMean": {}
+    }
+  }
+}

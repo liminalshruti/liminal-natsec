@@ -1,6 +1,6 @@
 {
   "source": "AISSTREAM",
-  "generated_at": "2026-05-03T01:03:57.902Z",
+  "generated_at": "2026-05-03T02:02:57.738Z",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
     "bbox": [
@@ -49,14 +49,50 @@
       ]
     }
   },
+  "fallback_aoi": {
+    "name": "Arabian Gulf and Gulf of Oman AIS fallback AOI",
+    "aisstreamBoundingBoxes": [
+      [
+        [
+          22,
+          48
+        ],
+        [
+          30.5,
+          62.5
+        ]
+      ]
+    ]
+  },
   "message_count": 0,
-  "errors": [
+  "attempts": [
     {
-      "message": "AISstream WebSocket error"
+      "label": "Strait of Hormuz demo AOI",
+      "duration_ms": 30000,
+      "max_messages": 100,
+      "opened": true,
+      "subscription_sent": true,
+      "started_at": "2026-05-03T02:03:59.873Z",
+      "messages_before": 0,
+      "messages_after": 0,
+      "finished_at": "2026-05-03T02:04:29.893Z",
+      "messages_received": 0,
+      "close_code": 1006,
+      "close_reason": ""
     },
     {
-      "message": "AISstream WebSocket error"
+      "label": "Arabian Gulf and Gulf of Oman AIS fallback AOI",
+      "duration_ms": 30000,
+      "max_messages": 100,
+      "opened": true,
+      "subscription_sent": true,
+      "started_at": "2026-05-03T02:04:29.893Z",
+      "messages_before": 0,
+      "messages_after": 0,
+      "finished_at": "2026-05-03T02:04:59.921Z",
+      "messages_received": 0
     }
   ],
+  "errors": [],
   "messages": []
 }
