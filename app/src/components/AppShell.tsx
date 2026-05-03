@@ -19,7 +19,6 @@ import { CommandLine } from "./CommandLine.tsx";
 import type { ScenarioState as MapScenarioState } from "./MapWatchfloor.tsx";
 import { StageViewport } from "./StageViewport.tsx";
 import { SubstratePanel } from "./SubstratePanel.tsx";
-import { WorkflowStrip } from "./WorkflowStrip.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
 import { AiNoticeToast } from "./AiNoticeToast.tsx";
 import { BroadcastChyron } from "./BroadcastChyron.tsx";
@@ -199,7 +198,6 @@ export function AppShell({
       <BroadcastChyron scenario={scenario} />
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
-        <WorkflowStrip />
         <Breadcrumb
           scenario={scenario}
           eventId={eventId}

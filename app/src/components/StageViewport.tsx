@@ -60,16 +60,6 @@ export function StageViewport({
               <div className="stage-placeholder__case">loading scenario...</div>
             </div>
           </div>
-        ) : scenario?.state.mode === "real" && !selectedAlert ? (
-          <div className="stage-placeholder">
-            <div className="stage-placeholder__inner">
-              <div className="stage-placeholder__case">no real case generated</div>
-              <div className="stage-placeholder__note">
-                {scenario.state.emptyReason ??
-                  "Real cached sources are available, but no custody case met the threshold."}
-              </div>
-            </div>
-          </div>
         ) : (
           <>
             {/* StageBackdrop: deep-dark canvas + flowing organic linework +
