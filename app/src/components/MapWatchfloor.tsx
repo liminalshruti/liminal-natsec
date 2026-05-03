@@ -37,6 +37,7 @@ import { tryLiveKalmanEllipse } from "../map/kalmanAdapter.ts";
 import { TimelineScrubber } from "../map/TimelineScrubber.tsx";
 import { MapLabels } from "../map/MapLabels.tsx";
 import { loadShipIcons } from "../map/shipIcons.ts";
+import { CASE_HUGE_IDENTITY, HUGE_LAST_KNOWN_AIS } from "../map/caseSignalScope.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
 import {
   emptyDantiTrafficFeatureCollection,
@@ -583,8 +584,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
             />
           )}
           <PhaseBadge phase={effectivePhase} />
-          {visibleDantiTraffic && (
-            <DantiTrafficBadge traffic={visibleDantiTraffic} />
+          {props.selectedCaseId === CASE_HUGE_IDENTITY ? (
+            <HugeLastKnownAisBadge />
+          ) : (
+            visibleDantiTraffic && <DantiTrafficBadge traffic={visibleDantiTraffic} />
           )}
           {load.kind === "ready" && effectiveState && (
             <TimelineScrubber
@@ -619,6 +622,19 @@ function PhaseBadge({ phase }: { phase: Phase | null }): ReactNode {
     <div className="map-phase-badge">
       <span className="map-phase-num">PHASE {phase}</span>
       <span className="map-phase-name">{PHASE_LABELS[phase]}</span>
+    </div>
+  );
+}
+
+function HugeLastKnownAisBadge(): ReactNode {
+  return (
+    <div className="map-danti-badge">
+      <span className="map-danti-badge__label">HUGE last-known AIS</span>
+      <span className="map-danti-badge__clock">
+        {formatArchiveClock(HUGE_LAST_KNOWN_AIS.observedAt)}
+      </span>
+      <span className="map-danti-badge__count">1/1 vessel</span>
+      <span className="map-danti-badge__signals">identity backfill</span>
     </div>
   );
 }
