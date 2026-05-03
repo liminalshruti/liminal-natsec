@@ -7,6 +7,7 @@ import { MapLayers } from "./MapLayers.tsx";
 import { MapOverlays } from "./MapOverlays.tsx";
 import { MapTelemetryHud } from "./MapTelemetryHud.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
+import { SignalDropZone } from "./SignalDropZone.tsx";
 import { StageBackdrop } from "./StageBackdrop.tsx";
 
 interface StageViewportProps {
@@ -99,6 +100,12 @@ export function StageViewport({
                 without prompt residue, but the prompt stays at low opacity for
                 glance-recovery. */}
             <DemoPrompt phase={scenarioState?.phase ?? null} />
+            {/* SignalDropZone: B-1 fast-follow. Invisible-by-default
+                overlay that lights up when a Liminal signal is being
+                dragged from the DraftCaseDetail signal list. On drop,
+                fires toggleAttach + emits SIGNAL_ATTACHED_EVENT for
+                B-2's ghost-ship renderer to pick up. */}
+            <SignalDropZone />
           </>
         )}
       </div>
