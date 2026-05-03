@@ -1,5 +1,6 @@
 import { rankActionsForDisplay } from "../lib/actionRanking.ts";
 import type { ReviewRuleApplication, SpineNode } from "../lib/spineGraph.ts";
+import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
 interface ActionOptionsProps {
   actions: SpineNode[];
@@ -8,43 +9,46 @@ interface ActionOptionsProps {
 
 export function ActionOptions({ actions, ruleApplication }: ActionOptionsProps) {
   if (actions.length === 0) {
-    return (
-      <>
-        <div className="subhead">Action Options</div>
-        <div className="empty">no actions ranked for this case</div>
-      </>
-    );
+    return <div className="empty">no actions ranked for this case</div>;
   }
   const ranked = rankActionsForDisplay(actions, ruleApplication);
+  // The rule-fire moment in textual form: when ruleApplication.changed is
+  // true, exactly one row carries PRIOR TOP and one row carries RECOMMENDED.
+  // The visual diff between those two rows IS the make-or-break beat in the
+  // forensic surface — Zone 1 shows it as a verb crossfade; here it shows
+  // as a labeled action diff.
+  const ruleChanged = Boolean(ruleApplication?.changed);
   return (
-    <>
-      <div className="subhead">Action Options</div>
+    <div className="action-list">
       {ranked.map((entry, index) => {
         const data = (entry.node.data ?? {}) as Record<string, unknown>;
         const kind =
-          typeof data.kind === "string" ? (data.kind as string) : entry.node.title;
-        const tagClass = entry.isRecommended
-          ? "tag tag--ok"
+          typeof data.kind === "string" ? (data.kind as string) : null;
+        const status = entry.isRecommended
+          ? "recommended"
           : entry.wasPriorTop
-          ? "tag tag--warn"
+          ? "prior top"
           : index === 0
-          ? "tag tag--accent"
-          : "tag";
-        const tagText = entry.isRecommended
-          ? "RECOMMENDED"
+          ? "primary"
+          : null;
+        const rowClass = entry.isRecommended
+          ? "action-list__row action-list__row--recommended"
           : entry.wasPriorTop
-          ? "PRIOR TOP"
-          : `#${index + 1}`;
+          ? "action-list__row action-list__row--prior"
+          : "action-list__row";
         return (
-          <div key={entry.node.id} className="action-row">
-            <div className="action-row__title">
-              <span>{entry.node.title}</span>
-              <span className={tagClass}>{tagText}</span>
-            </div>
-            <div className="action-row__sub">{kind}</div>
+          <div key={entry.node.id} className={rowClass} data-rule-fire={ruleChanged}>
+            <TypedObjectChip
+              kind="action"
+              id={entry.node.id}
+              label={entry.node.title}
+              status={status}
+              size="sm"
+            />
+            {kind && <div className="action-list__kind">{kind}</div>}
           </div>
         );
       })}
-    </>
+    </div>
   );
 }

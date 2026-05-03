@@ -5,6 +5,7 @@ import {
   type EvidenceForClaim,
   type EvidenceLink
 } from "../lib/spineGraph.ts";
+import { TypedEdge, TypedObjectChip } from "./TypedObjectChip.tsx";
 
 interface EvidenceDrawerProps {
   claimId: string | null;
@@ -12,10 +13,20 @@ interface EvidenceDrawerProps {
 
 type EvidenceKind = "supports" | "weakens" | "contradicts";
 
-const SECTION_META: Record<EvidenceKind, { label: string; tag: string }> = {
-  supports: { label: "Supports", tag: "tag tag--ok" },
-  weakens: { label: "Weakens", tag: "tag tag--warn" },
-  contradicts: { label: "Contradicts", tag: "tag tag--warn" }
+// Evidence-kind → schema EdgeType, for the typed-edge label inside each row.
+// SUPPORTS gets the ok tone, WEAKENS the warn tone, CONTRADICTS the err tone —
+// the same semantic mapping ProvenanceTrace uses, so the eye reads the same
+// vocabulary across the case file's two evidence-bearing sections.
+const EDGE_TYPE_BY_KIND: Record<EvidenceKind, string> = {
+  supports: "SUPPORTS",
+  weakens: "WEAKENS",
+  contradicts: "CONTRADICTS"
+};
+
+const SECTION_LABEL: Record<EvidenceKind, string> = {
+  supports: "Supports",
+  weakens: "Weakens",
+  contradicts: "Contradicts"
 };
 
 export function EvidenceDrawer({ claimId }: EvidenceDrawerProps) {
@@ -60,8 +71,7 @@ export function EvidenceDrawer({ claimId }: EvidenceDrawerProps) {
             key={kind}
             kind={kind}
             entries={evidence[kind]}
-            tagClass={SECTION_META[kind].tag}
-            label={SECTION_META[kind].label}
+            label={SECTION_LABEL[kind]}
           />
         )
       )}
@@ -72,27 +82,18 @@ export function EvidenceDrawer({ claimId }: EvidenceDrawerProps) {
 interface EvidenceSectionProps {
   kind: EvidenceKind;
   entries: EvidenceLink[];
-  tagClass: string;
   label: string;
 }
 
-function EvidenceSection({ kind, entries, tagClass, label }: EvidenceSectionProps) {
+function EvidenceSection({ kind, entries, label }: EvidenceSectionProps) {
   return (
     <>
-      <div
-        className="action-row__sub"
-        style={{
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-          fontSize: 10,
-          marginTop: 8,
-          color: "var(--fg-2)"
-        }}
-      >
-        {label} ({entries.length})
+      <div className="evidence-section__header">
+        <TypedEdge type={EDGE_TYPE_BY_KIND[kind]} arrow="none" />
+        <span className="evidence-section__count">{entries.length}</span>
       </div>
       {entries.map((entry) => (
-        <EvidenceCard key={entry.node.id} link={entry} kind={kind} tagClass={tagClass} />
+        <EvidenceCard key={entry.node.id} link={entry} kind={kind} />
       ))}
     </>
   );
@@ -101,10 +102,9 @@ function EvidenceSection({ kind, entries, tagClass, label }: EvidenceSectionProp
 interface EvidenceCardProps {
   link: EvidenceLink;
   kind: EvidenceKind;
-  tagClass: string;
 }
 
-function EvidenceCard({ link, kind, tagClass }: EvidenceCardProps) {
+function EvidenceCard({ link, kind }: EvidenceCardProps) {
   const [expanded, setExpanded] = useState(false);
   const data = (link.node.data ?? {}) as Record<string, unknown>;
   const summary = stringField(data, "summary") ?? stringField(data, "rationale");
@@ -112,7 +112,7 @@ function EvidenceCard({ link, kind, tagClass }: EvidenceCardProps) {
   const confidence = link.edge.provenance?.confidence;
   return (
     <div
-      className="action-row"
+      className="evidence-card"
       role="button"
       tabIndex={0}
       onClick={() => setExpanded((value) => !value)}
@@ -123,35 +123,28 @@ function EvidenceCard({ link, kind, tagClass }: EvidenceCardProps) {
         }
       }}
       data-expanded={expanded}
-      style={{ cursor: "pointer" }}
+      data-kind={kind}
     >
-      <div className="action-row__title">
-        <span>{link.node.title}</span>
-        <span className={tagClass}>{kind.toUpperCase()}</span>
+      <div className="evidence-card__head">
+        <TypedObjectChip
+          kind="evidence"
+          id={link.node.id}
+          label={link.node.title}
+          size="sm"
+        />
       </div>
-      <div className="action-row__sub" style={{ wordBreak: "break-all" }}>
-        {link.node.id}
-        {confidence != null && (
-          <span style={{ marginLeft: 8, color: "var(--fg-2)" }}>
-            confidence {confidence.toFixed(2)}
-          </span>
-        )}
-        {source && (
-          <span style={{ marginLeft: 8, color: "var(--fg-2)" }}>· {source}</span>
-        )}
-      </div>
+      {(confidence != null || source) && (
+        <div className="evidence-card__meta">
+          {confidence != null && (
+            <span className="evidence-card__confidence">
+              confidence {confidence.toFixed(2)}
+            </span>
+          )}
+          {source && <span className="evidence-card__source">{source}</span>}
+        </div>
+      )}
       {expanded && (summary || link.edge.provenance?.rationale) && (
-        <div
-          className="action-row__sub"
-          style={{
-            marginTop: 6,
-            padding: "6px 8px",
-            background: "var(--bg-0)",
-            border: "1px solid var(--line)",
-            borderRadius: 2,
-            color: "var(--fg-1)"
-          }}
-        >
+        <div className="evidence-card__rationale">
           {summary ?? link.edge.provenance?.rationale}
         </div>
       )}
