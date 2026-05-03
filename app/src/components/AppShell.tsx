@@ -83,8 +83,26 @@ export function AppShell({
   // (map + replay) is the watchstanding-glance surface. Substrate becomes
   // active only on alert-hover (deferred to v3.3 — for now substrate stays
   // dim alongside whichever non-active pane it pairs with).
+  // STRETCH-2: phase-keyed focus management (one subject per beat).
+  // Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-2 (Source 10 ·
+  // aerockrose · Sequoia AI Ascent stage register).
+  //
+  //   Beat / phase →  Active pane (the one thing the eye lands on)
+  //     P1  cold open                   stage  (watchstanding glance)
+  //     P2  dark gap detected           stage  (the gap is on the map)
+  //     P3  Track B reappears           stage  (reappearance is geographic)
+  //     P4  signal integrity contested  working (specialist convergence)
+  //     P5  intent refused              working (refusal stamp)
+  //     P6  doctrine applied            working (rule compounding edges)
+  //
+  // When no case is selected and no map phase is active, stage holds the
+  // attention. When a case is selected the working panel earns it.
+  // Substrate active is reserved for v3.3 alert-hover.
+  const replayPhase = mapScenarioState?.phase ?? 1;
   const activePane: "substrate" | "stage" | "working" = selectedAlert
-    ? "working"
+    ? replayPhase >= 4
+      ? "working"
+      : "stage"
     : "stage";
   const shellStyle = useMemo(
     () =>
