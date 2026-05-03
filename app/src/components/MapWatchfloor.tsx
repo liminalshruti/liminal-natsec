@@ -614,6 +614,9 @@ function DantiTrafficBadge({ traffic }: { traffic: VisibleDantiTraffic }): React
       <span className="map-danti-badge__count">
         {traffic.visibleVessels}/{traffic.totalVessels} vessels
       </span>
+      <span className="map-danti-badge__signals">
+        {traffic.signalVessels} OSINT signals
+      </span>
     </div>
   );
 }

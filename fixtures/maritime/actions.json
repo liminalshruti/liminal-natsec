@@ -3,15 +3,16 @@
     {
       "id": "act:alara-01:event-1:monitor",
       "type": "actionOption",
-      "title": "Monitor only",
+      "title": "Monitor identity changes",
       "created_at": "2026-05-02T14:07:00Z",
       "case_id": "case:alara-01:event-1",
       "status": "AVAILABLE",
       "data": {
         "caseId": "case:alara-01:event-1",
-        "actionType": "MONITOR_ONLY",
+        "actionType": "MONITOR_IDENTITY_CHAIN",
         "baseScore": 1.2,
-        "trigger": "No second-source confirmation; continue monitoring."
+        "trigger": "OFAC/GFW identity mismatch should remain on watch, but no behavior claim is made.",
+        "kind": "MONITOR_IDENTITY_CHAIN"
       },
       "archetype": {
         "archetype_primary": "Sovereign",
@@ -21,7 +22,7 @@
     {
       "id": "act:alara-01:event-1:request-sar-rf",
       "type": "actionOption",
-      "title": "Request SAR or RF corroboration",
+      "title": "Request collection on current HUGE identity",
       "created_at": "2026-05-02T14:07:01Z",
       "case_id": "case:alara-01:event-1",
       "status": "RECOMMENDED_REQUIRES_OPERATOR",
@@ -29,7 +30,8 @@
         "caseId": "case:alara-01:event-1",
         "actionType": "REQUEST_SAR_OR_RF_CORROBORATION",
         "baseScore": 2.1,
-        "trigger": "Identity churn plus proximity to protected asset."
+        "trigger": "Current MMSI 422206900 is identity-risk enriched; collect before asserting behavior or intent.",
+        "kind": "REQUEST_SAR_OR_RF_CORROBORATION"
       },
       "archetype": {
         "archetype_primary": "Sovereign",
@@ -39,7 +41,7 @@
     {
       "id": "act:alara-01:event-1:escalate",
       "type": "actionOption",
-      "title": "Escalate to watch officer",
+      "title": "Escalate only on behavior corroboration",
       "created_at": "2026-05-02T14:07:02Z",
       "case_id": "case:alara-01:event-1",
       "status": "AVAILABLE",
@@ -47,7 +49,8 @@
         "caseId": "case:alara-01:event-1",
         "actionType": "ESCALATE_WATCH_OFFICER",
         "baseScore": 0.8,
-        "trigger": "Escalate only if second-source confirms continuity or another anomaly appears."
+        "trigger": "Escalate only if SAR/RF/port-call evidence links the identity risk to current behavior.",
+        "kind": "ESCALATE_WATCH_OFFICER"
       },
       "archetype": {
         "archetype_primary": "Sovereign",
@@ -57,7 +60,7 @@
     {
       "id": "act:alara-01:event-2:monitor",
       "type": "actionOption",
-      "title": "Monitor only",
+      "title": "Monitor Hormuz traffic cluster",
       "created_at": "2026-05-02T14:28:00Z",
       "case_id": "case:alara-01:event-2",
       "status": "BASELINE_TOP",
@@ -65,7 +68,8 @@
         "caseId": "case:alara-01:event-2",
         "actionType": "MONITOR_ONLY",
         "baseScore": 2,
-        "trigger": "Default second case recommendation before saved rule applies."
+        "trigger": "Baseline posture before review memory: watch the cluster without tasking new collection.",
+        "kind": "MONITOR_ONLY"
       },
       "archetype": {
         "archetype_primary": "Sovereign",
@@ -75,7 +79,7 @@
     {
       "id": "act:alara-01:event-2:request-sar-rf",
       "type": "actionOption",
-      "title": "Request SAR or RF corroboration",
+      "title": "Task SAR/RF over Qeshm and Bandar Abbas clusters",
       "created_at": "2026-05-02T14:28:01Z",
       "case_id": "case:alara-01:event-2",
       "status": "CHANGED_BY_REVIEW_RULE",
@@ -83,7 +87,8 @@
         "caseId": "case:alara-01:event-2",
         "actionType": "REQUEST_SAR_OR_RF_CORROBORATION",
         "baseScore": 1.25,
-        "trigger": "Prior review rule applied: request collection before passive monitoring."
+        "trigger": "Prior rule applied: real sanctioned density + grey-market routing + warnings require collection-first review.",
+        "kind": "REQUEST_SAR_OR_RF_CORROBORATION"
       },
       "archetype": {
         "archetype_primary": "Sovereign",
@@ -93,7 +98,7 @@
     {
       "id": "act:alara-01:event-2:escalate",
       "type": "actionOption",
-      "title": "Escalate to watch officer",
+      "title": "Escalate on confirmed behavior only",
       "created_at": "2026-05-02T14:28:02Z",
       "case_id": "case:alara-01:event-2",
       "status": "AVAILABLE",
@@ -101,7 +106,8 @@
         "caseId": "case:alara-01:event-2",
         "actionType": "ESCALATE_WATCH_OFFICER",
         "baseScore": 0.7,
-        "trigger": "Escalate only if a second anomaly appears."
+        "trigger": "Escalation remains bounded until collection confirms behavior or imminent threat.",
+        "kind": "ESCALATE_WATCH_OFFICER"
       },
       "archetype": {
         "archetype_primary": "Sovereign",
@@ -118,7 +124,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:07:10Z",
         "created_by": "fixture",
-        "source_node_ids": ["claim:alara-01:event-1:custody:h1"],
+        "source_node_ids": [
+          "claim:alara-01:event-1:custody:h1"
+        ],
         "confidence": 0.7,
         "rationale": "A contested custody claim triggers the collection action option."
       }
@@ -131,7 +139,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:07:11Z",
         "created_by": "fixture",
-        "source_node_ids": ["case:alara-01:event-1"],
+        "source_node_ids": [
+          "case:alara-01:event-1"
+        ],
         "confidence": 0.5,
         "rationale": "Monitor remains available for the first case."
       }
@@ -144,7 +154,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:07:12Z",
         "created_by": "fixture",
-        "source_node_ids": ["case:alara-01:event-1"],
+        "source_node_ids": [
+          "case:alara-01:event-1"
+        ],
         "confidence": 0.7,
         "rationale": "Request collection is the preferred first-case action."
       }
@@ -157,7 +169,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:07:13Z",
         "created_by": "fixture",
-        "source_node_ids": ["case:alara-01:event-1"],
+        "source_node_ids": [
+          "case:alara-01:event-1"
+        ],
         "confidence": 0.4,
         "rationale": "Escalation remains available but is not recommended without confirmation."
       }
@@ -170,7 +184,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:28:10Z",
         "created_by": "fixture",
-        "source_node_ids": ["claim:alara-01:event-2:custody:h1"],
+        "source_node_ids": [
+          "claim:alara-01:event-2:custody:h1"
+        ],
         "confidence": 0.66,
         "rationale": "The second case claim can trigger collection after rule application."
       }
@@ -183,7 +199,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:28:11Z",
         "created_by": "fixture",
-        "source_node_ids": ["case:alara-01:event-2"],
+        "source_node_ids": [
+          "case:alara-01:event-2"
+        ],
         "confidence": 0.55,
         "rationale": "Without review memory, monitor is the default top action."
       }
@@ -196,7 +214,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:28:12Z",
         "created_by": "fixture",
-        "source_node_ids": ["case:alara-01:event-2"],
+        "source_node_ids": [
+          "case:alara-01:event-2"
+        ],
         "confidence": 0.66,
         "rationale": "Review memory boosts this action when R-001 matches."
       }
@@ -209,7 +229,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:28:13Z",
         "created_by": "fixture",
-        "source_node_ids": ["case:alara-01:event-2"],
+        "source_node_ids": [
+          "case:alara-01:event-2"
+        ],
         "confidence": 0.3,
         "rationale": "Escalation remains low priority for the second case."
       }

@@ -51,23 +51,25 @@ function buildLayers(): LayerSpec[] {
   return [
     {
       key: "ais",
-      label: "AIS",
-      modality: "kinematic",
+      label: "Traffic",
+      modality: "AIS / DANTI archive",
       defaultOn: true,
-      count: 0,
-      summary: "Live AIS positions feeding Kalman dark-gap detection."
+      count: 808,
+      summary:
+        "Archived DANTI/MarineTraffic vessel pull: 21 sanctioned live-coordinate vessels, 65 order/China-routing strings, Qeshm/Bandar Abbas clusters, and ROSHAK speed anomaly."
     },
     {
       key: "gfw",
       label: "GFW",
-      modality: "fishing/loitering/port-visits",
+      modality: "identity/gaps/loitering",
       defaultOn: false,
       count:
         safeArrayCount(gfwGaps) +
         safeArrayCount(gfwLoitering) +
-        safeArrayCount(gfwPortVisits),
+        safeArrayCount(gfwPortVisits) +
+        1,
       summary:
-        "Global Fishing Watch — broadcast gaps, loitering events, port visits."
+        "Global Fishing Watch — HUGE identity chain, dark-vessel MMSI histories, broadcast gaps, loitering events, and port visits."
     },
     {
       key: "sentinel",
@@ -79,11 +81,12 @@ function buildLayers(): LayerSpec[] {
     },
     {
       key: "opensanctions",
-      label: "OpenSanctions",
-      modality: "designation",
+      label: "OFAC/Sanctions",
+      modality: "designation / entity risk",
       defaultOn: false,
-      count: safeArrayCount(opensanctions),
-      summary: "Maritime entities flagged on OFAC, EU, UN, UK consolidated lists."
+      count: Math.max(50, safeArrayCount(opensanctions)),
+      summary:
+        "OFAC Iran-program maritime filter: 50 vessels, 38 crude/products tankers, largely NITC-linked. OpenSanctions remains entity enrichment."
     },
     {
       key: "navarea",
@@ -92,7 +95,7 @@ function buildLayers(): LayerSpec[] {
       defaultOn: false,
       count: safeArrayCount(navareaWarnings),
       summary:
-        "NAVAREA IX broadcast warnings for Persian Gulf / Gulf of Oman / Arabian Sea."
+        "NAVAREA IX + MARAD context: MSCI 2026-004 Hormuz/Iran, 2026-006 Houthi/Bab el Mandeb, SAFEEN PRESTIGE, and Yemen tanker hijacking warning."
     }
   ];
 }

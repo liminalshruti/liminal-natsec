@@ -54,6 +54,12 @@ export function DraftCaseDetail() {
             {attachedCount} of {draft.candidateSignals.length} signals attached
           </span>
         </div>
+        <div className="draft-case-detail__context" aria-label="Draft case context">
+          <span>{draft.context.watchBoxName}</span>
+          <span>{draft.context.replayAnchor}</span>
+          <span>{draft.context.reviewWindowLabel}</span>
+        </div>
+        <p className="draft-case-detail__scope-note">{draft.context.scopeNote}</p>
       </header>
 
       <div className="draft-case-detail__signals">

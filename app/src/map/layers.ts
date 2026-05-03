@@ -145,13 +145,19 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       paint: {
         "circle-radius": [
           "case",
+          ["==", ["get", "is_implausible_speed"], true], 6.2,
+          ["==", ["get", "is_foreign_flag_iran_last_port"], true], 5.4,
           ["==", ["get", "is_iran_flag"], true], 4.8,
+          ["==", ["get", "is_order_destination"], true], 4.2,
           ["==", ["get", "is_tanker"], true], 3.8,
           2.8
         ],
         "circle-color": [
           "case",
+          ["==", ["get", "is_implausible_speed"], true], "#ffe082",
+          ["==", ["get", "is_foreign_flag_iran_last_port"], true], "#b98cff",
           ["==", ["get", "is_iran_flag"], true], "#e36d5a",
+          ["==", ["get", "is_order_destination"], true], "#67b8d6",
           ["==", ["get", "is_tanker"], true], "#78d7b1",
           "#6f8fa8"
         ],
@@ -170,7 +176,10 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       source: SOURCES.dantiTrafficVisible,
       filter: [
         "any",
+        ["==", ["get", "is_implausible_speed"], true],
+        ["==", ["get", "is_foreign_flag_iran_last_port"], true],
         ["==", ["get", "is_iran_flag"], true],
+        ["==", ["get", "is_order_destination"], true],
         ["==", ["get", "is_underway"], true]
       ],
       layout: {

@@ -4440,5 +4440,123 @@
       ],
       "note": "Public warning and OSINT records affect regional context only."
     }
+  },
+  {
+    "id": "ev:hormuz:synthesis:live-sdn-coordinates",
+    "title": "21 sanctioned IRISL/NITC/OFAC vessels with DANTI coordinates",
+    "source": "DANTI",
+    "provider": "DANTI / MarineTraffic + OFAC",
+    "category": "ENTITY_RISK_ENRICHMENT",
+    "drawer_group": "Entity Risk",
+    "status": "available",
+    "summary": "DANTI coordinates identify 21 known IRISL/NITC/OFAC-linked vessels in the Hormuz pull, including ADRIAN DARYA, HAMOUNA, AZARGOUN, KASHAN, SHAYAN 1, AMIR ABBAS, MATIN, and KAMINEH.",
+    "detail": null,
+    "observed_at": "2026-04-02T17:15:18Z",
+    "source_file": "fixtures/maritime/danti-sanctioned-overlay.geojson",
+    "source_document_id": "src:hormuz:danti-hormuz-ship-paginated",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-ship-paginated",
+      "src:hormuz:ofac-maritime-sanctions-matches"
+    ],
+    "confidence": 0.84,
+    "reliability": 0.78,
+    "policy": {
+      "score_contribution": "context",
+      "note": "Identity/source context only; not vessel behavior or intent evidence."
+    }
+  },
+  {
+    "id": "ev:hormuz:synthesis:grey-market-routing",
+    "title": "Grey-market routing indicators across the Hormuz ship pull",
+    "source": "DANTI",
+    "provider": "DANTI / MarineTraffic",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "status": "available",
+    "summary": "The ship pull contains 65 TO ORDER / FOR ORDER / CHINA OWNER&CREW destination strings plus China-routing examples HAMOUNA from ZHUHAI and DARYABAR from CJK.",
+    "detail": null,
+    "observed_at": "2026-04-02T17:15:18Z",
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+    "source_document_id": "src:hormuz:danti-hormuz-ship-paginated",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-ship-paginated"
+    ],
+    "confidence": 0.72,
+    "reliability": 0.68,
+    "policy": {
+      "score_contribution": "context",
+      "note": "Identity/source context only; not vessel behavior or intent evidence."
+    }
+  },
+  {
+    "id": "ev:hormuz:synthesis:navarea-marad-warning-stack",
+    "title": "MARAD and NAVAREA warning stack around Hormuz and Yemen",
+    "source": "NAVAREA_IX",
+    "provider": "NAVAREA IX / MARAD MSCI",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "Maritime Warnings",
+    "status": "available",
+    "summary": "MARAD MSCI 2026-004 covers Hormuz/Iran and 2026-006 covers Houthi/Bab el Mandeb risk; NAVAREA IX warning text includes 113/26 SAFEEN PRESTIGE reported sunk and 146/26 Yemen tanker hijacking.",
+    "detail": null,
+    "observed_at": "2026-05-03T14:46:00Z",
+    "source_file": "fixtures/maritime/live-cache/navarea-ix-warning-documents.json",
+    "source_document_id": "src:hormuz:navarea-ix-warnings",
+    "source_document_ids": [
+      "src:hormuz:navarea-ix-warnings"
+    ],
+    "confidence": 0.74,
+    "reliability": 0.72,
+    "policy": {
+      "score_contribution": "regional_context",
+      "note": "Regional warning context; supports collection priority, not vessel intent."
+    }
+  },
+  {
+    "id": "ev:hormuz:synthesis:dark-gap-null-findings",
+    "title": "Null findings preserve source honesty",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch + DANTI + OFAC",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "status": "available",
+    "summary": "The 5 dark-vessel MMSIs do not match OFAC, and DANTI's visible Hormuz ships have zero IMO/MMSI overlap with the OFAC NITC fleet; public AIS and listed sanctioned identities diverge.",
+    "detail": null,
+    "observed_at": "2026-05-03T14:46:00Z",
+    "source_file": "fixtures/maritime/live-cache/gfw-dark-vessel-identity-histories.json",
+    "source_document_id": "src:hormuz:gfw-dark-vessel-identity-histories",
+    "source_document_ids": [
+      "src:hormuz:gfw-dark-vessel-identity-histories",
+      "src:hormuz:ofac-maritime-sanctions-matches",
+      "src:hormuz:danti-hormuz-ship-paginated"
+    ],
+    "confidence": 0.78,
+    "reliability": 0.8,
+    "policy": {
+      "score_contribution": "context",
+      "note": "Identity/source context only; not vessel behavior or intent evidence."
+    }
+  },
+  {
+    "id": "ev:hormuz:synthesis:roshak-spoofing-signal",
+    "title": "ROSHAK reports physically implausible 31 kt speed",
+    "source": "DANTI",
+    "provider": "DANTI / MarineTraffic",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "status": "available",
+    "summary": "ROSHAK (IR flag, IMO 9405966) appears in the DANTI ship pull at speed=31 kt near Bandar Abbas, a physically implausible signal for the vessel class and a likely spoofing/data-quality indicator.",
+    "detail": null,
+    "observed_at": "2026-04-02T16:12:15Z",
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+    "source_document_id": "src:hormuz:danti-hormuz-ship-paginated",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-ship-paginated"
+    ],
+    "confidence": 0.7,
+    "reliability": 0.62,
+    "policy": {
+      "score_contribution": "context",
+      "note": "Identity/source context only; not vessel behavior or intent evidence."
+    }
   }
 ]

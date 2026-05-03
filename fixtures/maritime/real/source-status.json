@@ -1,18 +1,18 @@
 [
   {
     "source": "AISSTREAM",
-    "status": "available",
-    "detail": "167 real AIS messages normalized",
+    "status": "excluded_fixture_fallback",
+    "detail": "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
     "fileName": "aisstream-hormuz-sample.json",
-    "generatedAt": "2026-05-03T05:52:05.300Z",
-    "recordCount": 167
+    "generatedAt": "2026-05-03T14:11:46.371Z",
+    "recordCount": 0
   },
   {
     "source": "GLOBAL_FISHING_WATCH",
     "status": "available",
     "detail": "18 real GFW events normalized from gfw-hormuz-gaps.json",
     "fileName": "gfw-hormuz-gaps.json",
-    "generatedAt": "2026-05-03T05:41:42.961Z",
+    "generatedAt": "2026-05-03T14:11:46.371Z",
     "recordCount": 18
   },
   {
@@ -20,7 +20,7 @@
     "status": "available",
     "detail": "50 real GFW events normalized from gfw-hormuz-loitering.json",
     "fileName": "gfw-hormuz-loitering.json",
-    "generatedAt": "2026-05-03T05:41:42.961Z",
+    "generatedAt": "2026-05-03T14:11:46.371Z",
     "recordCount": 50
   },
   {
@@ -28,7 +28,7 @@
     "status": "available",
     "detail": "50 real GFW events normalized from gfw-hormuz-port-visits.json",
     "fileName": "gfw-hormuz-port-visits.json",
-    "generatedAt": "2026-05-03T05:41:42.961Z",
+    "generatedAt": "2026-05-03T14:11:46.371Z",
     "recordCount": 50
   }
 ]

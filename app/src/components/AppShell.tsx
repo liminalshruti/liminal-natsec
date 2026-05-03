@@ -69,9 +69,10 @@ export function AppShell({
   onToggleUiMode
 }: AppShellProps) {
   const shellRef = useRef<HTMLDivElement | null>(null);
-  const [paneWidths, setPaneWidths] = useState<PaneWidths>(() =>
-    defaultPaneWidths(viewportWidth())
-  );
+  const [paneWidths, setPaneWidths] = useState<PaneWidths>(() => {
+    const width = viewportWidth();
+    return clampPaneWidths(defaultPaneWidths(width), width, "working");
+  });
   const [resizingPane, setResizingPane] = useState<"substrate" | "working" | null>(null);
   const eventId = eventIdFromCaseId(selectedCaseId);
   // D1 focus state: which pane should the operator's eye land on first?
@@ -282,9 +283,9 @@ function viewportWidth(): number {
 
 function defaultPaneWidths(width: number): PaneWidths {
   if (width < 1024) return { substrate: 240, working: 380 };
-  if (width < 1280) return { substrate: 272, working: 432 };
-  if (width < 1440) return { substrate: 296, working: 480 };
-  return { substrate: 320, working: 520 };
+  if (width < 1280) return { substrate: 272, working: 460 };
+  if (width < 1440) return { substrate: 296, working: 520 };
+  return { substrate: 320, working: 560 };
 }
 
 function clampPaneWidths(
@@ -300,11 +301,26 @@ function clampPaneWidths(
   );
 
   if (substrate + working > maxSideTotal) {
-    const overflow = substrate + working - maxSideTotal;
+    let overflow = substrate + working - maxSideTotal;
+    const shrink = (pane: keyof PaneWidths) => {
+      if (overflow <= 0) return;
+      if (pane === "substrate") {
+        const delta = Math.min(overflow, substrate - PANE_LIMITS.substrateMin);
+        substrate -= delta;
+        overflow -= delta;
+      } else {
+        const delta = Math.min(overflow, working - PANE_LIMITS.workingMin);
+        working -= delta;
+        overflow -= delta;
+      }
+    };
+
     if (priority === "substrate") {
-      working = Math.max(PANE_LIMITS.workingMin, working - overflow);
+      shrink("working");
+      shrink("substrate");
     } else {
-      substrate = Math.max(PANE_LIMITS.substrateMin, substrate - overflow);
+      shrink("substrate");
+      shrink("working");
     }
   }
 

@@ -5,6 +5,7 @@ import {
   actionsForCase,
   caseIdFromAlertId,
   hypothesesForCase,
+  nodeById,
   primaryClaimForCase,
   reviewApplicationForCase
 } from "../lib/spineGraph.ts";
@@ -46,6 +47,7 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
     () => (caseId ? actionsForCase(caseId) : []),
     [caseId]
   );
+  const caseNode = useMemo(() => nodeById(caseId), [caseId]);
   const ruleApplication = useMemo(
     () => (caseId ? reviewApplicationForCase(caseId) : null),
     [caseId]
@@ -93,7 +95,22 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
   // Concrete derivation lives in ActionOptions; here we surface the lead verb
   // + claim status as the WHILE-line for now (v3.2 will derive from ranked
   // ActionOptions once that contract exists).
-  const verbLabel = changedRuleApplication
+  const hasRecommendedCollection = actions.some((action) => {
+    const data = (action.data ?? {}) as Record<string, unknown>;
+    const actionType =
+      typeof data.actionType === "string"
+        ? data.actionType
+        : typeof data.kind === "string"
+          ? data.kind
+          : "";
+    return (
+      action.status?.toLowerCase().includes("recommended") ||
+      action.status?.toLowerCase().includes("changed") ||
+      actionType === "REQUEST_SAR_OR_RF_CORROBORATION"
+    );
+  });
+
+  const verbLabel = changedRuleApplication || hasRecommendedCollection
     ? "RECOMMEND collection"
     : claimStatus?.toLowerCase().includes("contested")
     ? "RECOMMEND monitor"
@@ -137,6 +154,7 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
             <TypedObjectChip
               kind="case"
               id={caseId}
+              label={caseNode?.title}
               status={selectedAlert.status}
               size="sm"
             />
@@ -145,12 +163,15 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
             <TypedObjectChip
               kind="claim"
               id={primaryClaimId}
+              label={primaryClaim?.title}
               status={claimStatus ?? undefined}
               posterior={claimPosterior}
               size="sm"
             />
           )}
         </div>
+
+        <CaseLead node={caseNode} />
 
         {/* Intake band — OSINT signals feeding the analysis below. Phase-keyed
             reveal so chips "arrive" as the replay clock advances. The same
@@ -283,4 +304,72 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
       </div>
     </>
   );
+}
+
+function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
+  const data = (node?.data ?? {}) as Record<string, unknown>;
+  const leadSummary =
+    typeof data.lead_summary === "string" ? data.lead_summary : null;
+  const context = isRecord(data.case_context) ? data.case_context : {};
+  const features = isRecord(data.features) ? data.features : {};
+  const keyFindings = Array.isArray(data.key_findings)
+    ? data.key_findings.filter((item): item is string => typeof item === "string")
+    : [];
+  const sourceMix = Array.isArray(data.source_mix)
+    ? data.source_mix.filter((item): item is string => typeof item === "string")
+    : [];
+  const contextItems = [
+    stringValue(context.watch_box_name) ?? stringValue(features.aoi_name),
+    stringValue(context.replay_anchor),
+    stringValue(context.review_window_label) ??
+      (typeof features.review_window_hours === "number"
+        ? `${features.review_window_hours}h review window`
+        : null)
+  ].filter((item): item is string => Boolean(item));
+  const scopeNote = stringValue(context.scope_note);
+
+  if (!leadSummary && keyFindings.length === 0 && contextItems.length === 0 && !scopeNote) {
+    return null;
+  }
+
+  return (
+    <div className="case-lead" role="region" aria-label="Case OSINT synthesis">
+      <div className="case-lead__head">
+        <span className="case-lead__eyebrow">REAL OSINT CASE</span>
+        {sourceMix.length > 0 && (
+          <span className="case-lead__sources">
+            {sourceMix.slice(0, 5).join(" · ")}
+          </span>
+        )}
+      </div>
+      {contextItems.length > 0 && (
+        <div className="case-lead__context">
+          {contextItems.map((item) => (
+            <span key={item} className="case-lead__context-chip">
+              {item}
+            </span>
+          ))}
+        </div>
+      )}
+      {leadSummary && <div className="case-lead__summary">{leadSummary}</div>}
+      {scopeNote && <div className="case-lead__scope">{scopeNote}</div>}
+      {keyFindings.length > 0 && (
+        <div className="case-lead__findings">
+          {keyFindings.slice(0, 3).map((finding) => (
+            <span key={finding} className="case-lead__finding">
+              {finding}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function stringValue(value: unknown): string | null {
+  return typeof value === "string" && value.trim().length > 0 ? value : null;
 }

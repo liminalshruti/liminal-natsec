@@ -35,7 +35,7 @@ export function CaseHandoffBanner({
         <code>{ruleApplication.ruleId}</code> applied because the case matched
         <span className="handoff-banner__cond">
           {" "}
-          claim_kind=custody_hypothesis · trigger=identity_churn · corroboration=false
+          identity-risk real · behavior underdetermined · collection corroboration required
         </span>
         .
       </div>

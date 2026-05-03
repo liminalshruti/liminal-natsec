@@ -138,12 +138,23 @@ function actionCandidates(graph: Graph, caseId: string): ActionCandidate[] {
 
   const source = linked.length > 0
     ? linked
-    : graph.getNodes("actionOption").filter((node) => dataOf(node).caseId === caseId);
+    : graph.getNodes("actionOption").filter((node) => {
+        const data = dataOf(node);
+        return data.caseId === caseId || node.case_id === caseId;
+      });
 
   return source.map((node) => {
     const data = dataOf(node);
-    const priorScore = numericValue(data.baseScore, numericValue(data.score, 0));
-    const actionType = typeof data.actionType === "string" ? data.actionType : undefined;
+    const priorScore = numericValue(
+      data.baseScore,
+      numericValue(data.ranking_score, numericValue(data.score, 0))
+    );
+    const actionType =
+      typeof data.actionType === "string"
+        ? data.actionType
+        : typeof data.kind === "string"
+          ? data.kind
+          : undefined;
 
     return {
       node,

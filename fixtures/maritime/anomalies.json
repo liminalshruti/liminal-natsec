@@ -3,52 +3,129 @@
     {
       "id": "case:alara-01:event-1",
       "type": "case",
-      "title": "Alara 01 first contested custody case",
+      "title": "OFAC-listed HUGE identity churn",
       "created_at": "2026-05-02T14:01:00Z",
       "status": "OPEN",
       "data": {
-        "scenario_id": "scenario:alara-01",
-        "stage": "first_case",
+        "scenario_id": "scenario:hormuz-real-osint",
+        "stage": "ofac_gfw_identity_case",
         "features": {
           "gap_minutes": 49.3,
-          "candidate_continuity_score": 0.78,
+          "candidate_continuity_score": 0.92,
           "danti_geo_time_corroboration": true,
-          "aoi_id": "aoi:alara-eez-box-01"
-        }
+          "aoi_id": "aoi:alara-eez-box-01",
+          "aoi_name": "Hormuz Watch Box 01",
+          "review_window_hours": 72,
+          "anchor_mmsi_short": "111",
+          "anchor_mmsi": "366700111",
+          "anchor_vessel_name": "MV CALDERA",
+          "imo_match": true,
+          "mmsi_match": false,
+          "ofac_program": "IRAN",
+          "gfw_identity_count": 7
+        },
+        "case_context": {
+          "watch_box_id": "aoi:alara-eez-box-01",
+          "watch_box_name": "Hormuz Watch Box 01",
+          "replay_anchor": "MMSI-111 / MV CALDERA",
+          "replay_anchor_full_mmsi": "366700111",
+          "review_window_label": "72-hour review window",
+          "review_window_hours": 72,
+          "review_window_start": "2026-04-18T09:55:00Z",
+          "review_window_end": "2026-04-21T09:55:00Z",
+          "scope_note": "MMSI-111 / MV CALDERA is the visual replay anchor for the custody pattern; real OSINT enriches the pattern and does not assert that CALDERA is HUGE."
+        },
+        "lead_summary": "Hormuz Watch Box 01 uses MMSI-111 / MV CALDERA as the replay anchor for identity custody; OFAC lists Iranian crude tanker HUGE (IMO 9357183) under MMSI 212256000, while GFW shows the same IMO currently broadcasting as MMSI 422206900 / IRN after seven AIS identity tuples.",
+        "key_findings": [
+          "7 broadcast identities since 2012: SVS GILBERT -> HATEF -> GLORY -> HUGE -> unnamed -> HUGE/PAN -> HUGE/IRN.",
+          "Current GFW identity: MMSI 422206900, IRN flag, callsign EPJE5, last received 2026-03-20.",
+          "OFAC-listed MMSI 212256000 corresponds to the 2012 Cyprus/HATEF broadcast, not the current AIS identity.",
+          "The system supports identity-risk enrichment but refuses to infer hostile intent without behavior corroboration."
+        ],
+        "source_mix": [
+          "OFAC SDN",
+          "Global Fishing Watch vessel identity",
+          "OpenSanctions"
+        ]
       }
     },
     {
       "id": "case:alara-01:event-2",
       "type": "case",
-      "title": "Alara 01 second case after review memory",
+      "title": "Hormuz vessel-density risk synthesis",
       "created_at": "2026-05-02T14:25:00Z",
       "status": "OPEN",
       "data": {
-        "scenario_id": "scenario:alara-01",
-        "stage": "second_case",
+        "scenario_id": "scenario:hormuz-real-osint",
+        "stage": "hormuz_synthesis_case",
         "features": {
           "gap_minutes": 45,
-          "candidate_continuity_score": 0.71,
+          "candidate_continuity_score": 0.84,
           "danti_geo_time_corroboration": true,
-          "aoi_id": "aoi:alara-eez-box-01"
-        }
+          "aoi_id": "aoi:alara-eez-box-01",
+          "aoi_name": "Hormuz Watch Box 01",
+          "review_window_hours": 72,
+          "anchor_mmsi_short": "111",
+          "anchor_mmsi": "366700111",
+          "anchor_vessel_name": "MV CALDERA",
+          "sanctioned_live_vessels": 21,
+          "ofac_iran_program_vessels": 50,
+          "grey_market_destination_vessels": 65,
+          "marad_2026_004_overlap_gaps": 4
+        },
+        "case_context": {
+          "watch_box_id": "aoi:alara-eez-box-01",
+          "watch_box_name": "Hormuz Watch Box 01",
+          "replay_anchor": "MMSI-111 / MV CALDERA",
+          "replay_anchor_full_mmsi": "366700111",
+          "review_window_label": "72-hour review window",
+          "review_window_hours": 72,
+          "review_window_start": "2026-04-18T09:55:00Z",
+          "review_window_end": "2026-04-21T09:55:00Z",
+          "scope_note": "The 72-hour window is the operator review horizon. Archived DANTI/MarineTraffic data remains context unless a current vessel behavior source corroborates it."
+        },
+        "lead_summary": "DANTI/MarineTraffic, OFAC, GFW, MARAD, and NAVAREA-IX converge on the same Hormuz Watch Box 01 review horizon: sanctioned Iranian-linked vessels, grey-market destinations, loitering clusters, identity churn, and active maritime warnings.",
+        "key_findings": [
+          "21 known IRISL/NITC/OFAC SDN vessels have live DANTI coordinates, including ADRIAN DARYA, HAMOUNA, AZARGOUN, KASHAN, SHAYAN 1, AMIR ABBAS, MATIN, and KAMINEH.",
+          "Loitering clusters appear at Qeshm and Bandar Abbas anchorage; 7 NITC-linked tankers are stationary near Qeshm and 14+ vessels cluster near Bandar Abbas.",
+          "Foreign-flagged tankers with Iranian last_port include YEKTA II, ELPIS, KOTOKU MARU NO.10, and CAPILANO in the cache; TINA II and MARIVEX are tracked as watchlist gaps if not in the visible DANTI slice.",
+          "65 vessels advertise TO ORDER / FOR ORDER / CHINA OWNER&CREW destinations, consistent with grey-market Iran-to-China oil-flow indicators.",
+          "ROSHAK reports 31 kt, physically implausible for the vessel class, so the map treats it as a spoofing/data-quality signal.",
+          "MARAD MSCI 2026-004 and NAVAREA-IX warnings provide regional risk context, including SAFEEN PRESTIGE reported sunk and a Yemen tanker hijacking warning."
+        ],
+        "source_mix": [
+          "DANTI/MarineTraffic",
+          "OFAC",
+          "GFW",
+          "MARAD MSCI",
+          "NAVAREA IX"
+        ]
       }
     },
     {
       "id": "anom:identity-churn:trk-caldera:20260418T1015:1f44",
       "type": "anomaly",
-      "title": "Identity churn plus dark gap",
+      "title": "OFAC-listed HUGE broadcasting under unlisted MMSI",
       "created_at": "2026-05-02T14:03:00Z",
       "case_id": "case:alara-01:event-1",
       "status": "OPEN",
       "data": {
-        "anomaly_type": "IDENTITY_CHURN_PLUS_DARK_GAP",
-        "window_start": "2026-04-18T10:15:04Z",
-        "window_end": "2026-04-18T11:04:22Z",
+        "anomaly_type": "OFAC_GFW_IDENTITY_CHURN",
+        "window_start": "2012-01-01T00:00:00Z",
+        "window_end": "2026-03-20T02:09:30Z",
         "gap_minutes": 49.3,
         "candidate_old_track_id": "trk:366700111:20260418T0950:20260418T1015:aa01",
         "candidate_new_track_id": "trk:538009771:20260418T1104:20260418T1110:bb02",
-        "score": 0.78
+        "score": 0.92,
+        "imo": "9357183",
+        "vessel_name": "HUGE",
+        "watch_box_name": "Hormuz Watch Box 01",
+        "review_window_label": "72-hour review window",
+        "replay_anchor": "MMSI-111 / MV CALDERA",
+        "ofac_listed_mmsi": "212256000",
+        "current_gfw_mmsi": "422206900",
+        "current_flag": "IRN",
+        "identity_count": 7
       },
       "archetype": {
         "archetype_primary": "Sage",
@@ -58,17 +135,32 @@
     {
       "id": "anom:dark-gap:trk-271990222:20260418T1220:cc90",
       "type": "anomaly",
-      "title": "Second case dark gap with corroboration",
+      "title": "Hormuz sanctioned, grey-market, and advisory convergence",
       "created_at": "2026-05-02T14:24:00Z",
       "case_id": "case:alara-01:event-2",
       "status": "OPEN",
       "data": {
-        "anomaly_type": "DARK_GAP_WITH_CORROBORATION",
-        "window_start": "2026-04-18T12:20:00Z",
-        "window_end": "2026-04-18T13:05:00Z",
+        "anomaly_type": "HORMUZ_OSINT_CONVERGENCE",
+        "window_start": "2026-04-02T14:36:59Z",
+        "window_end": "2026-05-03T14:46:00Z",
         "gap_minutes": 45,
         "candidate_track_id": "trk:271990222:20260418T1220:20260418T1305:cc90",
-        "score": 0.71
+        "score": 0.84,
+        "watch_box_name": "Hormuz Watch Box 01",
+        "review_window_label": "72-hour review window",
+        "replay_anchor": "MMSI-111 / MV CALDERA",
+        "sanctioned_live_vessels": 21,
+        "grey_market_destination_vessels": 65,
+        "loiter_clusters": [
+          "Qeshm",
+          "Bandar Abbas Anchorage"
+        ],
+        "warning_context": [
+          "MARAD MSCI 2026-004",
+          "MARAD MSCI 2026-006",
+          "NAVAREA IX 113/26",
+          "NAVAREA IX 146/26"
+        ]
       },
       "archetype": {
         "archetype_primary": "Sage",
@@ -85,7 +177,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:03:01Z",
         "created_by": "fixture",
-        "source_node_ids": ["obs:aishub:366700111:20260418T101504Z"],
+        "source_node_ids": [
+          "obs:aishub:366700111:20260418T101504Z"
+        ],
         "confidence": 0.8,
         "rationale": "Last observation anchors the start of the dark gap."
       }
@@ -98,7 +192,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:03:02Z",
         "created_by": "fixture",
-        "source_node_ids": ["obs:barentswatch:538009771:20260418T110422Z"],
+        "source_node_ids": [
+          "obs:barentswatch:538009771:20260418T110422Z"
+        ],
         "confidence": 0.8,
         "rationale": "First reappearance observation defines the candidate continuity endpoint."
       }
@@ -111,7 +207,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:24:01Z",
         "created_by": "fixture",
-        "source_node_ids": ["obs:aishub:271990222:20260418T122000Z"],
+        "source_node_ids": [
+          "obs:aishub:271990222:20260418T122000Z"
+        ],
         "confidence": 0.76,
         "rationale": "Second case last observation anchors the changed recommendation loop."
       }
@@ -124,7 +222,9 @@
       "provenance": {
         "created_at": "2026-05-02T14:24:02Z",
         "created_by": "fixture",
-        "source_node_ids": ["obs:danti:unknown:20260418T125200Z"],
+        "source_node_ids": [
+          "obs:danti:unknown:20260418T125200Z"
+        ],
         "confidence": 0.62,
         "rationale": "External detection falls inside the expected gap window."
       }

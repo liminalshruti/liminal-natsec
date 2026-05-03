@@ -10,7 +10,7 @@
 // derived recommendation names the structural-guard layer that authorized
 // (or refused) it.
 
-import type { ReviewRuleApplication, SpineNode } from "../lib/spineGraph.ts";
+import { nodeById, type ReviewRuleApplication, type SpineNode } from "../lib/spineGraph.ts";
 import type { SpecialistReadRecord } from "../lib/specialistReads.ts";
 
 import { TypedObjectChip } from "./TypedObjectChip.tsx";
@@ -47,6 +47,11 @@ export function ExecSummary({
   const integrity = findRead(reads, "signal_integrity");
   const intent = findRead(reads, "intent");
   const collection = findRead(reads, "collection");
+  const caseNode = nodeById(caseId);
+  const claimNode = nodeById(claimId);
+  const caseData = (caseNode?.data ?? {}) as Record<string, unknown>;
+  const leadSummary =
+    typeof caseData.lead_summary === "string" ? caseData.lead_summary : null;
   const recommendedAction = ruleApplication?.recommendedActionId
     ? actions.find((a) => a.id === ruleApplication.recommendedActionId) ?? null
     : actions[0] ?? null;
@@ -55,13 +60,14 @@ export function ExecSummary({
     <div className="exec-summary">
       <p>
         A custody case is open for{" "}
-        <TypedObjectChip kind="case" id={caseId} size="sm" />
+        <TypedObjectChip kind="case" id={caseId} label={caseNode?.title} size="sm" />
         {claimId && (
           <>
             {" "}centered on{" "}
             <TypedObjectChip
               kind="claim"
               id={claimId}
+              label={claimNode?.title}
               status={claimStatus}
               posterior={claimPosterior}
               size="sm"
@@ -75,6 +81,8 @@ export function ExecSummary({
           </>
         )}
       </p>
+
+      {leadSummary && <p>{leadSummary}</p>}
 
       {integrity && (
         <p>

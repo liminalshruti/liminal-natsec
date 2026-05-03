@@ -19,7 +19,8 @@ interface WorkingPanelProps {
 
 // v3.2 IA — Working Panel splits into two regions vertically:
 //   .working__operative  — Zone 1 (verb + posture + hero banner) and
-//                          Zone 2 (hypothesis × specialist interleave). Pinned.
+//                          Zone 2 (hypothesis × specialist interleave).
+//                          Pinned until content would clip; then bounded scroll.
 //   .working__forensic   — Zone 3 (case file as dragon-fold). Scroll region.
 //
 // Operative state is now; forensic state is history. The interaction matches
@@ -49,12 +50,14 @@ export function WorkingPanel({
         <span>Working Panel</span>
         <span className="tag">case</span>
       </div>
-      {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
-      {!loading && !selectedAlert && !isDraftSelected && <EmptyStencil uiMode={uiMode} />}
-      {!loading && isDraftSelected && <DraftCaseDetail />}
-      {!loading && selectedAlert && !isDraftSelected && (
-        <CustodyCasePanel selectedAlert={selectedAlert} replayPhase={replayPhase} />
-      )}
+      <div className="working__content">
+        {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
+        {!loading && !selectedAlert && !isDraftSelected && <EmptyStencil uiMode={uiMode} />}
+        {!loading && isDraftSelected && <DraftCaseDetail />}
+        {!loading && selectedAlert && !isDraftSelected && (
+          <CustodyCasePanel selectedAlert={selectedAlert} replayPhase={replayPhase} />
+        )}
+      </div>
     </section>
   );
 }

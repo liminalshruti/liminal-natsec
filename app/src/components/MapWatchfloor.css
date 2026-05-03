@@ -179,6 +179,10 @@
   color: #7d92a6;
   white-space: nowrap;
 }
+.map-danti-badge__signals {
+  color: #ffe082;
+  white-space: nowrap;
+}
 
 /* --- Monitored zone pulse (anchored to AOI centroid by MapLabels) ------- */
 
@@ -221,13 +225,20 @@
   display: flex;
   align-items: center;
   gap: 14px;
+  min-width: 0;
   margin-bottom: 10px;
   font-size: 10.5px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #7d92a6;
 }
-.map-scrubber-label { color: #7d92a6; }
+.map-scrubber-label {
+  min-width: 0;
+  color: #7d92a6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 .map-scrubber-clock {
   margin-left: auto;
   color: #cfdbe8;

@@ -3,21 +3,21 @@
     {
       "id": "ev:alara-01:event-1:kinematic-fit",
       "type": "evidence",
-      "title": "Kalman fit inside predicted corridor",
+      "title": "GFW identity history preserves custody on IMO 9357183",
       "created_at": "2026-05-02T14:05:10Z",
       "case_id": "case:alara-01:event-1",
       "data": {
-        "evidence_type": "KINEMATIC_MODEL_OUTPUT",
-        "llr_nats": 1.21,
-        "summary": "First ping after the gap falls inside the predicted corridor.",
+        "evidence_type": "VESSEL_IDENTITY_HISTORY",
+        "llr_nats": 1.9,
+        "summary": "GFW shows HUGE current AIS identity as MMSI 422206900 / IRN while preserving IMO 9357183 across the identity chain. This enriches the Hormuz Watch Box 01 custody pattern anchored visually by MMSI-111 / MV CALDERA.",
         "citation": {
-          "label": "World Bank PortWatch · Hormuz chokepoint transits",
-          "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
-          "source_sha256": "3a78fdfce7d5ff26c34f49e4b7dc2a46d40d0d534358564e944a9484e3f6c145",
-          "source_pointer": "$.body.records[*]",
+          "label": "GFW · HUGE identity history",
+          "source_file": "fixtures/maritime/live-cache/gfw-huge-imo9357183-identity-history.json",
+          "source_sha256": "cached-live-api",
+          "source_pointer": "$.results[*].selfReportedInfo[*]",
           "source_status": "real",
-          "source_provider": "World Bank PortWatch",
-          "rationale": "Predicted-corridor priors anchored in the real chokepoint baseline (20 daily transit records over the AOI). Corridor geometry pulled from OSM Overpass."
+          "source_provider": "Global Fishing Watch",
+          "rationale": "The full identity history resolves the current broadcast identity and the historical HATEF/OFAC-listed MMSI under the same IMO."
         },
         "citation_secondary": {
           "label": "OSM Overpass · Hormuz maritime infrastructure",
@@ -32,27 +32,27 @@
     {
       "id": "ev:alara-01:event-1:metadata-conflict",
       "type": "evidence",
-      "title": "Identity metadata conflict",
+      "title": "OFAC row lists prior MMSI for the same tanker",
       "created_at": "2026-05-02T14:05:11Z",
       "case_id": "case:alara-01:event-1",
       "data": {
-        "evidence_type": "IDENTITY_METADATA_CONFLICT",
-        "llr_nats": -0.62,
-        "summary": "Different MMSI and metadata prevent asserting continuity as fact.",
+        "evidence_type": "SANCTIONS_IDENTITY_MISMATCH",
+        "llr_nats": -0.22,
+        "summary": "OFAC SDN row 15054 lists HUGE/IMO 9357183 at MMSI 212256000, while GFW's current identity is MMSI 422206900 / IRN.",
         "citation": {
-          "label": "OpenSanctions · Hormuz maritime entities",
-          "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
-          "source_sha256": "38308ccf7f3b57b26e136a9db4150fe08f82b1c9dd50f8d7a92f3d595c9c2ea5",
-          "source_pointer": "$.results[*]",
+          "label": "OFAC · Iran-program maritime sanctions",
+          "source_file": "fixtures/maritime/live-cache/ofac-maritime-sanctions-matches.json",
+          "source_sha256": "cached-live-api",
+          "source_pointer": "$.matches[?(@.imo=='9357183')]",
           "source_status": "real",
-          "source_provider": "OpenSanctions",
-          "rationale": "Both MMSIs cross-checked against the OpenSanctions registry of Hormuz-area maritime entities (10 entries on disk). Neither MMSI matches a sanctioned identity, but the registry confirms multiple operators in this AOI use rapid-MMSI-rotation tactics consistent with the observed churn."
+          "source_provider": "U.S. Treasury OFAC",
+          "rationale": "This is not a null match: the IMO matches. The contested field is the active MMSI, which is why the case is identity-risk enrichment rather than an intent finding."
         },
         "citation_secondary": {
-          "label": "GFW · IRISL vessel search",
-          "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
-          "source_sha256": null,
-          "source_pointer": "$.entries[*]",
+          "label": "GFW · current broadcast identity",
+          "source_file": "fixtures/maritime/live-cache/gfw-huge-imo9357183-identity-history.json",
+          "source_sha256": "cached-live-api",
+          "source_pointer": "$.results[*].registryInfo[?(@.ssvid=='422206900')]",
           "source_status": "real",
           "source_provider": "Global Fishing Watch"
         }
@@ -61,46 +61,49 @@
     {
       "id": "ev:alara-01:event-1:no-visual-id",
       "type": "evidence",
-      "title": "Sentinel-1 SAR pass · no vessel resolved at predicted ellipse",
+      "title": "No behavior/intent claim from identity risk alone",
       "created_at": "2026-05-02T14:05:12Z",
       "case_id": "case:alara-01:event-1",
       "data": {
-        "evidence_type": "MISSING_CONFIRMATION",
-        "llr_nats": -0.28,
-        "summary": "Sentinel-1 VV pass over the AOI on this window returned no vessel detection at the predicted ellipse centroid. Visual ID remains unconfirmed.",
+        "evidence_type": "INTENT_GUARD",
+        "llr_nats": -0.4,
+        "summary": "The identity chain is strong, but it does not prove hostile intent or current behavior. The 72-hour review window is a case-review horizon; the guard requires collection/corroboration before any intent assertion.",
         "citation": {
-          "label": "Sentinel-1 VV · Copernicus Data Space",
-          "source_file": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json",
-          "source_sha256": "6d41c41d4e7707124ab205231d4123d6be1a26d52422a059d16f6b14b8947c19",
-          "source_pointer": "$.response",
+          "label": "Demo guard · source-family policy",
+          "source_file": "fixtures/maritime/hormuz-evidence-items.json",
+          "source_sha256": "local-fixture",
+          "source_pointer": "$[?(@.id=='ev:hormuz:gfw-identity-history-huge:0c3fa53dc5')]",
           "source_status": "real",
-          "source_provider": "Copernicus Data Space (Sentinel Hub Process API)",
-          "asset_file": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.png",
-          "asset_sha256": "4703142a30535201df9868d552d888f24e2e089a3746cf04b6b337ffb33a3367",
-          "asset_kind": "image/png",
-          "asset_bytes": 25003,
-          "rationale": "Real Copernicus Sentinel-1 GRD pass over the Strait of Hormuz AOI bbox 54.4/24.5/57.8/27.2. Response 200 OK, 25 KB PNG cached on disk. Pop the asset in Q&A as ground truth — the SAR image is real; the absence of a vessel detection at our predicted centroid is what makes Visual REFUSED for this case."
+          "source_provider": "Liminal normalizer"
         }
       }
     },
     {
       "id": "ev:alara-01:event-2:danti-corroboration",
       "type": "evidence",
-      "title": "Open-source corroboration · Exa OSINT",
+      "title": "DANTI, OFAC, GFW, MARAD, and NAVAREA converge",
       "created_at": "2026-05-02T14:27:10Z",
       "case_id": "case:alara-01:event-2",
       "data": {
-        "evidence_type": "GEO_TIME_CORROBORATION",
-        "llr_nats": 0.55,
-        "summary": "Open-source search corroborates a vessel-anomaly cluster in this AOI during the second-event window.",
+        "evidence_type": "MULTISOURCE_HORMUZ_SYNTHESIS",
+        "llr_nats": 0.9,
+        "summary": "Cached OSINT ties together 21 sanctioned live-coordinate vessels, 50 OFAC Iran-program vessels, 65 grey-market destination strings, GFW identity churn, MARAD 2026-004/006, and NAVAREA-IX regional warnings inside the Hormuz Watch Box 01 review posture.",
         "citation": {
-          "label": "Exa · Hormuz vessel-anomaly OSINT",
-          "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
-          "source_sha256": "be744f885257de2e969f88951754e1200946731375b171601d5180944a3933e5",
-          "source_pointer": "$.results[*]",
+          "label": "DANTI · MarineTraffic ship-density snapshot",
+          "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+          "source_sha256": "cached-live-api",
+          "source_pointer": "$.documents[*]",
           "source_status": "real",
-          "source_provider": "Exa Search",
-          "rationale": "12 real OSINT search results retrieved against the AOI for vessel anomalies, GPS jamming, and dark-fleet activity. Provides second-source narrative context independent of AIS."
+          "source_provider": "DANTI / MarineTraffic",
+          "rationale": "The ship pull provides the map coordinates for sanctioned vessels, grey-market destination strings, loitering clusters, and ROSHAK's implausible speed signal."
+        },
+        "citation_secondary": {
+          "label": "NAVAREA IX + MARAD advisory context",
+          "source_file": "fixtures/maritime/live-cache/navarea-ix-warning-documents.json",
+          "source_sha256": "cached-live-api",
+          "source_pointer": "$.warnings[*]",
+          "source_status": "real",
+          "source_provider": "NAVAREA IX / MARAD"
         }
       }
     }
@@ -119,7 +122,7 @@
           "obs:barentswatch:538009771:20260418T110422Z"
         ],
         "confidence": 0.91,
-        "rationale": "Predicted position and first reappearance are kinematically consistent."
+        "rationale": "GFW identity history preserves custody on IMO 9357183 even as the active MMSI changes."
       }
     },
     {
@@ -135,7 +138,7 @@
           "obs:barentswatch:538009771:20260418T110422Z"
         ],
         "confidence": 0.88,
-        "rationale": "Identity metadata changed across the gap."
+        "rationale": "The mismatch weakens any claim that the OFAC-listed MMSI is current, but it strengthens the identity-churn finding."
       }
     },
     {
@@ -146,9 +149,11 @@
       "provenance": {
         "created_at": "2026-05-02T14:05:22Z",
         "created_by": "fixture",
-        "source_node_ids": ["ev:alara-01:event-1:no-visual-id"],
+        "source_node_ids": [
+          "ev:alara-01:event-1:no-visual-id"
+        ],
         "confidence": 0.64,
-        "rationale": "The claim remains contested until a second source confirms continuity."
+        "rationale": "Identity risk does not authorize an intent inference without behavior corroboration."
       }
     },
     {
@@ -159,9 +164,11 @@
       "provenance": {
         "created_at": "2026-05-02T14:27:20Z",
         "created_by": "fixture",
-        "source_node_ids": ["obs:danti:unknown:20260418T125200Z"],
+        "source_node_ids": [
+          "obs:danti:unknown:20260418T125200Z"
+        ],
         "confidence": 0.62,
-        "rationale": "Second-source detection satisfies the review-rule context."
+        "rationale": "Multisource Hormuz context satisfies the review-rule collection posture while keeping intent refused."
       }
     }
   ]

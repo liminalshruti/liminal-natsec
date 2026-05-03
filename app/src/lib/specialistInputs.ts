@@ -97,6 +97,28 @@ const CITATIONS: SpecialistInputs[] = [
         source_status: "real",
         source_provider: "Global Fishing Watch",
         records_hint: "10 IRISL hits"
+      },
+      {
+        label: "GFW · HUGE identity history",
+        source_file:
+          "fixtures/maritime/live-cache/gfw-huge-imo9357183-identity-history.json",
+        source_sha256:
+          "cached-live-api",
+        source_pointer: "$.results[*].selfReportedInfo[*]",
+        source_status: "real",
+        source_provider: "Global Fishing Watch",
+        records_hint: "7 broadcast identities"
+      },
+      {
+        label: "OFAC · Iran-program maritime rows",
+        source_file:
+          "fixtures/maritime/live-cache/ofac-maritime-sanctions-matches.json",
+        source_sha256:
+          "cached-live-api",
+        source_pointer: "$.matches[*]",
+        source_status: "real",
+        source_provider: "U.S. Treasury OFAC",
+        records_hint: "50 vessels"
       }
     ]
   },

@@ -3,7 +3,7 @@ import type { TracksFixture } from "./fixtureLoader.ts";
 import { timelineBounds } from "./replay.ts";
 
 export const DANTI_TRAFFIC_PATH =
-  "/fixtures/maritime/live-cache/danti-hormuz-ship-paginated.json";
+  "/fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json";
 
 export interface DantiTrafficPointProps {
   kind: "danti_traffic";
@@ -25,6 +25,11 @@ export interface DantiTrafficPointProps {
   is_iran_flag: boolean;
   is_underway: boolean;
   is_anchor_or_moored: boolean;
+  is_order_destination: boolean;
+  is_foreign_flag_iran_last_port: boolean;
+  is_implausible_speed: boolean;
+  is_china_routing: boolean;
+  risk_tags: string;
 }
 
 export interface DantiTrafficArchive {
@@ -42,6 +47,7 @@ export interface VisibleDantiTraffic {
   archiveEndIso: string | null;
   visibleVessels: number;
   totalVessels: number;
+  signalVessels: number;
 }
 
 interface DantiPayload {
@@ -98,6 +104,20 @@ export function buildDantiTrafficArchive(
       stringValue(props.ship_type);
     const status = stringValue(display.status) || stringValue(props.status);
     const speed = numberValue(props.speed ?? display.speed);
+    const destination = stringValue(props.destination) || stringValue(display.destination);
+    const lastPort = stringValue(props.last_port);
+    const isOrderDestination = isOrderDestinationSignal(destination);
+    const isForeignFlagIranLastPort = isForeignFlagIranLastPortSignal(flag, lastPort);
+    const isImplausibleSpeed = speed !== null && speed >= 30;
+    const isChinaRouting = isChinaRoutingSignal(destination, lastPort);
+    const riskTags = [
+      isOrderDestination ? "order-destination" : null,
+      isForeignFlagIranLastPort ? "foreign-flag-iran-last-port" : null,
+      isImplausibleSpeed ? "implausible-speed" : null,
+      isChinaRouting ? "china-routing" : null,
+    ]
+      .filter(Boolean)
+      .join(",");
 
     const feature: Feature<Point, DantiTrafficPointProps> = {
       type: "Feature",
@@ -112,7 +132,7 @@ export function buildDantiTrafficArchive(
         flag,
         ship_type: shipType,
         status,
-        destination: stringValue(props.destination) || stringValue(display.destination),
+        destination,
         current_port: stringValue(props.current_port),
         observed_at: observedAt,
         t_epoch_ms: tEpochMs,
@@ -122,6 +142,11 @@ export function buildDantiTrafficArchive(
         is_iran_flag: isIranFlag(flag, props.raw_vessel_data),
         is_underway: isUnderway(status, props.status, speed),
         is_anchor_or_moored: isAnchorOrMoored(status, props.status, speed),
+        is_order_destination: isOrderDestination,
+        is_foreign_flag_iran_last_port: isForeignFlagIranLastPort,
+        is_implausible_speed: isImplausibleSpeed,
+        is_china_routing: isChinaRouting,
+        risk_tags: riskTags,
       },
       geometry: {
         type: "Point",
@@ -162,6 +187,7 @@ export function selectVisibleDantiTraffic(
       archiveEndIso: null,
       visibleVessels: 0,
       totalVessels: 0,
+      signalVessels: 0,
     };
   }
 
@@ -174,13 +200,15 @@ export function selectVisibleDantiTraffic(
   }
 
   const visible = Array.from(latestByVessel.values()).sort(compareVisibleVessels);
+  const archiveClockMinuteMs = Math.floor(archiveClockMs / 60_000) * 60_000;
   return {
     featureCollection: { type: "FeatureCollection", features: visible },
-    archiveClockIso: new Date(archiveClockMs).toISOString(),
+    archiveClockIso: new Date(archiveClockMinuteMs).toISOString(),
     archiveStartIso: new Date(archive.startMs).toISOString(),
     archiveEndIso: new Date(archive.endMs).toISOString(),
     visibleVessels: visible.length,
     totalVessels: archive.totalVessels,
+    signalVessels: visible.filter(hasRiskSignal).length,
   };
 }
 
@@ -237,9 +265,24 @@ function compareVisibleVessels(
 
 function priority(props: DantiTrafficPointProps): number {
   return (
+    (props.is_implausible_speed ? 140 : 0) +
+    (props.is_foreign_flag_iran_last_port ? 110 : 0) +
     (props.is_iran_flag ? 100 : 0) +
+    (props.is_order_destination ? 45 : 0) +
+    (props.is_china_routing ? 35 : 0) +
     (props.is_tanker ? 25 : 0) +
     (props.is_underway ? 10 : 0)
+  );
+}
+
+function hasRiskSignal(feature: Feature<Point, DantiTrafficPointProps>): boolean {
+  const p = feature.properties;
+  return (
+    p.is_iran_flag ||
+    p.is_order_destination ||
+    p.is_foreign_flag_iran_last_port ||
+    p.is_implausible_speed ||
+    p.is_china_routing
   );
 }
 
@@ -280,6 +323,19 @@ function isIranFlag(flag: string, rawVesselData: unknown): boolean {
     .join(" ")
     .toUpperCase();
   return /\b(IR|IRAN|IRANIAN|ISLAMIC REPUBLIC OF IRAN)\b/.test(text);
+}
+
+function isOrderDestinationSignal(destination: string): boolean {
+  return /\b(TO ORDER|FOR ORDER|FOR ORDERS|ORDER|CHINA OWNER)\b/i.test(destination);
+}
+
+function isForeignFlagIranLastPortSignal(flag: string, lastPort: string): boolean {
+  if (!flag || isIranFlag(flag, null)) return false;
+  return /\b(RAJAEI|BANDAR|BND|BUSHEHR|KHARG|SIRRI|LENGEH|KHOMEINI|ASSALUYEH|IRAN)\b/i.test(lastPort);
+}
+
+function isChinaRoutingSignal(destination: string, lastPort: string): boolean {
+  return /\b(CHINA|ZHUHAI|CJK|CHINA OWNER|CHINESE)\b/i.test(`${destination} ${lastPort}`);
 }
 
 function isUnderway(status: string, statusCode: unknown, speed: number | null): boolean {

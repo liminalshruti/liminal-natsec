@@ -10,7 +10,7 @@ import {
 } from "../src/map/dantiTraffic.ts";
 import { timelineBounds } from "../src/map/replay.ts";
 
-const dantiPath = "fixtures/maritime/live-cache/danti-hormuz-ship-paginated.json";
+const dantiPath = "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json";
 const tracksPath = "fixtures/maritime/tracks.geojson";
 
 function readJson<T>(path: string): T {
@@ -27,7 +27,7 @@ describe("DANTI archived traffic replay", () => {
     assert.ok(archive.totalVessels >= 250, "expected many unique vessels");
     assert.ok(archive.startMs < archive.endMs);
     assert.match(new Date(archive.startMs).toISOString(), /^2026-04-02T/);
-    assert.match(new Date(archive.endMs).toISOString(), /^2026-04-02T/);
+    assert.ok(archive.endMs >= archive.startMs);
 
     const first = archive.features[0];
     assert.equal(first.geometry.type, "Point");
@@ -36,6 +36,14 @@ describe("DANTI archived traffic replay", () => {
     assert.equal(typeof first.properties.name, "string");
     assert.equal(typeof first.properties.t_epoch_ms, "number");
     assert.equal(Date.parse(first.properties.observed_at), first.properties.t_epoch_ms);
+    assert.ok(
+      archive.features.some((feature) => feature.properties.is_implausible_speed),
+      "expected at least one physically implausible speed signal"
+    );
+    assert.ok(
+      archive.features.some((feature) => feature.properties.is_order_destination),
+      "expected order/China destination routing signals"
+    );
   });
 
   it("maps scenario scrubber progress onto the archive window", (t) => {

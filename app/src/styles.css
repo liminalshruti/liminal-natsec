@@ -142,15 +142,15 @@ button:hover {
   display: grid;
   /* Stage takes the center flex region — the map IS the watchstanding glance
      and the visual anchor for every demo beat (dark gap, second identity,
-     hypothesis fan-out). Working panel pins to the 520px right rail — wide
+     hypothesis fan-out). Working panel pins to the 560px right rail — wide
      enough for the verb + specialist reads + case file to read clearly,
      narrow enough that the map dominates the view. Substrate stays at the
      320px left rail. Left-to-right column order now matches the
      WorkflowStrip numbering: 01 SUBSTRATE → 02 STAGE → 03 WORKING.
-     Below 800px viewport height the case file section collapses to a
-     one-line affordance — see WorkingPanel.tsx. */
+     Below 800px viewport height the analysis and case file split into
+     bounded scroll regions instead of clipping. */
   --substrate-pane-width: 320px;
-  --working-pane-width: 520px;
+  --working-pane-width: 560px;
   grid-template-columns:
     var(--substrate-pane-width)
     8px
@@ -891,6 +891,17 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 .panel--working {
   grid-area: working;
   border-right: 0;
+  min-width: 0;
+  container-type: inline-size;
+}
+
+.working__content {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
 /* ─── Working Panel zones (v3.2 IA) ──────────────────────────────────────────
@@ -901,21 +912,33 @@ button.topbar-crumbs__seg--clickable:focus-visible {
    ----------------------------------------------------------------------------*/
 
 .working__operative {
-  /* Pinned. Native height ≈ 360px (no banner) → 420px (banner active). */
-  flex: 0 0 auto;
+  /* Pinned until it would clip the analysis; then it becomes its own scroll
+     region and leaves room for the forensic case file below. */
+  flex: 0 1 auto;
   border-bottom: 1px solid var(--color-edge);
   padding: 10px 12px 12px;
   background: var(--color-frame);
+  min-width: 0;
+  min-height: 0;
+  max-height: 68%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 
 .working__forensic {
   /* Scroll region for the case file. Takes whatever vertical the operative
      surface doesn't claim. position: relative anchors sticky section headers. */
-  flex: 1 1 auto;
+  flex: 1 1 220px;
   overflow-y: auto;
+  overflow-x: hidden;
   position: relative;
   background: var(--color-substrate);
+  min-width: 0;
   min-height: 0; /* allow flex child to shrink so overflow works in Chromium */
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 
 /* Zone 1 — verb + posture inline, with optional hero banner above.
@@ -1009,6 +1032,99 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   opacity: 0.92;
 }
 
+.case-lead {
+  margin: 8px 12px 0;
+  padding: 9px 10px;
+  border: 1px solid rgba(216, 163, 90, 0.26);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(216, 163, 90, 0.07), rgba(255, 255, 255, 0.018)),
+    rgba(6, 18, 31, 0.42);
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.case-lead__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 10px;
+}
+
+.case-lead__eyebrow {
+  color: var(--color-contested, #d8a35a);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.case-lead__sources {
+  min-width: 0;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.case-lead__summary {
+  color: var(--color-ink-primary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.case-lead__context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.case-lead__context-chip {
+  min-width: 0;
+  max-width: 100%;
+  padding: 3px 6px;
+  border: 1px solid rgba(103, 184, 214, 0.26);
+  border-radius: 3px;
+  color: var(--color-ink-secondary);
+  background: rgba(103, 184, 214, 0.07);
+  font-size: 10px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.case-lead__scope {
+  color: var(--color-ink-tertiary);
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+
+.case-lead__findings {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.case-lead__finding {
+  position: relative;
+  padding-left: 12px;
+  color: var(--color-ink-secondary);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.case-lead__finding::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.58em;
+  width: 5px;
+  height: 1px;
+  background: var(--color-contested, #d8a35a);
+}
+
 /* Zone 2 — hypothesis × specialist interleave, two-column grid (legacy).
    Replaced by the causal-flow stack below; kept for any non-Zone-2
    consumer until a follow-up sweep removes them. */
@@ -1048,6 +1164,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   flex-direction: column;
   gap: 4px;
   align-items: stretch;
+  min-width: 0;
 }
 
 .zone2__substrate,
@@ -1055,6 +1172,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .zone2__row-label {
@@ -1109,6 +1227,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   font-size: 11px;
   border-radius: 2px;
   align-items: start;
+  min-width: 0;
 }
 
 .specialist-row__name {
@@ -1131,6 +1250,8 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   flex-direction: column;
   align-items: flex-end;
   gap: 3px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .specialist-row__status {
@@ -1340,6 +1461,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 .specialist-row__redirect-caption {
   color: var(--color-ink-secondary, #93a3b3);
   flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
@@ -1501,15 +1623,17 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   font-family: var(--font-mono);
 }
 
-/* Below 800px viewport height, the case file collapses to a one-line affordance
-   and the operative surface takes the full panel. */
+/* Below 800px viewport height, keep both analysis and the case file reachable.
+   The operative analysis scrolls inside its own bounded region instead of
+   pushing the forensic surface out of the clipped panel. */
 @media (max-height: 799px) {
-  .working__forensic {
-    flex: 0 0 32px;
-    overflow: hidden;
+  .working__operative {
+    max-height: 62%;
   }
-  .case-file__section-body {
-    display: none;
+
+  .working__forensic {
+    flex: 1 1 180px;
+    overflow-y: auto;
   }
 }
 
@@ -2224,19 +2348,23 @@ a.osint-signal-row__inner {
   margin-bottom: 6px;
   border-radius: 2px;
   background: var(--color-elevated);
+  min-width: 0;
 }
 
 .action-row__title {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 8px;
   font-size: 12px;
+  min-width: 0;
 }
 
 .action-row__sub {
   color: var(--color-ink-tertiary);
   font-size: 11px;
   margin-top: 2px;
+  min-width: 0;
 }
 
 .hormuz-intel {
@@ -2702,10 +2830,12 @@ a.osint-signal-row__inner {
   align-items: center;
   gap: 6px;
   margin-top: 4px;
+  min-width: 0;
 }
 
 .confidence-bar__track {
   flex: 1;
+  min-width: 0;
   height: 4px;
   background: var(--color-substrate);
   border: 1px solid var(--color-edge);
@@ -5027,10 +5157,13 @@ details.case-file__section > summary:focus-visible {
 }
 
 .specialist-row__inputs-caption {
+  min-width: 0;
   flex: 1;
   color: var(--color-ink-secondary);
   letter-spacing: 0.02em;
   transition: color 120ms ease-out;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .specialist-row__inputs-count {
@@ -5058,6 +5191,8 @@ details.case-file__section > summary:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  min-width: 0;
+  max-width: 100%;
   padding: 2px 6px;
   background: rgba(103, 184, 214, 0.08);
   border-left: 2px solid var(--color-decision);
@@ -5077,11 +5212,15 @@ details.case-file__section > summary:focus-visible {
 }
 
 .specialist-row__inputs-chip-label {
+  min-width: 0;
   color: var(--color-ink-primary);
   letter-spacing: 0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .specialist-row__inputs-chip-status {
+  flex: none;
   color: var(--color-decision);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -5512,6 +5651,9 @@ button:disabled {
   font-family: var(--font-mono);
   font-size: var(--type-micro);
   letter-spacing: 0.06em;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
   transition:
     border-color var(--motion-fast) var(--motion-ease-out),
     transform var(--motion-fast) var(--motion-ease-out),
@@ -5536,7 +5678,10 @@ button:disabled {
 }
 
 .tchip__slug {
+  min-width: 0;
   color: var(--color-ink-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* ─── SUBSTRATE PANEL — flat list register, Linear-grade ─────────────── */
@@ -5941,7 +6086,7 @@ button:disabled {
 @media (max-width: 1439px) {
   .app-shell {
     --substrate-pane-width: 296px;
-    --working-pane-width: 480px;
+    --working-pane-width: 520px;
   }
   .app-topbar {
     gap: 14px;
@@ -5951,7 +6096,7 @@ button:disabled {
 @media (max-width: 1279px) {
   .app-shell {
     --substrate-pane-width: 272px;
-    --working-pane-width: 432px;
+    --working-pane-width: 460px;
   }
   .app-topbar {
     gap: 12px;
@@ -6103,13 +6248,13 @@ button:disabled {
 
 .osint-intake__chips {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px 6px;
 }
 
 @media (min-width: 580px) {
   .osint-intake__chips {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 
@@ -6214,6 +6359,7 @@ button:disabled {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  min-width: 0;
   padding: 3px 6px 3px 5px;
   border-radius: 3px;
   background: var(--family-color-soft, rgba(255, 255, 255, 0.04));
@@ -6238,6 +6384,9 @@ button:disabled {
 
 .family-chip__label {
   font-weight: 600;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .family-chip__count {
@@ -6276,6 +6425,9 @@ button:disabled {
   gap: 3px;
   margin-right: 6px;
   flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .specialist-row__family-pip {
@@ -6289,6 +6441,10 @@ button:disabled {
   line-height: 1.4;
   background: var(--family-color-soft, rgba(255, 255, 255, 0.04));
   color: var(--family-color, var(--color-ink-secondary, rgba(255, 255, 255, 0.7)));
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
@@ -6296,6 +6452,49 @@ button:disabled {
   --family-color: rgba(255, 255, 255, 0.45);
   --family-color-soft: rgba(255, 255, 255, 0.04);
   font-style: italic;
+}
+
+@container (max-width: 560px) {
+  .case-lead,
+  .osint-intake {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .case-lead__head,
+  .osint-intake__head {
+    align-items: flex-start;
+  }
+
+  .case-lead__sources {
+    flex-basis: 100%;
+    text-align: left;
+  }
+
+  .osint-intake__chips {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .specialist-row {
+    grid-template-columns: minmax(82px, 0.34fr) minmax(0, 1fr);
+  }
+
+  .specialist-row__status-group {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .specialist-row__family-chips {
+    justify-content: flex-start;
+    margin-right: 0;
+  }
+
+  .zone1__meta .tchip,
+  .action-row__title .tchip {
+    flex: 1 1 100%;
+  }
 }
 
 /* ─── AI-PROPOSED DRAFT CASE — notice toast + substrate card + detail view ──
@@ -6652,6 +6851,9 @@ button:disabled {
 }
 
 .draft-case-detail__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
   border-bottom: 1px dashed var(--color-edge);
   padding-bottom: 18px;
 }
@@ -6711,6 +6913,33 @@ button:disabled {
 
 .draft-case-detail__meta-item:first-child::before {
   display: none;
+}
+
+.draft-case-detail__context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.draft-case-detail__context span {
+  max-width: 100%;
+  padding: 3px 6px;
+  border: 1px solid rgba(103, 184, 214, 0.24);
+  border-radius: 3px;
+  background: rgba(103, 184, 214, 0.06);
+  color: var(--color-ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.draft-case-detail__scope-note {
+  margin: 8px 0 0;
+  color: var(--color-ink-tertiary);
+  font-size: 10.5px;
+  line-height: 1.4;
 }
 
 .draft-case-detail__signals-head {

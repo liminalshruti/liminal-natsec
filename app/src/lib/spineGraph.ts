@@ -92,6 +92,11 @@ export function actionsForCase(caseId: string): SpineNode[] {
     .filter((node) => node.case_id === caseId);
 }
 
+export function nodeById(id: string | null | undefined): SpineNode | null {
+  if (!id) return null;
+  return getMaritimeGraph().getNode(id) ?? null;
+}
+
 export function caseIdFromAlertId(alertId: string): string | null {
   const graph = getMaritimeGraph();
 

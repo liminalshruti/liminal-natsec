@@ -1,10 +1,10 @@
 {
   "mode": "real",
-  "generated_at": "2026-05-03T06:12:15.673Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "strict_real": true,
   "dark_gap_threshold_min": 20,
-  "observation_count": 167,
-  "track_count": 80,
+  "observation_count": 0,
+  "track_count": 0,
   "anomaly_count": 0,
   "claim_count": 0,
   "evidence_count": 0,
@@ -12,18 +12,18 @@
   "source_statuses": [
     {
       "source": "AISSTREAM",
-      "status": "available",
-      "detail": "167 real AIS messages normalized",
+      "status": "excluded_fixture_fallback",
+      "detail": "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
       "fileName": "aisstream-hormuz-sample.json",
-      "generatedAt": "2026-05-03T05:52:05.300Z",
-      "recordCount": 167
+      "generatedAt": "2026-05-03T14:11:46.371Z",
+      "recordCount": 0
     },
     {
       "source": "GLOBAL_FISHING_WATCH",
       "status": "available",
       "detail": "18 real GFW events normalized from gfw-hormuz-gaps.json",
       "fileName": "gfw-hormuz-gaps.json",
-      "generatedAt": "2026-05-03T05:41:42.961Z",
+      "generatedAt": "2026-05-03T14:11:46.371Z",
       "recordCount": 18
     },
     {
@@ -31,7 +31,7 @@
       "status": "available",
       "detail": "50 real GFW events normalized from gfw-hormuz-loitering.json",
       "fileName": "gfw-hormuz-loitering.json",
-      "generatedAt": "2026-05-03T05:41:42.961Z",
+      "generatedAt": "2026-05-03T14:11:46.371Z",
       "recordCount": 50
     },
     {
@@ -39,9 +39,9 @@
       "status": "available",
       "detail": "50 real GFW events normalized from gfw-hormuz-port-visits.json",
       "fileName": "gfw-hormuz-port-visits.json",
-      "generatedAt": "2026-05-03T05:41:42.961Z",
+      "generatedAt": "2026-05-03T14:11:46.371Z",
       "recordCount": 50
     }
   ],
-  "empty_reason": "Real AIS observations were available, but no dark gap exceeded the configured threshold."
+  "empty_reason": "No real AIS observations were available for Hormuz Watch Box 01. Fixture-mode provider fallbacks were excluded from real mode."
 }

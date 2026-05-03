@@ -16,9 +16,21 @@ const DEFAULT_DARK_GAP_THRESHOLD_MIN = Number(
   process.env.REAL_DARK_GAP_THRESHOLD_MIN ?? 20
 );
 
+const WATCH_CONTEXT = {
+  ruleAoiId: "aoi:alara-eez-box-01",
+  watchBoxName: "Hormuz Watch Box 01",
+  replayAnchor: "MMSI-111 / MV CALDERA",
+  replayAnchorFullMmsi: "366700111",
+  replayAnchorVesselName: "MV CALDERA",
+  reviewWindowLabel: "72-hour review window",
+  reviewWindowHours: 72,
+  scopeNote:
+    "The 72-hour window is the operator case-review horizon. Source timestamps keep their original dates; archived context is not treated as current vessel behavior."
+} as const;
+
 const HORMUZ_AOI = {
   id: "aoi:real:hormuz",
-  name: "Strait of Hormuz real-data AOI",
+  name: WATCH_CONTEXT.watchBoxName,
   bbox: [54.4, 24.5, 57.8, 27.2] as [number, number, number, number],
   polygon: [
     [
@@ -461,7 +473,12 @@ function buildGraphSections(input: {
   const actions: FixtureSection = { nodes: [], edges: [] };
 
   input.anomalies.forEach((anomaly, index) => {
-    const caseTitle = `${anomaly.name ?? anomaly.mmsi} real dark gap`;
+    const reviewWindowStart = anomaly.start.observedAt;
+    const reviewWindowEnd = new Date(
+      anomaly.start.t + WATCH_CONTEXT.reviewWindowHours * 60 * 60 * 1000
+    ).toISOString();
+    const caseContext = realCaseContext(reviewWindowStart, reviewWindowEnd);
+    const caseTitle = `${anomaly.name ?? anomaly.mmsi} dark gap in ${WATCH_CONTEXT.watchBoxName}`;
     anomalies.nodes.push({
       id: anomaly.caseId,
       type: "case",
@@ -472,7 +489,22 @@ function buildGraphSections(input: {
       data: {
         source_mode: "real",
         scenario_id: "hormuz-real-cache",
-        strict_real: true
+        strict_real: true,
+        features: {
+          gap_minutes: Number(anomaly.gapMinutes.toFixed(2)),
+          candidate_continuity_score: Number(anomaly.score.toFixed(2)),
+          danti_geo_time_corroboration: anomaly.gfwEvents.length > 0,
+          aoi_id: WATCH_CONTEXT.ruleAoiId,
+          real_aoi_id: HORMUZ_AOI.id,
+          aoi_name: WATCH_CONTEXT.watchBoxName,
+          review_window_hours: WATCH_CONTEXT.reviewWindowHours,
+          anchor_mmsi_short: "111",
+          anchor_mmsi: WATCH_CONTEXT.replayAnchorFullMmsi,
+          anchor_vessel_name: WATCH_CONTEXT.replayAnchorVesselName
+        },
+        case_context: caseContext,
+        lead_summary:
+          `${WATCH_CONTEXT.replayAnchor} is the replay anchor for this custody pattern; this generated case keeps its own strict-real MMSI ${anomaly.mmsi} inside ${WATCH_CONTEXT.watchBoxName}.`
       }
     });
     anomalies.nodes.push({
@@ -490,6 +522,13 @@ function buildGraphSections(input: {
         gap_minutes: Number(anomaly.gapMinutes.toFixed(2)),
         mmsi: anomaly.mmsi,
         name: anomaly.name,
+        aoi_id: WATCH_CONTEXT.ruleAoiId,
+        real_aoi_id: HORMUZ_AOI.id,
+        watch_box_name: WATCH_CONTEXT.watchBoxName,
+        review_window_label: WATCH_CONTEXT.reviewWindowLabel,
+        review_window_start: reviewWindowStart,
+        review_window_end: reviewWindowEnd,
+        replay_anchor: WATCH_CONTEXT.replayAnchor,
         score: anomaly.score,
         status: "OPEN",
         rank: index + 1
@@ -587,7 +626,7 @@ function buildGraphSections(input: {
           anomaly_id: anomaly.id,
           defaultPriority: priority,
           ranking_score: priority === 1 ? anomaly.score : 0.35,
-          trigger: "REAL_AIS_DARK_GAP"
+          trigger: "REAL_AIS_DARK_GAP_IN_HORMUZ_WATCH_BOX"
         }
       });
       actions.edges.push(edge(`edge:${anomaly.claimId}:triggers:${id}`, "TRIGGERS", anomaly.claimId, id, input.generatedAt, [anomaly.claimId], 0.7));
@@ -595,6 +634,21 @@ function buildGraphSections(input: {
   });
 
   return { observations, anomalies, hypotheses, claims, evidence, actions };
+}
+
+function realCaseContext(reviewWindowStart: string, reviewWindowEnd: string): Record<string, unknown> {
+  return {
+    watch_box_id: WATCH_CONTEXT.ruleAoiId,
+    generated_aoi_id: HORMUZ_AOI.id,
+    watch_box_name: WATCH_CONTEXT.watchBoxName,
+    replay_anchor: WATCH_CONTEXT.replayAnchor,
+    replay_anchor_full_mmsi: WATCH_CONTEXT.replayAnchorFullMmsi,
+    review_window_label: WATCH_CONTEXT.reviewWindowLabel,
+    review_window_hours: WATCH_CONTEXT.reviewWindowHours,
+    review_window_start: reviewWindowStart,
+    review_window_end: reviewWindowEnd,
+    scope_note: WATCH_CONTEXT.scopeNote
+  };
 }
 
 function buildTracksGeoJson(
@@ -609,6 +663,7 @@ function buildTracksGeoJson(
         kind: "monitored_zone",
         aoi_id: HORMUZ_AOI.id,
         name: HORMUZ_AOI.name,
+        review_window_hours: WATCH_CONTEXT.reviewWindowHours,
         phase_min: 1
       },
       geometry: {
@@ -717,6 +772,12 @@ function buildTracksGeoJson(
         name: HORMUZ_AOI.name,
         bbox: HORMUZ_AOI.bbox
       },
+      review_window: {
+        label: WATCH_CONTEXT.reviewWindowLabel,
+        hours: WATCH_CONTEXT.reviewWindowHours,
+        replay_anchor: WATCH_CONTEXT.replayAnchor,
+        scope_note: WATCH_CONTEXT.scopeNote
+      },
       canonical_timestamps: anomaly
         ? {
             event1: {
@@ -789,11 +850,11 @@ function emptyReason(
   if (observations.length === 0) {
     const excluded = statuses.filter((status) => status.status === "excluded_fixture_fallback");
     if (excluded.length > 0) {
-      return "No real AIS observations were available. Fixture-mode provider fallbacks were excluded from real mode.";
+      return `No real AIS observations were available for ${WATCH_CONTEXT.watchBoxName}. Fixture-mode provider fallbacks were excluded from real mode.`;
     }
-    return "No real AIS observations were available in the current refresh window.";
+    return `No real AIS observations were available for ${WATCH_CONTEXT.watchBoxName} in the current refresh window.`;
   }
-  return "Real AIS observations were available, but no dark gap exceeded the configured threshold.";
+  return `${WATCH_CONTEXT.watchBoxName} real AIS observations were available, but no generated dark-gap case exceeded the configured threshold during the ${WATCH_CONTEXT.reviewWindowLabel}.`;
 }
 
 function edge(

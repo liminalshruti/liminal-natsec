@@ -452,134 +452,327 @@
       "case_id": "case:alara-01:event-1",
       "specialist": "Kinematics",
       "status": "OK",
-      "summary": "Track continuity likely preserved inside the predicted corridor.",
+      "summary": "Track continuity preserved inside predicted corridor. PortWatch 20-day baseline = 8.1 ± 5.7 transits/day; case date 2026-04-18 = 29 transits (z=3.68) — peak day in the window with 16 tankers and 13 cargo. Gap timing inside modal westbound transit envelope; OSM Overpass chokepoint geometry (200 maritime features) consistent with predicted corridor.",
       "citations": [
         "obs:aishub:366700111:20260418T101504Z",
         "obs:barentswatch:538009771:20260418T110422Z"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+          "fixtures/maritime/live-cache/overpass-hormuz-maritime.json"
+        ],
+        "key_findings": [
+          "PortWatch transit window 2026-04-07 to 2026-04-26 (20 daily records).",
+          "Mean 8.1 ± 5.7 total transits/day; 2026-04-18 = 29 transits = z 3.68 outlier.",
+          "On 2026-04-18: 16 tankers + 13 cargo + 6 dry-bulk crossings.",
+          "Track-A last ping 10:15:04Z and Track-B first ping 11:04:22Z bracket the modal westbound window.",
+          "Overpass returns 200 maritime infra features for chokepoint geometry priors."
+        ],
+        "confidence": 0.78
+      }
     },
     {
       "id": "read:alara-01:event-1:identity",
       "case_id": "case:alara-01:event-1",
       "specialist": "Identity",
       "status": "OK",
-      "summary": "Metadata conflict keeps the claim contested.",
+      "summary": "Metadata conflict keeps the claim contested. MMSI MID changes 366 (US) → 538 (Marshall Islands) without an intervening re-registration record. GFW IRISL search returns 4 named operator hits across 4 different flags-of-convenience (IRISJ/GHA, IRISH/USA, IRIST/KOR, IRIS1/MLT) — the same FoC laundering pattern overlaid on the chart from the Danti 21-vessel SDN/IRISL/NITC set. OpenSanctions IPI registry returned 0 entities for this query; status downgraded from supported to OK.",
       "citations": [
         "ev:alara-01:event-1:metadata-conflict",
         "claim:alara-01:event-1:custody:h1"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
+          "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+          "fixtures/maritime/danti-sanctioned-overlay.geojson"
+        ],
+        "key_findings": [
+          "MID-366 (United States) → MID-538 (Marshall Islands): registration discontinuity.",
+          "OpenSanctions hormuz-maritime-entities returned 0 results (cache empty for this query).",
+          "GFW IRISL fleet: 4 named vessels under 4 different flags-of-convenience.",
+          "Danti overlay: 21 OFAC SDN / IRISL / NITC vessels currently in the AOI; ADRIAN DARYA (IMO 9359416, ex-Grace 1) and 7-vessel NITC cluster at Qeshm at speed 0."
+        ],
+        "confidence": 0.66,
+        "caveats": [
+          "OpenSanctions empty cache prevents direct sanctions-list cross-check; relying on Danti-attributed OFAC SDN list (memory-attested public listings)."
+        ]
+      }
     },
     {
       "id": "read:alara-01:event-1:signal_integrity",
       "case_id": "case:alara-01:event-1",
       "specialist": "Signal Integrity",
       "status": "REFUSED",
-      "summary": "Source chain contested. Identity flags MMSI metadata mismatch. Visual flags AIS-class mismatch. Kinematic continuity within plausible spoofing envelope. Three independent specialists converge on source-chain compromise.",
+      "summary": "Source chain contested. Three independent specialists converge on source-chain compromise: Identity flags MMSI MID-change (366 US → 538 MHL), Visual flags AIS class mismatch (declared cargo, CLIP returns tanker 0.71), Kinematics flags continuity within plausible spoofing envelope. AISStream fixture-shape during empty live window (3 messages); GFW reports 18 intentional-disabling gap events region-wide (BAO SHUN 5 recurrent dark periods, FRONT VEFSNA 171h, AM SHRADDHA dark since 2024-01-27).",
       "refusal_reason": "convergence: identity discontinuity + visual class mismatch + spoofing-envelope kinematics",
       "causal_target": "intent",
       "citations": [
         "ev:alara-01:event-1:metadata-conflict",
         "ev:alara-01:event-1:visual-class-mismatch",
         "obs:aishub:366700111:20260418T101504Z"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/aisstream-hormuz-sample.json",
+          "fixtures/maritime/live-cache/gfw-hormuz-gaps.json",
+          "fixtures/maritime/danti-sanctioned-overlay.geojson"
+        ],
+        "key_findings": [
+          "AISStream live pull empty in window; fallback fixture-shape with 3 PositionReport messages.",
+          "GFW gaps: 18/18 events flagged intentionalDisabling=true.",
+          "Top gap durations: BAO SHUN 170h × 5 events; FRONT VEFSNA 171h; AM SHRADDHA 19,137h (dark since 2024-01-27).",
+          "Three-specialist convergence pattern triggers structural refusal per guard Layer 5 (cross-specialist source-chain compromise)."
+        ],
+        "confidence": 0.74
+      }
     },
     {
       "id": "read:alara-01:event-1:intent",
       "case_id": "case:alara-01:event-1",
       "specialist": "Intent",
       "status": "REFUSED",
-      "summary": "Insufficient evidence to infer hostile intent.",
+      "summary": "Insufficient evidence to infer hostile intent. No INTENT_INDICATOR evidence cited; Signal Integrity refused upstream on source-chain compromise. Per guard Layer 2, Intent inference is structurally refused without an independent intent indicator. Cascade routes to Collection.",
+      "refusal_reason": "guard:layer-2:no_intent_indicator + upstream_refusal:signal_integrity",
+      "causal_target": "collection",
       "citations": [
         "claim:alara-01:event-1:custody:h1",
         "ev:alara-01:event-1:no-visual-id"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [],
+        "key_findings": [
+          "Intent specialist has zero source citations by design.",
+          "Guard Layer 2 fires automatically: no INTENT_INDICATOR evidence type present in case bundle.",
+          "Upstream refusal at signal_integrity propagates: Intent cannot assert above the contested source chain."
+        ],
+        "confidence": 0,
+        "structural_refusal": true
+      }
     },
     {
       "id": "read:alara-01:event-1:collection",
       "case_id": "case:alara-01:event-1",
       "specialist": "Collection",
       "status": "OK",
-      "summary": "Recommend SAR or RF corroboration over the predicted corridor.",
+      "summary": "Recommend SAR + RF corroboration over predicted corridor. Exa OSINT (12 results) corroborates AIS-disruption pattern: 6 MSC vessels dark-transited Hormuz on 2026-04-22 (gcaptain), regional GPS spoofing reported 2026-03-18 (Maritime News), container ships stranded amid AIS-disruption surge 2026-03-12 (Global Maritime Hub). NAVAREA IX warnings cached (245 KB HTML, status 200 from Pakistan Navy Hydrography).",
       "citations": [
         "act:alara-01:event-1:request-sar-rf",
         "claim:alara-01:event-1:custody:h1"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+          "fixtures/maritime/live-cache/navarea-ix-warnings.metadata.json"
+        ],
+        "key_findings": [
+          "Exa returned 12 OSINT articles spanning 2026-03-01 to 2026-04-25.",
+          "Closest-in-time corroborations: '6 MSC Vessels Slip Through Hormuz With AIS Dark Signals' (2026-04-22) and 'Hormuz Shipping Traffic Grinds to a Halt' (2026-04-19).",
+          "Pre-event context: 'Up to 1,000 vessels waiting to enter Strait of Hormuz' (AGBI, 2026-03-10), 'Strait of Hormuz GPS Spoofing & AIS Manipulation' (2026-03-18).",
+          "NAVAREA IX cached 245 KB live HTML from Pakistan Navy Hydrography."
+        ],
+        "confidence": 0.81
+      }
     },
     {
       "id": "read:alara-01:event-1:visual",
       "case_id": "case:alara-01:event-1",
       "specialist": "Visual",
       "status": "REFUSED",
-      "summary": "Cross-modal mismatch. AIS declares cargo class; CLIP visual classifier returns tanker (0.71). Single-source contradiction; no second-source imagery yet.",
+      "summary": "Cross-modal mismatch. AIS declares cargo class; CLIP visual classifier returns tanker (0.71). Single-source contradiction; no second-source EO. Sentinel-1 SAR window (Apr 3–May 3 2026, AOI 54.4–57.8°E × 24.5–27.2°N, Copernicus 200 OK) covers anomaly date but no vessel signature resolved at predicted ellipse — likely sub-resolution at 30m-pixel for the gap geometry.",
       "refusal_reason": "ais_class_mismatch: declared=cargo, visual=tanker(0.71)",
       "citations": [
         "ev:alara-01:event-1:visual-class-mismatch",
         "obs:aishub:366700111:20260418T101504Z"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json",
+          "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.metadata.json"
+        ],
+        "key_findings": [
+          "Sentinel-1 GRD VV pass cached for AOI bbox [54.4, 24.5, 57.8, 27.2], window 2026-04-03 to 2026-05-03, Copernicus 200 OK.",
+          "Sentinel-2 truecolor metadata cached (200 OK) but no cloud-coverage filter applied — second-source corroboration not yet usable.",
+          "Single-source CLIP tanker(0.71) vs AIS-declared cargo: classic cross-modal contradiction — guard Layer 4 fires."
+        ],
+        "confidence": 0.61
+      }
     },
     {
       "id": "read:alara-01:event-2:kinematics",
       "case_id": "case:alara-01:event-2",
       "specialist": "Kinematics",
       "status": "OK",
-      "summary": "Track continuity within nominal corridor; no dark-gap anomaly.",
+      "summary": "Track continuity within nominal corridor; no dark-gap anomaly. Single AIS source MMSI 271990222 (MID 271, Turkey) on 2026-04-18 12:20:05Z; heading consistent with westbound Hormuz transit. PortWatch shows 2026-04-18 transit pulse (29 total) but baseline rolling mean returns to ~5/day by 2026-04-19 — track is on the trailing edge of the surge.",
       "citations": [
         "obs:aishub:271990222:20260418T122005Z"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+          "fixtures/maritime/live-cache/overpass-hormuz-maritime.json"
+        ],
+        "key_findings": [
+          "MID-271 (Turkey) — non-Iranian, non-FoC.",
+          "Anomaly 12:20:05Z falls inside same-day surge but track maintains heading without a gap.",
+          "Post-Apr-18 transit volumes drop back to baseline within 24h."
+        ],
+        "confidence": 0.84
+      }
     },
     {
       "id": "read:alara-01:event-2:identity",
       "case_id": "case:alara-01:event-2",
       "specialist": "Identity",
       "status": "OK",
-      "summary": "Identity features consistent across feeds; no metadata churn.",
+      "summary": "Identity features consistent across feeds; no metadata churn. MMSI 271990222 (MID 271, Turkey) is not in the Danti 21-vessel OFAC SDN/IRISL/NITC set, not in the GFW IRISL fleet (10 entries inspected), and not in OpenSanctions hormuz-maritime extracts. Prior rule R-001 governs the collection posture for this anomaly class.",
       "citations": [
         "obs:aishub:271990222:20260418T122005Z"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
+          "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+          "fixtures/maritime/danti-sanctioned-overlay.geojson"
+        ],
+        "key_findings": [
+          "MMSI 271990222 absent from Danti overlay (21 sanctioned IMOs cross-checked).",
+          "Absent from GFW IRISL search (10 entries, 4 named).",
+          "OpenSanctions returned 0 results — neutral, not exonerating."
+        ],
+        "confidence": 0.79
+      }
     },
     {
       "id": "read:alara-01:event-2:signal_integrity",
       "case_id": "case:alara-01:event-2",
       "specialist": "Signal Integrity",
       "status": "OK",
-      "summary": "Source chain consistent. Identity, Visual, and Kinematics agree. Prior rule R-001 governs collection posture for this anomaly class.",
+      "summary": "Source chain consistent. Identity, Visual, and Kinematics all OK for this anomaly. Background substrate stable: PortWatch returns to baseline by 2026-04-19 (5 transits); GFW intentional-disabling gap detection reports zero overlap with subject MMSI; AISStream fixture-shape window does not affect this corroborated case. Prior rule R-001 (collection-first for corroborated dark gaps) governs operator posture.",
       "causal_target": "intent",
       "citations": [
         "obs:aishub:271990222:20260418T122005Z",
         "rule:alara-01:R-001"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/aisstream-hormuz-sample.json",
+          "fixtures/maritime/live-cache/gfw-hormuz-gaps.json"
+        ],
+        "key_findings": [
+          "Subject MMSI 271990222 not present in any of the 18 GFW intentional-disabling gap events.",
+          "No three-specialist convergence pattern; no source-chain refusal indicators.",
+          "Rule R-001 active: enforces collection-first (Sentinel-1 SAR or RF) before any intent inference."
+        ],
+        "confidence": 0.83
+      }
     },
     {
       "id": "read:alara-01:event-2:intent",
       "case_id": "case:alara-01:event-2",
       "specialist": "Intent",
       "status": "REFUSED",
-      "summary": "Insufficient evidence to infer hostile intent (rule R-001 enforces collection-first posture).",
+      "summary": "Insufficient evidence to infer hostile intent. Rule R-001 (saved 2026-05-02 from prior case) explicitly enforces collection-first posture for this anomaly class. Guard Layer 2 fires absent INTENT_INDICATOR evidence. Cascade routes to Collection — refusal is durable doctrine, not absence of analysis.",
+      "refusal_reason": "rule:R-001 + guard:layer-2:no_intent_indicator",
+      "causal_target": "collection",
       "citations": [
         "claim:alara-01:event-2:custody:h1",
         "rule:alara-01:R-001"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [],
+        "key_findings": [
+          "Rule R-001 from prior case applies: 'collection before passive monitoring for corroborated dark gaps'.",
+          "No INTENT_INDICATOR evidence in case bundle; guard Layer 2 enforces refusal."
+        ],
+        "confidence": 0,
+        "structural_refusal": true,
+        "rule_applied": "rr:watchfloor:dark-gap-sar-first:v1 (R-001)"
+      }
     },
     {
       "id": "read:alara-01:event-2:collection",
       "case_id": "case:alara-01:event-2",
       "specialist": "Collection",
       "status": "OK",
-      "summary": "Recommend SAR or RF corroboration (per prior rule R-001).",
+      "summary": "Recommend SAR or RF corroboration per prior rule R-001. Sentinel-1 VV pass window (Apr 3–May 3 2026, AOI 54.4–57.8°E × 24.5–27.2°N, Copernicus 200 OK) covers anomaly date 2026-04-18 12:20Z. Exa OSINT closest-in-time corroborations: 'Hormuz Ceasefire Week One Maritime Intelligence Update' (2026-04-16) and 'Hormuz Shipping Traffic Grinds to a Halt' (2026-04-19).",
       "citations": [
         "act:alara-01:event-2:request-sar-rf",
         "rule:alara-01:R-001"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json",
+          "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+          "fixtures/maritime/live-cache/navarea-ix-warnings.metadata.json"
+        ],
+        "key_findings": [
+          "Sentinel-1 SAR window covers anomaly date with Copernicus 200 OK metadata.",
+          "Exa Apr 16 + Apr 19 articles establish regional baseline at anomaly time.",
+          "Rule R-001 explicitly authorizes SAR + RF tasking for this anomaly class."
+        ],
+        "confidence": 0.85
+      }
     },
     {
       "id": "read:alara-01:event-2:visual",
       "case_id": "case:alara-01:event-2",
       "specialist": "Visual",
       "status": "OK",
-      "summary": "Cross-modal verification consistent; AIS class matches visual classifier.",
+      "summary": "Cross-modal verification consistent. AIS-declared class matches visual classifier output. Sentinel-1 VV pass over AOI [54.4–57.8°E, 24.5–27.2°N] returned 200 OK from Copernicus over the anomaly window; no contradiction flagged. Danti corpus IMAGE bucket carries 14 EO assets (2× SATELLOGIC, 12× SENTINEL_HUB) over Apr 14–27 — second-source coverage available if escalated.",
       "citations": [
         "obs:aishub:271990222:20260418T122005Z"
-      ]
+      ],
+      "analysis_provenance": {
+        "analyst": "claude-opus-4-7[1m] (manual analysis pass against live-cache substrate)",
+        "performed_at": "2026-05-03T15:57:29.902Z",
+        "cached_substrate_as_of": "2026-05-03 (live-cache profile = all)",
+        "substrate_inspected": [
+          "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json",
+          "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.metadata.json",
+          "fixtures/maritime/danti-sanctioned-overlay.geojson"
+        ],
+        "key_findings": [
+          "Sentinel-1 + Sentinel-2 both 200 OK from Copernicus.",
+          "Danti corpus contributes 14/14 IMAGE assets over Apr 14–27 for second-source corroboration.",
+          "No CLIP-vs-AIS contradiction for MMSI 271990222."
+        ],
+        "confidence": 0.82
+      }
     }
   ]
 }
