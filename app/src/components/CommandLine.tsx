@@ -5,10 +5,12 @@ import { saveRule } from "../lib/reviewRulesStore.ts";
 import { R001_DSL } from "../../../shared/rules/builtin.ts";
 import type { AlertView } from "../lib/types.ts";
 import type { ScenarioState } from "./MapWatchfloor.tsx";
+import { ReplayControls } from "./ReplayControls.tsx";
 
 interface CommandLineProps {
   scenario: LoadedScenario | null;
   mapScenarioState: ScenarioState | undefined;
+  onMapScenarioChange?: (state: ScenarioState) => void;
   onReset: (mode?: "soft" | "full") => void;
   onSelectAlert: (id: string) => void;
   alerts: AlertView[];
@@ -22,6 +24,7 @@ interface CommandResult {
 export function CommandLine({
   scenario,
   mapScenarioState,
+  onMapScenarioChange,
   onReset,
   onSelectAlert,
   alerts
@@ -98,13 +101,12 @@ export function CommandLine({
       {showHelp && !result && <CommandHelp />}
       <span className="command-line__hint" style={{ marginLeft: "auto", display: "flex", gap: 12, alignItems: "center" }}>
         {mapScenarioState && (
-          <>
-            <span title="Map replay clock">{formatClock(mapScenarioState.clockIso)}</span>
-            <span title="Replay state">
-              {mapScenarioState.isPlaying ? "▶" : "⏸"}
-            </span>
-          </>
+          <span title="Map replay clock">{formatClock(mapScenarioState.clockIso)}</span>
         )}
+        <ReplayControls
+          scenarioState={mapScenarioState}
+          onScenarioStateChange={onMapScenarioChange}
+        />
         <span style={{ color: "var(--color-ink-tertiary)" }}>{sourceStatus}</span>
         <button
           type="button"

@@ -1,6 +1,7 @@
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
 import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
+import { NamedOperatorCard } from "./NamedOperatorCard.tsx";
 
 interface SubstratePanelProps {
   alerts: AlertView[];
@@ -35,6 +36,7 @@ export function SubstratePanel({
         </span>
       </div>
       <div className="panel__body">
+        <NamedOperatorCard />
         <CustodyQueue
           alerts={alerts}
           scenarioState={scenarioState}

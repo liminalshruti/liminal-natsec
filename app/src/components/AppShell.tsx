@@ -6,6 +6,7 @@ import { CommandLine } from "./CommandLine.tsx";
 import type { ScenarioState as MapScenarioState } from "./MapWatchfloor.tsx";
 import { StageViewport } from "./StageViewport.tsx";
 import { SubstratePanel } from "./SubstratePanel.tsx";
+import { WorkflowStrip } from "./WorkflowStrip.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
 
 interface AppShellProps {
@@ -41,6 +42,7 @@ export function AppShell({
     <div className="app-shell">
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
+        <WorkflowStrip />
         <Breadcrumb
           scenario={scenario}
           eventId={eventId}
@@ -78,6 +80,7 @@ export function AppShell({
       <CommandLine
         scenario={scenario}
         mapScenarioState={mapScenarioState}
+        onMapScenarioChange={onMapScenarioChange}
         onReset={onReset}
         onSelectAlert={onSelectAlert}
         alerts={scenario?.state.alerts ?? []}

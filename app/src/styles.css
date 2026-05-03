@@ -3664,7 +3664,162 @@ details.case-file__section > summary:focus-visible {
 
 /* ─── S1 NAMED OPERATOR + WORKFLOW STRIP ─── */
 
+.named-operator {
+  border-left: 2px solid color-mix(in srgb, var(--color-decision) 30%, transparent);
+  padding: 8px 10px 10px 12px;
+  margin: 0 0 12px 0;
+  background: color-mix(in srgb, var(--color-decision) 4%, transparent);
+}
+
+.named-operator__header {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  color: var(--color-ink-tertiary);
+  margin-bottom: 6px;
+}
+
+.named-operator__body {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+  margin: 0;
+}
+
+.workflow-strip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: var(--color-ink-tertiary);
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.workflow-strip__pane {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.workflow-strip__num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.workflow-strip__label {
+  font-family: var(--font-mono);
+}
+
+.workflow-strip__sep {
+  margin: 0 4px;
+  color: var(--color-ink-tertiary);
+  opacity: 0.5;
+}
+
+.workflow-strip__pane--active,
+.workflow-strip__pane--active .workflow-strip__num,
+.workflow-strip__pane--active .workflow-strip__label {
+  color: var(--color-decision);
+}
+
+
 /* ─── S2 REPLAY CONTROLS ─── */
+
+.replay-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  padding: 1px;
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-mono);
+}
+
+.replay-controls__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  background: transparent;
+  border: 0;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 120ms ease, color 120ms ease;
+  position: relative;
+}
+
+.replay-controls__btn:hover:not(:disabled) {
+  background: rgba(110, 168, 254, 0.08);
+  color: var(--color-decision);
+}
+
+.replay-controls__btn:focus-visible {
+  outline: 1px solid var(--color-decision);
+  outline-offset: 1px;
+}
+
+.replay-controls__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.replay-controls__btn--play {
+  font-weight: 500;
+  color: var(--color-ink-primary);
+}
+
+.replay-controls__btn--play.replay-controls__btn--playing {
+  color: var(--color-decision);
+}
+
+.replay-controls__btn--play.replay-controls__btn--playing::before {
+  /* Subtle pulse glow on the playing button — ambient signal that the
+     clock is advancing without demanding attention. Slow 3.2s cycle. */
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-decision);
+  opacity: 0;
+  animation: replay-controls-pulse 3.2s ease-in-out infinite;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.6);
+}
+
+@keyframes replay-controls-pulse {
+  0%, 100% { opacity: 0; transform: translateY(-50%) scale(0.6); }
+  50% { opacity: 0.55; transform: translateY(-50%) scale(1.3); }
+}
+
+.replay-controls__label {
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-size: 9px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .replay-controls__btn--play.replay-controls__btn--playing::before {
+    animation: none;
+    opacity: 0.4;
+  }
+}
 
 /* ─── S3 MAP LEGEND + STAGE HEADER ─── */
 
