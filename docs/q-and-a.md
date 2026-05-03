@@ -4,6 +4,50 @@ Predictable hostile questions, with rehearsed answers. Goal: every answer is ≤
 
 The judges in the room are ex-operators (Shield Capital, IQT) and procurement-adjacent VCs (DCVC, Palantir engineers). They will smell handwaving in 5 seconds. The right move is *specificity + restraint* — show you know what you don't know.
 
+The first section below — **Judge-calibrated quick answers** — is the rehearsal-ready bench against the six questions the judging panel is most likely to fire in the 1–2 minute Round 1 window. The categorized sections that follow are the long-form fallback for follow-ups and Round 2 stage Q&A.
+
+---
+
+## Judge-calibrated quick answers
+
+These six are pre-assigned to a speaker via the Q&A handoff matrix in `docs/round1-round2-script.md`. Each answer is ≤ 30 seconds, ends on a strong word, and points to the long-form section for follow-ups.
+
+### 1. "Why does this fit Problem Statement 1 — Sensor Analysis & Integration?"
+
+> "PS1 asks for fusing detections across modalities, optimizing search after a lost target, and maintaining custody in contested environments. We do all three. Identity inspects AIS metadata, Visual is a CLIP cross-modal read on declared vessel type, Kinematics runs a Kalman dark-gap predictor that defines the reacquisition corridor, and Signal Integrity fuses them into a source-chain verdict. The output isn't a single confidence score — it's a custody case with three preserved hypotheses and one explicit refusal. **That's iterative refinement under contest, not a tracker bolted to a map.**"
+>
+> *(Long form: Technical / scaling — JPDA, scale, classification.)*
+
+### 2. "Why does this matter militarily?"
+
+> "0200 at the U.S. 5th Fleet watchfloor. The Strait of Hormuz and Bab al-Mandab have documented AIS spoofing across multiple state and non-state actors since 2019. A vessel goes dark inside the corridor; a different MMSI appears nearby. The watch officer has 30 seconds and one coherent-looking signal — and the existing stack treats source-chain compromise as someone else's problem until it hits command. We make second-source collection a doctrine the system enforces, not a UI option. **That's the difference between a watch officer escalating something that should have been held — and holding it.**"
+>
+> *(Long form: Customer / procurement.)*
+
+### 3. "Why is this not just another map dashboard?"
+
+> "The map is the cheapest part. The product is what sits behind it: a graph spine that preserves competing custody hypotheses instead of collapsing them, a server-side guard that turns refusal into a first-class output, and a review-memory primitive where one operator's correction becomes a deterministic rule that changes the next case. Drop the maritime fixture and the same loop runs on intelligence reports or supply-chain telemetry. **Dashboards visualize state. We mutate it.**"
+>
+> *(Long form: Tell me more / open-ended — under the hood.)*
+
+### 4. "Why are refusal and guardrails *technically* enforced, not prompted?"
+
+> "Because prompted refusal can be argued past, and we needed an invariant. `server/src/specialists/guard.ts` runs seven layered checks server-side on every specialist output: citation count below two on a supported verdict, missing INTENT_INDICATOR on an Intent claim, posterior below the confidence floor, Shodan-only citations on a vessel-behavior claim, hostile-phrasing in a question with no indicator evidence. The checks are code, not text in a system prompt — there's no jailbreak surface. AIP outputs are wrapped, not trusted. **Refusal is enforced; AI accelerates underneath it.**"
+>
+> *(Long form: AI / model risk — How does the structural guard work, prompt injection, Signal Integrity specialists.)*
+
+### 5. "How does Palantir AIP / Foundry fit?"
+
+> "Two ways. One: AIP Logic runs the specialists in our build path and is the hot fallback during Q&A — flip an env flag and the next specialist call goes through AIP, the guard wraps it, and the same refusal renders. Two: Foundry Ontology is the authoritative store — object types, link types, action types are speced in `foundry/`. The graph spine is domain-neutral so the same product ships as a Foundry / AIP module on top of an existing deployment. We augment Maven one layer earlier; we don't replace it. **We feed Maven, we don't compete with it.**"
+>
+> *(Long form: Maven / Palantir / CJADC2 — different from Maven, why not just AIP, complementary.)*
+
+### 6. "What's the 90-day pilot ask?"
+
+> "Replay-data pilot with a maritime watchfloor — 5th Fleet J2 or the Naval Postgraduate School contested-environments group — on Hormuz or Bab al-Mandab AIS. Success metric is operator-validated review rules per case, not detection accuracy, because the win condition is durable human judgment, not a black-box score. xTech sponsor track and an AIP / Foundry module are the two expansion lanes. **We want a 90-day pilot with a maritime watchfloor or an xTech-aligned sponsor on contested AIS replay data.**"
+>
+> *(Long form: Customer / procurement — 12-month customer, why Army not in-house, why not Palantir.)*
+
 ---
 
 ## Maven / Palantir / CJADC2

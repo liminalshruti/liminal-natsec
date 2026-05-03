@@ -27,7 +27,7 @@ interface ReplayControlsProps {
 const PHASE_MIN: Phase = 1;
 const PHASE_MAX: Phase = 6;
 
-// Beat-anchored timestamps for each phase, derived from the SpeedRun cut
+// Beat-anchored timestamps for each phase, derived from the demo-video
 // script's beat timing. When the operator jumps phases manually we don't
 // want the clock to stay frozen at the previous beat's timestamp — the
 // map's replay logic gates visibility on clockIso, so jumping the phase

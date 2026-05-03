@@ -171,7 +171,7 @@ If running long, cut the second sentence. The first lands on its own.
 
 ---
 
-## 7. SpeedRun proof clip — judge-calibrated structure
+## 7. 60-second demo video — judge-calibrated structure
 
 The hackathon requires a 1-min demo video. Build it as if a Shield/IQT principal will watch it on 2x speed in their inbox.
 

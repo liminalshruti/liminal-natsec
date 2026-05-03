@@ -436,7 +436,7 @@ Not on critical path.
 - Commander Brief export.
 - Loitering / impossible jump filler anomalies.
 - Background vessel animation polish.
-- SpeedRun proof clip polish.
+- Demo video proof clip polish.
 
 ### Do Not Build
 
@@ -452,14 +452,14 @@ Not on critical path.
 
 ---
 
-## 14. SpeedRun Capture Requirement
+## 14. Demo Video Capture Requirement
 
 SeaForge must produce both:
 
 1. Live hackathon demo.
-2. SpeedRun proof clip.
+2. 60-second demo video.
 
-The SpeedRun proof clip must include:
+The demo video must include:
 
 - contested custody / hypothesis board,
 - intent specialist refusal,
@@ -489,5 +489,5 @@ Portability reveal:
 | Prior rule applies | Second event changes recommendation |
 | Reset works | Ctrl+Shift+R clears state |
 | Fallback exists | Screen recording saved |
-| SpeedRun clip exists | Portability beat captured |
+| Demo video exists | Portability beat captured |
 

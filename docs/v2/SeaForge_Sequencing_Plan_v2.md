@@ -39,7 +39,7 @@ raw observation -> anomaly -> custody hypothesis -> contested claim -> action op
 | Gate 3 | Hour 13 | Hypotheses, evidence drawer, provenance trace render from graph. |
 | Gate 4 | Hour 20 | Full loop works: review rule saves and changes second case. |
 | Gate 5 | Hour 25 | UI polished, reset works, fallback recording exists. |
-| Gate 6 | Hour 31 | Demo rehearsed, SpeedRun clip captured or outlined, reset verified. |
+| Gate 6 | Hour 31 | Demo rehearsed, demo video captured or outlined, reset verified. |
 
 ---
 
@@ -162,7 +162,7 @@ Shruti:
 - Language audit.
 - Confidence / rule visuals.
 - Reset handler.
-- SpeedRun proof clip structure.
+- Demo video proof clip structure.
 
 Exit condition:
 
@@ -188,7 +188,7 @@ Both:
 Exit condition:
 
 ```text
-Live demo ready, fallback ready, SpeedRun artifact ready enough.
+Live demo ready, fallback ready, demo video artifact ready enough.
 ```
 
 ---

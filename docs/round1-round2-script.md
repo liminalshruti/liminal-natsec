@@ -6,59 +6,66 @@
 
 ## Round 1 — Maven-invisible, 3 minutes total
 
-**Format:** judging group, ~6–8 teams back-to-back, 3-minute pitch + 1–2 min Q&A. Goal: make top 6 to advance to stage.
+**Format:** judging group, ~6–8 teams back-to-back, 3-minute pitch + 1–2 min Q&A
+(`details.md` §13). Goal: make top 6 to advance to the stage round.
 
-**Optimization:** legibility under time pressure. Be memorable in the first 30 seconds. Be fully understood by minute 1.
+**Optimization:** legibility under time pressure against a published rubric —
+**35 % Technical Demo / 30 % Military Impact / 25 % Solution Creativity / 10 %
+Pitch**. Memorable in the first 30 seconds. Fully understood by minute 1.
+Every beat lives in the **running desktop app** — `details.md` §13 explicitly
+forbids presenting slides during judging.
 
 ### Time map
 
-| Time | Beat | Speaker |
-|---|---|---|
-| 0:00 – 0:30 | Hook + named persona | Shruti |
-| 0:30 – 1:30 | Live demo: dark gap → second identity → hypothesis board → Signal Integrity → Intent REFUSED → Collection | Shayaun (drives demo), Shruti (narrates) |
-| 1:30 – 2:00 | Review Memory beat: rule saved → next case changed | Shruti |
-| 2:00 – 2:30 | Why this matters: pre-command evidence integrity, restraint as a security feature | Shruti |
-| 2:30 – 2:50 | Team credibility (one sentence each) + procurement ask | Shruti opens, Shayaun closes |
-| 2:50 – 3:00 | Buffer | — |
+| Time | Beat | Scoring weight served | Speaker |
+|---|---|---|---|
+| 0:00 – 0:30 | **30-sec cold-open hook** + named persona *(in-app: map idle)* | Pitch (10) + Military Impact (30) | Shruti |
+| 0:30 – 1:30 | Live demo: dark gap → second identity → hypothesis board → Signal Integrity → Intent REFUSED → Collection *(in-app, driven on-screen)* | Technical Demo (35) + Creativity (25) | Shayaun drives, Shruti narrates |
+| 1:30 – 2:00 | Review Memory beat: rule saved → next case changed *(in-app, second event)* | Creativity (25) + Technical Demo (35) | Shruti |
+| 2:00 – 2:30 | **Military-impact beat** — pre-command evidence integrity; PS1 anchor sentence | Military Impact (30) | Shruti |
+| 2:30 – 2:50 | Team credibility (one sentence each) + 90-day pilot ask | Pitch (10) + Military Impact (30) | Shruti opens, Shayaun closes |
+| 2:50 – 3:00 | Q&A bridge + buffer | — | Shayaun |
 
 ### Word-for-word — Round 1
 
-**Hook (0:00 – 0:30) — Shruti:**
+**Hook (0:00 – 0:30) — Shruti** *(canonical 30-second cold-open; identical to the demo-video VO in `docs/demo-video-script.md`):*
 
-> "It's 2 AM at the 5th Fleet watchfloor. A vessel in the Strait of Hormuz goes dark. 38 minutes later, a different identity appears 4 nautical miles away. The watch officer has 30 seconds to decide: escalate, monitor, or request second-source confirmation.
+> "0200 at the U.S. 5th Fleet watchfloor. A vessel in the Strait of Hormuz goes dark. 38 minutes later, a different identity appears 4 nautical miles away. The watch officer has 30 seconds to decide: escalate, monitor, or request second-source collection.
 >
-> Most command-and-control systems start *after* this moment — they assume the signal is already coherent enough to act on. We start one layer earlier."
+> Most command-and-control systems start *after* this moment. **Liminal Custody protects the evidence chain before it becomes command.**"
 
-**Demo (0:30 – 1:30) — Shayaun drives, Shruti narrates:**
+**Demo (0:30 – 1:30) — Shayaun drives the app, Shruti narrates:**
 
-> *(map shows normal traffic, then dark gap)*
+> *(in-app: map shows normal traffic, replay advances, dark gap fires)*
 > "Vessel goes dark."
-> *(second identity appears)*
+> *(in-app: second identity pings inside the predicted ellipse)*
 > "A second identity appears nearby. The system doesn't declare them the same — or different. It opens a custody case with three preserved hypotheses."
-> *(working panel opens)*
+> *(in-app: operator clicks the alert, Working Panel renders)*
 > "Here's what makes this different. Look at the specialist reads."
-> *(specialist reads panel renders)*
+> *(in-app: SpecialistReads strip renders; Signal Integrity row goes CONTESTED)*
 > "Kinematics says continuity is plausible. Identity flags a metadata mismatch. **Signal Integrity says the source chain is contested — single feed, 38-minute gap, MMSI discontinuity inside a known spoofing envelope.** Intent doesn't refuse because we *told* it to. The system runs a structural guard server-side — citation minimum, indicator requirement, confidence floor — and *enforces* refusal when the chain isn't strong enough. **AI can't talk its way past it.** The system recommends second-source collection."
 
 **Review Memory (1:30 – 2:00) — Shruti:**
 
-> *(operator types a review rule)*
-> "The watch officer writes a review rule: 'Identity churn alone is insufficient without second-source confirmation.' The rule saves to the watchfloor.
-> *(second case appears)*
+> *(in-app: operator types a review rule into ReviewMemory, hits save, green toast)*
+> "The watch officer writes a review rule: 'Identity churn alone is insufficient without second-source collection.' The rule saves to the watchfloor.
+> *(in-app: click the second event alert, CaseHandoffBanner fires, ActionOptions reorders)*
 > Two hours later, a similar case appears. The system applies the prior rule. The recommendation has changed: it no longer offers Escalate as an option. It offers Request Collection.
 >
 > The system learned. Not from training data — from a human's correction."
 
-**Why it matters (2:00 – 2:30) — Shruti:**
+**Military-impact beat (2:00 – 2:30) — Shruti:**
 
-> "Maintaining custody of contested targets is Sensor Analysis. Bounded action workflows are Command and Control. Protecting the evidence chain from spoofed or degraded signals is Digital Defense. We don't think it's any of those individually. We think the unsolved layer is between them.
->
-> Liminal Custody is the pre-command evidence integrity layer. We turn contested observations into traceable custody, refuse unsupported inference, and turn human correction into durable operating memory. Restraint becomes a security feature."
+> "**This is Problem Statement 1: maintaining custody of contested targets across modalities — AIS, visual, kinematic, RF — and consolidating those detections into a single iteratively refined event.** The 5th Fleet AOR has documented AIS spoofing across multiple state and non-state actors since 2019. At 0200, the cost of over-trusting one coherent-looking signal is a watch officer escalating something that should have been held. Liminal Custody turns contested observations into traceable custody, refuses unsupported inference server-side, and turns human correction into durable operating memory. Restraint becomes a security feature."
 
 **Team + ask (2:30 – 2:50) — Shruti opens, Shayaun closes:**
 
 > Shruti: "I'm building Liminal — infrastructure for the pre-decisional state."
-> Shayaun: "I'm an OffSec-certified offensive-security professional — top 100 on Hack The Box. Signal-chain integrity is my domain. We want a 90-day pilot with a maritime watchfloor or xTech sponsor on contested AIS replay data."
+> Shayaun: "I'm an OffSec-certified offensive-security professional — top 100 on Hack The Box. Signal-chain integrity is my domain. **We want a 90-day pilot with a maritime watchfloor or an xTech-aligned sponsor on contested AIS replay data.**"
+
+**Q&A bridge (2:50 – 3:00) — Shayaun:**
+
+> "Happy to take questions — and we can flip the live AIP path during Q&A if useful."
 
 ### Round 1 — what NOT to say
 
@@ -90,11 +97,11 @@
 
 **Hook (0:00 – 0:30) — Shruti:**
 
-> "It's 2 AM at the 5th Fleet watchfloor. A vessel in the Strait of Hormuz goes dark. A second identity appears nearby.
+> "0200 at the U.S. 5th Fleet watchfloor. A vessel in the Strait of Hormuz goes dark. A second identity appears 4 nautical miles away.
 >
 > Maven Smart System and CJADC2 help commanders act on a shared operational picture. They are excellent at that. But they assume something has already happened — that the signals reaching command have already been deemed commandable.
 >
-> Liminal Custody handles that earlier layer. We protect the evidence chain *before* something becomes commandable truth."
+> Liminal Custody handles that earlier layer. We protect the evidence chain *before* something becomes command."
 
 **Demo (0:30 – 1:45) — Shayaun drives, Shruti narrates:**
 
@@ -133,6 +140,37 @@
 
 ---
 
+## Q&A handoff matrix (1–2 min Round 1, 2–3 min Round 2)
+
+The 1–2 minute Q&A window is short. Pre-assign each predictable question to a
+speaker and a section in `docs/q-and-a.md` so we don't both lunge at the same
+question or both stay silent. **Whoever answers, finishes — no overlap.**
+Shruti fields product / positioning; Shayaun fields engineering / security.
+
+| # | Predictable question | Owner | Source section in `q-and-a.md` |
+|---|---|---|---|
+| 1 | "Why does this fit Problem Statement 1?" | Shruti | Quick answers §1 |
+| 2 | "Why does this matter militarily?" | Shruti | Quick answers §2 |
+| 3 | "Why is this not just another map dashboard?" | Shruti | Quick answers §3 |
+| 4 | "How is refusal *technically* enforced?" / prompt-injection | Shayaun | Quick answers §4 + AI / model risk |
+| 5 | "How does Palantir AIP / Foundry fit?" | Shayaun (AIP fallback live-flip if asked) | Quick answers §5 + Maven / Palantir / CJADC2 |
+| 6 | "What's the 90-day pilot ask / customer in 12 months?" | Shayaun | Quick answers §6 + Customer / procurement |
+| 7 | "Why your team?" | Shayaun (offsec) → Shruti (Liminal) | Team |
+| 8 | "What's the moat?" / "Why won't Palantir build this?" | Shruti | Hostile / curveball |
+| 9 | "Worst-case failure mode?" | Shruti | Hostile / curveball |
+| 10 | "Could this be used against US assets?" | Shruti | Hostile / curveball |
+
+**If a question doesn't land in this matrix:** the speaker who's already mid-thought
+takes it; the other speaker can add one sentence at the end, no more.
+
+**Hot fallback to live AIP (Q&A only):** if a judge asks "are you actually using
+the LLM right now?" — Shayaun flips the env flag, runs the next specialist call
+through AIP Logic, lets the structural guard wrap the output, and shows the same
+refusal rendering. The judge cannot visually distinguish demo mode from live
+mode. This is the *only* moment AIP is on the critical path.
+
+---
+
 ## Demo timing — both rounds
 
 The live demo segment is ~75 seconds in Round 1, ~75 seconds in Round 2. Same beats, slightly different narration pace. Critical: **the operator who clicks must be the one who narrates**, or the timing breaks. Default is Shayaun drives the map / replay; Shruti drives the working panel and review memory. Practice the handoff.
@@ -162,7 +200,7 @@ If running long, cut: hypothesis board narration (drop to 5s). If running short,
 If the live demo breaks during pitch:
 
 1. **First 10 seconds of breakage:** keep talking, click around, see if it self-recovers.
-2. **By 20 seconds:** Shayaun says "let me cut to the recorded run" and switches to the SpeedRun proof clip. Shruti continues narrating *as if* the recorded clip is live.
+2. **By 20 seconds:** Shayaun says "let me cut to the recorded run" and switches to the 60-second demo video. Shruti continues narrating *as if* the recorded clip is live.
 3. **If neither works:** describe the demo verbally. End with "we have the full demo recorded — happy to send the link." The Q&A becomes the differentiator.
 
 This is why a clean fallback recording exists.

@@ -25,7 +25,7 @@
 | Gate 3 | Hour 13 | Hypotheses, evidence drawer, provenance trace render from graph. |
 | Gate 4 | Hour 20 | Full loop works: review rule saves and changes second case. **Signal Integrity row renders. Intent refusal causally linked.** *(v3 addition)* |
 | Gate 5 | Hour 25 | UI polished, reset works, fallback recording exists. |
-| Gate 6 | Hour 31 | Demo rehearsed, **Round 1 + Round 2 scripts memorized**, SpeedRun clip captured, reset verified. *(v3 addition)* |
+| Gate 6 | Hour 31 | Demo rehearsed, **Round 1 + Round 2 scripts memorized**, demo video captured, reset verified. *(v3 addition)* |
 
 ---
 
@@ -138,7 +138,7 @@ Shruti:
 - **v3:** amber CONTESTED visual treatment on Signal Integrity row; expandable indicator list.
 - Confidence / rule visuals.
 - Reset handler (clears Signal Integrity state too).
-- SpeedRun proof clip structure.
+- Demo video proof clip structure.
 
 **Exit:** Demo runs clean, reset works, fallback recording exists.
 
@@ -157,7 +157,7 @@ Both:
 - Cut fragile features at hour 27.
 - Verify 3 consecutive clean Round 1 runs.
 
-**Exit:** Round 1 demo ready, Round 2 demo ready, fallback ready, SpeedRun artifact ready.
+**Exit:** Round 1 demo ready, Round 2 demo ready, fallback ready, demo video artifact ready.
 
 ---
 

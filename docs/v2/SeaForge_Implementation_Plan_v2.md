@@ -228,7 +228,7 @@ Apply to: `anomaly`, `claim`, `actionOption`, `reviewRule`.
 - review memory
 - language/story polish
 - reset handler
-- SpeedRun proof clip structure
+- Demo video proof clip structure
 
 ### Shared / overlap
 
@@ -304,15 +304,15 @@ Apply to: `anomaly`, `claim`, `actionOption`, `reviewRule`.
 
 ---
 
-### Phase 4 - Polish + SpeedRun capture (Hours 20-25)
+### Phase 4 - Polish + demo-video capture (Hours 20-25)
 
 | Hour | Shayaun | Shruti | Milestone |
 |---|---|---|---|
 | 20-22 | Map visual polish: dark, layered, Liminal-compatible. | UI polish: typography, cards, badges, language audit. | Serious, coherent interface. |
 | 22-24 | Optional ghost/predicted path overlay. | Confidence visuals, Review Memory styling, reset handler. | Reset works. |
-| 24-25 | Record hackathon fallback screen capture. | Record SpeedRun proof clip structure / talking sequence. | Fallback and SpeedRun artifacts exist. |
+| 24-25 | Record hackathon fallback screen capture. | Record demo-video proof clip structure / talking sequence. | Fallback and demo-video artifacts exist. |
 
-**Checkpoint H25:** demo runs clean, fallback exists, SpeedRun clip outline or capture exists.
+**Checkpoint H25:** demo runs clean, fallback exists, demo video outline or capture exists.
 
 ---
 
