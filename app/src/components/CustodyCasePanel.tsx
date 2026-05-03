@@ -1,17 +1,19 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import type { AlertView } from "../lib/types.ts";
 import {
   actionsForCase,
   caseIdFromAlertId,
   hypothesesForCase,
+  primaryClaimForCase,
   reviewApplicationForCase
 } from "../lib/spineGraph.ts";
 import { specialistReadsForCase } from "../lib/specialistReads.ts";
 
 import { ActionOptions } from "./ActionOptions.tsx";
-import { EvidenceChain } from "./EvidenceChain.tsx";
+import { EvidenceDrawer } from "./EvidenceDrawer.tsx";
 import { HypothesisBoard } from "./HypothesisBoard.tsx";
+import { ProvenanceTrace } from "./ProvenanceTrace.tsx";
 import { ReviewMemory } from "./ReviewMemory.tsx";
 import { SpecialistReads } from "./SpecialistReads.tsx";
 
@@ -21,7 +23,7 @@ interface CustodyCasePanelProps {
 
 export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
   const caseId = useMemo(
-    () => caseIdFromAlertId(selectedAlert.id) ?? deriveCaseId(selectedAlert.id),
+    () => caseIdFromAlertId(selectedAlert.id),
     [selectedAlert.id]
   );
   const hypotheses = useMemo(
@@ -40,7 +42,21 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
     () => (caseId ? specialistReadsForCase(caseId) : []),
     [caseId]
   );
-  const claimId = useMemo(() => firstClaimId(caseId), [caseId]);
+  const primaryClaim = useMemo(() => primaryClaimForCase(caseId), [caseId]);
+  const primaryClaimId = primaryClaim?.id ?? null;
+
+  const [selectedHypothesisId, setSelectedHypothesisId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (hypotheses.length === 0) {
+      setSelectedHypothesisId(null);
+      return;
+    }
+    setSelectedHypothesisId((current) => {
+      if (current && hypotheses.some((node) => node.id === current)) return current;
+      return hypotheses[0]?.id ?? null;
+    });
+  }, [hypotheses]);
 
   return (
     <>
@@ -51,6 +67,10 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
         <div className="kv__v" style={{ wordBreak: "break-all" }}>
           {selectedAlert.id}
         </div>
+        <div className="kv__k">claim</div>
+        <div className="kv__v" style={{ wordBreak: "break-all" }}>
+          {primaryClaimId ?? "—"}
+        </div>
         <div className="kv__k">status</div>
         <div className="kv__v">
           <span className="tag tag--warn">{selectedAlert.status}</span>
@@ -59,27 +79,17 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
         <div className="kv__v">{selectedAlert.severity.toFixed(2)}</div>
       </div>
 
-      <HypothesisBoard hypotheses={hypotheses} />
+      <HypothesisBoard
+        hypotheses={hypotheses}
+        primaryClaimId={primaryClaimId}
+        selectedHypothesisId={selectedHypothesisId}
+        onSelectHypothesis={setSelectedHypothesisId}
+      />
+      <ProvenanceTrace claimId={primaryClaimId} />
+      <EvidenceDrawer claimId={primaryClaimId} />
       <ActionOptions actions={actions} ruleApplication={ruleApplication} />
-      <EvidenceChain caseId={caseId} claimId={claimId} />
       <SpecialistReads reads={reads} />
       <ReviewMemory ruleApplication={ruleApplication} caseId={caseId} />
     </>
   );
-}
-
-function firstClaimId(caseId: string | null): string | null {
-  if (!caseId) return null;
-  // Convention: claim:<scenario>:<eventSlug>:custody:h1 — scenario+eventSlug
-  // matches the trailing slug of the case id (`case:alara-01:event-1`).
-  const slug = caseId.replace(/^case:/, "");
-  return `claim:${slug}:custody:h1`;
-}
-
-function deriveCaseId(alertId: string): string | null {
-  // Anomaly ids in this fixture pack don't all carry case_id; fall back to a
-  // simple parse so the UI still binds. Pattern: anom:<kind>:<...>:<eventTag>
-  const match = alertId.match(/event-([12])/);
-  if (!match) return null;
-  return `case:alara-01:event-${match[1]}`;
 }

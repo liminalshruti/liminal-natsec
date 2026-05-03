@@ -87,4 +87,26 @@ describe("app spineGraph integration", () => {
     assert.ok(intent, "Intent read should exist on event 1");
     assert.equal(intent!.status, "REFUSED");
   });
+
+  it("evidenceForClaim splits supports/weakens/contradicts on event 1", async () => {
+    const { evidenceForClaim, primaryClaimForCase, statusForHypothesis } = await import(
+      "../src/lib/spineGraph.ts"
+    );
+    const claim = primaryClaimForCase("case:alara-01:event-1");
+    assert.ok(claim, "primary claim should exist for event 1");
+    const evidence = evidenceForClaim(claim!.id);
+    assert.equal(evidence.supports.length, 1);
+    assert.equal(evidence.weakens.length, 1);
+    assert.equal(evidence.contradicts.length, 1);
+    assert.equal(evidence.contradicts[0].node.id, "ev:alara-01:event-1:metadata-conflict");
+
+    assert.equal(
+      statusForHypothesis("hyp:alara-01:event-1:h1", claim!.id),
+      "primary"
+    );
+    assert.equal(
+      statusForHypothesis("hyp:alara-01:event-1:h2", claim!.id),
+      "alternative"
+    );
+  });
 });

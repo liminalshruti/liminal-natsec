@@ -108,4 +108,60 @@ export function topActionForClaim(claimId: string): SpineNode | null {
   return null;
 }
 
+export function claimsForCase(caseId: string): SpineNode[] {
+  return getMaritimeGraph()
+    .getNodes("claim")
+    .filter((node) => node.case_id === caseId);
+}
+
+export function primaryClaimForCase(caseId: string | null): SpineNode | null {
+  if (!caseId) return null;
+  const claims = claimsForCase(caseId);
+  if (claims.length === 0) return null;
+  // Prefer a claim whose id matches the conventional `case:<...>:custody:h1` naming.
+  const slug = caseId.replace(/^case:/, "");
+  return (
+    claims.find((claim) => claim.id === `claim:${slug}:custody:h1`) ?? claims[0]
+  );
+}
+
+export interface EvidenceLink {
+  node: SpineNode;
+  edge: SpineEdge;
+}
+
+export interface EvidenceForClaim {
+  supports: EvidenceLink[];
+  weakens: EvidenceLink[];
+  contradicts: EvidenceLink[];
+}
+
+export function evidenceForClaim(claimId: string): EvidenceForClaim {
+  const graph = getMaritimeGraph();
+  const result: EvidenceForClaim = { supports: [], weakens: [], contradicts: [] };
+  if (!graph.getNode(claimId)) return result;
+  for (const edge of graph.incoming(claimId)) {
+    const source = graph.getNode(edge.from);
+    if (!source || source.type !== "evidence") continue;
+    if (edge.type === "SUPPORTS") result.supports.push({ node: source, edge });
+    else if (edge.type === "WEAKENS") result.weakens.push({ node: source, edge });
+    else if (edge.type === "CONTRADICTS") result.contradicts.push({ node: source, edge });
+  }
+  return result;
+}
+
+export type HypothesisStatus = "primary" | "alternative" | "unattached";
+
+export function statusForHypothesis(
+  hypothesisId: string,
+  claimId: string | null
+): HypothesisStatus {
+  if (!claimId) return "unattached";
+  const graph = getMaritimeGraph();
+  const supports = graph.outgoing(hypothesisId, "SUPPORTS");
+  const isPrimary = supports.some((edge) => edge.to === claimId);
+  if (isPrimary) return "primary";
+  return "alternative";
+}
+
 export type { ProvenanceTrace, ReviewRuleApplication, SpineEdge, SpineNode };

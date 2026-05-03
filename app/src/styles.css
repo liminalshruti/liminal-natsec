@@ -310,3 +310,76 @@ button:hover {
   border-color: var(--ok);
   color: var(--ok);
 }
+
+.trace-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 4px;
+}
+
+.trace-step {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.trace-step__edge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0 2px 12px;
+  color: var(--fg-2);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.trace-step__arrow {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.trace-step__edge-type {
+  border: 1px solid var(--line);
+  padding: 1px 6px;
+  border-radius: 2px;
+}
+
+.trace-step__node {
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: 6px 8px;
+  border-radius: 2px;
+}
+
+.trace-step__type {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.trace-step__title {
+  font-size: 12px;
+  color: var(--fg-0);
+  margin-bottom: 2px;
+}
+
+.trace-step__id {
+  font-size: 10px;
+  color: var(--fg-2);
+  word-break: break-all;
+}
+
+.trace-step__terminator {
+  align-self: flex-start;
+  margin: 4px 0 0 12px;
+  padding: 1px 6px;
+  border: 1px dashed var(--line);
+  border-radius: 2px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
