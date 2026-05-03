@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import type { UiMode } from "../lib/uiModeStore.ts";
 import { CustodyCasePanel } from "./CustodyCasePanel.tsx";
@@ -25,26 +26,32 @@ interface WorkingPanelProps {
 // Operative state is now; forensic state is history. The interaction matches
 // the reader: P1 reads operative in 5s without scrolling; P2 reads forensic
 // at length, with scrolling. See docs/TECHNICAL_PLAN.md §0.2.
-export function WorkingPanel({
-  selectedAlert,
-  selectedAlertId,
-  loading,
-  uiMode = "demo",
-  replayPhase = 1
-}: WorkingPanelProps) {
-  // Draft-case route: when the AI-proposed draft case is selected (its id
-  // doesn't appear in the AlertView list), render DraftCaseDetail instead
-  // of CustodyCasePanel. The two surfaces share the working panel; the
-  // operator promotes a draft → it becomes a regular case the next time
-  // they visit it (status: "promoted" branch in DraftCaseDetail).
-  const isDraftSelected = isDraftCaseId(selectedAlertId);
+export const WorkingPanel = forwardRef<HTMLElement, WorkingPanelProps>(
+  function WorkingPanel(
+    {
+      selectedAlert,
+      selectedAlertId,
+      loading,
+      uiMode = "demo",
+      replayPhase = 1
+    }: WorkingPanelProps,
+    ref
+  ) {
+    // Draft-case route: when the AI-proposed draft case is selected (its id
+    // doesn't appear in the AlertView list), render DraftCaseDetail instead
+    // of CustodyCasePanel. The two surfaces share the working panel; the
+    // operator promotes a draft → it becomes a regular case the next time
+    // they visit it (status: "promoted" branch in DraftCaseDetail).
+    const isDraftSelected = isDraftCaseId(selectedAlertId);
 
-  return (
-    <section
-      className="panel panel--working"
-      aria-label="Working panel"
-      style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
-    >
+    return (
+      <section
+        ref={ref}
+        className="panel panel--working"
+        aria-label="Working panel"
+        tabIndex={-1}
+        style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
+      >
       <div className="panel__header">
         <span>Working Panel</span>
         <span className="tag">case</span>
@@ -59,7 +66,8 @@ export function WorkingPanel({
       </div>
     </section>
   );
-}
+  }
+);
 
 /**
  * Empty-state stencil. In demo mode this is a teaching surface — the four-
