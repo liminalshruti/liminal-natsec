@@ -30,19 +30,10 @@ import { useEffect, useState } from "react";
 import gfwGaps from "../../../fixtures/maritime/live-cache/gfw-hormuz-gaps.json" with { type: "json" };
 import opensanctions from "../../../fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json" with { type: "json" };
 import sentinel1 from "../../../fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json" with { type: "json" };
-
-const AOI_BBOX = { lon_min: 54.4, lat_min: 24.5, lon_max: 57.8, lat_max: 27.2 };
+import { useLiveMap } from "../lib/mapBridge.ts";
 
 // Same default-on set as MapLayers.tsx — AIS only by default.
 const DEFAULT_ACTIVE: ReadonlySet<string> = new Set(["ais"]);
-
-function projectLon(lon: number, width: number): number {
-  return ((lon - AOI_BBOX.lon_min) / (AOI_BBOX.lon_max - AOI_BBOX.lon_min)) * width;
-}
-
-function projectLat(lat: number, height: number): number {
-  return ((AOI_BBOX.lat_max - lat) / (AOI_BBOX.lat_max - AOI_BBOX.lat_min)) * height;
-}
 
 interface GapEntry {
   id: string;
@@ -60,6 +51,7 @@ interface SanctionEntity {
 
 export function MapOverlays() {
   const [active, setActive] = useState<ReadonlySet<string>>(DEFAULT_ACTIVE);
+  const { map } = useLiveMap();
 
   useEffect(() => {
     function handler(e: Event) {
@@ -72,8 +64,21 @@ export function MapOverlays() {
     return () => window.removeEventListener("liminal:map-layers-changed", handler);
   }, []);
 
-  const W = 1000;
-  const H = 1000;
+  if (!map) return null;
+
+  const container = map.getContainer();
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+
+  // Live projection: use the registered map so coordinates follow zoom/pan.
+  // Replaces the old bbox-static projection so overlays now stick to real
+  // coordinates as the operator zooms/pans.
+  const project = (lon: number, lat: number): { x: number; y: number } =>
+    map.project([lon, lat]);
+
+  // Strait-centerline arc for OpenSanctions (no per-entity geometry in cache).
+  // Same pseudo-spread we had before, just expressed via map.project.
+  const SPREAD_BBOX = { lon_min: 54.4, lon_max: 57.8 };
 
   // GFW gap entries — concrete real-cache geometry. Each gap is a "broadcast
   // went silent here" event with lat/lon and duration.
@@ -96,8 +101,8 @@ export function MapOverlays() {
   return (
     <svg
       className="map-overlays"
-      viewBox={`0 0 ${W} ${H}`}
-      preserveAspectRatio="none"
+      width={W}
+      height={H}
       aria-hidden="true"
     >
       <defs>
@@ -107,31 +112,35 @@ export function MapOverlays() {
       </defs>
 
       {/* SAR footprint — cyan dashed rectangle outlining the Sentinel-1 capture
-          bbox. Faintest layer so it sits behind the others. */}
-      {active.has("sentinel") && sarBbox && sarBbox.length >= 4 && (
-        <g className="map-overlay map-overlay--sar">
-          <rect
-            x={projectLon(sarBbox[0], W)}
-            y={projectLat(sarBbox[3], H)}
-            width={projectLon(sarBbox[2], W) - projectLon(sarBbox[0], W)}
-            height={projectLat(sarBbox[1], H) - projectLat(sarBbox[3], H)}
-            className="map-overlay__sar-rect"
-            fill="none"
-          />
-          <text
-            x={projectLon(sarBbox[0], W) + 8}
-            y={projectLat(sarBbox[3], H) + 14}
-            className="map-overlay__sar-label"
-          >
-            SENTINEL-1 VV · SAR FOOTPRINT
-          </text>
-        </g>
-      )}
+          bbox. Faintest layer so it sits behind the others. Coordinates
+          re-projected on every map move via project(). */}
+      {active.has("sentinel") && sarBbox && sarBbox.length >= 4 && (() => {
+        const tl = project(sarBbox[0], sarBbox[3]);
+        const br = project(sarBbox[2], sarBbox[1]);
+        return (
+          <g className="map-overlay map-overlay--sar">
+            <rect
+              x={tl.x}
+              y={tl.y}
+              width={br.x - tl.x}
+              height={br.y - tl.y}
+              className="map-overlay__sar-rect"
+              fill="none"
+            />
+            <text
+              x={tl.x + 8}
+              y={tl.y + 14}
+              className="map-overlay__sar-label"
+            >
+              SENTINEL-1 VV · SAR FOOTPRINT
+            </text>
+          </g>
+        );
+      })()}
 
       {/* NAVAREA IX — covers the full Persian Gulf / Gulf of Oman / Arabian
-          Sea hazard area. We render it as a faint dashed enclosing rectangle
-          covering the AOI with a label. The cached metadata is single-shot
-          (a 200 OK response), so this is editorial-grade. */}
+          Sea hazard area. Renders as a frame around the current viewport
+          (it's an AOI-scope warning, not a precise polygon). */}
       {active.has("navarea") && (
         <g className="map-overlay map-overlay--navarea">
           <rect
@@ -153,8 +162,7 @@ export function MapOverlays() {
       {active.has("gfw") &&
         gapEntries.map((gap, i) => {
           if (!gap.position) return null;
-          const cx = projectLon(gap.position.lon, W);
-          const cy = projectLat(gap.position.lat, H);
+          const { x: cx, y: cy } = project(gap.position.lon, gap.position.lat);
           const radius = Math.max(20, (gap.durationHours ?? 1) * 30);
           return (
             <g key={`gfw-${gap.id ?? i}`} className="map-overlay map-overlay--gfw">
@@ -192,10 +200,9 @@ export function MapOverlays() {
           // deterministic arc from west (Bandar-e-Lengeh side) to east
           // (Gulf of Oman side).
           const t = (i + 0.5) / Math.min(sanctionsResults.length, 10);
-          const lon = AOI_BBOX.lon_min + 0.5 + t * (AOI_BBOX.lon_max - AOI_BBOX.lon_min - 1);
+          const lon = SPREAD_BBOX.lon_min + 0.5 + t * (SPREAD_BBOX.lon_max - SPREAD_BBOX.lon_min - 1);
           const lat = 26.05 + Math.sin(t * Math.PI) * 0.15; // arc up over Qeshm
-          const cx = projectLon(lon, W);
-          const cy = projectLat(lat, H);
+          const { x: cx, y: cy } = project(lon, lat);
           return (
             <g key={`os-${entity.id ?? i}`} className="map-overlay map-overlay--sanctions">
               <circle

@@ -10,6 +10,7 @@ import {
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./MapWatchfloor.css";
+import { registerMap } from "../lib/mapBridge.ts";
 
 import { buildMapStyle, INITIAL_VIEW } from "../map/style.ts";
 import { buildLayers, DANTI_SANCTIONED_OVERLAY_PATH, SOURCES } from "../map/layers.ts";
@@ -279,6 +280,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
 
     let cancelled = false;
     let createdMap: maplibregl.Map | null = null;
+    let bridgeUnregister: (() => void) | null = null;
 
     const rafId = requestAnimationFrame(() => {
       if (cancelled || !containerRef.current) return;
@@ -366,6 +368,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
         }
         setMapReady(true);
         props.onMapReady?.(map);
+        // Register the map with the global bridge so SVG overlays
+        // (RealShipsOverlay, MapInkBase, MapOverlays) can subscribe to
+        // move/zoom and re-project lat/lon to current screen coords.
+        bridgeUnregister = registerMap(map);
       });
     });
 
@@ -374,6 +380,8 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       cancelAnimationFrame(rafId);
       detachFallbackRef.current?.();
       detachFallbackRef.current = null;
+      bridgeUnregister?.();
+      bridgeUnregister = null;
       if (createdMap) {
         try { createdMap.remove(); } catch {}
       }
