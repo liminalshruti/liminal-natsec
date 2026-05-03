@@ -16,7 +16,7 @@
 // the summary panel signals "here's what it says" — judges read both as
 // evidence of multi-modal evidence custody.
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import gfwGaps from "../../../fixtures/maritime/live-cache/gfw-hormuz-gaps.json" with { type: "json" };
 import gfwLoitering from "../../../fixtures/maritime/live-cache/gfw-hormuz-loitering.json" with { type: "json" };
@@ -102,6 +102,19 @@ export function MapLayers() {
     () => new Set(layers.filter((l) => l.defaultOn).map((l) => l.key))
   );
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  // Broadcast active-layer state to MapOverlays + any other listener via a
+  // window event. The overhead-projector "translucent layer toggle" idea
+  // from the May-1 Whiteboard transcript: chips drive overlay visibility,
+  // not just a side panel. Emits on every active-set change including
+  // the initial mount, so the overlay component starts in sync.
+  useEffect(() => {
+    window.dispatchEvent(
+      new CustomEvent("liminal:map-layers-changed", {
+        detail: { active: Array.from(active) }
+      })
+    );
+  }, [active]);
 
   function toggle(key: string) {
     setActive((prev) => {

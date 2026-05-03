@@ -4810,3 +4810,266 @@ button:disabled {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ─── STAGE REDESIGN: LAYERED INK MAP + ASCII INSTRUMENT BEZELS ─────────────
+   Implements the May-1 Whiteboard transcript's overhead-projector idea —
+   stacked translucent layers on top of the geographic substrate, with the
+   strait of Hormuz rendered as ink-drawn coastline (the "Liminal aesthetic")
+   instead of a generic raster basemap. Four new visual layers:
+
+     z-index 0   StageBackdrop                   (existing, AI Ascent linework)
+     z-index 1   MapWatchfloor (MapLibre canvas) (existing, hero tracks)
+     z-index 2   MapInkBase                     NEW — ink-drawn Hormuz
+     z-index 3   MapOverlays                    NEW — cache-driven translucent
+     z-index 4   MapInstrumentBezels            NEW — ASCII corner/edge frame
+     z-index 5   DataSourcesChips, MapLayers, HUD, DemoPrompt (existing)
+
+   Pure CSS-positioned SVG; no MapLibre source/layer additions, so this is
+   self-contained in the UI lane. Real cache geometry feeds the overlays
+   via the AOI bbox projection; layer toggles flow from MapLayers via
+   the `liminal:map-layers-changed` window event.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* MAP INK BASE — ink-drawn Hormuz coastline overlay */
+
+.map-ink-base {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.78;
+  mix-blend-mode: lighten;
+}
+
+.map-ink-base__coast .map-ink-base__stroke {
+  stroke: #b8c5d4;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.78;
+  filter: url(#ink-grain);
+  stroke-dasharray: 1200 0;
+  animation: ink-living 18s ease-in-out infinite alternate;
+}
+
+.map-ink-base__centerline {
+  stroke: rgba(122, 169, 255, 0.32);
+  stroke-width: 1.2;
+  stroke-dasharray: 8 6;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.map-ink-base__label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  fill: rgba(184, 197, 212, 0.55);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.map-ink-base__label--strait {
+  font-size: 10px;
+  fill: rgba(122, 169, 255, 0.7);
+  letter-spacing: 0.24em;
+  font-weight: 500;
+}
+
+@keyframes ink-living {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 12; }
+}
+
+/* MAP OVERLAYS — cache-driven translucent intel layers */
+
+.map-overlays {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.map-overlay__sar-rect {
+  stroke: rgba(122, 220, 220, 0.55);
+  stroke-width: 1;
+  stroke-dasharray: 12 6;
+  fill: rgba(122, 220, 220, 0.025);
+}
+
+.map-overlay__sar-label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  fill: rgba(122, 220, 220, 0.7);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.map-overlay__navarea-rect {
+  stroke: rgba(240, 220, 110, 0.45);
+  stroke-width: 1;
+  stroke-dasharray: 4 8;
+}
+
+.map-overlay__navarea-label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  fill: rgba(240, 220, 110, 0.7);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.map-overlay__gfw-ring {
+  stroke: rgba(224, 153, 107, 0.6);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 4;
+  animation: gap-pulse 4s ease-in-out infinite;
+}
+
+.map-overlay__gfw-dot {
+  fill: rgba(224, 153, 107, 0.9);
+}
+
+.map-overlay__gfw-label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 9.5px;
+  fill: rgba(224, 153, 107, 0.85);
+  letter-spacing: 0.10em;
+}
+
+@keyframes gap-pulse {
+  0%, 100% { stroke-opacity: 0.6; }
+  50%      { stroke-opacity: 0.95; }
+}
+
+.map-overlay__sanctions-ring {
+  stroke: rgba(236, 117, 88, 0.7);
+  stroke-width: 1.4;
+}
+
+.map-overlay__sanctions-dot {
+  fill: rgba(236, 117, 88, 0.95);
+}
+
+.map-overlay__sanctions-label {
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 8.5px;
+  fill: rgba(236, 117, 88, 0.7);
+  letter-spacing: 0.10em;
+}
+
+/* MAP INSTRUMENT BEZELS — ASCII frame + crosshair */
+
+.map-bezel {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  font-family: "Geist Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: rgba(184, 197, 212, 0.32);
+  letter-spacing: 0.04em;
+}
+
+.map-bezel__corner {
+  position: absolute;
+  font-size: 16px;
+  color: rgba(122, 169, 255, 0.55);
+  line-height: 1;
+}
+
+.map-bezel__corner--tl { top: 6px;    left: 6px; }
+.map-bezel__corner--tr { top: 6px;    right: 6px; }
+.map-bezel__corner--bl { bottom: 6px; left: 6px; }
+.map-bezel__corner--br { bottom: 6px; right: 6px; }
+
+.map-bezel__coord {
+  position: absolute;
+  font-size: 9px;
+  color: rgba(184, 197, 212, 0.42);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.map-bezel__coord--tl { top: 22px;    left: 16px; }
+.map-bezel__coord--tr { top: 22px;    right: 16px; text-align: right; }
+.map-bezel__coord--bl { bottom: 22px; left: 16px; }
+.map-bezel__coord--br { bottom: 22px; right: 16px; text-align: right; }
+
+.map-bezel__edge {
+  position: absolute;
+  display: flex;
+  color: rgba(184, 197, 212, 0.22);
+  font-size: 9px;
+  user-select: none;
+}
+
+.map-bezel__edge--top {
+  top: 4px;
+  left: 56px;
+  right: 56px;
+  justify-content: space-between;
+}
+
+.map-bezel__edge--bottom {
+  bottom: 4px;
+  left: 56px;
+  right: 56px;
+  justify-content: space-between;
+}
+
+.map-bezel__edge--left {
+  top: 56px;
+  bottom: 56px;
+  left: 4px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 8px;
+  align-items: center;
+}
+
+.map-bezel__edge--right {
+  top: 56px;
+  bottom: 56px;
+  right: 4px;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 8px;
+  align-items: center;
+}
+
+.map-bezel__crosshair {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(122, 169, 255, 0.4);
+  font-size: 16px;
+  font-weight: 300;
+  text-shadow: 0 0 8px rgba(122, 169, 255, 0.3);
+  animation: crosshair-pulse 4s ease-in-out infinite;
+}
+
+@keyframes crosshair-pulse {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.6; }
+}
+
+.map-bezel__label-top {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  letter-spacing: 0.20em;
+  color: rgba(122, 169, 255, 0.45);
+  text-transform: uppercase;
+  background: rgba(8, 9, 12, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 3px 10px;
+  border-radius: 0 0 4px 4px;
+  border-bottom: 1px solid rgba(122, 169, 255, 0.18);
+  border-left: 1px solid rgba(122, 169, 255, 0.18);
+  border-right: 1px solid rgba(122, 169, 255, 0.18);
+}
