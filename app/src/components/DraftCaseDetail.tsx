@@ -1,19 +1,22 @@
 // DraftCaseDetail — working-panel view shown when the AI-proposed draft
 // case is selected. Shows:
-//   - Header: "DRAFT · AI-proposed · click signals to attach"
+//   - Header: "DRAFT · AI-proposed · drag or click signals to attach"
 //   - Rationale: why the AI thought this was a case
-//   - Candidate signal list: each row is click-to-attach
+//   - Candidate signal list: each row is BOTH click-to-attach AND
+//     draggable to the stage drop zone (B-1 fast-follow wave)
 //   - Promote-to-case CTA: activates at PROMOTE_THRESHOLD attached signals
 //
 // After promotion, the surface flips to a "promoted" state showing the
 // attached signals as the case's evidence chain.
 //
-// Click-to-attach is the safe substitute for drag-and-drop (descoped per
-// transcript). Fast-follow B-1 is the drag-and-drop UX layered on top.
-// All state lives in useDraftCase — promotion call mutates that store.
+// B-1 drag-and-drop: each signal carries `application/liminal-signal` +
+// the signal id in dataTransfer. Stage panel listens via the SignalDropZone
+// overlay component (StageViewport) and fires toggleAttach on drop. Click
+// stays as the keyboard-accessible primary interaction.
 
 import { useDraftCase } from "../lib/useDraftCase.ts";
 import { PROMOTE_THRESHOLD } from "../lib/draftCase.ts";
+import { LIMINAL_SIGNAL_DRAG_TYPE } from "../lib/signalDragTypes.ts";
 
 const SIGNAL_KIND_LABELS: Record<string, { label: string; tone: string }> = {
   "ais-gap": { label: "AIS · GAP", tone: "contested" },
@@ -59,7 +62,7 @@ export function DraftCaseDetail() {
           </span>
           {!isPromoted && (
             <span className="draft-case-detail__signals-hint">
-              tap to attach · {PROMOTE_THRESHOLD}+ to promote
+              drag to stage or tap · {PROMOTE_THRESHOLD}+ to promote
             </span>
           )}
         </div>
@@ -75,6 +78,22 @@ export function DraftCaseDetail() {
                 key={signal.id}
                 className={`draft-case-signal${signal.attached ? " draft-case-signal--attached" : ""}`}
                 data-tone={kindMeta.tone}
+                draggable={!isPromoted && !signal.attached}
+                onDragStart={(e) => {
+                  // B-1: drag the signal toward the stage. The stage's
+                  // SignalDropZone overlay listens for this MIME type and
+                  // calls toggleAttach on drop. Click-to-attach stays as
+                  // the keyboard-accessible primary interaction.
+                  e.dataTransfer.setData(LIMINAL_SIGNAL_DRAG_TYPE, signal.id);
+                  e.dataTransfer.effectAllowed = "link";
+                  // Mark the body so CSS can dim the source while it's
+                  // being dragged — gives operator feedback that the
+                  // signal is in flight.
+                  document.body.classList.add("liminal-dragging-signal");
+                }}
+                onDragEnd={() => {
+                  document.body.classList.remove("liminal-dragging-signal");
+                }}
               >
                 <button
                   type="button"
