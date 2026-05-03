@@ -3655,3 +3655,19 @@ details.case-file__section > summary:focus-visible {
 .map-telemetry-hud__row--ok .map-telemetry-hud__row-value {
   color: var(--color-resolved);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PARALLEL SESSION CSS REGIONS — append-only zones, one per session.
+   Do NOT edit existing rules above. Each session appends its CSS to its
+   designated marker below. See PARALLEL_SESSIONS.md for partition rules.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─── S1 NAMED OPERATOR + WORKFLOW STRIP ─── */
+
+/* ─── S2 REPLAY CONTROLS ─── */
+
+/* ─── S3 MAP LEGEND + STAGE HEADER ─── */
+
+/* ─── S4 CAUSAL TRACE BANNER ─── */
+
+/* ─── S5 POSTURE-FORWARD REGISTER ─── */
