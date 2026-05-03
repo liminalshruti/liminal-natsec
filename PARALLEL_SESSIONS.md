@@ -52,7 +52,7 @@ not touch hooks, do not touch any other section of the file.
 | Session | Status | Started | Committed | Notes |
 |---|---|---|---|---|
 | S1 | not started | — | — | — |
-| S2 | not started | — | — | — |
+| S2 | claimed | 2026-05-03T04:55Z | — | replay controls (prev/play-pause/next) |
 | S3 | not started | — | — | — |
 | S4 | not started | — | — | — |
 | S5 | not started | — | — | — |
