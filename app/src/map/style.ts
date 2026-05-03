@@ -74,7 +74,7 @@ export function buildMapStyle(opts: BuildStyleOptions = {}): StyleSpecification 
 // map matches every doc, pitch script, and exec summary. Internal IDs still
 // reference "alara-01" since they're stable identifiers, not geography.
 export const INITIAL_VIEW = {
-  center: [56.10, 25.85] as [number, number],
+  center: [56.55, 26.60] as [number, number],
   zoom: 8.6,
   bearing: 0,
   pitch: 0

@@ -91,7 +91,7 @@ const CATEGORY_RATIONALE = {
   REGIONAL_SECURITY_CONTEXT:
     "Public warning and OSINT records affect regional context only.",
   VESSEL_IDENTITY_CORROBORATION:
-    "GFW vessel search records affect identity/source corroboration only.",
+    "Vessel identity/source records affect identity/source corroboration only.",
   MARITIME_INFRASTRUCTURE_CONTEXT:
     "Overpass records affect maritime infrastructure context only.",
   INFRASTRUCTURE_CONTEXT_ONLY:
@@ -843,9 +843,16 @@ export function normalizeHormuzIntel(options = {}) {
     const doc = addSourceDocument("aisstream-hormuz-sample.json", {
       source: "AISSTREAM",
       provider: "AISstream",
-      title: "AISstream Hormuz WebSocket sample",
+      title: "AISstream WebSocket sample",
       categories: ["VESSEL_IDENTITY_CORROBORATION"]
     });
+    const collectionMode = stringValue(doc.file.json?.collection_mode);
+    const aoiName = stringValue(doc.file.json?.aoi?.name);
+    const collectionReason = stringValue(doc.file.json?.collection_reason);
+    const isGlobalFallback =
+      collectionMode === "global_live" ||
+      Boolean(aoiName && /global/i.test(aoiName)) ||
+      Boolean(collectionReason && /free-tier coverage of the Persian Gulf is currently empty/i.test(collectionReason));
     const messages = asArray(doc.file.json?.messages).slice(0, 6);
     if (doc.status !== "available" || messages.length === 0) {
       evidenceItems.push(
@@ -861,6 +868,35 @@ export function normalizeHormuzIntel(options = {}) {
           confidence: 0,
           reliability: 0,
           summary: "AISstream did not produce a cached sample; no live AIS corroboration is added."
+        })
+      );
+      return;
+    }
+    if (isGlobalFallback) {
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["aisstream-global-fallback", collectionMode ?? aoiName ?? "global"],
+          title: "AISstream Hormuz feed gap",
+          source: "AISSTREAM",
+          provider: "AISstream",
+          category: "VESSEL_IDENTITY_CORROBORATION",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          observedAt: doc.captured_at,
+          status: "unavailable",
+          confidence: 0,
+          reliability: 0.64,
+          summary:
+            "AISstream returned no Hormuz-area messages during bounded collection; a global live sample is cached only to prove connector reachability and must not be used as Hormuz vessel behavior evidence.",
+          attributes: compactRecord({
+            collection_mode: collectionMode,
+            aoi_name: aoiName,
+            message_count: numberValue(doc.file.json?.message_count),
+            raw_message_count: numberValue(doc.file.json?.raw_message_count),
+            unique_mmsis: numberValue(doc.file.json?.unique_mmsis),
+            collection_reason: sanitizeText(collectionReason, 280),
+            fixture_mode: Boolean(doc.file.json?.fixture_mode)
+          })
         })
       );
       return;

@@ -17,6 +17,7 @@
 import { useMemo, useState } from "react";
 
 import manifest from "../../../fixtures/maritime/live-cache/manifest.json" with { type: "json" };
+import { useDraggable } from "../lib/useDraggable.ts";
 
 interface SourceResult {
   source?: string;
@@ -147,11 +148,14 @@ export function DataSourcesChips() {
   const sources = useMemo(() => readSources(manifest as SourceManifest), []);
   const chips = useMemo(() => displaySources(sources), [sources]);
   const [expanded, setExpanded] = useState(false);
+  const { style, handleProps } = useDraggable();
 
   if (sources.length === 0) return null;
 
   const okCount = sources.filter((s) => s.ok).length;
   const totalCount = sources.length;
+  const countState =
+    okCount === totalCount ? "ok" : okCount === 0 ? "down" : "partial";
 
   return (
     <div
@@ -160,10 +164,12 @@ export function DataSourcesChips() {
       aria-label="Live data sources"
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
+      style={style}
     >
-      <div className="data-sources-chips__header">
+      <div className="data-sources-chips__header" {...handleProps}>
+        <span className="data-sources-chips__grip" aria-hidden>⋮⋮</span>
         <span className="data-sources-chips__label">DATA SOURCES</span>
-        <span className="data-sources-chips__count">
+        <span className="data-sources-chips__count" data-state={countState}>
           {okCount}/{totalCount}
         </span>
       </div>
@@ -171,7 +177,9 @@ export function DataSourcesChips() {
         {chips.map((s) => (
           <span
             key={s.key}
-            className={`data-source-chip data-source-chip--${s.status}`}
+            className={`data-source-chip data-source-chip--${s.status}${
+              s.infrastructureOnly ? " data-source-chip--infra-only" : ""
+            }`}
             title={s.title}
           >
             <span className="data-source-chip__pip" aria-hidden />

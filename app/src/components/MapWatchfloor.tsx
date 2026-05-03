@@ -87,10 +87,22 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const lastFlownPhaseRef = useRef<Phase | null>(null);
   const lastVisiblePingSigRef = useRef<string>("");
   const lastEmittedStateSigRef = useRef<string>("");
+  const latestControlledStateRef = useRef<ScenarioState | undefined>(props.scenarioState);
+  const onScenarioStateChangeRef = useRef<MapWatchfloorProps["onScenarioStateChange"]>(
+    props.onScenarioStateChange
+  );
 
   const [load, setLoad] = useState<LoadState>({ kind: "loading" });
   const [mapReady, setMapReady] = useState(false);
   const [internalState, setInternalState] = useState<ScenarioState | null>(null);
+
+  useEffect(() => {
+    latestControlledStateRef.current = props.scenarioState;
+  }, [props.scenarioState]);
+
+  useEffect(() => {
+    onScenarioStateChangeRef.current = props.onScenarioStateChange;
+  }, [props.onScenarioStateChange]);
 
   // --- Load fixture (once per resetSignal) --------------------------------
   useEffect(() => {
@@ -192,6 +204,40 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [isControlled, load, internalState?.isPlaying]);
+
+  useEffect(() => {
+    if (!isControlled) return;
+    if (load.kind !== "ready") return;
+    if (!props.scenarioState?.isPlaying) return;
+
+    const bounds = timelineBounds(load.fixture);
+    const speedMultiplier = 600;
+    let raf = 0;
+    let prevTs = performance.now();
+
+    const tick = (ts: number) => {
+      const current = latestControlledStateRef.current;
+      const notify = onScenarioStateChangeRef.current;
+      if (!current?.isPlaying || !notify) return;
+
+      const dt = ts - prevTs;
+      prevTs = ts;
+      const currentMs = Date.parse(current.clockIso);
+      const nextMs = Math.min(bounds.endMs, currentMs + dt * speedMultiplier);
+      if (Number.isFinite(nextMs) && nextMs > currentMs) {
+        const nextClockIso = new Date(nextMs).toISOString();
+        notify({
+          ...current,
+          clockIso: nextClockIso,
+          phase: inferPhase(load.fixture, nextMs)
+        });
+      }
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isControlled, load, props.scenarioState?.isPlaying]);
 
   // --- Construct the MapLibre instance ------------------------------------
   // React 18 StrictMode in dev runs effects twice (mount → cleanup → mount).
@@ -378,9 +424,14 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const handleScrubberChange = useCallback(
     (clockIso: string) => {
       if (isControlled) {
+        const clockTime = Date.parse(clockIso);
         props.onScenarioStateChange?.({
           ...(props.scenarioState ?? { phase: 1, clockIso, isPlaying: true }),
-          clockIso
+          clockIso,
+          phase:
+            load.kind === "ready" && Number.isFinite(clockTime)
+              ? inferPhase(load.fixture, clockTime)
+              : props.scenarioState?.phase ?? 1
         });
         return;
       }
@@ -388,7 +439,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
         prev ? { ...prev, clockIso } : { phase: 1, clockIso, isPlaying: true }
       );
     },
-    [isControlled, props]
+    [isControlled, load, props]
   );
 
   const handlePlayPause = useCallback(

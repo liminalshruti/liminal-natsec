@@ -13,6 +13,7 @@ import { useMemo } from "react";
 
 import type { ScenarioState } from "./MapWatchfloor.tsx";
 import type { LoadedScenario } from "../lib/fixtures.ts";
+import { useDraggable } from "../lib/useDraggable.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
 
 interface MapTelemetryHudProps {
@@ -73,9 +74,12 @@ export function MapTelemetryHud({ scenario, scenarioState }: MapTelemetryHudProp
     ];
   }, [scenario, scenarioState?.phase]);
 
+  const { style, handleProps } = useDraggable();
+
   return (
-    <div className="map-telemetry-hud" role="region" aria-label="Map telemetry">
-      <div className="map-telemetry-hud__header">
+    <div className="map-telemetry-hud" role="region" aria-label="Map telemetry" style={style}>
+      <div className="map-telemetry-hud__header" {...handleProps}>
+        <span className="map-telemetry-hud__grip" aria-hidden>⋮⋮</span>
         <span className="map-telemetry-hud__diamond" aria-hidden>◇</span>
         <span className="map-telemetry-hud__title">Watchfloor telemetry</span>
         <span className="map-telemetry-hud__pulse" aria-hidden />

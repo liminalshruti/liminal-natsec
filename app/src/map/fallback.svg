@@ -24,9 +24,9 @@
     <line x1="160" y1="250" x2="640" y2="250"/>
   </g>
 
-  <!-- Monitored zone polygon (Alara EEZ Box 01, simplified projection) -->
+  <!-- Monitored zone polygon (Hormuz Watch Box 01, simplified projection) -->
   <rect x="220" y="160" width="320" height="180" fill="rgba(58,140,174,0.06)" stroke="#3a8cae" stroke-width="1.2" stroke-opacity="0.85"/>
-  <text x="232" y="178" fill="#3a8cae" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.06em">ALARA EEZ BOX 01</text>
+  <text x="232" y="178" fill="#3a8cae" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="0.06em">HORMUZ WATCH BOX 01</text>
 
   <!-- Track A pre-gap (cyan) -->
   <path d="M 250 300 L 320 295 L 380 290 L 420 287" fill="none" stroke="#67b8d6" stroke-width="2.4" stroke-linecap="round"/>
@@ -51,7 +51,7 @@
   <text x="32" y="60" fill="#7d92a6" font-family="ui-monospace" font-size="10">Live map renderer offline. Demo geometry preserved below.</text>
 
   <text x="32" y="430" fill="#6a8093" font-family="ui-monospace" font-size="9">CANONICAL EVENT 1</text>
-  <text x="32" y="446" fill="#a4b8cc" font-family="ui-monospace" font-size="9">last A   · 2026-04-18T10:15:04Z · 34.88112, 31.42018</text>
-  <text x="32" y="460" fill="#a4b8cc" font-family="ui-monospace" font-size="9">first B  · 2026-04-18T11:04:22Z · 34.88910, 31.91844</text>
-  <text x="32" y="474" fill="#a4b8cc" font-family="ui-monospace" font-size="9">predicted · M=0.83  L=0.71  · inside 95% ellipse</text>
+  <text x="32" y="446" fill="#a4b8cc" font-family="ui-monospace" font-size="9">last A   · 2026-04-18T10:15:04Z · 26.53112, 56.32018</text>
+  <text x="32" y="460" fill="#a4b8cc" font-family="ui-monospace" font-size="9">first B  · 2026-04-18T11:04:22Z · 26.53910, 56.81844</text>
+  <text x="32" y="474" fill="#a4b8cc" font-family="ui-monospace" font-size="9">predicted · M=0.91  L=0.66  · inside 95% ellipse</text>
 </svg>

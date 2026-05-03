@@ -140,21 +140,20 @@ button:hover {
 
 .app-shell {
   display: grid;
-  /* Working panel takes the center flex region — it's where the operator
-     spends the most dwell time (operative verb + forensic case file +
-     specialist reads + evidence drawer + override). Stage moves to the
-     fixed-width right rail at 520px — wide enough for map composition to
-     read clearly, narrow enough that the working panel gets the focal
-     real estate. Substrate stays at the 320px left rail. The pre-swap
-     layout (stage center, working right) was inverted: stage had the most
-     space but the least operator-actionable surface. Below 800px viewport
-     height the case file section collapses to a one-line affordance —
-     see WorkingPanel.tsx. */
+  /* Stage takes the center flex region — the map IS the watchstanding glance
+     and the visual anchor for every demo beat (dark gap, second identity,
+     hypothesis fan-out). Working panel pins to the 520px right rail — wide
+     enough for the verb + specialist reads + case file to read clearly,
+     narrow enough that the map dominates the view. Substrate stays at the
+     320px left rail. Left-to-right column order now matches the
+     WorkflowStrip numbering: 01 SUBSTRATE → 02 STAGE → 03 WORKING.
+     Below 800px viewport height the case file section collapses to a
+     one-line affordance — see WorkingPanel.tsx. */
   grid-template-columns: 320px 1fr 520px;
   grid-template-rows: 36px 1fr 32px;
   grid-template-areas:
     "topbar topbar topbar"
-    "substrate working stage"
+    "substrate stage working"
     "command command command";
   height: 100vh;
   background: var(--color-substrate);
@@ -357,15 +356,15 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   flex-direction: column;
   gap: 6px;
   padding: 6px 8px;
-  background: rgba(6, 9, 13, 0.78);
+  background: rgba(6, 9, 13, 0.74);
   border: 1px solid var(--color-edge);
-  border-radius: 3px;
+  border-radius: 2px;
   font-family: var(--font-mono);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
   max-width: min(500px, calc(100% - 24px));
   transition: opacity 180ms ease;
-  opacity: 0.72;
+  opacity: 0.92;
 }
 
 .data-sources-chips:hover,
@@ -388,10 +387,22 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 .data-sources-chips__count {
-  color: var(--color-resolved);
+  color: var(--color-ink-secondary);
   font-weight: 500;
   font-size: 10px;
   letter-spacing: 0.04em;
+}
+
+.data-sources-chips__count[data-state="ok"] {
+  color: var(--color-resolved);
+}
+
+.data-sources-chips__count[data-state="partial"] {
+  color: var(--color-contested);
+}
+
+.data-sources-chips__count[data-state="down"] {
+  color: var(--color-ink-tertiary);
 }
 
 .data-sources-chips__list {
@@ -434,7 +445,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .data-source-chip--ok .data-source-chip__pip {
   background: var(--color-resolved);
-  box-shadow: 0 0 6px rgba(78, 160, 138, 0.5);
+  box-shadow: 0 0 6px rgba(110, 195, 168, 0.45);
 }
 
 .data-source-chip--partial .data-source-chip__pip {
@@ -442,23 +453,36 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   box-shadow: 0 0 6px rgba(224, 153, 107, 0.38);
 }
 
+/* "down" = source not reachable — neutral grey, not contested. Avoids
+   collapsing the partial/down semantic into one warning state. The wrapper
+   stays full-opacity so the source name remains scannable. */
 .data-source-chip--down .data-source-chip__pip {
-  background: var(--color-contested);
+  background: var(--color-ink-tertiary);
+  box-shadow: none;
 }
 
 .data-source-chip--down {
-  opacity: 0.55;
+  opacity: 0.78;
 }
 
 .data-source-chip__label {
   font-family: var(--font-mono);
 }
 
+/* Infra-only treatment matches .hormuz-intel__coverage-chip[data-infra-only]
+   so the same source (Shodan) reads identically wherever it appears: amber
+   border tint plus an amber guard label. Keeps the "infrastructure ≠ vessel
+   behavior" semantic visually consistent across the watchfloor. */
+.data-source-chip--infra-only {
+  border-color: rgba(224, 153, 107, 0.45);
+  background: rgba(224, 153, 107, 0.04);
+}
+
 .data-source-chip__guard {
   padding-left: 4px;
   border-left: 1px solid var(--color-edge);
   color: var(--color-contested);
-  font-size: 8.5px;
+  font-size: 9.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -488,11 +512,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   align-items: center;
   gap: 4px;
   padding: 5px 8px;
-  background: rgba(6, 9, 13, 0.78);
+  background: rgba(6, 9, 13, 0.72);
   border: 1px solid var(--color-edge);
   border-radius: 3px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
 }
 
 .map-layers__strip-label {
@@ -567,14 +591,14 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 .map-layers__panel {
-  background: rgba(6, 9, 13, 0.92);
+  background: rgba(6, 9, 13, 0.84);
   border: 1px solid var(--color-edge);
   border-radius: 3px;
   padding: 8px 10px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   max-width: 320px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
   animation: map-layers-panel-in 180ms ease-out;
 }
 
@@ -636,7 +660,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   position: relative;
   width: 100%;
   height: 280px;
-  background: rgba(6, 9, 13, 0.6);
+  background: rgba(6, 9, 13, 0.62);
   border: 1px solid var(--color-edge);
   border-radius: 3px;
   overflow: hidden;
@@ -656,8 +680,10 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   width: auto;
   height: auto;
   z-index: 100;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
-  background: rgba(6, 9, 13, 0.96);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  background: rgba(6, 9, 13, 0.86);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
 }
 
 .kg-viz__legend {
@@ -716,22 +742,6 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   height: 100%;
 }
 
-.stage-backdrop__lines {
-  animation: stage-backdrop-breath 32s ease-in-out infinite;
-  transform-origin: center;
-}
-
-@keyframes stage-backdrop-breath {
-  0%, 100% {
-    opacity: 0.55;
-    transform: translateY(0);
-  }
-  50% {
-    opacity: 0.78;
-    transform: translateY(-3px);
-  }
-}
-
 .stage-backdrop__stipple {
   animation: stage-backdrop-twinkle 18s ease-in-out infinite;
 }
@@ -772,7 +782,6 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stage-backdrop__lines,
   .stage-backdrop__stipple,
   .stage-backdrop__stipple-dot--x,
   .stage-backdrop__stipple-dot--y {
@@ -793,7 +802,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   position: relative;
   width: 100%;
   height: 320px;
-  background: rgba(6, 9, 13, 0.75);
+  background: rgba(6, 9, 13, 0.70);
   border: 1px solid var(--color-edge);
   border-radius: 3px;
   overflow: hidden;
@@ -902,13 +911,20 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   min-height: 0; /* allow flex child to shrink so overflow works in Chromium */
 }
 
-/* Zone 1 — verb + posture stack, with optional hero banner above */
+/* Zone 1 — verb + posture inline, with optional hero banner above.
+   Verb and posture sit on a single baseline-aligned row (wrapping when the
+   case fires both a contested-posture line AND a prior-rule-applied line)
+   so the operative surface stays compact. The verb keeps primacy via size
+   and weight; posture is a hanging clause to its right, not a second line. */
 
 .zone1 {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 12px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 12px;
+  row-gap: 4px;
+  margin-bottom: 10px;
 }
 
 .zone1__banner {
@@ -979,9 +995,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  margin-top: 6px;
-  margin-bottom: 12px;
-  padding-top: 6px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  padding-top: 4px;
   border-top: 1px dashed var(--color-edge);
   opacity: 0.92;
 }
@@ -2008,9 +2024,19 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   box-shadow: 0 0 6px rgba(110, 195, 168, 0.45);
 }
 
-.hormuz-intel__coverage-chip[data-status="partial"] .hormuz-intel__coverage-pip,
-.hormuz-intel__coverage-chip[data-status="unavailable"] .hormuz-intel__coverage-pip {
+.hormuz-intel__coverage-chip[data-status="partial"] .hormuz-intel__coverage-pip {
   background: var(--color-contested);
+  box-shadow: 0 0 6px rgba(224, 153, 107, 0.38);
+}
+
+/* "unavailable" = no sources reachable — neutral grey, not contested.
+   Visually distinct from "partial" so judges can read coverage at a glance. */
+.hormuz-intel__coverage-chip[data-status="unavailable"] .hormuz-intel__coverage-pip {
+  background: var(--color-ink-tertiary);
+}
+
+.hormuz-intel__coverage-chip[data-status="unavailable"] {
+  opacity: 0.78;
 }
 
 .hormuz-intel__coverage-chip[data-infra-only="true"] {
@@ -2143,8 +2169,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 .tag--infra {
-  border-color: rgba(224, 153, 107, 0.52);
+  border-color: currentColor;
   color: var(--color-contested);
+  opacity: 0.85;
 }
 
 .trace-strip {
@@ -2494,12 +2521,14 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 14px;
-  background: var(--color-elevated);
+  background: rgba(20, 23, 31, 0.92);
   border: 1px solid var(--color-resolved);
   color: var(--color-resolved);
   border-radius: 3px;
   font-size: 12px;
   letter-spacing: 0.04em;
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   z-index: 50;
   pointer-events: none;
@@ -3011,42 +3040,44 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 /* Status pill — RECOMMENDED / PRIOR TOP / PRIMARY. Sits top-right of the row
    and is the load-bearing read for the make-or-break action diff. Default
    tint is decision-blue (PRIMARY); RECOMMENDED is resolved-green; PRIOR TOP
-   is contested-amber. 9px caps keeps it operational; the border + tinted
-   background is what makes it scan at 2× speed. */
+   is contested-amber. Scale matches .specialist-row__status (11–12px / 700)
+   so badges across the operative surface share one family. */
 .action-list__row-tag {
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  padding: 1px 7px;
+  padding: 2px 8px;
   border-radius: 2px;
   border: 1px solid currentColor;
   color: var(--color-decision);
-  background: rgba(122, 169, 255, 0.08);
+  background: rgba(122, 169, 255, 0.10);
 }
 
 .action-list__row-tag[data-tag="recommended"] {
   color: var(--color-resolved);
-  background: rgba(110, 195, 168, 0.10);
+  background: rgba(110, 195, 168, 0.18);
+  border-color: rgba(110, 195, 168, 0.55);
 }
 
 .action-list__row-tag[data-tag="prior-top"] {
   color: var(--color-contested);
-  background: rgba(224, 153, 107, 0.08);
+  background: rgba(224, 153, 107, 0.12);
+  border-color: rgba(224, 153, 107, 0.50);
 }
 
 .action-list__row--recommended {
   border-color: rgba(110, 195, 168, 0.55);
   border-left: 3px solid var(--color-resolved, #6ec3a8);
-  background: rgba(110, 195, 168, 0.08);
+  background: rgba(110, 195, 168, 0.10);
 }
 
 .action-list__row--prior {
   border-left: 3px solid var(--color-contested, #e0996b);
-  background: rgba(224, 153, 107, 0.05);
+  background: rgba(224, 153, 107, 0.08);
 }
 
 .action-list__row[data-rule-fire="true"].action-list__row--recommended {
@@ -3102,8 +3133,8 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 .review-memory__application--changed {
-  border-left: 2px solid var(--color-resolved, #4ea08a);
-  background: rgba(78, 160, 138, 0.04);
+  border-left: 3px solid var(--color-resolved, #6ec3a8);
+  background: rgba(110, 195, 168, 0.06);
 }
 
 .review-memory__application-head {
@@ -3194,11 +3225,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-resolved, #4ea08a);
-  border: 1px solid rgba(78, 160, 138, 0.4);
+  color: var(--color-resolved, #6ec3a8);
+  border: 1px solid rgba(110, 195, 168, 0.40);
   padding: 2px 8px;
   border-radius: 2px;
-  background: rgba(78, 160, 138, 0.06);
+  background: rgba(110, 195, 168, 0.08);
 }
 
 .review-memory__clear-btn {
@@ -3220,9 +3251,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 .review-memory__toast {
   margin-top: 4px;
   padding: 6px 10px;
-  border: 1px solid var(--color-resolved, #4ea08a);
-  color: var(--color-resolved, #4ea08a);
-  background: rgba(78, 160, 138, 0.08);
+  border: 1px solid var(--color-resolved, #6ec3a8);
+  color: var(--color-resolved, #6ec3a8);
+  background: rgba(110, 195, 168, 0.10);
   font-size: 11px;
   border-radius: 2px;
 }
@@ -4028,11 +4059,11 @@ details.case-file__section > summary:focus-visible {
   right: 14px;
   z-index: 6;
   width: 240px;
-  background: rgba(6, 9, 13, 0.78);
+  background: rgba(6, 9, 13, 0.72);
   border: 1px solid var(--color-edge);
   border-radius: 4px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
   font-family: var(--font-mono);
   pointer-events: none; /* doesn't block map pan/zoom */
   box-shadow:
@@ -4384,6 +4415,102 @@ details.case-file__section > summary:focus-visible {
   color: var(--color-ink-tertiary);
 }
 
+/* ─── UI MODE: LIVE (austere operator register) ─────────────────────────────
+   Toggled via the topbar chip, /mode demo|live, or Ctrl+Shift+M. Default is
+   "demo" (full pitch register). "live" hides the editorial scaffolding that
+   reads as walkthrough chrome — handwritten phase prompts on the stage, the
+   driven stipple backdrop, the hand-drawn ink coastline, the named-operator
+   persona card, the four-pane workflow tab strip — and disables the one-shot
+   phase-pulse on the breadcrumb. Every functional surface (proof chain, map
+   data layers, command line, replay controls, banners, animations that
+   communicate state change) stays identical in both modes. The toggle is a
+   pure presentational layer; data-source mode (scenario.state.mode) is
+   independent. ─────────────────────────────────────────────────────────── */
+
+.app-shell[data-ui-mode="live"] .demo-prompt,
+.app-shell[data-ui-mode="live"] .stage-backdrop,
+.app-shell[data-ui-mode="live"] .map-ink-base,
+.app-shell[data-ui-mode="live"] .named-operator,
+.app-shell[data-ui-mode="live"] .workflow-strip {
+  display: none;
+}
+
+.app-shell[data-ui-mode="live"] .topbar-crumbs__phase--just-changed,
+.app-shell[data-ui-mode="live"] .topbar-crumbs__phase--just-changed .topbar-crumbs__phase-pip {
+  animation: none;
+}
+
+/* Compact one-line empty state used in live mode where the four-layer
+   didactic stencil would otherwise lecture the operator. */
+.empty-stencil--live {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 2px solid var(--color-edge);
+}
+
+.empty-stencil__live-lead {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+}
+
+.empty-stencil__live-hint {
+  font-size: 12px;
+  color: var(--color-ink-tertiary);
+  line-height: 1.4;
+}
+
+/* Topbar UI-mode chip — small mono pill that displays the current register
+   ("demo" or "live") and toggles on click. Sits in .app-topbar__status next
+   to the source indicator. Demo register reads as quiet ink-tertiary; live
+   register lights up decision-blue so an operator can see at a glance which
+   mode they're in. */
+.ui-mode-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  border: 1px solid var(--color-edge);
+  background: transparent;
+  color: var(--color-ink-tertiary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.ui-mode-chip:hover,
+.ui-mode-chip:focus-visible {
+  color: var(--color-ink-primary);
+  border-color: var(--color-ink-tertiary);
+  outline: none;
+}
+
+.ui-mode-chip__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.ui-mode-chip[data-ui-mode="live"] {
+  color: var(--color-decision);
+  border-color: rgba(110, 168, 254, 0.55);
+  background: rgba(110, 168, 254, 0.08);
+}
+
+.ui-mode-chip[data-ui-mode="live"] .ui-mode-chip__dot {
+  opacity: 1;
+}
+
 /* ─── D1 FOCUS STATE ─────────────────────────────────────────────────────────
    The operator's eye should land on ONE thing first. Active pane stays at
    full opacity and saturation; inactive panes dim to 0.72 + slight
@@ -4729,19 +4856,23 @@ details.case-file__section > summary:focus-visible {
   letter-spacing: var(--text-body-tracking);
 }
 
-/* Hot-spot application — Zone 1 verb gets display tier. This is THE
-   load-bearing element of the operative surface. Promoting it from
-   18px to 32px Fraunces makes the eye land on it first, every time.
-   Posture line gets instrument tier — small uppercase tracked-out
-   metadata around the display value. */
+/* Zone 1 verb + posture — instrument register, not editorial display.
+   The earlier sweep promoted the verb to 32px Fraunces serif; on a watch-
+   floor surface that read as a magazine headline, not as an operator-grade
+   recommendation. Verb is now mono caps at heading tier (18px), tightly
+   tracked, sharing a baseline with the posture chip to its right. The eye
+   still lands on it first because it's the largest, weightiest, ink-primary
+   element on the row — we keep primacy without burning a whole line. */
 
 .zone1__verb {
-  font-family: var(--font-serif);
-  font-size: var(--text-display-size);
-  font-weight: 500;
-  letter-spacing: var(--text-display-tracking);
-  line-height: var(--text-display-line);
-  font-feature-settings: "ss01" 1, "kern" 1;
+  font-family: var(--font-mono);
+  font-size: var(--type-heading);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-ink-primary);
+  font-feature-settings: "ss01" 1, "kern" 1, "tnum" 1;
 }
 
 .zone1__posture {
@@ -4749,6 +4880,7 @@ details.case-file__section > summary:focus-visible {
   font-size: var(--text-instrument-size);
   letter-spacing: var(--text-instrument-tracking);
   text-transform: uppercase;
+  line-height: 1.2;
 }
 
 /* ─── FRONTIER POLISH ──────────────────────────────────────────────────────
@@ -4920,27 +5052,34 @@ button:disabled {
   transform: none;
 }
 
-/* ─── ZONE 1 VERB — the focal moment. Display tier + editorial spacing. ── */
+/* ─── ZONE 1 VERB — operator instrument register, inline with posture ────
+   Earlier sweep promoted the verb to 32px Fraunces serif with a gradient
+   text effect and forced the posture onto a separate line via dashed
+   border-top. On a watchfloor surface that read as magazine display chrome,
+   not as an operator-grade recommendation. Verb + posture now share a
+   single baseline-aligned row at instrument tier. The verb still wins
+   focal hierarchy via size, weight, and ink-primary; posture is a hanging
+   clause to its right. */
 
 .zone1 {
-  padding: var(--space-5) var(--space-5) var(--space-4);
-  margin-bottom: var(--space-3);
+  padding: var(--space-3) var(--space-4) var(--space-2);
+  margin-bottom: var(--space-2);
 }
 
 .zone1__verb {
-  font-family: var(--font-serif);
-  font-size: var(--type-display);
-  font-weight: 500;
-  line-height: var(--type-line-tight);
-  letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+  font-size: var(--type-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--color-ink-primary);
-  font-feature-settings: "ss01" 1, "kern" 1;
-  /* Subtle gradient on the verb so it reads as system-state, not static text */
-  background: linear-gradient(180deg, var(--color-ink-primary) 0%, #b8c5d4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin-bottom: var(--space-2);
+  font-feature-settings: "ss01" 1, "kern" 1, "tnum" 1;
+  /* Reset gradient text from the earlier sweep. */
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  margin-bottom: 0;
 }
 
 .zone1__posture {
@@ -4949,11 +5088,11 @@ button:disabled {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-ink-tertiary);
-  display: flex;
+  display: inline-flex;
   align-items: baseline;
   gap: var(--space-2);
-  padding-top: var(--space-2);
-  border-top: 1px dashed var(--color-edge);
+  padding-top: 0;
+  border-top: 0;
 }
 
 .zone1__posture-while {
@@ -5488,4 +5627,64 @@ button:disabled {
   .app-shell {
     grid-template-columns: 240px 1fr 380px;
   }
+}
+
+/* ─── STAGE CHROME — focus discipline ─────────────────────────────────────
+   When a case is selected (data-active-pane="working"), the operator's eye
+   belongs on the verb + specialist reads, not on stage instrumentation. The
+   chrome layer (data-source chips, layer toggles, telemetry HUD) recedes to
+   ~0.4 opacity at rest and lifts back on hover so it remains available for
+   reference but stops competing for attention with the load-bearing
+   working-pane content.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.app-shell[data-active-pane="working"] .data-sources-chips,
+.app-shell[data-active-pane="working"] .map-layers,
+.app-shell[data-active-pane="working"] .map-telemetry-hud {
+  opacity: 0.4;
+  transition: opacity 200ms ease;
+}
+
+.app-shell[data-active-pane="working"] .data-sources-chips:hover,
+.app-shell[data-active-pane="working"] .data-sources-chips--expanded,
+.app-shell[data-active-pane="working"] .map-layers:hover,
+.app-shell[data-active-pane="working"] .map-telemetry-hud:hover {
+  opacity: 1;
+}
+
+/* ─── DRAG HANDLES — repositionable stage widgets ─────────────────────────
+   Three persistent stage widgets (DataSourcesChips, MapLayers strip,
+   MapTelemetryHud) accept drag-to-move via their existing header element.
+   The grip glyph (⋮⋮) is the affordance; the cursor swaps to "grab" on
+   hover and "grabbing" while a drag is in flight (handled by the OS
+   pointer-capture). The MapTelemetryHud root keeps `pointer-events: none`
+   so the map underneath remains pannable; the header alone re-enables
+   pointer events so it can receive the drag.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.data-sources-chips__grip,
+.map-layers__grip,
+.map-telemetry-hud__grip {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 10px;
+  letter-spacing: -0.10em;
+  color: var(--color-ink-tertiary);
+  user-select: none;
+  vertical-align: middle;
+}
+
+.data-sources-chips__header:hover .data-sources-chips__grip,
+.map-layers__strip-label:hover .map-layers__grip,
+.map-telemetry-hud__header:hover .map-telemetry-hud__grip {
+  color: var(--color-ink-secondary);
+}
+
+.map-telemetry-hud__header {
+  pointer-events: auto;
+}
+
+.map-layers__strip-label {
+  display: inline-flex;
+  align-items: center;
 }

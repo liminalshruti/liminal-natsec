@@ -5,6 +5,7 @@ import type { ScenarioState as MapScenarioState } from "./components/MapWatchflo
 import { caseIdFromAlertId } from "./lib/spineGraph.ts";
 import { loadScenario, refreshRealScenario, type LoadedScenario } from "./lib/fixtures.ts";
 import { clearSavedRules } from "./lib/reviewRulesStore.ts";
+import { loadUiMode, onUiModeChanged, saveUiMode, type UiMode } from "./lib/uiModeStore.ts";
 
 const DEMO_START_STATE: MapScenarioState = {
   phase: 1,
@@ -15,12 +16,17 @@ const DEMO_START_STATE: MapScenarioState = {
 export function App() {
   const [scenario, setScenario] = useState<LoadedScenario | null>(null);
   const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
-  const [mapScenarioState, setMapScenarioState] = useState<MapScenarioState | undefined>(
-    undefined
-  );
+  const [mapScenarioState, setMapScenarioState] = useState<MapScenarioState>(DEMO_START_STATE);
   const [resetSignal, setResetSignal] = useState(0);
   const [resetToast, setResetToast] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // uiMode toggles between "demo" (full pitch register — handwritten phase
+  // prompts, ink coastline, four-layer empty stencil, named-operator card,
+  // stipple backdrop) and "live" (austere operator register that hides the
+  // editorial scaffolding). Default "demo" preserves the timed pitch path on
+  // first load. The preference survives reload via localStorage and is
+  // independent of /reset (uiMode is operator preference, not scenario state).
+  const [uiMode, setUiMode] = useState<UiMode>(() => loadUiMode());
 
   const fetchScenario = useCallback(() => {
     let cancelled = false;
@@ -61,16 +67,32 @@ export function App() {
     [fetchScenario, scenario]
   );
 
+  const handleToggleUiMode = useCallback((next?: UiMode) => {
+    setUiMode((current) => {
+      const target: UiMode = next ?? (current === "demo" ? "live" : "demo");
+      saveUiMode(target);
+      return target;
+    });
+  }, []);
+
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
       if (event.ctrlKey && event.shiftKey && (event.key === "r" || event.key === "R")) {
         event.preventDefault();
         handleReset("full");
+        return;
+      }
+      if (event.ctrlKey && event.shiftKey && (event.key === "m" || event.key === "M")) {
+        event.preventDefault();
+        handleToggleUiMode();
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [handleReset]);
+  }, [handleReset, handleToggleUiMode]);
+
+  // Sync state with cross-tab localStorage changes (other tabs / windows).
+  useEffect(() => onUiModeChanged(() => setUiMode(loadUiMode())), []);
 
   useEffect(() => {
     if (!resetToast) return;
@@ -112,6 +134,8 @@ export function App() {
       resetSignal={resetSignal}
       onReset={handleReset}
       resetToast={resetToast}
+      uiMode={uiMode}
+      onToggleUiMode={handleToggleUiMode}
     />
   );
 }

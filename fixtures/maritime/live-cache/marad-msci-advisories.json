@@ -1,0 +1,374 @@
+{
+  "source": "MARAD_MSCI",
+  "generated_at": "2026-05-03T14:07:24.325Z",
+  "request": {
+    "index_url": "https://www.maritime.dot.gov/msci-advisories",
+    "note": "U.S. MARAD Maritime Security Communications with Industry advisories."
+  },
+  "response": {
+    "ok": true,
+    "status": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "bytes": 86849
+  },
+  "active_index_excerpt": "(NEPA) USMMA Reports Vessel Inventory Reports since July 1990 Menu Main navigation (Mobile) Home MSCI Portal In This Section MSCI Portal U.S. Maritime Advisories U.S. Maritime Alerts Alerts/Advisories Subscriptions Federal Register Notices Active Advisories Title Status Effective Date Expire Date 2026-008-Global-U.S. Maritime Advisory Updates, Resources, and Contacts Active 04/24/2026 10/21/2026 2026-007-Worldwide-Worldwide-Foreign Adversarial Technological, Physical, and Cyber Influence Active 04/24/2026 10/21/2026 2026-006-Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, and Somali Basin-Houthi Attacks on Commercial Vessels Active 03/26/2026 09/22/2026 2026-005-Black Sea and Sea of Azov-Military Combat Operations Active 03/19/2026 09/15/2026 2026-004-Persian Gulf, Strait of Hormuz, and Gulf of Oman-Iranian Attacks on Commercial Vessels Active 03/13/2026 09/09/2026 2026-002-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom Active 02/09/2026 08/08/2026 2025-015-Gulf of Guinea-Piracy/Armed Robbery/Kidnapping for Ransom Active 12/15/2025 06/13/2026 Cancelled Advisories Geographic Loc",
+  "advisories": [
+    {
+      "url": "https://www.maritime.dot.gov/msci/2026-008-global-us-maritime-advisory-updates-resources-and-contacts",
+      "list_title": "2026-008-Global-U.S. Maritime Advisory Updates, Resources, and Contacts",
+      "ok": true,
+      "status": 200,
+      "bytes": 104368,
+      "title": "2026-008-Global-U.S. Maritime Advisory Updates, Resources, and Contacts",
+      "matched_terms": [
+        "gps",
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Global",
+      "threat_type": "U.S. Maritime Advisory Updates, Resources, and Contacts",
+      "effective_date": "04/24/2026 - 10/21/2026",
+      "status_text": "Active",
+      "excerpt": "Description This advisory supersedes and cancels U.S. Maritime Advisory 2025-014 1. References: None. 2. Issue: This Advisory provides updates to maritime security resources, websites, and information. 3. Guidance: The U.S. Maritime Advisory System website, which contains all current and expired U.S. Maritime Alerts and Advisories, is maintained by the Maritime Administration (MARAD). Upon U.S. Government (USG) clearance of Alerts and Advisories, they are broadcast by the National Geospatial-Intelligence Agency (NGA) and distributed via email. It is important to note these are USG products and are not solely MARAD or NGA authored products. Additional information on this system, including information on participating USG agencies and subscribing, is available at https://www.maritime.dot.gov/ msci . GPS disruption affects maritime navigation in various parts of the world. Mariners are encouraged to take the following precautions: Develop plans for responding to GPS disruptions that affect safe navigation of vessels prior to getting underway. When a GPS outage occurs, report incidents as soon as safely possible to the U.S. Coast Guard Navigation Center (NAVCEN) through its online reporting form at https://www.navcen.uscg.gov/ report-a-problem or via phone at 703-313-5900, 24-hours a day. NATO Shipping Centre reporting information is available at https://shipping.nato.int/nsc/ cybe",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2026-007-worldwide-worldwide-foreign-adversarial-technological-physical-and-cyber-influence",
+      "list_title": "2026-007-Worldwide-Worldwide-Foreign Adversarial Technological, Physical, and Cyber Influence",
+      "ok": true,
+      "status": 200,
+      "bytes": 114992,
+      "title": "2026-007-Worldwide-Worldwide-Foreign Adversarial Technological, Physical, and Cyber Influence",
+      "matched_terms": [
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Worldwide",
+      "threat_type": "Worldwide-Foreign Adversarial Technological, Physical, and Cyber Influence",
+      "effective_date": "04/24/2026 - 10/21/2026",
+      "status_text": "Active",
+      "excerpt": "Description This advisory supersedes and cancels U.S. Maritime Advisory 2025-013 1. Issue: This Advisory continues to alert maritime stakeholders of potential vulnerabilities to maritime port equipment, networks, operating systems, software, and infrastructure. Foreign companies manufacture, install, and maintain port equipment that may create vulnerabilities to global maritime infrastructure information technology (IT) and operational technology (OT) systems. In the past few years, the U.S. Government has published several documents (see paragraph 4 below) explaining the risks associated with integrating and utilizing China’s state-supported National Public Information Platform for Transportation and Logistics (LOGINK), Nuctech scanners, and automated ship-to-shore cranes worldwide. LOGINK is a single-window logistics management platform that aggregates logistics data from various sources, including domestic and foreign ports, foreign logistics networks, shippers, shipping companies, public databases, and hundreds of thousands of users in China. China is promoting logistics data standards that support LOGINK’s widespread use, and LOGINK’s installation and utilization in critical port infrastructure very likely provide China with access to and/or collection of sensitive logistics data. U.S. law prohibits the use of LOGINK for U.S. government entities or U.S. companies receiving",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2026-006-red-sea-bab-el-mandeb-strait-gulf-aden-arabian-sea-and-somali-basin-houthi-attacks",
+      "list_title": "2026-006-Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, and Somali Basin-Houthi Attacks on Commercial Vessels",
+      "ok": true,
+      "status": 200,
+      "bytes": 85813,
+      "title": "2026-006-Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, and Somali Basin-Houthi Attacks on Commercial Vessels",
+      "matched_terms": [
+        "hormuz",
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime",
+        "missile",
+        "uav",
+        "usv"
+      ],
+      "geographic_location": "Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, and Somali Basin",
+      "threat_type": "Houthi Attacks on Commercial Vessels",
+      "effective_date": "03/26/2026 - 09/22/2026",
+      "status_text": "Active",
+      "excerpt": "Description This advisory supersedes and cancels U.S. Maritime Advisory 2025-012 1. References: None. 2. Issue: Although the Houthi terrorist group has not attacked commercial ships since the Israel-Gaza ceasefire agreement in October 2025, the Houthis continue to pose a threat to U.S. assets, including commercial vessels, in this region. On July 6-8, 2025, the Houthis attacked and sank two commercial vessels in the southern Red Sea, killing four seafarers. On August 31, 2025, the Houthis targeted an Israeli associated vessel off the Red Sea coast of Yanbu, Saudi Arabia. This was the furthest north the Houthis have targeted commercial vessels since Houthi attacks in the Red Sea began. On September 29, 2025, the Houthis struck a Dutch-flagged cargo ship with a missile in the Gulf of Aden, killing one mariner. Vessels with an Israeli, U.S., or UK association and any vessel within a group or company fleet structure where the company has been identified as making port calls in Israel could be at high risk of terrorism and other hostile actions from the Houthis when transiting the southern Red Sea, Bab el Mandeb Strait, and Gulf of Aden until further notice. Potential hostile actions include one-way unmanned aerial vehicle (UAV) attacks; unmanned surface vehicle (USV) attacks; unmanned underwater vehicle (UUV) attacks; ballistic and cruise missile attacks; small arms fire from small",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+      "list_title": "2026-004-Persian Gulf, Strait of Hormuz, and Gulf of Oman-Iranian Attacks on Commercial Vessels",
+      "ok": true,
+      "status": 200,
+      "bytes": 80881,
+      "title": "2026-004-Persian Gulf, Strait of Hormuz, and Gulf of Oman-Iranian Attacks on Commercial Vessels",
+      "matched_terms": [
+        "hormuz",
+        "gulf of oman",
+        "persian gulf",
+        "iran",
+        "iranian",
+        "gnss",
+        "jamming",
+        "spoofing",
+        "vessel",
+        "shipping",
+        "maritime",
+        "missile",
+        "uav",
+        "usv"
+      ],
+      "geographic_location": "Persian Gulf, Strait of Hormuz, and Gulf of Oman",
+      "threat_type": "Iranian Attacks on Commercial Vessels",
+      "effective_date": "03/13/2026 - 09/09/2026",
+      "status_text": "Active",
+      "excerpt": "Description This advisory supersedes and cancels U.S. Maritime Advisory 2026-001 1. References: None. 2. Issue: Iran continues to threaten and conduct strikes on commercial vessels transiting the Persian Gulf, Strait of Hormuz (SoH) and Gulf of Oman. Risks of Iranian attacks against commercial shipping remain high in these areas. Prior to the commencement of combat operations in this region, Iranian forces historically utilized small boats and helicopters during boarding operations and have attempted to force commercial vessels into Iran’s territorial sea. Iranian threats to commercial vessels now additionally include direct missile attacks, armed unmanned aerial vehicles (UAVs), and armed unmanned surface vessels (USVs). The U.S. government is continually assessing the maritime security situation in the region to identify and differentiate threats and safeguard freedom of navigation, ensure the free flow of commerce, and protect U.S. vessels, personnel, and interests. 3. Guidance: U.S.-flagged vessels operating in these areas should maintain a minimum standoff of 30 nautical miles from U.S. military vessels to reduce the risk of being mistaken as a threat and should answer all VHF calls from coalition navies. Vessels should be aware that U.S. and other coalition naval forces may conduct maritime awareness calls, queries, and approaches to ensure the safety of vessels transitin",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2026-002-gulf-aden-arabian-sea-indian-ocean-piracyarmed-robberykidnapping-ransom",
+      "list_title": "2026-002-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom",
+      "ok": true,
+      "status": 200,
+      "bytes": 78219,
+      "title": "2026-002-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom",
+      "matched_terms": [
+        "hormuz",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Gulf of Aden, Arabian Sea, Indian Ocean",
+      "threat_type": "Piracy/Armed Robbery/Kidnapping for Ransom",
+      "effective_date": "02/09/2026 - 08/08/2026",
+      "status_text": "Active",
+      "excerpt": "Description 1. References: None 2. Issue: Although there are currently no specific piracy threats to U.S. flagged commercial vessels in this region, piracy continues to pose a general threat to all commercial vessels operating in the Gulf of Aden, Arabian Sea, and Indian Ocean. Since January 2025, there have been three reported hijackings and six boarding/armed robbery incidents. There has been an increase in attacks involving firearms (seven) from pirates between July 2025 and November 2025. While the overall threat has diminished, attacks on vessels continue to pose a threat for transits through the above-mentioned locations. Specific case details are available at the Office of Naval Intelligence’s “Worldwide Threat to Shipping” and “Piracy Analysis and Warnings” website at https://www.oni.navy.mil/ONI-Reports/Shipping-Threat-Reports/Worldwide-Threat-to-Shipping/ . 3. Guidance: The Best Management Practices (BMP) Maritime Security and the Maritime Global Security website at https://www.maritimeglobalsecurity.org should be consulted prior to operating in those geographic waters. U.S.-flagged commercial vessels should coordinate voyage planning with U.S. Naval Forces Central Command (NAVCENT) Naval Cooperation and Guidance for Shipping (NCAGS) and adopt their recommendations and guidance whenever possible. NAVCENT NCAGS stands a 24-hour watch and has the latest information on t",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-012-red-sea-bab-el-mandeb-strait-gulf-aden-arabian-sea-persian-gulf-and-somali-basin",
+      "list_title": "2025-012-Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, Persian Gulf, and Somali Basin-Houthi Attacks on Commercial Vessels",
+      "ok": true,
+      "status": 200,
+      "bytes": 85598,
+      "title": "2025-012-Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, Persian Gulf, and Somali Basin-Houthi Attacks on Commercial Vessels",
+      "matched_terms": [
+        "hormuz",
+        "persian gulf",
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime",
+        "missile",
+        "uav",
+        "usv"
+      ],
+      "geographic_location": "Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, Persian Gulf, and Somali Basin",
+      "threat_type": "Houthi Attacks on Commercial Vessels",
+      "effective_date": "09/24/2025 - 03/26/2026",
+      "status_text": "Cancelled",
+      "excerpt": "Description 1. References: None 2. Issue: Houthi forces continue to threaten strikes on U. S. assets, including commercial vessels, in this region. In May of 2025, the Houthis announced a maritime “blockade” of Israel and stated that any commercial vessel affiliated with an Israeli port call would be subject to attack. On July 6-8, 2025, the Houthis attacked and sank two commercial vessels in the southern Red Sea, killing four seafarers. On August 31, 2025, the Houthis targeted an Israeli associated vessel off the Red Sea coast of Yanbu, Saudi Arabia. This was the furthest north the Houthis have targeted commercial vessels since Houthi attacks in the Red Sea began. Vessels with an Israeli, U.S., or UK association and any vessel within a group or company fleet structure where the company has been identified as making port calls in Israel could be at high risk of terrorism and other hostile actions from the Houthis when transiting the southern Red Sea, Bab el Mandeb Strait, and Gulf of Aden until further notice. Potential hostile actions include one-way unmanned aerial vehicle (UAV) attacks; unmanned surface vehicle (USV) attacks; unmanned underwater vehicle (UUV) attacks; ballistic and cruise missile attacks; small arms fire from small boats; explosive boat attacks; and illegal boardings, detentions, and/or seizures. Since November 2023, there have been more than 100 separate Ho",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-010-gulf-aden-arabian-sea-indian-ocean-piracyarmed-robberykidnapping-ransom",
+      "list_title": "2025-010-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom",
+      "ok": true,
+      "status": 200,
+      "bytes": 75671,
+      "title": "2025-010-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom",
+      "matched_terms": [
+        "hormuz",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Gulf of Aden, Arabian Sea, Indian Ocean",
+      "threat_type": "Piracy/Armed Robbery/Kidnapping for Ransom",
+      "effective_date": "08/13/2025 - 02/09/2026",
+      "status_text": "Cancelled",
+      "excerpt": "Description 1. References : None 2. Issue : Although there are currently no specific piracy threats to U.S. flagged commercial vessels in this region, piracy continues to pose a general threat to all commercial vessels operating in the Gulf of Aden, Arabian Sea, and Indian Ocean. Since January 2025, there have been three reported boarding/hijacking incidents. Pirates have utilized fishing vessels as motherships. While the overall threat has diminished, the piracy threat still remains out to 600NM from the coast of Somalia. Specific case details are available at the Office of Naval Intelligence’s “Worldwide Threat to Shipping” and “Piracy Analysis and Warnings” website at https://www.oni.navy.mil/ONI-Reports/Shipping-Threat-Reports/Worldwide-Threat-to-Shipping/ . 3. Guidance : The Best Management Practices (BMP) Maritime Security and the Maritime Global Security website at https://www.maritimeglobalsecurity.org should be consulted prior to operating in those geographic waters. U.S.-flagged commercial vessels should coordinate voyage planning with U.S. Naval Forces Central Command (NAVCENT) Naval Cooperation and Guidance for Shipping (NCAGS) and adopt their recommendations and guidance whenever possible. NAVCENT NCAGS stands a 24-hour watch and has the latest information on the current maritime security threats and the operational environment in this region. Armed security detail",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-009-strait-hormuz-and-gulf-oman-iranian-illegal-boarding-detention-seizure",
+      "list_title": "2025-009-Strait of Hormuz and Gulf of Oman-Iranian Illegal Boarding / Detention / Seizure",
+      "ok": true,
+      "status": 200,
+      "bytes": 77003,
+      "title": "2025-009-Strait of Hormuz and Gulf of Oman-Iranian Illegal Boarding / Detention / Seizure",
+      "matched_terms": [
+        "hormuz",
+        "gulf of oman",
+        "persian gulf",
+        "iran",
+        "iranian",
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Strait of Hormuz and Gulf of Oman",
+      "threat_type": "Iranian Illegal Boarding / Detention / Seizure",
+      "effective_date": "08/13/2025 - 02/09/2026",
+      "status_text": "Cancelled",
+      "excerpt": "Description 1. References : None 2. Issue : Although there remains no specific threat to U.S.-flagged vessels in this location, commercial vessels transiting the Strait of Hormuz and Gulf of Oman have long been at risk of being illegally boarded and detained or seized by Iranian forces. Iranian forces have utilized small boats and helicopters during boarding operations and have attempted to force commercial vessels into Iranian territorial waters. The U.S. government is continually assessing the maritime security situation in the region to identify and differentiate threats and safeguard freedom of navigation, ensure the free flow of commerce, and protect U.S. vessels, personnel, and interests. 3. Guidance : If hailed by Iranian forces, U.S.-flagged commercial vessels should provide vessel name and flag state and affirm that they are proceeding in accordance with international law as reflected in the Law of the Sea Convention. If Iranian forces seek to board a U.S.-flagged commercial vessel navigating these waters, the vessel’s Master should, if the safety of the ship and crew would not be compromised, decline permission to board, noting that the vessel is proceeding in accordance with international law, as reflected in the Law of the Sea Convention. If Iranian forces board a U.S.-flagged commercial vessel, the crew should not forcibly resist the boarding party. Refraining from",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-007-global-us-maritime-advisory-updates-resources-and-contacts",
+      "list_title": "2025-007-Global-U.S. Maritime Advisory Updates, Resources, and Contacts",
+      "ok": true,
+      "status": 200,
+      "bytes": 77787,
+      "title": "2025-007-Global-U.S. Maritime Advisory Updates, Resources, and Contacts",
+      "matched_terms": [
+        "gps",
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Global",
+      "threat_type": "U.S. Maritime Advisory Updates, Resources, and Contacts",
+      "effective_date": "04/09/2025 - 10/06/2025",
+      "status_text": "Cancelled",
+      "excerpt": "Description This advisory supersedes and cancels U.S. Maritime Advisory 2024-013 1. References: None. 2. Issue: This Advisory provides updates to maritime security resources, websites, and information. 3. Guidance: The U.S. Maritime Advisory System website, which contains all current and expired U.S. Maritime Alerts and Advisories, is maintained by the Maritime Administration (MARAD). Upon U.S. Government (USG) clearance of Alerts and Advisories, they are broadcast by the National Geospatial-Intelligence Agency (NGA) and distributed via email. It is important to note these are USG products and are not solely MARAD or NGA authored products. Additional information on this system, including information on participating USG agencies and subscribing, is available at https://www.maritime.dot.gov/msci . GPS disruption affects maritime navigation in various parts of the world. Mariners are encouraged to take the following precautions: - Develop plans for responding to GPS disruptions that affect safe navigation of vessels prior to getting underway. - When a GPS outage occurs, incidents should be reported as soon as safely possible to the U.S. Coast Guard Navigation Center (NAVCEN) through its online reporting form at https://www.navcen.uscg.gov/report-a-problem or via phone at 703-313-5900, 24-hours a day. NATO Shipping Centre reporting information is available at https://shipping.nato",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-006-worldwide-foreign-adversarial-technological-physical-and-cyber-influence",
+      "list_title": "2025-006-Worldwide-Foreign Adversarial Technological, Physical, and Cyber Influence",
+      "ok": true,
+      "status": 200,
+      "bytes": 85362,
+      "title": "2025-006-Worldwide-Foreign Adversarial Technological, Physical, and Cyber Influence",
+      "matched_terms": [
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Worldwide",
+      "threat_type": "Foreign Adversarial Technological, Physical, and Cyber Influence",
+      "effective_date": "04/09/2025 - 10/06/2025",
+      "status_text": "Cancelled",
+      "excerpt": "Description This revised advisory cancels and replaces U.S. Maritime Advisory 2024-011 1. Issue: This Advisory seeks to alert maritime stakeholders of potential vulnerabilities to maritime port equipment, networks, operating systems, software, and infrastructure. Foreign companies manufacture, install, and maintain port equipment that creates vulnerabilities to global maritime infrastructure information technology (IT) and operational technology (OT) systems. In the past few years, the U.S. Government has published several documents (see paragraph 4 below) illuminating the risks associated with integrating and utilizing China’s state-supported National Public Information Platform for Transportation and Logistics (LOGINK), Nuctech scanners, and automated ship-to-shore cranes worldwide. LOGINK is a single-window logistics management platform that aggregates logistics data from various sources, including domestic and foreign ports, foreign logistics networks, shippers, shipping companies, other public databases, and hundreds of thousands of users in China. The LOGINK logistics platform, which was first introduced outside China in 2010, was developed by China’s Ministry of Transport. At least 24 global ports have cooperation agreements with LOGINK, which can collect massive amounts of sensitive business and foreign government data, such as corporate registries and vessel/cargo data",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-003-gulf-aden-arabian-sea-indian-ocean-piracyarmed-robberykidnapping-ransom",
+      "list_title": "2025-003-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom",
+      "ok": true,
+      "status": 200,
+      "bytes": 75697,
+      "title": "2025-003-Gulf of Aden, Arabian Sea, Indian Ocean-Piracy/Armed Robbery/Kidnapping for Ransom",
+      "matched_terms": [
+        "hormuz",
+        "persian gulf",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Gulf of Aden, Arabian Sea, Indian Ocean",
+      "threat_type": "Piracy/Armed Robbery/Kidnapping for Ransom",
+      "effective_date": "02/14/2025 - 08/14/2025",
+      "status_text": "Cancelled",
+      "excerpt": "Description 1. References: None 2. Issue: Although there are currently no specific piracy threats to U.S. flagged commercial vessels, recent cases of piracy pose a general threat to all commercial vessels operating in the Gulf of Aden, Arabian Sea, and Indian Ocean. Since November 2023, there have been seven reported boarding/hijacking incidents. Pirates have utilized fishing vessels as motherships. Successful or attempted boardings and suspicious approaches have been reported up to 960 nm off the coast of Somalia. Specific case details are available at the Office of Naval Intelligence’s “Worldwide Threat to Shipping” and “Piracy Analysis and Warnings” website at https://www.oni.navy.mil/ONI-Reports/Shipping-Threat-Reports/Worldwide-Threat-to-Shipping/ . 3. Guidance: The Best Management Practices (BMP) to Deter Piracy and Enhance Maritime Security in the Gulf of Aden, Arabian Sea, and Indian Ocean, and Maritime Global Security website at https://www.maritimeglobalsecurity.org should be consulted prior to operating in those geographic waters. U.S.-flagged commercial vessels should coordinate voyage planning with U.S. Naval Forces Central Command (NAVCENT) Naval Cooperation and Guidance for Shipping (NCAGS) and adopt their recommendations and guidance whenever possible. NAVCENT NCAGS stands a 24-hour watch and has the latest information on the current maritime security threats an",
+      "detail": "OK"
+    },
+    {
+      "url": "https://www.maritime.dot.gov/msci/2025-002-strait-hormuz-and-gulf-oman-iranian-illegal-boarding-detention-seizure",
+      "list_title": "2025-002-Strait of Hormuz, and Gulf of Oman-Iranian Illegal Boarding / Detention / Seizure",
+      "ok": true,
+      "status": 200,
+      "bytes": 77435,
+      "title": "2025-002-Strait of Hormuz, and Gulf of Oman-Iranian Illegal Boarding / Detention / Seizure",
+      "matched_terms": [
+        "hormuz",
+        "gulf of oman",
+        "persian gulf",
+        "iran",
+        "iranian",
+        "ais",
+        "vessel",
+        "shipping",
+        "maritime"
+      ],
+      "geographic_location": "Strait of Hormuz, and Gulf of Oman",
+      "threat_type": "Iranian Illegal Boarding / Detention / Seizure",
+      "effective_date": "02/14/2025 - 08/14/2025",
+      "status_text": "Cancelled",
+      "excerpt": "Description 1. References: None 2. Issue: Although there is no specific threat to U.S.-flagged vessels, commercial vessels transiting the Strait of Hormuz and Gulf of Oman may be at risk of being illegally boarded and detained or seized by Iranian forces. Recent incidents include the April 2024 Iranian seizure of a Portuguese-flagged vessel in the Strait of Hormuz. Iranian forces have utilized small boats and helicopters during boarding operations and have attempted to force commercial vessels into Iranian territorial waters. The U.S. government is continually assessing the maritime security situation in the region to identify and differentiate threats and safeguard freedom of navigation, ensure the free flow of commerce, and protect U.S. vessels, personnel, and interests. 3. Guidance: If hailed by Iranian forces, U.S.-flagged commercial vessels should provide vessel name and flag state and affirm that they are proceeding in accordance with international law as reflected in the Law of the Sea Convention. If Iranian forces seek to board a U.S.-flagged commercial vessel navigating these waters, the vessel’s Master should, if the safety of the ship and crew would not be compromised, decline permission to board, noting that the vessel is proceeding in accordance with international law, as reflected in the Law of the Sea Convention. If Iranian forces board a U.S.-flagged commercial ",
+      "detail": "OK"
+    }
+  ],
+  "analysis": {
+    "advisories_ok": 12,
+    "hormuz_related": [
+      {
+        "title": "2026-004-Persian Gulf, Strait of Hormuz, and Gulf of Oman-Iranian Attacks on Commercial Vessels",
+        "url": "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+        "geographic_location": "Persian Gulf, Strait of Hormuz, and Gulf of Oman",
+        "threat_type": "Iranian Attacks on Commercial Vessels",
+        "effective_date": "03/13/2026 - 09/09/2026",
+        "matched_terms": [
+          "hormuz",
+          "gulf of oman",
+          "persian gulf",
+          "iran",
+          "iranian",
+          "gnss",
+          "jamming",
+          "spoofing",
+          "vessel",
+          "shipping",
+          "maritime",
+          "missile",
+          "uav",
+          "usv"
+        ],
+        "excerpt": "Description This advisory supersedes and cancels U.S. Maritime Advisory 2026-001 1. References: None. 2. Issue: Iran continues to threaten and conduct strikes on commercial vessels transiting the Persian Gulf, Strait of Hormuz (SoH) and Gulf of Oman. Risks of Iranian attacks against commercial shipping remain high in these areas. Prior to the commencement of combat operations in this region, Iranian forces historically utilized small boats and helicopters during boarding operations and have attempted to force commercial vessels into Iran’s territorial sea. Iranian threats to commercial vessels now additionally include direct missile attacks, armed unmanned aerial vehicles (UAVs), and armed unmanned surface vessels (USVs). The U.S. government is continually assessing the maritime security situation in the region to identify and differentiate threats and safeguard freedom of navigation, ensure the free flow of commerce, and protect U.S. vessels, personnel, and interests. 3. Guidance: U.S.-flagged vessels operating in these areas should maintain a minimum standoff of 30 nautical miles from U.S. military vessels to reduce the risk of being mistaken as a threat and should answer all VHF calls from coalition navies. Vessels should be aware that U.S. and other coalition naval forces may conduct maritime awareness calls, queries, and approaches to ensure the safety of vessels transitin"
+      },
+      {
+        "title": "2025-012-Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, Persian Gulf, and Somali Basin-Houthi Attacks on Commercial Vessels",
+        "url": "https://www.maritime.dot.gov/msci/2025-012-red-sea-bab-el-mandeb-strait-gulf-aden-arabian-sea-persian-gulf-and-somali-basin",
+        "geographic_location": "Red Sea, Bab el Mandeb Strait, Gulf of Aden, Arabian Sea, Persian Gulf, and Somali Basin",
+        "threat_type": "Houthi Attacks on Commercial Vessels",
+        "effective_date": "09/24/2025 - 03/26/2026",
+        "matched_terms": [
+          "hormuz",
+          "persian gulf",
+          "ais",
+          "vessel",
+          "shipping",
+          "maritime",
+          "missile",
+          "uav",
+          "usv"
+        ],
+        "excerpt": "Description 1. References: None 2. Issue: Houthi forces continue to threaten strikes on U. S. assets, including commercial vessels, in this region. In May of 2025, the Houthis announced a maritime “blockade” of Israel and stated that any commercial vessel affiliated with an Israeli port call would be subject to attack. On July 6-8, 2025, the Houthis attacked and sank two commercial vessels in the southern Red Sea, killing four seafarers. On August 31, 2025, the Houthis targeted an Israeli associated vessel off the Red Sea coast of Yanbu, Saudi Arabia. This was the furthest north the Houthis have targeted commercial vessels since Houthi attacks in the Red Sea began. Vessels with an Israeli, U.S., or UK association and any vessel within a group or company fleet structure where the company has been identified as making port calls in Israel could be at high risk of terrorism and other hostile actions from the Houthis when transiting the southern Red Sea, Bab el Mandeb Strait, and Gulf of Aden until further notice. Potential hostile actions include one-way unmanned aerial vehicle (UAV) attacks; unmanned surface vehicle (USV) attacks; unmanned underwater vehicle (UUV) attacks; ballistic and cruise missile attacks; small arms fire from small boats; explosive boat attacks; and illegal boardings, detentions, and/or seizures. Since November 2023, there have been more than 100 separate Ho"
+      },
+      {
+        "title": "2025-009-Strait of Hormuz and Gulf of Oman-Iranian Illegal Boarding / Detention / Seizure",
+        "url": "https://www.maritime.dot.gov/msci/2025-009-strait-hormuz-and-gulf-oman-iranian-illegal-boarding-detention-seizure",
+        "geographic_location": "Strait of Hormuz and Gulf of Oman",
+        "threat_type": "Iranian Illegal Boarding / Detention / Seizure",
+        "effective_date": "08/13/2025 - 02/09/2026",
+        "matched_terms": [
+          "hormuz",
+          "gulf of oman",
+          "persian gulf",
+          "iran",
+          "iranian",
+          "ais",
+          "vessel",
+          "shipping",
+          "maritime"
+        ],
+        "excerpt": "Description 1. References : None 2. Issue : Although there remains no specific threat to U.S.-flagged vessels in this location, commercial vessels transiting the Strait of Hormuz and Gulf of Oman have long been at risk of being illegally boarded and detained or seized by Iranian forces. Iranian forces have utilized small boats and helicopters during boarding operations and have attempted to force commercial vessels into Iranian territorial waters. The U.S. government is continually assessing the maritime security situation in the region to identify and differentiate threats and safeguard freedom of navigation, ensure the free flow of commerce, and protect U.S. vessels, personnel, and interests. 3. Guidance : If hailed by Iranian forces, U.S.-flagged commercial vessels should provide vessel name and flag state and affirm that they are proceeding in accordance with international law as reflected in the Law of the Sea Convention. If Iranian forces seek to board a U.S.-flagged commercial vessel navigating these waters, the vessel’s Master should, if the safety of the ship and crew would not be compromised, decline permission to board, noting that the vessel is proceeding in accordance with international law, as reflected in the Law of the Sea Convention. If Iranian forces board a U.S.-flagged commercial vessel, the crew should not forcibly resist the boarding party. Refraining from"
+      },
+      {
+        "title": "2025-002-Strait of Hormuz, and Gulf of Oman-Iranian Illegal Boarding / Detention / Seizure",
+        "url": "https://www.maritime.dot.gov/msci/2025-002-strait-hormuz-and-gulf-oman-iranian-illegal-boarding-detention-seizure",
+        "geographic_location": "Strait of Hormuz, and Gulf of Oman",
+        "threat_type": "Iranian Illegal Boarding / Detention / Seizure",
+        "effective_date": "02/14/2025 - 08/14/2025",
+        "matched_terms": [
+          "hormuz",
+          "gulf of oman",
+          "persian gulf",
+          "iran",
+          "iranian",
+          "ais",
+          "vessel",
+          "shipping",
+          "maritime"
+        ],
+        "excerpt": "Description 1. References: None 2. Issue: Although there is no specific threat to U.S.-flagged vessels, commercial vessels transiting the Strait of Hormuz and Gulf of Oman may be at risk of being illegally boarded and detained or seized by Iranian forces. Recent incidents include the April 2024 Iranian seizure of a Portuguese-flagged vessel in the Strait of Hormuz. Iranian forces have utilized small boats and helicopters during boarding operations and have attempted to force commercial vessels into Iranian territorial waters. The U.S. government is continually assessing the maritime security situation in the region to identify and differentiate threats and safeguard freedom of navigation, ensure the free flow of commerce, and protect U.S. vessels, personnel, and interests. 3. Guidance: If hailed by Iranian forces, U.S.-flagged commercial vessels should provide vessel name and flag state and affirm that they are proceeding in accordance with international law as reflected in the Law of the Sea Convention. If Iranian forces seek to board a U.S.-flagged commercial vessel navigating these waters, the vessel’s Master should, if the safety of the ship and crew would not be compromised, decline permission to board, noting that the vessel is proceeding in accordance with international law, as reflected in the Law of the Sea Convention. If Iranian forces board a U.S.-flagged commercial "
+      }
+    ]
+  }
+}

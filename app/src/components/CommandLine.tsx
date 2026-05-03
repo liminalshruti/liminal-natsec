@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { saveRule } from "../lib/reviewRulesStore.ts";
+import type { UiMode } from "../lib/uiModeStore.ts";
 import { R001_DSL } from "../../../shared/rules/builtin.ts";
 import type { AlertView } from "../lib/types.ts";
 import type { ScenarioState } from "./MapWatchfloor.tsx";
@@ -14,6 +15,9 @@ interface CommandLineProps {
   onReset: (mode?: "soft" | "full") => void;
   onSelectAlert: (id: string) => void;
   alerts: AlertView[];
+  uiMode: UiMode;
+  /** No-arg call toggles. Pass "demo" or "live" to set explicitly. */
+  onToggleUiMode: (next?: UiMode) => void;
 }
 
 interface CommandResult {
@@ -27,7 +31,9 @@ export function CommandLine({
   onMapScenarioChange,
   onReset,
   onSelectAlert,
-  alerts
+  alerts,
+  uiMode,
+  onToggleUiMode
 }: CommandLineProps) {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<CommandResult | null>(null);
@@ -57,7 +63,9 @@ export function CommandLine({
     const command = input.trim();
     if (!command) return;
     setInput("");
-    setResult(runCommand(command, { onReset, onSelectAlert, alerts }));
+    setResult(
+      runCommand(command, { onReset, onSelectAlert, alerts, uiMode, onToggleUiMode })
+    );
   }
 
   const sourceStatus = scenario
@@ -82,7 +90,7 @@ export function CommandLine({
         <input
           ref={inputRef}
           className="command-line__input"
-          placeholder="/help, /reset, /save-rule, /event 1|2"
+          placeholder="/help, /reset, /save-rule, /event 1|2, /mode demo|live"
           value={input}
           onChange={(event) => setInput(event.target.value)}
           onFocus={() => setShowHelp(true)}
@@ -125,6 +133,8 @@ interface CommandContext {
   onReset: (mode?: "soft" | "full") => void;
   onSelectAlert: (id: string) => void;
   alerts: AlertView[];
+  uiMode: UiMode;
+  onToggleUiMode: (next?: UiMode) => void;
 }
 
 function runCommand(command: string, ctx: CommandContext): CommandResult {
@@ -136,7 +146,7 @@ function runCommand(command: string, ctx: CommandContext): CommandResult {
       return {
         status: "info",
         message:
-          "/reset · /save-rule · /event 1|2 · /map-reset · slash key opens prompt"
+          "/reset · /save-rule · /event 1|2 · /map-reset · /mode demo|live · slash key opens prompt"
       };
     case "reset":
       ctx.onReset("full");
@@ -168,6 +178,20 @@ function runCommand(command: string, ctx: CommandContext): CommandResult {
       ctx.onSelectAlert(alert.id);
       return { status: "ok", message: `selected ${alert.id}` };
     }
+    case "mode": {
+      const arg = tokens[1]?.toLowerCase();
+      if (arg && arg !== "demo" && arg !== "live") {
+        return { status: "error", message: "usage: /mode demo|live (no arg toggles)" };
+      }
+      const target: UiMode | undefined = arg as UiMode | undefined;
+      const resolved: UiMode =
+        target ?? (ctx.uiMode === "demo" ? "live" : "demo");
+      if (target && target === ctx.uiMode) {
+        return { status: "info", message: `already in ${resolved} mode` };
+      }
+      ctx.onToggleUiMode(resolved);
+      return { status: "ok", message: `ui register: ${resolved}` };
+    }
     default:
       return { status: "error", message: `unknown command: ${verb}` };
   }
@@ -181,6 +205,7 @@ function CommandHelp() {
       <span>/save-rule</span>
       <span>/event 1|2</span>
       <span>/map-reset</span>
+      <span>/mode demo|live</span>
     </span>
   );
 }

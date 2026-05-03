@@ -25,19 +25,34 @@ export function MapLabels({ map, fixture, phase }: MapLabelsProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [tick, setTick] = useState(0);
 
-  // Re-position on every map render, plus on `move` / `zoom` events to be
-  // safe across MapLibre versions that may not always emit `render`.
+  // Re-position labels in lock-step with the map. We listen to `render`
+  // (fires every paint, so labels track the map even when source data
+  // updates without a camera change), but coalesce via requestAnimationFrame
+  // so React only re-renders at most once per browser frame — that kills the
+  // per-paint flicker we used to see while staying visually glued to the map.
   useEffect(() => {
     if (!map) return;
-    const bump = () => setTick((t) => t + 1);
+    let pending = false;
+    let rafId = 0;
+    const bump = () => {
+      if (pending) return;
+      pending = true;
+      rafId = requestAnimationFrame(() => {
+        pending = false;
+        setTick((t) => t + 1);
+      });
+    };
     map.on("move", bump);
     map.on("zoom", bump);
     map.on("render", bump);
+    map.on("resize", bump);
     bump();
     return () => {
       map.off("move", bump);
       map.off("zoom", bump);
       map.off("render", bump);
+      map.off("resize", bump);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [map]);
 

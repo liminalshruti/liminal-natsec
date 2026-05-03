@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T06:12:15.673Z",
+  "generated_at": "2026-05-03T13:48:01.400Z",
   "profile": "fast",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
@@ -78,7 +78,7 @@
     {
       "source": "GDELT",
       "ok": true,
-      "detail": "gdelt-hormuz-doc20-artlist.json: 200 OK",
+      "detail": "gdelt-hormuz-doc20-artlist.json: fixture fallback with 2 articles.",
       "fileName": "gdelt-hormuz-doc20-artlist.json"
     },
     {
@@ -133,7 +133,7 @@
     {
       "source": "NAVAREA_IX",
       "ok": true,
-      "detail": "200; 244631 bytes cached.",
+      "detail": "200; 245368 bytes cached.",
       "fileName": "navarea-ix-warnings.html"
     },
     {

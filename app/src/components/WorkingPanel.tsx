@@ -1,10 +1,12 @@
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
+import type { UiMode } from "../lib/uiModeStore.ts";
 import { CustodyCasePanel } from "./CustodyCasePanel.tsx";
 
 interface WorkingPanelProps {
   selectedAlert: AlertView | null;
   scenarioState?: ScenarioStateView | null;
   loading: boolean;
+  uiMode?: UiMode;
 }
 
 // v3.2 IA — Working Panel splits into two regions vertically:
@@ -15,7 +17,7 @@ interface WorkingPanelProps {
 // Operative state is now; forensic state is history. The interaction matches
 // the reader: P1 reads operative in 5s without scrolling; P2 reads forensic
 // at length, with scrolling. See docs/TECHNICAL_PLAN.md §0.2.
-export function WorkingPanel({ selectedAlert, loading }: WorkingPanelProps) {
+export function WorkingPanel({ selectedAlert, loading, uiMode = "demo" }: WorkingPanelProps) {
   return (
     <section
       className="panel panel--working"
@@ -27,28 +29,37 @@ export function WorkingPanel({ selectedAlert, loading }: WorkingPanelProps) {
         <span className="tag">case</span>
       </div>
       {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
-      {!loading && !selectedAlert && <EmptyStencil />}
+      {!loading && !selectedAlert && <EmptyStencil uiMode={uiMode} />}
       {!loading && selectedAlert && <CustodyCasePanel selectedAlert={selectedAlert} />}
     </section>
   );
 }
 
 /**
- * Empty-state stencil — the highest-leverage teaching moment in the entire
- * interface. When no case is selected, the working panel renders the four-
- * layer framework as inert structural copy positioned where the case-detail
- * content will appear.
+ * Empty-state stencil. In demo mode this is a teaching surface — the four-
+ * layer framework rendered as inert structural copy where the case-detail
+ * content will appear. Workshop principle: every UI surface should feel like
+ * it's holding something, not resolving it.
  *
- * Workshop principle: every UI surface should feel like it's holding
- * something, not resolving it. The stencil holds the framework — substrate
- * to custody to refusal to review-memory — until an actual case fills it.
- *
- * Reads as: "this panel will hold a custody artifact organized in these
- * four layers." Operator at cold start learns the architecture. Operator
- * mid-shift sees it as a familiar empty stencil. Procurement reader on a
- * screenshot sees the IP without needing the demo to play.
+ * In live mode the stencil collapses to a single-line affordance — the
+ * operator already knows the architecture; the panel just needs to read as
+ * "no case selected" without lecturing.
  */
-function EmptyStencil() {
+function EmptyStencil({ uiMode }: { uiMode: UiMode }) {
+  if (uiMode === "live") {
+    return (
+      <div
+        className="empty-stencil empty-stencil--live"
+        role="region"
+        aria-label="No case selected"
+      >
+        <div className="empty-stencil__live-lead">No case selected</div>
+        <div className="empty-stencil__live-hint">
+          Select an alert in the substrate panel to open a custody case.
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="empty-stencil" role="region" aria-label="Custody artifact stencil">
       <div className="empty-stencil__lead">CUSTODY ARTIFACT — pending selection</div>

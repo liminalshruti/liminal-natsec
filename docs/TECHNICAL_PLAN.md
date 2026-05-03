@@ -1279,7 +1279,7 @@ Fictional AOI and vessels. Do not demo against real sensitive vessels.
 {
   "aoi": {
     "aoi_id": "aoi:alara-eez-box-01",
-    "name": "Alara EEZ Box 01",
+    "name": "Hormuz Watch Box 01",
     "dark_gap_threshold_min": 20,
     "polygon": "POLYGON((31.10 34.70, 32.20 34.70, 32.20 35.20, 31.10 35.20, 31.10 34.70))"
   },

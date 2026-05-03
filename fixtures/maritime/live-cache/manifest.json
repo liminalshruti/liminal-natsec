@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-03T06:12:15.673Z",
-  "profile": "fast",
+  "generated_at": "2026-05-03T13:58:30.561Z",
+  "profile": "all",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
     "bbox": [
@@ -78,7 +78,7 @@
     {
       "source": "GDELT",
       "ok": true,
-      "detail": "gdelt-hormuz-doc20-artlist.json: 200 OK",
+      "detail": "gdelt-hormuz-doc20-artlist.json: fixture fallback with 2 articles.",
       "fileName": "gdelt-hormuz-doc20-artlist.json"
     },
     {
@@ -133,7 +133,7 @@
     {
       "source": "NAVAREA_IX",
       "ok": true,
-      "detail": "200; 244631 bytes cached.",
+      "detail": "200; 245368 bytes cached.",
       "fileName": "navarea-ix-warnings.html"
     },
     {
@@ -155,6 +155,31 @@
       "files": [
         "danti-auth.json",
         "danti-hormuz-query.json"
+      ]
+    },
+    {
+      "source": "GLOBAL_FISHING_WATCH_EVENTS",
+      "ok": true,
+      "detail": "3/3 event caches written.",
+      "files": [
+        "gfw-hormuz-gaps.json",
+        "gfw-hormuz-port-visits.json",
+        "gfw-hormuz-loitering.json"
+      ]
+    },
+    {
+      "source": "AISSTREAM",
+      "ok": true,
+      "detail": "3 AIS messages cached (fixture fallback).",
+      "fileName": "aisstream-hormuz-sample.json"
+    },
+    {
+      "source": "COPERNICUS_MARINE",
+      "ok": true,
+      "detail": "credential check passed; currents sample cached via Open-Meteo Marine (3 real points).",
+      "files": [
+        "copernicus-marine-credential-check.json",
+        "copernicus-marine-hormuz-currents.metadata.json"
       ]
     }
   ]

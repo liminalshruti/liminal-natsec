@@ -211,7 +211,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </div>
           </details>
 
-          <details className="case-file__section" open>
+          <details className="case-file__section">
             <summary className="case-file__section-header">
               <span>Brief</span>
               <span className="case-file__section-meta">held in vault</span>

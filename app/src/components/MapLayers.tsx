@@ -18,6 +18,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import { useDraggable } from "../lib/useDraggable.ts";
 import gfwGaps from "../../../fixtures/maritime/live-cache/gfw-hormuz-gaps.json" with { type: "json" };
 import gfwLoitering from "../../../fixtures/maritime/live-cache/gfw-hormuz-loitering.json" with { type: "json" };
 import gfwPortVisits from "../../../fixtures/maritime/live-cache/gfw-hormuz-port-visits.json" with { type: "json" };
@@ -126,11 +127,15 @@ export function MapLayers() {
   }
 
   const expandedLayer = expanded ? layers.find((l) => l.key === expanded) : null;
+  const { style, handleProps } = useDraggable();
 
   return (
-    <div className="map-layers" role="region" aria-label="Map layers">
+    <div className="map-layers" role="region" aria-label="Map layers" style={style}>
       <div className="map-layers__strip">
-        <span className="map-layers__strip-label">LAYERS</span>
+        <span className="map-layers__strip-label" {...handleProps}>
+          <span className="map-layers__grip" aria-hidden>⋮⋮</span>
+          LAYERS
+        </span>
         {layers.map((l) => {
           const isOn = active.has(l.key);
           const isExpanded = expanded === l.key;

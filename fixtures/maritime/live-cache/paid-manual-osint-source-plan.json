@@ -1,0 +1,54 @@
+{
+  "source": "PAID_MANUAL_OSINT_PLAN",
+  "generated_at": "2026-05-03T14:07:24.325Z",
+  "records": [
+    {
+      "source": "SPIRE_MARITIME",
+      "status": "credentials_or_export_required",
+      "desired_data": "Historical AIS position, static vessel, dark activity, port events for REGIONAL_BBOX over the past 72h+.",
+      "why_it_matters": "Best available route to real vessel behavior and dark-gap validation."
+    },
+    {
+      "source": "EXACTEARTH",
+      "status": "credentials_or_export_required",
+      "desired_data": "Satellite AIS history and static vessel identity for Hormuz/Gulf of Oman.",
+      "why_it_matters": "Corroborates AISstream/GFW where terrestrial AIS is sparse or delayed."
+    },
+    {
+      "source": "MARINETRAFFIC_OR_VESSELFINDER",
+      "status": "manual_export_or_paid_api_required",
+      "desired_data": "Vessel tracks, port calls, arrival/departure events, fleet lists for Bandar Abbas, Fujairah, Khor Fakkan, Sohar.",
+      "why_it_matters": "Commercial AIS history for demo-grade vessel movement, if licensing allows caching."
+    },
+    {
+      "source": "KPLER_OR_SIGNAL_OCEAN",
+      "status": "credentials_or_export_required",
+      "desired_data": "Cargo, tanker flows, oil/LNG load status, shadow fleet indicators, fixture/charter context.",
+      "why_it_matters": "Turns regional disruption into supply-chain and energy-flow impact analysis."
+    },
+    {
+      "source": "EQUASIS",
+      "status": "manual_login_export_required",
+      "desired_data": "Ownership, management, class, insurer, safety/PSC fields for vessels of interest.",
+      "why_it_matters": "Ownership/management chain for entity risk and sanctions enrichment."
+    },
+    {
+      "source": "IMO_GISIS",
+      "status": "manual_login_export_required",
+      "desired_data": "IMO number, ship particulars, company/registered owner fields, casualty/security circular references.",
+      "why_it_matters": "Primary registry-grade vessel identity reconciliation."
+    },
+    {
+      "source": "AISHUB",
+      "status": "deferred_by_user",
+      "desired_data": "Regional AIS feed/export if user later decides to onboard it.",
+      "why_it_matters": "Could improve free/low-cost live vessel behavior coverage, but current plan defers it."
+    },
+    {
+      "source": "ADS_B_EXCHANGE_OR_OPENSKY",
+      "status": "credentials_or_special_access_likely_required_for_history",
+      "desired_data": "ADS-B NACp/NIC history over Persian Gulf/Gulf of Oman for GNSS interference detection.",
+      "why_it_matters": "Independent RF/GNSS integrity context, not vessel behavior."
+    }
+  ]
+}

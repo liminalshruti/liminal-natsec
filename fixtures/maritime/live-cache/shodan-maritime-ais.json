@@ -1,6 +1,6 @@
 {
   "source": "SHODAN",
-  "generated_at": "2026-05-03T06:12:15.673Z",
+  "generated_at": "2026-05-03T13:58:30.561Z",
   "api": "internetdb",
   "request": {
     "base_url": "https://internetdb.shodan.io/{ip}",
@@ -23,7 +23,7 @@
     "status": 200,
     "statusText": "OK",
     "contentType": "application/json",
-    "bytes": 1432
+    "bytes": 1435
   },
   "body": {
     "total": 5,
@@ -49,7 +49,7 @@
           "self-signed"
         ],
         "maritime_context_hostname": "data.aishub.net",
-        "timestamp": "2026-05-03T06:12:15.673Z"
+        "timestamp": "2026-05-03T13:58:30.561Z"
       },
       {
         "ip_str": "144.76.105.244",
@@ -72,7 +72,7 @@
           "self-signed"
         ],
         "maritime_context_hostname": "www.aishub.net",
-        "timestamp": "2026-05-03T06:12:15.673Z"
+        "timestamp": "2026-05-03T13:58:30.561Z"
       },
       {
         "ip_str": "104.18.9.70",
@@ -102,13 +102,13 @@
           "cdn"
         ],
         "maritime_context_hostname": "www.marinetraffic.com",
-        "timestamp": "2026-05-03T06:12:15.673Z"
+        "timestamp": "2026-05-03T13:58:30.561Z"
       },
       {
-        "ip_str": "116.202.2.5",
+        "ip_str": "159.69.101.70",
         "hostnames": [
           "vesselfinder.com",
-          "gw3.vesselfinder.com"
+          "gw2.vesselfinder.com"
         ],
         "ports": [
           80,
@@ -120,10 +120,10 @@
         "vulns": [],
         "tags": [],
         "maritime_context_hostname": "www.vesselfinder.com",
-        "timestamp": "2026-05-03T06:12:15.673Z"
+        "timestamp": "2026-05-03T13:58:30.561Z"
       },
       {
-        "ip_str": "104.21.46.173",
+        "ip_str": "172.67.168.204",
         "hostnames": [
           "aprs.fi"
         ],
@@ -146,7 +146,7 @@
           "cdn"
         ],
         "maritime_context_hostname": "aprs.fi",
-        "timestamp": "2026-05-03T06:12:15.673Z"
+        "timestamp": "2026-05-03T13:58:30.561Z"
       }
     ],
     "lookups": [
@@ -199,34 +199,34 @@
       {
         "hostname": "www.vesselfinder.com",
         "resolved_ips": [
-          "116.202.2.5",
+          "159.69.101.70",
           "78.47.68.175",
           "88.99.127.255",
-          "159.69.101.70"
+          "116.202.2.5"
         ],
         "internetdb": [
           {
-            "ip": "116.202.2.5",
-            "url": "https://internetdb.shodan.io/116.202.2.5",
+            "ip": "159.69.101.70",
+            "url": "https://internetdb.shodan.io/159.69.101.70",
             "ok": true,
             "status": 200,
-            "bytes": 151
+            "bytes": 153
           }
         ]
       },
       {
         "hostname": "aprs.fi",
         "resolved_ips": [
-          "104.21.46.173",
-          "172.67.168.204"
+          "172.67.168.204",
+          "104.21.46.173"
         ],
         "internetdb": [
           {
-            "ip": "104.21.46.173",
-            "url": "https://internetdb.shodan.io/104.21.46.173",
+            "ip": "172.67.168.204",
+            "url": "https://internetdb.shodan.io/172.67.168.204",
             "ok": true,
             "status": 200,
-            "bytes": 155
+            "bytes": 156
           }
         ]
       }

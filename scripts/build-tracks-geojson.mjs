@@ -18,6 +18,40 @@ const { predict, isPointInsidePredictionEllipse } = await import(
 
 const ms = (iso) => Date.parse(iso);
 
+const HORMUZ_LON_OFFSET = 0.45;
+const HORMUZ_LAT_OFFSET = 0.72;
+const WATCH_BOX_NAME = "Hormuz Watch Box 01";
+const ALARA_EEZ_BBOX = [56.0, 26.35, 57.1, 26.85];
+
+function toHormuzPing(ping) {
+  return {
+    ...ping,
+    lat: Number((ping.lat + HORMUZ_LAT_OFFSET).toFixed(6)),
+    lon: Number((ping.lon + HORMUZ_LON_OFFSET).toFixed(6))
+  };
+}
+
+function toHormuzCoord([lon, lat]) {
+  return [
+    Number((lon + HORMUZ_LON_OFFSET).toFixed(6)),
+    Number((lat + HORMUZ_LAT_OFFSET).toFixed(6))
+  ];
+}
+
+function bboxPolygon([west, south, east, north]) {
+  return [[
+    [west, south],
+    [east, south],
+    [east, north],
+    [west, north],
+    [west, south]
+  ]];
+}
+
+function last(values) {
+  return values[values.length - 1];
+}
+
 // Canonical timestamps — single source of truth for the scenario.
 // Mirrors TECHNICAL_PLAN.md §14.3 + §14.9. Other fixtures should reference
 // these via metadata.canonical_timestamps when cross-checking.
@@ -49,7 +83,7 @@ const trackA_pings = [
   { iso: "2026-04-18T10:09:00Z", lat: 25.80728, lon: 55.77342 },
   { iso: "2026-04-18T10:12:04Z", lat: 25.8092,  lon: 55.8218,  sogKnots: 12.2, cogDeg: 83.9 },
   { iso: "2026-04-18T10:15:04Z", lat: 25.81112, lon: 55.87018, sogKnots: 12.4, cogDeg: 84.2 }
-];
+].map(toHormuzPing);
 
 // Track B post-gap: first ping anchored on observations.json; subsequent
 // pings extend along the AIS-reported course/speed.
@@ -57,7 +91,7 @@ const trackB_pings = [
   { iso: "2026-04-18T11:04:22Z", lat: 25.8191, lon: 56.36844, sogKnots: 12.0, cogDeg: 86.1 },
   { iso: "2026-04-18T11:09:22Z", lat: 25.8201, lon: 56.41    },
   { iso: "2026-04-18T11:14:22Z", lat: 25.821, lon: 56.455   }
-];
+].map(toHormuzPing);
 
 const gapSeconds = (ms(T.event1.gap_end_iso) - ms(T.event1.gap_start_iso)) / 1000;
 
@@ -112,17 +146,17 @@ const trackA2_pings = [
   { iso: "2026-04-18T12:08:00Z", lat: 25.828, lon: 55.87 },
   { iso: "2026-04-18T12:14:00Z", lat: 25.83, lon: 55.91 },
   { iso: "2026-04-18T12:20:00Z", lat: 25.832, lon: 55.957, sogKnots: 9.3, cogDeg: 77.4 }
-];
-const dantiPing = {
+].map(toHormuzPing);
+const dantiPing = toHormuzPing({
   iso: T.event2.danti_corroboration_iso,
   lat: 25.844,
   lon: 56.228
-};
+});
 const trackB2_pings = [
   { iso: "2026-04-18T13:05:00Z", lat: 25.849, lon: 56.342, sogKnots: 9.1, cogDeg: 78.2 },
   { iso: "2026-04-18T13:11:00Z", lat: 25.85, lon: 56.39 },
   { iso: "2026-04-18T13:17:00Z", lat: 25.851, lon: 56.44 }
-];
+].map(toHormuzPing);
 
 // --- Background traffic — 10 faint tracks scattered around the AOI ---------
 
@@ -137,7 +171,10 @@ const backgroundTracks = [
   { id: "bg:008", coords: [[55.67, 25.64], [55.9, 25.67], [56.16, 25.69]] },
   { id: "bg:009", coords: [[56.57, 25.85], [56.36, 25.87], [56.14, 25.88]] },
   { id: "bg:010", coords: [[55.8, 25.92], [55.95, 25.97], [56.11, 26.01]] }
-];
+].map((track) => ({
+  ...track,
+  coords: track.coords.map(toHormuzCoord)
+}));
 
 // --- Build the FeatureCollection -------------------------------------------
 
@@ -150,18 +187,12 @@ features.push({
   properties: {
     kind: "monitored_zone",
     aoi_id: "aoi:alara-eez-box-01",
-    name: "Alara EEZ Box 01",
+    name: WATCH_BOX_NAME,
     phase_min: 1
   },
   geometry: {
     type: "Polygon",
-    coordinates: [[
-      [55.55, 25.63],
-      [56.65, 25.63],
-      [56.65, 26.13],
-      [55.55, 26.13],
-      [55.55, 25.63]
-    ]]
+    coordinates: bboxPolygon(ALARA_EEZ_BBOX)
   }
 });
 
@@ -442,24 +473,24 @@ const fc = {
     schema_version: "seaforge.tracks.v1",
     aoi: {
       aoi_id: "aoi:alara-eez-box-01",
-      name: "Alara EEZ Box 01",
-      bbox: [55.55, 25.63, 56.65, 26.13]
+      name: WATCH_BOX_NAME,
+      bbox: ALARA_EEZ_BBOX
     },
     canonical_timestamps: T,
     canonical_pings: {
       event_1: {
         track_a_last:  { mmsi: "366700111", iso: T.event1.track_a_last_iso,
-                         lat: 25.81112, lon: 55.87018 },
+                         lat: last(trackA_pings).lat, lon: last(trackA_pings).lon },
         track_b_first: { mmsi: "538009771", iso: T.event1.track_b_first_iso,
-                         lat: 25.8191, lon: 56.36844 }
+                         lat: trackB_pings[0].lat, lon: trackB_pings[0].lon }
       },
       event_2: {
         track_a2_last:  { mmsi: "271990222", iso: T.event2.track_a2_last_iso,
-                          lat: 25.832, lon: 55.957 },
+                          lat: last(trackA2_pings).lat, lon: last(trackA2_pings).lon },
         danti:          { iso: T.event2.danti_corroboration_iso,
-                          lat: 25.844, lon: 56.228 },
+                          lat: dantiPing.lat, lon: dantiPing.lon },
         track_b2_first: { mmsi: "271990222", iso: T.event2.track_b2_reappear_iso,
-                          lat: 25.849, lon: 56.342 }
+                          lat: trackB2_pings[0].lat, lon: trackB2_pings[0].lon }
       }
     },
     kalman_event_1: {

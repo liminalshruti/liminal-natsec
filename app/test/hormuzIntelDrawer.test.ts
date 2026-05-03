@@ -24,11 +24,11 @@ describe("Hormuz intel drawer model", () => {
     );
   });
 
-  it("promotes fallback-backed blocked providers into usable drawer rows", () => {
+  it("keeps blocked providers and feed gaps explicit in drawer rows", () => {
     const model = buildHormuzIntelDrawerModel();
     const rows = model.groups.flatMap((group) => group.rows);
 
-    assert.equal(model.unavailableRows, 1);
+    assert.equal(model.unavailableRows, 2);
     assert.ok(
       rows.some(
         (row) =>
@@ -51,6 +51,14 @@ describe("Hormuz intel drawer model", () => {
           row.source === "GLOBAL_FISHING_WATCH" &&
           row.status === "available" &&
           row.summary.includes("identity/source corroboration only")
+      )
+    );
+    assert.ok(
+      rows.some(
+        (row) =>
+          row.source === "AISSTREAM" &&
+          row.status === "unavailable" &&
+          row.summary.includes("must not be used as Hormuz vessel behavior evidence")
       )
     );
   });

@@ -2,6 +2,7 @@ import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { eventIdFromCaseId } from "../lib/spineGraph.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
+import type { UiMode } from "../lib/uiModeStore.ts";
 import { CommandLine } from "./CommandLine.tsx";
 import type { ScenarioState as MapScenarioState } from "./MapWatchfloor.tsx";
 import { StageViewport } from "./StageViewport.tsx";
@@ -21,6 +22,9 @@ interface AppShellProps {
   resetSignal: number;
   onReset: (mode?: "soft" | "full") => void;
   resetToast: string | null;
+  uiMode: UiMode;
+  /** No-arg call toggles between "demo" and "live". */
+  onToggleUiMode: (next?: UiMode) => void;
 }
 
 export function AppShell({
@@ -33,11 +37,11 @@ export function AppShell({
   onMapScenarioChange,
   resetSignal,
   onReset,
-  resetToast
+  resetToast,
+  uiMode,
+  onToggleUiMode
 }: AppShellProps) {
   const eventId = eventIdFromCaseId(selectedCaseId);
-  const modeLabel = scenario?.state.mode === "real" ? "real cache" : "demo fixture";
-  const timestamp = scenario?.state.lastRefreshAt ?? scenario?.state.seededAt;
   // D1 focus state: which pane should the operator's eye land on first?
   // When a case is selected, the working panel is operationally hot — that's
   // the make-or-break beat surface. When no case is selected, the stage
@@ -48,7 +52,7 @@ export function AppShell({
     ? "working"
     : "stage";
   return (
-    <div className="app-shell" data-active-pane={activePane}>
+    <div className="app-shell" data-active-pane={activePane} data-ui-mode={uiMode}>
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
         <WorkflowStrip />
@@ -61,8 +65,7 @@ export function AppShell({
         />
         <div className="app-topbar__status">
           <SourceIndicator scenario={scenario} />
-          <span>{modeLabel}</span>
-          {timestamp && <span title={timestamp}>{formatShortTime(timestamp)}</span>}
+          <UiModeChip uiMode={uiMode} onToggle={onToggleUiMode} />
         </div>
       </header>
       <SubstratePanel
@@ -85,6 +88,7 @@ export function AppShell({
         selectedAlert={selectedAlert}
         scenarioState={scenario?.state ?? null}
         loading={!scenario}
+        uiMode={uiMode}
       />
       <CommandLine
         scenario={scenario}
@@ -93,6 +97,8 @@ export function AppShell({
         onReset={onReset}
         onSelectAlert={onSelectAlert}
         alerts={scenario?.state.alerts ?? []}
+        uiMode={uiMode}
+        onToggleUiMode={onToggleUiMode}
       />
       {resetToast && (
         <div className="reset-toast" role="status" aria-live="polite">
@@ -218,6 +224,38 @@ function Breadcrumb({
   );
 }
 
+/**
+ * Topbar chip that displays the current UI mode and toggles on click. Demo
+ * mode is the pitch register (handwritten phase prompts, ink coastline, four-
+ * layer empty stencil, named-operator card, stipple backdrop). Live mode
+ * strips that scaffolding while preserving every functional surface.
+ *
+ * Discoverable via three paths: this chip, /mode in the command line, and
+ * Ctrl+Shift+M.
+ */
+function UiModeChip({
+  uiMode,
+  onToggle
+}: {
+  uiMode: UiMode;
+  onToggle: (next?: UiMode) => void;
+}) {
+  const next: UiMode = uiMode === "demo" ? "live" : "demo";
+  return (
+    <button
+      type="button"
+      className="ui-mode-chip"
+      data-ui-mode={uiMode}
+      onClick={() => onToggle(next)}
+      title={`UI register: ${uiMode}. Click to switch to ${next}. (Ctrl+Shift+M)`}
+      aria-label={`UI mode: ${uiMode}; click to switch to ${next}`}
+    >
+      <span className="ui-mode-chip__dot" aria-hidden />
+      <span className="ui-mode-chip__label">{uiMode}</span>
+    </button>
+  );
+}
+
 function SourceIndicator({ scenario }: { scenario: LoadedScenario | null }) {
   if (!scenario) {
     return (
@@ -248,8 +286,3 @@ function SourceIndicator({ scenario }: { scenario: LoadedScenario | null }) {
   );
 }
 
-function formatShortTime(iso: string): string {
-  const date = new Date(iso);
-  if (Number.isNaN(date.getTime())) return iso;
-  return date.toISOString().slice(0, 16).replace("T", " ") + "Z";
-}

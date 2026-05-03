@@ -106,4 +106,20 @@ describe("Hormuz live-cache normalizer", () => {
       )
     );
   });
+
+  it("does not treat AISstream global fallback samples as Hormuz vessel evidence", () => {
+    const result = normalizer.normalizeHormuzIntel();
+    const aisRows = result.evidenceItems.filter(
+      (item: Record<string, unknown>) => item.source === "AISSTREAM"
+    );
+
+    assert.equal(aisRows.length, 1);
+    assert.equal(aisRows[0].title, "AISstream Hormuz feed gap");
+    assert.equal(aisRows[0].status, "unavailable");
+    assert.match(
+      String(aisRows[0].summary),
+      /must not be used as Hormuz vessel behavior evidence/
+    );
+    assert.doesNotMatch(JSON.stringify(aisRows), /inside the Hormuz regional feed/i);
+  });
 });

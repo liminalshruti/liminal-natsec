@@ -222,8 +222,11 @@ describe("map replay module — phase + clock gating", () => {
   });
 });
 
-describe("map layers — phase styling + selection emphasis", () => {
-  it("Track A line color shifts cyan → muted at phase >= 2", async (t) => {
+describe("map layers — phase styling on hero pings", () => {
+  it("Track A ping color shifts cyan → muted at phase >= 2", async (t) => {
+    // Track-shape line layers (hero-track-A/B, dark-gap, predicted-corridor,
+    // background-tracks, hero-selection-halo) were removed; vessel position
+    // and the anomaly-fired styling shift now read on the hero ping circles.
     if (
       skipIfMissing(
         t,
@@ -238,48 +241,23 @@ describe("map layers — phase styling + selection emphasis", () => {
 
     const phase1 = layers.buildLayers({ phase: 1 });
     const phase2 = layers.buildLayers({ phase: 2 });
-    const trackAPhase1 = phase1.find((l: any) => l.id === "layer:hero-track-A");
-    const trackAPhase2 = phase2.find((l: any) => l.id === "layer:hero-track-A");
+    const pingsPhase1 = phase1.find((l: any) => l.id === "layer:hero-pings");
+    const pingsPhase2 = phase2.find((l: any) => l.id === "layer:hero-pings");
 
-    assert.equal(trackAPhase1.paint["line-color"], tokens.COLORS.heroTrackANormal);
-    assert.equal(trackAPhase2.paint["line-color"], tokens.COLORS.heroTrackAWarned);
+    const colorPhase1 = JSON.stringify(pingsPhase1.paint["circle-color"]);
+    const colorPhase2 = JSON.stringify(pingsPhase2.paint["circle-color"]);
+    assert.ok(
+      colorPhase1.includes(tokens.COLORS.heroVesselNormal),
+      "Track A pings must use the normal color before the anomaly fires"
+    );
+    assert.ok(
+      colorPhase2.includes(tokens.COLORS.heroTrackAWarned),
+      "Track A pings must shift to the warned color once the anomaly fires"
+    );
     assert.notEqual(
-      trackAPhase1.paint["line-color"],
-      trackAPhase2.paint["line-color"],
-      "Track A must visually shift when the anomaly fires"
-    );
-  });
-
-  it("selecting a case adds a halo layer + dims background traffic", async (t) => {
-    if (skipIfMissing(t, ["app/src/map/layers.ts"], "map layers")) return;
-    const layers = await import(repoUrl("app/src/map/layers.ts").href);
-
-    const noSelection = layers.buildLayers({ phase: 3 });
-    const withSelection = layers.buildLayers({
-      phase: 3,
-      selectedCaseId: "case:alara-01:event-1"
-    });
-
-    const haloNoSelection = noSelection.find(
-      (l: any) => l.id === "layer:hero-selection-halo"
-    );
-    const haloWithSelection = withSelection.find(
-      (l: any) => l.id === "layer:hero-selection-halo"
-    );
-    assert.ok(haloNoSelection, "halo layer must exist (with no-match filter when nothing is selected)");
-    assert.ok(haloWithSelection, "halo layer must exist when a case is selected");
-
-    const haloFilter = JSON.stringify(haloWithSelection.filter);
-    assert.ok(
-      haloFilter.includes("case:alara-01:event-1"),
-      "halo filter must reference the selected case_id"
-    );
-
-    const bgNo = noSelection.find((l: any) => l.id === "layer:background-tracks");
-    const bgYes = withSelection.find((l: any) => l.id === "layer:background-tracks");
-    assert.ok(
-      bgYes.paint["line-opacity"] < bgNo.paint["line-opacity"],
-      "background traffic must dim when a case is selected"
+      colorPhase1,
+      colorPhase2,
+      "Track A ping styling must visually shift when the anomaly fires"
     );
   });
 });

@@ -12,8 +12,8 @@
         "observed_at": "2026-04-18T10:12:04Z",
         "mmsi": "366700111",
         "name": "MV CALDERA",
-        "lat": 25.8092,
-        "lon": 55.8218,
+        "lat": 26.5292,
+        "lon": 56.2718,
         "sog_knots": 12.2,
         "cog_deg": 83.9
       }
@@ -30,8 +30,8 @@
         "observed_at": "2026-04-18T10:15:04Z",
         "mmsi": "366700111",
         "name": "MV CALDERA",
-        "lat": 25.81112,
-        "lon": 55.87018,
+        "lat": 26.53112,
+        "lon": 56.32018,
         "sog_knots": 12.4,
         "cog_deg": 84.2
       }
@@ -48,8 +48,8 @@
         "observed_at": "2026-04-18T11:04:22Z",
         "mmsi": "538009771",
         "name": "CALDERA M",
-        "lat": 25.8191,
-        "lon": 56.36844,
+        "lat": 26.5391,
+        "lon": 56.81844,
         "sog_knots": 12,
         "cog_deg": 86.1
       }
@@ -66,8 +66,8 @@
         "observed_at": "2026-04-18T12:20:00Z",
         "mmsi": "271990222",
         "name": "MV HARBOR KITE",
-        "lat": 25.832,
-        "lon": 55.957,
+        "lat": 26.552,
+        "lon": 56.407,
         "sog_knots": 9.3,
         "cog_deg": 77.4
       }
@@ -82,8 +82,8 @@
         "source": "Danti fixture",
         "source_record_id": "danti:unknown:2026-04-18T12:52:00Z",
         "observed_at": "2026-04-18T12:52:00Z",
-        "lat": 25.844,
-        "lon": 56.228,
+        "lat": 26.564,
+        "lon": 56.678,
         "summary": "Fixture: vessel-sized detection in predicted corridor."
       }
     },
@@ -99,8 +99,8 @@
         "observed_at": "2026-04-18T13:05:00Z",
         "mmsi": "271990222",
         "name": "MV HARBOR KITE",
-        "lat": 25.849,
-        "lon": 56.342,
+        "lat": 26.569,
+        "lon": 56.792,
         "sog_knots": 9.1,
         "cog_deg": 78.2
       }

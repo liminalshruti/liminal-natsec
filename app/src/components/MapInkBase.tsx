@@ -80,8 +80,8 @@ const COASTLINES = [
 // Strait centerline — a dashed sea-lane indicator threading the chokepoint.
 // 24nm wide at narrowest; the centerline is the inbound TSS lane.
 const STRAIT_CENTERLINE = [
-  [55.0, 26.55], [55.5, 26.4], [56.05, 26.25], [56.35, 26.05],
-  [56.55, 25.85], [56.75, 25.85], [57.0, 25.85]
+  [55.65, 26.68], [55.95, 26.62], [56.25, 26.58], [56.46, 26.6],
+  [56.75, 26.56], [57.05, 26.48]
 ];
 
 function projectLon(lon: number, width: number): number {
@@ -181,8 +181,8 @@ export function MapInkBase() {
           UAE
         </text>
         <text
-          x={projectLon(56.05, W)}
-          y={projectLat(26.0, H)}
+          x={projectLon(56.46, W)}
+          y={projectLat(26.6, H)}
           className="map-ink-base__label map-ink-base__label--strait"
         >
           STRAIT OF HORMUZ

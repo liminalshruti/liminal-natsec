@@ -1,0 +1,308 @@
+{
+  "source": "UKMTO_PRODUCTS",
+  "generated_at": "2026-05-03T14:07:24.325Z",
+  "response": {
+    "ok": true,
+    "pages_ok": 7,
+    "pages_requested": 7
+  },
+  "records": [
+    {
+      "name": "home",
+      "url": "https://www.ukmto.org/",
+      "ok": true,
+      "status": 200,
+      "bytes": 34804,
+      "title": "UKMTO",
+      "matched_terms": [
+        "shipping",
+        "maritime"
+      ],
+      "links": [
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "View all incidents"
+        },
+        {
+          "url": "https://sccd.royalnavy.mod.uk/-/media/ukmto/charts/q6099_low-res_ed11_2025.pdf?rev=8cbe027613764370a3fec7976a7abe19&hash=C121A5BEFDE188DE15FD9AF3B54ACDA8",
+          "text": "Q6099_low res_Ed11_2025"
+        },
+        {
+          "url": "https://sccd.royalnavy.mod.uk/-/media/ukmto/bmp/bmp-ms_hi-res_s.pdf?rev=2c338d856b0b4c169364b96766b12b27&hash=8A19D49513D46613C44C7B51FC16F8D1",
+          "text": "BMP MS"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "View UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "UKMTO UKMTO Operations centre Who We Are? About us Trusted. Connected. Ready. For more than 25 years, the United Kingdom Maritime Trade Operations (UKMTO) Centre has been a trusted authority in the maritime security sector, helping protect crucial trade routes by providing mariners, shipping companies, and regional authorities with essential , verified and corroborated security information. UKMTO’s approach is and will always be, to support any mariner and maritime trade customer in the provision of information and reassurance. I n the Middle East and Indian Ocean Region, through the Single Information Framework (SIF) agreement, UKMTO collaborates with global maritime stakeholders to provide timely and validated security alerts. UKMTO operates a Voluntary Reporting Scheme (VRS) within the Voluntary Reporting Area (VRA) outlined in UKHO Maritime Security Chart Q6099. UKMTO acts as the primary point of contact for emergency response. About us reporting Report an incident UKMTO 24/7 +44 (0) 2392 222060 Genera",
+      "detail": "OK"
+    },
+    {
+      "name": "recent_incidents",
+      "url": "https://www.ukmto.org/recent-incidents",
+      "ok": true,
+      "status": 200,
+      "bytes": 11585,
+      "title": "Recent Incidents",
+      "matched_terms": [],
+      "links": [
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "Recent Incidents Recent Incidents 0 reports Filter Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions",
+      "detail": "OK"
+    },
+    {
+      "name": "warnings",
+      "url": "https://www.ukmto.org/ukmto-products/warnings",
+      "ok": true,
+      "status": 200,
+      "bytes": 12556,
+      "title": "Warnings",
+      "matched_terms": [
+        "maritime"
+      ],
+      "links": [
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "Warnings Warnings UKMTO produces a product termed as Warning. These warnings include Attack, Boarding, Hijack and other Maritime Security related incidents. These Warnings are published and sent to Industry in order to provide warning to Masters and CSO’s that an incident is taking place within the UKMTO Voluntary Report Area (VRA). Warnings Product list Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions",
+      "detail": "OK"
+    },
+    {
+      "name": "advisories",
+      "url": "https://www.ukmto.org/ukmto-products/advisories",
+      "ok": true,
+      "status": 200,
+      "bytes": 12888,
+      "title": "Advisories",
+      "matched_terms": [
+        "ais",
+        "vessel"
+      ],
+      "links": [
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "Advisories Advisories UKMTO produces a product termed an Advisory. An Advisory is a security related report received from a vessel within the Voluntary Reporting Area (VRA) which do not meet the BMP criteria for raising a report. These reports of suspicious or unusual activity, or patterns of behaviour within the VRA are received from any source including a ships master, a member of the crew, embarked Private Security Team (PST), a vessel&rsquo;s Company Security Officer or a Security Company. Advisories Product List Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions",
+      "detail": "OK"
+    },
+    {
+      "name": "jmic_products",
+      "url": "https://www.ukmto.org/partner-products/jmic-products",
+      "ok": true,
+      "status": 200,
+      "bytes": 19897,
+      "title": " JMIC Products",
+      "matched_terms": [
+        "maritime"
+      ],
+      "links": [
+        {
+          "url": "https://sccd.royalnavy.mod.uk/-/media/ukmto/partner-products/jmic-flyer-aug-2025.pdf?rev=e496e07a3da342b8bb89f268f21ad9a9",
+          "text": "View"
+        },
+        {
+          "url": "https://sccd.royalnavy.mod.uk/-/media/ukmto/partner-products/jmic-bridge-emergency-reference-cards---middle-east---digital---rev20dec2024.pdf?rev=c496f5a149b9480ab4cc13d8a1da4c06",
+          "text": ""
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products/jmic-products/infonotes",
+          "text": "View more"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products/jmic-products/weekly-dashboard",
+          "text": "View more"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products/jmic-products/jmic-monthly-statistics",
+          "text": "View more"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products/jmic-products/jmic-advisories",
+          "text": "View"
+        },
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "JMIC Products JMIC products Joint Maritime Information Center Products JMIC Flyer About the Joint Maritime Information Center (JMIC) View JMIC Bridge Emergency Reference Card Bridge Emergency Reference Cards Middle East JMIC Info Notes Disclaimer: JMIC Info Notes established 15 February 2024; no Info Notes made for incidents prior to this date View more JMIC Weekly Dashboard Disclaimer: JMIC Weekly Dashboards established 18 February 2024; no Weekly Dashboards made prior to this date View more JMIC Monthly Statistics Disclaimer: JMIC Monthly Statistics established October 2024 after 1 year of information gathered; no statistic reports prior to this date View more JMIC Advisories Disclaimer: JMIC Advisories established 7 August 2024; no advisories made prior to this date View Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (",
+      "detail": "OK"
+    },
+    {
+      "name": "cmf_products",
+      "url": "https://www.ukmto.org/partner-products/cmf-products",
+      "ok": true,
+      "status": 200,
+      "bytes": 14798,
+      "title": "CMF Products",
+      "matched_terms": [
+        "maritime"
+      ],
+      "links": [
+        {
+          "url": "https://sccd.royalnavy.mod.uk/-/media/ukmto/partner-products/cmf/irta_mar-24.pdf?rev=f68a15866ace44c7ab3859b0b54ceb22",
+          "text": "View or download"
+        },
+        {
+          "url": "https://sccd.royalnavy.mod.uk/-/media/ukmto/partner-products/cmf/20240514industryreleasablethreatbulletin043.pdf?rev=36b64b4cb45c4c8a9ca848cf0a193bee",
+          "text": "View or download"
+        },
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "CMF Products CMF Products Combined Maritime Forces 2025 - CMF IRTA CMF Products 2024 - CMF IRTA/IRTB CMF Products Explore Combined Maritime Forces (CMF) Products View or download May 14/05/2024 - 14/05/2024 View or download Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions",
+      "detail": "OK"
+    },
+    {
+      "name": "industry_products",
+      "url": "https://www.ukmto.org/partner-products/industry",
+      "ok": true,
+      "status": 200,
+      "bytes": 11943,
+      "title": "Industry",
+      "matched_terms": [
+        "shipping"
+      ],
+      "links": [
+        {
+          "url": "https://www.ukmto.org/recent-incidents",
+          "text": "Recent Incidents"
+        },
+        {
+          "url": "https://www.ukmto.org/ukmto-products",
+          "text": "UKMTO Products"
+        },
+        {
+          "url": "https://www.ukmto.org/partner-products",
+          "text": "Partner Products"
+        }
+      ],
+      "text_excerpt": "Industry Industry Industry Guidance for Shipping Products Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions",
+      "detail": "OK"
+    }
+  ],
+  "analysis": {
+    "term_hits": {
+      "shipping": 2,
+      "maritime": 4,
+      "ais": 1,
+      "vessel": 1
+    },
+    "relevant_pages": [
+      {
+        "name": "home",
+        "url": "https://www.ukmto.org/",
+        "matched_terms": [
+          "shipping",
+          "maritime"
+        ],
+        "excerpt": "UKMTO UKMTO Operations centre Who We Are? About us Trusted. Connected. Ready. For more than 25 years, the United Kingdom Maritime Trade Operations (UKMTO) Centre has been a trusted authority in the maritime security sector, helping protect crucial trade routes by providing mariners, shipping companies, and regional authorities with essential , verified and corroborated security information. UKMTO’s approach is and will always be, to support any mariner and maritime trade customer in the provision of information and reassurance. I n the Middle East and Indian Ocean Region, through the Single Information Framework (SIF) agreement, UKMTO collaborates with global maritime stakeholders to provide timely and validated security alerts. UKMTO operates a Voluntary Reporting Scheme (VRS) within the Voluntary Reporting Area (VRA) outlined in UKHO Maritime Security Chart Q6099. UKMTO acts as the primary point of contact for emergency response. About us reporting Report an incident UKMTO 24/7 +44 (0) 2392 222060 Genera"
+      },
+      {
+        "name": "warnings",
+        "url": "https://www.ukmto.org/ukmto-products/warnings",
+        "matched_terms": [
+          "maritime"
+        ],
+        "excerpt": "Warnings Warnings UKMTO produces a product termed as Warning. These warnings include Attack, Boarding, Hijack and other Maritime Security related incidents. These Warnings are published and sent to Industry in order to provide warning to Masters and CSO’s that an incident is taking place within the UKMTO Voluntary Report Area (VRA). Warnings Product list Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions"
+      },
+      {
+        "name": "advisories",
+        "url": "https://www.ukmto.org/ukmto-products/advisories",
+        "matched_terms": [
+          "ais",
+          "vessel"
+        ],
+        "excerpt": "Advisories Advisories UKMTO produces a product termed an Advisory. An Advisory is a security related report received from a vessel within the Voluntary Reporting Area (VRA) which do not meet the BMP criteria for raising a report. These reports of suspicious or unusual activity, or patterns of behaviour within the VRA are received from any source including a ships master, a member of the crew, embarked Private Security Team (PST), a vessel&rsquo;s Company Security Officer or a Security Company. Advisories Product List Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions"
+      },
+      {
+        "name": "jmic_products",
+        "url": "https://www.ukmto.org/partner-products/jmic-products",
+        "matched_terms": [
+          "maritime"
+        ],
+        "excerpt": "JMIC Products JMIC products Joint Maritime Information Center Products JMIC Flyer About the Joint Maritime Information Center (JMIC) View JMIC Bridge Emergency Reference Card Bridge Emergency Reference Cards Middle East JMIC Info Notes Disclaimer: JMIC Info Notes established 15 February 2024; no Info Notes made for incidents prior to this date View more JMIC Weekly Dashboard Disclaimer: JMIC Weekly Dashboards established 18 February 2024; no Weekly Dashboards made prior to this date View more JMIC Monthly Statistics Disclaimer: JMIC Monthly Statistics established October 2024 after 1 year of information gathered; no statistic reports prior to this date View more JMIC Advisories Disclaimer: JMIC Advisories established 7 August 2024; no advisories made prior to this date View Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 ("
+      },
+      {
+        "name": "cmf_products",
+        "url": "https://www.ukmto.org/partner-products/cmf-products",
+        "matched_terms": [
+          "maritime"
+        ],
+        "excerpt": "CMF Products CMF Products Combined Maritime Forces 2025 - CMF IRTA CMF Products 2024 - CMF IRTA/IRTB CMF Products Explore Combined Maritime Forces (CMF) Products View or download May 14/05/2024 - 14/05/2024 View or download Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions"
+      },
+      {
+        "name": "industry_products",
+        "url": "https://www.ukmto.org/partner-products/industry",
+        "matched_terms": [
+          "shipping"
+        ],
+        "excerpt": "Industry Industry Industry Guidance for Shipping Products Home About us Recent Incidents UKMTO Products Partner Products Reporting Formats Best Practices Contact us Email: [email&#160;protected] Phone: +44 (0) 2392 222065 Emergency Email: [email&#160;protected] Emergency Phone: +44 (0) 2392 222060 © Crown copyright Terms & Conditions"
+      }
+    ]
+  }
+}

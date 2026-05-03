@@ -1,0 +1,1926 @@
+{
+  "source": "OFAC_SANCTIONS",
+  "generated_at": "2026-05-03T14:07:24.325Z",
+  "request": {
+    "note": "Filtered official OFAC CSV downloads for maritime/Iran/Hormuz-relevant rows. Full CSV is not stored here."
+  },
+  "response": {
+    "ok": true,
+    "datasets_ok": 2,
+    "datasets_requested": 2
+  },
+  "records": [
+    {
+      "name": "sdn",
+      "url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+      "ok": true,
+      "status": 200,
+      "bytes": 5525098,
+      "sha256": "19358a11db50caab5523a55bee948e714587dd0ade98677756a9afe35a57eb72",
+      "total_lines": 18928,
+      "match_count": 250,
+      "matches": [
+        {
+          "raw_csv": "1571,\"NORDSTRAND MARITIME AND TRADING COMPANY\",-0- ,\"CUBA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "maritime"
+          ]
+        },
+        {
+          "raw_csv": "4238,\"MAR AZUL\",\"vessel\",\"CUBA\",-0- ,\"CL2192\",\"Tug\",-0- ,\"212\",\"Cuba\",\"Samir de Navegacion S.A.\",-0- ",
+          "matched_terms": [
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "4243,\"EBANO\",\"vessel\",\"CUBA\",-0- ,-0- ,\"General Cargo\",\"2595\",\"1865\",\"Panama\",-0- ,\"Vessel Registration Identification IMO 7406784; f.k.a. 'ANA I'; f.k.a. 'SAND SWAN'.\"",
+          "matched_terms": [
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "4249,\"TIFON\",\"vessel\",\"CUBA\",-0- ,\"CL2059\",\"Tug\",-0- ,\"189\",\"Cuba\",-0- ,\"Vessel Registration Identification IMO 7206512.\"",
+          "matched_terms": [
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "4632,\"BANK MARKAZI JOMHOURI ISLAMI IRAN\",-0- ,\"IRAN] [SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Digital Currency Address - TRX TNiq9AXBp9EjUqhDhrwrfvAA8U3GUQZH81; alt. Digital Currency Address - TRX TTiDLWE6fZK8okMJv6ijg42yrH6W2pjSr9; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: HIZBALLAH.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "4633,\"BANK MASKAN\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.bank-maskan.ir; Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "4635,\"BANK REFAH KARGARAN\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.bankrefah.ir; alt. Website www.refah-bank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "4639,\"BANK KESHAVARZI IRAN\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.agri-bank.com; alt. Website www.bki.ir; Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "4642,\"BANK SADERAT PLC\",-0- ,\"IRAN] [SDGT] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; UK Company Number 01126618 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "7728,\"MANCO OIL COMPANY\",-0- ,\"BALKANS\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "7875,\"AL-UBAIDI, Amir Rashid Muhammad\",\"individual\",\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1939; POB Baghdad, Iraq; nationality Iraq; Minister of Oil.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "8294,\"RUPRAH, Sanjivan Singh\",\"individual\",\"DRCONGO\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 09 Aug 1966; POB Kisumu, Kenya; nationality Kenya; Passport D-001829-00 (Liberia); alt. Passport 790015037 (United Kingdom) issued 10 Jul 1998 expires 10 Jul 2008; Businessman; Former Deputy Commissioner, Bureau of Maritime Affairs of Liberia; a.k.a. 'NASR, Samir M.'.\"",
+          "matched_terms": [
+            "maritime"
+          ]
+        },
+        {
+          "raw_csv": "8341,\"ARAB PETROLEUM ENGINEERING COMPANY LTD\",-0- ,\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "8354,\"BAROON SHIPPING COMPANY LIMITED\",-0- ,\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "8393,\"ORIENT SHIPPING LIMITED\",-0- ,\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "8394,\"PANDORA SHIPPING CO. S.A.\",-0- ,\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "8411,\"TRADING & MARITIME INVESTMENTS\",-0- ,\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "maritime"
+          ]
+        },
+        {
+          "raw_csv": "8415,\"WHALE SHIPPING LTD.\",-0- ,\"IRAQ2\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "9348,\"AEROSPACE INDUSTRIES ORGANIZATION\",-0- ,\"NPWMD] [IFSR] [IRAN-CON-ARMS-EO\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. 'AIO'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "9390,\"ALTAMIRANO LOPEZ, Hector\",\"individual\",\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 18 Feb 1975; POB Baja California, Mexico; C.U.R.P. AALH750218HBCLPC02 (Mexico).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "9411,\"CARRASCO MIRANDA, Willebaldo\",\"individual\",\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 06 Oct 1958; POB Chihuahua, Chihuahua, Mexico; nationality Mexico; citizen Mexico; C.U.R.P. CAMW581006HCHRRL00 (Mexico).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "9529,\"CHARIAPAPORN, Hiran\",\"individual\",\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 03 Jan 1950; National ID No. 310062394060 (Thailand).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "9754,\"NAWAY, Haji Ali\",\"individual\",\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1945; alt. DOB circa 1950; POB Sistan Va Baluchistan, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10153,\"DEFENSE INDUSTRIES ORGANIZATION\",-0- ,\"NPWMD] [IFSR] [IRAN-CON-ARMS-EO\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. 'SASADJA'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10368,\"BANK SADERAT IRAN\",-0- ,\"IRAN] [SDGT] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10391,\"ISLAMIC REVOLUTIONARY GUARD CORPS\",-0- ,\"FTO] [SDGT] [NPWMD] [IRGC] [IFSR] [IRAN-HR] [HRIT-IR] [ELECTION-EO13848\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10392,\"MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS\",-0- ,\"SDGT] [NPWMD] [IFSR] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: See Section 11 of Executive Order 14024.; alt. Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ROSOBORONEKSPORT OAO.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10465,\"ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE\",-0- ,\"FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR] [ELECTION-EO13848\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10479,\"REZAIE, Morteza\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1956; nationality Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10480,\"AHMADIAN, Ali Akbar\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1961; POB Kerman, Iran; nationality Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10481,\"SOLEIMANI, Qasem\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 11 Mar 1957; POB Qom, Iran; nationality Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Diplomatic Passport 008827 (Iran) issued 1999.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10483,\"HEJAZI, Mohammad\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1959; nationality Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10485,\"AL-SHEIBANI, Abu Mustafa\",\"individual\",\"IRAQ3\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1959; alt. DOB circa 1960; POB Nasiriyah, Iraq; citizen Iran; alt. citizen Iraq; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10489,\"ORIENTAL OIL KISH\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10581,\"BAHMANYAR, Bahmanyar Morteza\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 31 Dec 1952; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport I0005159 (Iran); alt. Passport 10005159 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10582,\"DASTJERDI, Ahmad Vahid\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 15 Jan 1954; Additional Sanctions Information - Subject to Secondary Sanctions; Diplomatic Passport A0002987 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10583,\"ESMAELI, Reza-Gholi\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 03 Apr 1961; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport A0002302 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10584,\"SALIMI, Hosein\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",\"Commander-in-Chief of the Islamic Revolutionary Guard Corps\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1960; POB Golpayegan, Isfahan province, Iran; nationality Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport D08531177 (Iran); Commander-in-Chief of the Islamic Revolutionary Guard Corps.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10609,\"MALEKI, Naser\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1960; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport A0003039 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10659,\"FORUZANDEH, Ahmed\",\"individual\",\"SDGT] [IRAQ3] [IRGC\",\"Brigadier General, Commanding Officer of the Iranian Islamic Revolutionary Guard Corps-Qods Force Ramazan Corps; Deputy Commander of the Ramazan Headquarters; Chief of Staff of the Iraq Crisis Staff\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1960; alt. DOB 1957; alt. DOB circa 1955; alt. DOB circa 1958; alt. DOB circa 1959; alt. DOB circa 1961; alt. DOB circa 1962; alt. DOB circa 1963; POB Kermanshah, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Brigadier General, Commanding Officer of the Iranian Islamic Revolutionary Guard Corps-Qods Force Ramazan Corps; Deputy Commander of the Ramazan Headquarters; Chief of Staff of the Iraq Crisis Staff; a.k.a. 'JAFARI'; a.k.a. 'ABU SHAHAB'; a.k.a. 'ABU AHMAD ISHAB'.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "10762,\"BELARUSIAN OIL TRADE HOUSE\",-0- ,\"BELARUS\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website WWW.BNTDTORG.BY; alt. Website WWW.BNTD.BY; Business Registration Document # UNP 101119568 (Belarus); a.k.a. 'B.O.T.H.'; a.k.a. 'UNITED TRADING SITE'.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "10853,\"LAVILLA, Ruben Pestano, Jr.\",\"individual\",\"SDGT\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 04 Oct 1972; POB Sitio Banga Maiti, Barangay Tranghawan, Lambunao, Iloilo Province, Philippines; nationality Philippines; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "10856,\"HOJATI, Mohsen\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 28 Sep 1955; POB Najafabad, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport G4506013 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10857,\"KETABACHI, Mehrdada Akhlaghi\",\"individual\",\"NPWMD] [IFSR] [IRAN-CON-ARMS-EO\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 10 Sep 1958; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport A0030940 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "10860,\"SAFAVI, Yahya Rahim\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1952; POB Esfahan, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "11181,\"IRAN COMMUNICATION INDUSTRIES\",-0- ,\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11184,\"IRAN ELECTRONICS INDUSTRIES\",-0- ,\"NPWMD] [IFSR] [IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.ieimil.ir; alt. Website www.ieicorp.com; Additional Sanctions Information - Subject to Secondary Sanctions; Business Registration Document # 829; a.k.a. 'IEI'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11195,\"IRAN AIRCRAFT MANUFACTURING INDUSTRIAL COMPANY\",-0- ,\"NPWMD] [IFSR] [IRAN-CON-ARMS-EO\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; National ID No. 10100722073 (Iran); Registration Number 26740 (Iran); a.k.a. 'HESA'; a.k.a. 'HTC'; a.k.a. 'IAMI'; a.k.a. 'IAMCO'; a.k.a. 'HAVA PEYMA SAZI-E IRAN'; a.k.a. 'HAVAPEYMA SAZI IRAN'; a.k.a. 'HAVAPEYMA SAZHRAN'; a.k.a. 'HEVAPEIMASAZI'; a.k.a. 'SHAHIN CO.'; a.k.a. 'FTP CO.'; Linked To: MINISTRY OF DEFENSE AND ARMED FORCES LOGISTICS; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11317,\"NATIONAL IRANIAN OIL COMPANY\",-0- ,\"IRAN] [SDGT] [IFSR] [IFCA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.nioc.ir; IFCA Determination - Involved in Energy Sector; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; all offices worldwide; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: MINISTRY OF PETROLEUM.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "11318,\"NAFTIRAN INTERTRADE CO. LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide; a.k.a. 'NICO'; Linked To: NIOC INTERNATIONAL AFFAIRS (LONDON) LIMITED.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11319,\"NAFTIRAN INTERTRADE CO. SARL\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide; a.k.a. 'NICO'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11461,\"AL-MUHANDIS, Abu Mahdi\",\"individual\",\"IRAQ3\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1953; POB Ma'ghal, Basrah, Iraq; nationality Iraq; citizen Iran; alt. citizen Iraq; Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. 'AL-IBRAHIMI, Jamal Fa'far 'Ali'; a.k.a. 'AL-TAMIMI, Jamal al-Madan'; a.k.a. 'MOHAMMED, Jamal Jaafar'; a.k.a. 'JAAFAR, Jaafar Jamal'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11607,\"IRANIAN MINES AND MINING INDUSTRIES DEVELOPMENT AND RENOVATION ORGANIZATION\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "11608,\"ASCOTEC HOLDING GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 26136 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11609,\"ASCOTEC JAPAN K.K.\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11610,\"METAL & MINERAL TRADE S.A.R.L.\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID B 59411 (Luxembourg); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11611,\"IRASCO S.R.L.\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID GE 348075 (Italy); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11612,\"MINES AND METALS ENGINEERING GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 34095 (Germany); all offices worldwide; a.k.a. 'M.M.E.'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11613,\"ASCOTEC STEEL TRADING GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 48319 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11614,\"ASCOTEC MINERAL & MACHINERY GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 55668 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11615,\"ASCOTEC SCIENCE & TECHNOLOGY GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 58745 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11616,\"BREYELLER STAHL TECHNOLOGY GMBH & CO. KG\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRA 4528 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11618,\"NATIONAL PETROCHEMICAL COMPANY\",-0- ,\"IRAN] [SDGT] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 9614 (Iran); all offices worldwide; a.k.a. 'NPC'; a.k.a. 'NIPC'; Linked To: MINISTRY OF PETROLEUM.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11619,\"IRAN PETROCHEMICAL COMMERCIAL COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide; a.k.a. 'IPCC'; a.k.a. 'PCC'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11620,\"NPC INTERNATIONAL\",-0- ,\"IRAN] [NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.nipc.net; Additional Sanctions Information - Subject to Secondary Sanctions; Registration Number 02696754 (United Kingdom); all offices worldwide; Linked To: PERSIAN GULF PETROCHEMICAL INDUSTRY CO.\"",
+          "matched_terms": [
+            "persian gulf",
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11621,\"INTRA CHEM TRADING GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB48416 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11622,\"PETROCHEMICAL COMMERCIAL COMPANY INTERNATIONAL\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID 77283 (Jersey); all offices worldwide; a.k.a. 'PCCI'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11623,\"P.C.C. (SINGAPORE) PRIVATE LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID 199708410K (Singapore); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11625,\"PETROCHEMICAL COMMERCIAL COMPANY FZE\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11626,\"PETROCHEMICAL COMMERCIAL COMPANY (U.K.) LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 02647333 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11627,\"IRAN FOREIGN INVESTMENT COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11628,\"IFIC HOLDING AG\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 48032 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11629,\"IHAG TRADING GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 37918 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11630,\"NATIONAL IRANIAN OIL COMPANY PTE LTD\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID 199004388C (Singapore); all offices worldwide.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "11631,\"IRAN INSURANCE COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11632,\"BIMEH IRAN INSURANCE COMPANY (U.K.) LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 01223433 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11633,\"PETROPARS LTD.\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide; a.k.a. 'PPL'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11634,\"PETROPARS INTERNATIONAL FZE\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11635,\"PETROPARS UK LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 03503060 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11636,\"KALA LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 01517853 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11637,\"KALA PENSION TRUST LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 01573317 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11638,\"IRANIAN OIL COMPANY (U.K.) LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 01019769 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "11639,\"NIOC INTERNATIONAL AFFAIRS (LONDON) LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 02772297 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11640,\"NAFTIRAN TRADING SERVICES CO. (NTS) LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; UK Company Number 02600121 (United Kingdom); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11641,\"PETROIRAN DEVELOPMENT COMPANY (PEDCO) LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID 67493 (Jersey); all offices worldwide; a.k.a. 'PEDCO'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11642,\"NICO ENGINEERING LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID 75797 (Jersey); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11643,\"INDUSTRIAL DEVELOPMENT AND RENOVATION ORGANIZATION OF IRAN\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11644,\"MACHINE SAZI ARAK CO. LTD.\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide; a.k.a. 'MSA'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11645,\"WEST SUN TRADE GMBH\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID HRB 45757 (Germany); all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "11786,\"QASEMI, Rostam\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 22 May 1964; POB Lamerd, Iran; nationality Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport A2463775 (Iran); National ID No. 6579726970 (Iran); Linked To: SOLEIMANI, Qasem; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12028,\"ONERBANK ZAO\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC HNRBBY2X; Registration ID 807000227 (Belarus) issued 16 Oct 2009; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12032,\"MSP KALA NAFT CO. TEHRAN\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12057,\"NAQDI, Mohammad Reza\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR] [IRAN-HR] [IRAN-EO13876\",\"Brigadier General and Commander of the IRGC Basij Resistance Force; President of the Organization of the Basij of the Oppressed; Chief of the Mobilization of the Oppressed Organization\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1951 to 1953; alt. DOB 1960 to 1962; alt. DOB Apr 1961; alt. DOB 1953; POB Najaf, Iraq; alt. POB Tehran, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Brigadier General and Commander of the IRGC Basij Resistance Force; President of the Organization of the Basij of the Oppressed; Chief of the Mobilization of the Oppressed Organization; Head of the Basij.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12059,\"SEPANIR OIL AND GAS ENGINEERING COMPANY\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12060,\"VAHIDI, Ahmad\",\"individual\",\"NPWMD] [IFSR] [IRAN-HR\",\"Brigadier General\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 27 Jun 1958; POB Shiraz, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Brigadier General.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12066,\"JAFARI, Mohammad Ali\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR] [IRAN-HR\",\"Commander-in-Chief, Islamic Revolutionary Guard Corps; Commander, Islamic Revolutionary Guard Corps; Major General; Brigadier Commander\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 01 Sep 1957; POB Yazd, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Commander-in-Chief, Islamic Revolutionary Guard Corps; Commander, Islamic Revolutionary Guard Corps; Major General; Brigadier Commander; a.k.a. 'JA'FARI, Aziz'.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12081,\"MAHAB GHODSS CONSULTING ENGINEERING COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Registration ID 48962 (Iran) issued 1983; all offices worldwide.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12111,\"IRANIAN MINISTRY OF INTELLIGENCE AND SECURITY\",-0- ,\"SDGT] [IFSR] [IRAN-HR] [HRIT-IR] [CYBER2] [HOSTAGES-EO14078\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Target Type Government Entity; a.k.a. 'MOIS'; a.k.a. 'VEVAK'.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "12112,\"MUSAVI, Hossein\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 23 Oct 1960; POB Neishabour, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport A0016662 (Iran) issued 29 Oct 2002.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12113,\"MORTEZAVI, Hasan\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 23 Aug 1964; POB Ghazvin, Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport D9019576 (Iran); a.k.a. 'ALI, Hassan'.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12114,\"ZAHEDI, Mohammed Reza\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1944; POB Esfahan, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12120,\"IRANIAN COMMITTEE FOR THE RECONSTRUCTION OF LEBANON\",-0- ,\"SDGT] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "12251,\"RADAN, Ahmad-Reza\",\"individual\",\"IRAN-HR\",\"Deputy Chief, National Police; Deputy Police Chief; Brigadier General\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1963; alt. DOB 1964; POB Isfahan, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Deputy Chief, National Police; Deputy Police Chief; Brigadier General.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12252,\"MOHSENI-EJEI, Qolam-Hossein\",\"individual\",\"IRAN-HR\",\"Prosecutor-General of Iran; Hojjatoleslam; Former Minister of Intelligence\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB circa 1956; POB Ejiyeh, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Prosecutor-General of Iran; Hojjatoleslam; Former Minister of Intelligence.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12253,\"MAHSOULI, Sadeq\",\"individual\",\"IRAN-HR\",\"Minister of Welfare and Social Security; Former Minister of the Interior and Deputy Commander-in-Chief of the Armed Forces for Law Enforcement\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1959; POB Orumieh, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Minister of Welfare and Social Security; Former Minister of the Interior and Deputy Commander-in-Chief of the Armed Forces for Law Enforcement.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12254,\"MORTAZAVI, Saeed\",\"individual\",\"IRAN-HR\",\"Head, Iranian Anti-Smuggling Task Force; Former Prosecutor-General of Tehran\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1967; POB Meibod, Yazd, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Head, Iranian Anti-Smuggling Task Force; Former Prosecutor-General of Tehran.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "12255,\"MOSLEHI, Heydar\",\"individual\",\"IRAN-HR\",\"Minister of Intelligence; Hojjatoleslam\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1956; POB Isfahan, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Minister of Intelligence; Hojjatoleslam.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12256,\"NAJJAR, Mostafa Mohammad\",\"individual\",\"IRAN-HR\",\"Minister of the Interior; Deputy Commander-in-Chief of the Armed Forces for Law Enforcement\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1956; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Minister of the Interior; Deputy Commander-in-Chief of the Armed Forces for Law Enforcement.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12257,\"TAEB, Hossein\",\"individual\",\"SDGT] [IRGC] [IRAN-HR\",\"Deputy Commander for Intelligence, Islamic Revolutionary Guard Corps; Hojjatoleslam; Former Commander of the Basij Forces\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1963; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Deputy Commander for Intelligence, Islamic Revolutionary Guard Corps; Hojjatoleslam; Former Commander of the Basij Forces.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12468,\"ELLISSA SHIPPING\",-0- ,\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "12476,\"PARS OIL AND GAS COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12477,\"BONYAD TAAVON SEPAH\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR] [IRAN-HR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12478,\"ANSAR BANK\",-0- ,\"IRAN] [SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.ansarbank.com; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; f.k.a. 'ANSAR INSTITUTE'; f.k.a. 'ANSAR AL-MOJAHEDIN NO-INTEREST LOAN INSTITUTE'; f.k.a. 'ANSAR SAVING AND INTEREST FREE-LOANS FUND'; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12479,\"FATTAH, Parviz\",\"individual\",\"SDGT] [NPWMD] [IRGC] [IFSR] [IRAN-EO13876\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1961; alt. DOB 1962; POB Urmia, Iran; alt. POB Anzal, West Azerbaijan Province, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 6379886494 (Iran); Linked To: ISLAMIC REVOLUTION MOSTAZAFAN FOUNDATION.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12543,\"PHENICIA SHIPPING OFFSHORE SARL\",-0- ,\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "12555,\"JAFARI, Milad\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 20 Sep 1974; POB Tehran, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport L8081303 (Iran) issued 14 Mar 2006 expires 14 Mar 2011.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12557,\"FALSAFI, Mahin\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 20 Apr 1943; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport S2662712 (Iran) expires 16 Apr 2002.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12558,\"JAFARI, Mani\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 22 Mar 1977; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Passport 10734 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12596,\"JAFARI DOLATABADI, Abbas\",\"individual\",\"IRAN-HR\",\"Prosecutor-General of Tehran; General and Revolutionary Prosecutor of Tehran; Tehran Public and Revolution Prosecutor; Tehran Public Prosecutor\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1953; Additional Sanctions Information - Subject to Secondary Sanctions; Prosecutor-General of Tehran; General and Revolutionary Prosecutor of Tehran; Tehran Public and Revolution Prosecutor; Tehran Public Prosecutor.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12600,\"SHAYESTEH, Bahram Ali\",\"individual\",\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 06 May 1963; alt. DOB 06 Aug 1963; alt. DOB 13 Jun 1958; POB Tehran, Iran.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12727,\"BASIJ RESISTANCE FORCE\",-0- ,\"FTO] [SDGT] [IRGC] [IFSR] [IRAN-HR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; a.k.a. 'NATIONAL RESISTANCE MOBILIZATION'; a.k.a. 'RESISTANCE MOBILIZATION FORCE'; f.k.a. 'NATIONAL MOBILIZATION ORGANIZATION'; a.k.a. 'MOBILIZATION OF THE OPPRESSED'; a.k.a. 'MOBILIZATION OF THE OPPRESSED UNIT'; a.k.a. 'ORGANIZATION OF THE MOBILISATION OF THE OPPRESSED'; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12750,\"CHIZARI, Mohsen\",\"individual\",\"SDGT\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 01 Apr 1959; POB Tehran, Iran; nationality Iran; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12762,\"MOGHADAM, Ismail Ahmadi\",\"individual\",\"IRAN-HR] [IRAN-TRA\",\"Head of Iranian Police\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1961; POB Tehran, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Head of Iranian Police; Alternate Title, Chief, Iran's Law Enforcement Forces; Alternate Title, Police Chief, Alternate Title, Commander of Iran's Law Enforcement Force; Alternate Title, Brigadier General.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "12763,\"LAW ENFORCEMENT FORCES OF THE ISLAMIC REPUBLIC OF IRAN\",-0- ,\"IRAN-HR] [HRIT-IR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12788,\"BAGHBANI, Gholamreza\",\"individual\",\"SDNTK\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 05 Jan 1961; alt. DOB 1947; POB Zabol, Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Islamic Revolutionary Guard Corps - Qods Force General.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12793,\"SHAHRIYARI, Behnam\",\"individual\",\"SDGT] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1968; alt. DOB 22 Sep 1967; alt. DOB 30 Sep 1965; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport K47248790 (Iran) expires 20 Oct 2023; alt. Passport D10007350 (Iran) expires 13 Oct 2025.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12802,\"MEHR-E EQTESAD-E IRANIAN INVESTMENT COMPANY\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.mebank.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Phone Number 982188526300; alt. Phone Number 982188526301; alt. Phone Number 982188526302; alt. Phone Number 982188526303; alt. Phone Number 9821227700019; Business Registration Document # 103222 (Iran); National ID No. 10101863528 (Iran); Fax: 982188526337; Alt. Fax: 9221227700019; Linked To: MEHR EQTESAD BANK.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12803,\"TIDEWATER MIDDLE EAST CO.\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR] [IFCA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.tidewaterco.com; Email Address info@tidewaterco.com; alt. Email Address info@tidewaterco.ir; IFCA Determination - Port Operator; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Business Registration Document # 18745 (Iran); Telephone: 982188553321; Alt. Telephone: 982188554432; Fax: 982188717367; Alt. Fax: 982188708761; Alt. Fax: 982188708911.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12842,\"MUHAMMADI, Umid\",\"individual\",\"SDGT\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1967; nationality Syria; alt. nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; ethnicity Kurdish; a.k.a. 'AL-KURDI, Umid'; a.k.a. 'AL-KURDI, 'Amid'; a.k.a. 'AL-KURDI, Abu Sulayman'; a.k.a. 'DARWESH, Arkan Mohammed Hussein'; a.k.a. 'AL-KURDI, Hamza'; a.k.a. 'RAWANSARI, Shahin'; a.k.a. 'MARIVANI, Shahin'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12929,\"ARBABSIAR, Manssor\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 15 Mar 1955; alt. DOB 06 Mar 1955; POB Iran; citizen United States; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport C2002515 (Iran); alt. Passport 477845448 (United States); Driver's License No. 07442833 (United States) expires 15 Mar 2016; Driver's License is issued by the State of Texas.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12930,\"ABDOLLAHI, Hamed\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 11 Aug 1960; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport D9004878.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12941,\"IRAN CENTRIFUGE TECHNOLOGY COMPANY\",-0- ,\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. 'TESA'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "12945,\"ARAGHI, Abdollah\",\"individual\",\"SDGT] [IRGC] [IRAN-HR\",\"Lieutenant Commander, IRGC Ground Force; Deputy Commander, IRGC Ground Forces; Brigadier General\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1945; POB Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Lieutenant Commander, IRGC Ground Force; Deputy Commander, IRGC Ground Forces; Brigadier General; Former Commander, Greater Tehran's Mohammad Rasulollah IRGC; Former Chief, Greater Tehran Revolutionary Guards.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "12946,\"FIROUZABADI, Hassan\",\"individual\",\"IRAN-HR\",\"Chief of Staff of the Joint Armed Forces of the Islamic Republic of Iran; Chairman of the Armed Forces' Joint Chiefs of Staff; Major General\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 03 Feb 1951; POB Mashhad, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Chief of Staff of the Joint Armed Forces of the Islamic Republic of Iran; Chairman of the Armed Forces' Joint Chiefs of Staff; Major General.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13105,\"AGHAJANI, Hosein\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1967; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "13106,\"TABATABAEI, Sayyid Ali Akbar\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport 6620505; alt. Passport 9003213.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "13107,\"GHANI, Esmail\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 08 Aug 1957; POB Mashhad, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Passport D9003033 (Iran); alt. Passport D9008347 (Iran) issued 18 Jul 2010 expires 18 Jul 2015.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "13109,\"POUYA AIR\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.pouyaair.com; Email Address info@pouyaair.com; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Organization Type: Passenger air transport; National ID No. 10102315647 (Iran); Registration Number 189556 (Iran); Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS AIR FORCE.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "13115,\"IRAN MARINE INDUSTRIAL COMPANY, SADRA\",-0- ,\"SDGT] [NPWMD] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.sadra.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "13131,\"EGHTESAD NOVIN BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC BEGNIRTH; Website www.enbank.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13133,\"PASARGAD BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC BKBPIRTH; Website www.bpi.ir; alt. Website www.bankpasargad.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13134,\"KARAFARIN BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC KBIDIRTH; Website www.karafarinbank.com; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13135,\"SAMAN BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC SABCIRTH; Website sb24.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13136,\"SARMAYEH BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.sbank.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13137,\"TAT BANK\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC TATBIRTH.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13138,\"BANK-E SHAHR\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website shahr-bank.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13140,\"HEKMAT IRANIAN BANK\",-0- ,\"IRAN] [NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.hibank24.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Linked To: BANK SEPAH.\"",
+          "matched_terms": [
+            "iran",
+            "iranian"
+          ]
+        },
+        {
+          "raw_csv": "13141,\"TOURISM BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.tourismbank.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13142,\"IRAN ZAMIN BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.izbank.com; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13143,\"MEHR IRAN CREDIT UNION BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.qmb.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13145,\"TOSEE TAAVON BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.ttbank.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13146,\"ISLAMIC REGIONAL COOPERATION BANK\",-0- ,\"IRAN] [IRAN-EO13902\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"SWIFT/BIC RCDFIQBA; Additional Sanctions Information - Subject to Secondary Sanctions; Linked To: EGHTESAD NOVIN BANK.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "13147,\"CREDIT INSTITUTION FOR DEVELOPMENT\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15036,\"ARTAVIL\",\"vessel\",\"IRAN\",-0- ,\"T2EU4\",\"Crude/Oil Products Tanker\",\"99,144\",\"56,068\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag None Identified; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9187629; MMSI 572469210; f.k.a. 'ALPHA'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15037,\"ARK III\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude/Oil Products Tanker\",\"99,030\",\"56,068\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9187655; f.k.a. 'ABADEH'; f.k.a. 'CRYSTAL'; f.k.a. 'SUNDIAL'; f.k.a. 'ARK'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15038,\"ARGO I\",\"vessel\",\"IRAN\",-0- ,\"T2EM4\",\"Crude/Oil Products Tanker\",\"99,094\",\"56,068\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9187667; a.k.a. 'CHRISTINA'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15039,\"ARNICA\",\"vessel\",\"IRAN\",-0- ,\"T2ES4\",\"Crude/Oil Products Tanker\",\"99,144\",\"56,068\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9187643; MMSI 572467210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15040,\"APAMA\",\"vessel\",\"IRAN\",-0- ,\"9HDS9\",\"Crude/Oil Products Tanker\",\"99,087\",\"56,068\",\"Iran\",-0- ,\"Former Vessel Flag Tuvalu; alt. Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9187631; MMSI 256845000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15041,\"BANEH\",\"vessel\",\"IRAN\",-0- ,\"EQKF\",\"Landing Craft\",\"640\",\"478\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8508462; MMSI 422141000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15042,\"DIAMOND II\",\"vessel\",\"IRAN\",-0- ,\"9HEG9\",\"Crude Oil Tanker\",\"297,013\",\"160,576\",\"Iran\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9218478; MMSI 256865000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15043,\"DREAM II\",\"vessel\",\"IRAN\",-0- ,\"5IM 592\",\"Crude Oil Tanker\",\"319,988\",\"164,241\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9356593; MMSI 677049200; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15044,\"DEEP SEA\",\"vessel\",\"IRAN\",-0- ,\"9HEE9\",\"Crude Oil Tanker\",\"296,803\",\"160,576\",\"Iran\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9218492; MMSI 256862000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15045,\"DORE\",\"vessel\",\"IRAN\",-0- ,\"5IM 593\",\"Crude Oil Tanker\",\"317,850\",\"164,241\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357717; MMSI 677049300; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15046,\"DOVER\",\"vessel\",\"IRAN\",-0- ,\"9HEU9\",\"Crude Oil Tanker\",\"299,500\",\"160,576\",\"Iran\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9218466; MMSI 256872000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15047,\"DEVON\",\"vessel\",\"IRAN\",-0- ,\"9HEF9\",\"Crude Oil Tanker\",\"299,500\",\"160,576\",\"None Identified\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9218454; MMSI 256864000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15048,\"DOWNY\",\"vessel\",\"IRAN\",-0- ,\"9HED9\",\"Crude Oil Tanker\",\"296,894\",\"160,576\",\"Iran\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9218480; MMSI 256861000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15049,\"FOREST\",\"vessel\",\"IRAN\",-0- ,\"T2DM4\",\"Chemical/Products Tanker\",\"35,124\",\"25,214\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9283760; MMSI 572438210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15050,\"HERO II\",\"vessel\",\"IRAN\",-0- ,\"T2EJ4\",\"Crude Oil Tanker\",\"317,355\",\"163,650\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tuvalu; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9362073; MMSI 572459210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15051,\"HENNA\",\"vessel\",\"IRAN\",-0- ,\"T2EQ4\",\"Crude Oil Tanker\",\"299,242\",\"160,930\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9212929; MMSI 572465210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15052,\"AMBER\",\"vessel\",\"IRAN\",-0- ,\"5IM 597\",\"Crude Oil Tanker\",\"317,356\",\"163,660\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357406; MMSI 677049700; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15053,\"HASNA\",\"vessel\",\"IRAN\",-0- ,\"5IM600\",\"Crude Oil Tanker\",\"299,229\",\"160,930\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9212917; MMSI 677050000; f.k.a. 'MARINA'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15054,\"HUGE\",\"vessel\",\"IRAN\",-0- ,\"T2EG4\",\"Crude Oil Tanker\",\"317,367\",\"163,660\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357183; MMSI 212256000; f.k.a. 'GLORY'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15055,\"HAPPINESS I\",\"vessel\",\"IRAN] [SDGT\",-0- ,\"T2ER4\",\"Crude Oil Tanker\",\"299,214\",\"160,930\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; alt. Former Vessel Flag Panama; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Vessel Registration Identification IMO 9212905; MMSI 256875000; Linked To: NATIONAL IRANIAN TANKER COMPANY; Linked To: HOKOUL SAL OFFSHORE.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15056,\"HELM\",\"vessel\",\"IRAN\",-0- ,\"T2DZ4\",\"Crude Oil Tanker\",\"317,356\",\"163,660\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357391; MMSI 572450210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15057,\"HERBY\",\"vessel\",\"IRAN\",-0- ,\"T2EH4\",\"Crude Oil Tanker\",\"317,356\",\"163,660\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9362059; MMSI 572458210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15058,\"HILDA I\",\"vessel\",\"IRAN\",-0- ,\"5IM 596\",\"Crude Oil Tanker\",\"317,367\",\"163,660\",\"Iran\",-0- ,\"Former Vessel Flag Cyprus; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357389; MMSI 677049600; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15059,\"HAWK\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"317,367\",\"163,660\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9362061; f.k.a. 'HONAR'; f.k.a. 'VICTORY'; f.k.a. 'JANUS'; f.k.a. 'DOVE'; f.k.a. 'HORSE'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15060,\"HALTI\",\"vessel\",\"IRAN\",-0- ,\"9HEK9\",\"Crude Oil Tanker\",\"299,261\",\"160,930\",\"Iran\",-0- ,\"Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9212890; MMSI 256870000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15061,\"HEDY\",\"vessel\",\"IRAN\",-0- ,\"9HEJ9\",\"Crude Oil Tanker\",\"299,242\",\"160,930\",\"Iran\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9212888; MMSI 256869000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15062,\"IMICO NEKA 455\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Shuttle Tanker\",\"63,000\",\"40,800\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9404546; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15068,\"FORTUNE\",\"vessel\",\"IRAN\",-0- ,\"9BAC\",\"Chemical/Products Tanker\",\"35,155\",\"25,214\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9283746; MMSI 422303000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15070,\"MARIVAN\",\"vessel\",\"IRAN\",-0- ,\"EQKH\",\"Bunkering Tanker\",\"640\",\"478\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8517243; MMSI 422143000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15073,\"NASHA\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"298,732\",\"156,809\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9079107; f.k.a. 'NESA'; f.k.a. 'TRUTH'; f.k.a. 'OCEANIC'; f.k.a. 'NATIVE LAND'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15074,\"NAVARZ\",\"vessel\",\"IRAN\",-0- ,\"T2DQ4\",\"Crude Oil Tanker\",\"298,731\",\"156,809\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9079078; MMSI 572441210; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15075,\"NAROON\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"298,732\",\"156,809\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9079066; f.k.a. 'NOOR'; f.k.a. 'MAHARLIKA'; f.k.a. 'BELEMA LIGHT CRUDE'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15076,\"SEA STAR III\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"318,000\",\"165,000\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9569205; a.k.a. 'YARD NO. 1220 SHANGHAI WAIGAOQIAO'; f.k.a. 'SAFE'; f.k.a. 'CARNATION'; f.k.a. 'SUNSHINE'; a.k.a. 'SEASTAR III'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15077,\"SABITI\",\"vessel\",\"IRAN\",-0- ,\"5IM591\",\"Crude Oil Tanker\",\"159,681\",\"81,479\",\"Panama\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9172040; MMSI 677049100; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15078,\"SARDASHT\",\"vessel\",\"IRAN\",-0- ,\"EQKG\",\"Landing Craft\",\"640\",\"478\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8517231; MMSI 422142000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15079,\"SALINA\",\"vessel\",\"IRAN\",-0- ,\"9HNZ9\",\"Crude Oil Tanker\",\"163,870\",\"85,462\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Seychelles; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357377; MMSI 249257000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15080,\"SILVIA I\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"159,711\",\"81,479\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9172052; f.k.a. 'SARVESTAN'; f.k.a. 'MAGNOLIA'; f.k.a. 'SABRINA'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15081,\"SANAN\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"159,758\",\"81,479\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9171462; f.k.a. 'SAVEH'; f.k.a. 'CAMELLIA'; f.k.a. 'SWALLOW'; f.k.a. 'SOL'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15082,\"STARK I\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"159,681\",\"81,479\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9171450; f.k.a. 'SEMNAN'; f.k.a. 'CLOVE'; f.k.a. 'SPARROW'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15084,\"SEVIN\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"164,154\",\"85,462\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357353; f.k.a. 'SIMA'; f.k.a. 'BLOSSOM'; f.k.a. 'BAIKAL'; f.k.a. 'SUCCESS'; f.k.a. 'SANA'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15085,\"SONIA I\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"164,154\",\"85,462\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9357365; f.k.a. 'SINA'; f.k.a. 'AZALEA'; f.k.a. 'SUNEAST'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15086,\"SEA CLIFF\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"318,000\",\"165,000\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9569657; a.k.a. 'YARD NO. 1225 SHANGHAI WAIGAOQIAO'; f.k.a. 'SMOOTH'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15087,\"STREAM\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"318,000\",\"165,000\",\"Iran\",-0- ,\"Former Vessel Flag Malta; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9569633; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15088,\"SERENA\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"318,000\",\"165,000\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9569645; a.k.a. 'YARD NO. 1224 SHANGHAI WAIGAOQIAO'; f.k.a. 'SONGBIRD'; f.k.a. 'SALALEH'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15089,\"SNOW\",\"vessel\",\"IRAN\",-0- ,-0- ,\"Crude Oil Tanker\",\"318,000\",\"165,000\",\"Panama\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tuvalu; alt. Former Vessel Flag Tanzania; Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 9569619; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15090,\"SINOPA\",\"vessel\",\"IRAN] [SDGT\",-0- ,\"5IM584\",\"Crude Oil Tanker\",\"159,681\",\"81,479\",\"Iran\",-0- ,\"Former Vessel Flag Malta; alt. Former Vessel Flag Tanzania; alt. Former Vessel Flag Panama; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; Vessel Registration Identification IMO 9172038; MMSI 677048400; Linked To: NATIONAL IRANIAN TANKER COMPANY; Linked To: HOKOUL SAL OFFSHORE.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15091,\"TOLOU\",\"vessel\",\"IRAN\",-0- ,\"EQOD\",\"Crew/Supply Vessel\",\"250\",\"178\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8318178; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15092,\"VALFAJR2\",\"vessel\",\"IRAN\",-0- ,\"EQOX\",\"Tug\",\"650\",\"419\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8400103; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15093,\"YAGHOUB\",\"vessel\",\"IRAN\",-0- ,\"EQOE\",\"Platform Supply Ship\",\"950\",\"1,019\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8316168; MMSI 422150000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15095,\"YOUSEF\",\"vessel\",\"IRAN\",-0- ,\"EQOG\",\"Offshore Tug/Supply Ship\",\"1,050\",\"584\",\"Iran\",-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Vessel Registration Identification IMO 8316106; MMSI 422144000; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "vessel"
+          ]
+        },
+        {
+          "raw_csv": "15096,\"INFORMATION SYSTEMS IRAN\",-0- ,\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15117,\"NATIONAL IRANIAN TANKER COMPANY\",-0- ,\"IRAN] [SDGT] [IFSR] [IFCA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.nitc.co.ir; Email Address info@nitc.co.ir; alt. Email Address administrator@nitc.co.ir; IFCA Determination - Involved in the Shipping Sector; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886; National ID No. 4891 (Iran); Telephone (98)(21)(66153220); Telephone (98)(21)(23803202); Telephone (98)(21)(23803303); Telephone (98)(21)(66153224); Telephone (98)(21)(23802230); Telephone (98)(9121115315); Telephone (98)(9128091642); Telephone (98)(9127389031); Fax (98)(21)(22224537); Fax (98)(21)(23803318); Fax (98)(21)(22013392); Fax (98)(21)(22058763); Linked To: ISLAMIC REVOLUTIONARY GUARD CORPS (IRGC)-QODS FORCE.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "irgc",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15118,\"NATIONAL IRANIAN TANKER COMPANY LLC\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website http://nitcsharjah.com/index.html; Additional Sanctions Information - Subject to Secondary Sanctions; Telephone +97165030600; Telephone + 97165749996; Telephone +971506262258; Fax +97165394666; Fax +97165746661; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker"
+          ]
+        },
+        {
+          "raw_csv": "15119,\"N.I.T.C. REPRESENTATIVE OFFICE\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address nitcrdam@tiscali.net; Additional Sanctions Information - Subject to Secondary Sanctions; Telephone +31 010-4951863; Telephone +31 10-4360037; Fax +31 10-4364096; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker"
+          ]
+        },
+        {
+          "raw_csv": "15120,\"ARTA SHIPPING ENTERPRISES LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22678777); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15121,\"ARASH SHIPPING ENTERPRISES LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22678777); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15122,\"PROTON PETROCHEMICALS SHIPPING LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); a.k.a. 'PSC'; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15123,\"DANESH SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15124,\"DAVAR SHIPPING CO LTD\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22678777); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15125,\"HADI SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15126,\"HARAZ SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15127,\"HATEF SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15128,\"HIRMAND SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15129,\"HODA SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15130,\"HOMA SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15131,\"HONAR SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15132,\"TC SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15133,\"MEHRAN SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15134,\"MERSAD SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15135,\"SAMAN SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15136,\"ASAN SHIPPING ENTERPRISE LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (356)(21241817); Fax (356)(25990640); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15137,\"SARV SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (356)(21241232); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15138,\"SEPID SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (356)(21241232); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15139,\"SIMA SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (356)(21241232); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15140,\"SINA SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (356)(21241232); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15141,\"CASPIAN MARITIME LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(25800000); Fax (357)(25588055); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "maritime"
+          ]
+        },
+        {
+          "raw_csv": "15142,\"MINAB SHIPPING COMPANY LIMITED\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Telephone (357)(22660766); Fax (357)(22668608); Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15144,\"PARS PETROCHEMICAL SHIPPING COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.parsshipping.com; Additional Sanctions Information - Subject to Secondary Sanctions; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker",
+            "shipping"
+          ]
+        },
+        {
+          "raw_csv": "15145,\"DENA TANKERS FZE\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Linked To: NATIONAL IRANIAN TANKER COMPANY.\"",
+          "matched_terms": [
+            "iran",
+            "iranian",
+            "tanker"
+          ]
+        },
+        {
+          "raw_csv": "15147,\"TANIDEH, Hossein\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 09 Jun 1964; Additional Sanctions Information - Subject to Secondary Sanctions; Passport H13781445 (Iran) expires 09 Jun 2013.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15160,\"PETRO SUISSE INTERTRADE COMPANY SA\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15161,\"HONG KONG INTERTRADE COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15162,\"NOOR ENERGY (MALAYSIA) LTD.\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Company Number LL08318.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15163,\"PETRO ENERGY INTERTRADE COMPANY\",-0- ,\"IRAN\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15541,\"JALILI, Rasool\",\"individual\",\"IRAN-TRA\",\"Associate Professor, Department of Computer Engineering, Sharif University of Technology\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 19 Aug 1961; POB Eghlid, Fars Province, Iran; Website http://www.jalili.ir; alt. Website http://sharif.edu/jalili; Email Address jalili@sharif.edu; alt. Email Address rjalili@yahoo.com; alt. Email Address rasoul.jalili@peykasa.ir; Additional Sanctions Information - Subject to Secondary Sanctions; Passport N15792968; Associate Professor, Department of Computer Engineering, Sharif University of Technology; Alternate Title, Editor-In-Chief of ISeCure; Alternate Title, Dean of Scientific and International Cooperation, Sharif University of Technology; Alternate Title, Head, Information Technology Group, Sharif University of Technology.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15542,\"MINISTRY OF CULTURE AND ISLAMIC GUIDANCE\",-0- ,\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15543,\"PRESS SUPERVISORY BOARD\",-0- ,\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15544,\"AMNAFZAR GOSTAR-E SHARIF\",-0- ,\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website http://www.amnafzar.com; Email Address info@amnafzar.com; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15547,\"PEYKASA\",-0- ,\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website http://peykasa.com; Email Address info@peykasa.ir; alt. Email Address rasoul.jalili@peykasa.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15550,\"TAGHIPOUR, Reza\",\"individual\",\"IRAN-TRA\",\"Minister of Communications and Information Technology; Minister for Information and Communications\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1957; POB Maragheh, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Minister of Communications and Information Technology; Minister for Information and Communications.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15552,\"FAZLI, Ali\",\"individual\",\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 20 Apr 1961; alt. DOB 1951; POB Sarkan, Hamedan Province, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Rank Brigadier General; Title Basij Deputy Commander.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15553,\"ZARGHAMI, Ezzatollah\",\"individual\",\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1959; POB Dezful, Khuzentan Province, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Title Director, Islamic Republic of Iran Broadcasting.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15555,\"CENTER TO INVESTIGATE ORGANIZED CRIME\",-0- ,\"IRAN-TRA\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website http://www.gerdab.ir; Additional Sanctions Information - Subject to Secondary Sanctions.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15557,\"MINA'I, Mohammad\",\"individual\",\"SDGT] [IRGC] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1964; POB Iran; citizen Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Secondary sanctions risk: section 1(b) of Executive Order 13224, as amended by Executive Order 13886.\"",
+          "matched_terms": [
+            "iran",
+            "irgc"
+          ]
+        },
+        {
+          "raw_csv": "15564,\"IRAN POOYA\",-0- ,\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Additional Sanctions Information - Subject to Secondary Sanctions; Business Registration Document # 5566.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15570,\"ABBASI-DAVANI, Fereidoun\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1958; alt. DOB 1959; POB Abadan, Iran; Additional Sanctions Information - Subject to Secondary Sanctions; a.k.a. 'DR. ABBASI'.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "15573,\"MOZAFFARINIA, Reza\",\"individual\",\"NPWMD] [IFSR\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"DOB 1959; POB Isfahan, Iran; nationality Iran; Additional Sanctions Information - Subject to Secondary Sanctions; Gender Male; National ID No. 1280856521 (Iran).\"",
+          "matched_terms": [
+            "iran"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "consolidated",
+      "url": "https://www.treasury.gov/ofac/downloads/consolidated/cons_prim.csv",
+      "ok": true,
+      "status": 200,
+      "bytes": 238635,
+      "sha256": "7027f6656b7815e38b1a5517e66d7f00ad7bdae814510cddff11771c439f08b2",
+      "total_lines": 443,
+      "match_count": 26,
+      "matches": [
+        {
+          "raw_csv": "17022,\"OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.rosneft.com; alt. Website www.rosneft.ru; Email Address postman@rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Registration ID 1027700043502 (Russia); Tax ID No. 7706107510 (Russia); Government Gazette Number 00044428 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "17248,\"LUKOIL OAO\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.lukoil.ru; Email Address info@lukoil.ru; Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Registration ID 1027700035769 (Russia); Tax ID No. 7708004767 (Russia); Government Gazette Number 00044434 (Russia); Legal Entity Number 549300LCJ1UJXHYBWI24; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18267,\"OJSC ORENBURGNEFT\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address orenburgneft@rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 5612002469 (Russia); Registration Number 1025601802357 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18269,\"OJSC SAMOTLORNEFTEGAZ\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address NVSNGinfo@rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 8603089934 (Russia); Registration Number 1028600940576 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18271,\"PJSC VERKHNECHONSKNEFTEGAZ\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address vcng@rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 3808079367 (Russia); Registration Number 1023801017580 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18274,\"CJSC VANKORNEFT\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address info@vankoroil.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 2437261631 (Russia); Registration Number 1042400920077 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18276,\"RN-YUGANSKNEFTEGAZ LLC\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address rn_yng@yungjsc.com; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 8604035473 (Russia); Registration Number 1058602819538 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18280,\"OJSC ANGARSK PETROCHEMICAL COMPANY\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.anhk.ru; Email Address delo@anhk.rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18282,\"OJSC NOVOKUYBYSHEV REFINERY\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address sekr@nknpz.rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 6330000553 (Russia); Registration Number 1026303118126 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18284,\"RN KOMSOMOLSKIY REFINERY LLC\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address knpz@rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 2703032881 (Russia); Registration Number 1052740255358 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18290,\"OJSC SYZRAN REFINERY\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address sekr@snpz.rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 6325004584 (Russia); Registration Number 1026303056823 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; a.k.a. 'OAO SNPS'; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18292,\"OJSC ACHINSK REFINERY\",-0- ,\"UKRAINE-EO13662] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address sekr1@anpz.rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Tax ID No. 2443000518 (Russia); Registration Number 1022401153532 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; a.k.a. 'JSC ANPZ VNK'; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18294,\"OJSC KUYBYSHEV REFINERY\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address sekr@knpz.rosneft.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18296,\"OJSC RN HOLDING\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; Registration ID 1047200153770 (Russia); Tax ID No. 7225004092 (Russia); Government Gazette Number 74743120 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18297,\"NEFT-AKTIV LLC\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18298,\"OJSC RUSSIAN REGIONAL DEVELOPMENT BANK\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.vbrr.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; Registration ID 3287 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; a.k.a. 'VBRR'; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18299,\"ROSNEFT TRADING S.A.\",-0- ,\"UKRAINE-EO13662] [VENEZUELA-EO13850\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.rosneft.com; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; Tax ID No. CHE-309.842.573 (Switzerland); Registration Number CH-660.0.257.011-8 (Switzerland); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18300,\"ROSNEFT TRADE LIMITED\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Email Address hrm@rosneft-sh.com.cy; Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; Registration ID C122790; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18301,\"ROSNEFT FINANCE S.A.\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "18782,\"ROSOBORONEKSPORT OAO\",-0- ,\"UKRAINE-EO13662] [IRAN-CON-ARMS-EO] [RUSSIA-EO14024\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.roe.ru; Executive Order 13662 Directive Determination - Subject to Directive 3; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; alt. Secondary sanctions risk: See Section 11 of Executive Order 14024.; Registration ID 1117746521452 (Russia); Tax ID No. 7718852163 (Russia); Government Gazette Number 56467052 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives; Linked To: STATE CORPORATION ROSTEC.\"",
+          "matched_terms": [
+            "iran"
+          ]
+        },
+        {
+          "raw_csv": "19639,\"GAZ-OIL, OOO\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website gasoil.ru; Email Address i.blagodarov@gasoil.ru; Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; Registration ID 1113926004422; Tax ID No. 3906229324; Government Gazette Number 22876655; For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives; Linked To: PUBLIC JOINT STOCK COMPANY GAZPROM.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "22388,\"SVYAZTRANSNEFT, AO\",-0- ,\"UKRAINE-EO13662\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Website www.oilnet.ru; Executive Order 13662 Directive Determination - Subject to Directive 2; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; Registration ID 1027739420961 (Russia); Tax ID No. 7723011906 (Russia); Government Gazette Number 00140058 (Russia); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives; Linked To: PUBLIC JOINT STOCK COMPANY TRANSNEFT.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "28603,\"TNK TRADING INTERNATIONAL S.A.\",-0- ,\"UKRAINE-EO13662] [VENEZUELA-EO13850\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Executive Order 13662 Directive Determination - Subject to Directive 2; alt. Executive Order 13662 Directive Determination - Subject to Directive 4; Secondary sanctions risk: Ukraine-/Russia-Related Sanctions Regulations, 31 CFR 589.201 and/or 589.209; V.A.T. Number CHE-267.936.404 (Switzerland); Business Registration Number CH-660.0.559.011-2 (Switzerland); For more information on directives, please visit the following link: http://www.treasury.gov/resource-center/sanctions/Programs/Pages/ukraine.aspx#directives.; Linked To: OPEN JOINT-STOCK COMPANY ROSNEFT OIL COMPANY.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "30926,\"CNOOC LIMITED\",-0- ,\"CMIC-EO13959\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Equity Ticker 00883 HK; alt. Equity Ticker CNU CA; alt. Equity Ticker NC2B DE; alt. Equity Ticker CEO US; Issuer Name CNOOC Limited; alt. Issuer Name CNOOC Ltd; ISIN HK0883013259; alt. ISIN US1261321095; alt. ISIN HK2998013240; alt. ISIN BRC1EODR004; alt. ISIN HK0883013259; Target Type Public Company; Effective Date (CMIC) 02 Aug 2021; Purchase/Sales For Divestment Date (CMIC) 03 Jun 2022; Listing Date (CMIC) 03 Jun 2021; Company Number 0685974 (Hong Kong); Legal Entity Number 549300XIVJCBIGMRUD48; Linked To: CHINA NATIONAL OFFSHORE OIL CORPORATION.\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "30956,\"CHINA NATIONAL OFFSHORE OIL CORPORATION\",-0- ,\"CMIC-EO13959\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Target Type State-Owned Enterprise; Effective Date (CMIC) 02 Aug 2021; Purchase/Sales For Divestment Date (CMIC) 03 Jun 2022; Listing Date (CMIC) 03 Jun 2021; Legal Entity Number 300300AY5BEBCYDR2F31; Unified Social Credit Code (USCC) 91110000100001043E (China).\"",
+          "matched_terms": []
+        },
+        {
+          "raw_csv": "46072,\"MYANMA OIL AND GAS ENTERPRISE\",-0- ,\"BURMA-EO14014\",-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,-0- ,\"Organization Established Date 1963; Organization Type: Extraction of crude petroleum; Target Type State-Owned Enterprise; Executive Order 14014 Directive Information: Subject to Directive 1 - As of the effective date, the provision, exportation, or reexportation, directly or indirectly, of financial services to or for the benefit of Myanma Oil and Gas Enterprise (MOGE) or its property or interests in property is prohibited.; alt. Executive Order 14014 Directive Information: For more information on directives, please visit the following link: https://ofac.treasury.gov/sanctions-programs-and-country-information/burma#directives; Listing Date (EO 14014 Directive 1): 31 Oct 2023; Effective Date (EO 14014 Directive 1): 15 Dec 2023; a.k.a. 'MOGE'; a.k.a. 'M.O.G.E.'.\"",
+          "matched_terms": []
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "total_matches": 276,
+    "term_hits": {
+      "maritime": 4,
+      "vessel": 53,
+      "iran": 232,
+      "irgc": 38,
+      "shipping": 30,
+      "iranian": 89,
+      "persian gulf": 1,
+      "tanker": 78
+    }
+  }
+}

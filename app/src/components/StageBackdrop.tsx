@@ -22,44 +22,6 @@
 
 import { useMemo } from "react";
 
-// Deterministic flow lines: 6 curves sweeping across the canvas.
-// Each line is a smooth Bézier path through a sequence of control points.
-// Wave amplitude and phase are seeded so the composition is stable.
-function generateFlowLines(): string[] {
-  const lines: string[] = [];
-  const baseAmplitudes = [40, 60, 30, 80, 50, 35];
-  const phases = [0, 0.7, 1.4, 2.1, 2.8, 3.5];
-  const yOffsets = [120, 280, 440, 600, 760, 920];
-
-  for (let i = 0; i < 6; i++) {
-    const amp = baseAmplitudes[i];
-    const phase = phases[i];
-    const yBase = yOffsets[i];
-    const points: Array<[number, number]> = [];
-    for (let x = -50; x <= 1850; x += 60) {
-      const y =
-        yBase +
-        amp * Math.sin((x / 280) + phase) +
-        amp * 0.4 * Math.sin((x / 110) + phase * 1.7);
-      points.push([x, y]);
-    }
-    // Build a smooth path using Catmull-Rom-ish cubic Béziers between each
-    // pair of points — gives the curves their hand-drawn organic quality.
-    let d = `M ${points[0][0]} ${points[0][1]}`;
-    for (let p = 1; p < points.length; p++) {
-      const [x1, y1] = points[p - 1];
-      const [x2, y2] = points[p];
-      const cx1 = x1 + 30;
-      const cy1 = y1;
-      const cx2 = x2 - 30;
-      const cy2 = y2;
-      d += ` C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`;
-    }
-    lines.push(d);
-  }
-  return lines;
-}
-
 interface StippleDot {
   x: number;
   y: number;
@@ -119,7 +81,6 @@ function generateStipple(): StippleDot[] {
 }
 
 export function StageBackdrop() {
-  const lines = useMemo(generateFlowLines, []);
   const dots = useMemo(generateStipple, []);
 
   return (
@@ -138,28 +99,9 @@ export function StageBackdrop() {
             <stop offset="60%" stopColor="rgba(8, 12, 18, 0.0)" />
             <stop offset="100%" stopColor="rgba(0, 0, 0, 0.55)" />
           </radialGradient>
-          <linearGradient id="stage-backdrop-line" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(216, 226, 236, 0.0)" />
-            <stop offset="20%" stopColor="rgba(216, 226, 236, 0.18)" />
-            <stop offset="80%" stopColor="rgba(216, 226, 236, 0.18)" />
-            <stop offset="100%" stopColor="rgba(216, 226, 236, 0.0)" />
-          </linearGradient>
         </defs>
 
-        {/* Flowing organic linework — 6 curves at low opacity, gradient-faded
-            at the edges so they don't clip hard against the panel borders. */}
-        <g className="stage-backdrop__lines">
-          {lines.map((d, i) => (
-            <path
-              key={i}
-              d={d}
-              fill="none"
-              stroke="url(#stage-backdrop-line)"
-              strokeWidth={i % 2 === 0 ? 1.2 : 0.7}
-              strokeLinecap="round"
-            />
-          ))}
-        </g>
+        {/* Flow curves removed — read as confusing squiggles over the map. */}
 
         {/* Stipple field — bright white dots in the upper-right corner,
             sparser toward center. References the AI Ascent constellation.

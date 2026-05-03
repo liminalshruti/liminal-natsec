@@ -1,6 +1,6 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T05:41:42.961Z",
+  "generated_at": "2026-05-03T13:58:30.561Z",
   "request": {
     "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=50&offset=0",
     "method": "POST",

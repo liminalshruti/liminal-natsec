@@ -86,7 +86,7 @@ export function MapInstrumentBezels() {
       </div>
 
       {/* Center crosshair — small + at the chokepoint geometric center.
-          The strait midpoint is roughly (56.05°E, 26.55°N). */}
+          The strait midpoint is roughly (56.46°E, 26.60°N). */}
       <div className="map-bezel__crosshair">
         <span>+</span>
       </div>

@@ -8,6 +8,9 @@ const DEFAULT_MANIFEST = "foundry/generated/seaforge-datasets.json";
 const DEFAULT_OUTPUT = "foundry/generated/ontology.import.generated.json";
 const DEFAULT_PROJECT_FOLDER_RID =
   "ri.compass.main.folder.f63190c8-0791-4717-97bd-129c19b8f657";
+const LINK_SOURCE_COLUMN = "source_id";
+const LINK_TARGET_COLUMN = "target_id";
+const LINK_EMPTY_FILE = "seaforge_link_empty.csv";
 
 const SHARED = [
   p("id", "STRING", true),
@@ -262,6 +265,7 @@ const ctx = context(ontology, manifest);
 recordExistingDatasetRids(ctx);
 
 if (args.live) await createMissingDatasets(ctx, config);
+if (args.prepareLinkDatasets) await prepareLinkDatasets(ctx, config);
 
 const result = generate(ctx, {
   skipLinks: args.skipLinks,
@@ -312,6 +316,7 @@ function parseArgs(argv) {
     manifest: DEFAULT_MANIFEST,
     output: DEFAULT_OUTPUT,
     planOnly: false,
+    prepareLinkDatasets: false,
     validate: false,
     objectsOnly: false,
     linksOnly: false,
@@ -324,6 +329,7 @@ function parseArgs(argv) {
     if (arg === "--help" || arg === "-h") out.help = true;
     else if (arg === "--live") out.live = true;
     else if (arg === "--plan-only") out.planOnly = true;
+    else if (arg === "--prepare-link-datasets") out.prepareLinkDatasets = true;
     else if (arg === "--validate") out.validate = true;
     else if (arg === "--objects-only") out.objectsOnly = true;
     else if (arg === "--links-only") out.linksOnly = true;
@@ -362,6 +368,8 @@ Options:
   --objects-only     Emit object types only; skip links and actions (phased import).
   --skip-links       Skip generating link types in output.
   --skip-actions     Skip generating action types in output.
+  --prepare-link-datasets
+                    Upload an empty source_id/target_id CSV and schema to link datasets.
   --input <path>     Source Ontology Manager export. Default: ${DEFAULT_INPUT}
   --manifest <path>  Dataset RID manifest. Default: ${DEFAULT_MANIFEST}
   --output <path>    Generated import JSON. Default: ${DEFAULT_OUTPUT}
@@ -528,6 +536,67 @@ async function createAndRecord(ctx, config, bucket, apiName, name) {
   };
   writeJson(resolve(args.manifest), ctx.manifest);
   console.log(`Created ${name}: ${body.rid}`);
+}
+
+async function prepareLinkDatasets(ctx, config) {
+  if (!config.baseUrl || !config.token) {
+    throw new Error("FOUNDRY_BASE_URL and FOUNDRY_TOKEN are required for --prepare-link-datasets");
+  }
+  const specs = LINKS.filter((spec) => !ctx.links.has(spec.apiName));
+  for (const spec of specs) {
+    const rid = ctx.manifest.resources.linkDatasets[spec.apiName]?.rid;
+    if (!rid) throw new Error(`Missing backing dataset RID for link type ${spec.apiName}`);
+    await prepareLinkDataset(config, rid, spec.datasetName);
+  }
+}
+
+async function prepareLinkDataset(config, datasetRid, datasetName) {
+  const uploadPath = `/api/v2/datasets/${encodeURIComponent(datasetRid)}/files/${LINK_EMPTY_FILE}/upload`;
+  const uploadUrl = new URL(uploadPath, baseUrl(config.baseUrl));
+  uploadUrl.searchParams.set("branchName", "master");
+  uploadUrl.searchParams.set("transactionType", "SNAPSHOT");
+  const uploadResponse = await fetch(uploadUrl, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${config.token}`,
+      "Content-Type": "application/octet-stream",
+    },
+    body: `${LINK_SOURCE_COLUMN},${LINK_TARGET_COLUMN}\n`,
+  });
+  const uploadBody = await readResponse(uploadResponse);
+  if (!uploadResponse.ok) {
+    throw new Error(
+      `Failed to upload empty join table for ${datasetName}: ${uploadBody.errorCode ?? uploadResponse.status} ${uploadBody.message ?? ""}`.trim(),
+    );
+  }
+
+  const schemaUrl = new URL(`/api/v2/datasets/${encodeURIComponent(datasetRid)}/putSchema`, baseUrl(config.baseUrl));
+  schemaUrl.searchParams.set("preview", "true");
+  const schemaResponse = await fetch(schemaUrl, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${config.token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      branchName: "master",
+      dataframeReader: "CSV",
+      endTransactionRid: uploadBody.transactionRid,
+      schema: {
+        fieldSchemaList: [
+          { name: LINK_SOURCE_COLUMN, type: "STRING", nullable: false },
+          { name: LINK_TARGET_COLUMN, type: "STRING", nullable: false },
+        ],
+      },
+    }),
+  });
+  const schemaBody = await readResponse(schemaResponse);
+  if (!schemaResponse.ok) {
+    throw new Error(
+      `Failed to put schema for ${datasetName}: ${schemaBody.errorCode ?? schemaResponse.status} ${schemaBody.message ?? ""}`.trim(),
+    );
+  }
+  console.log(`Prepared ${datasetName}: ${datasetRid}`);
 }
 
 async function readResponse(response) {
@@ -731,8 +800,8 @@ function newManyToMany(ctx, spec, from, to, datasetRid) {
         joinTableDatasource: [
           { version: "v1", backingResourceRid: datasetRid, redacted: false, canViewBackingResource: true, type: "dataset" },
         ],
-        objectTypeAPrimaryKey: "id",
-        objectTypeBPrimaryKey: "id",
+        objectTypeAPrimaryKey: LINK_SOURCE_COLUMN,
+        objectTypeBPrimaryKey: LINK_TARGET_COLUMN,
         onlyAllowPrivilegedEdits: false,
         objectTypeIdA: from.id,
         objectTypeIdB: to.id,
