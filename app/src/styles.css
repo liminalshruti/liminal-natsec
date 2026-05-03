@@ -2287,6 +2287,60 @@ a.osint-signal-row__inner {
   text-decoration: underline;
 }
 
+/* ── AUDIT B4: Substrate pane three-register separation ──────────────────────
+   Visual stratification of operational cases / AI suggestions / raw substrate.
+   Three distinct epistemic registers, each with its own typographic + chromatic
+   treatment. Separates by hard rule + section header + background tier shift
+   + different row chrome (solid / dashed / lines).
+   ────────────────────────────────────────────────────────────────────────────*/
+
+.substrate-pane__register {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Watchfloor cases: solid rows on color-frame background */
+.substrate-pane__register--watchfloor {
+  background: var(--color-frame);
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-edge);
+}
+
+/* AI proposals: elevated tint + decision left-bar, dashed borders (provisional state) */
+.substrate-pane__register--ai-proposed {
+  background: var(--color-elevated);
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-edge);
+}
+
+/* Add decision left-bar to AI proposal cards */
+.substrate-pane__register--ai-proposed .draft-case-card {
+  border-left: 2px solid var(--color-decision);
+}
+
+/* Substrate signals: dense feed lines, reverts to color-substrate background */
+.substrate-pane__register--substrate {
+  background: var(--color-substrate);
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-edge);
+}
+
+.substrate-pane__section-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-edge);
+  margin: -12px 0 8px 0;
+}
+
 .stage-placeholder {
   display: grid;
   place-items: center;
