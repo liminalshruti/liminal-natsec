@@ -3141,3 +3141,517 @@ details.case-file__section > summary:focus-visible {
   overflow: auto;
   max-height: 240px;
 }
+
+/* ── Empty-state stencil — the four-layer framework as teaching moment ────
+   When no case is selected, the working panel renders the SUBSTRATE →
+   CUSTODY → REFUSAL → REVIEW MEMORY stencil. This is the highest-
+   leverage teaching surface in the entire interface — operator cold-
+   start sees the architecture; procurement reader sees the IP on a
+   screenshot without needing the demo to play.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.empty-stencil {
+  padding: 18px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: var(--font-mono);
+  color: var(--color-ink-secondary);
+}
+
+.empty-stencil__lead {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--color-edge);
+}
+
+.empty-stencil__prompt {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-ink-primary);
+  margin: 0;
+  font-feature-settings: "ss01" 1, "kern" 1;
+}
+
+.empty-stencil__layers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-stencil__layer {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-edge);
+  border-left: 2px solid var(--color-edge);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.015);
+  /* Each layer subtly tinted by its semantic register — substrate is
+     ink-tertiary (raw); custody is decision-blue (belief); refusal is
+     refused-amber (the invariant); review memory is resolved-green
+     (durable doctrine). The stencil teaches the color grammar too. */
+}
+
+.empty-stencil__layer:nth-child(1) {
+  border-left-color: var(--color-ink-tertiary);
+}
+.empty-stencil__layer:nth-child(2) {
+  border-left-color: var(--color-decision);
+  background: rgba(110, 168, 254, 0.025);
+}
+.empty-stencil__layer:nth-child(3) {
+  border-left-color: var(--color-refused);
+  background: rgba(210, 96, 74, 0.025);
+}
+.empty-stencil__layer:nth-child(4) {
+  border-left-color: var(--color-resolved);
+  background: rgba(78, 160, 138, 0.025);
+}
+
+.empty-stencil__layer-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-ink-tertiary);
+  text-align: center;
+  letter-spacing: 0.04em;
+  padding-top: 1px;
+}
+
+.empty-stencil__layer-name {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--color-ink-primary);
+  text-transform: uppercase;
+}
+
+.empty-stencil__layer-desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-ink-secondary);
+  margin-top: 2px;
+}
+
+.empty-stencil__footnote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--color-ink-tertiary);
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-edge);
+  letter-spacing: 0.02em;
+}
+
+/* ── Substrate alert — drift / stale state ────────────────────────────────
+   Operators glance at the watchfloor and need to know "fresh / settled /
+   stale" in one read. Three classifications:
+     · fresh   <5min   pulse glow + decision-blue tone
+     · settled 5-30min ink-secondary, no pulse
+     · stale   >30min  faded, ink-tertiary, italic
+   The pulse on fresh rows is a 4s ambient breath — operator-grade restraint,
+   never a strobe. Catches the watch officer's eye on glance without
+   demanding attention.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.alert-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+
+.alert-row__age {
+  color: var(--color-ink-tertiary);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.alert-row__age--fresh {
+  color: var(--color-decision);
+  font-weight: 500;
+}
+
+.alert-row__age--settled {
+  color: var(--color-ink-secondary);
+}
+
+.alert-row__age--stale {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.alert-row__pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-decision);
+  box-shadow: 0 0 6px rgba(110, 168, 254, 0.5);
+  animation: alert-row-pulse 4s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes alert-row-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.85); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .alert-row__pulse {
+    animation: none;
+    opacity: 0.7;
+  }
+}
+
+/* The whole row gets a subtle staleness tint on its left border so the
+   eye reads the temporal axis even when scanning the chip text only. */
+.alert-row--typed[data-staleness="fresh"] {
+  border-left: 2px solid rgba(110, 168, 254, 0.4);
+}
+.alert-row--typed[data-staleness="settled"] {
+  border-left: 2px solid var(--color-edge);
+}
+.alert-row--typed[data-staleness="stale"] {
+  border-left: 2px solid rgba(93, 110, 128, 0.3);
+  opacity: 0.85;
+}
+
+/* ── Override affordance — commander override of structural-guard refusal ─
+   Per onepager: "Refusal is a recommendation, not a block. Commanders
+   override; overrides become durable rules." Three states: trigger,
+   open (form), registered (confirmation). Renders below the refused
+   Intent specialist row, inline so the refusal stays visible.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.override-affordance__trigger {
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px dashed var(--color-refused);
+  color: var(--color-refused);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 120ms ease, border-style 120ms ease;
+}
+
+.override-affordance__trigger:hover {
+  background: rgba(210, 96, 74, 0.08);
+  border-style: solid;
+}
+
+.override-affordance--open {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-refused);
+  background: rgba(210, 96, 74, 0.04);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.override-affordance__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.override-affordance__title {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-refused);
+}
+
+.override-affordance__hint {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-ink-secondary);
+  line-height: 1.4;
+}
+
+.override-affordance__textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px 10px;
+  background: var(--color-substrate);
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  border-radius: 2px;
+  resize: vertical;
+  letter-spacing: 0.02em;
+}
+
+.override-affordance__textarea:focus {
+  outline: none;
+  border-color: var(--color-refused);
+  box-shadow: 0 0 0 1px rgba(210, 96, 74, 0.3);
+}
+
+.override-affordance__textarea::placeholder {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.override-affordance__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.override-affordance__cancel {
+  background: transparent;
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-tertiary);
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.override-affordance__cancel:hover {
+  color: var(--color-ink-secondary);
+  border-color: var(--color-ink-tertiary);
+}
+
+.override-affordance__submit {
+  background: rgba(210, 96, 74, 0.16);
+  border: 1px solid var(--color-refused);
+  color: var(--color-refused);
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.override-affordance__submit:hover:not(:disabled) {
+  background: rgba(210, 96, 74, 0.28);
+}
+
+.override-affordance__submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.override-affordance--registered {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-resolved);
+  background: rgba(78, 160, 138, 0.06);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.override-affordance__icon {
+  color: var(--color-resolved);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.override-affordance__label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-resolved);
+}
+
+.override-affordance__sub {
+  font-size: 10px;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Map telemetry HUD — Grafana/Datadog observability register ─────────────
+   Top-right overlay on the stage. Reads as live system telemetry: phase,
+   tracks observed, specialists active, source freshness. Each metric has a
+   tone-color status border (ok/warn/alert/neutral). The pulse dot signals
+   "the system is alive, not a screenshot." Workshop register: telemetry/
+   observability designer — Datadog's information-density grammar applied to
+   a defense surface.
+   --------------------------------------------------------------------------- */
+
+.map-telemetry-hud {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 240px;
+  background: rgba(6, 9, 13, 0.78);
+  border: 1px solid var(--color-edge);
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  pointer-events: none; /* doesn't block map pan/zoom */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+.map-telemetry-hud__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-edge);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+}
+
+.map-telemetry-hud__diamond {
+  color: var(--color-decision);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.map-telemetry-hud__title {
+  flex: 1;
+  font-weight: 500;
+}
+
+.map-telemetry-hud__pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-resolved);
+  position: relative;
+  animation: hud-pulse 2.4s ease-in-out infinite;
+}
+
+.map-telemetry-hud__pulse::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--color-resolved);
+  opacity: 0;
+  animation: hud-pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 0.65; }
+  50%      { opacity: 1; }
+}
+
+@keyframes hud-pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  70%  { transform: scale(2.4); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.map-telemetry-hud__metrics {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-telemetry-hud__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 2px 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-edge);
+  border-left: 2px solid var(--color-edge);
+  transition: border-left-color 200ms ease;
+}
+
+.map-telemetry-hud__row:last-child {
+  border-bottom: 0;
+}
+
+.map-telemetry-hud__row--ok {
+  border-left-color: var(--color-resolved);
+}
+
+.map-telemetry-hud__row--warn {
+  border-left-color: var(--color-contested);
+}
+
+.map-telemetry-hud__row--alert {
+  border-left-color: var(--color-refused);
+  background: rgba(210, 96, 74, 0.04);
+}
+
+.map-telemetry-hud__row--neutral {
+  border-left-color: var(--color-ink-tertiary);
+}
+
+.map-telemetry-hud__row-label {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+.map-telemetry-hud__row-value {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink-primary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.map-telemetry-hud__row-meta {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-size: 10px;
+  color: var(--color-ink-secondary);
+  letter-spacing: 0.04em;
+}
+
+.map-telemetry-hud__row--alert .map-telemetry-hud__row-value {
+  color: var(--color-refused);
+}
+
+.map-telemetry-hud__row--warn .map-telemetry-hud__row-value {
+  color: var(--color-contested);
+}
+
+.map-telemetry-hud__row--ok .map-telemetry-hud__row-value {
+  color: var(--color-resolved);
+}

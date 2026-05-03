@@ -27,10 +27,76 @@ export function WorkingPanel({ selectedAlert, loading }: WorkingPanelProps) {
         <span className="tag">case</span>
       </div>
       {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
-      {!loading && !selectedAlert && (
-        <div className="empty" style={{ padding: 12 }}>select an alert to inspect</div>
-      )}
+      {!loading && !selectedAlert && <EmptyStencil />}
       {!loading && selectedAlert && <CustodyCasePanel selectedAlert={selectedAlert} />}
     </section>
+  );
+}
+
+/**
+ * Empty-state stencil — the highest-leverage teaching moment in the entire
+ * interface. When no case is selected, the working panel renders the four-
+ * layer framework as inert structural copy positioned where the case-detail
+ * content will appear.
+ *
+ * Workshop principle: every UI surface should feel like it's holding
+ * something, not resolving it. The stencil holds the framework — substrate
+ * to custody to refusal to review-memory — until an actual case fills it.
+ *
+ * Reads as: "this panel will hold a custody artifact organized in these
+ * four layers." Operator at cold start learns the architecture. Operator
+ * mid-shift sees it as a familiar empty stencil. Procurement reader on a
+ * screenshot sees the IP without needing the demo to play.
+ */
+function EmptyStencil() {
+  return (
+    <div className="empty-stencil" role="region" aria-label="Custody artifact stencil">
+      <div className="empty-stencil__lead">CUSTODY ARTIFACT — pending selection</div>
+      <p className="empty-stencil__prompt">
+        Select an alert in the substrate panel to open a custody case. The
+        artifact will populate the four layers:
+      </p>
+      <ol className="empty-stencil__layers">
+        <li className="empty-stencil__layer">
+          <span className="empty-stencil__layer-num">I</span>
+          <div>
+            <div className="empty-stencil__layer-name">SUBSTRATE</div>
+            <div className="empty-stencil__layer-desc">
+              Raw multi-domain observations. Messy, partial, contradictory.
+            </div>
+          </div>
+        </li>
+        <li className="empty-stencil__layer">
+          <span className="empty-stencil__layer-num">II</span>
+          <div>
+            <div className="empty-stencil__layer-name">CUSTODY</div>
+            <div className="empty-stencil__layer-desc">
+              Preserved hypotheses, evidence chains, source-integrity checks.
+            </div>
+          </div>
+        </li>
+        <li className="empty-stencil__layer">
+          <span className="empty-stencil__layer-num">III</span>
+          <div>
+            <div className="empty-stencil__layer-name">REFUSAL</div>
+            <div className="empty-stencil__layer-desc">
+              Structural invariant. AI cannot overclaim — guard enforces it.
+            </div>
+          </div>
+        </li>
+        <li className="empty-stencil__layer">
+          <span className="empty-stencil__layer-num">IV</span>
+          <div>
+            <div className="empty-stencil__layer-name">REVIEW MEMORY</div>
+            <div className="empty-stencil__layer-desc">
+              Operator corrections become durable rules. Doctrine compounds.
+            </div>
+          </div>
+        </li>
+      </ol>
+      <div className="empty-stencil__footnote">
+        Maven is the foundation. We are the substrate.
+      </div>
+    </div>
   );
 }

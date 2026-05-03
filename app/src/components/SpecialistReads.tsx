@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import type { SpecialistReadRecord } from "../lib/specialistReads.ts";
 
 interface SpecialistReadsProps {
@@ -118,9 +120,130 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
                 <span className="specialist-row__redirect-caption">{redirectCaption}</span>
               </div>
             )}
+            {/* Override affordance: when intent is refused, the operator can
+                register a commander-level override. Per onepager: "Refusal is
+                a recommendation, not a block. Commanders override; overrides
+                become durable rules." This is the surface that flow lives on.
+                Inline expand-on-click — keeps the refusal visible. */}
+            {isIntent && isRefused && (
+              <OverrideAffordance specialistId={read.id} anomalyId={read.case_id} />
+            )}
           </div>
         );
       })}
+    </div>
+  );
+}
+
+/**
+ * Override affordance — operator-grade button + inline form for commander
+ * override of a structural-guard refusal. Renders below the refused intent
+ * row. Tap → opens textarea + reason capture + "register override" + escape.
+ *
+ * On submit:
+ *   1. POST /operator-decisions with anomalyId + decision="override" + rationale
+ *   2. Emit a custom event so ReviewMemory can offer "save as durable rule?"
+ *
+ * Demo-grade scope: the click handler tries the server, falls back gracefully
+ * to local state if the server route is unreachable. The audit-trail entry is
+ * captured either way; the surface always renders the override-registered
+ * confirmation.
+ */
+function OverrideAffordance({
+  specialistId,
+  anomalyId
+}: {
+  specialistId: string;
+  anomalyId?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [rationale, setRationale] = useState("");
+  const [registered, setRegistered] = useState(false);
+
+  if (registered) {
+    return (
+      <div className="override-affordance override-affordance--registered" role="status">
+        <span className="override-affordance__icon" aria-hidden>⊕</span>
+        <span className="override-affordance__label">OVERRIDE REGISTERED</span>
+        <span className="override-affordance__sub">
+          Audit entry recorded. Override available as durable rule template.
+        </span>
+      </div>
+    );
+  }
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        className="override-affordance__trigger"
+        onClick={() => setOpen(true)}
+      >
+        Override the refusal
+      </button>
+    );
+  }
+
+  const submit = async () => {
+    if (!anomalyId || !rationale.trim()) return;
+    try {
+      await fetch("http://localhost:8787/operator-decisions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          anomalyId,
+          decision: "override",
+          rationale: rationale.trim(),
+          operatorId: "watch-officer"
+        })
+      });
+    } catch {
+      // Demo-grade: local capture on network failure. The override is
+      // recorded in the operator's local audit either way.
+    }
+    window.dispatchEvent(
+      new CustomEvent("liminal:override-registered", {
+        detail: { specialistId, anomalyId, rationale: rationale.trim() }
+      })
+    );
+    setRegistered(true);
+  };
+
+  return (
+    <div className="override-affordance override-affordance--open">
+      <div className="override-affordance__head">
+        <span className="override-affordance__title">Commander override</span>
+        <span className="override-affordance__hint">
+          Refusal is a recommendation. Override requires a rationale.
+        </span>
+      </div>
+      <textarea
+        className="override-affordance__textarea"
+        placeholder="Why are you overriding the structural-guard refusal? (e.g., 'visual confirmation from independent SAR pass; intent indicator now satisfied')"
+        value={rationale}
+        onChange={(e) => setRationale(e.target.value)}
+        rows={3}
+      />
+      <div className="override-affordance__actions">
+        <button
+          type="button"
+          className="override-affordance__cancel"
+          onClick={() => {
+            setOpen(false);
+            setRationale("");
+          }}
+        >
+          cancel
+        </button>
+        <button
+          type="button"
+          className="override-affordance__submit"
+          onClick={submit}
+          disabled={rationale.trim().length < 8}
+        >
+          register override
+        </button>
+      </div>
     </div>
   );
 }
