@@ -21,6 +21,27 @@ const SEED_RULE_DSL = R001_DSL;
 const SEED_RULE_DRAFT =
   "On dark-gap identity churn, request SAR/RF imagery before any Escalate option is offered. Rule applies to similar custody-hypothesis cases until corroboration arrives.";
 
+// Compact relative-time renderer for the correction stream. Watchfloor doctrine
+// is chronological; the time format reads as a ledger entry, not a verbose
+// timestamp. Falls back to a short ISO when the difference is large or input
+// is malformed — never blank, since "no time" reads as broken in a stream.
+function formatStreamTime(iso: string): string {
+  try {
+    const then = new Date(iso).getTime();
+    const now = Date.now();
+    const diff = Math.max(0, now - then);
+    const seconds = Math.floor(diff / 1000);
+    if (seconds < 60) return "just now";
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h ago`;
+    return new Date(iso).toISOString().slice(0, 10);
+  } catch {
+    return iso.slice(0, 19);
+  }
+}
+
 interface ReviewMemoryProps {
   ruleApplication: ReviewRuleApplication | null;
   caseId: string | null;
@@ -153,27 +174,55 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
         <div className="empty">no review rule fires on this case</div>
       )}
 
-      {/* Saved rules — operator's contribution to durable doctrine. */}
+      {/* Correction stream — operator-authored doctrine, accumulating over
+          time. Workshop principle (named explicitly): "correction stream as
+          data is the moat." Visual treatment is a *ledger* — chronological,
+          numbered, accumulating — not a flat list. Each entry is a durable
+          act of human judgment that the system consults on every future case.
+          v3.3 will add ledger-level filtering, rule-versioning, and
+          rule-deprecation events. */}
       <div className="review-memory__section-header">
-        <span>Saved rules</span>
-        <span className="review-memory__count">{savedRules.length}</span>
+        <span>Watchfloor doctrine</span>
+        <span className="review-memory__stream-count">
+          {savedRules.length === 0
+            ? "no entries"
+            : savedRules.length === 1
+            ? "1 entry"
+            : `${savedRules.length} entries`}
+        </span>
       </div>
-      {savedRules.length === 0 && <div className="empty">no rules saved yet</div>}
-      <div className="review-memory__saved-list">
-        {savedRules.map((rule) => (
-          <div key={rule.id} className="review-memory__saved-row">
-            <TypedObjectChip
-              kind="rule"
-              id={rule.id}
-              label={rule.title}
-              status={rule.active ? "active" : "inactive"}
-              size="sm"
-            />
-            <div className="review-memory__dsl">{rule.dsl_text}</div>
-            <div className="review-memory__saved-at">saved {rule.saved_at}</div>
-          </div>
+      {savedRules.length === 0 && (
+        <div className="review-memory__stream-empty">
+          The doctrine is empty. Rules saved here apply on every future case.
+        </div>
+      )}
+      <ol className="review-memory__stream">
+        {savedRules.map((rule, index) => (
+          <li key={rule.id} className="review-memory__stream-entry">
+            <div className="review-memory__stream-marker" aria-hidden>
+              <span className="review-memory__stream-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span className="review-memory__stream-rail" />
+            </div>
+            <div className="review-memory__stream-body">
+              <div className="review-memory__stream-head">
+                <TypedObjectChip
+                  kind="rule"
+                  id={rule.id}
+                  label={rule.title}
+                  status={rule.active ? "active" : "inactive"}
+                  size="sm"
+                />
+                <span className="review-memory__stream-time">
+                  {formatStreamTime(rule.saved_at)}
+                </span>
+              </div>
+              <div className="review-memory__stream-dsl">{rule.dsl_text}</div>
+            </div>
+          </li>
         ))}
-      </div>
+      </ol>
 
       {/* Rule-writing surface — workshop principle: feels like writing, not
           clicking. The closed state is a quiet "write a rule…" prompt that

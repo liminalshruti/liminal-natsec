@@ -2505,3 +2505,123 @@ button:hover {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* ─── Correction stream — workshop's "correction stream as data is the moat"
+   principle made visible. Saved rules render as a chronological ledger, not a
+   flat list. Each entry is a numbered act of human judgment that accumulates
+   into watchfloor doctrine. The vertical rail signals "this is a stream, not
+   a collection." v3.3 will add ledger-level filtering and rule-versioning.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.review-memory__stream-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+.review-memory__stream-empty {
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-tertiary);
+  padding: 8px 0 4px 28px;
+  border-left: 1px dashed var(--color-edge);
+  margin-left: 12px;
+}
+
+.review-memory__stream {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.review-memory__stream-entry {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  position: relative;
+}
+
+.review-memory__stream-entry + .review-memory__stream-entry {
+  /* Subtle dashed separator between entries — reads as ledger, not a list */
+  border-top: 1px dashed var(--color-edge);
+}
+
+.review-memory__stream-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100%;
+}
+
+.review-memory__stream-index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary);
+  background: var(--color-frame);
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  padding: 2px 4px;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+}
+
+.review-memory__stream-rail {
+  /* Vertical line connecting entries — "this is a stream" affordance.
+     Renders below the index chip; visually present but visually quiet. */
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-edge) 0%,
+    var(--color-edge) 60%,
+    transparent 100%
+  );
+  margin-top: 4px;
+  min-height: 12px;
+}
+
+.review-memory__stream-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 4px;
+}
+
+.review-memory__stream-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-memory__stream-time {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-tertiary);
+  margin-left: auto;
+}
+
+.review-memory__stream-dsl {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  padding: 6px 8px;
+  /* DSL renders as a code-block-like inset so the rule text reads as a
+     machine-evaluable artifact, distinct from the operator's narrative. */
+}
