@@ -263,7 +263,11 @@ recordExistingDatasetRids(ctx);
 
 if (args.live) await createMissingDatasets(ctx, config);
 
-const result = generate(ctx, { skipLinks: args.skipLinks, skipActions: args.skipActions });
+const result = generate(ctx, {
+  skipLinks: args.skipLinks,
+  skipActions: args.skipActions,
+  skipObjects: args.skipObjects,
+});
 checkForDuplicateApiNames(result.ontology, result.warnings, result.errors);
 const canWrite = !args.planOnly && result.errors.length === 0;
 printPlan(ctx, result, canWrite);
@@ -310,8 +314,10 @@ function parseArgs(argv) {
     planOnly: false,
     validate: false,
     objectsOnly: false,
+    linksOnly: false,
     skipLinks: false,
     skipActions: false,
+    skipObjects: false,
   };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -320,8 +326,10 @@ function parseArgs(argv) {
     else if (arg === "--plan-only") out.planOnly = true;
     else if (arg === "--validate") out.validate = true;
     else if (arg === "--objects-only") out.objectsOnly = true;
+    else if (arg === "--links-only") out.linksOnly = true;
     else if (arg === "--skip-links") out.skipLinks = true;
     else if (arg === "--skip-actions") out.skipActions = true;
+    else if (arg === "--skip-objects") out.skipObjects = true;
     else if (arg === "--config") out.config = must(argv[++i], arg);
     else if (arg === "--input") out.input = must(argv[++i], arg);
     else if (arg === "--manifest") out.manifest = must(argv[++i], arg);
@@ -330,6 +338,10 @@ function parseArgs(argv) {
   }
   if (out.objectsOnly) {
     out.skipLinks = true;
+    out.skipActions = true;
+  }
+  if (out.linksOnly) {
+    out.skipObjects = true;
     out.skipActions = true;
   }
   return out;
@@ -535,7 +547,7 @@ function generate(ctx, options = {}) {
   ontology.objectTypes = reconcileObjects(ctx, errors, warnings);
   if (options.skipLinks) {
     ontology.relations = clone(ctx.ontology.relations ?? []);
-    warnings.push("Skipping link type generation (--skip-links / --objects-only).");
+    warnings.push("Skipping new link type generation; existing relations passed through unchanged.");
   } else {
     ontology.relations = reconcileLinks(ctx, ontology.objectTypes, errors, warnings);
   }
@@ -543,9 +555,18 @@ function generate(ctx, options = {}) {
     ontology.actionTypes = (clone(ctx.ontology.actionTypes ?? [])).map((actionType) =>
       sanitizeExistingActionType(actionType, warnings),
     );
-    warnings.push("Skipping action type generation (--skip-actions / --objects-only).");
+    warnings.push("Skipping new action type generation; existing actions passed through unchanged.");
   } else {
     ontology.actionTypes = reconcileActions(ctx, ontology.objectTypes, errors, warnings);
+  }
+  if (options.skipObjects) {
+    const seaforgeNew = new Set(
+      OBJECTS.filter((spec) => !ctx.objects.has(spec.apiName)).map((spec) => spec.apiName),
+    );
+    ontology.objectTypes = (ontology.objectTypes ?? []).filter(
+      (entry) => !seaforgeNew.has(entry.apiName),
+    );
+    warnings.push("Skipping new object generation (--skip-objects / --links-only); existing objects passed through unchanged for link references.");
   }
   if (/FOUNDRY_TOKEN|Bearer\s+[A-Za-z0-9._-]{20,}/.test(JSON.stringify(ontology))) {
     errors.push("Generated ontology JSON appears to contain a token.");
@@ -899,18 +920,23 @@ function parameter(input) {
 }
 
 function checkForDuplicateApiNames(ontology, warnings, errors) {
+  const seaforgeObjects = new Set(OBJECTS.map((spec) => spec.apiName));
+  const seaforgeLinks = new Set(LINKS.map((spec) => spec.apiName));
+  const seaforgeActions = new Set(ACTIONS.map((spec) => spec.apiName));
+
   const objectCounts = new Map();
   for (const entry of ontology.objectTypes ?? []) {
-    if (!entry.apiName) continue;
+    if (!entry.apiName || !seaforgeObjects.has(entry.apiName)) continue;
     objectCounts.set(entry.apiName, (objectCounts.get(entry.apiName) ?? 0) + 1);
   }
   for (const [apiName, count] of objectCounts) {
     if (count > 1) {
       errors.push(
-        `Duplicate object type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json from Foundry to refresh stale input, then regenerate.`,
+        `Duplicate SeaForge object type apiName "${apiName}" appears ${count}× in output. Your ontology.json input is stale — re-export it from Foundry so existing entities are matched and patched instead of recreated.`,
       );
     }
   }
+
   const linkCounts = new Map();
   for (const relation of ontology.relations ?? []) {
     const many = relation.definition?.manyToMany;
@@ -921,25 +947,29 @@ function checkForDuplicateApiNames(ontology, warnings, errors) {
       one?.oneToManyLinkMetadata?.apiName,
       one?.manyToOneLinkMetadata?.apiName,
     ].filter(Boolean);
-    for (const apiName of names) linkCounts.set(apiName, (linkCounts.get(apiName) ?? 0) + 1);
+    for (const apiName of names) {
+      if (!seaforgeLinks.has(apiName)) continue;
+      linkCounts.set(apiName, (linkCounts.get(apiName) ?? 0) + 1);
+    }
   }
   for (const [apiName, count] of linkCounts) {
     if (count > 1) {
       errors.push(
-        `Duplicate link type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json before regenerating.`,
+        `Duplicate SeaForge link type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json before regenerating.`,
       );
     }
   }
+
   const actionCounts = new Map();
   for (const entry of ontology.actionTypes ?? []) {
     const apiName = entry.metadata?.apiName;
-    if (!apiName) continue;
+    if (!apiName || !seaforgeActions.has(apiName)) continue;
     actionCounts.set(apiName, (actionCounts.get(apiName) ?? 0) + 1);
   }
   for (const [apiName, count] of actionCounts) {
     if (count > 1) {
       errors.push(
-        `Duplicate action type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json before regenerating.`,
+        `Duplicate SeaForge action type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json before regenerating.`,
       );
     }
   }

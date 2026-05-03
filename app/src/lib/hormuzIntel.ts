@@ -142,12 +142,6 @@ export const DEFAULT_HORMUZ_REQUIRED_SOURCES: readonly RequiredHormuzSource[] = 
     label: "Shodan infrastructure",
     drawerGroup: "Infrastructure Context",
     category: "INFRASTRUCTURE_CONTEXT_ONLY"
-  },
-  {
-    source: "CENSYS",
-    label: "Censys infrastructure",
-    drawerGroup: "Infrastructure Context",
-    category: "INFRASTRUCTURE_CONTEXT_ONLY"
   }
 ] as const;
 

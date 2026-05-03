@@ -1,48 +1,58 @@
 {
   "source": "GDELT",
-  "generated_at": "2026-05-03T05:05:17.140Z",
-  "fixture_mode": true,
-  "fixture_reason": "GDELT DOC 2.0 live request unavailable (gdelt-hormuz-doc20-artlist.json: 429 Too Many Requests); synthetic rows preserve artlist JSON shape for offline demo use.",
+  "generated_at": "2026-05-03T06:12:15.673Z",
   "request": {
-    "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+    "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28%22Strait+of+Hormuz%22+OR+Hormuz%29+%28shipping+OR+tanker+OR+vessel+OR+AIS+OR+GNSS+OR+IRGC+OR+%22Bandar+Abbas%22+OR+Fujairah%29&mode=artlist&format=json&maxrecords=50&timespan=1month&sort=datedesc",
     "method": "GET",
     "metadata": {
       "api": "DOC 2.0",
       "query": "(\"Strait of Hormuz\" OR Hormuz) (shipping OR tanker OR vessel OR AIS OR GNSS OR IRGC OR \"Bandar Abbas\" OR Fujairah)",
       "mode": "artlist",
       "format": "json",
-      "fixture_fallback": true,
-      "token_cached": false
+      "maxrecords": "50",
+      "timespan": "1month",
+      "sort": "datedesc",
+      "note": "No API key required. GDELT rows are regional media context, not vessel behavior evidence."
     }
   },
   "response": {
     "ok": true,
     "status": 200,
-    "statusText": "Fixture Fallback",
-    "contentType": "application/json",
-    "bytes": 594
+    "statusText": "OK",
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 1401
   },
   "body": {
     "articles": [
       {
-        "url": "https://example.invalid/gdelt-fixture/hormuz-ais-disruption",
+        "url": "https://www.vetogate.com/5647559",
         "url_mobile": "",
-        "title": "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
-        "seendate": "20260403050517",
-        "socialimage": null,
-        "domain": "example.invalid",
-        "language": "English",
-        "sourcecountry": "United Arab Emirates"
+        "title": "في اجتماع خاص ، ترامب يبحث خياراته لخفض أسعار البنزين بعد حصار مضيق هرمز",
+        "seendate": "20260503T054500Z",
+        "socialimage": "",
+        "domain": "vetogate.com",
+        "language": "Arabic",
+        "sourcecountry": "Egypt"
       },
       {
-        "url": "https://example.invalid/gdelt-fixture/hormuz-shipping-security",
+        "url": "https://www.smh.com.au/world/asia/the-iran-war-has-brought-another-vital-shipping-lane-into-sharper-focus-20260429-p5zsc1.html",
         "url_mobile": "",
-        "title": "Fixture report on shipping security around Bandar Abbas and Fujairah",
-        "seendate": "20260403110517",
-        "socialimage": null,
-        "domain": "example.invalid",
+        "title": "US - Iran war has brought Malacca Strait into sharper focus",
+        "seendate": "20260503T054500Z",
+        "socialimage": "https://static.ffx.io/images/$zoom_0.2453012873956901%2C$multiply_0.7554%2C$ratio_1.777778%2C$width_1059%2C$x_150%2C$y_27/t_crop_custom/q_86%2Cf_auto/t_metro_analysis_no_age_social_wm/7770c631bd4ad83ce163235efe71f173d1d70dd3",
+        "domain": "smh.com.au",
         "language": "English",
-        "sourcecountry": "United States"
+        "sourcecountry": "Australia"
+      },
+      {
+        "url": "http://www.calcuttanews.net/news/279026740/iranian-supertanker-huge-bypasses-us-blockade-with-usd-220-million-oil-cargo-says-tankertrackers",
+        "url_mobile": "",
+        "title": "Iranian supertanker  HUGE  bypasses US blockade with USD 220 million oil cargo , says TankerTrackers",
+        "seendate": "20260503T054500Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/a7fbe81/d255ab4e-9528-4a46-a815-c6e092d369ab/0/ANI-20260503035039-600x315.jpg",
+        "domain": "calcuttanews.net",
+        "language": "English",
+        "sourcecountry": "India"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T03:27:22.334Z",
+  "generated_at": "2026-05-03T06:12:15.673Z",
   "profile": "fast",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
@@ -76,24 +76,33 @@
       "fileName": "exa-hormuz-osint.json"
     },
     {
+      "source": "GDELT",
+      "ok": true,
+      "detail": "gdelt-hormuz-doc20-artlist.json: 200 OK",
+      "fileName": "gdelt-hormuz-doc20-artlist.json"
+    },
+    {
+      "source": "PORTWATCH",
+      "ok": true,
+      "detail": "2/2 PortWatch cache files written.",
+      "files": [
+        "portwatch-hormuz-chokepoint-transits.json",
+        "portwatch-hormuz-disruptions.json"
+      ]
+    },
+    {
       "source": "SHODAN",
       "ok": true,
-      "detail": "api-info ok; AIS search fixture fallback.",
+      "detail": "api-info ok; AIS infra shodan-maritime-ais.json: 5 InternetDB matches across 5 hostnames..",
       "files": [
         "shodan-api-info.json",
         "shodan-maritime-ais.json"
       ]
     },
     {
-      "source": "CENSYS",
-      "ok": true,
-      "detail": "censys-maritime-infrastructure.json: fixture fallback with 2 infrastructure matches.",
-      "fileName": "censys-maritime-infrastructure.json"
-    },
-    {
       "source": "OPENSANCTIONS",
-      "ok": true,
-      "detail": "4/4 entity searches cached.",
+      "ok": false,
+      "detail": "0/4 entity searches cached.",
       "fileName": "opensanctions-hormuz-maritime-entities.json"
     },
     {

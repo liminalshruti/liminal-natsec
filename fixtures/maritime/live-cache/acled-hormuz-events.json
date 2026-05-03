@@ -1,6 +1,6 @@
 {
   "source": "ACLED",
-  "generated_at": "2026-05-03T05:05:17.140Z",
+  "generated_at": "2026-05-03T06:12:15.673Z",
   "fixture_mode": true,
   "fixture_reason": "ACLED live read unavailable (live OAuth request 403; legacy v1 fallback 403); synthetic rows preserve ACLED read response shape for offline demo use.",
   "request": {
@@ -54,11 +54,11 @@
         "notes": "Fixture event representing a coastal security disruption near the Strait of Hormuz; not a live ACLED assertion.",
         "fatalities": "0",
         "tags": "fixture;offline-demo",
-        "timestamp": "1777784717"
+        "timestamp": "1777788735"
       },
       {
         "event_id_cnty": "YEM-FIXTURE-20260502-001",
-        "event_date": "2026-04-03",
+        "event_date": "2026-04-04",
         "year": "2026",
         "time_precision": "1",
         "disorder_type": "Political violence",
@@ -87,7 +87,7 @@
         "notes": "Fixture event representing regional maritime-threat context connected to Gulf shipping risk; not a live ACLED assertion.",
         "fatalities": "0",
         "tags": "fixture;offline-demo",
-        "timestamp": "1777784717"
+        "timestamp": "1777788735"
       }
     ]
   }

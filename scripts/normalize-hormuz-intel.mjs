@@ -37,8 +37,7 @@ export const REQUIRED_LIVE_CACHE_FILES = [
   "gfw-hormuz-port-visits.json",
   "overpass-hormuz-maritime.json",
   "overpass-hormuz-maritime.attempts.json",
-  "shodan-maritime-ais.json",
-  "censys-maritime-infrastructure.json"
+  "shodan-maritime-ais.json"
 ];
 
 const REPO_ROOT = resolve(fileURLToPath(new URL("../", import.meta.url)));
@@ -153,7 +152,6 @@ export function normalizeHormuzIntel(options = {}) {
   processGfwUnavailableEventFeeds();
   processOverpass();
   processShodan();
-  processCensys();
 
   sourceDocuments.sort((left, right) => left.id.localeCompare(right.id));
   evidenceItems.sort((left, right) => left.id.localeCompare(right.id));
@@ -1118,74 +1116,6 @@ export function normalizeHormuzIntel(options = {}) {
     );
   }
 
-  function processCensys() {
-    const doc = addSourceDocument("censys-maritime-infrastructure.json", {
-      source: "CENSYS",
-      provider: "Censys",
-      title: "Censys maritime infrastructure search",
-      categories: ["INFRASTRUCTURE_CONTEXT_ONLY"]
-    });
-    const hits = asArray(doc.file.json?.body?.result?.hits).slice(0, 4);
-    if (doc.status !== "available" || hits.length === 0) {
-      evidenceItems.push(
-        buildEvidence({
-          seed: ["censys-unavailable"],
-          title: "Censys infrastructure search unavailable",
-          source: "CENSYS",
-          provider: "Censys",
-          category: "INFRASTRUCTURE_CONTEXT_ONLY",
-          drawerGroup: "Infrastructure Context",
-          sourceDocuments: [doc],
-          status: "unavailable",
-          confidence: 0,
-          reliability: 0,
-          summary:
-            "Infrastructure-only; not vessel behavior evidence. Censys maritime service context is unavailable."
-        })
-      );
-      return;
-    }
-
-    for (const [index, hit] of hits.entries()) {
-      const host = record(hit.host);
-      const location = record(host.location);
-      const asn = record(host.autonomous_system);
-      const services = asArray(host.services);
-      const matchedServices = asArray(hit.matched_services);
-      const firstService = record(services[0] ?? matchedServices[0]);
-      const ip = sanitizeText(stringValue(host.ip), 80) ?? `Censys host ${index + 1}`;
-      const port = numberValue(firstService.port);
-      const city = sanitizeText(stringValue(location.city), 80);
-      const country = sanitizeText(stringValue(location.country), 80);
-      evidenceItems.push(
-        buildEvidence({
-          seed: ["censys", ip, port ?? index],
-          title: `${ip} maritime-service exposure context`,
-          source: "CENSYS",
-          provider: "Censys",
-          category: "INFRASTRUCTURE_CONTEXT_ONLY",
-          drawerGroup: "Infrastructure Context",
-          sourceDocuments: [doc],
-          confidence: 0.34,
-          reliability: 0.44,
-          summary:
-            "Infrastructure-only; not vessel behavior evidence. Censys returned maritime/AIS/NMEA service exposure context.",
-          entities: [ip],
-          attributes: compactRecord({
-            ip,
-            city,
-            country,
-            autonomous_system: sanitizeText(stringValue(asn.name), 100),
-            port,
-            protocol: sanitizeText(stringValue(firstService.protocol), 40),
-            transport_protocol: sanitizeText(stringValue(firstService.transport_protocol), 40),
-            matched_service_count: matchedServices.length,
-            fixture_mode: Boolean(doc.file.json?.fixture_mode)
-          })
-        })
-      );
-    }
-  }
 
   function addSourceDocument(fileName, config) {
     if (docsByFile.has(fileName)) return docsByFile.get(fileName);

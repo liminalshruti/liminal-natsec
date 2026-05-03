@@ -70,7 +70,6 @@ Expected source files:
 - `gfw-hormuz-loitering.json` — Global Fishing Watch loitering event query.
 - `shodan-api-info.json` — Shodan key/account capability check.
 - `shodan-maritime-ais.json` — Shodan AIS infrastructure context. Resolves a curated set of public AIS-aggregator hostnames (AISHub, MarineTraffic, VesselFinder, aprs.fi) via DNS and queries Shodan InternetDB (`https://internetdb.shodan.io/{ip}`) — free, unauthenticated, replaces the paid `/shodan/host/search` endpoint that returns 403 for free-tier API keys. Infrastructure-only; the guard's Layer 6 forbids these records from supporting kinematics or intent claims.
-- `censys-maritime-infrastructure.json` — Censys maritime/AIS/NMEA infrastructure search; infrastructure-only context. The cache prefers Censys Search v2 when `CENSYS_API_ID` + `CENSYS_API_SECRET` are set (free-tier path; HTTP Basic auth on `search.censys.io/api/v2/hosts/search`). Otherwise it tries Platform v3 with `CENSYS_API_TOKEN` + `CENSYS_ORGANIZATION_ID`. Falls back to fixture rows when neither credential set is available.
 - `opensanctions-hormuz-maritime-entities.json` — OpenSanctions searches for maritime/sanctions entities relevant to Hormuz.
 - `copernicus-cdse-auth.json` — CDSE credential check with tokens stripped.
 - `copernicus-cdse-sentinel1-stac.json` — recent Sentinel-1 GRD STAC metadata over Hormuz.

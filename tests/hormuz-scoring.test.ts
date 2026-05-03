@@ -84,7 +84,7 @@ describe("Hormuz scoring mapper", () => {
       "../shared/hormuz/scoring.ts"
     );
     const infrastructureOnly = mapHormuzEvidenceToScoringContributions(evidence).filter(
-      (item) => item.source === "SHODAN" || item.source === "CENSYS"
+      (item) => item.source === "SHODAN"
     );
 
     assert.ok(infrastructureOnly.length > 0);

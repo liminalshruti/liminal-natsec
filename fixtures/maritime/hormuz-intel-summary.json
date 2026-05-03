@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-05-03T04:18:24.552Z",
+  "generated_at": "2026-05-03T05:52:05.300Z",
   "normalizer_version": "hormuz-intel-normalizer@0.1.0",
   "classification": "UNCLASSIFIED//OSINT_FIXTURE",
-  "source_document_count": 27,
-  "evidence_item_count": 63,
-  "available_evidence_count": 63,
+  "source_document_count": 26,
+  "evidence_item_count": 72,
+  "available_evidence_count": 72,
   "unavailable_evidence_count": 0,
   "drawer_groups": {
     "Satellite": 11,
     "Maritime Warnings": 2,
-    "OSINT": 42,
+    "OSINT": 53,
     "Entity Risk": 4,
-    "Infrastructure Context": 4
+    "Infrastructure Context": 2
   },
   "categories": {
     "GEO_SPATIOTEMPORAL_CORROBORATION": 8,
     "CROSS_MODAL_CONTEXT": 6,
     "ENTITY_RISK_ENRICHMENT": 4,
     "REGIONAL_SECURITY_CONTEXT": 26,
-    "VESSEL_IDENTITY_CORROBORATION": 15,
+    "VESSEL_IDENTITY_CORROBORATION": 26,
     "MARITIME_INFRASTRUCTURE_CONTEXT": 1,
-    "INFRASTRUCTURE_CONTEXT_ONLY": 3
+    "INFRASTRUCTURE_CONTEXT_ONLY": 1
   },
   "scoring": {
     "contributions": [
@@ -61,8 +61,8 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:aisstream-422120900:af7781d02e",
-        "title": "ALARA AIS position sample",
+        "evidence_id": "ev:hormuz:aisstream-257301500:218e70bb94",
+        "title": "SCUBA AIS position sample",
         "source": "AISSTREAM",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -79,8 +79,8 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:aisstream-422120900:c87b10c3ad",
-        "title": "ALARA AIS position sample",
+        "evidence_id": "ev:hormuz:aisstream-257301500:31b1e93f34",
+        "title": "SCUBA AIS position sample",
         "source": "AISSTREAM",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -97,8 +97,8 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:aisstream-636021118:f24a10c119",
-        "title": "GULF TRADER AIS position sample",
+        "evidence_id": "ev:hormuz:aisstream-636025065:248dbcafb9",
+        "title": "STAR CHALLENGER AIS position sample",
         "source": "AISSTREAM",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -115,40 +115,58 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:censys-198-51-100-118:2ac122723b",
-        "title": "198.51.100.118 maritime-service exposure context",
-        "source": "CENSYS",
-        "category": "INFRASTRUCTURE_CONTEXT_ONLY",
-        "bucket": "infrastructure_context",
-        "delta": 0.02,
+        "evidence_id": "ev:hormuz:aisstream-636025065:f4dce888da",
+        "title": "STAR CHALLENGER AIS position sample",
+        "source": "AISSTREAM",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
         "available": true,
         "allowed_claim_classes": [
-          "infrastructure_context"
+          "identity_source_corroboration"
         ],
         "excluded_claim_classes": [
           "kinematics",
           "vessel_behavior",
           "intent"
         ],
-        "rationale": "Shodan records affect infrastructure context only and do not support vessel behavior."
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:censys-203-0-113-104:c69e39314f",
-        "title": "203.0.113.104 maritime-service exposure context",
-        "source": "CENSYS",
-        "category": "INFRASTRUCTURE_CONTEXT_ONLY",
-        "bucket": "infrastructure_context",
-        "delta": 0.02,
+        "evidence_id": "ev:hormuz:aisstream-993672351:c41c67b5b5",
+        "title": "AIS 993672351 AIS position sample",
+        "source": "AISSTREAM",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
         "available": true,
         "allowed_claim_classes": [
-          "infrastructure_context"
+          "identity_source_corroboration"
         ],
         "excluded_claim_classes": [
           "kinematics",
           "vessel_behavior",
           "intent"
         ],
-        "rationale": "Shodan records affect infrastructure context only and do not support vessel behavior."
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:aisstream-993672351:f22bd92c80",
+        "title": "AIS 993672351 AIS position sample",
+        "source": "AISSTREAM",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
         "evidence_id": "ev:hormuz:copernicus-marine-surface-currents:00dad944f7",
@@ -523,26 +541,8 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-p-246166:340b28a031",
+        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-p-246166:83316dd28c",
         "title": "Strait of Hormuz Traffic Grinds to Near Halt as Security Threat Remains ‘Critical,’ Advisory Warns",
-        "source": "EXA",
-        "category": "REGIONAL_SECURITY_CONTEXT",
-        "bucket": "regional_context",
-        "delta": 0.1,
-        "available": true,
-        "allowed_claim_classes": [
-          "regional_context"
-        ],
-        "excluded_claim_classes": [
-          "kinematics",
-          "vessel_behavior",
-          "intent"
-        ],
-        "rationale": "Public warning and OSINT records affect regional context only."
-      },
-      {
-        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:42f7d4c9d4",
-        "title": "Hormuz Active Crisis 5 Ships Hit Traffic Collapses | gCaptain",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
@@ -577,8 +577,26 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:95200913f8",
+        "evidence_id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:9e260e5afb",
         "title": "Iran Strait of Hormuz Risk Advisory March 2026 - Maritime News",
+        "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:exa-https-www-polestarglobal-com-resources-strait-of:c5725b519c",
+        "title": "Strait of Hormuz GPS Spoofing & AIS Manipulation",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
@@ -631,8 +649,8 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:0a71898e70",
-        "title": "GAP for GULF TRADER",
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:986ccaab81",
+        "title": "gap for IOLCOS DIGNITY",
         "source": "GLOBAL_FISHING_WATCH",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -649,8 +667,8 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:a9c1c1d7a7",
-        "title": "GAP for ALARA",
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:a80df8ab98",
+        "title": "gap for HALUL 69",
         "source": "GLOBAL_FISHING_WATCH",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -667,8 +685,8 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:33dcd4279b",
-        "title": "LOITERING for BANDAR SUPPLY",
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:b1566fecb3",
+        "title": "gap for AL GHAF",
         "source": "GLOBAL_FISHING_WATCH",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -685,8 +703,152 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:17de2821e9",
-        "title": "PORT_VISIT for ALARA",
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:bca80b690f",
+        "title": "gap for BAO SHUN",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:0c1d387fc1",
+        "title": "loitering for ZAMIL L.B.9",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:0d2774e97b",
+        "title": "loitering for ARABDRILL 30",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:10d7fba7cc",
+        "title": "loitering for HANK BOSWELL",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:425b0193a9",
+        "title": "loitering for ARO 2005",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:62425b295e",
+        "title": "port_visit for 470660000",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:68df18c130",
+        "title": "port_visit for 466501320",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:98effb2bcd",
+        "title": "port_visit for 470279000",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:e596f16f53",
+        "title": "port_visit for 470533000",
         "source": "GLOBAL_FISHING_WATCH",
         "category": "VESSEL_IDENTITY_CORROBORATION",
         "bucket": "identity_source_corroboration",
@@ -1135,8 +1297,8 @@
       "cross_modal_context": 2.16,
       "entity_risk": 0.88,
       "regional_context": 2.600000000000001,
-      "identity_source_corroboration": 2.4,
-      "infrastructure_context": 0.1
+      "identity_source_corroboration": 4.160000000000001,
+      "infrastructure_context": 0.06
     }
   }
 }

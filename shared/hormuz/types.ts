@@ -27,7 +27,6 @@ export type HormuzIntelStatus = "available" | "unavailable";
 export type HormuzIntelSource =
   | "ACLED"
   | "AISSTREAM"
-  | "CENSYS"
   | "COPERNICUS_MARINE"
   | "COPERNICUS_CDSE_STAC"
   | "DANTI"

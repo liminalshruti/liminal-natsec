@@ -92,8 +92,7 @@ describe("Hormuz live-cache normalizer", () => {
   it("labels internet-exposure sources as infrastructure-only evidence", () => {
     const result = normalizer.normalizeHormuzIntel();
     const infrastructureRows = result.evidenceItems.filter(
-      (item: Record<string, unknown>) =>
-        item.source === "SHODAN" || item.source === "CENSYS"
+      (item: Record<string, unknown>) => item.source === "SHODAN"
     );
 
     assert.ok(infrastructureRows.length > 0);

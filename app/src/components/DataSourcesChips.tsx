@@ -39,7 +39,6 @@ const SOURCE_LABEL: Record<string, string> = {
   ACLED: "ACLED",
   EXA: "Exa",
   SHODAN: "Shodan",
-  CENSYS: "Censys",
   OPENSANCTIONS: "OpenSanctions",
   COPERNICUS_CDSE_AUTH: "Copernicus auth",
   COPERNICUS_CDSE_STAC: "Copernicus STAC",
