@@ -104,12 +104,28 @@ interface EvidenceCardProps {
   kind: EvidenceKind;
 }
 
+interface Citation {
+  label: string;
+  source_file: string;
+  source_sha256: string | null;
+  source_pointer?: string;
+  source_status: "real" | "fixture-shape" | "synthetic";
+  source_provider: string;
+  rationale?: string;
+  asset_file?: string;
+  asset_sha256?: string;
+  asset_kind?: string;
+  asset_bytes?: number;
+}
+
 function EvidenceCard({ link, kind }: EvidenceCardProps) {
   const [expanded, setExpanded] = useState(false);
   const data = (link.node.data ?? {}) as Record<string, unknown>;
   const summary = stringField(data, "summary") ?? stringField(data, "rationale");
   const source = stringField(data, "source") ?? stringField(data, "specialist");
   const confidence = link.edge.provenance?.confidence;
+  const citation = data.citation as Citation | undefined;
+  const citationSecondary = data.citation_secondary as Citation | undefined;
   return (
     <div
       className="evidence-card"
@@ -143,10 +159,58 @@ function EvidenceCard({ link, kind }: EvidenceCardProps) {
           {source && <span className="evidence-card__source">{source}</span>}
         </div>
       )}
-      {expanded && (summary || link.edge.provenance?.rationale) && (
-        <div className="evidence-card__rationale">
-          {summary ?? link.edge.provenance?.rationale}
+      {citation && (
+        <div className="evidence-card__citation" data-status={citation.source_status}>
+          <span className="evidence-card__citation-icon" aria-hidden="true">📎</span>
+          <span className="evidence-card__citation-label">{citation.label}</span>
+          <span className="evidence-card__citation-status">{citation.source_status}</span>
         </div>
+      )}
+      {expanded && (
+        <div className="evidence-card__expanded">
+          {(summary || link.edge.provenance?.rationale) && (
+            <div className="evidence-card__rationale">
+              {summary ?? link.edge.provenance?.rationale}
+            </div>
+          )}
+          {citation && <CitationFootnote citation={citation} primary />}
+          {citationSecondary && <CitationFootnote citation={citationSecondary} />}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function CitationFootnote({ citation, primary }: { citation: Citation; primary?: boolean }) {
+  return (
+    <div
+      className={`evidence-card__footnote${primary ? " evidence-card__footnote--primary" : ""}`}
+      data-status={citation.source_status}
+    >
+      <div className="evidence-card__footnote-head">
+        <span className="evidence-card__footnote-label">{citation.label}</span>
+        <span className="evidence-card__footnote-provider">{citation.source_provider}</span>
+      </div>
+      <div className="evidence-card__footnote-path" title="cached source on disk">
+        {citation.source_file}
+      </div>
+      {citation.source_pointer && (
+        <div className="evidence-card__footnote-pointer">pointer: {citation.source_pointer}</div>
+      )}
+      {citation.source_sha256 && (
+        <div className="evidence-card__footnote-sha" title="sha256 of cached file">
+          sha256: {citation.source_sha256.slice(0, 16)}…{citation.source_sha256.slice(-8)}
+        </div>
+      )}
+      {citation.asset_file && (
+        <div className="evidence-card__footnote-asset" title="cached binary asset on disk">
+          asset: {citation.asset_file}
+          {citation.asset_bytes != null && ` · ${(citation.asset_bytes / 1024).toFixed(1)} KB`}
+          {citation.asset_kind && ` · ${citation.asset_kind}`}
+        </div>
+      )}
+      {citation.rationale && (
+        <div className="evidence-card__footnote-rationale">{citation.rationale}</div>
       )}
     </div>
   );
