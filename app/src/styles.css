@@ -1,9 +1,9 @@
 /* ─── Type system — editorial-handwriting register ─────────────────────────
    Editor's Hand (commercial, by Jen Wagner Co.) installed locally on the demo
    machine renders the Liminal/Jen-Wagner brand register exactly. Public-repo
-   viewers fall through to Caveat (free, OFL-licensed) shipped in /fonts/, then
-   to system cursive. The local() declaration keeps the commercial font on the
-   demo machine and never publishes it.
+   viewers fall through to Caveat (free, OFL-licensed) loaded from Google
+   Fonts CDN, then to system cursive. The local() declarations keep the
+   commercial font on the demo machine and never publish it.
    --------------------------------------------------------------------------- */
 
 @font-face {
@@ -15,7 +15,6 @@
     local("Editor's Hand"),
     local("EditorsHand"),
     local("Editors Hand"),
-    url("/fonts/Caveat-Variable.ttf") format("truetype-variations"),
     local("Caveat");
 }
 
