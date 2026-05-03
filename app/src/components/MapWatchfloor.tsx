@@ -10,7 +10,12 @@ import {
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./MapWatchfloor.css";
-import { registerMap } from "../lib/mapBridge.ts";
+// mapBridge unwired here — its only consumers (RealShipsOverlay, MapOverlays)
+// were deferred to Shayaun's MapLibre-native dantiSanctionedOverlay in PR #36.
+// With no consumers, registerMap was bumping React state on every move/zoom
+// event for nobody, causing flicker during animations. The bridge module
+// stays in the codebase for future SVG-overlay use; just not invoked now.
+// import { registerMap } from "../lib/mapBridge.ts";
 
 import { buildMapStyle, INITIAL_VIEW } from "../map/style.ts";
 import { buildLayers, DANTI_SANCTIONED_OVERLAY_PATH, SOURCES } from "../map/layers.ts";
@@ -280,7 +285,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
 
     let cancelled = false;
     let createdMap: maplibregl.Map | null = null;
-    let bridgeUnregister: (() => void) | null = null;
+    // bridgeUnregister was used to detach the mapBridge listener; with the
+    // bridge unwired (see top-of-file comment), this is now unused. Kept
+    // commented as a marker so re-enabling the bridge is a one-line change.
+    // let bridgeUnregister: (() => void) | null = null;
 
     const rafId = requestAnimationFrame(() => {
       if (cancelled || !containerRef.current) return;
@@ -368,10 +376,11 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
         }
         setMapReady(true);
         props.onMapReady?.(map);
-        // Register the map with the global bridge so SVG overlays
-        // (RealShipsOverlay, MapInkBase, MapOverlays) can subscribe to
-        // move/zoom and re-project lat/lon to current screen coords.
-        bridgeUnregister = registerMap(map);
+        // mapBridge intentionally unwired here. With RealShipsOverlay +
+        // MapOverlays deferred (PR #36), no consumers exist; the bridge
+        // was bumping React state on every move/zoom for nobody, which
+        // caused observable flicker during MapLibre animations.
+        // bridgeUnregister = registerMap(map);
       });
     });
 
@@ -380,8 +389,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       cancelAnimationFrame(rafId);
       detachFallbackRef.current?.();
       detachFallbackRef.current = null;
-      bridgeUnregister?.();
-      bridgeUnregister = null;
+      // bridgeUnregister?.(); — bridge unwired; nothing to detach.
       if (createdMap) {
         try { createdMap.remove(); } catch {}
       }

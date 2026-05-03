@@ -56,7 +56,7 @@ export function DraftCaseDetail() {
         </div>
         <div className="draft-case-detail__context" aria-label="Draft case context">
           <span>{draft.context.watchBoxName}</span>
-          <span>{draft.context.replayAnchor}</span>
+          <span>{draft.context.primaryRealSignal}</span>
           <span>{draft.context.reviewWindowLabel}</span>
         </div>
         <p className="draft-case-detail__scope-note">{draft.context.scopeNote}</p>
