@@ -15,7 +15,10 @@ describe("real scenario routes", () => {
     assert.equal(body.strictReal, true);
     assert.equal(body.caseGenerationStatus, "NO_REAL_CASE");
     assert.deepEqual(body.anomalies, []);
-    assert.match(String(body.emptyReason), /Fixture-mode provider fallbacks were excluded/);
+    assert.match(
+      String(body.emptyReason),
+      /Fixture-mode provider fallbacks were excluded|no dark gap exceeded the configured threshold/
+    );
   });
 
   it("exposes a refresh endpoint for offline regeneration from cached files", async () => {

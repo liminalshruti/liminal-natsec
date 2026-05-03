@@ -9,7 +9,15 @@ import { generateRealWatchfloor } from "../server/src/real/generator.ts";
 
 describe("real watchfloor generator", () => {
   it("excludes fixture-mode motion cache records in strict real mode", () => {
-    const result = generateRealWatchfloor();
+    const liveCacheDir = makeTempLiveCache({
+      fixtureMode: true,
+      gfwFixtureMode: true,
+      messages: [
+        aisMessage("538009999", "FIXTURE ONLY", "2026-05-02T10:00:00Z", 25.4, 56.1)
+      ]
+    });
+
+    const result = generateRealWatchfloor({ liveCacheDir });
 
     assert.equal(result.summary.strict_real, true);
     assert.equal(result.summary.observation_count, 0);

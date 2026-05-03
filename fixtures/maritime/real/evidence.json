@@ -1,4 +1,2166 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "ev:real:hormuz:e2048b16fa6e:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:e2048b16fa6e",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.8 minute gap between real AIS positions for 257301500."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:eb700747c0d0:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:eb700747c0d0",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.8 minute gap between real AIS positions for 993672351."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:c54e6852d8eb:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:c54e6852d8eb",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.8 minute gap between real AIS positions for 636025065."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:d569e45514ab:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:d569e45514ab",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.8 minute gap between real AIS positions for 258021190."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:44e847f8d63b:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:44e847f8d63b",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.8 minute gap between real AIS positions for 338361065."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:501fdab5c7d3:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:501fdab5c7d3",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.7 minute gap between real AIS positions for 232040181."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:73701cbb9119:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:73701cbb9119",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.7 minute gap between real AIS positions for 405000340."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:9087a9900aac:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:9087a9900aac",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.7 minute gap between real AIS positions for 548784000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:fb02a860db56:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:fb02a860db56",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.7 minute gap between real AIS positions for 257183140."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:7f16020ec8fc:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:7f16020ec8fc",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 310079000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:7d7dc31f2dfc:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:7d7dc31f2dfc",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 244153353."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:06395f726b71:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:06395f726b71",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 273450850."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:a1e3e8a97dc5:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:a1e3e8a97dc5",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 211269850."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:14de70ac6cee:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:14de70ac6cee",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 993692004."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:4f85d6169e4d:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:4f85d6169e4d",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 503476200."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:e68c58cc9af8:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:e68c58cc9af8",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 993692009."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:f188a688b94c:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:f188a688b94c",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 228255980."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:7e4c560b303a:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:7e4c560b303a",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.6 minute gap between real AIS positions for 235087966."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:5b28a3a0fd78:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:5b28a3a0fd78",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 245057000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:3bb942519b21:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:3bb942519b21",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 244437965."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:0d52a62d7a99:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:0d52a62d7a99",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 255805703."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:30a6a0512263:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:30a6a0512263",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 368438690."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:c8ce08f08717:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:c8ce08f08717",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 258100140."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:3b197b653bbc:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:3b197b653bbc",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 258263500."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:0dd4b9130576:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:0dd4b9130576",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 258111000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:6a78ef2207d2:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:6a78ef2207d2",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 211411630."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:41b78eea5dd1:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:41b78eea5dd1",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 244182911."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:cce118f8bce2:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:cce118f8bce2",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 257029360."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:d06c2631e964:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:d06c2631e964",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 244650533."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:95d555d810ed:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:95d555d810ed",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 244860008."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:ceff47dd7f8e:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:ceff47dd7f8e",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 338330801."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:c3563b05bcf8:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:c3563b05bcf8",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 636023504."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:3af421f91888:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:3af421f91888",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.5 minute gap between real AIS positions for 219034685."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:822d8de8c2c6:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:822d8de8c2c6",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 258002760."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:0a24cb2f6c5a:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:0a24cb2f6c5a",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 244020088."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:a9c9e72a6d0a:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:a9c9e72a6d0a",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 212850000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:b9ca2d443daa:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:b9ca2d443daa",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 224526490."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:120533839c41:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:120533839c41",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 228481800."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:3261a2c2ac1f:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:3261a2c2ac1f",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 211271080."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:5a002345b195:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:5a002345b195",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 244861861."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:321d23052dc3:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:321d23052dc3",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 235101063."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:0b91c4611f5a:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:0b91c4611f5a",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 244050486."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:9b668ac8db5c:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:9b668ac8db5c",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 257218500."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:d94935d459eb:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:d94935d459eb",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 230183460."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:77f5e267abb1:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:77f5e267abb1",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 244830975."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:e58676f1de89:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:e58676f1de89",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 211769180."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:7c8a67b020ee:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:7c8a67b020ee",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 244730731."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:498bf4ed2e77:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:498bf4ed2e77",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 477995249."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:73ab399ae0cd:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:73ab399ae0cd",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 992438364."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:af24fed96c61:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:af24fed96c61",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 338302325."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:7563e7ab7286:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:7563e7ab7286",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 244090711."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:b2489034c1ee:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:b2489034c1ee",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 519170701."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:0a0471006c6e:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:0a0471006c6e",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.4 minute gap between real AIS positions for 413468970."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:a26e8d17e422:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:a26e8d17e422",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 255804970."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:bd351a3a4538:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:bd351a3a4538",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 368055920."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:d9dd9314be57:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:d9dd9314be57",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 265038050."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:03730d0b0fcb:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:03730d0b0fcb",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 525119201."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:d9e627539e0a:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:d9e627539e0a",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 229417000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:2ae34826c875:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:2ae34826c875",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 218028600."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:87e68521c630:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:87e68521c630",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 993672264."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:2c40d1fe1363:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:2c40d1fe1363",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 368010660."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:b55d31c1ee68:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:b55d31c1ee68",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 993672169."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:bc905a4e0292:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:bc905a4e0292",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 244690810."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:6022b41473d5:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:6022b41473d5",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 257934000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:8bd34f5cf389:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:8bd34f5cf389",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 257077240."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:339464140e26:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:339464140e26",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 244630159."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:15212663738b:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:15212663738b",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 416000019."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:40a2aa2f2490:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:40a2aa2f2490",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 257997000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:922a2decb047:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:922a2decb047",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 241871000."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:00b1c2ff66e7:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:00b1c2ff66e7",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 244850515."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:23d99b8c234d:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:23d99b8c234d",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 244010963."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:2ecb421230d5:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:2ecb421230d5",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 503000196."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:2b5fad4ebf92:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:2b5fad4ebf92",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 257816500."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:ec54a73209ca:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:ec54a73209ca",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 368146890."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:2539411c903d:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:2539411c903d",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 316001221."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:fa1a850e5b7e:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:fa1a850e5b7e",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 538090696."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:78f8c350afc2:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:78f8c350afc2",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 219001189."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:53cf8d59c407:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:53cf8d59c407",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 255806329."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:8cbb87bdb9fd:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:8cbb87bdb9fd",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 232007020."
+      }
+    },
+    {
+      "id": "ev:real:hormuz:0a4f5730739a:ais-gap",
+      "type": "evidence",
+      "title": "Real AIS dark gap",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "case_id": "case:real:hormuz:0a4f5730739a",
+      "data": {
+        "evidence_type": "REAL_AIS_DARK_GAP",
+        "llr_nats": 0.35,
+        "summary": "3.3 minute gap between real AIS positions for 701006243."
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:ev:real:hormuz:e2048b16fa6e:ais-gap:supports:claim:real:hormuz:e2048b16fa6e:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:e2048b16fa6e:ais-gap",
+      "to": "claim:real:hormuz:e2048b16fa6e:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:fb4293b13e7e17",
+          "obs:real:hormuz:5ac82dcf5d1e10"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:eb700747c0d0:ais-gap:supports:claim:real:hormuz:eb700747c0d0:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:eb700747c0d0:ais-gap",
+      "to": "claim:real:hormuz:eb700747c0d0:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9559b7e1b7b8eb",
+          "obs:real:hormuz:76134e5cda45d4"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:c54e6852d8eb:ais-gap:supports:claim:real:hormuz:c54e6852d8eb:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:c54e6852d8eb:ais-gap",
+      "to": "claim:real:hormuz:c54e6852d8eb:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:4f524a5e2374e4",
+          "obs:real:hormuz:d841bec960d921"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:d569e45514ab:ais-gap:supports:claim:real:hormuz:d569e45514ab:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:d569e45514ab:ais-gap",
+      "to": "claim:real:hormuz:d569e45514ab:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:724579e66c65e5",
+          "obs:real:hormuz:47c4faeb69544b"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:44e847f8d63b:ais-gap:supports:claim:real:hormuz:44e847f8d63b:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:44e847f8d63b:ais-gap",
+      "to": "claim:real:hormuz:44e847f8d63b:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:ba25e471a992ae",
+          "obs:real:hormuz:e9ca38166c200d"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:501fdab5c7d3:ais-gap:supports:claim:real:hormuz:501fdab5c7d3:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:501fdab5c7d3:ais-gap",
+      "to": "claim:real:hormuz:501fdab5c7d3:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:45e6eee59b81ed",
+          "obs:real:hormuz:7b067cb1c00242"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:73701cbb9119:ais-gap:supports:claim:real:hormuz:73701cbb9119:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:73701cbb9119:ais-gap",
+      "to": "claim:real:hormuz:73701cbb9119:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:a1bdec28c4e41a",
+          "obs:real:hormuz:e1c5afeef8ebdf"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:9087a9900aac:ais-gap:supports:claim:real:hormuz:9087a9900aac:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:9087a9900aac:ais-gap",
+      "to": "claim:real:hormuz:9087a9900aac:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:f8eaed8d008d16",
+          "obs:real:hormuz:1a5622774f94fd"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:fb02a860db56:ais-gap:supports:claim:real:hormuz:fb02a860db56:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:fb02a860db56:ais-gap",
+      "to": "claim:real:hormuz:fb02a860db56:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:15c5b679932be1",
+          "obs:real:hormuz:2abea68fede9e4"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:7f16020ec8fc:ais-gap:supports:claim:real:hormuz:7f16020ec8fc:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:7f16020ec8fc:ais-gap",
+      "to": "claim:real:hormuz:7f16020ec8fc:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:af4fba6b9e6bea",
+          "obs:real:hormuz:d179c45d98ac80"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:7d7dc31f2dfc:ais-gap:supports:claim:real:hormuz:7d7dc31f2dfc:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:7d7dc31f2dfc:ais-gap",
+      "to": "claim:real:hormuz:7d7dc31f2dfc:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:5b41f98441d9f7",
+          "obs:real:hormuz:cd30fbdf82d364"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:06395f726b71:ais-gap:supports:claim:real:hormuz:06395f726b71:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:06395f726b71:ais-gap",
+      "to": "claim:real:hormuz:06395f726b71:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9664d82051dc91",
+          "obs:real:hormuz:12a937e84dbb30"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:a1e3e8a97dc5:ais-gap:supports:claim:real:hormuz:a1e3e8a97dc5:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:a1e3e8a97dc5:ais-gap",
+      "to": "claim:real:hormuz:a1e3e8a97dc5:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:427fe12159ad78",
+          "obs:real:hormuz:699ea8c64def06"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:14de70ac6cee:ais-gap:supports:claim:real:hormuz:14de70ac6cee:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:14de70ac6cee:ais-gap",
+      "to": "claim:real:hormuz:14de70ac6cee:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:d5a47d1d74294d",
+          "obs:real:hormuz:fd1fa28af568ec"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:4f85d6169e4d:ais-gap:supports:claim:real:hormuz:4f85d6169e4d:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:4f85d6169e4d:ais-gap",
+      "to": "claim:real:hormuz:4f85d6169e4d:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:cb7147243c3467",
+          "obs:real:hormuz:ecb2092e75cae6"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:e68c58cc9af8:ais-gap:supports:claim:real:hormuz:e68c58cc9af8:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:e68c58cc9af8:ais-gap",
+      "to": "claim:real:hormuz:e68c58cc9af8:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:abce64ff09fcd2",
+          "obs:real:hormuz:4906f743fe6aa1"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:f188a688b94c:ais-gap:supports:claim:real:hormuz:f188a688b94c:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:f188a688b94c:ais-gap",
+      "to": "claim:real:hormuz:f188a688b94c:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9655ed0f8afc08",
+          "obs:real:hormuz:845fb3c29d0367"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:7e4c560b303a:ais-gap:supports:claim:real:hormuz:7e4c560b303a:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:7e4c560b303a:ais-gap",
+      "to": "claim:real:hormuz:7e4c560b303a:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:1262f3fc66937d",
+          "obs:real:hormuz:cf2d59560ee777"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:5b28a3a0fd78:ais-gap:supports:claim:real:hormuz:5b28a3a0fd78:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:5b28a3a0fd78:ais-gap",
+      "to": "claim:real:hormuz:5b28a3a0fd78:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:3194e2a80cb0ab",
+          "obs:real:hormuz:98900d4d402b8f"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:3bb942519b21:ais-gap:supports:claim:real:hormuz:3bb942519b21:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:3bb942519b21:ais-gap",
+      "to": "claim:real:hormuz:3bb942519b21:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:1f4b8a2c137244",
+          "obs:real:hormuz:5bc836d4855bd9"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:0d52a62d7a99:ais-gap:supports:claim:real:hormuz:0d52a62d7a99:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:0d52a62d7a99:ais-gap",
+      "to": "claim:real:hormuz:0d52a62d7a99:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:1240a7cccd588c",
+          "obs:real:hormuz:70e365b08f9cdb"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:30a6a0512263:ais-gap:supports:claim:real:hormuz:30a6a0512263:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:30a6a0512263:ais-gap",
+      "to": "claim:real:hormuz:30a6a0512263:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9d6a152bf499fb",
+          "obs:real:hormuz:bbedb08fefc8da"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:c8ce08f08717:ais-gap:supports:claim:real:hormuz:c8ce08f08717:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:c8ce08f08717:ais-gap",
+      "to": "claim:real:hormuz:c8ce08f08717:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:ef46c1ee71f76c",
+          "obs:real:hormuz:08d4aa066a6459"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:3b197b653bbc:ais-gap:supports:claim:real:hormuz:3b197b653bbc:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:3b197b653bbc:ais-gap",
+      "to": "claim:real:hormuz:3b197b653bbc:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:d980f625674930",
+          "obs:real:hormuz:9b63a9c11033f5"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:0dd4b9130576:ais-gap:supports:claim:real:hormuz:0dd4b9130576:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:0dd4b9130576:ais-gap",
+      "to": "claim:real:hormuz:0dd4b9130576:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:b460ae2ecfc3eb",
+          "obs:real:hormuz:e31534d8f8c368"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:6a78ef2207d2:ais-gap:supports:claim:real:hormuz:6a78ef2207d2:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:6a78ef2207d2:ais-gap",
+      "to": "claim:real:hormuz:6a78ef2207d2:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:fde938edf37ddb",
+          "obs:real:hormuz:0ed66316bb834c"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:41b78eea5dd1:ais-gap:supports:claim:real:hormuz:41b78eea5dd1:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:41b78eea5dd1:ais-gap",
+      "to": "claim:real:hormuz:41b78eea5dd1:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:faa36b20b0deab",
+          "obs:real:hormuz:948d4069419dab"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:cce118f8bce2:ais-gap:supports:claim:real:hormuz:cce118f8bce2:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:cce118f8bce2:ais-gap",
+      "to": "claim:real:hormuz:cce118f8bce2:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:3e30069810de4b",
+          "obs:real:hormuz:350aefc77a66b1"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:d06c2631e964:ais-gap:supports:claim:real:hormuz:d06c2631e964:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:d06c2631e964:ais-gap",
+      "to": "claim:real:hormuz:d06c2631e964:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:467a1653c522ab",
+          "obs:real:hormuz:d3fa31d79f9086"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:95d555d810ed:ais-gap:supports:claim:real:hormuz:95d555d810ed:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:95d555d810ed:ais-gap",
+      "to": "claim:real:hormuz:95d555d810ed:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:ac938498a2e00b",
+          "obs:real:hormuz:ea69b1080ea4bb"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:ceff47dd7f8e:ais-gap:supports:claim:real:hormuz:ceff47dd7f8e:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:ceff47dd7f8e:ais-gap",
+      "to": "claim:real:hormuz:ceff47dd7f8e:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:a41fb07cb35614",
+          "obs:real:hormuz:1ebd36475b3e4e"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:c3563b05bcf8:ais-gap:supports:claim:real:hormuz:c3563b05bcf8:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:c3563b05bcf8:ais-gap",
+      "to": "claim:real:hormuz:c3563b05bcf8:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:8a95b6fcd9aedd",
+          "obs:real:hormuz:20a87a89ffa1ed"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:3af421f91888:ais-gap:supports:claim:real:hormuz:3af421f91888:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:3af421f91888:ais-gap",
+      "to": "claim:real:hormuz:3af421f91888:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:77d414dd746525",
+          "obs:real:hormuz:477779f9c4bd31"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:822d8de8c2c6:ais-gap:supports:claim:real:hormuz:822d8de8c2c6:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:822d8de8c2c6:ais-gap",
+      "to": "claim:real:hormuz:822d8de8c2c6:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9e40206544781e",
+          "obs:real:hormuz:291b5ac04302b8"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:0a24cb2f6c5a:ais-gap:supports:claim:real:hormuz:0a24cb2f6c5a:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:0a24cb2f6c5a:ais-gap",
+      "to": "claim:real:hormuz:0a24cb2f6c5a:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:d8bc6c4360c5fd",
+          "obs:real:hormuz:4313742d4ea49a"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:a9c9e72a6d0a:ais-gap:supports:claim:real:hormuz:a9c9e72a6d0a:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:a9c9e72a6d0a:ais-gap",
+      "to": "claim:real:hormuz:a9c9e72a6d0a:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:f2608ea8bf9fda",
+          "obs:real:hormuz:d24ceb185b1313"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:b9ca2d443daa:ais-gap:supports:claim:real:hormuz:b9ca2d443daa:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:b9ca2d443daa:ais-gap",
+      "to": "claim:real:hormuz:b9ca2d443daa:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:f9307dd8add49d",
+          "obs:real:hormuz:cccfebc16b3596"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:120533839c41:ais-gap:supports:claim:real:hormuz:120533839c41:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:120533839c41:ais-gap",
+      "to": "claim:real:hormuz:120533839c41:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:5867fff7cf1bfa",
+          "obs:real:hormuz:660721320d2438"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:3261a2c2ac1f:ais-gap:supports:claim:real:hormuz:3261a2c2ac1f:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:3261a2c2ac1f:ais-gap",
+      "to": "claim:real:hormuz:3261a2c2ac1f:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:128ee7807ed84f",
+          "obs:real:hormuz:f245e23136e78e"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:5a002345b195:ais-gap:supports:claim:real:hormuz:5a002345b195:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:5a002345b195:ais-gap",
+      "to": "claim:real:hormuz:5a002345b195:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:b26f73a8b5c0ea",
+          "obs:real:hormuz:b2cfcd8ce073bc"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:321d23052dc3:ais-gap:supports:claim:real:hormuz:321d23052dc3:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:321d23052dc3:ais-gap",
+      "to": "claim:real:hormuz:321d23052dc3:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:bebf46ccebb41b",
+          "obs:real:hormuz:e1c7ae99ca0c06"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:0b91c4611f5a:ais-gap:supports:claim:real:hormuz:0b91c4611f5a:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:0b91c4611f5a:ais-gap",
+      "to": "claim:real:hormuz:0b91c4611f5a:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:3fcf9d143278c2",
+          "obs:real:hormuz:bf9e9b40db7ddf"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:9b668ac8db5c:ais-gap:supports:claim:real:hormuz:9b668ac8db5c:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:9b668ac8db5c:ais-gap",
+      "to": "claim:real:hormuz:9b668ac8db5c:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:b4ff84d3595dc4",
+          "obs:real:hormuz:bbd1998b6425c2"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:d94935d459eb:ais-gap:supports:claim:real:hormuz:d94935d459eb:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:d94935d459eb:ais-gap",
+      "to": "claim:real:hormuz:d94935d459eb:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:4bff84d4160c05",
+          "obs:real:hormuz:07005cf5270e91"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:77f5e267abb1:ais-gap:supports:claim:real:hormuz:77f5e267abb1:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:77f5e267abb1:ais-gap",
+      "to": "claim:real:hormuz:77f5e267abb1:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:449911d1b6087a",
+          "obs:real:hormuz:d35f124e822729"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:e58676f1de89:ais-gap:supports:claim:real:hormuz:e58676f1de89:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:e58676f1de89:ais-gap",
+      "to": "claim:real:hormuz:e58676f1de89:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:00c1202f73b5e5",
+          "obs:real:hormuz:2871e304d016de"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:7c8a67b020ee:ais-gap:supports:claim:real:hormuz:7c8a67b020ee:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:7c8a67b020ee:ais-gap",
+      "to": "claim:real:hormuz:7c8a67b020ee:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:2c6e00bafa89f3",
+          "obs:real:hormuz:4396edcad3801d"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:498bf4ed2e77:ais-gap:supports:claim:real:hormuz:498bf4ed2e77:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:498bf4ed2e77:ais-gap",
+      "to": "claim:real:hormuz:498bf4ed2e77:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:284d5c49392b7d",
+          "obs:real:hormuz:98b350d6b6529f"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:73ab399ae0cd:ais-gap:supports:claim:real:hormuz:73ab399ae0cd:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:73ab399ae0cd:ais-gap",
+      "to": "claim:real:hormuz:73ab399ae0cd:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:407daa45d78927",
+          "obs:real:hormuz:9bee86ccfa4b70"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:af24fed96c61:ais-gap:supports:claim:real:hormuz:af24fed96c61:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:af24fed96c61:ais-gap",
+      "to": "claim:real:hormuz:af24fed96c61:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:b4dbd0fa04a465",
+          "obs:real:hormuz:4edc76e9f1196b"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:7563e7ab7286:ais-gap:supports:claim:real:hormuz:7563e7ab7286:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:7563e7ab7286:ais-gap",
+      "to": "claim:real:hormuz:7563e7ab7286:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:1cc4c1a868a9eb",
+          "obs:real:hormuz:ee472b8869921e"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:b2489034c1ee:ais-gap:supports:claim:real:hormuz:b2489034c1ee:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:b2489034c1ee:ais-gap",
+      "to": "claim:real:hormuz:b2489034c1ee:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:575b8ab2b47454",
+          "obs:real:hormuz:c84bd8d018785f"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:0a0471006c6e:ais-gap:supports:claim:real:hormuz:0a0471006c6e:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:0a0471006c6e:ais-gap",
+      "to": "claim:real:hormuz:0a0471006c6e:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:67433719cebdae",
+          "obs:real:hormuz:b8560ad8983bee"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:a26e8d17e422:ais-gap:supports:claim:real:hormuz:a26e8d17e422:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:a26e8d17e422:ais-gap",
+      "to": "claim:real:hormuz:a26e8d17e422:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:c0ce95c2808b31",
+          "obs:real:hormuz:8ea41b836df683"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:bd351a3a4538:ais-gap:supports:claim:real:hormuz:bd351a3a4538:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:bd351a3a4538:ais-gap",
+      "to": "claim:real:hormuz:bd351a3a4538:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:11e3432cdd5af6",
+          "obs:real:hormuz:881c9fe17b890d"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:d9dd9314be57:ais-gap:supports:claim:real:hormuz:d9dd9314be57:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:d9dd9314be57:ais-gap",
+      "to": "claim:real:hormuz:d9dd9314be57:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:70cb38582105b0",
+          "obs:real:hormuz:7f9507ff99bb92"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:03730d0b0fcb:ais-gap:supports:claim:real:hormuz:03730d0b0fcb:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:03730d0b0fcb:ais-gap",
+      "to": "claim:real:hormuz:03730d0b0fcb:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:c531263e2c0b70",
+          "obs:real:hormuz:342a6e6f109547"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:d9e627539e0a:ais-gap:supports:claim:real:hormuz:d9e627539e0a:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:d9e627539e0a:ais-gap",
+      "to": "claim:real:hormuz:d9e627539e0a:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:67e526fca37824",
+          "obs:real:hormuz:4319d8719f0ed0"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:2ae34826c875:ais-gap:supports:claim:real:hormuz:2ae34826c875:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:2ae34826c875:ais-gap",
+      "to": "claim:real:hormuz:2ae34826c875:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:ea92aa19dbed31",
+          "obs:real:hormuz:ae96d92867ccba"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:87e68521c630:ais-gap:supports:claim:real:hormuz:87e68521c630:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:87e68521c630:ais-gap",
+      "to": "claim:real:hormuz:87e68521c630:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:4d86065cdb18ba",
+          "obs:real:hormuz:7b0a92d3c437a2"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:2c40d1fe1363:ais-gap:supports:claim:real:hormuz:2c40d1fe1363:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:2c40d1fe1363:ais-gap",
+      "to": "claim:real:hormuz:2c40d1fe1363:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:4b7991022e520c",
+          "obs:real:hormuz:516964a77d0bfb"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:b55d31c1ee68:ais-gap:supports:claim:real:hormuz:b55d31c1ee68:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:b55d31c1ee68:ais-gap",
+      "to": "claim:real:hormuz:b55d31c1ee68:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:5cc2bd4f4fde39",
+          "obs:real:hormuz:845e1435e12379"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:bc905a4e0292:ais-gap:supports:claim:real:hormuz:bc905a4e0292:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:bc905a4e0292:ais-gap",
+      "to": "claim:real:hormuz:bc905a4e0292:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:36c7e6521e5b67",
+          "obs:real:hormuz:d1faff0bda1ecc"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:6022b41473d5:ais-gap:supports:claim:real:hormuz:6022b41473d5:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:6022b41473d5:ais-gap",
+      "to": "claim:real:hormuz:6022b41473d5:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:aa38f9b9cba9e3",
+          "obs:real:hormuz:046f09dc2334fc"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:8bd34f5cf389:ais-gap:supports:claim:real:hormuz:8bd34f5cf389:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:8bd34f5cf389:ais-gap",
+      "to": "claim:real:hormuz:8bd34f5cf389:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:f32d06add39599",
+          "obs:real:hormuz:7e292753782afb"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:339464140e26:ais-gap:supports:claim:real:hormuz:339464140e26:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:339464140e26:ais-gap",
+      "to": "claim:real:hormuz:339464140e26:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9216c44de92734",
+          "obs:real:hormuz:698e07913eceb8"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:15212663738b:ais-gap:supports:claim:real:hormuz:15212663738b:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:15212663738b:ais-gap",
+      "to": "claim:real:hormuz:15212663738b:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:e5f21d6cabb193",
+          "obs:real:hormuz:e695814c5a987e"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:40a2aa2f2490:ais-gap:supports:claim:real:hormuz:40a2aa2f2490:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:40a2aa2f2490:ais-gap",
+      "to": "claim:real:hormuz:40a2aa2f2490:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:6422e71c067591",
+          "obs:real:hormuz:20ede357a794c0"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:922a2decb047:ais-gap:supports:claim:real:hormuz:922a2decb047:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:922a2decb047:ais-gap",
+      "to": "claim:real:hormuz:922a2decb047:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:a9947d9ee6d74d",
+          "obs:real:hormuz:dbc3c4e3d01e3a"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:00b1c2ff66e7:ais-gap:supports:claim:real:hormuz:00b1c2ff66e7:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:00b1c2ff66e7:ais-gap",
+      "to": "claim:real:hormuz:00b1c2ff66e7:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9b5bda18ab51a3",
+          "obs:real:hormuz:b7c727b84a24c3"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:23d99b8c234d:ais-gap:supports:claim:real:hormuz:23d99b8c234d:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:23d99b8c234d:ais-gap",
+      "to": "claim:real:hormuz:23d99b8c234d:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:83d6e9602111fd",
+          "obs:real:hormuz:74795663f61b57"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:2ecb421230d5:ais-gap:supports:claim:real:hormuz:2ecb421230d5:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:2ecb421230d5:ais-gap",
+      "to": "claim:real:hormuz:2ecb421230d5:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:9e0159b8027d1b",
+          "obs:real:hormuz:fdaa89e34911d0"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:2b5fad4ebf92:ais-gap:supports:claim:real:hormuz:2b5fad4ebf92:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:2b5fad4ebf92:ais-gap",
+      "to": "claim:real:hormuz:2b5fad4ebf92:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:d537e698978eb9",
+          "obs:real:hormuz:3540bd49c3d88b"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:ec54a73209ca:ais-gap:supports:claim:real:hormuz:ec54a73209ca:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:ec54a73209ca:ais-gap",
+      "to": "claim:real:hormuz:ec54a73209ca:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:92702527a417cc",
+          "obs:real:hormuz:b6283b71a15980"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:2539411c903d:ais-gap:supports:claim:real:hormuz:2539411c903d:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:2539411c903d:ais-gap",
+      "to": "claim:real:hormuz:2539411c903d:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:005b4cf3d23e80",
+          "obs:real:hormuz:669b8b9657e2e1"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:fa1a850e5b7e:ais-gap:supports:claim:real:hormuz:fa1a850e5b7e:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:fa1a850e5b7e:ais-gap",
+      "to": "claim:real:hormuz:fa1a850e5b7e:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:f5c7682f4fdbb5",
+          "obs:real:hormuz:54cc00eb85e68d"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:78f8c350afc2:ais-gap:supports:claim:real:hormuz:78f8c350afc2:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:78f8c350afc2:ais-gap",
+      "to": "claim:real:hormuz:78f8c350afc2:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:c3ed9bc5fe06e1",
+          "obs:real:hormuz:df93fec2d56732"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:53cf8d59c407:ais-gap:supports:claim:real:hormuz:53cf8d59c407:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:53cf8d59c407:ais-gap",
+      "to": "claim:real:hormuz:53cf8d59c407:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:e8ef3e2c0dee78",
+          "obs:real:hormuz:17a5e7ffb33e15"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:8cbb87bdb9fd:ais-gap:supports:claim:real:hormuz:8cbb87bdb9fd:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:8cbb87bdb9fd:ais-gap",
+      "to": "claim:real:hormuz:8cbb87bdb9fd:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:5346bd720f8b63",
+          "obs:real:hormuz:13d1abd5f2e1c3"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:0a4f5730739a:ais-gap:supports:claim:real:hormuz:0a4f5730739a:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:0a4f5730739a:ais-gap",
+      "to": "claim:real:hormuz:0a4f5730739a:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T05:05:17.140Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "obs:real:hormuz:fa558c8bff4328",
+          "obs:real:hormuz:c5fd8bed2fe015"
+        ],
+        "confidence": 0.76
+      }
+    }
+  ]
 }

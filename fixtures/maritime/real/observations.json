@@ -1,4 +1,3011 @@
 {
-  "nodes": [],
+  "nodes": [
+    {
+      "id": "obs:real:hormuz:005b4cf3d23e80",
+      "type": "observation",
+      "title": "WILLIAM MACK AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:316001221:2026-05-03 05:52:06.1622398 +0000 UTC:154",
+        "observed_at": "2026-05-03 05:52:06.1622398 +0000 UTC",
+        "mmsi": "316001221",
+        "name": "WILLIAM MACK",
+        "lat": 49.23102,
+        "lon": -122.7709,
+        "sog_knots": 0,
+        "cog_deg": 259.5,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9e40206544781e",
+      "type": "observation",
+      "title": "258002760 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258002760:2026-05-03 05:52:06.469029208 +0000 UTC:69",
+        "observed_at": "2026-05-03 05:52:06.469029208 +0000 UTC",
+        "mmsi": "258002760",
+        "name": null,
+        "lat": 50.30683,
+        "lon": 0.4281,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9664d82051dc91",
+      "type": "observation",
+      "title": "VLADIMIR ZAGOSKIN AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:273450850:2026-05-03 05:52:06.936416656 +0000 UTC:22",
+        "observed_at": "2026-05-03 05:52:06.936416656 +0000 UTC",
+        "mmsi": "273450850",
+        "name": "VLADIMIR ZAGOSKIN",
+        "lat": 71.14978,
+        "lon": 21.41425,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:fb4293b13e7e17",
+      "type": "observation",
+      "title": "SCUBA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257301500:2026-05-03 05:52:06.942730262 +0000 UTC:0",
+        "observed_at": "2026-05-03 05:52:06.942730262 +0000 UTC",
+        "mmsi": "257301500",
+        "name": "SCUBA",
+        "lat": 59.81541,
+        "lon": 5.27516,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:3e30069810de4b",
+      "type": "observation",
+      "title": "SKEISTIND AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257029360:2026-05-03 05:52:07.414270398 +0000 UTC:56",
+        "observed_at": "2026-05-03 05:52:07.414270398 +0000 UTC",
+        "mmsi": "257029360",
+        "name": "SKEISTIND",
+        "lat": 67.57184,
+        "lon": 15.12512,
+        "sog_knots": 0,
+        "cog_deg": 355,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:8a95b6fcd9aedd",
+      "type": "observation",
+      "title": "YANBU                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:636023504:2026-05-03 05:52:07.536313759 +0000 UTC:65",
+        "observed_at": "2026-05-03 05:52:07.536313759 +0000 UTC",
+        "mmsi": "636023504",
+        "name": "YANBU               ",
+        "lat": 34.42583,
+        "lon": 33.34199,
+        "sog_knots": 0.5,
+        "cog_deg": 244.5,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4f524a5e2374e4",
+      "type": "observation",
+      "title": "STAR CHALLENGER      AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:636025065:2026-05-03 05:52:07.589197087 +0000 UTC:4",
+        "observed_at": "2026-05-03 05:52:07.589197087 +0000 UTC",
+        "mmsi": "636025065",
+        "name": "STAR CHALLENGER     ",
+        "lat": 51.25622,
+        "lon": 4.40334,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ef46c1ee71f76c",
+      "type": "observation",
+      "title": "EXCHANGE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258100140:2026-05-03 05:52:07.751503648 +0000 UTC:46",
+        "observed_at": "2026-05-03 05:52:07.751503648 +0000 UTC",
+        "mmsi": "258100140",
+        "name": "EXCHANGE",
+        "lat": 59.08206,
+        "lon": 5.78476,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ba25e471a992ae",
+      "type": "observation",
+      "title": "338361065 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:338361065:2026-05-03 05:52:08.280835933 +0000 UTC:8",
+        "observed_at": "2026-05-03 05:52:08.280835933 +0000 UTC",
+        "mmsi": "338361065",
+        "name": null,
+        "lat": 47.66586,
+        "lon": -122.38854,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:faa36b20b0deab",
+      "type": "observation",
+      "title": "WHITE CHEETAH        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244182911:2026-05-03 05:52:08.331708944 +0000 UTC:54",
+        "observed_at": "2026-05-03 05:52:08.331708944 +0000 UTC",
+        "mmsi": "244182911",
+        "name": "WHITE CHEETAH       ",
+        "lat": 51.27517,
+        "lon": 2.44895,
+        "sog_knots": 0.2,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:f8eaed8d008d16",
+      "type": "observation",
+      "title": "LILIAN TRADER        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:548784000:2026-05-03 05:52:08.487794369 +0000 UTC:14",
+        "observed_at": "2026-05-03 05:52:08.487794369 +0000 UTC",
+        "mmsi": "548784000",
+        "name": "LILIAN TRADER       ",
+        "lat": 53.99699,
+        "lon": -128.69287,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:407daa45d78927",
+      "type": "observation",
+      "title": "992438364 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:992438364:2026-05-03 05:52:08.824651265 +0000 UTC:99",
+        "observed_at": "2026-05-03 05:52:08.824651265 +0000 UTC",
+        "mmsi": "992438364",
+        "name": null,
+        "lat": 47.53912,
+        "lon": 19.05183,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9559b7e1b7b8eb",
+      "type": "observation",
+      "title": "993672351 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993672351:2026-05-03 05:52:08.861690096 +0000 UTC:2",
+        "observed_at": "2026-05-03 05:52:08.861690096 +0000 UTC",
+        "mmsi": "993672351",
+        "name": null,
+        "lat": 27.61359,
+        "lon": -82.76481,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d537e698978eb9",
+      "type": "observation",
+      "title": "VEIDING              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257816500:2026-05-03 05:52:09.00248734 +0000 UTC:150",
+        "observed_at": "2026-05-03 05:52:09.00248734 +0000 UTC",
+        "mmsi": "257816500",
+        "name": "VEIDING             ",
+        "lat": 59.274,
+        "lon": 5.19225,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:c0ce95c2808b31",
+      "type": "observation",
+      "title": "MATILDA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:255804970:2026-05-03 05:52:09.656957262 +0000 UTC:110",
+        "observed_at": "2026-05-03 05:52:09.656957262 +0000 UTC",
+        "mmsi": "255804970",
+        "name": "MATILDA",
+        "lat": 29.73643,
+        "lon": -95.27934,
+        "sog_knots": 0.1,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d980f625674930",
+      "type": "observation",
+      "title": "LOS117 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258263500:2026-05-03 05:52:10.009284682 +0000 UTC:48",
+        "observed_at": "2026-05-03 05:52:10.009284682 +0000 UTC",
+        "mmsi": "258263500",
+        "name": "LOS117",
+        "lat": 59.08208,
+        "lon": 10.45298,
+        "sog_knots": 0,
+        "cog_deg": 251.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:724579e66c65e5",
+      "type": "observation",
+      "title": "RYFYLKE              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258021190:2026-05-03 05:52:10.026535809 +0000 UTC:6",
+        "observed_at": "2026-05-03 05:52:10.026535809 +0000 UTC",
+        "mmsi": "258021190",
+        "name": "RYFYLKE             ",
+        "lat": 59.34498,
+        "lon": 5.85777,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:00c1202f73b5e5",
+      "type": "observation",
+      "title": "NJORD AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211769180:2026-05-03 05:52:10.317575204 +0000 UTC:93",
+        "observed_at": "2026-05-03 05:52:10.317575204 +0000 UTC",
+        "mmsi": "211769180",
+        "name": "NJORD",
+        "lat": 53.06834,
+        "lon": 5.34047,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:fa558c8bff4328",
+      "type": "observation",
+      "title": "EL UNO               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:701006243:2026-05-03 05:52:10.502496256 +0000 UTC:165",
+        "observed_at": "2026-05-03 05:52:10.502496256 +0000 UTC",
+        "mmsi": "701006243",
+        "name": "EL UNO              ",
+        "lat": -34.57443,
+        "lon": -58.38794,
+        "sog_knots": 0,
+        "cog_deg": 354.4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b4ff84d3595dc4",
+      "type": "observation",
+      "title": "KAPTEIN BUHRE        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257218500:2026-05-03 05:52:10.573701965 +0000 UTC:87",
+        "observed_at": "2026-05-03 05:52:10.573701965 +0000 UTC",
+        "mmsi": "257218500",
+        "name": "KAPTEIN BUHRE       ",
+        "lat": 69.65172,
+        "lon": 18.96223,
+        "sog_knots": 0,
+        "cog_deg": 279.6,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:a1bdec28c4e41a",
+      "type": "observation",
+      "title": "MEGHNA SUN           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:405000340:2026-05-03 05:52:10.929362833 +0000 UTC:12",
+        "observed_at": "2026-05-03 05:52:10.929362833 +0000 UTC",
+        "mmsi": "405000340",
+        "name": "MEGHNA SUN          ",
+        "lat": 54.73748,
+        "lon": 12.61479,
+        "sog_knots": 7.7,
+        "cog_deg": 232.4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:54a1fb2eee5fc5",
+      "type": "observation",
+      "title": "JOLLY DANUBE         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:538090696:2026-05-03 05:52:11.205508881 +0000 UTC:156",
+        "observed_at": "2026-05-03 05:52:11.205508881 +0000 UTC",
+        "mmsi": "538090696",
+        "name": "JOLLY DANUBE        ",
+        "lat": 55.93853,
+        "lon": 10.98382,
+        "sog_knots": 9.9,
+        "cog_deg": 38,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:6422e71c067591",
+      "type": "observation",
+      "title": "KVANNOY              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257997000:2026-05-03 05:52:11.288879199 +0000 UTC:139",
+        "observed_at": "2026-05-03 05:52:11.288879199 +0000 UTC",
+        "mmsi": "257997000",
+        "name": "KVANNOY             ",
+        "lat": 67.29536,
+        "lon": 14.38943,
+        "sog_knots": 0,
+        "cog_deg": 277.2,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b4856fe5654eb2",
+      "type": "observation",
+      "title": "ALLEGRA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:218028600:2026-05-03 05:52:11.30230328 +0000 UTC:120",
+        "observed_at": "2026-05-03 05:52:11.30230328 +0000 UTC",
+        "mmsi": "218028600",
+        "name": "ALLEGRA",
+        "lat": 53.52847,
+        "lon": 10.04685,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:fde938edf37ddb",
+      "type": "observation",
+      "title": "ST27 JACOB GRIETJE   AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211411630:2026-05-03 05:52:11.430532995 +0000 UTC:52",
+        "observed_at": "2026-05-03 05:52:11.430532995 +0000 UTC",
+        "mmsi": "211411630",
+        "name": "ST27 JACOB GRIETJE  ",
+        "lat": 53.45733,
+        "lon": 6.81759,
+        "sog_knots": 0,
+        "cog_deg": 207.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:6259aebeb7dfbb",
+      "type": "observation",
+      "title": "ANNA TX37 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244650533:2026-05-03 05:52:12.036553641 +0000 UTC:58",
+        "observed_at": "2026-05-03 05:52:12.036553641 +0000 UTC",
+        "mmsi": "244650533",
+        "name": "ANNA TX37",
+        "lat": 51.90802,
+        "lon": 4.47822,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:3194e2a80cb0ab",
+      "type": "observation",
+      "title": "KINNE                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:245057000:2026-05-03 05:52:12.30477647 +0000 UTC:36",
+        "observed_at": "2026-05-03 05:52:12.30477647 +0000 UTC",
+        "mmsi": "245057000",
+        "name": "KINNE               ",
+        "lat": 59.90175,
+        "lon": 10.74213,
+        "sog_knots": 0,
+        "cog_deg": 13,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9d6a152bf499fb",
+      "type": "observation",
+      "title": "AVERY JAMES          AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368438690:2026-05-03 05:52:12.336555587 +0000 UTC:44",
+        "observed_at": "2026-05-03 05:52:12.336555587 +0000 UTC",
+        "mmsi": "368438690",
+        "name": "AVERY JAMES         ",
+        "lat": 30.05888,
+        "lon": -93.53833,
+        "sog_knots": 6.5,
+        "cog_deg": 91.5,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:449911d1b6087a",
+      "type": "observation",
+      "title": "VB 2 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244830975:2026-05-03 05:52:12.34537649 +0000 UTC:91",
+        "observed_at": "2026-05-03 05:52:12.34537649 +0000 UTC",
+        "mmsi": "244830975",
+        "name": "VB 2",
+        "lat": 51.34049,
+        "lon": 3.76946,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9655ed0f8afc08",
+      "type": "observation",
+      "title": "GERELO 2 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:228255980:2026-05-03 05:52:12.959490467 +0000 UTC:32",
+        "observed_at": "2026-05-03 05:52:12.959490467 +0000 UTC",
+        "mmsi": "228255980",
+        "name": "GERELO 2",
+        "lat": 43.56552,
+        "lon": 7.07642,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:92702527a417cc",
+      "type": "observation",
+      "title": "BIG DIPPER           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368146890:2026-05-03 05:52:13.209546885 +0000 UTC:152",
+        "observed_at": "2026-05-03 05:52:13.209546885 +0000 UTC",
+        "mmsi": "368146890",
+        "name": "BIG DIPPER          ",
+        "lat": 33.7747,
+        "lon": -118.21216,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:78de325d484b3d",
+      "type": "observation",
+      "title": "EN AVANT 9           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244850515:2026-05-03 05:52:13.526451521 +0000 UTC:143",
+        "observed_at": "2026-05-03 05:52:13.526451521 +0000 UTC",
+        "mmsi": "244850515",
+        "name": "EN AVANT 9          ",
+        "lat": 51.79928,
+        "lon": 4.63953,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4b7991022e520c",
+      "type": "observation",
+      "title": "JOHNNY JAMES         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368010660:2026-05-03 05:52:13.653175699 +0000 UTC:125",
+        "observed_at": "2026-05-03 05:52:13.653175699 +0000 UTC",
+        "mmsi": "368010660",
+        "name": "JOHNNY JAMES        ",
+        "lat": 29.78357,
+        "lon": -93.33182,
+        "sog_knots": 0,
+        "cog_deg": 108.4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:45e6eee59b81ed",
+      "type": "observation",
+      "title": "HST PEMBROKE         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:232040181:2026-05-03 05:52:13.787257062 +0000 UTC:10",
+        "observed_at": "2026-05-03 05:52:13.787257062 +0000 UTC",
+        "mmsi": "232040181",
+        "name": "HST PEMBROKE        ",
+        "lat": 47.17231,
+        "lon": -2.56378,
+        "sog_knots": 6.9,
+        "cog_deg": 179.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:427fe12159ad78",
+      "type": "observation",
+      "title": "FIETE                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211269850:2026-05-03 05:52:14.0378285 +0000 UTC:24",
+        "observed_at": "2026-05-03 05:52:14.0378285 +0000 UTC",
+        "mmsi": "211269850",
+        "name": "FIETE               ",
+        "lat": 52.53411,
+        "lon": 5.44406,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:77d414dd746525",
+      "type": "observation",
+      "title": "BJORK                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:219034685:2026-05-03 05:52:14.238427889 +0000 UTC:67",
+        "observed_at": "2026-05-03 05:52:14.238427889 +0000 UTC",
+        "mmsi": "219034685",
+        "name": "BJORK               ",
+        "lat": 56.16593,
+        "lon": 10.22043,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ac938498a2e00b",
+      "type": "observation",
+      "title": "SUNNY SIDE IV AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244860008:2026-05-03 05:52:15.333983175 +0000 UTC:61",
+        "observed_at": "2026-05-03 05:52:15.333983175 +0000 UTC",
+        "mmsi": "244860008",
+        "name": "SUNNY SIDE IV",
+        "lat": 52.53332,
+        "lon": 4.55198,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:1262f3fc66937d",
+      "type": "observation",
+      "title": "CAPTAIN GINGER AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:235087966:2026-05-03 05:52:15.473026823 +0000 UTC:34",
+        "observed_at": "2026-05-03 05:52:15.473026823 +0000 UTC",
+        "mmsi": "235087966",
+        "name": "CAPTAIN GINGER",
+        "lat": 37.12943,
+        "lon": 26.84827,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:af4fba6b9e6bea",
+      "type": "observation",
+      "title": "TAOUEY               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:310079000:2026-05-03 05:52:15.631174797 +0000 UTC:18",
+        "observed_at": "2026-05-03 05:52:15.631174797 +0000 UTC",
+        "mmsi": "310079000",
+        "name": "TAOUEY              ",
+        "lat": 43.32272,
+        "lon": 5.35887,
+        "sog_knots": 0,
+        "cog_deg": 0.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:abce64ff09fcd2",
+      "type": "observation",
+      "title": "993692009 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993692009:2026-05-03 05:52:15.666801377 +0000 UTC:30",
+        "observed_at": "2026-05-03 05:52:15.666801377 +0000 UTC",
+        "mmsi": "993692009",
+        "name": null,
+        "lat": 37.65305,
+        "lon": -122.66313,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:5867fff7cf1bfa",
+      "type": "observation",
+      "title": "ALKA LARGO           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:228481800:2026-05-03 05:52:15.879536532 +0000 UTC:77",
+        "observed_at": "2026-05-03 05:52:15.879536532 +0000 UTC",
+        "mmsi": "228481800",
+        "name": "ALKA LARGO          ",
+        "lat": 50.16518,
+        "lon": 1.19108,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:78f41ac510acef",
+      "type": "observation",
+      "title": "ZHONG  SHENG    6 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:519170701:2026-05-03 05:52:15.911063412 +0000 UTC:105",
+        "observed_at": "2026-05-03 05:52:15.911063412 +0000 UTC",
+        "mmsi": "519170701",
+        "name": "ZHONG  SHENG    6",
+        "lat": 1.20828,
+        "lon": 103.7341,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4bff84d4160c05",
+      "type": "observation",
+      "title": "EDEN 2 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:230183460:2026-05-03 05:52:15.922679654 +0000 UTC:89",
+        "observed_at": "2026-05-03 05:52:15.922679654 +0000 UTC",
+        "mmsi": "230183460",
+        "name": "EDEN 2",
+        "lat": 60.17229,
+        "lon": 24.83126,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:1240a7cccd588c",
+      "type": "observation",
+      "title": "FLORA DELMAS         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:255805703:2026-05-03 05:52:15.928341928 +0000 UTC:42",
+        "observed_at": "2026-05-03 05:52:15.928341928 +0000 UTC",
+        "mmsi": "255805703",
+        "name": "FLORA DELMAS        ",
+        "lat": -27.36534,
+        "lon": 153.17519,
+        "sog_knots": 0,
+        "cog_deg": 174.2,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:5346bd720f8b63",
+      "type": "observation",
+      "title": "FS BALMORAL AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:232007020:2026-05-03 05:52:16.647494463 +0000 UTC:163",
+        "observed_at": "2026-05-03 05:52:16.647494463 +0000 UTC",
+        "mmsi": "232007020",
+        "name": "FS BALMORAL",
+        "lat": 53.64731,
+        "lon": -3.47781,
+        "sog_knots": 0,
+        "cog_deg": 274,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:36c7e6521e5b67",
+      "type": "observation",
+      "title": "GEPKE            AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244690810:2026-05-03 05:52:16.668889839 +0000 UTC:129",
+        "observed_at": "2026-05-03 05:52:16.668889839 +0000 UTC",
+        "mmsi": "244690810",
+        "name": "GEPKE           ",
+        "lat": 51.81168,
+        "lon": 4.65469,
+        "sog_knots": 0,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:5b41f98441d9f7",
+      "type": "observation",
+      "title": "MARIN AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244153353:2026-05-03 05:52:17.080960656 +0000 UTC:20",
+        "observed_at": "2026-05-03 05:52:17.080960656 +0000 UTC",
+        "mmsi": "244153353",
+        "name": "MARIN",
+        "lat": 52.9466,
+        "lon": 5.40623,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d8bc6c4360c5fd",
+      "type": "observation",
+      "title": "DE NIEUWE DIEP AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244020088:2026-05-03 05:52:17.185543844 +0000 UTC:71",
+        "observed_at": "2026-05-03 05:52:17.185543844 +0000 UTC",
+        "mmsi": "244020088",
+        "name": "DE NIEUWE DIEP",
+        "lat": 52.95227,
+        "lon": 4.77992,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:aa38f9b9cba9e3",
+      "type": "observation",
+      "title": "KV BISON AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257934000:2026-05-03 05:52:17.722377723 +0000 UTC:131",
+        "observed_at": "2026-05-03 05:52:17.722377723 +0000 UTC",
+        "mmsi": "257934000",
+        "name": "KV BISON",
+        "lat": 58.60102,
+        "lon": 5.33525,
+        "sog_knots": 7.6,
+        "cog_deg": 6.8,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:cb7147243c3467",
+      "type": "observation",
+      "title": "REEFMAGIC 2          AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:503476200:2026-05-03 05:52:17.938789834 +0000 UTC:28",
+        "observed_at": "2026-05-03 05:52:17.938789834 +0000 UTC",
+        "mmsi": "503476200",
+        "name": "REEFMAGIC 2         ",
+        "lat": -16.84682,
+        "lon": 146.07724,
+        "sog_knots": 22.7,
+        "cog_deg": 266.7,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d5a47d1d74294d",
+      "type": "observation",
+      "title": "993692004 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993692004:2026-05-03 05:52:18.648580872 +0000 UTC:26",
+        "observed_at": "2026-05-03 05:52:18.648580872 +0000 UTC",
+        "mmsi": "993692004",
+        "name": null,
+        "lat": 37.95472,
+        "lon": -123.1789,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:15c5b679932be1",
+      "type": "observation",
+      "title": "TRYGVASON AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257183140:2026-05-03 05:52:19.326191303 +0000 UTC:16",
+        "observed_at": "2026-05-03 05:52:19.326191303 +0000 UTC",
+        "mmsi": "257183140",
+        "name": "TRYGVASON",
+        "lat": 63.12097,
+        "lon": 7.7293,
+        "sog_knots": 0,
+        "cog_deg": 345.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:bebf46ccebb41b",
+      "type": "observation",
+      "title": "SOUND OF SOAY AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:235101063:2026-05-03 05:52:19.753223741 +0000 UTC:83",
+        "observed_at": "2026-05-03 05:52:19.753223741 +0000 UTC",
+        "mmsi": "235101063",
+        "name": "SOUND OF SOAY",
+        "lat": 55.97125,
+        "lon": -4.9084,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:67e526fca37824",
+      "type": "observation",
+      "title": "DP GEZINA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:229417000:2026-05-03 05:52:20.072072657 +0000 UTC:118",
+        "observed_at": "2026-05-03 05:52:20.072072657 +0000 UTC",
+        "mmsi": "229417000",
+        "name": "DP GEZINA",
+        "lat": 50.31791,
+        "lon": 0.0696,
+        "sog_knots": 9.5,
+        "cog_deg": 74.4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b26f73a8b5c0ea",
+      "type": "observation",
+      "title": "POLLIE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244861861:2026-05-03 05:52:20.944382894 +0000 UTC:81",
+        "observed_at": "2026-05-03 05:52:20.944382894 +0000 UTC",
+        "mmsi": "244861861",
+        "name": "POLLIE",
+        "lat": 52.26244,
+        "lon": 5.3708,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b460ae2ecfc3eb",
+      "type": "observation",
+      "title": "RONJA SILVER         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258111000:2026-05-03 05:52:21.311827613 +0000 UTC:50",
+        "observed_at": "2026-05-03 05:52:21.311827613 +0000 UTC",
+        "mmsi": "258111000",
+        "name": "RONJA SILVER        ",
+        "lat": 70.63885,
+        "lon": 23.65797,
+        "sog_knots": 0,
+        "cog_deg": 82,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:67433719cebdae",
+      "type": "observation",
+      "title": "CHANG FA LONG        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:413468970:2026-05-03 05:52:21.761034128 +0000 UTC:108",
+        "observed_at": "2026-05-03 05:52:21.761034128 +0000 UTC",
+        "mmsi": "413468970",
+        "name": "CHANG FA LONG       ",
+        "lat": 35.45772,
+        "lon": 139.67799,
+        "sog_knots": 0,
+        "cog_deg": 90,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:83d6e9602111fd",
+      "type": "observation",
+      "title": "JOSEPHINE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244010963:2026-05-03 05:52:22.18210549 +0000 UTC:146",
+        "observed_at": "2026-05-03 05:52:22.18210549 +0000 UTC",
+        "mmsi": "244010963",
+        "name": "JOSEPHINE",
+        "lat": 52.4207,
+        "lon": 4.85127,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:128ee7807ed84f",
+      "type": "observation",
+      "title": "211271080 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211271080:2026-05-03 05:52:22.493217988 +0000 UTC:79",
+        "observed_at": "2026-05-03 05:52:22.493217988 +0000 UTC",
+        "mmsi": "211271080",
+        "name": null,
+        "lat": 53.53855,
+        "lon": 9.85511,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:f9307dd8add49d",
+      "type": "observation",
+      "title": "RAYOS V AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:224526490:2026-05-03 05:52:22.574206356 +0000 UTC:75",
+        "observed_at": "2026-05-03 05:52:22.574206356 +0000 UTC",
+        "mmsi": "224526490",
+        "name": "RAYOS V",
+        "lat": 37.74909,
+        "lon": -0.74325,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e5f21d6cabb193",
+      "type": "observation",
+      "title": "FORMOSA NO.3         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:416000019:2026-05-03 05:52:23.179352581 +0000 UTC:137",
+        "observed_at": "2026-05-03 05:52:23.179352581 +0000 UTC",
+        "mmsi": "416000019",
+        "name": "FORMOSA NO.3        ",
+        "lat": 25.16244,
+        "lon": 121.39643,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:11e3432cdd5af6",
+      "type": "observation",
+      "title": "WAR EMBLEM           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368055920:2026-05-03 05:52:23.350761018 +0000 UTC:112",
+        "observed_at": "2026-05-03 05:52:23.350761018 +0000 UTC",
+        "mmsi": "368055920",
+        "name": "WAR EMBLEM          ",
+        "lat": 29.96872,
+        "lon": -93.85988,
+        "sog_knots": 0,
+        "cog_deg": 190.5,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9216c44de92734",
+      "type": "observation",
+      "title": "NOORDWESTHOEK 1 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244630159:2026-05-03 05:52:23.442680235 +0000 UTC:135",
+        "observed_at": "2026-05-03 05:52:23.442680235 +0000 UTC",
+        "mmsi": "244630159",
+        "name": "NOORDWESTHOEK 1",
+        "lat": 52.62945,
+        "lon": 6.03883,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:a41fb07cb35614",
+      "type": "observation",
+      "title": "338330801 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:338330801:2026-05-03 05:52:25.13592588 +0000 UTC:63",
+        "observed_at": "2026-05-03 05:52:25.13592588 +0000 UTC",
+        "mmsi": "338330801",
+        "name": null,
+        "lat": 48.49115,
+        "lon": -122.67841,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:1f4b8a2c137244",
+      "type": "observation",
+      "title": "MAGNUM               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244437965:2026-05-03 05:52:26.618034713 +0000 UTC:38",
+        "observed_at": "2026-05-03 05:52:26.618034713 +0000 UTC",
+        "mmsi": "244437965",
+        "name": "MAGNUM              ",
+        "lat": 52.69242,
+        "lon": 6.16557,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:467a1653c522ab",
+      "type": "observation",
+      "title": "ANNA TX37 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244650533:2026-05-03 05:52:27.045804369 +0000 UTC:59",
+        "observed_at": "2026-05-03 05:52:27.045804369 +0000 UTC",
+        "mmsi": "244650533",
+        "name": "ANNA TX37",
+        "lat": 51.90801,
+        "lon": 4.47822,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:70cb38582105b0",
+      "type": "observation",
+      "title": "HAMPUS AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:265038050:2026-05-03 05:52:27.167338022 +0000 UTC:114",
+        "observed_at": "2026-05-03 05:52:27.167338022 +0000 UTC",
+        "mmsi": "265038050",
+        "name": "HAMPUS",
+        "lat": 55.41196,
+        "lon": 12.93182,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:f2608ea8bf9fda",
+      "type": "observation",
+      "title": "CARIBBEAN STAR       AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:212850000:2026-05-03 05:52:28.700864999 +0000 UTC:73",
+        "observed_at": "2026-05-03 05:52:28.700864999 +0000 UTC",
+        "mmsi": "212850000",
+        "name": "CARIBBEAN STAR      ",
+        "lat": 18.33995,
+        "lon": -69.87562,
+        "sog_knots": 0.8,
+        "cog_deg": 313.8,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:2c6e00bafa89f3",
+      "type": "observation",
+      "title": "PIETER BOELE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244730731:2026-05-03 05:52:30.254976256 +0000 UTC:95",
+        "observed_at": "2026-05-03 05:52:30.254976256 +0000 UTC",
+        "mmsi": "244730731",
+        "name": "PIETER BOELE",
+        "lat": 51.81895,
+        "lon": 4.66753,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e8ef3e2c0dee78",
+      "type": "observation",
+      "title": "CHARLOTTE ESSBERGER  AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:255806329:2026-05-03 05:52:31.046376927 +0000 UTC:161",
+        "observed_at": "2026-05-03 05:52:31.046376927 +0000 UTC",
+        "mmsi": "255806329",
+        "name": "CHARLOTTE ESSBERGER ",
+        "lat": 57.81092,
+        "lon": 10.81011,
+        "sog_knots": 11.4,
+        "cog_deg": 100.6,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:284d5c49392b7d",
+      "type": "observation",
+      "title": "GOLDEN_SOURCE 01     AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:477995249:2026-05-03 05:52:31.074823952 +0000 UTC:97",
+        "observed_at": "2026-05-03 05:52:31.074823952 +0000 UTC",
+        "mmsi": "477995249",
+        "name": "GOLDEN_SOURCE 01    ",
+        "lat": 22.36708,
+        "lon": 114.10379,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:c3ed9bc5fe06e1",
+      "type": "observation",
+      "title": "THILDE SOFIE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:219001189:2026-05-03 05:52:31.225072878 +0000 UTC:159",
+        "observed_at": "2026-05-03 05:52:31.225072878 +0000 UTC",
+        "mmsi": "219001189",
+        "name": "THILDE SOFIE",
+        "lat": 55.47377,
+        "lon": 8.42492,
+        "sog_knots": 0,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:f5c7682f4fdbb5",
+      "type": "observation",
+      "title": "JOLLY DANUBE         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:538090696:2026-05-03 05:52:31.809367949 +0000 UTC:157",
+        "observed_at": "2026-05-03 05:52:31.809367949 +0000 UTC",
+        "mmsi": "538090696",
+        "name": "JOLLY DANUBE        ",
+        "lat": 55.93932,
+        "lon": 10.98495,
+        "sog_knots": 9.9,
+        "cog_deg": 38,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b4dbd0fa04a465",
+      "type": "observation",
+      "title": "STEDFAST AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:338302325:2026-05-03 05:52:32.049925219 +0000 UTC:101",
+        "observed_at": "2026-05-03 05:52:32.049925219 +0000 UTC",
+        "mmsi": "338302325",
+        "name": "STEDFAST",
+        "lat": 39.0562,
+        "lon": -76.56521,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9b5bda18ab51a3",
+      "type": "observation",
+      "title": "EN AVANT 9           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244850515:2026-05-03 05:52:32.16977512 +0000 UTC:144",
+        "observed_at": "2026-05-03 05:52:32.16977512 +0000 UTC",
+        "mmsi": "244850515",
+        "name": "EN AVANT 9          ",
+        "lat": 51.79928,
+        "lon": 4.63953,
+        "sog_knots": 0,
+        "cog_deg": 85.7,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:f32d06add39599",
+      "type": "observation",
+      "title": "KASPAR AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257077240:2026-05-03 05:52:32.527439117 +0000 UTC:133",
+        "observed_at": "2026-05-03 05:52:32.527439117 +0000 UTC",
+        "mmsi": "257077240",
+        "name": "KASPAR",
+        "lat": 58.97762,
+        "lon": 5.967,
+        "sog_knots": 0,
+        "cog_deg": 91,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:c531263e2c0b70",
+      "type": "observation",
+      "title": "KYLIE S              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:525119201:2026-05-03 05:52:32.607469197 +0000 UTC:116",
+        "observed_at": "2026-05-03 05:52:32.607469197 +0000 UTC",
+        "mmsi": "525119201",
+        "name": "KYLIE S             ",
+        "lat": -7.3612,
+        "lon": 113.2722,
+        "sog_knots": 0.1,
+        "cog_deg": 148.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4d86065cdb18ba",
+      "type": "observation",
+      "title": "993672264 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993672264:2026-05-03 05:52:32.80875866 +0000 UTC:123",
+        "observed_at": "2026-05-03 05:52:32.80875866 +0000 UTC",
+        "mmsi": "993672264",
+        "name": null,
+        "lat": 40.06959,
+        "lon": -74.9272,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:3fcf9d143278c2",
+      "type": "observation",
+      "title": "JAN VAN GENT AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244050486:2026-05-03 05:52:32.932708918 +0000 UTC:85",
+        "observed_at": "2026-05-03 05:52:32.932708918 +0000 UTC",
+        "mmsi": "244050486",
+        "name": "JAN VAN GENT",
+        "lat": 53.17227,
+        "lon": 5.41813,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:1cc4c1a868a9eb",
+      "type": "observation",
+      "title": "IJM-33 AVA    AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244090711:2026-05-03 05:52:34.429332618 +0000 UTC:103",
+        "observed_at": "2026-05-03 05:52:34.429332618 +0000 UTC",
+        "mmsi": "244090711",
+        "name": "IJM-33 AVA   ",
+        "lat": 53.33505,
+        "lon": 6.30324,
+        "sog_knots": 0,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:575b8ab2b47454",
+      "type": "observation",
+      "title": "ZHONG  SHENG    6 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:519170701:2026-05-03 05:52:34.990672255 +0000 UTC:106",
+        "observed_at": "2026-05-03 05:52:34.990672255 +0000 UTC",
+        "mmsi": "519170701",
+        "name": "ZHONG  SHENG    6",
+        "lat": 1.20828,
+        "lon": 103.7341,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9e0159b8027d1b",
+      "type": "observation",
+      "title": "THE JACKSON          AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:503000196:2026-05-03 05:52:35.931232615 +0000 UTC:148",
+        "observed_at": "2026-05-03 05:52:35.931232615 +0000 UTC",
+        "mmsi": "503000196",
+        "name": "THE JACKSON         ",
+        "lat": -33.86621,
+        "lon": 151.20081,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:a9947d9ee6d74d",
+      "type": "observation",
+      "title": "ANASTASIA K II       AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:241871000:2026-05-03 05:52:37.087861615 +0000 UTC:141",
+        "observed_at": "2026-05-03 05:52:37.087861615 +0000 UTC",
+        "mmsi": "241871000",
+        "name": "ANASTASIA K II      ",
+        "lat": 38.02803,
+        "lon": 23.52063,
+        "sog_knots": 0,
+        "cog_deg": 297,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ea92aa19dbed31",
+      "type": "observation",
+      "title": "ALLEGRA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:218028600:2026-05-03 05:52:37.402973399 +0000 UTC:121",
+        "observed_at": "2026-05-03 05:52:37.402973399 +0000 UTC",
+        "mmsi": "218028600",
+        "name": "ALLEGRA",
+        "lat": 53.52847,
+        "lon": 10.04685,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:5cc2bd4f4fde39",
+      "type": "observation",
+      "title": "993672169 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993672169:2026-05-03 05:52:39.041818582 +0000 UTC:127",
+        "observed_at": "2026-05-03 05:52:39.041818582 +0000 UTC",
+        "mmsi": "993672169",
+        "name": null,
+        "lat": 18.46667,
+        "lon": -66.12591,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:669b8b9657e2e1",
+      "type": "observation",
+      "title": "WILLIAM MACK AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:316001221:2026-05-03 05:55:25.242941205 +0000 UTC:155",
+        "observed_at": "2026-05-03 05:55:25.242941205 +0000 UTC",
+        "mmsi": "316001221",
+        "name": "WILLIAM MACK",
+        "lat": 49.23103,
+        "lon": -122.77092,
+        "sog_knots": 0,
+        "cog_deg": 259.2,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:3540bd49c3d88b",
+      "type": "observation",
+      "title": "VEIDING              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257816500:2026-05-03 05:55:28.139005376 +0000 UTC:151",
+        "observed_at": "2026-05-03 05:55:28.139005376 +0000 UTC",
+        "mmsi": "257816500",
+        "name": "VEIDING             ",
+        "lat": 59.27399,
+        "lon": 5.19227,
+        "sog_knots": 0,
+        "cog_deg": 31.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:c5fd8bed2fe015",
+      "type": "observation",
+      "title": "EL UNO               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:701006243:2026-05-03 05:55:29.092033583 +0000 UTC:166",
+        "observed_at": "2026-05-03 05:55:29.092033583 +0000 UTC",
+        "mmsi": "701006243",
+        "name": "EL UNO              ",
+        "lat": -34.57442,
+        "lon": -58.38798,
+        "sog_knots": 0,
+        "cog_deg": 245.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:8ea41b836df683",
+      "type": "observation",
+      "title": "MATILDA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:255804970:2026-05-03 05:55:30.404298965 +0000 UTC:111",
+        "observed_at": "2026-05-03 05:55:30.404298965 +0000 UTC",
+        "mmsi": "255804970",
+        "name": "MATILDA",
+        "lat": 29.73644,
+        "lon": -95.27935,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9bee86ccfa4b70",
+      "type": "observation",
+      "title": "992438364 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:992438364:2026-05-03 05:55:30.807388934 +0000 UTC:100",
+        "observed_at": "2026-05-03 05:55:30.807388934 +0000 UTC",
+        "mmsi": "992438364",
+        "name": null,
+        "lat": 47.53912,
+        "lon": 19.05183,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:20ede357a794c0",
+      "type": "observation",
+      "title": "KVANNOY              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257997000:2026-05-03 05:55:30.889431324 +0000 UTC:140",
+        "observed_at": "2026-05-03 05:55:30.889431324 +0000 UTC",
+        "mmsi": "257997000",
+        "name": "KVANNOY             ",
+        "lat": 67.29537,
+        "lon": 14.38943,
+        "sog_knots": 0,
+        "cog_deg": 272.4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b6283b71a15980",
+      "type": "observation",
+      "title": "BIG DIPPER           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368146890:2026-05-03 05:55:32.301931544 +0000 UTC:153",
+        "observed_at": "2026-05-03 05:55:32.301931544 +0000 UTC",
+        "mmsi": "368146890",
+        "name": "BIG DIPPER          ",
+        "lat": 33.7747,
+        "lon": -118.21216,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:291b5ac04302b8",
+      "type": "observation",
+      "title": "258002760 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258002760:2026-05-03 05:55:33.259724579 +0000 UTC:70",
+        "observed_at": "2026-05-03 05:55:33.259724579 +0000 UTC",
+        "mmsi": "258002760",
+        "name": null,
+        "lat": 50.3083,
+        "lon": 0.43689,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:2871e304d016de",
+      "type": "observation",
+      "title": "NJORD AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211769180:2026-05-03 05:55:33.483854136 +0000 UTC:94",
+        "observed_at": "2026-05-03 05:55:33.483854136 +0000 UTC",
+        "mmsi": "211769180",
+        "name": "NJORD",
+        "lat": 53.06834,
+        "lon": 5.34047,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:516964a77d0bfb",
+      "type": "observation",
+      "title": "JOHNNY JAMES         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368010660:2026-05-03 05:55:33.644136486 +0000 UTC:126",
+        "observed_at": "2026-05-03 05:55:33.644136486 +0000 UTC",
+        "mmsi": "368010660",
+        "name": "JOHNNY JAMES        ",
+        "lat": 29.78357,
+        "lon": -93.33182,
+        "sog_knots": 0,
+        "cog_deg": 148.8,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:20a87a89ffa1ed",
+      "type": "observation",
+      "title": "YANBU                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:636023504:2026-05-03 05:55:34.973879312 +0000 UTC:66",
+        "observed_at": "2026-05-03 05:55:34.973879312 +0000 UTC",
+        "mmsi": "636023504",
+        "name": "YANBU               ",
+        "lat": 34.42555,
+        "lon": 33.34135,
+        "sog_knots": 0.5,
+        "cog_deg": 243.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:bbd1998b6425c2",
+      "type": "observation",
+      "title": "KAPTEIN BUHRE        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257218500:2026-05-03 05:55:35.214162776 +0000 UTC:88",
+        "observed_at": "2026-05-03 05:55:35.214162776 +0000 UTC",
+        "mmsi": "257218500",
+        "name": "KAPTEIN BUHRE       ",
+        "lat": 69.65174,
+        "lon": 18.96226,
+        "sog_knots": 0,
+        "cog_deg": 279.6,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:13d1abd5f2e1c3",
+      "type": "observation",
+      "title": "FS BALMORAL AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:232007020:2026-05-03 05:55:35.252759043 +0000 UTC:164",
+        "observed_at": "2026-05-03 05:55:35.252759043 +0000 UTC",
+        "mmsi": "232007020",
+        "name": "FS BALMORAL",
+        "lat": 53.64727,
+        "lon": -3.4778,
+        "sog_knots": 0,
+        "cog_deg": 274,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d35f124e822729",
+      "type": "observation",
+      "title": "VB 2 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244830975:2026-05-03 05:55:36.202971398 +0000 UTC:92",
+        "observed_at": "2026-05-03 05:55:36.202971398 +0000 UTC",
+        "mmsi": "244830975",
+        "name": "VB 2",
+        "lat": 51.34049,
+        "lon": 3.76946,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:350aefc77a66b1",
+      "type": "observation",
+      "title": "SKEISTIND AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257029360:2026-05-03 05:55:36.229119788 +0000 UTC:57",
+        "observed_at": "2026-05-03 05:55:36.229119788 +0000 UTC",
+        "mmsi": "257029360",
+        "name": "SKEISTIND",
+        "lat": 67.57177,
+        "lon": 15.12524,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d1faff0bda1ecc",
+      "type": "observation",
+      "title": "GEPKE            AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244690810:2026-05-03 05:55:36.652918253 +0000 UTC:130",
+        "observed_at": "2026-05-03 05:55:36.652918253 +0000 UTC",
+        "mmsi": "244690810",
+        "name": "GEPKE           ",
+        "lat": 51.81169,
+        "lon": 4.6547,
+        "sog_knots": 0,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:948d4069419dab",
+      "type": "observation",
+      "title": "WHITE CHEETAH        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244182911:2026-05-03 05:55:37.165830124 +0000 UTC:55",
+        "observed_at": "2026-05-03 05:55:37.165830124 +0000 UTC",
+        "mmsi": "244182911",
+        "name": "WHITE CHEETAH       ",
+        "lat": 51.27516,
+        "lon": 2.44895,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:046f09dc2334fc",
+      "type": "observation",
+      "title": "KV BISON AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257934000:2026-05-03 05:55:37.572109394 +0000 UTC:132",
+        "observed_at": "2026-05-03 05:55:37.572109394 +0000 UTC",
+        "mmsi": "257934000",
+        "name": "KV BISON",
+        "lat": 58.60804,
+        "lon": 5.33708,
+        "sog_knots": 7.6,
+        "cog_deg": 6.9,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:08d4aa066a6459",
+      "type": "observation",
+      "title": "EXCHANGE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258100140:2026-05-03 05:55:38.972412138 +0000 UTC:47",
+        "observed_at": "2026-05-03 05:55:38.972412138 +0000 UTC",
+        "mmsi": "258100140",
+        "name": "EXCHANGE",
+        "lat": 59.08206,
+        "lon": 5.78476,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:07005cf5270e91",
+      "type": "observation",
+      "title": "EDEN 2 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:230183460:2026-05-03 05:55:39.887389612 +0000 UTC:90",
+        "observed_at": "2026-05-03 05:55:39.887389612 +0000 UTC",
+        "mmsi": "230183460",
+        "name": "EDEN 2",
+        "lat": 60.17242,
+        "lon": 24.83101,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4319d8719f0ed0",
+      "type": "observation",
+      "title": "DP GEZINA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:229417000:2026-05-03 05:55:40.264370124 +0000 UTC:119",
+        "observed_at": "2026-05-03 05:55:40.264370124 +0000 UTC",
+        "mmsi": "229417000",
+        "name": "DP GEZINA",
+        "lat": 50.32011,
+        "lon": 0.08233,
+        "sog_knots": 9,
+        "cog_deg": 74.9,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:9b63a9c11033f5",
+      "type": "observation",
+      "title": "LOS117 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258263500:2026-05-03 05:55:40.282512677 +0000 UTC:49",
+        "observed_at": "2026-05-03 05:55:40.282512677 +0000 UTC",
+        "mmsi": "258263500",
+        "name": "LOS117",
+        "lat": 59.08209,
+        "lon": 10.45298,
+        "sog_knots": 0,
+        "cog_deg": 251.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:0ed66316bb834c",
+      "type": "observation",
+      "title": "ST27 JACOB GRIETJE   AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211411630:2026-05-03 05:55:40.536620036 +0000 UTC:53",
+        "observed_at": "2026-05-03 05:55:40.536620036 +0000 UTC",
+        "mmsi": "211411630",
+        "name": "ST27 JACOB GRIETJE  ",
+        "lat": 53.45733,
+        "lon": 6.8176,
+        "sog_knots": 0,
+        "cog_deg": 207.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:477779f9c4bd31",
+      "type": "observation",
+      "title": "BJORK                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:219034685:2026-05-03 05:55:41.262036619 +0000 UTC:68",
+        "observed_at": "2026-05-03 05:55:41.262036619 +0000 UTC",
+        "mmsi": "219034685",
+        "name": "BJORK               ",
+        "lat": 56.16589,
+        "lon": 10.22045,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:74795663f61b57",
+      "type": "observation",
+      "title": "JOSEPHINE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244010963:2026-05-03 05:55:41.410433875 +0000 UTC:147",
+        "observed_at": "2026-05-03 05:55:41.410433875 +0000 UTC",
+        "mmsi": "244010963",
+        "name": "JOSEPHINE",
+        "lat": 52.4207,
+        "lon": 4.85125,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:660721320d2438",
+      "type": "observation",
+      "title": "ALKA LARGO           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:228481800:2026-05-03 05:55:42.181524515 +0000 UTC:78",
+        "observed_at": "2026-05-03 05:55:42.181524515 +0000 UTC",
+        "mmsi": "228481800",
+        "name": "ALKA LARGO          ",
+        "lat": 50.17084,
+        "lon": 1.18714,
+        "sog_knots": 4.4,
+        "cog_deg": 342,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b8560ad8983bee",
+      "type": "observation",
+      "title": "CHANG FA LONG        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:413468970:2026-05-03 05:55:42.884742912 +0000 UTC:109",
+        "observed_at": "2026-05-03 05:55:42.884742912 +0000 UTC",
+        "mmsi": "413468970",
+        "name": "CHANG FA LONG       ",
+        "lat": 35.45774,
+        "lon": 139.67799,
+        "sog_knots": 0,
+        "cog_deg": 90,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e695814c5a987e",
+      "type": "observation",
+      "title": "FORMOSA NO.3         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:416000019:2026-05-03 05:55:42.950099415 +0000 UTC:138",
+        "observed_at": "2026-05-03 05:55:42.950099415 +0000 UTC",
+        "mmsi": "416000019",
+        "name": "FORMOSA NO.3        ",
+        "lat": 25.16243,
+        "lon": 121.39643,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:698e07913eceb8",
+      "type": "observation",
+      "title": "NOORDWESTHOEK 1 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244630159:2026-05-03 05:55:43.2591319 +0000 UTC:136",
+        "observed_at": "2026-05-03 05:55:43.2591319 +0000 UTC",
+        "mmsi": "244630159",
+        "name": "NOORDWESTHOEK 1",
+        "lat": 52.62945,
+        "lon": 6.03884,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:12a937e84dbb30",
+      "type": "observation",
+      "title": "VLADIMIR ZAGOSKIN AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:273450850:2026-05-03 05:55:43.451848063 +0000 UTC:23",
+        "observed_at": "2026-05-03 05:55:43.451848063 +0000 UTC",
+        "mmsi": "273450850",
+        "name": "VLADIMIR ZAGOSKIN",
+        "lat": 71.14997,
+        "lon": 21.4119,
+        "sog_knots": 1.5,
+        "cog_deg": 281.4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ea69b1080ea4bb",
+      "type": "observation",
+      "title": "SUNNY SIDE IV AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244860008:2026-05-03 05:55:43.773433536 +0000 UTC:62",
+        "observed_at": "2026-05-03 05:55:43.773433536 +0000 UTC",
+        "mmsi": "244860008",
+        "name": "SUNNY SIDE IV",
+        "lat": 52.53985,
+        "lon": 4.55288,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4313742d4ea49a",
+      "type": "observation",
+      "title": "DE NIEUWE DIEP AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244020088:2026-05-03 05:55:43.87010669 +0000 UTC:72",
+        "observed_at": "2026-05-03 05:55:43.87010669 +0000 UTC",
+        "mmsi": "244020088",
+        "name": "DE NIEUWE DIEP",
+        "lat": 52.95227,
+        "lon": 4.77992,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:bbedb08fefc8da",
+      "type": "observation",
+      "title": "AVERY JAMES          AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368438690:2026-05-03 05:55:43.909171377 +0000 UTC:45",
+        "observed_at": "2026-05-03 05:55:43.909171377 +0000 UTC",
+        "mmsi": "368438690",
+        "name": "AVERY JAMES         ",
+        "lat": 30.05898,
+        "lon": -93.53101,
+        "sog_knots": 6.5,
+        "cog_deg": 86.2,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:881c9fe17b890d",
+      "type": "observation",
+      "title": "WAR EMBLEM           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:368055920:2026-05-03 05:55:43.911344787 +0000 UTC:113",
+        "observed_at": "2026-05-03 05:55:43.911344787 +0000 UTC",
+        "mmsi": "368055920",
+        "name": "WAR EMBLEM          ",
+        "lat": 29.9687,
+        "lon": -93.85988,
+        "sog_knots": 0,
+        "cog_deg": 306.8,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:98900d4d402b8f",
+      "type": "observation",
+      "title": "KINNE                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:245057000:2026-05-03 05:55:45.194657627 +0000 UTC:37",
+        "observed_at": "2026-05-03 05:55:45.194657627 +0000 UTC",
+        "mmsi": "245057000",
+        "name": "KINNE               ",
+        "lat": 59.90179,
+        "lon": 10.74207,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e1c7ae99ca0c06",
+      "type": "observation",
+      "title": "SOUND OF SOAY AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:235101063:2026-05-03 05:55:45.575021271 +0000 UTC:84",
+        "observed_at": "2026-05-03 05:55:45.575021271 +0000 UTC",
+        "mmsi": "235101063",
+        "name": "SOUND OF SOAY",
+        "lat": 55.97125,
+        "lon": -4.90838,
+        "sog_knots": 0,
+        "cog_deg": 209.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b2cfcd8ce073bc",
+      "type": "observation",
+      "title": "POLLIE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244861861:2026-05-03 05:55:46.83363781 +0000 UTC:82",
+        "observed_at": "2026-05-03 05:55:46.83363781 +0000 UTC",
+        "mmsi": "244861861",
+        "name": "POLLIE",
+        "lat": 52.26243,
+        "lon": 5.37081,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:7f9507ff99bb92",
+      "type": "observation",
+      "title": "HAMPUS AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:265038050:2026-05-03 05:55:47.704178174 +0000 UTC:115",
+        "observed_at": "2026-05-03 05:55:47.704178174 +0000 UTC",
+        "mmsi": "265038050",
+        "name": "HAMPUS",
+        "lat": 55.41195,
+        "lon": 12.9318,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:70e365b08f9cdb",
+      "type": "observation",
+      "title": "FLORA DELMAS         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:255805703:2026-05-03 05:55:47.839305287 +0000 UTC:43",
+        "observed_at": "2026-05-03 05:55:47.839305287 +0000 UTC",
+        "mmsi": "255805703",
+        "name": "FLORA DELMAS        ",
+        "lat": -27.36531,
+        "lon": 153.1752,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:845fb3c29d0367",
+      "type": "observation",
+      "title": "GERELO 2 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:228255980:2026-05-03 05:55:48.419865817 +0000 UTC:33",
+        "observed_at": "2026-05-03 05:55:48.419865817 +0000 UTC",
+        "mmsi": "228255980",
+        "name": "GERELO 2",
+        "lat": 43.56552,
+        "lon": 7.07641,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:f245e23136e78e",
+      "type": "observation",
+      "title": "SALLY AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211271080:2026-05-03 05:55:48.721605925 +0000 UTC:80",
+        "observed_at": "2026-05-03 05:55:48.721605925 +0000 UTC",
+        "mmsi": "211271080",
+        "name": "SALLY",
+        "lat": 53.53853,
+        "lon": 9.85508,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:1a5622774f94fd",
+      "type": "observation",
+      "title": "LILIAN TRADER        AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:548784000:2026-05-03 05:55:48.835630464 +0000 UTC:15",
+        "observed_at": "2026-05-03 05:55:48.835630464 +0000 UTC",
+        "mmsi": "548784000",
+        "name": "LILIAN TRADER       ",
+        "lat": 53.99698,
+        "lon": -128.69287,
+        "sog_knots": 0,
+        "cog_deg": 4,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:cccfebc16b3596",
+      "type": "observation",
+      "title": "RAYOS V AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:224526490:2026-05-03 05:55:48.986577132 +0000 UTC:76",
+        "observed_at": "2026-05-03 05:55:48.986577132 +0000 UTC",
+        "mmsi": "224526490",
+        "name": "RAYOS V",
+        "lat": 37.74912,
+        "lon": -0.74328,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:17a5e7ffb33e15",
+      "type": "observation",
+      "title": "CHARLOTTE ESSBERGER  AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:255806329:2026-05-03 05:55:49.846206275 +0000 UTC:162",
+        "observed_at": "2026-05-03 05:55:49.846206275 +0000 UTC",
+        "mmsi": "255806329",
+        "name": "CHARLOTTE ESSBERGER ",
+        "lat": 57.80616,
+        "lon": 10.82707,
+        "sog_knots": 11.3,
+        "cog_deg": 122,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:df93fec2d56732",
+      "type": "observation",
+      "title": "THILDE SOFIE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:219001189:2026-05-03 05:55:50.184050376 +0000 UTC:160",
+        "observed_at": "2026-05-03 05:55:50.184050376 +0000 UTC",
+        "mmsi": "219001189",
+        "name": "THILDE SOFIE",
+        "lat": 55.47378,
+        "lon": 8.42496,
+        "sog_knots": 0,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:699ea8c64def06",
+      "type": "observation",
+      "title": "FIETE                AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:211269850:2026-05-03 05:55:50.477621662 +0000 UTC:25",
+        "observed_at": "2026-05-03 05:55:50.477621662 +0000 UTC",
+        "mmsi": "211269850",
+        "name": "FIETE               ",
+        "lat": 52.53406,
+        "lon": 5.44405,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e31534d8f8c368",
+      "type": "observation",
+      "title": "RONJA SILVER         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258111000:2026-05-03 05:55:50.704535954 +0000 UTC:51",
+        "observed_at": "2026-05-03 05:55:50.704535954 +0000 UTC",
+        "mmsi": "258111000",
+        "name": "RONJA SILVER        ",
+        "lat": 70.63892,
+        "lon": 23.65794,
+        "sog_knots": 0,
+        "cog_deg": 82,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:cf2d59560ee777",
+      "type": "observation",
+      "title": "CAPTAIN GINGER AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:235087966:2026-05-03 05:55:50.852882228 +0000 UTC:35",
+        "observed_at": "2026-05-03 05:55:50.852882228 +0000 UTC",
+        "mmsi": "235087966",
+        "name": "CAPTAIN GINGER",
+        "lat": 37.12943,
+        "lon": 26.84827,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:54cc00eb85e68d",
+      "type": "observation",
+      "title": "JOLLY DANUBE         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:538090696:2026-05-03 05:55:50.854802383 +0000 UTC:158",
+        "observed_at": "2026-05-03 05:55:50.854802383 +0000 UTC",
+        "mmsi": "538090696",
+        "name": "JOLLY DANUBE        ",
+        "lat": 55.94517,
+        "lon": 10.9929,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e1c5afeef8ebdf",
+      "type": "observation",
+      "title": "MEGHNA SUN           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:405000340:2026-05-03 05:55:51.39907445 +0000 UTC:13",
+        "observed_at": "2026-05-03 05:55:51.39907445 +0000 UTC",
+        "mmsi": "405000340",
+        "name": "MEGHNA SUN          ",
+        "lat": 54.73291,
+        "lon": 12.60352,
+        "sog_knots": 7.7,
+        "cog_deg": 233.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:b7c727b84a24c3",
+      "type": "observation",
+      "title": "EN AVANT 9           AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244850515:2026-05-03 05:55:51.452006683 +0000 UTC:145",
+        "observed_at": "2026-05-03 05:55:51.452006683 +0000 UTC",
+        "mmsi": "244850515",
+        "name": "EN AVANT 9          ",
+        "lat": 51.79931,
+        "lon": 4.63951,
+        "sog_knots": 0,
+        "cog_deg": 85.7,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4906f743fe6aa1",
+      "type": "observation",
+      "title": "993692009 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993692009:2026-05-03 05:55:51.529972193 +0000 UTC:31",
+        "observed_at": "2026-05-03 05:55:51.529972193 +0000 UTC",
+        "mmsi": "993692009",
+        "name": null,
+        "lat": 37.65305,
+        "lon": -122.66313,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:7e292753782afb",
+      "type": "observation",
+      "title": "KASPAR AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257077240:2026-05-03 05:55:52.375309769 +0000 UTC:134",
+        "observed_at": "2026-05-03 05:55:52.375309769 +0000 UTC",
+        "mmsi": "257077240",
+        "name": "KASPAR",
+        "lat": 58.97762,
+        "lon": 5.967,
+        "sog_knots": 0,
+        "cog_deg": 91,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4396edcad3801d",
+      "type": "observation",
+      "title": "PIETER BOELE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244730731:2026-05-03 05:55:52.807106084 +0000 UTC:96",
+        "observed_at": "2026-05-03 05:55:52.807106084 +0000 UTC",
+        "mmsi": "244730731",
+        "name": "PIETER BOELE",
+        "lat": 51.81895,
+        "lon": 4.66754,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:7b0a92d3c437a2",
+      "type": "observation",
+      "title": "993672264 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993672264:2026-05-03 05:55:52.829001465 +0000 UTC:124",
+        "observed_at": "2026-05-03 05:55:52.829001465 +0000 UTC",
+        "mmsi": "993672264",
+        "name": null,
+        "lat": 40.06959,
+        "lon": -74.9272,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:342a6e6f109547",
+      "type": "observation",
+      "title": "KYLIE S              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:525119201:2026-05-03 05:55:53.114006522 +0000 UTC:117",
+        "observed_at": "2026-05-03 05:55:53.114006522 +0000 UTC",
+        "mmsi": "525119201",
+        "name": "KYLIE S             ",
+        "lat": -7.3611,
+        "lon": 113.27221,
+        "sog_knots": 0,
+        "cog_deg": 148.3,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d179c45d98ac80",
+      "type": "observation",
+      "title": "TAOUEY               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:310079000:2026-05-03 05:55:53.140983035 +0000 UTC:19",
+        "observed_at": "2026-05-03 05:55:53.140983035 +0000 UTC",
+        "mmsi": "310079000",
+        "name": "TAOUEY              ",
+        "lat": 43.32276,
+        "lon": 5.35882,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:98b350d6b6529f",
+      "type": "observation",
+      "title": "GOLDEN_SOURCE 01     AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:477995249:2026-05-03 05:55:53.248216269 +0000 UTC:98",
+        "observed_at": "2026-05-03 05:55:53.248216269 +0000 UTC",
+        "mmsi": "477995249",
+        "name": "GOLDEN_SOURCE 01    ",
+        "lat": 22.36706,
+        "lon": 114.10379,
+        "sog_knots": 0.1,
+        "cog_deg": 255.8,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:1ebd36475b3e4e",
+      "type": "observation",
+      "title": "338330801 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:338330801:2026-05-03 05:55:53.374223429 +0000 UTC:64",
+        "observed_at": "2026-05-03 05:55:53.374223429 +0000 UTC",
+        "mmsi": "338330801",
+        "name": null,
+        "lat": 48.49119,
+        "lon": -122.67842,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:e9ca38166c200d",
+      "type": "observation",
+      "title": "ESCAPE AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:338361065:2026-05-03 05:55:53.546110155 +0000 UTC:9",
+        "observed_at": "2026-05-03 05:55:53.546110155 +0000 UTC",
+        "mmsi": "338361065",
+        "name": "ESCAPE",
+        "lat": 47.66586,
+        "lon": -122.38854,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:4edc76e9f1196b",
+      "type": "observation",
+      "title": "STEDFAST AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:338302325:2026-05-03 05:55:53.829607635 +0000 UTC:102",
+        "observed_at": "2026-05-03 05:55:53.829607635 +0000 UTC",
+        "mmsi": "338302325",
+        "name": "STEDFAST",
+        "lat": 39.05621,
+        "lon": -76.56522,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ecb2092e75cae6",
+      "type": "observation",
+      "title": "REEFMAGIC 2          AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:503476200:2026-05-03 05:55:53.939460284 +0000 UTC:29",
+        "observed_at": "2026-05-03 05:55:53.939460284 +0000 UTC",
+        "mmsi": "503476200",
+        "name": "REEFMAGIC 2         ",
+        "lat": -16.84675,
+        "lon": 146.05428,
+        "sog_knots": 23.9,
+        "cog_deg": 268.5,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:cd30fbdf82d364",
+      "type": "observation",
+      "title": "MARIN AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244153353:2026-05-03 05:55:54.391567625 +0000 UTC:21",
+        "observed_at": "2026-05-03 05:55:54.391567625 +0000 UTC",
+        "mmsi": "244153353",
+        "name": "MARIN",
+        "lat": 52.94657,
+        "lon": 5.40623,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:fd1fa28af568ec",
+      "type": "observation",
+      "title": "993692004 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993692004:2026-05-03 05:55:54.653833837 +0000 UTC:27",
+        "observed_at": "2026-05-03 05:55:54.653833837 +0000 UTC",
+        "mmsi": "993692004",
+        "name": null,
+        "lat": 37.95472,
+        "lon": -123.1789,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d24ceb185b1313",
+      "type": "observation",
+      "title": "CARIBBEAN STAR       AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:212850000:2026-05-03 05:55:55.123923475 +0000 UTC:74",
+        "observed_at": "2026-05-03 05:55:55.123923475 +0000 UTC",
+        "mmsi": "212850000",
+        "name": "CARIBBEAN STAR      ",
+        "lat": 18.34056,
+        "lon": -69.87631,
+        "sog_knots": 0.8,
+        "cog_deg": 312.6,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:fdaa89e34911d0",
+      "type": "observation",
+      "title": "THE JACKSON          AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:503000196:2026-05-03 05:55:55.130384557 +0000 UTC:149",
+        "observed_at": "2026-05-03 05:55:55.130384557 +0000 UTC",
+        "mmsi": "503000196",
+        "name": "THE JACKSON         ",
+        "lat": -33.86623,
+        "lon": 151.20081,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d841bec960d921",
+      "type": "observation",
+      "title": "STAR CHALLENGER      AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:636025065:2026-05-03 05:55:55.141420101 +0000 UTC:5",
+        "observed_at": "2026-05-03 05:55:55.141420101 +0000 UTC",
+        "mmsi": "636025065",
+        "name": "STAR CHALLENGER     ",
+        "lat": 51.25617,
+        "lon": 4.40345,
+        "sog_knots": 0,
+        "cog_deg": 226.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ee472b8869921e",
+      "type": "observation",
+      "title": "IJM-33 AVA    AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244090711:2026-05-03 05:55:55.727828145 +0000 UTC:104",
+        "observed_at": "2026-05-03 05:55:55.727828145 +0000 UTC",
+        "mmsi": "244090711",
+        "name": "IJM-33 AVA   ",
+        "lat": 53.33506,
+        "lon": 6.30326,
+        "sog_knots": 0,
+        "cog_deg": 0,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:d3fa31d79f9086",
+      "type": "observation",
+      "title": "ANNA TX37 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244650533:2026-05-03 05:55:55.762888985 +0000 UTC:60",
+        "observed_at": "2026-05-03 05:55:55.762888985 +0000 UTC",
+        "mmsi": "244650533",
+        "name": "ANNA TX37",
+        "lat": 51.90802,
+        "lon": 4.47823,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:5ac82dcf5d1e10",
+      "type": "observation",
+      "title": "SCUBA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257301500:2026-05-03 05:55:55.898362459 +0000 UTC:1",
+        "observed_at": "2026-05-03 05:55:55.898362459 +0000 UTC",
+        "mmsi": "257301500",
+        "name": "SCUBA",
+        "lat": 59.81541,
+        "lon": 5.27518,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:c84bd8d018785f",
+      "type": "observation",
+      "title": "519170701 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:519170701:2026-05-03 05:55:56.284999573 +0000 UTC:107",
+        "observed_at": "2026-05-03 05:55:56.284999573 +0000 UTC",
+        "mmsi": "519170701",
+        "name": null,
+        "lat": 1.20825,
+        "lon": 103.73407,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:dbc3c4e3d01e3a",
+      "type": "observation",
+      "title": "ANASTASIA K II       AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:241871000:2026-05-03 05:55:56.531455487 +0000 UTC:142",
+        "observed_at": "2026-05-03 05:55:56.531455487 +0000 UTC",
+        "mmsi": "241871000",
+        "name": "ANASTASIA K II      ",
+        "lat": 38.028,
+        "lon": 23.52057,
+        "sog_knots": 0,
+        "cog_deg": 297,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:47c4faeb69544b",
+      "type": "observation",
+      "title": "RYFYLKE              AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:258021190:2026-05-03 05:55:56.708995705 +0000 UTC:7",
+        "observed_at": "2026-05-03 05:55:56.708995705 +0000 UTC",
+        "mmsi": "258021190",
+        "name": "RYFYLKE             ",
+        "lat": 59.34501,
+        "lon": 5.85776,
+        "sog_knots": 0,
+        "cog_deg": 12.7,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:76134e5cda45d4",
+      "type": "observation",
+      "title": "993672351 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993672351:2026-05-03 05:55:56.857174306 +0000 UTC:3",
+        "observed_at": "2026-05-03 05:55:56.857174306 +0000 UTC",
+        "mmsi": "993672351",
+        "name": null,
+        "lat": 27.61359,
+        "lon": -82.76481,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:7b067cb1c00242",
+      "type": "observation",
+      "title": "HST PEMBROKE         AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:232040181:2026-05-03 05:55:57.255551822 +0000 UTC:11",
+        "observed_at": "2026-05-03 05:55:57.255551822 +0000 UTC",
+        "mmsi": "232040181",
+        "name": "HST PEMBROKE        ",
+        "lat": 47.17231,
+        "lon": -2.56378,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:ae96d92867ccba",
+      "type": "observation",
+      "title": "ALLEGRA AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:218028600:2026-05-03 05:55:57.480260928 +0000 UTC:122",
+        "observed_at": "2026-05-03 05:55:57.480260928 +0000 UTC",
+        "mmsi": "218028600",
+        "name": "ALLEGRA",
+        "lat": 53.52848,
+        "lon": 10.04685,
+        "sog_knots": 0,
+        "cog_deg": 360,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:2abea68fede9e4",
+      "type": "observation",
+      "title": "TRYGVASON AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:257183140:2026-05-03 05:55:58.495195973 +0000 UTC:17",
+        "observed_at": "2026-05-03 05:55:58.495195973 +0000 UTC",
+        "mmsi": "257183140",
+        "name": "TRYGVASON",
+        "lat": 63.12098,
+        "lon": 7.72926,
+        "sog_knots": 0,
+        "cog_deg": 345.1,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:bf9e9b40db7ddf",
+      "type": "observation",
+      "title": "JAN VAN GENT AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244050486:2026-05-03 05:55:58.534024807 +0000 UTC:86",
+        "observed_at": "2026-05-03 05:55:58.534024807 +0000 UTC",
+        "mmsi": "244050486",
+        "name": "JAN VAN GENT",
+        "lat": 53.17226,
+        "lon": 5.41811,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:845e1435e12379",
+      "type": "observation",
+      "title": "993672169 AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:993672169:2026-05-03 05:55:59.03056451 +0000 UTC:128",
+        "observed_at": "2026-05-03 05:55:59.03056451 +0000 UTC",
+        "mmsi": "993672169",
+        "name": null,
+        "lat": 18.46667,
+        "lon": -66.12591,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:5bc836d4855bd9",
+      "type": "observation",
+      "title": "MAGNUM               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244437965:2026-05-03 05:55:59.093133665 +0000 UTC:39",
+        "observed_at": "2026-05-03 05:55:59.093133665 +0000 UTC",
+        "mmsi": "244437965",
+        "name": "MAGNUM              ",
+        "lat": 52.6924,
+        "lon": 6.16555,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:3699bf5d833eea",
+      "type": "observation",
+      "title": "MAGNUM               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244437965:2026-05-03 05:55:59.295274631 +0000 UTC:40",
+        "observed_at": "2026-05-03 05:55:59.295274631 +0000 UTC",
+        "mmsi": "244437965",
+        "name": "MAGNUM              ",
+        "lat": 52.6924,
+        "lon": 6.16555,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    },
+    {
+      "id": "obs:real:hormuz:3fef694f400d19",
+      "type": "observation",
+      "title": "MAGNUM               AIS position",
+      "created_at": "2026-05-03T05:05:17.140Z",
+      "data": {
+        "source": "AISstream",
+        "source_record_id": "aisstream:244437965:2026-05-03 05:55:59.349681492 +0000 UTC:41",
+        "observed_at": "2026-05-03 05:55:59.349681492 +0000 UTC",
+        "mmsi": "244437965",
+        "name": "MAGNUM              ",
+        "lat": 52.6924,
+        "lon": 6.16555,
+        "sog_knots": null,
+        "cog_deg": null,
+        "source_sha256": "086354ffd0df3b7afe3e14105dba7bc3565a652afc4e7b21e79f95eb17f1c80b"
+      }
+    }
+  ],
   "edges": []
 }

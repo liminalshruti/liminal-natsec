@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T02:09:12.897Z",
+  "generated_at": "2026-05-03T05:41:42.961Z",
   "profile": "slow",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
@@ -53,8 +53,8 @@
   "results": [
     {
       "source": "GLOBAL_FISHING_WATCH_EVENTS",
-      "ok": false,
-      "detail": "0/3 event caches written.",
+      "ok": true,
+      "detail": "3/3 event caches written.",
       "files": [
         "gfw-hormuz-gaps.json",
         "gfw-hormuz-port-visits.json",
@@ -63,14 +63,14 @@
     },
     {
       "source": "AISSTREAM",
-      "ok": false,
-      "detail": "0 AIS messages cached.",
+      "ok": true,
+      "detail": "3 AIS messages cached (fixture fallback).",
       "fileName": "aisstream-hormuz-sample.json"
     },
     {
       "source": "COPERNICUS_MARINE",
-      "ok": false,
-      "detail": "credential check passed; currents sample not cached: exit 1",
+      "ok": true,
+      "detail": "credential check passed; currents sample cached via Open-Meteo Marine (3 real points).",
       "files": [
         "copernicus-marine-credential-check.json",
         "copernicus-marine-hormuz-currents.metadata.json"

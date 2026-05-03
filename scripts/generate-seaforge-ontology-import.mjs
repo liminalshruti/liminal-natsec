@@ -197,7 +197,7 @@ const LINKS = [
 ];
 
 const ACTIONS = [
-  a("saveOperatorDecision", "OperatorDecision", [
+  a("save-operator-decision", "OperatorDecision", [
     p("id", "STRING", true),
     p("decisionType", "STRING", true),
     p("operatorId", "STRING"),
@@ -207,7 +207,7 @@ const ACTIONS = [
     p("idempotencyKey", "STRING", true),
     p("createdAt", "TIMESTAMP", true),
   ]),
-  a("saveReviewRule", "ReviewRule", [
+  a("save-review-rule", "ReviewRule", [
     p("id", "STRING", true),
     p("displayId", "STRING", true),
     p("sourceCaseId", "STRING", true),
@@ -217,7 +217,7 @@ const ACTIONS = [
     p("active", "BOOLEAN", true),
     p("createdAt", "TIMESTAMP", true),
   ]),
-  a("requestCollection", "CollectionAction", [
+  a("request-collection", "CollectionAction", [
     p("id", "STRING", true),
     p("caseId", "STRING", true),
     p("anomalyId", "STRING"),
@@ -227,15 +227,12 @@ const ACTIONS = [
     p("operatorId", "STRING"),
     p("requestedAt", "TIMESTAMP", true),
   ]),
-  a("updateClaimStatus", "Claim", [
-    p("claimId", "STRING", true),
+  a("update-claim-status", "Claim", [
     p("status", "STRING", true),
     p("verdict", "STRING"),
-    p("operatorId", "STRING"),
-    p("reason", "STRING"),
     p("updatedAt", "TIMESTAMP", true),
   ], "modify"),
-  a("mergeVesselIdentity", "Vessel", [
+  a("merge-vessel-identity", "Vessel", [
     p("survivorVesselId", "STRING", true),
     p("mergedVesselId", "STRING", true),
     p("operatorId", "STRING"),
@@ -266,7 +263,8 @@ recordExistingDatasetRids(ctx);
 
 if (args.live) await createMissingDatasets(ctx, config);
 
-const result = generate(ctx);
+const result = generate(ctx, { skipLinks: args.skipLinks, skipActions: args.skipActions });
+checkForDuplicateApiNames(result.ontology, result.warnings, result.errors);
 const canWrite = !args.planOnly && result.errors.length === 0;
 printPlan(ctx, result, canWrite);
 
@@ -311,6 +309,9 @@ function parseArgs(argv) {
     output: DEFAULT_OUTPUT,
     planOnly: false,
     validate: false,
+    objectsOnly: false,
+    skipLinks: false,
+    skipActions: false,
   };
   for (let i = 0; i < argv.length; i += 1) {
     const arg = argv[i];
@@ -318,11 +319,18 @@ function parseArgs(argv) {
     else if (arg === "--live") out.live = true;
     else if (arg === "--plan-only") out.planOnly = true;
     else if (arg === "--validate") out.validate = true;
+    else if (arg === "--objects-only") out.objectsOnly = true;
+    else if (arg === "--skip-links") out.skipLinks = true;
+    else if (arg === "--skip-actions") out.skipActions = true;
     else if (arg === "--config") out.config = must(argv[++i], arg);
     else if (arg === "--input") out.input = must(argv[++i], arg);
     else if (arg === "--manifest") out.manifest = must(argv[++i], arg);
     else if (arg === "--output") out.output = must(argv[++i], arg);
     else throw new Error(`Unknown argument: ${arg}`);
+  }
+  if (out.objectsOnly) {
+    out.skipLinks = true;
+    out.skipActions = true;
   }
   return out;
 }
@@ -339,10 +347,23 @@ Options:
   --live             Create missing Foundry datasets, then emit import JSON.
   --plan-only        Print the plan without writing local files.
   --validate         Validate an ontology export/import JSON and exit.
+  --objects-only     Emit object types only; skip links and actions (phased import).
+  --skip-links       Skip generating link types in output.
+  --skip-actions     Skip generating action types in output.
   --input <path>     Source Ontology Manager export. Default: ${DEFAULT_INPUT}
   --manifest <path>  Dataset RID manifest. Default: ${DEFAULT_MANIFEST}
   --output <path>    Generated import JSON. Default: ${DEFAULT_OUTPUT}
-  --config <path>    Config INI. Default: config.ini`);
+  --config <path>    Config INI. Default: config.ini
+
+Phased import workflow (avoids "API Name is not unique" duplicate errors):
+  1. Re-export ontology.json from Foundry to capture current state.
+  2. node scripts/generate-seaforge-ontology-import.mjs --objects-only \\
+       --output foundry/generated/ontology.objects.json
+  3. Import that JSON in Foundry; set save locations on the new objects;
+     save the ontology.
+  4. Re-export ontology.json again.
+  5. node scripts/generate-seaforge-ontology-import.mjs   # full output
+  6. Import; set save locations on links + actions; save.`);
 }
 
 function context(ontology, manifest) {
@@ -507,13 +528,25 @@ async function readResponse(response) {
   }
 }
 
-function generate(ctx) {
+function generate(ctx, options = {}) {
   const ontology = clone(ctx.ontology);
   const warnings = [];
   const errors = [];
   ontology.objectTypes = reconcileObjects(ctx, errors, warnings);
-  ontology.relations = reconcileLinks(ctx, ontology.objectTypes, errors, warnings);
-  ontology.actionTypes = reconcileActions(ctx, ontology.objectTypes, errors, warnings);
+  if (options.skipLinks) {
+    ontology.relations = clone(ctx.ontology.relations ?? []);
+    warnings.push("Skipping link type generation (--skip-links / --objects-only).");
+  } else {
+    ontology.relations = reconcileLinks(ctx, ontology.objectTypes, errors, warnings);
+  }
+  if (options.skipActions) {
+    ontology.actionTypes = (clone(ctx.ontology.actionTypes ?? [])).map((actionType) =>
+      sanitizeExistingActionType(actionType, warnings),
+    );
+    warnings.push("Skipping action type generation (--skip-actions / --objects-only).");
+  } else {
+    ontology.actionTypes = reconcileActions(ctx, ontology.objectTypes, errors, warnings);
+  }
   if (/FOUNDRY_TOKEN|Bearer\s+[A-Za-z0-9._-]{20,}/.test(JSON.stringify(ontology))) {
     errors.push("Generated ontology JSON appears to contain a token.");
   }
@@ -557,6 +590,8 @@ function patchObject(entry, spec, datasetRid, warnings) {
     if (!seen.has(prop.apiName)) props.push(newProperty(prop, datasetRid));
   }
   out.properties = sortApi(props);
+  out.trackEditHistory = true;
+  out.storeAllPreviousProperties = true;
   return out;
 }
 
@@ -594,8 +629,8 @@ function newObject(ctx, spec, datasetRid) {
     copyEditsWhenIndexingOnBranch: true,
     interfaces: [],
     typeGroups: [],
-    trackEditHistory: false,
-    storeAllPreviousProperties: false,
+    trackEditHistory: true,
+    storeAllPreviousProperties: true,
     isHighScaleIndexingEnabled: false,
     streamingProfileConfig: "DEFAULT",
     enableInterfaceActions: false,
@@ -704,7 +739,9 @@ function linkMetadata(apiName, targetApiName) {
 }
 
 function reconcileActions(ctx, objectTypes, errors, warnings) {
-  const all = clone(ctx.ontology.actionTypes ?? []);
+  const all = (clone(ctx.ontology.actionTypes ?? [])).map((actionType) =>
+    sanitizeExistingActionType(actionType, warnings),
+  );
   const objects = new Map(objectTypes.map((entry) => [entry.apiName, entry]));
   const validation = clone(all.find((entry) => entry.actionTypeLogic?.validation)?.actionTypeLogic.validation) ?? {
     actionTypeLevelValidationV2: { rules: {}, ordering: [] },
@@ -723,6 +760,45 @@ function reconcileActions(ctx, objectTypes, errors, warnings) {
   }
   warnings.push("Generated spec actions are schema placeholders. Review action logic in Ontology Manager before using them from the app.");
   return all;
+}
+
+function sanitizeExistingActionType(actionType, warnings) {
+  const out = clone(actionType);
+  if (out.metadata?.apiName === "create-claim") {
+    stripActionParameter(out, "newProperty6", "new_property_6");
+    warnings.push("Removed create-claim references to Claim.newProperty6.");
+  }
+  return out;
+}
+
+function stripActionParameter(actionType, parameterId, propertyId) {
+  if (Array.isArray(actionType.metadata?.parameterOrdering)) {
+    actionType.metadata.parameterOrdering = actionType.metadata.parameterOrdering.filter(
+      (entry) => entry !== parameterId,
+    );
+  }
+  if (Array.isArray(actionType.metadata?.formContentInOrder)) {
+    actionType.metadata.formContentInOrder = actionType.metadata.formContentInOrder.filter(
+      (entry) => entry?.parameter?.id !== parameterId,
+    );
+  }
+  const tableConfig =
+    actionType.metadata?.displayMetadata?.configuration?.displayAndFormat?.table
+      ?.columnWidthByParameterRid;
+  if (tableConfig && typeof tableConfig === "object") {
+    delete tableConfig[parameterId];
+  }
+
+  for (const rule of actionType.actionTypeLogic?.logic?.rules ?? []) {
+    for (const key of ["addObjectRule", "modifyObjectRule"]) {
+      const propertyValues = rule[key]?.propertyValues;
+      if (!propertyValues || typeof propertyValues !== "object") continue;
+      delete propertyValues[propertyId];
+      for (const [propertyKey, value] of Object.entries(propertyValues)) {
+        if (value?.parameterId === parameterId) delete propertyValues[propertyKey];
+      }
+    }
+  }
 }
 
 function newAction(spec, objectType, validation) {
@@ -782,8 +858,7 @@ function actionRule(spec, objectType) {
       type: "modifyObjectRule",
       modifyObjectRule: {
         logicRuleRid: syntheticRid(spec.apiName),
-        objectTypeId: objectType.id,
-        objectLocator: { type: "parameterId", parameterId: `${lowerFirst(objectType.apiName)}Id` },
+        objectToModify: objectType.apiName,
         propertyValues: Object.fromEntries(
           spec.inputs
             .filter((input) => !input.apiName.endsWith("Id") && input.apiName !== "operatorId")
@@ -821,6 +896,53 @@ function parameter(input) {
       structFieldValidations: {},
     },
   };
+}
+
+function checkForDuplicateApiNames(ontology, warnings, errors) {
+  const objectCounts = new Map();
+  for (const entry of ontology.objectTypes ?? []) {
+    if (!entry.apiName) continue;
+    objectCounts.set(entry.apiName, (objectCounts.get(entry.apiName) ?? 0) + 1);
+  }
+  for (const [apiName, count] of objectCounts) {
+    if (count > 1) {
+      errors.push(
+        `Duplicate object type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json from Foundry to refresh stale input, then regenerate.`,
+      );
+    }
+  }
+  const linkCounts = new Map();
+  for (const relation of ontology.relations ?? []) {
+    const many = relation.definition?.manyToMany;
+    const one = relation.definition?.oneToMany;
+    const names = [
+      many?.objectTypeAToBLinkMetadata?.apiName,
+      many?.objectTypeBToALinkMetadata?.apiName,
+      one?.oneToManyLinkMetadata?.apiName,
+      one?.manyToOneLinkMetadata?.apiName,
+    ].filter(Boolean);
+    for (const apiName of names) linkCounts.set(apiName, (linkCounts.get(apiName) ?? 0) + 1);
+  }
+  for (const [apiName, count] of linkCounts) {
+    if (count > 1) {
+      errors.push(
+        `Duplicate link type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json before regenerating.`,
+      );
+    }
+  }
+  const actionCounts = new Map();
+  for (const entry of ontology.actionTypes ?? []) {
+    const apiName = entry.metadata?.apiName;
+    if (!apiName) continue;
+    actionCounts.set(apiName, (actionCounts.get(apiName) ?? 0) + 1);
+  }
+  for (const [apiName, count] of actionCounts) {
+    if (count > 1) {
+      errors.push(
+        `Duplicate action type apiName "${apiName}" appears ${count}× in output. Re-export ontology.json before regenerating.`,
+      );
+    }
+  }
 }
 
 function validate(ontology) {

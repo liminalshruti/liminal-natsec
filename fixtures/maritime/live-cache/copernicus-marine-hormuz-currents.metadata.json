@@ -1,38 +1,27 @@
 {
   "source": "COPERNICUS_MARINE",
-  "generated_at": "2026-05-03T02:40:57.696Z",
-  "fixture_mode": true,
-  "fixture_reason": "Copernicus Marine credentials were valid but subset output was unavailable; synthetic current vectors preserve the requested metadata/sample shape.",
+  "generated_at": "2026-05-03T05:41:42.961Z",
+  "data_provider": "OPEN_METEO_MARINE",
   "request": {
-    "command": "/Users/Shayaun.Nejad/Hackathon/NatSec/liminal-natsec/.venv-copernicus/bin/copernicusmarine subset",
-    "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
-    "variables": [
-      "uo",
-      "vo"
-    ],
-    "bbox": [
-      56,
-      26,
-      56.2,
-      26.2
-    ],
-    "depth_range_m": [
-      0,
-      1
-    ],
-    "time_range": [
-      "2026-04-03T02:40:57.697Z",
-      "2026-05-03T02:40:57.697Z"
-    ],
-    "credentials_cached": false,
-    "fixture_fallback": true
+    "url": "https://marine-api.open-meteo.com/v1/marine",
+    "method": "GET",
+    "metadata": {
+      "upstream_provider": "Open-Meteo Marine API",
+      "upstream_provider_note": "Free, unauthenticated HTTP source for ocean_current_velocity/direction at point queries. Used as the real-data fallback when the Copernicus Marine CLI subset is unavailable. Values converted from (velocity, direction) to (uo, vo) via standard oceanographic 'going to' convention.",
+      "cli_attempt_exit_code": 1,
+      "cli_attempt_signal": null,
+      "time_range": [
+        "2026-05-02T05:41:42.963Z",
+        "2026-05-03T05:41:42.963Z"
+      ]
+    }
   },
   "response": {
     "ok": true,
     "status": 200,
-    "statusText": "Fixture Fallback",
-    "fileName": null,
-    "bytes": 231
+    "statusText": "OK",
+    "contentType": "application/json",
+    "bytes": 560
   },
   "body": {
     "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
@@ -44,23 +33,67 @@
       {
         "latitude": 26,
         "longitude": 56,
-        "depth_m": 0.5,
-        "uo_mps": 0.21,
-        "vo_mps": -0.08
+        "depth_m": 0,
+        "uo_mps": 0.2559,
+        "vo_mps": 0.4616,
+        "velocity_mps": 0.5278,
+        "velocity_source_units": "km/h",
+        "direction_degrees": 29,
+        "sample_time": "2026-05-03T00:00"
       },
       {
         "latitude": 26.1,
         "longitude": 56.1,
-        "depth_m": 0.5,
-        "uo_mps": 0.18,
-        "vo_mps": -0.05
+        "depth_m": 0,
+        "uo_mps": 0.2522,
+        "vo_mps": 0.495,
+        "velocity_mps": 0.5556,
+        "velocity_source_units": "km/h",
+        "direction_degrees": 27,
+        "sample_time": "2026-05-03T00:00"
       },
       {
         "latitude": 26.2,
         "longitude": 56.2,
-        "depth_m": 0.5,
-        "uo_mps": 0.16,
-        "vo_mps": -0.03
+        "depth_m": 0,
+        "uo_mps": 0.4089,
+        "vo_mps": 0.4541,
+        "velocity_mps": 0.6111,
+        "velocity_source_units": "km/h",
+        "direction_degrees": 42,
+        "sample_time": "2026-05-03T00:00"
+      }
+    ],
+    "lookups": [
+      {
+        "point": {
+          "latitude": 26,
+          "longitude": 56
+        },
+        "url": "https://marine-api.open-meteo.com/v1/marine?latitude=26&longitude=56&hourly=ocean_current_velocity%2Cocean_current_direction&forecast_days=1",
+        "ok": true,
+        "status": 200,
+        "bytes": 970
+      },
+      {
+        "point": {
+          "latitude": 26.1,
+          "longitude": 56.1
+        },
+        "url": "https://marine-api.open-meteo.com/v1/marine?latitude=26.1&longitude=56.1&hourly=ocean_current_velocity%2Cocean_current_direction&forecast_days=1",
+        "ok": true,
+        "status": 200,
+        "bytes": 973
+      },
+      {
+        "point": {
+          "latitude": 26.2,
+          "longitude": 56.2
+        },
+        "url": "https://marine-api.open-meteo.com/v1/marine?latitude=26.2&longitude=56.2&hourly=ocean_current_velocity%2Cocean_current_direction&forecast_days=1",
+        "ok": true,
+        "status": 200,
+        "bytes": 976
       }
     ]
   }

@@ -1,89 +1,235 @@
 {
   "source": "SHODAN",
-  "generated_at": "2026-05-03T04:40:04.232Z",
-  "fixture_mode": true,
-  "fixture_reason": "Live Shodan AIS search returned 403; synthetic response preserves host-search shape for infrastructure-only demo use.",
+  "generated_at": "2026-05-03T05:05:17.140Z",
+  "api": "internetdb",
   "request": {
-    "url": "https://api.shodan.io/shodan/host/search?query=AIS&facets=country%3A20%2Cport%3A20%2Corg%3A20&minify=true",
+    "base_url": "https://internetdb.shodan.io/{ip}",
     "method": "GET",
     "metadata": {
-      "query": "AIS",
-      "note": "Fixture fallback; no API key cached.",
-      "fixture_fallback": true
+      "evidence_type": "INFRASTRUCTURE_CONTEXT_ONLY",
+      "api_key_required": false,
+      "hostnames": [
+        "data.aishub.net",
+        "www.aishub.net",
+        "www.marinetraffic.com",
+        "www.vesselfinder.com",
+        "aprs.fi"
+      ],
+      "note": "Shodan InternetDB is free and unauthenticated. Returns exposed ports / CPEs / vulns per IP. Results must not support vessel behavior, intent, or kinematics claims (guard.ts Layer 6)."
     }
   },
   "response": {
     "ok": true,
     "status": 200,
-    "statusText": "Fixture Fallback",
+    "statusText": "OK",
     "contentType": "application/json",
-    "bytes": 866
+    "bytes": 1443
   },
   "body": {
-    "total": 2,
+    "total": 5,
     "matches": [
       {
-        "ip_str": "203.0.113.44",
-        "port": 80,
+        "ip_str": "144.76.105.244",
         "hostnames": [
-          "ais-gateway.fixture.invalid"
+          "data.aishub.net"
         ],
-        "org": "Fixture Maritime Network",
-        "isp": "Fixture ISP",
-        "transport": "tcp",
-        "timestamp": "2026-04-03T10:40:04.234Z",
-        "location": {
-          "country_name": "Oman",
-          "country_code": "OM",
-          "city": "Muscat",
-          "latitude": 23.588,
-          "longitude": 58.3829
-        },
-        "product": "AIS receiver web status",
-        "data": "HTTP/1.1 200 OK\\nServer: ais-receiver-fixture\\nService banner references NMEA/AIS TCP forwarding."
+        "ports": [
+          25,
+          80,
+          587
+        ],
+        "cpes": [
+          "cpe:/a:apache:http_server",
+          "cpe:/a:sendmail:sendmail:8.15.2%2f8.15.2%2fDebian-10",
+          "cpe:/a:sendmail:sendmail"
+        ],
+        "vulns": [],
+        "tags": [
+          "starttls",
+          "self-signed"
+        ],
+        "maritime_context_hostname": "data.aishub.net",
+        "timestamp": "2026-05-03T05:05:17.140Z"
       },
       {
-        "ip_str": "198.51.100.72",
-        "port": 8080,
+        "ip_str": "144.76.105.244",
         "hostnames": [
-          "vts-dashboard.fixture.invalid"
+          "data.aishub.net"
         ],
-        "org": "Fixture Port Services",
-        "isp": "Fixture ISP",
-        "transport": "tcp",
-        "timestamp": "2026-04-03T11:40:04.234Z",
-        "location": {
-          "country_name": "United Arab Emirates",
-          "country_code": "AE",
-          "city": "Fujairah",
-          "latitude": 25.1288,
-          "longitude": 56.3265
-        },
-        "product": "VTS dashboard",
-        "data": "HTTP/1.1 401 Unauthorized\\nTitle: Vessel Traffic Service Console"
+        "ports": [
+          25,
+          80,
+          587
+        ],
+        "cpes": [
+          "cpe:/a:apache:http_server",
+          "cpe:/a:sendmail:sendmail:8.15.2%2f8.15.2%2fDebian-10",
+          "cpe:/a:sendmail:sendmail"
+        ],
+        "vulns": [],
+        "tags": [
+          "starttls",
+          "self-signed"
+        ],
+        "maritime_context_hostname": "www.aishub.net",
+        "timestamp": "2026-05-03T05:05:17.140Z"
+      },
+      {
+        "ip_str": "104.18.8.70",
+        "hostnames": [
+          "www.marinetraffic.com"
+        ],
+        "ports": [
+          80,
+          443,
+          2052,
+          2053,
+          2082,
+          2083,
+          2086,
+          2087,
+          2095,
+          2096,
+          8080,
+          8443,
+          8880
+        ],
+        "cpes": [
+          "cpe:/a:cloudflare:cloudflare"
+        ],
+        "vulns": [],
+        "tags": [
+          "cdn"
+        ],
+        "maritime_context_hostname": "www.marinetraffic.com",
+        "timestamp": "2026-05-03T05:05:17.140Z"
+      },
+      {
+        "ip_str": "116.202.2.5",
+        "hostnames": [
+          "vesselfinder.com",
+          "gw3.vesselfinder.com"
+        ],
+        "ports": [
+          80,
+          443
+        ],
+        "cpes": [
+          "cpe:/a:apache:http_server"
+        ],
+        "vulns": [],
+        "tags": [],
+        "maritime_context_hostname": "www.vesselfinder.com",
+        "timestamp": "2026-05-03T05:05:17.140Z"
+      },
+      {
+        "ip_str": "172.67.168.204",
+        "hostnames": [
+          "aprs.fi"
+        ],
+        "ports": [
+          80,
+          443,
+          2082,
+          2083,
+          2086,
+          2087,
+          8080,
+          8443,
+          8880
+        ],
+        "cpes": [
+          "cpe:/a:cloudflare:cloudflare"
+        ],
+        "vulns": [],
+        "tags": [
+          "cdn"
+        ],
+        "maritime_context_hostname": "aprs.fi",
+        "timestamp": "2026-05-03T05:05:17.140Z"
       }
     ],
-    "facets": {
-      "country": [
-        {
-          "value": "OM",
-          "count": 1
-        },
-        {
-          "value": "AE",
-          "count": 1
-        }
-      ],
-      "port": [
-        {
-          "value": 80,
-          "count": 1
-        },
-        {
-          "value": 8080,
-          "count": 1
-        }
-      ]
-    }
+    "lookups": [
+      {
+        "hostname": "data.aishub.net",
+        "resolved_ips": [
+          "144.76.105.244"
+        ],
+        "internetdb": [
+          {
+            "ip": "144.76.105.244",
+            "url": "https://internetdb.shodan.io/144.76.105.244",
+            "ok": true,
+            "status": 200,
+            "bytes": 239
+          }
+        ]
+      },
+      {
+        "hostname": "www.aishub.net",
+        "resolved_ips": [
+          "144.76.105.244"
+        ],
+        "internetdb": [
+          {
+            "ip": "144.76.105.244",
+            "url": "https://internetdb.shodan.io/144.76.105.244",
+            "ok": true,
+            "status": 200,
+            "bytes": 239
+          }
+        ]
+      },
+      {
+        "hostname": "www.marinetraffic.com",
+        "resolved_ips": [
+          "104.18.8.70",
+          "104.18.9.70"
+        ],
+        "internetdb": [
+          {
+            "ip": "104.18.8.70",
+            "url": "https://internetdb.shodan.io/104.18.8.70",
+            "ok": true,
+            "status": 200,
+            "bytes": 173
+          }
+        ]
+      },
+      {
+        "hostname": "www.vesselfinder.com",
+        "resolved_ips": [
+          "116.202.2.5",
+          "159.69.101.70",
+          "78.47.68.175",
+          "88.99.127.255"
+        ],
+        "internetdb": [
+          {
+            "ip": "116.202.2.5",
+            "url": "https://internetdb.shodan.io/116.202.2.5",
+            "ok": true,
+            "status": 200,
+            "bytes": 151
+          }
+        ]
+      },
+      {
+        "hostname": "aprs.fi",
+        "resolved_ips": [
+          "172.67.168.204",
+          "104.21.46.173"
+        ],
+        "internetdb": [
+          {
+            "ip": "172.67.168.204",
+            "url": "https://internetdb.shodan.io/172.67.168.204",
+            "ok": true,
+            "status": 200,
+            "bytes": 156
+          }
+        ]
+      }
+    ]
   }
 }

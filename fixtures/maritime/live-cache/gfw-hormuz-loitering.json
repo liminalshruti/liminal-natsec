@@ -1,56 +1,3290 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T04:40:04.232Z",
-  "fixture_mode": true,
-  "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
+  "generated_at": "2026-05-03T05:41:42.961Z",
   "request": {
-    "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=10&offset=0",
+    "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=50&offset=0",
     "method": "POST",
     "metadata": {
       "dataset": "public-global-loitering-events:latest",
       "types": [
         "LOITERING"
       ],
-      "aoi": "Strait of Hormuz demo AOI",
-      "fixture_fallback": true
+      "aoi": "Persian Gulf + Gulf of Oman regional bbox",
+      "date_window_days": 60
     }
   },
   "response": {
     "ok": true,
-    "status": 200,
-    "statusText": "Fixture Fallback",
-    "contentType": "application/json",
-    "bytes": 296
+    "status": 201,
+    "statusText": "Created",
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 47210
   },
   "body": {
     "metadata": {
-      "dataset": "public-global-loitering-events:latest",
-      "types": [
-        "LOITERING"
+      "datasets": [
+        "public-global-loitering-events:v4.0"
       ],
-      "query": "fixture fallback",
-      "limit": 10,
-      "offset": 0,
-      "total": 1
+      "dateRange": {
+        "from": "2026-03-04",
+        "to": "2026-05-03"
+      },
+      "geometry": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    48,
+                    22
+                  ],
+                  [
+                    62.5,
+                    22
+                  ],
+                  [
+                    62.5,
+                    30.5
+                  ],
+                  [
+                    48,
+                    30.5
+                  ],
+                  [
+                    48,
+                    22
+                  ]
+                ]
+              ]
+            }
+          }
+        ]
+      }
     },
+    "limit": 50,
+    "offset": 0,
+    "nextOffset": 50,
+    "total": 42211,
     "entries": [
       {
-        "id": "fixture:gfw:loitering:anchorage:001",
-        "type": "LOITERING",
-        "start": "2026-04-03T14:40:04.234Z",
-        "end": "2026-04-03T18:10:04.234Z",
+        "start": "2024-02-26T03:00:48.000Z",
+        "end": "2026-03-11T18:56:07.000Z",
+        "id": "d738e539ad90a8a497fb0c1dc7ac13da",
+        "type": "loitering",
         "position": {
-          "lat": 26.08,
-          "lon": 56.18
+          "lat": 28.4132,
+          "lon": 48.9625
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8356"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.972323333333335,
+          28.410116666666667,
+          48.95258,
+          28.416243333333334
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 40,
+          "endDistanceFromShoreKm": 39,
+          "startDistanceFromPortKm": 1.111949,
+          "endDistanceFromPortKm": 0
         },
         "vessel": {
-          "ssvid": "538009876",
-          "name": "BANDAR SUPPLY",
+          "id": "960084e31-1676-a431-6bfe-a91a9ba00098",
+          "name": "HANK BOSWELL",
+          "ssvid": "538003162",
           "flag": "MHL",
-          "type": "SUPPORT"
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
         },
-        "totalDistanceKm": 6.2,
-        "durationHours": 3.5
+        "loitering": {
+          "totalTimeHours": 17871.921944444468,
+          "totalDistanceKm": 405.60588969213165,
+          "averageSpeedKnots": 0.012254398846513422,
+          "averageDistanceFromShoreKm": 39.921033512539324
+        }
+      },
+      {
+        "start": "2024-10-10T10:46:46.000Z",
+        "end": "2026-03-10T12:49:25.000Z",
+        "id": "a6ac351e157f78b0f443a63b3cb3871a",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4654,
+          "lon": 49.5759
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.57584333333333,
+          28.465375,
+          49.576031666666665,
+          28.465408333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 86,
+          "endDistanceFromShoreKm": 86,
+          "startDistanceFromPortKm": 2.932433,
+          "endDistanceFromPortKm": 2.932433
+        },
+        "vessel": {
+          "id": "fe5c12305-5a71-5cca-3fc2-9d533d1ccaf0",
+          "name": "ARO 2005",
+          "ssvid": "538010167",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 12386.044166666672,
+          "totalDistanceKm": 739.4913085009101,
+          "averageSpeedKnots": 0.03223735986635832,
+          "averageDistanceFromShoreKm": 85.99972889155009
+        }
+      },
+      {
+        "start": "2024-12-04T08:55:30.000Z",
+        "end": "2026-03-13T17:58:27.000Z",
+        "id": "e3b8f1f4a1f341884616e18203e8faf3",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3098,
+          "lon": 49.5855
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IWC",
+            "IOTC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.58817333333333,
+          28.310898333333334,
+          49.582906666666666,
+          28.308643333333332
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 69,
+          "endDistanceFromShoreKm": 69,
+          "startDistanceFromPortKm": 3.140188,
+          "endDistanceFromPortKm": 2.2515500000000004
+        },
+        "vessel": {
+          "id": "058e20dce-ef1a-a878-235c-fef66b3f7c18",
+          "name": "ZAMIL L.B.9",
+          "ssvid": "403596001",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 11145.049166666673,
+          "totalDistanceKm": 242.69893232956406,
+          "averageSpeedKnots": 0.01175830969815117,
+          "averageDistanceFromShoreKm": 68.87040560060899
+        }
+      },
+      {
+        "start": "2025-04-19T06:59:51.000Z",
+        "end": "2026-03-13T23:57:19.000Z",
+        "id": "41191ed1b8a2e4fd278ad145f78d3ccf",
+        "type": "loitering",
+        "position": {
+          "lat": 28.5156,
+          "lon": 48.9417
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.91176,
+          28.49239,
+          48.971736666666665,
+          28.53888
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 37,
+          "endDistanceFromShoreKm": 45,
+          "startDistanceFromPortKm": 2.248821,
+          "endDistanceFromPortKm": 7.287261
+        },
+        "vessel": {
+          "id": "f2d47c442-289d-2f0b-75d0-0112f89aa4dd",
+          "name": "ARABDRILL 30",
+          "ssvid": "403500001",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 7888.957777777782,
+          "totalDistanceKm": 183.04478996224134,
+          "averageSpeedKnots": 0.01252843309107899,
+          "averageDistanceFromShoreKm": 41.26873866439669
+        }
+      },
+      {
+        "start": "2025-06-17T19:35:07.000Z",
+        "end": "2026-03-12T17:59:58.000Z",
+        "id": "462c6f650b410e2627b3ebab2cde8180",
+        "type": "loitering",
+        "position": {
+          "lat": 29.5266,
+          "lon": 48.8108
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8470"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.83076666666667,
+          29.454966666666667,
+          48.790816666666665,
+          29.598183333333335
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 42,
+          "endDistanceFromShoreKm": 41,
+          "startDistanceFromPortKm": 10.650957,
+          "endDistanceFromPortKm": 4.420214
+        },
+        "vessel": {
+          "id": "6b7f02e29-9664-36c9-aef5-ae01e3f4e295",
+          "name": "VS87",
+          "ssvid": "538011222",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 6430.414166666661,
+          "totalDistanceKm": 976.2429360155502,
+          "averageSpeedKnots": 0.08197434900222535,
+          "averageDistanceFromShoreKm": 41.11500687555709
+        }
+      },
+      {
+        "start": "2025-06-18T22:59:04.000Z",
+        "end": "2026-03-13T17:58:06.000Z",
+        "id": "5cca4b7619d7c8d189484fd7e6216242",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3048,
+          "lon": 49.5817
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.58171,
+          28.304743333333334,
+          49.58171,
+          28.304775
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 68,
+          "endDistanceFromShoreKm": 68,
+          "startDistanceFromPortKm": 2.9629589999999997,
+          "endDistanceFromPortKm": 2.9629589999999997
+        },
+        "vessel": {
+          "id": "57ca070b7-7bb0-7ea2-a984-f836c83aaeb8",
+          "name": "JANA 503",
+          "ssvid": "403736480",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 6426.983888888892,
+          "totalDistanceKm": 56.991802517480565,
+          "averageSpeedKnots": 0.00478811088413025,
+          "averageDistanceFromShoreKm": 68.00024880519356
+        }
+      },
+      {
+        "start": "2025-06-21T02:19:13.000Z",
+        "end": "2026-03-11T17:25:42.000Z",
+        "id": "df623e64e2670eaf41e39f96e26ec61c",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4041,
+          "lon": 49.1264
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.09301833333333,
+          28.40450166666667,
+          49.15985166666667,
+          28.40363333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 50,
+          "endDistanceFromShoreKm": 56,
+          "startDistanceFromPortKm": 3.682105,
+          "endDistanceFromPortKm": 1.111949
+        },
+        "vessel": {
+          "id": "ed01c92f2-2856-4fd2-e807-0619578e2ee4",
+          "name": "ADMARINE 689",
+          "ssvid": "636021843",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 6327.108055555559,
+          "totalDistanceKm": 17.736158356492584,
+          "averageSpeedKnots": 0.0015136076842163803,
+          "averageDistanceFromShoreKm": 54.001315141390286
+        }
+      },
+      {
+        "start": "2025-06-22T07:58:15.000Z",
+        "end": "2026-03-07T15:23:32.000Z",
+        "id": "40d804469b4016062282ba0b74f42c9d",
+        "type": "loitering",
+        "position": {
+          "lat": 26.9449,
+          "lon": 50.5094
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          50.509463333333336,
+          26.944828333333334,
+          50.50941666666667,
+          26.944941666666665
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 48,
+          "endDistanceFromShoreKm": 48,
+          "startDistanceFromPortKm": 0.991282,
+          "endDistanceFromPortKm": 0.991282
+        },
+        "vessel": {
+          "id": "829a29390-0410-9afe-6c94-fc7bfae5e07c",
+          "name": "ADMARINE 681",
+          "ssvid": "636021656",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 6199.421388888886,
+          "totalDistanceKm": 510.5862308578728,
+          "averageSpeedKnots": 0.044471006535649525,
+          "averageDistanceFromShoreKm": 48.04801489415254
+        }
+      },
+      {
+        "start": "2025-06-26T04:59:55.000Z",
+        "end": "2026-03-13T23:58:06.000Z",
+        "id": "d414c655e77ee77702f8ecc409367918",
+        "type": "loitering",
+        "position": {
+          "lat": 29.6097,
+          "lon": 48.778
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8470"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "ACAP",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.775103333333334,
+          29.611393333333332,
+          48.780946666666665,
+          29.607915
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 40,
+          "endDistanceFromShoreKm": 40,
+          "startDistanceFromPortKm": 2.9467470000000002,
+          "endDistanceFromPortKm": 2.9467470000000002
+        },
+        "vessel": {
+          "id": "abcb75c39-921c-dc9b-c477-e50d3dbc4d64",
+          "name": "NEW DYNASTY",
+          "ssvid": "351932000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 6258.969722222224,
+          "totalDistanceKm": 780.9371492435864,
+          "averageSpeedKnots": 0.06737088458956134,
+          "averageDistanceFromShoreKm": 39.869533849778605
+        }
+      },
+      {
+        "start": "2025-06-26T07:58:39.000Z",
+        "end": "2026-03-15T01:58:50.000Z",
+        "id": "00ce398b8ad5d239aa8a203ccac7ce3a",
+        "type": "loitering",
+        "position": {
+          "lat": 29.6243,
+          "lon": 48.7683
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8470"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.768335,
+          29.625345,
+          48.76824,
+          29.623331666666665
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 38,
+          "endDistanceFromShoreKm": 39,
+          "startDistanceFromPortKm": 0.966547,
+          "endDistanceFromPortKm": 1.4733420000000002
+        },
+        "vessel": {
+          "id": "c308f8f5b-b9f5-55aa-f344-e7b0d55ba156",
+          "name": "HELLSTUGUTINDEN",
+          "ssvid": "636024657",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 6282.003055555554,
+          "totalDistanceKm": 888.5093478999266,
+          "averageSpeedKnots": 0.07637001496016402,
+          "averageDistanceFromShoreKm": 38.6925984747066
+        }
+      },
+      {
+        "start": "2025-07-01T15:09:15.000Z",
+        "end": "2026-03-07T16:23:09.000Z",
+        "id": "a67a2a6e6ee391212b97842f70280c9e",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3147,
+          "lon": 49.6784
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "RECOFI",
+            "IOTC",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.67848333333333,
+          28.314321666666668,
+          49.678333333333335,
+          28.315
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 66,
+          "endDistanceFromShoreKm": 67,
+          "startDistanceFromPortKm": 1.481449,
+          "endDistanceFromPortKm": 0.978862
+        },
+        "vessel": {
+          "id": "163369863-3613-f4b2-eecc-cced68559044",
+          "name": "AD MARINE 693",
+          "ssvid": "636021832",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 5977.231666666662,
+          "totalDistanceKm": 108.3641296960563,
+          "averageSpeedKnots": 0.009789138575011016,
+          "averageDistanceFromShoreKm": 66.64124194909125
+        }
+      },
+      {
+        "start": "2025-09-04T10:59:18.000Z",
+        "end": "2026-03-11T16:22:39.000Z",
+        "id": "01c530c6673bc0d02f5c7a2d661cf6d2",
+        "type": "loitering",
+        "position": {
+          "lat": 29.3376,
+          "lon": 48.9621
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8357"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.962066666666665,
+          29.341333333333335,
+          48.96214,
+          29.333825
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 55,
+          "endDistanceFromShoreKm": 55,
+          "startDistanceFromPortKm": 4.4251059999999995,
+          "endDistanceFromPortKm": 5.3138890000000005
+        },
+        "vessel": {
+          "id": "2e9c2e224-479d-b190-b1e2-65b9855dc1bf",
+          "name": "ADENA",
+          "ssvid": "636020606",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 4517.389166666667,
+          "totalDistanceKm": 940.4543045678538,
+          "averageSpeedKnots": 0.11241110326240443,
+          "averageDistanceFromShoreKm": 55.12248206952824
+        }
+      },
+      {
+        "start": "2025-09-04T12:58:02.000Z",
+        "end": "2026-03-11T14:21:24.000Z",
+        "id": "78174bffe9b82444a34a9c688179f6c3",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3652,
+          "lon": 48.9881
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8356"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.99640333333333,
+          28.368063333333332,
+          48.97979333333333,
+          28.36231
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 40,
+          "endDistanceFromShoreKm": 38,
+          "startDistanceFromPortKm": 1.481084,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "a7020cbfd-d519-79f3-82d5-20a82f756787",
+          "name": "ADMARINE 507",
+          "ssvid": "636022396",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 4513.389444444444,
+          "totalDistanceKm": 45.55210333846794,
+          "averageSpeedKnots": 0.005449600219985337,
+          "averageDistanceFromShoreKm": 38.0001801628032
+        }
+      },
+      {
+        "start": "2025-09-07T09:59:08.000Z",
+        "end": "2026-03-07T03:57:19.000Z",
+        "id": "5720b49180a2b29b9fd4f9e9d10bc3b7",
+        "type": "loitering",
+        "position": {
+          "lat": 29.3223,
+          "lon": 48.9786
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8357"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.973015,
+          29.324323333333332,
+          48.98417833333333,
+          29.320345
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 56,
+          "endDistanceFromShoreKm": 57,
+          "startDistanceFromPortKm": 5.888014,
+          "endDistanceFromPortKm": 5.643604
+        },
+        "vessel": {
+          "id": "7f63867e5-58ff-d351-58d3-a2f0ff2f22fb",
+          "name": "BELLAGIO",
+          "ssvid": "636024318",
+          "flag": "LBR",
+          "type": "cargo",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 4337.969722222224,
+          "totalDistanceKm": 463.5394247447195,
+          "averageSpeedKnots": 0.057697790000398215,
+          "averageDistanceFromShoreKm": 56.98552951020372
+        }
+      },
+      {
+        "start": "2025-09-30T10:59:05.000Z",
+        "end": "2026-03-07T19:51:46.000Z",
+        "id": "55a3c8beaadad176ab3c52077fb52136",
+        "type": "loitering",
+        "position": {
+          "lat": 29.4078,
+          "lon": 48.8968
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8357"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.90493,
+          29.39808,
+          48.88865833333333,
+          29.41746
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 49,
+          "endDistanceFromShoreKm": 48,
+          "startDistanceFromPortKm": 5.329429,
+          "endDistanceFromPortKm": 5.328562
+        },
+        "vessel": {
+          "id": "241522d6f-f371-1230-180e-3e22f6a7aead",
+          "name": "PAOLA",
+          "ssvid": "610000065",
+          "flag": "BEN",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3800.8780555555563,
+          "totalDistanceKm": 472.0811204146424,
+          "averageSpeedKnots": 0.0670643490859453,
+          "averageDistanceFromShoreKm": 48.087217353770505
+        }
+      },
+      {
+        "start": "2025-10-04T21:11:22.000Z",
+        "end": "2026-03-07T04:58:51.000Z",
+        "id": "4b848da08ceb05bd5964dafa4f784a62",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3165,
+          "lon": 49.5242
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.526401666666665,
+          28.31741,
+          49.52209,
+          28.315491666666667
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 72,
+          "endDistanceFromShoreKm": 72,
+          "startDistanceFromPortKm": 1.111949,
+          "endDistanceFromPortKm": 1.111949
+        },
+        "vessel": {
+          "id": "f03cdbd76-6259-3e9c-879d-a4bbfb02b3ea",
+          "name": "ZAMIL-L.B. 2",
+          "ssvid": "403595000",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3679.7913888888907,
+          "totalDistanceKm": 240.25867045386855,
+          "averageSpeedKnots": 0.035254526681189,
+          "averageDistanceFromShoreKm": 71.00006340767189
+        }
+      },
+      {
+        "start": "2025-10-06T10:19:06.000Z",
+        "end": "2026-03-07T13:55:05.000Z",
+        "id": "7422408111211f6973cfa9286158e935",
+        "type": "loitering",
+        "position": {
+          "lat": 26.9941,
+          "lon": 50.5186
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IWC",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          50.51864333333333,
+          26.994091666666666,
+          50.518456666666665,
+          26.99419
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 52,
+          "endDistanceFromShoreKm": 52,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "b2b9c43e6-61e6-5411-1aff-dd707a8de947",
+          "name": "ARABDRILL 150",
+          "ssvid": "403791000",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3651.599722222223,
+          "totalDistanceKm": 206.42169355091008,
+          "averageSpeedKnots": 0.03052327919058905,
+          "averageDistanceFromShoreKm": 52.000014574619414
+        }
+      },
+      {
+        "start": "2025-10-06T10:59:13.000Z",
+        "end": "2026-03-07T11:59:06.000Z",
+        "id": "0989b3e7859ee95af5d147db80177891",
+        "type": "loitering",
+        "position": {
+          "lat": 27.0125,
+          "lon": 50.5744
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          50.57441333333333,
+          27.011946666666667,
+          50.57440666666667,
+          27.013151666666666
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 57,
+          "endDistanceFromShoreKm": 57,
+          "startDistanceFromPortKm": 0.990666,
+          "endDistanceFromPortKm": 0.990666
+        },
+        "vessel": {
+          "id": "2be4df323-3aa6-1d6a-d498-f1b11e0ea0a0",
+          "name": "ADMARINE 682",
+          "ssvid": "636021576",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3648.998055555555,
+          "totalDistanceKm": 247.5035961511364,
+          "averageSpeedKnots": 0.036624094775303255,
+          "averageDistanceFromShoreKm": 57.000174347984846
+        }
+      },
+      {
+        "start": "2025-10-06T19:59:32.000Z",
+        "end": "2026-03-10T11:18:23.000Z",
+        "id": "e32e4e950cea2f16baf1f46eeb8fdb7e",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3307,
+          "lon": 49.1042
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "RECOFI",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8356"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.11342666666667,
+          28.342333333333332,
+          49.09498,
+          28.318966666666668
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 49,
+          "endDistanceFromShoreKm": 46,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 2.962716
+        },
+        "vessel": {
+          "id": "e0574b5d0-0bc1-4428-23a4-422772c6a66f",
+          "name": "ENSCO 141",
+          "ssvid": "636016551",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3711.3141666666666,
+          "totalDistanceKm": 409.4338381715143,
+          "averageSpeedKnots": 0.05956827596847178,
+          "averageDistanceFromShoreKm": 47.34869186723627
+        }
+      },
+      {
+        "start": "2025-10-07T20:07:13.000Z",
+        "end": "2026-03-07T07:31:01.000Z",
+        "id": "0b5055a4bc2d358814b545fff9dece32",
+        "type": "loitering",
+        "position": {
+          "lat": 26.5945,
+          "lon": 52.0019
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8468"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IWC",
+            "IOTC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          52.00185166666667,
+          26.59451333333333,
+          52.001866666666665,
+          26.594495
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 84,
+          "endDistanceFromShoreKm": 84,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "c1e6a69c6-6680-8716-feb9-f6af903ea302",
+          "name": "MILAHA BUROOQ",
+          "ssvid": "466040000",
+          "flag": "QAT",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3611.3966666666643,
+          "totalDistanceKm": 11.648845501239919,
+          "averageSpeedKnots": 0.00174167336389682,
+          "averageDistanceFromShoreKm": 84.00000000000004
+        }
+      },
+      {
+        "start": "2025-10-08T08:23:34.000Z",
+        "end": "2026-03-08T15:58:12.000Z",
+        "id": "e2f8929266296af337923dab18f44c25",
+        "type": "loitering",
+        "position": {
+          "lat": 26.9454,
+          "lon": 50.5439
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "ACAP",
+            "RECOFI",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          50.543795,
+          26.945386666666668,
+          50.544013,
+          26.945385
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 51,
+          "endDistanceFromShoreKm": 51,
+          "startDistanceFromPortKm": 0.9911939999999999,
+          "endDistanceFromPortKm": 0.9911939999999999
+        },
+        "vessel": {
+          "id": "98c983b3f-fa2b-06fc-a33b-a69b650c743f",
+          "name": "PERRO NEGRO 13",
+          "ssvid": "636022922",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3631.577222222222,
+          "totalDistanceKm": 267.83704820321924,
+          "averageSpeedKnots": 0.03982303763496214,
+          "averageDistanceFromShoreKm": 50.99632801892506
+        }
+      },
+      {
+        "start": "2025-10-13T10:55:06.000Z",
+        "end": "2026-03-07T22:59:21.000Z",
+        "id": "3aa0c25d2618770f7eecf28d4ee1804c",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3462,
+          "lon": 49.5744
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.57085333333333,
+          28.348641666666666,
+          49.577931666666665,
+          28.343723333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 74,
+          "endDistanceFromShoreKm": 72,
+          "startDistanceFromPortKm": 1.4812670000000001,
+          "endDistanceFromPortKm": 1.9573559999999999
+        },
+        "vessel": {
+          "id": "df2921a20-0351-b7fd-a404-1733ac93dad2",
+          "name": "KINGDOM 2",
+          "ssvid": "538010168",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3492.070833333335,
+          "totalDistanceKm": 127.68147840458491,
+          "averageSpeedKnots": 0.019742578610306146,
+          "averageDistanceFromShoreKm": 72.0004471307565
+        }
+      },
+      {
+        "start": "2025-10-14T04:48:07.000Z",
+        "end": "2026-03-07T14:57:27.000Z",
+        "id": "8a0d14a1e06d0559795ec3a290475cfc",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4578,
+          "lon": 49.6306
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.624876666666665,
+          28.45656333333333,
+          49.63628,
+          28.459073333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 84,
+          "endDistanceFromShoreKm": 83,
+          "startDistanceFromPortKm": 1.111949,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "289f81db8-89cf-6574-345c-20aaadcedf92",
+          "name": "ADMARINE 261",
+          "ssvid": "636014033",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3466.1555555555533,
+          "totalDistanceKm": 49.479364422336936,
+          "averageSpeedKnots": 0.00770788241389927,
+          "averageDistanceFromShoreKm": 83.00004656620968
+        }
+      },
+      {
+        "start": "2025-10-24T04:59:42.000Z",
+        "end": "2026-03-13T04:59:06.000Z",
+        "id": "3c615ddaa9e675587bf045d61f2045b9",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3052,
+          "lon": 49.6362
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.65045666666666,
+          28.302466666666668,
+          49.62202,
+          28.307893333333332
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 66,
+          "endDistanceFromShoreKm": 68,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 2.962838
+        },
+        "vessel": {
+          "id": "acb3401d4-4fa5-47f6-10a0-8849d25adf02",
+          "name": "ADMARINE 680",
+          "ssvid": "636021593",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3359.9900000000002,
+          "totalDistanceKm": 42.83627927095625,
+          "averageSpeedKnots": 0.0068838718052976955,
+          "averageDistanceFromShoreKm": 66.00018084456033
+        }
+      },
+      {
+        "start": "2025-10-29T19:58:05.000Z",
+        "end": "2026-03-05T13:54:24.000Z",
+        "id": "781a7bdc5173616c609838957b7757c4",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3674,
+          "lon": 49.6378
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.635115,
+          28.371261666666665,
+          49.640406666666664,
+          28.363556666666668
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 74,
+          "endDistanceFromShoreKm": 73,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0.978494
+        },
+        "vessel": {
+          "id": "6f3929cad-d611-8750-bca3-7b81f07c5075",
+          "name": "JANA 504",
+          "ssvid": "403736580",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3041.9386111111103,
+          "totalDistanceKm": 36.60352355254482,
+          "averageSpeedKnots": 0.006497278248961506,
+          "averageDistanceFromShoreKm": 73.99995120198236
+        }
+      },
+      {
+        "start": "2025-11-04T11:59:16.000Z",
+        "end": "2026-03-14T09:56:02.000Z",
+        "id": "6adad72d37d5f292bb216e98507ab5f8",
+        "type": "loitering",
+        "position": {
+          "lat": 29.5953,
+          "lon": 48.7666
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8470"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.765215,
+          29.593093333333332,
+          48.768033333333335,
+          29.59759
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 41,
+          "endDistanceFromShoreKm": 40,
+          "startDistanceFromPortKm": 4.551646,
+          "endDistanceFromPortKm": 3.4730920000000003
+        },
+        "vessel": {
+          "id": "9d4268c6a-a129-8c14-33cc-2fe1c47b33fe",
+          "name": "NEW ANDROS",
+          "ssvid": "371687000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 3117.946111111112,
+          "totalDistanceKm": 469.72457089331493,
+          "averageSpeedKnots": 0.08134552964219825,
+          "averageDistanceFromShoreKm": 40.047141929253684
+        }
+      },
+      {
+        "start": "2025-11-05T02:59:05.000Z",
+        "end": "2026-03-04T10:01:54.000Z",
+        "id": "b52f7cd89a4bc94326db6cff0ac3d21b",
+        "type": "loitering",
+        "position": {
+          "lat": 26.6301,
+          "lon": 51.9328
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8468"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          51.9152,
+          26.623633333333334,
+          51.950338333333335,
+          26.63658
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 80,
+          "endDistanceFromShoreKm": 84,
+          "startDistanceFromPortKm": 2.9829209999999997,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "d8d982708-83f3-d0d8-5818-d8867746b030",
+          "name": "ALJASSRA",
+          "ssvid": "636015700",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2863.0469444444448,
+          "totalDistanceKm": 24.818195490946504,
+          "averageSpeedKnots": 0.0046805916091714845,
+          "averageDistanceFromShoreKm": 83.99510803647246
+        }
+      },
+      {
+        "start": "2025-11-12T03:56:29.000Z",
+        "end": "2026-03-07T17:56:36.000Z",
+        "id": "684d195a05898dbc2640af4271273a37",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3658,
+          "lon": 49.2077
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "RECOFI",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.21071,
+          28.363448333333334,
+          49.20469333333333,
+          28.368083333333335
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 57,
+          "endDistanceFromShoreKm": 57,
+          "startDistanceFromPortKm": 0.978494,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "eb3a126ca-a209-affe-90fb-f2045f5a5d80",
+          "name": "ADMARINE 683",
+          "ssvid": "563171400",
+          "flag": "SGP",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2774.0019444444447,
+          "totalDistanceKm": 1.997721314090433,
+          "averageSpeedKnots": 0.00038885452734160495,
+          "averageDistanceFromShoreKm": 57.00008838888645
+        }
+      },
+      {
+        "start": "2025-11-16T07:55:06.000Z",
+        "end": "2026-03-14T21:58:11.000Z",
+        "id": "8cefd37fa00b695a4a3a1032946c86bb",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4446,
+          "lon": 49.0398
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.045883333333336,
+          28.44334,
+          49.03378,
+          28.445883333333335
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 49,
+          "endDistanceFromShoreKm": 48,
+          "startDistanceFromPortKm": 2.249464,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "53ca9f68a-acbe-a163-ba1f-81fe28803f5f",
+          "name": "ADMARINE 688",
+          "ssvid": "636021477",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2846.051388888889,
+          "totalDistanceKm": 7.460698408360048,
+          "averageSpeedKnots": 0.001415454014587566,
+          "averageDistanceFromShoreKm": 48.00003472604187
+        }
+      },
+      {
+        "start": "2025-11-24T05:45:49.000Z",
+        "end": "2026-03-11T04:00:31.000Z",
+        "id": "b6843ed2dc4bf69611d8821c421a49cf",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3975,
+          "lon": 49.1893
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.18920166666667,
+          28.397243333333332,
+          49.18936333333333,
+          28.397701666666666
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 58,
+          "endDistanceFromShoreKm": 58,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "79549836f-f9ed-cd92-f20b-992d5b2c2efe",
+          "name": "COSLHUNTER",
+          "ssvid": "563686000",
+          "flag": "SGP",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2566.2450000000003,
+          "totalDistanceKm": 116.94248986944801,
+          "averageSpeedKnots": 0.024605559102135792,
+          "averageDistanceFromShoreKm": 57.99999999999996
+        }
+      },
+      {
+        "start": "2025-11-25T09:44:20.000Z",
+        "end": "2026-03-11T11:45:37.000Z",
+        "id": "a7ae1d6ef2bf76e823fef3efad73e905",
+        "type": "loitering",
+        "position": {
+          "lat": 28.2818,
+          "lon": 49.6101
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.624293333333334,
+          28.281753333333334,
+          49.595906666666664,
+          28.281926666666667
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 65,
+          "endDistanceFromShoreKm": 65,
+          "startDistanceFromPortKm": 2.223899,
+          "endDistanceFromPortKm": 2.9634460000000002
+        },
+        "vessel": {
+          "id": "64ac5cada-af69-a11b-fb46-0190908d6579",
+          "name": "ADMARINE 687",
+          "ssvid": "636021842",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2546.0213888888893,
+          "totalDistanceKm": 227.3484543530952,
+          "averageSpeedKnots": 0.04821575546019658,
+          "averageDistanceFromShoreKm": 65.00050065611643
+        }
+      },
+      {
+        "start": "2025-11-30T04:58:31.000Z",
+        "end": "2026-03-23T11:05:13.000Z",
+        "id": "95859d20d2b75b2a9f71b63453e61763",
+        "type": "loitering",
+        "position": {
+          "lat": 25.7515,
+          "lon": 56.7667
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8354"
+          ],
+          "rfmo": [
+            "IWC",
+            "ACAP",
+            "IOTC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.766711666666666,
+          25.752906666666668,
+          56.766675,
+          25.75003166666667
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 38,
+          "endDistanceFromShoreKm": 38,
+          "startDistanceFromPortKm": 14.162768,
+          "endDistanceFromPortKm": 14.162768
+        },
+        "vessel": {
+          "id": "5426de60a-a0f9-3af1-ecab-1099164ba7f1",
+          "name": "HEMERA",
+          "ssvid": "511101408",
+          "flag": "PLW",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2718.1116666666667,
+          "totalDistanceKm": 172.27820810711935,
+          "averageSpeedKnots": 0.03422331455156064,
+          "averageDistanceFromShoreKm": 38.000000000000014
+        }
+      },
+      {
+        "start": "2025-12-21T06:58:47.000Z",
+        "end": "2026-04-04T18:59:23.000Z",
+        "id": "32ca46b98b0cd21610ae55a3b9447473",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4567,
+          "lon": 48.9248
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8356"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.939503333333334,
+          28.45514,
+          48.91,
+          28.458333333333332
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 40,
+          "endDistanceFromShoreKm": 37,
+          "startDistanceFromPortKm": 2.223899,
+          "endDistanceFromPortKm": 2.9610090000000002
+        },
+        "vessel": {
+          "id": "0d3d1e41f-ffb1-9db4-59be-02f5a5406017",
+          "name": "MILLENNIUM 2",
+          "ssvid": "470244000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 2508.0099999999993,
+          "totalDistanceKm": 48.180289966491905,
+          "averageSpeedKnots": 0.010372875451005716,
+          "averageDistanceFromShoreKm": 38.785558922306265
+        }
+      },
+      {
+        "start": "2026-01-01T12:46:18.000Z",
+        "end": "2026-03-07T13:59:52.000Z",
+        "id": "be003b745b7373e4bc3de563f3304e07",
+        "type": "loitering",
+        "position": {
+          "lat": 28.5384,
+          "lon": 48.9456
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.913358333333335,
+          28.566416666666665,
+          48.97783166666667,
+          28.51047
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 40,
+          "endDistanceFromShoreKm": 45,
+          "startDistanceFromPortKm": 10.196509,
+          "endDistanceFromPortKm": 5.138876
+        },
+        "vessel": {
+          "id": "ef8a43173-3e84-3be3-168c-af65e5653b27",
+          "name": "ARABDRILL-80",
+          "ssvid": "403759470",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1561.226111111111,
+          "totalDistanceKm": 54.62318561835152,
+          "averageSpeedKnots": 0.018891665013252307,
+          "averageDistanceFromShoreKm": 42.34816410431796
+        }
+      },
+      {
+        "start": "2026-01-02T05:56:07.000Z",
+        "end": "2026-03-07T03:24:44.000Z",
+        "id": "eb1f6d7825851ba58f485ee8ea564dc3",
+        "type": "loitering",
+        "position": {
+          "lat": 25.3644,
+          "lon": 53.4515
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          53.45027,
+          25.358316666666667,
+          53.45276666666667,
+          25.370483333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 61,
+          "endDistanceFromShoreKm": 62,
+          "startDistanceFromPortKm": 1.111949,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "8973478ab-b120-e9c7-2d01-a361d135a66d",
+          "name": "RIG MAKASIB",
+          "ssvid": "470371000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1533.4769444444446,
+          "totalDistanceKm": 15.023833653644267,
+          "averageSpeedKnots": 0.005290083574234118,
+          "averageDistanceFromShoreKm": 61.999740412930024
+        }
+      },
+      {
+        "start": "2026-01-06T13:42:48.000Z",
+        "end": "2026-03-15T13:17:57.000Z",
+        "id": "4fa15738ef391fe1c11a4f2124e1f67c",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4033,
+          "lon": 49.6793
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "IOTC",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.679233333333336,
+          28.403756666666666,
+          49.67942,
+          28.40289
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 76,
+          "endDistanceFromShoreKm": 76,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "dfbc1fb10-00b3-2981-28e9-8837ed8280a4",
+          "name": "COSL POWER",
+          "ssvid": "565409000",
+          "flag": "SGP",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1631.5858333333335,
+          "totalDistanceKm": 7.394610841651256,
+          "averageSpeedKnots": 0.0024471715500862194,
+          "averageDistanceFromShoreKm": 76.00000000000001
+        }
+      },
+      {
+        "start": "2026-01-07T09:59:06.000Z",
+        "end": "2026-03-14T06:57:28.000Z",
+        "id": "049ecb3fa6be2c56bc8e3e754066358e",
+        "type": "loitering",
+        "position": {
+          "lat": 29.637,
+          "lon": 49.6253
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8469"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.626751666666664,
+          29.625925,
+          49.62383833333333,
+          29.648148333333335
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 42,
+          "endDistanceFromShoreKm": 40,
+          "startDistanceFromPortKm": 30.666471,
+          "endDistanceFromPortKm": 28.803354
+        },
+        "vessel": {
+          "id": "9f812cad5-5c89-c440-ca08-0a37cf56a5c6",
+          "name": "NEW AMBITION",
+          "ssvid": "371963000",
+          "flag": "PAN",
+          "type": "cargo",
+          "nextPort": {
+            "id": "irn-bandarimamkhomeini",
+            "flag": "IRN",
+            "name": null,
+            "portVisitEventId": "d587394e0c06ea74d6b7ad716c27df30"
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1580.9727777777778,
+          "totalDistanceKm": 177.69998928740094,
+          "averageSpeedKnots": 0.06069068331752651,
+          "averageDistanceFromShoreKm": 40.00037563000969
+        }
+      },
+      {
+        "start": "2026-01-08T19:02:01.000Z",
+        "end": "2026-03-08T19:15:45.000Z",
+        "id": "2cdcb98cb86ab9c9f14b7b5ae0a90690",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3023,
+          "lon": 49.1341
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8356"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.13406666666667,
+          28.30235,
+          49.13410666666667,
+          28.302251666666667
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 47,
+          "endDistanceFromShoreKm": 47,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "7c7db3b1c-cc24-6a43-f293-10e7ee7e2821",
+          "name": "QMS AL MARYAH",
+          "ssvid": "352296000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1416.2288888888888,
+          "totalDistanceKm": 24.185550919414965,
+          "averageSpeedKnots": 0.009221074973628436,
+          "averageDistanceFromShoreKm": 47.00018445393868
+        }
+      },
+      {
+        "start": "2026-01-09T09:47:20.000Z",
+        "end": "2026-03-07T19:57:45.000Z",
+        "id": "d447a112eff4d936abbc835039d15843",
+        "type": "loitering",
+        "position": {
+          "lat": 28.354,
+          "lon": 49.5194
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.51902,
+          28.35464,
+          49.519816666666664,
+          28.35345
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 76,
+          "endDistanceFromShoreKm": 76,
+          "startDistanceFromPortKm": 4.069392,
+          "endDistanceFromPortKm": 4.069392
+        },
+        "vessel": {
+          "id": "498e2403b-b366-e716-b96e-e02f70af7288",
+          "name": "QMS BANI YAS",
+          "ssvid": "374355000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": {
+            "id": "sau-marjanfield",
+            "flag": "SAU",
+            "name": null,
+            "portVisitEventId": "5498272accf105900f4d865a34aaa3e3"
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1378.173611111111,
+          "totalDistanceKm": 24.98865919335289,
+          "averageSpeedKnots": 0.009790346028907885,
+          "averageDistanceFromShoreKm": 76
+        }
+      },
+      {
+        "start": "2026-01-09T11:59:57.000Z",
+        "end": "2026-03-09T08:59:08.000Z",
+        "id": "aec5bfa5644fb0c26dacb7a11f0f15ab",
+        "type": "loitering",
+        "position": {
+          "lat": 29.5833,
+          "lon": 48.7839
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8470"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.770515,
+          29.58871,
+          48.797216666666664,
+          29.577973333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 41,
+          "endDistanceFromShoreKm": 43,
+          "startDistanceFromPortKm": 4.551646,
+          "endDistanceFromPortKm": 6.7724139999999995
+        },
+        "vessel": {
+          "id": "d59a4693f-f187-8b4c-3466-53be945cad19",
+          "name": "ALRAYA",
+          "ssvid": "257912000",
+          "flag": "NOR",
+          "type": "other",
+          "nextPort": {
+            "id": "irq-ummqasr",
+            "flag": "IRQ",
+            "name": null,
+            "portVisitEventId": "90c7f61d07145cbaa3369bf387594a3e"
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1412.9863888888888,
+          "totalDistanceKm": 197.51260422341693,
+          "averageSpeedKnots": 0.07547721284318613,
+          "averageDistanceFromShoreKm": 41.43245131085536
+        }
+      },
+      {
+        "start": "2026-01-12T00:01:44.000Z",
+        "end": "2026-03-08T06:59:14.000Z",
+        "id": "6ab43729d7f7f5f779f3ccc594982eec",
+        "type": "loitering",
+        "position": {
+          "lat": 28.2917,
+          "lon": 49.2747
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IWC",
+            "ACAP",
+            "IOTC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.275,
+          28.29,
+          49.27435,
+          28.293478333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 58,
+          "endDistanceFromShoreKm": 57,
+          "startDistanceFromPortKm": 2.223899,
+          "endDistanceFromPortKm": 1.481571
+        },
+        "vessel": {
+          "id": "3a23ffb32-2516-e773-adef-e862c3a7788e",
+          "name": "RAWABI INTEGRITY",
+          "ssvid": "403480240",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1326.9583333333335,
+          "totalDistanceKm": 146.71902313507536,
+          "averageSpeedKnots": 0.05970190076666182,
+          "averageDistanceFromShoreKm": 57.76457279209144
+        }
+      },
+      {
+        "start": "2026-01-13T08:57:38.000Z",
+        "end": "2026-03-07T09:58:31.000Z",
+        "id": "7c63560286f5a971ad77ac48ac5e7a2a",
+        "type": "loitering",
+        "position": {
+          "lat": 24.8829,
+          "lon": 53.6281
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          53.63533,
+          24.886791666666667,
+          53.620835,
+          24.879105
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 57,
+          "endDistanceFromShoreKm": 55,
+          "startDistanceFromPortKm": 1.5013079999999999,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "dc00e7d76-6164-c2d8-2f4c-0d6fa1cb4ad0",
+          "name": "QMS CONSTRUCTOR",
+          "ssvid": "371689000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1273.014722222222,
+          "totalDistanceKm": 15.824145338420813,
+          "averageSpeedKnots": 0.006711905828895008,
+          "averageDistanceFromShoreKm": 55.01646757169129
+        }
+      },
+      {
+        "start": "2026-01-18T13:58:42.000Z",
+        "end": "2026-04-06T04:56:38.000Z",
+        "id": "44a8ac5ec4addc725af70cd7ea57fbac",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4924,
+          "lon": 48.9519
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IWC",
+            "RECOFI",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.96373166666667,
+          28.478345,
+          48.94001333333333,
+          28.506551666666667
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 42,
+          "endDistanceFromShoreKm": 41,
+          "startDistanceFromPortKm": 1.95477,
+          "endDistanceFromPortKm": 3.335848
+        },
+        "vessel": {
+          "id": "f09c06c2d-d76a-abd2-4308-58d5667c8e97",
+          "name": "ARABDRILL 160",
+          "ssvid": "403744680",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1862.9655555555548,
+          "totalDistanceKm": 44.64876664720219,
+          "averageSpeedKnots": 0.012940875500982867,
+          "averageDistanceFromShoreKm": 41.459384059300845
+        }
+      },
+      {
+        "start": "2026-01-20T07:52:12.000Z",
+        "end": "2026-03-07T14:59:06.000Z",
+        "id": "ebe1535b0fb0f8f2603b267a40c1a7d6",
+        "type": "loitering",
+        "position": {
+          "lat": 28.3504,
+          "lon": 49.0466
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8356"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.044603333333335,
+          28.340316666666666,
+          49.04861666666667,
+          28.360526666666665
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 42,
+          "endDistanceFromShoreKm": 44,
+          "startDistanceFromPortKm": 5.922829,
+          "endDistanceFromPortKm": 6.277533
+        },
+        "vessel": {
+          "id": "674e48253-3eed-4c4a-29da-86530791455a",
+          "name": "ARABDRILL 110",
+          "ssvid": "563171300",
+          "flag": "SGP",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1111.1149999999998,
+          "totalDistanceKm": 133.64673460898325,
+          "averageSpeedKnots": 0.06494688993647105,
+          "averageDistanceFromShoreKm": 43.99935426511585
+        }
+      },
+      {
+        "start": "2026-01-23T03:57:29.000Z",
+        "end": "2026-03-10T13:44:25.000Z",
+        "id": "9cc3c7e8517c2f72ea2f65c23f4324f2",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4279,
+          "lon": 49.6078
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "ACAP",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.595415,
+          28.42901833333333,
+          49.620265,
+          28.426688333333335
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 81,
+          "endDistanceFromShoreKm": 81,
+          "startDistanceFromPortKm": 1.480718,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "38d76516a-ae15-7263-437c-7853916574e3",
+          "name": "HARVEY H WARD",
+          "ssvid": "538001736",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1113.782222222222,
+          "totalDistanceKm": 252.65960444444315,
+          "averageSpeedKnots": 0.12248828330731737,
+          "averageDistanceFromShoreKm": 80.9996624135774
+        }
+      },
+      {
+        "start": "2026-01-23T05:53:18.000Z",
+        "end": "2026-03-08T01:59:29.000Z",
+        "id": "fbc099afa9d41241035aef53cb5a5018",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4364,
+          "lon": 49.359
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.34993166666667,
+          28.423895,
+          49.36812333333334,
+          28.44886
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 72,
+          "endDistanceFromShoreKm": 76,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 1.955325
+        },
+        "vessel": {
+          "id": "e560fcab4-47bc-349f-d7a7-e396bb88ceb0",
+          "name": "QMS AL SHAHAMA II",
+          "ssvid": "372813000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1052.1030555555553,
+          "totalDistanceKm": 60.575281910481664,
+          "averageSpeedKnots": 0.031088243129891634,
+          "averageDistanceFromShoreKm": 75.99769942804416
+        }
+      },
+      {
+        "start": "2026-01-23T13:57:58.000Z",
+        "end": "2026-03-07T15:59:06.000Z",
+        "id": "fb018b4e5e258f77e93b9577ef7f5d37",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4081,
+          "lon": 49.6199
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.62248,
+          28.407838333333334,
+          49.617235,
+          28.4083
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 79,
+          "endDistanceFromShoreKm": 79,
+          "startDistanceFromPortKm": 1.111949,
+          "endDistanceFromPortKm": 1.111949
+        },
+        "vessel": {
+          "id": "4ae87d700-0edc-35dd-894d-72681186c458",
+          "name": "PERRO NEGRO 7",
+          "ssvid": "311014700",
+          "flag": "BHS",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1034.0188888888888,
+          "totalDistanceKm": 11.774997848166008,
+          "averageSpeedKnots": 0.006148814366075805,
+          "averageDistanceFromShoreKm": 78.99985273522603
+        }
+      },
+      {
+        "start": "2026-01-24T00:59:17.000Z",
+        "end": "2026-03-14T14:25:08.000Z",
+        "id": "b2513807a287b7bc302f4e843e8dea68",
+        "type": "loitering",
+        "position": {
+          "lat": 28.389,
+          "lon": 49.7705
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.783175,
+          28.390953333333332,
+          49.757796666666664,
+          28.387133333333335
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 74,
+          "endDistanceFromShoreKm": 74,
+          "startDistanceFromPortKm": 5.9197820000000005,
+          "endDistanceFromPortKm": 4.442704
+        },
+        "vessel": {
+          "id": "351c5159c-c1fd-229e-9b0f-f23061a92b7c",
+          "name": "JANA 501",
+          "ssvid": "403783770",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1189.4308333333336,
+          "totalDistanceKm": 54.905860297904724,
+          "averageSpeedKnots": 0.024925192778430985,
+          "averageDistanceFromShoreKm": 73.99986079655658
+        }
+      },
+      {
+        "start": "2026-01-24T12:59:37.000Z",
+        "end": "2026-03-14T11:58:25.000Z",
+        "id": "3d9b2391db0732b686c201b2ece2f751",
+        "type": "loitering",
+        "position": {
+          "lat": 29.4414,
+          "lon": 48.9495
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IWC",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          48.949423333333336,
+          29.442045,
+          48.94952,
+          29.440811666666665
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 54,
+          "endDistanceFromShoreKm": 54,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "18780f9bc-cac7-a006-2635-651ca657c892",
+          "name": "CENTURION SIGNIFER",
+          "ssvid": "352002288",
+          "flag": "PAN",
+          "type": "cargo",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1174.9799999999998,
+          "totalDistanceKm": 125.75003640316486,
+          "averageSpeedKnots": 0.05778786676428005,
+          "averageDistanceFromShoreKm": 54.00000000000003
+        }
+      },
+      {
+        "start": "2026-01-27T11:59:52.000Z",
+        "end": "2026-03-10T13:29:37.000Z",
+        "id": "baa0bbe5eb6783805e5d7ed05aa0391d",
+        "type": "loitering",
+        "position": {
+          "lat": 28.4384,
+          "lon": 49.0836
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8356"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.075496666666666,
+          28.437783333333332,
+          49.09178166666667,
+          28.43892
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 51,
+          "endDistanceFromShoreKm": 52,
+          "startDistanceFromPortKm": 5.013412000000001,
+          "endDistanceFromPortKm": 4.888776
+        },
+        "vessel": {
+          "id": "6daa33909-9d61-30bd-ca45-2dbbcb4de16f",
+          "name": "ARABDRILL 140",
+          "ssvid": "403683000",
+          "flag": "SAU",
+          "type": "other",
+          "nextPort": {
+            "id": null,
+            "flag": null,
+            "name": null,
+            "portVisitEventId": null
+          }
+        },
+        "loitering": {
+          "totalTimeHours": 1009.4958333333334,
+          "totalDistanceKm": 4.458271482758412,
+          "averageSpeedKnots": 0.0023846299700111435,
+          "averageDistanceFromShoreKm": 51.99978137568616
+        }
       }
     ]
   }
