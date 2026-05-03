@@ -179,11 +179,11 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
           stays; the verb changes. */}
       <div className="working__forensic">
         <div className="case-file">
-          <section className="case-file__section">
-            <div className="case-file__section-header">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
               <span>Brief</span>
               <span className="case-file__section-meta">held in vault</span>
-            </div>
+            </summary>
             <div className="case-file__section-body">
               <ExecSummary
                 caseId={caseId}
@@ -196,58 +196,58 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
                 ruleApplication={ruleApplication}
               />
             </div>
-          </section>
+          </details>
 
-          <section className="case-file__section">
-            <div className="case-file__section-header">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
               <span>Knowledge graph</span>
               <span className="case-file__section-meta">case subgraph · BFS depth 4</span>
-            </div>
+            </summary>
             <div className="case-file__section-body">
               <KnowledgeGraphViz caseId={caseId} />
             </div>
-          </section>
+          </details>
 
-          <section className="case-file__section">
-            <div className="case-file__section-header">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
               <span>Provenance chain</span>
               <span className="case-file__section-meta">action ← claim ← hypothesis ← anomaly ← observation</span>
-            </div>
+            </summary>
             <div className="case-file__section-body">
               <ProvenanceTrace claimId={primaryClaimId} />
             </div>
-          </section>
+          </details>
 
-          <section className="case-file__section">
-            <div className="case-file__section-header">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
               <span>Evidence held</span>
               <span className="case-file__section-meta">supports · weakens · contradicts</span>
-            </div>
+            </summary>
             <div className="case-file__section-body">
               <EvidenceDrawer claimId={primaryClaimId} />
               <HormuzIntelDrawer />
             </div>
-          </section>
+          </details>
 
-          <section className="case-file__section">
-            <div className="case-file__section-header">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
               <span>Bounded actions</span>
               <span className="case-file__section-meta">recommendations under the guard</span>
-            </div>
+            </summary>
             <div className="case-file__section-body">
               <ActionOptions actions={actions} ruleApplication={ruleApplication} />
             </div>
-          </section>
+          </details>
 
-          <section className="case-file__section">
-            <div className="case-file__section-header">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
               <span>Review memory</span>
               <span className="case-file__section-meta">operator doctrine</span>
-            </div>
+            </summary>
             <div className="case-file__section-body">
               <ReviewMemory ruleApplication={ruleApplication} caseId={caseId} />
             </div>
-          </section>
+          </details>
         </div>
       </div>
     </>

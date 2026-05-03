@@ -2959,3 +2959,57 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   text-align: right;
   font-style: italic;
 }
+
+/* ─── Case-file section fold/unfold (HTML <details>/<summary>) ───────────────
+   Sections converted from <section> + <div header> to <details> + <summary>
+   for native browser fold behavior — accessible, keyboard-friendly, zero JS.
+   Default state is open; clicking the summary toggles. The dragon-fold
+   sticky pattern stays via position: sticky on summary.
+   --------------------------------------------------------------------------- */
+
+details.case-file__section {
+  /* details element default behavior: collapses content when not [open]. */
+  margin: 0;
+}
+
+details.case-file__section > summary {
+  cursor: pointer;
+  /* Native disclosure triangle is removed — we render our own caret in CSS
+     so it matches the editorial register and respects the existing layout. */
+  list-style: none;
+  user-select: none;
+  /* Replace section-header's `display` semantics with summary-friendly. */
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+details.case-file__section > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.case-file__section > summary::before {
+  content: "▾"; /* fold-down caret = open */
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--color-ink-tertiary);
+  transition: transform 160ms ease, color 160ms ease;
+  font-size: 9px;
+  width: 10px;
+  text-align: center;
+}
+
+details.case-file__section:not([open]) > summary::before {
+  content: "▸"; /* fold-right caret = closed */
+}
+
+details.case-file__section > summary:hover::before,
+details.case-file__section > summary:focus-visible::before {
+  color: var(--color-decision);
+}
+
+details.case-file__section > summary:focus-visible {
+  outline: 1px solid var(--color-decision);
+  outline-offset: -1px;
+}
