@@ -499,6 +499,40 @@ button:hover {
   padding: 8px 10px;
 }
 
+.refusal-card__causal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  margin: -8px -10px 8px;
+  background: rgba(209, 139, 60, 0.06);
+  border-bottom: 1px dashed rgba(209, 139, 60, 0.3);
+}
+
+.refusal-card__causal-step {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--warn);
+  border: 1px solid rgba(209, 139, 60, 0.45);
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: rgba(6, 9, 13, 0.4);
+}
+
+.refusal-card__causal-step--terminal {
+  background: rgba(209, 139, 60, 0.18);
+  border-color: var(--warn);
+  color: #f1c898;
+}
+
+.refusal-card__causal-arrow {
+  color: rgba(209, 139, 60, 0.55);
+  font-size: 11px;
+  line-height: 1;
+}
+
 .refusal-card__label {
   font-size: 9px;
   letter-spacing: 0.16em;

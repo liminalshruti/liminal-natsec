@@ -41,9 +41,22 @@ function RefusalCard({ read }: { read: SpecialistReadRecord }) {
           <div className="refusal-card__specialist">{read.specialist}</div>
           <div className="refusal-card__status">REFUSED</div>
         </div>
-        <span className="tag tag--warn refusal-card__tag">EPISTEMIC GUARD</span>
+        <span className="tag tag--warn refusal-card__tag">STRUCTURAL GUARD</span>
       </div>
       <div className="refusal-card__body">
+        <div className="refusal-card__causal" aria-label="causal line">
+          <span className="refusal-card__causal-step">L2 INTENT_INDICATOR</span>
+          <span className="refusal-card__causal-arrow" aria-hidden>
+            ▸
+          </span>
+          <span className="refusal-card__causal-step">SIGNAL INTEGRITY CONTESTED</span>
+          <span className="refusal-card__causal-arrow" aria-hidden>
+            ▸
+          </span>
+          <span className="refusal-card__causal-step refusal-card__causal-step--terminal">
+            REFUSAL ENFORCED
+          </span>
+        </div>
         <div className="refusal-card__label">Why refused</div>
         <div className="refusal-card__text">{rationale}</div>
         {read.citations && read.citations.length > 0 && (
@@ -59,9 +72,8 @@ function RefusalCard({ read }: { read: SpecialistReadRecord }) {
           </>
         )}
         <div className="refusal-card__footnote">
-          The Intent specialist did not produce a claim — the evidence set does
-          not meet the bounded-input threshold. The refusal is preserved in the
-          case record.
+          Refusal is a server-side invariant — not a UX choice. The guard
+          preserves this case in the record without producing an intent claim.
         </div>
       </div>
     </div>
