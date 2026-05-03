@@ -1866,25 +1866,17 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 /* Exec summary — typed-grammar prose */
 
 .exec-summary {
-  font-family: var(--font-serif);
-  font-size: 13.5px;
-  line-height: 1.62;
-  color: var(--color-ink-primary);
-  font-feature-settings: "ss01", "kern", "onum";
-  font-variation-settings: "opsz" 16, "SOFT" 50;
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--color-ink-secondary);
 }
 
 .exec-summary p {
-  margin: 0 0 10px;
-}
-
-.exec-summary p:last-child {
-  margin-bottom: 0;
+  margin: 0 0 8px;
 }
 
 .exec-summary .tchip {
-  margin: 0 1px;
-  vertical-align: baseline;
+  vertical-align: middle;
 }
 
 
