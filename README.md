@@ -79,6 +79,16 @@ We slot between substrate and command. We do not replace Maven. We protect the l
 - **Authoritative store:** Palantir Foundry Ontology + AIP Logic (developer access)
 - **Schema:** domain-neutral `graph-spine/` (portability) projected to maritime Ontology (authoritative)
 
+## AI fallback
+
+Specialist calls try live providers only before the deterministic cache/fixture path:
+
+```text
+AIP Logic -> @mariozechner/pi-ai -> cache -> fixture
+```
+
+Enable Pi-AI locally with `PI_AI_FALLBACK_ENABLED=true`. The server uses the `openai-codex` provider by default, reads Pi auth from `~/.pi/agent/auth.json`, and can use `~/.codex/auth.json` only when `CODEX_AUTH_FALLBACK_ENABLED=true`. Live model output is still parsed into the specialist JSON contract and passed through the structural guard before the app sees it.
+
 ## Local commands
 
 ```sh

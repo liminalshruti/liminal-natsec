@@ -5,16 +5,24 @@ import { hasRepoFile } from "../../tests/helpers/optional.ts";
 
 const guardFiles = ["server/src/specialists/guard.ts", "server/src/specialists/types.ts"];
 const aipFiles = [...guardFiles, "server/src/specialists/aip.ts"];
+const piAiFiles = [...guardFiles, "server/src/specialists/pi-ai.ts"];
+const liveFiles = [...aipFiles, ...piAiFiles, "server/src/specialists/live.ts"];
 const cacheFiles = [...guardFiles, "server/src/specialists/cache.ts"];
 const visualFiles = [...guardFiles, "server/src/specialists/visual.ts"];
 const routeFiles = [...cacheFiles, "server/src/routes/specialists.ts"];
-const registryFiles = [...cacheFiles, "server/src/specialists/registry.ts"];
+const registryFiles = [...cacheFiles, ...liveFiles, "server/src/specialists/registry.ts"];
 
 const guardModule = filesReady(guardFiles)
   ? await import("../src/specialists/guard.ts")
   : null;
 const aipModule = filesReady(aipFiles)
   ? await import("../src/specialists/aip.ts")
+  : null;
+const piAiModule = filesReady(piAiFiles)
+  ? await import("../src/specialists/pi-ai.ts")
+  : null;
+const liveModule = filesReady(liveFiles)
+  ? await import("../src/specialists/live.ts")
   : null;
 const cacheModule = filesReady(cacheFiles)
   ? await import("../src/specialists/cache.ts")
@@ -274,6 +282,171 @@ describeWhen("guard parity (AIP vs cache)", aipFiles, () => {
   });
 });
 
+describeWhen("Pi-AI live fallback", liveFiles, () => {
+  const { applyGuard } = guardModule!;
+  const { callPiAi } = piAiModule!;
+  const { callLiveSpecialist } = liveModule!;
+
+  it("callLiveSpecialist falls through from failed AIP to Pi-AI", async () => {
+    const raw = {
+      verdict: "supported" as const,
+      summary: "Two cited observations support the claim.",
+      cited_observation_ids: [aisGap.id, dantiOsint.id],
+      confidence: 0.68,
+      unsupported_assertions: []
+    };
+    const result = await callLiveSpecialist(
+      "intent",
+      inputFor("intent", { evidence: [aisGap, dantiOsint, intentIndicator] }),
+      {
+        aipAvailableImpl: () => true,
+        callAipImpl: async () => {
+          throw new Error("AIP down");
+        },
+        piAiAvailableImpl: () => true,
+        callPiAiImpl: async () => ({ raw, source: "pi-ai" })
+      }
+    );
+
+    assert.equal(result?.source, "pi-ai");
+    assert.deepEqual(result?.raw, raw);
+  });
+
+  it("callLiveSpecialist returns null when live providers fail", async () => {
+    const result = await callLiveSpecialist(
+      "intent",
+      inputFor("intent", { evidence: [aisGap, dantiOsint] }),
+      {
+        aipAvailableImpl: () => true,
+        callAipImpl: async () => {
+          throw new Error("AIP down");
+        },
+        piAiAvailableImpl: () => true,
+        callPiAiImpl: async () => {
+          throw new Error("Pi-AI malformed");
+        }
+      }
+    );
+
+    assert.equal(result, null);
+  });
+
+  it("callPiAi parses strict JSON and reports Codex source when using Codex auth fallback", async () => {
+    const input = inputFor("intent", {
+      anomaly_id: "anom:pi-ai:0001",
+      evidence: [aisGap, dantiOsint, intentIndicator]
+    });
+    const raw = {
+      verdict: "supported",
+      summary: "Two cited observations support the claim.",
+      cited_observation_ids: [aisGap.id, dantiOsint.id],
+      confidence: 0.68,
+      unsupported_assertions: []
+    };
+    const result = await callPiAi("intent", input, {
+      env: {
+        PI_AI_FALLBACK_ENABLED: "true",
+        PI_AI_AUTH_PATH: "/missing/pi-auth.json",
+        CODEX_AUTH_FALLBACK_ENABLED: "true",
+        CODEX_AUTH_PATH: "/codex/auth.json",
+        PI_AI_MODEL: "gpt-5.4"
+      },
+      existsImpl: (path) => path === "/codex/auth.json",
+      readFileImpl: () =>
+        JSON.stringify({
+          tokens: {
+            access_token: "access-token",
+            refresh_token: "refresh-token"
+          },
+          last_refresh: "2026-05-02T18:00:00Z"
+        }),
+      getOAuthApiKeyImpl: async () => ({
+        apiKey: "oauth-access-token",
+        newCredentials: {
+          access: "oauth-access-token",
+          refresh: "refresh-token",
+          expires: Date.now() + 60_000
+        }
+      }),
+      getModelImpl: (provider, modelId) => ({ provider, modelId }),
+      completeImpl: async () => ({
+        stopReason: "stop",
+        content: [{ type: "text", text: JSON.stringify(raw) }]
+      })
+    });
+
+    assert.equal(result.source, "codex");
+    assert.deepEqual(result.raw, raw);
+  });
+
+  it("callPiAi rejects citations not present in the request evidence", async () => {
+    const input = inputFor("intent", {
+      anomaly_id: "anom:pi-ai:bad-citation",
+      evidence: [aisGap, dantiOsint, intentIndicator]
+    });
+    await assert.rejects(
+      callPiAi("intent", input, {
+        env: {
+          PI_AI_FALLBACK_ENABLED: "true",
+          PI_AI_AUTH_PATH: "/pi/auth.json",
+          PI_AI_MODEL: "gpt-5.4"
+        },
+        existsImpl: (path) => path === "/pi/auth.json",
+        readFileImpl: () =>
+          JSON.stringify({
+            "openai-codex": {
+              access: "access-token",
+              refresh: "refresh-token",
+              expires: Date.now() + 60_000
+            }
+          }),
+        getOAuthApiKeyImpl: async () => ({
+          apiKey: "oauth-access-token",
+          newCredentials: {
+            access: "oauth-access-token",
+            refresh: "refresh-token",
+            expires: Date.now() + 60_000
+          }
+        }),
+        getModelImpl: (provider, modelId) => ({ provider, modelId }),
+        completeImpl: async () => ({
+          stopReason: "stop",
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify({
+                verdict: "supported",
+                summary: "Unsupported citation sneaked in.",
+                cited_observation_ids: [aisGap.id, "obs:not-in-request"],
+                confidence: 0.9,
+                unsupported_assertions: []
+              })
+            }
+          ]
+        })
+      }),
+      /cited ids not present/
+    );
+  });
+
+  it("Pi-AI raw support still refuses through the intent guard without INTENT_INDICATOR", async () => {
+    const input = inputFor("intent", {
+      anomaly_id: "anom:pi-ai:guard",
+      evidence: [aisGap, dantiOsint]
+    });
+    const guarded = applyGuard(input, {
+      verdict: "supported",
+      summary: "Two cited observations support intent.",
+      cited_observation_ids: [aisGap.id, dantiOsint.id],
+      confidence: 0.75,
+      unsupported_assertions: []
+    });
+
+    assert.equal(guarded.verdict, "refused");
+    assert.ok(guarded.guard.applied_layers.includes("intent_indicator"));
+  });
+});
+
 describeWhen("cache layer", cacheFiles, () => {
   const { applyGuard } = guardModule!;
   const { findCached, loadCacheFile } = cacheModule!;
@@ -361,7 +534,7 @@ describeWhen("/specialist/:name route", routeFiles, () => {
     assert.equal(res.status, 200);
     const body = res.body;
     assert.ok(["supported", "weakened", "contradicted", "refused"].includes(body.verdict));
-    assert.ok(["aip", "cache", "fixture", "anthropic", "codex"].includes(body.source));
+    assert.ok(["aip", "pi-ai", "cache", "fixture", "anthropic", "codex"].includes(body.source));
     assert.ok(Array.isArray(body.guard.applied_layers));
     assert.equal(typeof body.guard.forced_refused, "boolean");
   });
@@ -456,7 +629,7 @@ describeWhen("registerSpecialistRoutes Hono wiring", routeFiles, () => {
     assert.equal(res.status, 200);
     const parsed = (await res.json()) as { verdict: string; source: string; guard: { applied_layers: string[] } };
     assert.ok(["supported", "weakened", "contradicted", "refused"].includes(parsed.verdict));
-    assert.ok(["aip", "cache", "fixture", "anthropic", "codex"].includes(parsed.source));
+    assert.ok(["aip", "pi-ai", "cache", "fixture", "anthropic", "codex"].includes(parsed.source));
     assert.ok(Array.isArray(parsed.guard.applied_layers));
   });
 

@@ -224,5 +224,7 @@ describe("health contract", () => {
     assert.equal(health.localStore.status, "ok");
     assert.equal(health.foundry.status, "NOT_CONFIGURED");
     assert.equal(health.aip.status, "NOT_CONFIGURED");
+    assert.equal(health.aiFallback.status, "NOT_CONFIGURED");
+    assert.equal(health.aiFallback.code, "DISABLED");
   });
 });
