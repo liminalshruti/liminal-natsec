@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-05-03T02:18:33.493Z",
+  "profile": "danti",
+  "aoi": {
+    "name": "Strait of Hormuz demo AOI",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "aisstreamBoundingBoxes": [
+      [
+        [
+          24.5,
+          54.4
+        ],
+        [
+          27.2,
+          57.8
+        ]
+      ]
+    ],
+    "polygon": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            54.4,
+            24.5
+          ],
+          [
+            57.8,
+            24.5
+          ],
+          [
+            57.8,
+            27.2
+          ],
+          [
+            54.4,
+            27.2
+          ],
+          [
+            54.4,
+            24.5
+          ]
+        ]
+      ]
+    }
+  },
+  "note": "Cached live/public Strait of Hormuz context. No API keys are stored in this directory.",
+  "results": [
+    {
+      "source": "DANTI",
+      "ok": true,
+      "detail": "auth 200; query 200 OK",
+      "files": [
+        "danti-auth.json",
+        "danti-hormuz-query.json"
+      ]
+    }
+  ]
+}
