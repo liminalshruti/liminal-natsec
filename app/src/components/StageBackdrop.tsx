@@ -1,0 +1,160 @@
+// StageBackdrop — atmospheric SVG register behind the stage map.
+//
+// Reference: Sequoia AI Ascent stage backdrop (Andrej Karpathy keynote).
+// Deep dark canvas + hand-drawn flowing organic linework + sparse white
+// stippled-dot constellation accents in the upper-right. Editorial-poster
+// aesthetic that lives BEHIND the operator-grade chrome (DataSourcesChips,
+// MapLayers, DemoPrompt) without breaking the operator register.
+//
+// Pure SVG, no library dependency, no runtime cost. Renders once at mount.
+// Absolute-positioned at z-index 0 inside the stage panel, BEHIND the map.
+// pointer-events: none so it never intercepts map interaction.
+//
+// The flowing curves and stippled dots are deterministic (seeded from a
+// fixed sequence) so the backdrop is stable across reloads — judges see
+// the same composition every time, no jitter.
+
+import { useMemo } from "react";
+
+// Deterministic flow lines: 6 curves sweeping across the canvas.
+// Each line is a smooth Bézier path through a sequence of control points.
+// Wave amplitude and phase are seeded so the composition is stable.
+function generateFlowLines(): string[] {
+  const lines: string[] = [];
+  const baseAmplitudes = [40, 60, 30, 80, 50, 35];
+  const phases = [0, 0.7, 1.4, 2.1, 2.8, 3.5];
+  const yOffsets = [120, 280, 440, 600, 760, 920];
+
+  for (let i = 0; i < 6; i++) {
+    const amp = baseAmplitudes[i];
+    const phase = phases[i];
+    const yBase = yOffsets[i];
+    const points: Array<[number, number]> = [];
+    for (let x = -50; x <= 1850; x += 60) {
+      const y =
+        yBase +
+        amp * Math.sin((x / 280) + phase) +
+        amp * 0.4 * Math.sin((x / 110) + phase * 1.7);
+      points.push([x, y]);
+    }
+    // Build a smooth path using Catmull-Rom-ish cubic Béziers between each
+    // pair of points — gives the curves their hand-drawn organic quality.
+    let d = `M ${points[0][0]} ${points[0][1]}`;
+    for (let p = 1; p < points.length; p++) {
+      const [x1, y1] = points[p - 1];
+      const [x2, y2] = points[p];
+      const cx1 = x1 + 30;
+      const cy1 = y1;
+      const cx2 = x2 - 30;
+      const cy2 = y2;
+      d += ` C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x2} ${y2}`;
+    }
+    lines.push(d);
+  }
+  return lines;
+}
+
+// Deterministic stipple field for the upper-right constellation. Two
+// hundred dots distributed in a falloff cloud — denser at top-right corner,
+// sparser as you move toward center. Seeded so positions are stable.
+function generateStipple(): Array<{ x: number; y: number; r: number; alpha: number }> {
+  const dots: Array<{ x: number; y: number; r: number; alpha: number }> = [];
+  // Linear-congruential generator for deterministic "random" seeding.
+  let seed = 7919;
+  const rand = () => {
+    seed = (seed * 1664525 + 1013904223) >>> 0;
+    return seed / 0xffffffff;
+  };
+  for (let i = 0; i < 220; i++) {
+    // Bias toward upper-right corner with falloff
+    const ux = rand();
+    const uy = rand();
+    // Skew x toward right (high values), y toward top (low values)
+    const xWeight = 0.55 + Math.pow(rand(), 0.4) * 0.45;
+    const yWeight = Math.pow(rand(), 0.5) * 0.4;
+    const x = xWeight * 1800;
+    const y = yWeight * 800;
+    // Drop-off probability: sparser the further from corner
+    const cornerDist = Math.sqrt(
+      Math.pow((1800 - x) / 1800, 2) + Math.pow(y / 800, 2)
+    );
+    if (rand() < cornerDist * 0.7) continue; // discard for sparseness
+    const r = 0.6 + rand() * 1.4;
+    const alpha = 0.35 + rand() * 0.55;
+    dots.push({ x, y, r, alpha });
+  }
+  return dots;
+}
+
+export function StageBackdrop() {
+  const lines = useMemo(generateFlowLines, []);
+  const dots = useMemo(generateStipple, []);
+
+  return (
+    <div className="stage-backdrop" aria-hidden="true">
+      <svg
+        viewBox="0 0 1800 1080"
+        preserveAspectRatio="xMidYMid slice"
+        width="100%"
+        height="100%"
+      >
+        {/* Subtle radial vignette behind the linework — concentrates focus
+            toward the center of the stage where the hero map renders. */}
+        <defs>
+          <radialGradient id="stage-backdrop-vignette" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stopColor="rgba(20, 30, 45, 0.0)" />
+            <stop offset="60%" stopColor="rgba(8, 12, 18, 0.0)" />
+            <stop offset="100%" stopColor="rgba(0, 0, 0, 0.55)" />
+          </radialGradient>
+          <linearGradient id="stage-backdrop-line" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(216, 226, 236, 0.0)" />
+            <stop offset="20%" stopColor="rgba(216, 226, 236, 0.18)" />
+            <stop offset="80%" stopColor="rgba(216, 226, 236, 0.18)" />
+            <stop offset="100%" stopColor="rgba(216, 226, 236, 0.0)" />
+          </linearGradient>
+        </defs>
+
+        {/* Flowing organic linework — 6 curves at low opacity, gradient-faded
+            at the edges so they don't clip hard against the panel borders. */}
+        <g className="stage-backdrop__lines">
+          {lines.map((d, i) => (
+            <path
+              key={i}
+              d={d}
+              fill="none"
+              stroke="url(#stage-backdrop-line)"
+              strokeWidth={i % 2 === 0 ? 1.2 : 0.7}
+              strokeLinecap="round"
+            />
+          ))}
+        </g>
+
+        {/* Stipple field — bright white dots in the upper-right corner,
+            sparser toward center. References the AI Ascent constellation. */}
+        <g className="stage-backdrop__stipple">
+          {dots.map((dot, i) => (
+            <circle
+              key={i}
+              cx={dot.x}
+              cy={dot.y}
+              r={dot.r}
+              fill="rgba(216, 226, 236, 1)"
+              opacity={dot.alpha}
+            />
+          ))}
+        </g>
+
+        {/* Vignette on top — pulls focus inward, ensures the chrome at the
+            corners (DataSourcesChips bottom-left, MapLayers top-right)
+            still has enough contrast to read against the dotted region. */}
+        <rect
+          x="0"
+          y="0"
+          width="1800"
+          height="1080"
+          fill="url(#stage-backdrop-vignette)"
+        />
+      </svg>
+    </div>
+  );
+}
