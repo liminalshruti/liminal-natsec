@@ -25,18 +25,20 @@ import { classifyStaleness, formatRelative } from "../lib/relativeTime.ts";
 const PAGE_SIZE = 40;
 
 type Filter = OsintCategory | "all";
+type SortMode = "newest" | "relevance";
 
 export function WatchfloorOsintFeed() {
   const all = useMemo(() => loadOsintSignals(), []);
   const counts = useMemo(() => categoryCounts(all), [all]);
   const [filter, setFilter] = useState<Filter>("all");
+  const [sortMode, setSortMode] = useState<SortMode>("newest");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
-  // Reset pagination when the filter changes — otherwise switching from a
-  // 200-row list to a 5-row one still shows the "load more" button.
+  // Reset pagination when filter or sort changes — otherwise switching
+  // from a 200-row list to a 5-row one still shows the "load more" button.
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [filter]);
+  }, [filter, sortMode]);
 
   // Tick every second so relative-time strings stay live (shared cadence
   // with the custody queue above).
@@ -46,14 +48,49 @@ export function WatchfloorOsintFeed() {
     return () => window.clearInterval(handle);
   }, []);
 
-  const filtered = filter === "all" ? all : all.filter((s) => s.category === filter);
+  const filteredRaw = filter === "all" ? all : all.filter((s) => s.category === filter);
+
+  // M-5: high-signal-first sort. The default "newest" path is unchanged
+  // (loadOsintSignals already returns newest-first). Relevance sort:
+  // signals with a relevance score lift to top, ordered desc; signals
+  // without a score keep their newest-first order at the bottom.
+  const filtered = useMemo(() => {
+    if (sortMode === "newest") return filteredRaw;
+    const scored = filteredRaw.filter((s) => typeof s.relevance === "number");
+    const unscored = filteredRaw.filter((s) => typeof s.relevance !== "number");
+    scored.sort((a, b) => (b.relevance ?? 0) - (a.relevance ?? 0));
+    return [...scored, ...unscored];
+  }, [filteredRaw, sortMode]);
+
   const visible = filtered.slice(0, visibleCount);
   const remaining = filtered.length - visible.length;
 
   return (
     <section className="watchfloor-osint-feed" aria-label="Recent OSINT signals">
       <header className="watchfloor-osint-feed__header">
-        <span>Recent OSINT signals</span>
+        <span>OSINT signals</span>
+        <span className="watchfloor-osint-feed__sort" role="group" aria-label="Sort signals">
+          <button
+            type="button"
+            className="watchfloor-osint-feed__sort-btn"
+            data-active={sortMode === "newest"}
+            onClick={() => setSortMode("newest")}
+            aria-pressed={sortMode === "newest"}
+            title="Sort by most recent timestamp"
+          >
+            newest
+          </button>
+          <button
+            type="button"
+            className="watchfloor-osint-feed__sort-btn"
+            data-active={sortMode === "relevance"}
+            onClick={() => setSortMode("relevance")}
+            aria-pressed={sortMode === "relevance"}
+            title="Sort by Danti relevance score × |sentiment|"
+          >
+            high-signal
+          </button>
+        </span>
         <span className="tag">{filtered.length}</span>
       </header>
       <div className="watchfloor-osint-feed__chips" role="tablist" aria-label="Filter signals by category">
