@@ -525,6 +525,69 @@ describeWhen("cache auto-write round-trip", cacheFiles, () => {
   });
 });
 
+describeWhen("M3 stage proof: INTENT_INDICATOR toggle (demo punchline)", guardFiles, () => {
+  const { applyGuard } = guardModule!;
+
+  // TECHNICAL_PLAN.md M3 (line 570):
+  //   "feed a fabricated 'hostile chatter' observation; intent specialist flips
+  //    from refused to a cited verdict because constraint #2 is satisfied.
+  //    Remove it; verdict reverts. Provable on stage."
+  //
+  // This test exercises the same toggle in one flow so a probing judge's
+  // sequence is durably encoded: the model output stays "supported" throughout,
+  // but the *guard* flips the persisted verdict because evidence membership
+  // changes. The verdict is earned, not labeled.
+  it("flips refused → supported → refused as the INTENT_INDICATOR is added then removed", () => {
+    const aipSupported: SpecialistRawOutput = {
+      verdict: "supported",
+      summary: "Intent corroborated by chatter and corridor positioning.",
+      cited_observation_ids: [aisGap.id, dantiOsint.id],
+      confidence: 0.7,
+      unsupported_assertions: []
+    };
+
+    const baseInput = inputFor("intent", {
+      anomaly_id: "anom:stage-proof:0001"
+    });
+
+    // Beat 1 — no INTENT_INDICATOR: even though AIP returned "supported",
+    // the guard refuses (layer 2).
+    const beat1 = applyGuard(
+      { ...baseInput, evidence: [aisGap, dantiOsint] },
+      aipSupported
+    );
+    assert.equal(beat1.verdict, "refused");
+    assert.ok(beat1.guard.applied_layers.includes("intent_indicator"));
+    assert.equal(beat1.guard.forced_refused, true);
+
+    // Beat 2 — judge/operator drops a "hostile chatter" INTENT_INDICATOR onto
+    // the case. Same AIP output, same guard, but now layer 2 is satisfied.
+    const beat2 = applyGuard(
+      { ...baseInput, evidence: [aisGap, dantiOsint, intentIndicator] },
+      aipSupported
+    );
+    assert.equal(beat2.verdict, "supported");
+    assert.equal(
+      beat2.guard.applied_layers.includes("intent_indicator"),
+      false
+    );
+    assert.equal(beat2.guard.forced_refused, false);
+
+    // Beat 3 — judge revokes the INTENT_INDICATOR. Verdict reverts. The
+    // guard is what made the difference; the AIP output never changed.
+    const beat3 = applyGuard(
+      { ...baseInput, evidence: [aisGap, dantiOsint] },
+      aipSupported
+    );
+    assert.equal(beat3.verdict, "refused");
+    assert.ok(beat3.guard.applied_layers.includes("intent_indicator"));
+    assert.equal(beat3.guard.forced_refused, true);
+
+    // The AIP output's own claim never changes: refusal is structural.
+    assert.equal(aipSupported.verdict, "supported");
+  });
+});
+
 function filesReady(files: string[]): boolean {
   return files.every((file) => hasRepoFile(file));
 }
