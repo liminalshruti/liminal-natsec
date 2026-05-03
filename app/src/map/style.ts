@@ -69,10 +69,13 @@ export function buildMapStyle(opts: BuildStyleOptions = {}): StyleSpecification 
   } satisfies StyleSpecification;
 }
 
-// Initial camera centred on the AOI (TECHNICAL_PLAN §14.1).
+// Initial camera centred on the Strait of Hormuz AOI. The fixture replay was
+// relocated from Eastern Med (Alara EEZ stand-in) to Hormuz coordinates so the
+// map matches every doc, pitch script, and exec summary. Internal IDs still
+// reference "alara-01" since they're stable identifiers, not geography.
 export const INITIAL_VIEW = {
-  center: [31.65, 34.92] as [number, number],
-  zoom: 8.4,
+  center: [56.10, 25.85] as [number, number],
+  zoom: 8.6,
   bearing: 0,
   pitch: 0
 };
