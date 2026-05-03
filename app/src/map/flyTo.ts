@@ -158,21 +158,30 @@ export function executeCamera(
   options: CameraOptions | null
 ): void {
   if (!map || !options) return;
-  if (options.kind === "fly") {
-    map.flyTo({
-      center: options.center,
-      zoom: options.zoom,
-      speed: options.speed,
-      curve: options.curve,
-      duration: options.duration
+  // Defence-in-depth: if MapLibre throws (commonly happens when called
+  // before the container has measurable dimensions), swallow it. The next
+  // valid camera command will recover; a thrown LngLat NaN here used to
+  // tear down the whole React tree via the error boundary.
+  try {
+    if (options.kind === "fly") {
+      map.flyTo({
+        center: options.center,
+        zoom: options.zoom,
+        speed: options.speed,
+        curve: options.curve,
+        duration: options.duration
+      });
+      return;
+    }
+    map.fitBounds(options.bounds, {
+      padding: options.padding ?? 80,
+      duration: options.duration ?? 1200,
+      maxZoom: options.maxZoom ?? 10
     });
-    return;
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn("[map] camera op failed (likely pre-layout)", err);
   }
-  map.fitBounds(options.bounds, {
-    padding: options.padding ?? 80,
-    duration: options.duration ?? 1200,
-    maxZoom: options.maxZoom ?? 10
-  });
 }
 
 // Backwards-compatible alias.

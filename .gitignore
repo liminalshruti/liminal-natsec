@@ -49,5 +49,6 @@ env/
 # Misc
 .claude/
 .codex/
+.playwright-mcp/
 .cache/
 .tmp/

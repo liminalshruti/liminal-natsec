@@ -1,65 +1,32 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import type { TracksFixture } from "./fixtureLoader.ts";
-import { phaseTicks, timelineBounds, type Phase } from "./replay.ts";
+import { phaseTicks, timelineBounds } from "./replay.ts";
 import { TIMELINE_LABEL } from "./tokens.ts";
+
+// Pure controlled component. The owning MapWatchfloor drives the playback
+// clock; this scrubber only renders the playhead at clockIso and emits
+// onScrub when the user drags. No internal rAF — eliminates the dual-state
+// drift that hid map phase advancement under earlier versions.
 
 export interface TimelineScrubberProps {
   fixture: TracksFixture;
-  // Controlled mode: parent owns the clock.
-  clockIso?: string;
-  isPlaying?: boolean;
-  onScrub?: (clockIso: string) => void;
+  clockIso: string;
+  isPlaying: boolean;
+  onScrub: (clockIso: string) => void;
   onPlayPause?: (next: boolean) => void;
-  // Uncontrolled mode: emit clock changes for the parent (MapWatchfloor in
-  // standalone mode) to consume. The parent passes whatever it gets through
-  // to onScrub but never echoes it back as clockIso, breaking the controlled
-  // contract — see MapWatchfloor's mode lock for how this is enforced.
 }
 
 const TICK_LABEL_MAX_CHARS = 18;
 
 export function TimelineScrubber(props: TimelineScrubberProps) {
-  const { fixture, clockIso, isPlaying = true, onScrub, onPlayPause } = props;
+  const { fixture, clockIso, isPlaying, onScrub, onPlayPause } = props;
   const bounds = useMemo(() => timelineBounds(fixture), [fixture]);
   const ticks = useMemo(() => phaseTicks(fixture), [fixture]);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  const isControlled = clockIso !== undefined;
-  const [internalIso, setInternalIso] = useState<string>(
-    new Date(bounds.startMs).toISOString()
-  );
-  const currentIso = isControlled ? (clockIso as string) : internalIso;
-  const currentMs = Date.parse(currentIso);
+  const currentMs = Date.parse(clockIso);
 
-  // Uncontrolled rAF clock — runs only in standalone mode.
-  useEffect(() => {
-    if (isControlled) return;
-    if (!isPlaying) return;
-    if (isDragging) return;
-
-    let raf = 0;
-    let prevTs = performance.now();
-
-    const tick = (ts: number) => {
-      const dt = ts - prevTs;
-      prevTs = ts;
-      // Demo: compress 72-hour scrubber down to ~20 seconds wall-clock per
-      // run. Total demo span is roughly 3.5 hours so 175× speed lands us
-      // through phase 6 in ~20s.
-      const speedMultiplier = 600;
-      setInternalIso((prev) => {
-        const next = Math.min(bounds.endMs, Date.parse(prev) + dt * speedMultiplier);
-        if (next <= Date.parse(prev)) return prev;
-        return new Date(next).toISOString();
-      });
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [isControlled, isPlaying, isDragging, bounds.endMs]);
-
-  // Drag-to-scrub.
   const updateFromClientX = useCallback(
     (clientX: number) => {
       const rail = trackRef.current;
@@ -67,15 +34,9 @@ export function TimelineScrubber(props: TimelineScrubberProps) {
       const rect = rail.getBoundingClientRect();
       const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
       const ms = bounds.startMs + ratio * (bounds.endMs - bounds.startMs);
-      const iso = new Date(ms).toISOString();
-      if (isControlled) {
-        onScrub?.(iso);
-      } else {
-        setInternalIso(iso);
-        onScrub?.(iso);
-      }
+      onScrub(new Date(ms).toISOString());
     },
-    [bounds, isControlled, onScrub]
+    [bounds, onScrub]
   );
 
   const handlePointerDown = useCallback(
@@ -108,10 +69,10 @@ export function TimelineScrubber(props: TimelineScrubberProps) {
   ) * 100;
 
   return (
-    <div className="map-scrubber" data-controlled={isControlled || undefined}>
+    <div className="map-scrubber">
       <div className="map-scrubber-meta">
         <span className="map-scrubber-label">{TIMELINE_LABEL}</span>
-        <span className="map-scrubber-clock">{formatClock(currentIso)}</span>
+        <span className="map-scrubber-clock">{formatClock(clockIso)}</span>
         {onPlayPause && (
           <button
             type="button"
@@ -173,7 +134,6 @@ function clamp01(n: number): number {
 function formatClock(iso: string): string {
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return iso;
-  // Render as UTC — operationally meaningful and timezone-stable for screenshots.
   const yyyy = d.getUTCFullYear();
   const mm = pad2(d.getUTCMonth() + 1);
   const dd = pad2(d.getUTCDate());

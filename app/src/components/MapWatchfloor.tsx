@@ -143,6 +143,40 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     props.onScenarioStateChange?.(internalState);
   }, [internalState, isControlled, props]);
 
+  // --- Playback rAF (uncontrolled mode only) ------------------------------
+  // Advances `internalState.clockIso` so the map and the scrubber both move
+  // forward. The scrubber is now purely controlled — it never owns a clock.
+  // Speed multiplier compresses the ~3.5-hour scenario span into ~20 s of
+  // wall-clock time so the demo finishes inside a judging window.
+  useEffect(() => {
+    if (isControlled) return;
+    if (load.kind !== "ready") return;
+    if (!internalState) return;
+    if (!internalState.isPlaying) return;
+
+    const bounds = timelineBounds(load.fixture);
+    const speedMultiplier = 600;
+    let raf = 0;
+    let prevTs = performance.now();
+
+    const tick = (ts: number) => {
+      const dt = ts - prevTs;
+      prevTs = ts;
+      setInternalState((prev) => {
+        if (!prev) return prev;
+        const nextMs = Math.min(
+          bounds.endMs,
+          Date.parse(prev.clockIso) + dt * speedMultiplier
+        );
+        if (nextMs <= Date.parse(prev.clockIso)) return prev;
+        return { ...prev, clockIso: new Date(nextMs).toISOString() };
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [isControlled, load, internalState?.isPlaying]);
+
   // --- Construct the MapLibre instance ------------------------------------
   useEffect(() => {
     if (load.kind !== "ready") return;
@@ -252,29 +286,32 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   }, [effectiveState, effectivePhase, load, mapReady]);
 
   // --- Phase-driven camera ------------------------------------------------
+  // All camera effects gate on mapReady — calling flyTo/fitBounds before
+  // MapLibre has measured the container yields "Invalid LngLat: (NaN, NaN)"
+  // from screenPointToLocation and tears down the React tree.
   useEffect(() => {
-    if (load.kind !== "ready" || effectivePhase == null) return;
+    if (!mapReady || load.kind !== "ready" || effectivePhase == null) return;
     if (lastFlownPhaseRef.current === effectivePhase) return;
     lastFlownPhaseRef.current = effectivePhase;
     executeCamera(mapRef.current, flyForPhaseOptions(load.fixture, effectivePhase));
-  }, [effectivePhase, load]);
+  }, [effectivePhase, load, mapReady]);
 
   // --- Selection-driven camera --------------------------------------------
   useEffect(() => {
-    if (load.kind !== "ready") return;
+    if (!mapReady || load.kind !== "ready") return;
     const id = props.selectedAlertId;
     if (id === lastFlownAlertIdRef.current) return;
     lastFlownAlertIdRef.current = id;
     executeCamera(mapRef.current, flyForAlertOptions(load.fixture, id));
-  }, [props.selectedAlertId, load]);
+  }, [props.selectedAlertId, load, mapReady]);
 
   useEffect(() => {
-    if (load.kind !== "ready") return;
+    if (!mapReady || load.kind !== "ready") return;
     const id = props.selectedCaseId;
     if (id === lastFlownCaseIdRef.current) return;
     lastFlownCaseIdRef.current = id;
     executeCamera(mapRef.current, flyForCaseBoundsOptions(load.fixture, id ?? ""));
-  }, [props.selectedCaseId, load]);
+  }, [props.selectedCaseId, load, mapReady]);
 
   // --- Scrubber clock changes back into uncontrolled state ---------------
   const handleScrubberChange = useCallback(
@@ -335,7 +372,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
           {load.kind === "ready" && effectiveState && (
             <TimelineScrubber
               fixture={load.fixture}
-              clockIso={isControlled ? effectiveState.clockIso : undefined}
+              clockIso={effectiveState.clockIso}
               isPlaying={effectiveState.isPlaying}
               onScrub={handleScrubberChange}
               onPlayPause={handlePlayPause}

@@ -50,6 +50,30 @@ describe("app spineGraph integration", () => {
     assert.equal(application!.recommendedActionId, "act:alara-01:event-2:request-sar-rf");
   });
 
+  it("action display ranking reflects the R-001 adjusted recommendation", async () => {
+    const { rankActionsForDisplay } = await import("../src/lib/actionRanking.ts");
+    const actions = actionsForCase("case:alara-01:event-2");
+    const application = reviewApplicationForCase("case:alara-01:event-2");
+    assert.ok(application);
+
+    const ranked = rankActionsForDisplay(actions, application);
+
+    assert.equal(ranked[0].node.id, "act:alara-01:event-2:request-sar-rf");
+    assert.equal(ranked[0].isRecommended, true);
+    assert.equal(ranked[1].node.id, "act:alara-01:event-2:monitor");
+    assert.equal(ranked[1].wasPriorTop, true);
+  });
+
+  it("review memory seed DSL matches canonical R-001", async () => {
+    const { R001_DSL } = await import("../../shared/rules/builtin.ts");
+    const reviewMemorySource = await import("node:fs").then(({ readFileSync }) =>
+      readFileSync(new URL("../src/components/ReviewMemory.tsx", import.meta.url), "utf8")
+    );
+
+    assert.match(reviewMemorySource, /R001_DSL/);
+    assert.match(R001_DSL, /REQUEST_SAR_OR_RF_CORROBORATION/);
+  });
+
   it("hypothesesForCase returns the three event-1 hypotheses", () => {
     const hypotheses = hypothesesForCase("case:alara-01:event-1");
     assert.equal(hypotheses.length, 3);

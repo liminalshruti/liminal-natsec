@@ -11,6 +11,7 @@ import {
 import { specialistReadsForCase } from "../lib/specialistReads.ts";
 
 import { ActionOptions } from "./ActionOptions.tsx";
+import { CaseHandoffBanner } from "./CaseHandoffBanner.tsx";
 import { EvidenceDrawer } from "./EvidenceDrawer.tsx";
 import { HypothesisBoard } from "./HypothesisBoard.tsx";
 import { ProvenanceTrace } from "./ProvenanceTrace.tsx";
@@ -60,6 +61,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
 
   return (
     <>
+      <CaseHandoffBanner caseId={caseId} ruleApplication={ruleApplication} />
       <div className="kv">
         <div className="kv__k">case</div>
         <div className="kv__v">{caseId ?? selectedAlert.title}</div>

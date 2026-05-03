@@ -19,6 +19,7 @@ interface SpecialistFixtureFile {
     summary?: string;
     refusal_reason?: string;
     refusalReason?: string;
+    bounded_inputs?: string[];
     citations?: string[];
     [key: string]: unknown;
   }>;

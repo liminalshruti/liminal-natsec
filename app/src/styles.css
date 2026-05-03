@@ -383,3 +383,147 @@ button:hover {
   text-transform: uppercase;
   color: var(--fg-2);
 }
+
+.refusal-card {
+  border: 1px solid var(--warn);
+  background: linear-gradient(180deg, rgba(209, 139, 60, 0.08), rgba(209, 139, 60, 0.02));
+  border-radius: 3px;
+  padding: 0;
+  margin: 4px 0 8px;
+  overflow: hidden;
+}
+
+.refusal-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(209, 139, 60, 0.4);
+  background: rgba(209, 139, 60, 0.05);
+}
+
+.refusal-card__icon {
+  font-size: 22px;
+  color: var(--warn);
+  line-height: 1;
+}
+
+.refusal-card__specialist {
+  font-size: 13px;
+  color: var(--fg-0);
+  letter-spacing: 0.04em;
+}
+
+.refusal-card__status {
+  font-size: 10px;
+  color: var(--warn);
+  letter-spacing: 0.18em;
+}
+
+.refusal-card__tag {
+  margin-left: auto;
+}
+
+.refusal-card__body {
+  padding: 8px 10px;
+}
+
+.refusal-card__label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin-bottom: 2px;
+}
+
+.refusal-card__text {
+  color: var(--fg-0);
+  font-size: 12px;
+}
+
+.refusal-card__cites {
+  margin: 2px 0 0;
+  padding: 0 0 0 14px;
+  list-style: square;
+  color: var(--fg-1);
+  font-size: 10px;
+  word-break: break-all;
+}
+
+.refusal-card__footnote {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(209, 139, 60, 0.3);
+  color: var(--fg-2);
+  font-size: 10px;
+  font-style: italic;
+}
+
+.handoff-banner {
+  border: 1px solid var(--ok);
+  background: linear-gradient(180deg, rgba(78, 160, 138, 0.1), rgba(78, 160, 138, 0.02));
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.handoff-banner__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ok);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.handoff-banner__pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px rgba(78, 160, 138, 0.2);
+}
+
+.handoff-banner__body {
+  color: var(--fg-1);
+  font-size: 11px;
+  margin-bottom: 6px;
+}
+
+.handoff-banner__cond {
+  color: var(--fg-2);
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+}
+
+.handoff-banner__diff {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-size: 11px;
+  padding-top: 6px;
+  border-top: 1px dashed rgba(78, 160, 138, 0.3);
+}
+
+.handoff-banner__before {
+  color: var(--fg-2);
+  text-decoration: line-through;
+}
+
+.handoff-banner__arrow {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.handoff-banner__after {
+  color: var(--fg-0);
+}
+
+.handoff-banner__hint {
+  margin-top: 6px;
+  font-size: 10px;
+  color: var(--fg-2);
+}

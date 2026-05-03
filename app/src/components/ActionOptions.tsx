@@ -1,4 +1,5 @@
 import type { ReviewRuleApplication, SpineNode } from "../lib/spineGraph.ts";
+import { rankActionsForDisplay } from "../lib/actionRanking.ts";
 
 interface ActionOptionsProps {
   actions: SpineNode[];
@@ -14,55 +15,49 @@ export function ActionOptions({ actions, ruleApplication }: ActionOptionsProps) 
       </>
     );
   }
-  const recommendedId = ruleApplication?.recommendedActionId;
-  const priorTopId = ruleApplication?.priorTopActionId;
-  const ranked = orderByDefaultPriority(actions);
+  const ranked = rankActionsForDisplay(actions, ruleApplication);
   return (
     <>
       <div className="subhead">Action Options</div>
-      {ranked.map((node, index) => {
-        const data = (node.data ?? {}) as Record<string, unknown>;
-        const kind = typeof data.kind === "string" ? (data.kind as string) : node.title;
-        const isRecommended = recommendedId === node.id;
-        const wasPriorTop = priorTopId === node.id;
-        const tagClass = isRecommended
+      {ranked.map((action, index) => {
+        const tagClass = action.isRecommended
           ? "tag tag--ok"
-          : wasPriorTop && ruleApplication?.changed
+          : action.wasPriorTop && ruleApplication?.changed
           ? "tag tag--warn"
           : index === 0
           ? "tag tag--accent"
           : "tag";
-        const tagText = isRecommended
+        const tagText = action.isRecommended
           ? "RECOMMENDED"
-          : wasPriorTop && ruleApplication?.changed
+          : action.wasPriorTop && ruleApplication?.changed
           ? "WAS TOP"
           : `#${index + 1}`;
         return (
-          <div key={node.id} className="action-row">
+          <div key={action.node.id} className="action-row">
             <div className="action-row__title">
-              <span>{node.title}</span>
+              <span>{action.node.title}</span>
               <span className={tagClass}>{tagText}</span>
             </div>
-            <div className="action-row__sub">{kind}</div>
+            <div className="action-row__sub">
+              {action.actionType}
+              {ruleApplication && (
+                <span style={{ color: "var(--fg-2)" }}>
+                  {" "}
+                  · score {action.score.toFixed(2)}
+                  {action.score !== action.priorScore
+                    ? ` from ${action.priorScore.toFixed(2)}`
+                    : ""}
+                </span>
+              )}
+            </div>
+            {action.trigger && (
+              <div className="action-row__sub" style={{ marginTop: 3 }}>
+                {action.trigger}
+              </div>
+            )}
           </div>
         );
       })}
     </>
   );
-}
-
-function orderByDefaultPriority(actions: SpineNode[]): SpineNode[] {
-  return [...actions].sort((a, b) => {
-    const pa = priorityOf(a);
-    const pb = priorityOf(b);
-    if (pa !== pb) return pa - pb;
-    return a.id.localeCompare(b.id);
-  });
-}
-
-function priorityOf(node: SpineNode): number {
-  const data = (node.data ?? {}) as Record<string, unknown>;
-  if (typeof data.defaultPriority === "number") return data.defaultPriority as number;
-  if (typeof data.priority === "number") return data.priority as number;
-  return 99;
 }
