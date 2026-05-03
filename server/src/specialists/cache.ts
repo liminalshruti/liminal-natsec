@@ -98,3 +98,28 @@ export function deleteCacheEntry(key: string): boolean {
   cached = out;
   return true;
 }
+
+export interface CacheValidationReport {
+  status: "ok" | "error";
+  path: string;
+  entryCount?: number;
+  error?: string;
+}
+
+export function validateCacheFile(): CacheValidationReport {
+  try {
+    cached = null; // force a fresh disk read so /health is honest
+    const file = loadCacheFile();
+    return {
+      status: "ok",
+      path: CACHE_PATH,
+      entryCount: file.entries.length
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      path: CACHE_PATH,
+      error: error instanceof Error ? error.message : String(error)
+    };
+  }
+}

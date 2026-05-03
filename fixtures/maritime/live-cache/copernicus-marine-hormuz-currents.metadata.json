@@ -1,6 +1,6 @@
 {
   "source": "COPERNICUS_MARINE",
-  "generated_at": "2026-05-03T02:02:57.738Z",
+  "generated_at": "2026-05-03T02:09:12.897Z",
   "request": {
     "command": "/Users/Shayaun.Nejad/Hackathon/NatSec/liminal-natsec/.venv-copernicus/bin/copernicusmarine subset",
     "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
@@ -19,8 +19,8 @@
       1
     ],
     "time_range": [
-      "2026-05-02T02:02:57.739Z",
-      "2026-05-03T02:02:57.739Z"
+      "2026-05-02T02:09:12.898Z",
+      "2026-05-03T02:09:12.898Z"
     ],
     "credentials_cached": false
   },

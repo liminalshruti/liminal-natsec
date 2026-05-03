@@ -29,6 +29,8 @@ fixtures/maritime/live-cache/*auth*.json
 fixtures/maritime/live-cache/*credential*.json
 fixtures/maritime/live-cache/*api-info.json
 fixtures/maritime/live-cache/foundry-ontologies.json
+fixtures/maritime/live-cache/danti-*.json
+fixtures/maritime/live-cache/manifest-danti.json
 
 # OS
 .DS_Store

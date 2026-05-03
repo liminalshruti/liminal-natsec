@@ -7,7 +7,7 @@ export function registerProvenanceRoutes(app: RouteApp, store: OperationalStore)
   app.get("/provenance/:actionId", async (context) => {
     try {
       const actionId = context.req.param("actionId");
-      const provenance = await provenanceForAction(actionId);
+      const provenance = await provenanceForAction(actionId, store);
       if (!provenance) {
         throw new ApiError(404, "NOT_FOUND", `Provenance for action ${actionId} was not found.`);
       }

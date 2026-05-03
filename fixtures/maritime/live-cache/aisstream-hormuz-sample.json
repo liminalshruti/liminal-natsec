@@ -1,6 +1,6 @@
 {
   "source": "AISSTREAM",
-  "generated_at": "2026-05-03T02:02:57.738Z",
+  "generated_at": "2026-05-03T02:09:12.897Z",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
     "bbox": [
@@ -72,10 +72,10 @@
       "max_messages": 100,
       "opened": true,
       "subscription_sent": true,
-      "started_at": "2026-05-03T02:03:59.873Z",
+      "started_at": "2026-05-03T02:10:12.951Z",
       "messages_before": 0,
       "messages_after": 0,
-      "finished_at": "2026-05-03T02:04:29.893Z",
+      "finished_at": "2026-05-03T02:10:42.973Z",
       "messages_received": 0,
       "close_code": 1006,
       "close_reason": ""
@@ -86,10 +86,10 @@
       "max_messages": 100,
       "opened": true,
       "subscription_sent": true,
-      "started_at": "2026-05-03T02:04:29.893Z",
+      "started_at": "2026-05-03T02:10:42.973Z",
       "messages_before": 0,
       "messages_after": 0,
-      "finished_at": "2026-05-03T02:04:59.921Z",
+      "finished_at": "2026-05-03T02:11:12.985Z",
       "messages_received": 0
     }
   ],

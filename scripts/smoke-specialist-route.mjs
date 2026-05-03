@@ -75,5 +75,36 @@ console.log("  code:", body3.code);
 console.log("\n[smoke] GET /health");
 const r4 = await app.fetch(new Request("http://localhost/health"));
 console.log("  status:", r4.status);
+const health = await r4.json();
+console.log("  health.status:", health.status);
+console.log("  specialistCache:", health.specialistCache?.status, "entries:", health.specialistCache?.entryCount);
+
+console.log("\n[smoke] GET /debug/palantir-smoke");
+const r5 = await app.fetch(new Request("http://localhost/debug/palantir-smoke"));
+console.log("  status:", r5.status);
+const smoke = await r5.json();
+console.log("  mode:", smoke.mode);
+console.log("  narrative:", smoke.narrative);
+console.log("  queue depth:", smoke.actionEnvelopes?.queueDepth);
+
+console.log("\n[smoke] POST /scenario/control reset (also reloads specialist cache)");
+const r6 = await app.fetch(
+  new Request("http://localhost/scenario/control", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ command: "reset" })
+  })
+);
+console.log("  status:", r6.status);
+
+console.log("\n[smoke] POST /scenario/control inject_event_2 (should not double curated rows)");
+const r7 = await app.fetch(
+  new Request("http://localhost/scenario/control", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ command: "inject_event_2" })
+  })
+);
+console.log("  status:", r7.status);
 
 console.log("\n[smoke] OK — Hono assembled, all registrars booted, route returns guarded output");

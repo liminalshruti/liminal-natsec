@@ -19,6 +19,16 @@ export function registerScenarioRoutes(app: RouteApp, store: OperationalStore): 
         return context.json(await getScenarioState(store, scenarioRunId));
       }
 
+      // inject_event_2 advances narrative phase only; the full fixture pack
+      // (Event 1 + Event 2 with rule applied) already loaded on play/reset.
+      // Returning current state avoids duplicate writes to curated datasets.
+      if (body.command === "inject_event_2") {
+        return context.json({
+          command: body.command,
+          state: await getScenarioState(store, scenarioRunId)
+        });
+      }
+
       const replay = await runFixtureReplay(store, {
         scenarioRunId,
         reset: body.command === "reset" || body.command === "play" || !body.command

@@ -1,6 +1,6 @@
 {
   "source": "EXA",
-  "generated_at": "2026-05-03T02:02:57.738Z",
+  "generated_at": "2026-05-03T02:08:37.671Z",
   "request": {
     "url": "https://api.exa.ai/search",
     "method": "POST",
@@ -15,10 +15,10 @@
     "status": 200,
     "statusText": "OK",
     "contentType": "application/json; charset=utf-8",
-    "bytes": 69409
+    "bytes": 69407
   },
   "body": {
-    "requestId": "bfaeec73e9fd0c2ab7efb7c30cf94835",
+    "requestId": "4c3e2b7da6619c47581073640f4a85e2",
     "resolvedSearchType": "",
     "results": [
       {
@@ -195,7 +195,7 @@
         "favicon": "https://bernama.com/en/assets/img/favicon.png"
       }
     ],
-    "searchTime": 6082.9,
+    "searchTime": 16.5,
     "costDollars": {
       "total": 0.021,
       "search": {

@@ -34,6 +34,13 @@ export interface ActionCandidate {
   id: string;
   score: number;
   blocked?: boolean;
+  /**
+   * Logical action label (e.g. "REQUEST_SAR_OR_RF_CORROBORATION"). Rule effects
+   * may target either the literal `id` or this `action_type`, so callers can
+   * pass long fixture object IDs (`ca:anom-...:sar-rf-sweep:...`) without
+   * rewriting fixture rule effects to match.
+   */
+  action_type?: string;
   [key: string]: unknown;
 }
 
@@ -139,7 +146,11 @@ export function applyRule(
 
   if (matched) {
     for (const effect of rule.effects) {
-      const action = clonedActions.find((candidate) => candidate.id === effect.actionId);
+      const action = clonedActions.find(
+        (candidate) =>
+          candidate.id === effect.actionId ||
+          candidate.action_type === effect.actionId
+      );
       if (!action) continue;
 
       effectsApplied.push(effect);

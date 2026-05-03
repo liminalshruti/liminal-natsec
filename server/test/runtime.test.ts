@@ -63,12 +63,24 @@ describe("OperationalStore local mirror", () => {
       createdAt: "2026-05-02T12:00:00Z"
     });
 
-    assert.equal(result.status, "QUEUED");
+    // First insert should report APPLIED (the local store accepted the
+    // envelope synchronously). A duplicate idempotencyKey would return QUEUED.
+    assert.equal(result.status, "APPLIED");
     assert.equal(result.id, "actq:31f2cda34e88");
     assert.deepEqual(
       store.getActionQueue().map((action) => action.status),
-      ["PENDING"]
+      ["APPLIED"]
     );
+
+    // Idempotent re-apply does not duplicate the entry and reports APPLIED.
+    const replay = await store.applyAction({
+      actionApiName: "saveOperatorDecision",
+      params: { anomaly_id: "anom:test", decision: "ACKNOWLEDGED" },
+      idempotencyKey: "decision:test:1",
+      createdAt: "2026-05-02T12:00:00Z"
+    });
+    assert.equal(replay.status, "APPLIED");
+    assert.equal(store.getActionQueue().length, 1);
   });
 });
 

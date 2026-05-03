@@ -1,6 +1,7 @@
 import { stableId } from "../domain/ids.ts";
 import { ApiError, type LocalOperationalStore, type OntologyObject, type OperationalStore } from "../domain/ontology.ts";
 import { createFixtureAdapter } from "../adapters/fixture.ts";
+import { reloadCacheFile } from "../specialists/cache.ts";
 import {
   DEFAULT_SCENARIO_RUN_ID,
   FIXTURE_INGESTED_AT,
@@ -95,6 +96,14 @@ export async function resetReplay(store: OperationalStore): Promise<void> {
     );
   }
   await local.clear();
+  // Drop the in-memory specialist-reads cache so any AIP-warmed entries from a
+  // prior run are re-read from disk on the next /specialist/:name call.
+  // Without this, post-reset specialist queries would return stale Q&A entries.
+  try {
+    reloadCacheFile();
+  } catch {
+    // Cache reload is best-effort; a corrupt cache file should not fail reset.
+  }
 }
 
 export async function getScenarioState(
@@ -194,18 +203,113 @@ export async function listPerturbations(store: OperationalStore): Promise<Ontolo
   return store.query({ objectType: "Observation", where: { injected: true } });
 }
 
-export async function provenanceForAction(actionId: string): Promise<unknown | null> {
-  return fixtureProvenance[actionId as keyof typeof fixtureProvenance] ?? null;
+export async function provenanceForAction(
+  actionId: string,
+  store?: OperationalStore
+): Promise<unknown | null> {
+  const fixtureTrace = fixtureProvenance[actionId as keyof typeof fixtureProvenance];
+  if (fixtureTrace) return fixtureTrace;
+
+  // Perturbation actions are injected at runtime and won't appear in
+  // fixtureProvenance; synthesize a structured trace from the live store so the
+  // UI can still render evidence chain for off-script contacts.
+  if (actionId.startsWith("ca:perturb:") && store) {
+    return synthesizePerturbationProvenance(store, actionId);
+  }
+  return null;
 }
 
-export async function provenanceForAnomaly(store: OperationalStore, anomalyId: string): Promise<unknown | null> {
+export async function provenanceForAnomaly(
+  store: OperationalStore,
+  anomalyId: string
+): Promise<unknown | null> {
   const actions = await store.query({
     objectType: "CollectionAction",
     where: { anomaly_id: anomalyId }
   });
   const ranked = actions.sort((left, right) => numericRank(left) - numericRank(right));
   const topActionId = ranked[0]?.objectId;
-  return topActionId ? provenanceForAction(topActionId) : null;
+  if (topActionId) {
+    const trace = await provenanceForAction(topActionId, store);
+    if (trace) return trace;
+  }
+
+  // Fallback: walk Anomaly → Observation directly so the second-event provenance
+  // panel renders even when no scripted action trace exists.
+  return synthesizeAnomalyProvenance(store, anomalyId);
+}
+
+async function synthesizeAnomalyProvenance(
+  store: OperationalStore,
+  anomalyId: string
+): Promise<unknown | null> {
+  const anomaly = await store.getObject({ objectType: "Anomaly", objectId: anomalyId });
+  if (!anomaly) return null;
+
+  const observations = await store.linked(anomalyId, "DERIVED_FROM", "out");
+  const claims = await store.linked(anomalyId, "EXPLAINS", "in");
+
+  const trace: Array<Record<string, unknown>> = [
+    { step: 1, object: anomalyId, role: "anomaly under review" }
+  ];
+  let step = 2;
+  for (const claim of claims.slice(0, 2)) {
+    trace.push({ step: step++, object: claim.objectId, role: "claim derived from anomaly" });
+  }
+  for (const observation of observations.slice(0, 4)) {
+    trace.push({
+      step: step++,
+      object: observation.objectId,
+      role: "observation grounding the anomaly"
+    });
+  }
+
+  return {
+    anomaly_id: anomalyId,
+    trace,
+    ai_outputs: [
+      {
+        model_or_logic_version: "live-store:anomaly-trace@v1",
+        note: "Synthesized from current OperationalStore state."
+      }
+    ]
+  };
+}
+
+async function synthesizePerturbationProvenance(
+  store: OperationalStore,
+  actionId: string
+): Promise<unknown> {
+  const action = await store.getObject({ objectType: "CollectionAction", objectId: actionId });
+  const anomalyId = (action?.properties.anomaly_id as string | undefined) ?? null;
+  const observations = anomalyId
+    ? await store.linked(anomalyId, "DERIVED_FROM", "out")
+    : [];
+
+  const trace: Array<Record<string, unknown>> = [
+    { step: 1, object: actionId, role: "selected action (injected)" }
+  ];
+  if (anomalyId) {
+    trace.push({ step: 2, object: anomalyId, role: "perturbation anomaly" });
+  }
+  observations.slice(0, 3).forEach((observation, idx) => {
+    trace.push({
+      step: trace.length + 1,
+      object: observation.objectId,
+      role: idx === 0 ? "primary injected observation" : "linked observation"
+    });
+  });
+
+  return {
+    collection_action: actionId,
+    trace,
+    ai_outputs: [
+      {
+        model_or_logic_version: "live-store:perturbation-trace@v1",
+        note: "Provenance synthesized for an injected contact (off-script)."
+      }
+    ]
+  };
 }
 
 function asLocalStore(store: OperationalStore): LocalOperationalStore | null {

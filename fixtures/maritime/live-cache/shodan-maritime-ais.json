@@ -1,6 +1,6 @@
 {
   "source": "SHODAN",
-  "generated_at": "2026-05-03T02:02:57.738Z",
+  "generated_at": "2026-05-03T02:08:37.671Z",
   "request": {
     "url": "https://api.shodan.io/shodan/host/search?key=%3Credacted%3E&query=AIS&facets=country%3A20%2Cport%3A20%2Corg%3A20&minify=true",
     "method": "GET",

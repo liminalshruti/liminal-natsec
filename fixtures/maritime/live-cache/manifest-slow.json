@@ -1,0 +1,80 @@
+{
+  "generated_at": "2026-05-03T02:09:12.897Z",
+  "profile": "slow",
+  "aoi": {
+    "name": "Strait of Hormuz demo AOI",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "aisstreamBoundingBoxes": [
+      [
+        [
+          24.5,
+          54.4
+        ],
+        [
+          27.2,
+          57.8
+        ]
+      ]
+    ],
+    "polygon": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            54.4,
+            24.5
+          ],
+          [
+            57.8,
+            24.5
+          ],
+          [
+            57.8,
+            27.2
+          ],
+          [
+            54.4,
+            27.2
+          ],
+          [
+            54.4,
+            24.5
+          ]
+        ]
+      ]
+    }
+  },
+  "note": "Cached live/public Strait of Hormuz context. No API keys are stored in this directory.",
+  "results": [
+    {
+      "source": "GLOBAL_FISHING_WATCH_EVENTS",
+      "ok": false,
+      "detail": "0/3 event caches written.",
+      "files": [
+        "gfw-hormuz-gaps.json",
+        "gfw-hormuz-port-visits.json",
+        "gfw-hormuz-loitering.json"
+      ]
+    },
+    {
+      "source": "AISSTREAM",
+      "ok": false,
+      "detail": "0 AIS messages cached.",
+      "fileName": "aisstream-hormuz-sample.json"
+    },
+    {
+      "source": "COPERNICUS_MARINE",
+      "ok": false,
+      "detail": "credential check passed; currents sample not cached: exit 1",
+      "files": [
+        "copernicus-marine-credential-check.json",
+        "copernicus-marine-hormuz-currents.metadata.json"
+      ]
+    }
+  ]
+}

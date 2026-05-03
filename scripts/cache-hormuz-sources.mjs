@@ -1,4 +1,5 @@
 import { spawn } from "node:child_process";
+import { createHash, randomBytes } from "node:crypto";
 import { existsSync } from "node:fs";
 import { mkdir, rm, stat, writeFile } from "node:fs/promises";
 import { loadConfigIniIntoEnv } from "./load-config-ini.mjs";
@@ -32,32 +33,50 @@ const generatedAt = new Date().toISOString();
 const endDate = new Date();
 const startDate = new Date(endDate.getTime() - 30 * 24 * 60 * 60 * 1000);
 const isoDateTimeRange = `${startDate.toISOString()}/${endDate.toISOString()}`;
+const cacheProfile = parseCacheProfile(process.argv.slice(2));
 
 await mkdir(outputDir, { recursive: true });
 
 const results = [];
-results.push(await cacheFoundryConnection());
-results.push(await cacheGlobalFishingWatchEvents());
-results.push(await cacheAisstreamSample());
-results.push(await cacheExaHormuzOsint());
-results.push(await cacheShodanMaritimeIntel());
-results.push(await cacheOpenSanctionsMaritimeEntities());
-results.push(await cacheCopernicusCdseAuth());
-results.push(await cacheCopernicusStacSearches());
-results.push(await cacheSentinelHubAuthAndChips());
-results.push(await cacheCopernicusMarineCredentialCheck());
-results.push(await cachePublicHtml("navarea-ix-warnings.html", "NAVAREA_IX", envOr("NAVAREA_IX_WARNINGS_URL", "https://hydrography.paknavy.gov.pk/navarea-ix-warnings/")));
-results.push(await cachePublicHtml("ukmto-home.html", "UKMTO", envOr("UKMTO_URL", "https://www.ukmto.org/")));
-results.push(await cacheOverpassMaritimeContext());
+if (cacheProfile === "all" || cacheProfile === "fast") {
+  results.push(await cacheFoundryConnection());
+  results.push(await cacheGlobalFishingWatchVesselCapability());
+  results.push(await cacheExaHormuzOsint());
+  results.push(await cacheShodanMaritimeIntel());
+  results.push(await cacheOpenSanctionsMaritimeEntities());
+  results.push(await cacheCopernicusCdseAuth());
+  results.push(await cacheCopernicusStacSearches());
+  results.push(await cacheSentinelHubAuthAndChips());
+  results.push(await cachePublicHtml("navarea-ix-warnings.html", "NAVAREA_IX", envOr("NAVAREA_IX_WARNINGS_URL", "https://hydrography.paknavy.gov.pk/navarea-ix-warnings/")));
+  results.push(await cachePublicHtml("ukmto-home.html", "UKMTO", envOr("UKMTO_URL", "https://www.ukmto.org/")));
+  results.push(await cacheOverpassMaritimeContext());
+}
 
-await writeJson("manifest.json", {
+if (cacheProfile === "all" || cacheProfile === "fast" || cacheProfile === "danti") {
+  results.push(await cacheDantiHormuzSearch());
+}
+
+if (cacheProfile === "all" || cacheProfile === "slow") {
+  results.push(await cacheGlobalFishingWatchEvents());
+  results.push(await cacheAisstreamSample());
+  results.push(await cacheCopernicusMarineCredentialCheck());
+}
+
+const manifest = {
   generated_at: generatedAt,
+  profile: cacheProfile,
   aoi: HORMUZ,
   note: "Cached live/public Strait of Hormuz context. No API keys are stored in this directory.",
   results
-});
+};
 
-console.log(`Cached ${results.length} source groups under ${outputDir.pathname}`);
+const manifestFileName = cacheProfile === "all" ? "manifest.json" : `manifest-${cacheProfile}.json`;
+await writeJson(manifestFileName, manifest);
+if (cacheProfile === "fast") {
+  await writeJson("manifest.json", manifest);
+}
+
+console.log(`Cached ${results.length} ${cacheProfile} source groups under ${outputDir.pathname}`);
 for (const result of results) {
   console.log(`${result.ok ? "ok" : "warn"} ${result.source}: ${result.detail}`);
 }
@@ -94,7 +113,6 @@ async function cacheGlobalFishingWatchEvents() {
   }
 
   const sourceResults = [];
-  sourceResults.push(await cacheGlobalFishingWatchVesselSearch(baseUrl, token));
 
   const gfwStartDate = new Date(endDate.getTime() - 14 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
   const gfwEndDate = endDate.toISOString().slice(0, 10);
@@ -134,11 +152,21 @@ async function cacheGlobalFishingWatchEvents() {
 
   const okCount = sourceResults.filter((result) => result.ok).length;
   return {
-    source: "GLOBAL_FISHING_WATCH",
+    source: "GLOBAL_FISHING_WATCH_EVENTS",
     ok: okCount > 0,
-    detail: `${okCount}/${sourceResults.length} GFW caches written.`,
+    detail: `${okCount}/${sourceResults.length} event caches written.`,
     files: sourceResults.map((result) => result.fileName)
   };
+}
+
+async function cacheGlobalFishingWatchVesselCapability() {
+  const token = envOr("GLOBAL_FISHING_WATCH_API_KEY");
+  const baseUrl = envOr("GLOBAL_FISHING_WATCH_BASE_URL", "https://gateway.api.globalfishingwatch.org").replace(/\/$/, "");
+  if (!token) {
+    return { source: "GLOBAL_FISHING_WATCH", ok: false, detail: "GLOBAL_FISHING_WATCH_API_KEY missing; skipped." };
+  }
+
+  return cacheGlobalFishingWatchVesselSearch(baseUrl, token);
 }
 
 async function cacheGlobalFishingWatchVesselSearch(baseUrl, token) {
@@ -164,6 +192,318 @@ async function cacheGlobalFishingWatchVesselSearch(baseUrl, token) {
     },
     timeoutMs: 15_000
   });
+}
+
+async function cacheDantiHormuzSearch() {
+  const baseUrl = envOr("DANTI_BASE_URL", "https://ipa.gov.danti.ai").replace(/\/$/, "");
+  const apiKey = envOr("DANTI_API_KEY");
+  const username = envOr("DANTI_USERNAME");
+  const password = envOr("DANTI_PASSWORD");
+  const authBaseUrl = envOr("DANTI_AUTH_BASE_URL", "https://auth.gov.danti.ai/realms/gov").replace(/\/$/, "");
+  const appUrl = envOr("DANTI_APP_URL", "https://gov.danti.ai").replace(/\/$/, "");
+  const clientId = envOr("DANTI_CLIENT_ID", "bastet");
+  const scope = envOr("DANTI_SCOPE", "openid email roles");
+  const query = envOr("DANTI_QUERY", "Strait of Hormuz maritime security AIS dark gaps shipping traffic Iran Oman UAE");
+  const size = Number(envOr("DANTI_QUERY_SIZE", "10"));
+
+  if (!apiKey && (!username || !password)) {
+    return {
+      source: "DANTI",
+      ok: false,
+      detail: "DANTI_API_KEY or DANTI_USERNAME/DANTI_PASSWORD missing; skipped."
+    };
+  }
+
+  const auth = apiKey
+    ? {
+        ok: true,
+        mode: "static_bearer",
+        token: apiKey,
+        response: { ok: true, status: "static" },
+        body: { token_type: "Bearer", has_access_token: true }
+      }
+    : await getDantiOidcToken({ username, password, authBaseUrl, appUrl, clientId, scope });
+
+  await writeJson("danti-auth.json", {
+    source: "DANTI_AUTH",
+    generated_at: generatedAt,
+    request: {
+      url: authBaseUrl,
+      method: apiKey ? "static bearer" : "OIDC authorization_code + PKCE",
+      metadata: {
+        appUrl,
+        clientId,
+        scope,
+        username_present: Boolean(username),
+        password_cached: false,
+        token_cached: false,
+        auth_mode: auth.mode
+      }
+    },
+    response: auth.response,
+    body: sanitizeAuthBody(auth.body),
+    error: auth.error,
+    stages: auth.stages
+  });
+
+  if (!auth.ok || !auth.token) {
+    return {
+      source: "DANTI",
+      ok: false,
+      detail: `${auth.response?.status ?? "failed"} auth; query skipped.`,
+      fileName: "danti-auth.json"
+    };
+  }
+
+  const url = `${baseUrl}/v2/query?size=${Number.isFinite(size) && size > 0 ? size : 10}`;
+  const response = await fetchJson({
+    source: "DANTI",
+    url,
+    options: {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        query,
+        filters: []
+      })
+    },
+    timeoutMs: 90_000
+  });
+
+  await writeJson("danti-hormuz-query.json", {
+    source: "DANTI",
+    generated_at: generatedAt,
+    request: {
+      url,
+      method: "POST",
+      metadata: {
+        query,
+        aoi: HORMUZ.name,
+        size: Number.isFinite(size) && size > 0 ? size : 10,
+        token_cached: false,
+        auth_mode: auth.mode
+      }
+    },
+    response: response.response,
+    body: limitJson(response.body),
+    error: response.error
+  });
+
+  return {
+    source: "DANTI",
+    ok: Boolean(response.response?.ok),
+    detail: `auth ${auth.response?.status ?? "ok"}; query ${response.response?.status ?? "failed"} ${response.response?.statusText ?? response.error ?? ""}`.trim(),
+    files: ["danti-auth.json", "danti-hormuz-query.json"]
+  };
+}
+
+async function getDantiOidcToken({ username, password, authBaseUrl, appUrl, clientId, scope }) {
+  const verifier = base64Url(randomBytes(32));
+  const challenge = base64Url(createHash("sha256").update(verifier).digest());
+  const state = base64Url(randomBytes(16));
+  const nonce = base64Url(randomBytes(16));
+  const cookieJar = new Map();
+  const stages = [];
+
+  const authUrl = new URL(`${authBaseUrl}/protocol/openid-connect/auth`);
+  authUrl.search = new URLSearchParams({
+    client_id: clientId,
+    redirect_uri: appUrl,
+    response_type: "code",
+    scope,
+    state,
+    nonce,
+    code_challenge: challenge,
+    code_challenge_method: "S256"
+  }).toString();
+
+  let { response, url } = await followDantiRedirects(authUrl.toString(), {}, cookieJar);
+  let html = await response.text();
+  let context = extractDantiLoginContext(html);
+
+  for (let step = 0; step < 4; step += 1) {
+    const callback = readDantiCallback(url);
+    if (callback.code) {
+      const token = await exchangeDantiCode({
+        authBaseUrl,
+        clientId,
+        appUrl,
+        code: callback.code,
+        verifier
+      });
+      return {
+        ...token,
+        ok: token.response?.ok === true,
+        mode: "oidc_authorization_code_pkce",
+        stages: [
+          ...stages,
+          { step, pageId: "callback", state_matches: callback.state === state }
+        ]
+      };
+    }
+
+    if (!context.loginAction) {
+      return {
+        ok: false,
+        mode: "oidc_authorization_code_pkce",
+        response: { ok: false, status: response.status, statusText: response.statusText },
+        error: context.error || callback.error || "Danti login action not found.",
+        stages
+      };
+    }
+
+    const body = new URLSearchParams();
+    if (context.pageId === "login-username") {
+      body.set("username", username);
+    } else {
+      body.set("username", username);
+      body.set("password", password);
+      body.set("credentialId", "");
+    }
+
+    stages.push({
+      step,
+      pageId: context.pageId,
+      templateName: context.templateName,
+      posting: context.pageId === "login-username" ? "username" : "password"
+    });
+
+    ({ response, url } = await followDantiRedirects(
+      context.loginAction,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Origin: new URL(authBaseUrl).origin,
+          Referer: url
+        },
+        body: body.toString()
+      },
+      cookieJar
+    ));
+    html = await response.text();
+    context = extractDantiLoginContext(html);
+  }
+
+  return {
+    ok: false,
+    mode: "oidc_authorization_code_pkce",
+    response: { ok: false, status: response.status, statusText: response.statusText },
+    error: context.error || "Danti login did not return an authorization code.",
+    stages
+  };
+}
+
+async function exchangeDantiCode({ authBaseUrl, clientId, appUrl, code, verifier }) {
+  const response = await fetchWithTimeout(`${authBaseUrl}/protocol/openid-connect/token`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+      Accept: "application/json",
+      "User-Agent": "SeaForge hackathon cache/0.1"
+    },
+    body: new URLSearchParams({
+      grant_type: "authorization_code",
+      client_id: clientId,
+      redirect_uri: appUrl,
+      code,
+      code_verifier: verifier
+    }).toString()
+  }, 20_000);
+  const text = await response.text();
+  let body;
+  try {
+    body = JSON.parse(text);
+  } catch {
+    body = { raw_text: truncate(text, 10_000) };
+  }
+
+  return {
+    token: body.access_token,
+    response: {
+      ok: response.ok,
+      status: response.status,
+      statusText: response.statusText,
+      contentType: response.headers.get("content-type"),
+      bytes: text.length
+    },
+    body,
+    error: response.ok ? undefined : body.error_description || body.error
+  };
+}
+
+async function followDantiRedirects(url, options, cookieJar) {
+  let response = await fetchDantiWithCookies(url, options, cookieJar);
+  for (let i = 0; i < 10 && response.status >= 300 && response.status < 400; i += 1) {
+    const location = response.headers.get("location");
+    if (!location) break;
+    url = new URL(location, url).toString();
+    response = await fetchDantiWithCookies(url, { method: "GET" }, cookieJar);
+  }
+  return { response, url };
+}
+
+async function fetchDantiWithCookies(url, options = {}, cookieJar) {
+  const cookie = Array.from(cookieJar.entries()).map(([key, value]) => `${key}=${value}`).join("; ");
+  const response = await fetchWithTimeout(url, {
+    ...options,
+    redirect: "manual",
+    headers: {
+      "User-Agent": "SeaForge hackathon cache/0.1",
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,application/json;q=0.8",
+      ...(options.headers ?? {}),
+      ...(cookie ? { Cookie: cookie } : {})
+    }
+  }, 20_000);
+
+  for (const setCookie of response.headers.getSetCookie?.() ?? []) {
+    const pair = setCookie.split(";")[0];
+    const equalsIndex = pair.indexOf("=");
+    if (equalsIndex > 0) {
+      cookieJar.set(pair.slice(0, equalsIndex), pair.slice(equalsIndex + 1));
+    }
+  }
+
+  return response;
+}
+
+function extractDantiLoginContext(html) {
+  const value = (key) => {
+    const match = html.match(new RegExp(`"${key}"\\s*:\\s*"((?:\\\\.|[^"])*)"`));
+    return match ? decodeDantiJsonString(match[1]) : "";
+  };
+  const summary = html.match(/"summary"\s*:\s*"((?:\\.|[^"])*)"/);
+  return {
+    pageId: value("pageId"),
+    templateName: value("templateName"),
+    loginAction: value("loginAction"),
+    error: summary ? decodeDantiJsonString(summary[1]) : ""
+  };
+}
+
+function readDantiCallback(url) {
+  const parsed = new URL(url);
+  return {
+    code: parsed.searchParams.get("code"),
+    error: parsed.searchParams.get("error"),
+    state: parsed.searchParams.get("state")
+  };
+}
+
+function decodeDantiJsonString(value) {
+  try {
+    return JSON.parse(`"${value}"`);
+  } catch {
+    return value.replace(/\\\//g, "/").replace(/&amp;/g, "&").replace(/&quot;/g, "\"");
+  }
+}
+
+function base64Url(buffer) {
+  return Buffer.from(buffer).toString("base64url");
 }
 
 async function cacheAisstreamSample() {
@@ -1118,6 +1458,15 @@ function copernicusMarineCommand() {
   return existsSync(localCli) ? localCli : "copernicusmarine";
 }
 
+function parseCacheProfile(args) {
+  const profileArg = args.find((arg) => arg.startsWith("--profile="));
+  const profile = profileArg?.split("=")[1] || envOr("SEAFORGE_CACHE_PROFILE", "all");
+  if (profile === "all" || profile === "fast" || profile === "slow" || profile === "danti") {
+    return profile;
+  }
+  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, or danti.`);
+}
+
 function redactUrl(rawUrl, queryParams) {
   const url = new URL(rawUrl);
   for (const param of queryParams) {
@@ -1137,6 +1486,30 @@ function redactSecrets(text, secrets) {
 
 function truncate(text, maxLength) {
   return text.length > maxLength ? `${text.slice(0, maxLength)}...<truncated>` : text;
+}
+
+function limitJson(value, { maxDepth = 5, maxArrayLength = 20, maxStringLength = 2_000 } = {}) {
+  const seen = new WeakSet();
+  const limit = (current, depth) => {
+    if (typeof current === "string") return truncate(current, maxStringLength);
+    if (!current || typeof current !== "object") return current;
+    if (seen.has(current)) return "<circular>";
+    if (depth >= maxDepth) return Array.isArray(current) ? `[array length ${current.length}]` : "[object]";
+    seen.add(current);
+
+    if (Array.isArray(current)) {
+      const values = current.slice(0, maxArrayLength).map((item) => limit(item, depth + 1));
+      if (current.length > maxArrayLength) {
+        values.push(`...<${current.length - maxArrayLength} more>`);
+      }
+      return values;
+    }
+
+    return Object.fromEntries(
+      Object.entries(current).map(([key, item]) => [key, limit(item, depth + 1)])
+    );
+  };
+  return limit(value, 0);
 }
 
 function envOr(key, fallback = "") {

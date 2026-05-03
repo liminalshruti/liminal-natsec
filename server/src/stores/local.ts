@@ -123,12 +123,13 @@ class MemoryOperationalStore implements LocalOperationalStore {
         actionId: id,
         actionType: action.actionApiName,
         payload: clone(action),
-        status: "PENDING",
+        status: "APPLIED",
         createdAt: action.createdAt
       });
+      return { id, status: "APPLIED" };
     }
 
-    return { id, status: "QUEUED" };
+    return { id, status: existing.status === "APPLIED" ? "APPLIED" : "QUEUED" };
   }
 
   async query(spec: QuerySpec): Promise<OntologyObject[]> {

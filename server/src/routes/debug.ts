@@ -1,12 +1,13 @@
 import { existsSync, readdirSync } from "node:fs";
 
 import type { LocalOperationalStore, OperationalStore } from "../domain/ontology.ts";
+import { validateCacheFile, type CacheValidationReport } from "../specialists/cache.ts";
 import { aipStatus, foundryStatus, palantirConfigFromEnv } from "../stores/palantir.ts";
 import type { RouteApp } from "./common.ts";
 import { routeError } from "./common.ts";
 
 export interface HealthSnapshot {
-  status: "ok";
+  status: "ok" | "degraded";
   checkedAt: string;
   capabilities: { poll: boolean; stream: boolean; replay: boolean };
   fixtureAvailability: {
@@ -18,6 +19,7 @@ export interface HealthSnapshot {
     status: "ok";
     diagnostics?: ReturnType<LocalOperationalStore["diagnostics"]>;
   };
+  specialistCache: CacheValidationReport;
   foundry: ReturnType<typeof foundryStatus>;
   aip: ReturnType<typeof aipStatus>;
 }
@@ -29,8 +31,10 @@ export async function buildHealthSnapshot(store: OperationalStore): Promise<Heal
       ? (store as LocalOperationalStore).diagnostics()
       : undefined;
 
+  const specialistCache = validateCacheFile();
+
   return {
-    status: "ok",
+    status: specialistCache.status === "ok" ? "ok" : "degraded",
     checkedAt: new Date().toISOString(),
     capabilities: { poll: true, stream: false, replay: true },
     fixtureAvailability: {
@@ -42,6 +46,7 @@ export async function buildHealthSnapshot(store: OperationalStore): Promise<Heal
       status: "ok",
       ...(diagnostics ? { diagnostics } : {})
     },
+    specialistCache,
     foundry: foundryStatus(),
     aip: aipStatus()
   };
@@ -59,9 +64,31 @@ export function registerDebugRoutes(app: RouteApp, store: OperationalStore): voi
   app.get("/debug/palantir-smoke", (context) => {
     try {
       const config = palantirConfigFromEnv();
+      const foundry = foundryStatus(config);
+      const local = store as Partial<LocalOperationalStore>;
+      const queueDepth =
+        typeof local.getActionQueue === "function" ? local.getActionQueue().length : null;
+      const queuedActions =
+        typeof local.getActionQueue === "function"
+          ? local.getActionQueue().slice(0, 3).map((entry) => ({
+              actionId: entry.actionId,
+              actionType: entry.actionType,
+              status: entry.status,
+              createdAt: entry.createdAt
+            }))
+          : null;
+
+      // Per TECHNICAL_PLAN §17, when Foundry is unreachable the same
+      // OperationalStore interface runs against the local mirror and Action
+      // envelopes queue for replay. Surface that posture explicitly so
+      // /debug/palantir-smoke is demo-safe rather than alarming.
       return context.json({
-        status: foundryStatus(config).status === "ok" ? "ready" : "NOT_CONFIGURED",
-        foundry: foundryStatus(config),
+        mode: foundry.status === "ok" ? "foundry-live" : "local-mirror",
+        narrative:
+          foundry.status === "ok"
+            ? "Foundry credentials present; Ontology writes will route via OSDK."
+            : "Local mirror behind the same OperationalStore interface. Action envelopes queued; replay on Foundry reach.",
+        foundry,
         aip: aipStatus(config),
         checks: {
           token: Boolean(config.foundryToken),
@@ -70,6 +97,10 @@ export function registerDebugRoutes(app: RouteApp, store: OperationalStore): voi
           aipLogicBaseUrl: Boolean(config.aipLogicBaseUrl ?? config.foundryBaseUrl),
           aipLogicToken: Boolean(config.aipLogicToken ?? config.foundryToken),
           aipLogicFunctionRid: Boolean(config.aipLogicFunctionRid)
+        },
+        actionEnvelopes: {
+          queueDepth,
+          sample: queuedActions
         }
       });
     } catch (error) {

@@ -10,10 +10,30 @@ Refresh locally:
 node scripts/cache-hormuz-sources.mjs
 ```
 
+Fast refresh for demo-safe sources:
+
+```sh
+node scripts/cache-hormuz-sources.mjs --profile=fast
+```
+
+Slow refresh for streaming/heavy sources:
+
+```sh
+node scripts/cache-hormuz-sources.mjs --profile=slow
+```
+
+Danti-only refresh:
+
+```sh
+node scripts/cache-hormuz-sources.mjs --profile=danti
+```
+
 Expected source files:
 
 - `aisstream-hormuz-sample.json` — bounded AISstream WebSocket sample.
 - `foundry-ontologies.json` — Foundry token reachability and visible ontology metadata, when access allows it.
+- `danti-auth.json` — Danti OIDC/browser-login credential check with tokens stripped.
+- `danti-hormuz-query.json` — Danti natural-language query result for Strait of Hormuz context.
 - `exa-hormuz-osint.json` — Exa web/news search results for Hormuz maritime context.
 - `gfw-vessel-search-irisl.json` — lightweight Global Fishing Watch Vessel API key/capability check.
 - `gfw-hormuz-gaps.json` — Global Fishing Watch AIS-off/gap event query.
@@ -35,4 +55,7 @@ Expected source files:
 - `ukmto-home.html` — public UKMTO page snapshot.
 - `overpass-hormuz-maritime.json` — OSM/Overpass maritime context.
 - `overpass-hormuz-maritime.attempts.json` — Overpass endpoint fallback attempt summary.
-- `manifest.json` — cache generation summary.
+- `manifest.json` — latest fast/all cache generation summary.
+- `manifest-fast.json` — fast-source cache generation summary.
+- `manifest-slow.json` — slow-source cache generation summary.
+- `manifest-danti.json` — Danti-only cache generation summary.
