@@ -1,0 +1,83 @@
+/*
+ * natsec-overlay.css · Liminal Custody · semantic aliases over canonical tokens
+ * ═══════════════════════════════════════════════════════════════════════════════
+ *
+ * Loaded AFTER design-tokens.css and cut-shell.css. Provides the natsec-specific
+ * semantic vocabulary the live app uses (--color-decision, --color-contested,
+ * --color-refused, --color-resolved) by aliasing into the canonical Liminal
+ * 12-wheel hue system.
+ *
+ *   --color-decision   →  --judgment-strong     (sage / decision / honored)
+ *   --color-contested  →  --outreach-strong     (amber / single-source / wet)
+ *   --color-refused    →  --refusal-strong      (rust / structural fire)
+ *   --color-resolved   →  --judgment-soft       (clean / supported)
+ *
+ * The natsec call sites (.specialist-row--refused, .zone1__verb, etc.) do not
+ * change — they consume the same semantic name; only the underlying value
+ * shifts to the canonical hue. Once the natsec live app starts importing this
+ * stack, drop the forked tokens in app/src/styles.css:21–106.
+ */
+
+:root {
+  /* ── Surface · tier-mapped onto cut-shell's --frame-* tokens ─────────────── */
+  --color-substrate:   var(--frame-bg-0,    #08090c);
+  --color-frame:       var(--frame-bg-1,    #0d0f14);
+  --color-elevated:    var(--frame-bg-2,    #14171f);
+  --color-edge:        var(--frame-border,  #1d2230);
+  --color-edge-strong: var(--frame-border-strong, #2a3142);
+  --color-glass:       rgba(20, 23, 31, 0.62);
+
+  /* ── Semantic state · pointed at canonical hues ─────────────────────────
+     decision  → connection (green · #1FBA67)
+     contested → agency-warm hybrid (yellow→amber)
+     refused   → coral (vermillion poster ink · #FA552B)
+     resolved  → connection edge (mid-green)
+     ──────────────────────────────────────────────────────────────────── */
+  --color-decision:    var(--connection-600, #1FBA67);
+  --color-decision-soft: rgba(49, 230, 130, 0.18);
+  --color-contested:   var(--agency-600, #DCC93C);
+  --color-contested-soft: rgba(254, 240, 89, 0.18);
+  --color-refused:     var(--coral-500, #FA552B);
+  --color-refused-soft: rgba(250, 85, 43, 0.16);
+  --color-resolved:    rgba(49, 230, 130, 0.78);
+
+  /* ── Ink · tier-mapped onto cut-shell's --text-* tokens ─────────────────── */
+  --color-ink-primary:    var(--text-hi,  #E8ECF1);
+  --color-ink-secondary:  var(--text-mid, #9AA3B3);
+  --color-ink-tertiary:   var(--text-low, #7B8494);
+  --color-ink-quaternary: var(--text-faint, #3a4252);
+
+  /* ── Type stack · use canonical Liminal stack with mono primary ─────────── */
+  --font-mono:  var(--mono,  "Geist Mono", ui-monospace, "JetBrains Mono", monospace);
+  --font-sans:  var(--sans,  "Geist", -apple-system, system-ui, sans-serif);
+  --font-serif: var(--serif, "Newsreader", "Iowan Old Style", Georgia, serif);
+  --font-hand:  var(--hand,  "Caveat", cursive);
+
+  /* ── Liminal Hand local fallback (commercial font on demo machine) ──────── */
+}
+
+@font-face {
+  font-family: "Liminal Hand";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src:
+    local("Editor's Hand"),
+    local("EditorsHand"),
+    local("Editors Hand"),
+    local("Caveat");
+}
+
+/* ── Body baseline · matches the live app at /5173 but uses canonical ink ── */
+html, body {
+  margin: 0;
+  background: var(--color-substrate);
+  color: var(--color-ink-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  color-scheme: dark;
+}
