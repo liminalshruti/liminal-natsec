@@ -82,12 +82,24 @@ export function actionsForCase(caseId: string): SpineNode[] {
 
 export function caseIdFromAlertId(alertId: string): string | null {
   const graph = getMaritimeGraph();
-  const node = graph.getNode(alertId);
-  if (node?.case_id) return node.case_id;
-  // Server-side anomaly ids occasionally diverge from the spine fixture
-  // (underscore vs hyphen), so fall back to a regex parse on event-1/event-2.
+
+  // First pass: exact id match against the fixture spine.
+  const direct = graph.getNode(alertId);
+  if (direct?.case_id) return direct.case_id;
+
+  // Second pass: server-side anomaly ids sometimes use underscores where the
+  // fixture spine uses hyphens (e.g. `identity_churn` vs `identity-churn`).
+  // Normalize and re-lookup before falling back.
+  const normalized = alertId.replace(/_/g, "-");
+  if (normalized !== alertId) {
+    const normalizedNode = graph.getNode(normalized);
+    if (normalizedNode?.case_id) return normalizedNode.case_id;
+  }
+
+  // Third pass: regex parse on event-1/event-2 if the id carries it.
   const match = alertId.match(/event[-_]?([12])/);
   if (match) return `case:alara-01:event-${match[1]}`;
+
   return null;
 }
 
