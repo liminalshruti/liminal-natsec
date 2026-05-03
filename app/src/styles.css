@@ -224,7 +224,24 @@ button:hover {
   margin-right: 4px;
 }
 
-/* Zone 2 — hypothesis × specialist interleave, two-column grid */
+/* Metadata strip — subordinate context for the verb. Three KV rows
+   compressed into one inline strip of typed chips. The verb stays the
+   load-bearing line; metadata sits below as breadcrumbs. */
+.zone1__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+  opacity: 0.92;
+}
+
+/* Zone 2 — hypothesis × specialist interleave, two-column grid (legacy).
+   Replaced by the causal-flow stack below; kept for any non-Zone-2
+   consumer until a follow-up sweep removes them. */
 
 .zone2 {
   display: grid;
@@ -245,6 +262,64 @@ button:hover {
   text-transform: uppercase;
   color: var(--fg-2);
   margin-bottom: 4px;
+}
+
+/* ── Zone 2 — causal-flow layout (substrate → verdict, top to bottom) ─────
+   Specialist reads sit on top as the SUBSTRATE row. A small downward
+   arrow — the causal connector — sits between substrate and verdict.
+   Hypotheses sit below as the VERDICT row, posteriors lifted because
+   they're the outputs the operator ranks. Reading direction is now
+   monotonic top-to-bottom: 6 voices feed the Bayesian fusion that
+   produces the 3 ranked beliefs. The differentiator is visible.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.zone2--causal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+}
+
+.zone2__substrate,
+.zone2__verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zone2__row-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.zone2__row-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  margin-left: 4px;
+}
+
+.zone2__causal-arrow {
+  align-self: center;
+  font-size: 10px;
+  color: var(--accent, #6ea8fe);
+  letter-spacing: 0;
+  margin: 2px 0;
+  opacity: 0.6;
+}
+
+.zone2__verdict {
+  /* Verdict gets a subtle accent-tinted border-top to read as the
+     "this is what the system concluded" zone. The arrow above is the
+     causal handoff. */
+  padding-top: 6px;
+  border-top: 1px solid rgba(110, 168, 254, 0.15);
 }
 
 /* Specialist Reads — strip rendering, with subordination marker for the
@@ -640,6 +715,63 @@ button:hover {
   color: var(--fg-2);
   font-size: 11px;
   align-self: center;
+}
+
+/* ── Typed alert row — substrate panel using TypedObjectChip ──────────────
+   Replaces the .alert-row__title / .alert-row__sub / .alert-row__rank
+   pattern with a typed chip + EV1/EV2 left-marker. The case ID + status +
+   severity score (as posterior badge) all live inside one chip. The
+   EV-marker is a separate visual element because it's the operator's
+   primary sort key (event 1 vs event 2 = which case in the scenario) —
+   bigger than a chip status badge would suggest.
+   ──────────────────────────────────────────────────────────────────── */
+
+.custody-queue {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-row--typed {
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.alert-row--typed:hover {
+  background: var(--bg-2);
+}
+
+.alert-row--typed[data-active="true"] {
+  background: var(--bg-2);
+  outline: 1px solid var(--accent);
+  outline-offset: 0;
+}
+
+.alert-row__event {
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 4px;
+  border-radius: 2px;
+  background: rgba(110, 168, 254, 0.08);
+  color: var(--accent, #6ea8fe);
+  border: 1px solid rgba(110, 168, 254, 0.3);
+}
+
+.alert-row__event--event-2 {
+  background: rgba(78, 160, 138, 0.08);
+  color: var(--ok, #4ea08a);
+  border-color: rgba(78, 160, 138, 0.3);
+}
+
+.alert-row__body {
+  min-width: 0;
+  /* let the chip ellipsis-truncate when the panel is narrow */
+}
+
+.alert-row__body > .tchip {
+  max-width: 100%;
 }
 
 .stage-placeholder {
