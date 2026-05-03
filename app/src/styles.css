@@ -130,16 +130,21 @@ button:hover {
 
 .app-shell {
   display: grid;
-  /* Working panel widened from 380px → 540px to host operative + forensic
-     surfaces simultaneously (Round 2 IA spec). Stage absorbs the difference;
-     map composition recenters on the hero track at higher zoom to compensate
-     for the narrower stage width. Below 800px viewport height the case file
-     section collapses to a one-line affordance — see WorkingPanel.tsx. */
-  grid-template-columns: 320px 1fr 540px;
+  /* Working panel takes the center flex region — it's where the operator
+     spends the most dwell time (operative verb + forensic case file +
+     specialist reads + evidence drawer + override). Stage moves to the
+     fixed-width right rail at 520px — wide enough for map composition to
+     read clearly, narrow enough that the working panel gets the focal
+     real estate. Substrate stays at the 320px left rail. The pre-swap
+     layout (stage center, working right) was inverted: stage had the most
+     space but the least operator-actionable surface. Below 800px viewport
+     height the case file section collapses to a one-line affordance —
+     see WorkingPanel.tsx. */
+  grid-template-columns: 320px 1fr 520px;
   grid-template-rows: 36px 1fr 32px;
   grid-template-areas:
     "topbar topbar topbar"
-    "substrate stage working"
+    "substrate working stage"
     "command command command";
   height: 100vh;
   background: var(--color-substrate);
