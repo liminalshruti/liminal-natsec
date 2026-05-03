@@ -12,6 +12,7 @@ import { MapOverlays } from "./MapOverlays.tsx";
 import { MapTelemetryHud } from "./MapTelemetryHud.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
 import { SignalDropZone } from "./SignalDropZone.tsx";
+import { SignalGhostShips } from "./SignalGhostShips.tsx";
 import { StageBackdrop } from "./StageBackdrop.tsx";
 
 interface StageViewportProps {
@@ -110,6 +111,14 @@ export function StageViewport({
                 fires toggleAttach + emits SIGNAL_ATTACHED_EVENT for
                 B-2's ghost-ship renderer to pick up. */}
             <SignalDropZone />
+            {/* SignalGhostShips: B-2 fast-follow. Renders a ghost-ship
+                marker at the drop coordinates for each attached signal.
+                Listens to SIGNAL_ATTACHED_EVENT (fired by SignalDropZone).
+                Two phases per ghost: materializing (halo expands, ship
+                fades in over 600ms), then settled (low-opacity hold with
+                subtle pulse). Detaches via toggleAttach OR case promotion
+                fade out over 360ms. */}
+            <SignalGhostShips />
           </>
         )}
       </div>
