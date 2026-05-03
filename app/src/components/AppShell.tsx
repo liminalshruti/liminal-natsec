@@ -23,6 +23,7 @@ import { WorkflowStrip } from "./WorkflowStrip.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
 import { AiNoticeToast } from "./AiNoticeToast.tsx";
 import { BroadcastChyron } from "./BroadcastChyron.tsx";
+import { SubstrateStateChyron } from "./SubstrateStateChyron.tsx";
 
 interface AppShellProps {
   scenario: LoadedScenario | null;
