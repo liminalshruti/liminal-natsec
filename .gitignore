@@ -32,6 +32,9 @@ fixtures/maritime/live-cache/*credential*.json
 fixtures/maritime/live-cache/*api-info.json
 fixtures/maritime/live-cache/foundry-ontologies.json
 fixtures/maritime/live-cache/danti-*.json
+# Allow the specific Danti query result the watchfloor OSINT feed depends on.
+# (Auth files stay ignored via the *auth*.json rule above.)
+!fixtures/maritime/live-cache/danti-hormuz-all-size-200.json
 fixtures/maritime/live-cache/manifest-danti.json
 fixtures/maritime/live-cache/manifest-fallbacks.json
 ontology.json
