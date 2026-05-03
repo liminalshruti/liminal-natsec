@@ -12,7 +12,6 @@ import { specialistReadsForCase } from "../lib/specialistReads.ts";
 
 import { ActionOptions } from "./ActionOptions.tsx";
 import { CaseHandoffBanner } from "./CaseHandoffBanner.tsx";
-import { ConfidenceBar } from "./ConfidenceBar.tsx";
 import { EvidenceDrawer } from "./EvidenceDrawer.tsx";
 import { ExecSummary } from "./ExecSummary.tsx";
 import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
@@ -124,32 +123,27 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
           )}
         </div>
 
-        <div className="kv" style={{ marginBottom: 10 }}>
-          <div className="kv__k">case</div>
-          <div className="kv__v">
-            {caseId ? (
-              <TypedObjectChip kind="case" id={caseId} status={selectedAlert.status} />
-            ) : (
-              selectedAlert.title
-            )}
-          </div>
-          <div className="kv__k">claim</div>
-          <div className="kv__v">
-            {primaryClaimId ? (
-              <TypedObjectChip
-                kind="claim"
-                id={primaryClaimId}
-                status={claimStatus ?? undefined}
-                posterior={claimPosterior}
-              />
-            ) : (
-              "—"
-            )}
-          </div>
-          <div className="kv__k">posterior</div>
-          <div className="kv__v">
-            <ConfidenceBar value={claimPosterior} variant="primary" />
-          </div>
+        {/* Metadata strip — case + claim chips inline, subordinate to the
+            verb. Posterior bar moves into the chip's own posterior badge.
+            Three KV rows collapsed into one strip; verb keeps primacy. */}
+        <div className="zone1__meta">
+          {caseId && (
+            <TypedObjectChip
+              kind="case"
+              id={caseId}
+              status={selectedAlert.status}
+              size="sm"
+            />
+          )}
+          {primaryClaimId && (
+            <TypedObjectChip
+              kind="claim"
+              id={primaryClaimId}
+              status={claimStatus ?? undefined}
+              posterior={claimPosterior}
+              size="sm"
+            />
+          )}
         </div>
 
         {/* Zone 2 — hypothesis × specialist interleave (two columns).

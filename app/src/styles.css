@@ -224,6 +224,21 @@ button:hover {
   margin-right: 4px;
 }
 
+/* Metadata strip — subordinate context for the verb. Three KV rows
+   compressed into one inline strip of typed chips. The verb stays the
+   load-bearing line; metadata sits below as breadcrumbs. */
+.zone1__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+  opacity: 0.92;
+}
+
 /* Zone 2 — hypothesis × specialist interleave, two-column grid */
 
 .zone2 {
