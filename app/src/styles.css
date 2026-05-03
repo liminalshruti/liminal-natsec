@@ -689,9 +689,41 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   50% { opacity: 1; }
 }
 
+/* Per-particle drift on the stipple field. Two nested <g> elements per
+   dot — outer drifts on X, inner drifts on Y. Each layer carries its own
+   --drift-amp, --drift-period, --drift-phase as inline CSS variables set
+   in StageBackdrop.tsx, so every dot has unique amplitude/phase/period.
+   Periods are coprime (X · 1.37 = Y) so the field never re-syncs into a
+   visible beat. Reads as ambient instrument motion; pure compositor
+   transform, no paint. Apprenticeship: @rickyretouch "Containment MUBs"
+   — points driven, not keyframed. */
+.stage-backdrop__stipple-dot--x {
+  animation: stage-backdrop-drift-x var(--drift-period, 30s) ease-in-out infinite;
+  animation-delay: var(--drift-phase, 0s);
+  will-change: transform;
+}
+
+.stage-backdrop__stipple-dot--y {
+  animation: stage-backdrop-drift-y var(--drift-period, 41s) ease-in-out infinite;
+  animation-delay: var(--drift-phase, 0s);
+  will-change: transform;
+}
+
+@keyframes stage-backdrop-drift-x {
+  0%, 100% { transform: translateX(calc(var(--drift-amp, 0px) * -1)); }
+  50%      { transform: translateX(var(--drift-amp, 0px)); }
+}
+
+@keyframes stage-backdrop-drift-y {
+  0%, 100% { transform: translateY(calc(var(--drift-amp, 0px) * -0.6)); }
+  50%      { transform: translateY(var(--drift-amp, 0px)); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .stage-backdrop__lines,
-  .stage-backdrop__stipple {
+  .stage-backdrop__stipple,
+  .stage-backdrop__stipple-dot--x,
+  .stage-backdrop__stipple-dot--y {
     animation: none;
   }
 }
