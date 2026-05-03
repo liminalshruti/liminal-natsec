@@ -216,6 +216,7 @@ export function AppShell({
         scenarioState={scenario?.state ?? null}
         loading={!scenario}
         uiMode={uiMode}
+        replayPhase={mapScenarioState?.phase ?? 1}
       />
       <CommandLine
         scenario={scenario}

@@ -5,6 +5,12 @@ import {
   citationsForSpecialist,
   type SpecialistInputCitation
 } from "../lib/specialistInputs.ts";
+import {
+  FAMILY_LABEL,
+  FAMILY_ORDER,
+  familyForSourceFile,
+  type SourceFamily
+} from "../lib/sourceFamilies.ts";
 
 interface SpecialistReadsProps {
   reads: SpecialistReadRecord[];
@@ -113,6 +119,7 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
             <span className="specialist-row__name">{read.specialist}</span>
             <span className="specialist-row__summary">{read.summary ?? "—"}</span>
             <span className="specialist-row__status-group">
+              <SpecialistFamilyChips specialistName={read.specialist} />
               <span className="specialist-row__status">{read.status}</span>
               {isIntent && isRefused && (
                 <span className="specialist-row__status specialist-row__status--guard">
@@ -387,5 +394,55 @@ function SpecialistCitationFootnote({
         </div>
       )}
     </div>
+  );
+}
+
+/**
+ * Family color-trace chips — surface the source families this specialist cites
+ * as compact pips that share their color with the OSINT intake band above.
+ * Read top-down, the eye sees the same color twice (band → row), making the
+ * "this signal feeds this specialist" trace visible without hover.
+ *
+ * Intent has no citations by design (refusal is structural). For Intent we
+ * render a single neutral pip labeled "guard" so the row's right edge isn't
+ * a blank gap that breaks the visual rhythm.
+ */
+function SpecialistFamilyChips({ specialistName }: { specialistName: string }) {
+  const inputs = citationsForSpecialist(specialistName);
+  const families = new Set<SourceFamily>();
+  if (inputs) {
+    for (const c of inputs.citations) {
+      const fam = familyForSourceFile(c.source_file);
+      if (fam) families.add(fam);
+    }
+  }
+  if (families.size === 0) {
+    if (specialistName.toLowerCase().replace(/\s+/g, "_") === "intent") {
+      return (
+        <span
+          className="specialist-row__family-chips"
+          aria-label="No source citations — refusal is structural"
+        >
+          <span className="specialist-row__family-pip specialist-row__family-pip--guard" title="Intent has no source citations — refusal is structural">
+            guard
+          </span>
+        </span>
+      );
+    }
+    return null;
+  }
+  const ordered = FAMILY_ORDER.filter((fam) => families.has(fam));
+  return (
+    <span className="specialist-row__family-chips" aria-label="Source families cited">
+      {ordered.map((fam) => (
+        <span
+          key={fam}
+          className={`specialist-row__family-pip specialist-row__family-pip--${fam} family-chip--${fam}`}
+          title={`${FAMILY_LABEL[fam]} — see Intake band above`}
+        >
+          {FAMILY_LABEL[fam]}
+        </span>
+      ))}
+    </span>
   );
 }

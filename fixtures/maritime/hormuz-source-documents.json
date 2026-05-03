@@ -379,7 +379,7 @@
     "id": "src:hormuz:ofac-maritime-sanctions-matches",
     "type": "sourceDocument",
     "title": "OFAC SDN + Consolidated maritime/Iran filtered rows",
-    "source": "OFAC_SDN",
+    "source": "OFAC",
     "provider": "U.S. Treasury OFAC",
     "source_file": "fixtures/maritime/live-cache/ofac-maritime-sanctions-matches.json",
     "sha256": "4fb53d8788565ceaacf9e6fa8c6a259d9fab629b34ccca1ce37247322c303a78",

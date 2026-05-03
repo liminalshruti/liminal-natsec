@@ -323,7 +323,9 @@
               "url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
               "sha256": "19358a11db50caab5523a55bee948e714587dd0ade98677756a9afe35a57eb72",
               "row_id": 15054,
-              "program_tags": ["IRAN"],
+              "program_tags": [
+                "IRAN"
+              ],
               "linked_to": "NATIONAL IRANIAN TANKER COMPANY"
             }
           },
@@ -360,13 +362,85 @@
         ],
         "confidence": 0.92,
         "identity_chain": [
-          { "name": "SVS GILBERT", "ssvid": "677036700", "flag": "TZA", "callsign": "5IM467", "window": ["2012-01-01", "2013-04-28"], "messages": 11078 },
-          { "name": "HATEF",       "ssvid": "212256000", "flag": "CYP", "callsign": "5BAZ2",  "window": ["2012-02-22", "2012-03-19"], "messages": 172,    "ofac_listed_mmsi": true },
-          { "name": "GLORY",       "ssvid": "572465210", "flag": "TUV", "callsign": "T2EG4",  "window": ["2012-07-24", "2012-10-04"], "messages": 2391 },
-          { "name": "HUGE",        "ssvid": "677036700", "flag": "TZA", "callsign": "5IM467", "window": ["2012-10-04", "2017-06-08"], "messages": 86738 },
-          { "name": "<unnamed>",   "ssvid": "677036700", "flag": "TZA", "callsign": "5IM467", "window": ["2015-11-24", "2015-12-15"], "messages": 2560 },
-          { "name": "HUGE",        "ssvid": "353549000", "flag": "PAN", "callsign": "3FAA8",  "window": ["2016-06-28", "2019-01-04"], "messages": 227094 },
-          { "name": "HUGE",        "ssvid": "422206900", "flag": "IRN", "callsign": "EPJE5",  "window": ["2019-03-05", "2026-03-20"], "messages": 845988, "currently_broadcasting": true }
+          {
+            "name": "SVS GILBERT",
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "window": [
+              "2012-01-01",
+              "2013-04-28"
+            ],
+            "messages": 11078
+          },
+          {
+            "name": "HATEF",
+            "ssvid": "212256000",
+            "flag": "CYP",
+            "callsign": "5BAZ2",
+            "window": [
+              "2012-02-22",
+              "2012-03-19"
+            ],
+            "messages": 172,
+            "ofac_listed_mmsi": true
+          },
+          {
+            "name": "GLORY",
+            "ssvid": "572465210",
+            "flag": "TUV",
+            "callsign": "T2EG4",
+            "window": [
+              "2012-07-24",
+              "2012-10-04"
+            ],
+            "messages": 2391
+          },
+          {
+            "name": "HUGE",
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "window": [
+              "2012-10-04",
+              "2017-06-08"
+            ],
+            "messages": 86738
+          },
+          {
+            "name": "<unnamed>",
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "window": [
+              "2015-11-24",
+              "2015-12-15"
+            ],
+            "messages": 2560
+          },
+          {
+            "name": "HUGE",
+            "ssvid": "353549000",
+            "flag": "PAN",
+            "callsign": "3FAA8",
+            "window": [
+              "2016-06-28",
+              "2019-01-04"
+            ],
+            "messages": 227094
+          },
+          {
+            "name": "HUGE",
+            "ssvid": "422206900",
+            "flag": "IRN",
+            "callsign": "EPJE5",
+            "window": [
+              "2019-03-05",
+              "2026-03-20"
+            ],
+            "messages": 845988,
+            "currently_broadcasting": true
+          }
         ],
         "unsupported_assertions": []
       }

@@ -1267,7 +1267,7 @@ export function normalizeHormuzIntel(options = {}) {
 
   function processOfacSanctions() {
     const doc = addSourceDocument("ofac-maritime-sanctions-matches.json", {
-      source: "OFAC_SDN",
+      source: "OFAC",
       provider: "U.S. Treasury OFAC",
       title: "OFAC SDN + Consolidated maritime/Iran filtered rows",
       categories: ["ENTITY_RISK_ENRICHMENT"]
@@ -1277,7 +1277,7 @@ export function normalizeHormuzIntel(options = {}) {
         buildEvidence({
           seed: ["ofac-sdn-unavailable"],
           title: "OFAC sanctions snapshot unavailable",
-          source: "OFAC_SDN",
+          source: "OFAC",
           provider: "U.S. Treasury OFAC",
           category: "ENTITY_RISK_ENRICHMENT",
           drawerGroup: "Entity Risk",
@@ -1318,7 +1318,7 @@ export function normalizeHormuzIntel(options = {}) {
       buildEvidence({
         seed: ["ofac-sdn", "iran-program-summary"],
         title: `OFAC Iran-program maritime sanctions: ${iranVessels.length} vessels`,
-        source: "OFAC_SDN",
+        source: "OFAC",
         provider: "U.S. Treasury OFAC",
         category: "ENTITY_RISK_ENRICHMENT",
         drawerGroup: "Entity Risk",
@@ -1337,7 +1337,7 @@ export function normalizeHormuzIntel(options = {}) {
         buildEvidence({
           seed: ["ofac-sdn", "vessel", vessel.imo ?? vessel.name],
           title: `OFAC SDN listing: ${vessel.name}`,
-          source: "OFAC_SDN",
+          source: "OFAC",
           provider: "U.S. Treasury OFAC",
           category: "ENTITY_RISK_ENRICHMENT",
           drawerGroup: "Entity Risk",

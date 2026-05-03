@@ -2716,6 +2716,99 @@ a.osint-signal-row__inner {
   border-radius: 2px;
 }
 
+.command-line {
+  position: relative;
+}
+
+.command-line__ask {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: calc(100% + 6px);
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--color-frame);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.45);
+  padding: 10px 12px;
+  z-index: 40;
+  color: var(--color-ink-primary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.command-line__ask-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--color-edge);
+}
+
+.command-line__ask-tag {
+  color: var(--color-decision);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-decision);
+  padding: 1px 5px;
+  border-radius: 2px;
+}
+
+.command-line__ask-question {
+  flex: 1;
+  color: var(--color-ink-secondary);
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.command-line__ask-close {
+  background: transparent;
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-tertiary);
+  font-size: 14px;
+  line-height: 1;
+  padding: 0 6px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.command-line__ask-close:hover {
+  color: var(--color-ink-primary);
+  border-color: var(--color-ink-secondary);
+}
+
+.command-line__ask-body {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 12px;
+  white-space: pre-wrap;
+  color: var(--color-ink-primary);
+}
+
+.command-line__ask-body--pending {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.command-line__ask-body--error {
+  color: var(--color-refused);
+}
+
+.command-line__ask-answer {
+  margin-bottom: 6px;
+}
+
+.command-line__ask-meta {
+  font-size: 10px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .reset-toast {
   position: fixed;
   bottom: 56px;
@@ -5874,4 +5967,262 @@ button:disabled {
 .map-layers__strip-label {
   display: inline-flex;
   align-items: center;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   OSINT Intake Band — pinned input layer above Specialist Reads.
+   Renders inside .working__operative between .zone1__meta and .zone2--causal.
+   Six source-family chips share their color with .specialist-row__family-pip
+   so the eye traces Signals → Analysis → Verdict without hover.
+   ─────────────────────────────────────────────────────────────────────── */
+
+.osint-intake {
+  margin: 8px 12px 0;
+  padding: 8px 10px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.015);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.osint-intake__head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.5));
+}
+
+.osint-intake__label {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-ink-secondary, rgba(255, 255, 255, 0.7));
+}
+
+.osint-intake__sub {
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.45));
+  font-size: 10px;
+}
+
+.osint-intake__total {
+  margin-left: auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.osint-intake__total-num {
+  font-weight: 600;
+  color: var(--color-ink-primary, rgba(255, 255, 255, 0.92));
+  font-size: 11px;
+}
+
+.osint-intake__total-of {
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.4));
+}
+
+.osint-intake__chips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px 6px;
+}
+
+@media (min-width: 580px) {
+  .osint-intake__chips {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.osint-intake__expand {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.5));
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 2px 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.osint-intake__expand:hover {
+  color: var(--color-ink-secondary, rgba(255, 255, 255, 0.8));
+}
+
+.osint-intake__roster {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 4px 0 2px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.06);
+}
+
+.osint-intake__roster-family {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 10px;
+}
+
+.osint-intake__roster-family-label {
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  min-width: 64px;
+  color: var(--family-color, var(--color-ink-secondary, rgba(255, 255, 255, 0.75)));
+}
+
+.osint-intake__roster-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.55));
+  font-variant-numeric: tabular-nums;
+}
+
+.osint-intake__roster-source {
+  white-space: nowrap;
+}
+
+.osint-intake__roster-count {
+  color: var(--color-ink-secondary, rgba(255, 255, 255, 0.7));
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.osint-intake__feeds-divider {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.4));
+}
+
+.osint-intake__feeds-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.12),
+    transparent
+  );
+}
+
+.osint-intake__feeds-label {
+  white-space: nowrap;
+}
+
+/* Family color tokens — shared between intake band chips and specialist row
+   pips. Cool/neutral palette only; refusal amber and contested-orange remain
+   the only warm tones in the right pane. */
+
+.family-chip--satellite { --family-color: #7aa7d9; --family-color-soft: rgba(122, 167, 217, 0.18); }
+.family-chip--ais       { --family-color: #6fc3b3; --family-color-soft: rgba(111, 195, 179, 0.18); }
+.family-chip--sanctions { --family-color: #b89cd0; --family-color-soft: rgba(184, 156, 208, 0.18); }
+.family-chip--warnings  { --family-color: #c5b87a; --family-color-soft: rgba(197, 184, 122, 0.18); }
+.family-chip--osint     { --family-color: #8a9eaf; --family-color-soft: rgba(138, 158, 175, 0.18); }
+.family-chip--infra     { --family-color: #97a283; --family-color-soft: rgba(151, 162, 131, 0.18); }
+
+.family-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px 3px 5px;
+  border-radius: 3px;
+  background: var(--family-color-soft, rgba(255, 255, 255, 0.04));
+  border: 1px solid transparent;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  color: var(--family-color, var(--color-ink-secondary, rgba(255, 255, 255, 0.75)));
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+
+.family-chip__pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--family-color, currentColor);
+  box-shadow: 0 0 0 1px var(--family-color-soft, rgba(255, 255, 255, 0.05));
+  flex: none;
+}
+
+.family-chip__label {
+  font-weight: 600;
+}
+
+.family-chip__count {
+  margin-left: auto;
+  padding-left: 4px;
+  color: var(--color-ink-primary, rgba(255, 255, 255, 0.9));
+  font-weight: 600;
+}
+
+.family-chip--pending {
+  opacity: 0.32;
+}
+
+.family-chip--pending .family-chip__count {
+  color: var(--color-ink-tertiary, rgba(255, 255, 255, 0.35));
+}
+
+@keyframes family-chip-pulse {
+  0%   { transform: scale(1);    box-shadow: 0 0 0 0 var(--family-color-soft, rgba(255, 255, 255, 0.18)); }
+  40%  { transform: scale(1.04); box-shadow: 0 0 0 4px var(--family-color-soft, rgba(255, 255, 255, 0.12)); }
+  100% { transform: scale(1);    box-shadow: 0 0 0 0 transparent; }
+}
+
+.family-chip--pulse {
+  animation: family-chip-pulse 700ms ease-out;
+  border-color: var(--family-color, transparent);
+}
+
+/* Specialist row family pips — small color-trace chips inside the
+   .specialist-row__status-group. Same color tokens as the intake band so the
+   eye sees the trace top-down without hover. */
+
+.specialist-row__family-chips {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-right: 6px;
+  flex-wrap: wrap;
+}
+
+.specialist-row__family-pip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  background: var(--family-color-soft, rgba(255, 255, 255, 0.04));
+  color: var(--family-color, var(--color-ink-secondary, rgba(255, 255, 255, 0.7)));
+  white-space: nowrap;
+}
+
+.specialist-row__family-pip--guard {
+  --family-color: rgba(255, 255, 255, 0.45);
+  --family-color-soft: rgba(255, 255, 255, 0.04);
+  font-style: italic;
 }
