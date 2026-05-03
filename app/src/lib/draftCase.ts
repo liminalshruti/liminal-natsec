@@ -85,10 +85,8 @@ export interface DraftCandidateSignal {
 export interface DraftCaseContext {
   watchBoxName: string;
   watchBoxId: string;
-  replayAnchor: string;
-  replayAnchorFullMmsi: string;
+  primaryRealSignal: string;
   reviewWindowLabel: string;
-  reviewWindowHours: number;
   scopeNote: string;
 }
 
@@ -133,16 +131,15 @@ interface MaradFile {
 
 const data = marad as MaradFile;
 const rows: MaradRow[] = data.rows ?? [];
+const sourceWindowLabel = sourceWindowFromRows(rows);
 
 const WATCH_CONTEXT: DraftCaseContext = {
   watchBoxName: "Hormuz Watch Box 01",
   watchBoxId: "aoi:alara-eez-box-01",
-  replayAnchor: "MMSI-111 / MV CALDERA",
-  replayAnchorFullMmsi: "366700111",
-  reviewWindowLabel: "72-hour review window",
-  reviewWindowHours: 72,
+  primaryRealSignal: "MARAD 2026-004 + GFW intentional-disabling rows",
+  reviewWindowLabel: sourceWindowLabel,
   scopeNote:
-    "The 72-hour window is the operator's case-review horizon. Source timestamps keep their original dates; archived context is not treated as current vessel behavior."
+    "The review window is derived from the real GFW gap rows. Source timestamps keep their original dates; archived context is not treated as current vessel behavior."
 };
 
 // Convert real MARAD rows into candidate signals. Each row becomes one signal.
@@ -275,9 +272,9 @@ const vesselSignals: DraftCandidateSignal[] = buildVesselSignals();
 export const DRAFT_CASE: DraftCase = {
   id: "case:draft:marad-2026-004-cluster",
   title: "Hormuz Watch Box dark-vessel proposal",
-  tagline: `${(data.summary?.intentional_disabling_count ?? rows.length) + vesselSignals.length} vessels · ${WATCH_CONTEXT.watchBoxName} · 72h review`,
+  tagline: `${(data.summary?.intentional_disabling_count ?? rows.length) + vesselSignals.length} vessels · ${WATCH_CONTEXT.watchBoxName} · real source window`,
   rationale:
-    `${WATCH_CONTEXT.replayAnchor} is the replay anchor for the same custody pattern. Liminal Agents flagged intentional-broadcast-gap events overlapping the active MARAD MSCI 2026-004 advisory corridor and cross-cited the live Danti MarineTraffic feed: ${vesselSignals.length} vessels under flags-of-convenience match the corridor profile. The proposal stays in review until the operator attaches enough signals.`,
+    `Liminal Agents flagged intentional-broadcast-gap events overlapping the active MARAD MSCI 2026-004 advisory corridor and cross-cited the real Danti MarineTraffic feed: ${vesselSignals.length} vessels under flags-of-convenience match the corridor profile. The proposal stays in review until the operator attaches enough real signals.`,
   confidence: 0.72,
   status: "draft",
   candidateSignals: [advisorySignal, ...candidatesFromRows, ...vesselSignals, sanctionsSignal],
@@ -292,4 +289,19 @@ function watchBoxClassification(row: MaradRow): string {
   if (row.marad_classification === "ONE_END_INSIDE") return "one endpoint inside";
   if (row.marad_classification === "OUTSIDE") return "outside the watch box but retained as advisory context for";
   return "pending geofence review for";
+}
+
+function sourceWindowFromRows(inputRows: MaradRow[]): string {
+  const times = inputRows
+    .flatMap((row) => [row.start, row.end])
+    .map((value) => (typeof value === "string" ? Date.parse(value) : NaN))
+    .filter((value) => Number.isFinite(value));
+  if (times.length === 0) return "real source window";
+  const min = Math.min(...times);
+  const max = Math.max(...times);
+  return `${shortDate(min)} to ${shortDate(max)} source window`;
+}
+
+function shortDate(ms: number): string {
+  return new Date(ms).toISOString().slice(0, 10);
 }
