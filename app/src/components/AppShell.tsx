@@ -22,6 +22,7 @@ import { SubstratePanel } from "./SubstratePanel.tsx";
 import { WorkflowStrip } from "./WorkflowStrip.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
 import { AiNoticeToast } from "./AiNoticeToast.tsx";
+import { BroadcastChyron } from "./BroadcastChyron.tsx";
 
 interface AppShellProps {
   scenario: LoadedScenario | null;
@@ -170,6 +171,13 @@ export function AppShell({
       data-resizing-pane={resizingPane ?? undefined}
       style={shellStyle}
     >
+      {/* SHIP-5: Persistent broadcast chyron — operating context lower-
+          third in archival monotype, anchored at the very top of the
+          shell. Plays in the operator's peripheral vision the entire
+          demo. Names the canonical pilot context (5TH FLEET · 0200Z)
+          from frame 1. Per INSPO_TO_SURFACE_MAP.md §SHIP-5
+          (Source 10 · aerockrose · Sequoia AI Ascent register). */}
+      <BroadcastChyron scenario={scenario} />
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
         <WorkflowStrip />
