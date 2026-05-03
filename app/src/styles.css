@@ -162,6 +162,96 @@ button:hover {
   text-transform: uppercase;
 }
 
+/* ── Topbar breadcrumb ──────────────────────────────────────────────────────
+   Navigation path from watchfloor → scenario → event → selected case.
+   Replaces the old flat strip of scenario-id + phase-pill + event-chip.
+   Reading direction is left-to-right, root → leaf. The phase pill sits as
+   a small right-aligned chip because phase is a *state of the timeline*,
+   not a navigation level — it tells the operator which beat of the
+   replay they're in, separate from the case-selection breadcrumb.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.topbar-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--color-ink-secondary);
+  letter-spacing: 0.02em;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.topbar-crumbs__seg {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-crumbs__seg--root {
+  color: var(--color-ink-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-size: 10px;
+}
+
+.topbar-crumbs__seg--muted {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.topbar-crumbs__seg--current {
+  color: var(--color-ink-primary);
+  font-weight: 500;
+  max-width: 380px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-crumbs__sep {
+  color: var(--color-ink-tertiary);
+  opacity: 0.5;
+  user-select: none;
+  font-size: 11px;
+}
+
+.topbar-crumbs__event {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.topbar-crumbs__event--event-1 {
+  color: var(--color-decision);
+  background: rgba(110, 168, 254, 0.06);
+  border-color: rgba(110, 168, 254, 0.30);
+}
+
+.topbar-crumbs__event--event-2 {
+  color: var(--color-resolved);
+  background: rgba(78, 160, 138, 0.06);
+  border-color: rgba(78, 160, 138, 0.30);
+}
+
+.topbar-crumbs__phase {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-decision);
+  border: 1px solid rgba(110, 168, 254, 0.30);
+  background: rgba(110, 168, 254, 0.06);
+  padding: 1px 7px;
+  border-radius: 2px;
+}
+
 .app-topbar__status {
   margin-left: auto;
   color: var(--color-ink-tertiary);
@@ -474,6 +564,88 @@ button:hover {
   width: 2px;
   background: var(--color-refused, #d35a5a);
   opacity: 0.6;
+}
+
+/* Redirect annotation: when intent is refused, the row visually routes the
+   operator's attention to the next-step specialist (Collection). The
+   workshop's Crazy 8s Round 2 hero — "specialist card grays out and routes
+   arrow to Collection Planner." Refusal is intelligence-that-moves-people-
+   forward, not a dead end.
+   ----------------------------------------------------------------------- */
+
+.specialist-row--intent-redirecting {
+  position: relative;
+  /* Slight dim on the refused intent row to signal "the system is moving past
+     this specialist for now" without graying out the row entirely (which
+     would lose the structural-guard moment). The dim is operative-grade —
+     visible only as a posture shift, not a strikethrough. */
+}
+
+.specialist-row--intent-redirecting .specialist-row__name,
+.specialist-row--intent-redirecting .specialist-row__summary {
+  opacity: 0.85;
+}
+
+.specialist-row__redirect {
+  /* Lives below the row's three-column grid as a full-width annotation. */
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding-left: 14px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-ink-secondary, #93a3b3);
+  /* Editorial-markup register: this annotation is the system editorializing
+     on its own refusal. Same instinct as Editor's Hand without committing to
+     handwriting (since handwriting was scoped out for video-prep mode). */
+  font-style: italic;
+}
+
+.specialist-row__redirect-arrow {
+  color: var(--color-resolved, #4ea08a);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.specialist-row__redirect-label {
+  color: var(--color-ink-tertiary, #5d6e80);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.specialist-row__redirect-target {
+  color: var(--color-resolved, #4ea08a);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.specialist-row__redirect-caption {
+  color: var(--color-ink-secondary, #93a3b3);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-style: italic;
+}
+
+/* Collection row when it's the redirect target: subtle highlight to mirror
+   the redirect arrow above it. Same posture-shift register as the dimmed
+   intent row, but in the opposite direction (lifted, not dimmed). */
+.specialist-row--collection-redirect-target {
+  background: rgba(78, 160, 138, 0.06); /* --color-resolved at 6% alpha */
+  border-left: 2px solid var(--color-resolved, #4ea08a);
+}
+
+.specialist-row--collection-redirect-target .specialist-row__name {
+  color: var(--color-resolved, #4ea08a);
+  font-weight: 500;
 }
 
 /* Zone 3 — Case File with dragon-fold sticky section headers */

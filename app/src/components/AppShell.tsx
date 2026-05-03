@@ -40,18 +40,12 @@ export function AppShell({
     <div className="app-shell">
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
-        <span style={{ color: "var(--color-ink-tertiary)", fontSize: 12 }}>
-          {scenario ? scenario.state.scenarioRunId : "loading scenario..."}
-        </span>
-        <PhaseBadge state={mapScenarioState} />
-        {eventId && (
-          <span
-            className={`tag ${eventId === "event-2" ? "tag--ok" : "tag--accent"}`}
-            title="Selected case event"
-          >
-            {eventId === "event-1" ? "EVENT 1" : "EVENT 2"}
-          </span>
-        )}
+        <Breadcrumb
+          scenario={scenario}
+          eventId={eventId}
+          selectedAlert={selectedAlert}
+          mapScenarioState={mapScenarioState}
+        />
         <div className="app-topbar__status">
           <SourceIndicator scenario={scenario} />
           <span>{modeLabel}</span>
@@ -106,6 +100,79 @@ function PhaseBadge({ state }: { state: MapScenarioState | undefined }) {
     >
       P{state.phase} · {label}
     </span>
+  );
+}
+
+/**
+ * Topbar breadcrumb — a structured navigation trail from watchfloor → scenario
+ * → event → currently-selected case. Replaces the previous flat strip of
+ * scenario-id + phase-pill + event-chip with a breadcrumb that reads as a
+ * single navigation path. Each segment is clickable in v3.3; for now, the
+ * trail is read-only and signals where in the workflow the operator is.
+ *
+ * The phase pill stays as the rightmost segment because phase is a *state of
+ * the scenario timeline*, not a navigation level. It tells the operator which
+ * beat of the replay they're in, which is different from "which case."
+ */
+function Breadcrumb({
+  scenario,
+  eventId,
+  selectedAlert,
+  mapScenarioState
+}: {
+  scenario: LoadedScenario | null;
+  eventId: string | null;
+  selectedAlert: AlertView | null;
+  mapScenarioState: MapScenarioState | undefined;
+}) {
+  if (!scenario) {
+    return (
+      <nav className="topbar-crumbs" aria-label="Watchfloor breadcrumb">
+        <span className="topbar-crumbs__seg topbar-crumbs__seg--root">Watchfloor</span>
+        <span className="topbar-crumbs__sep" aria-hidden>/</span>
+        <span className="topbar-crumbs__seg topbar-crumbs__seg--muted">loading…</span>
+      </nav>
+    );
+  }
+  // Pull the scenario short-name out of "scenario:alara-01" → "alara-01".
+  const scenarioShort = scenario.state.scenarioRunId.replace(/^scenario:/, "");
+  return (
+    <nav className="topbar-crumbs" aria-label="Watchfloor breadcrumb">
+      <span className="topbar-crumbs__seg topbar-crumbs__seg--root">Watchfloor</span>
+      <span className="topbar-crumbs__sep" aria-hidden>/</span>
+      <span className="topbar-crumbs__seg" title={scenario.state.scenarioRunId}>
+        {scenarioShort}
+      </span>
+      {eventId && (
+        <>
+          <span className="topbar-crumbs__sep" aria-hidden>/</span>
+          <span
+            className={`topbar-crumbs__seg topbar-crumbs__event topbar-crumbs__event--${eventId}`}
+          >
+            {eventId === "event-1" ? "Event 1" : "Event 2"}
+          </span>
+        </>
+      )}
+      {selectedAlert && (
+        <>
+          <span className="topbar-crumbs__sep" aria-hidden>/</span>
+          <span
+            className="topbar-crumbs__seg topbar-crumbs__seg--current"
+            title={selectedAlert.id}
+          >
+            {selectedAlert.title}
+          </span>
+        </>
+      )}
+      {mapScenarioState && (
+        <span
+          className="topbar-crumbs__phase"
+          title={`Phase ${mapScenarioState.phase} · ${PHASE_LABELS[mapScenarioState.phase] ?? "—"}`}
+        >
+          P{mapScenarioState.phase}
+        </span>
+      )}
+    </nav>
   );
 }
 
