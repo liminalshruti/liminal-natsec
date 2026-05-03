@@ -292,6 +292,7 @@ export function AppShell({
         loading={!scenario}
         uiMode={uiMode}
         replayPhase={mapScenarioState?.phase ?? 1}
+        onSelectAlert={onSelectAlert}
       />
       {/* STRETCH-1: substrate-state chyron at the bottom — system's
           continuous self-narration in plain English. Threads non-

@@ -82,6 +82,24 @@
   --color-ink-tertiary:   #7d8898;
   --color-ink-quaternary: #3a4252;   /* NEW — for ambient labels, far receded */
 
+  /* ─── SPACING SCALE — pane-internal consistency ──────────────────────────
+     Four-point scale for padding and gaps. Enforced at .panel__body and
+     between-section gaps. C1 audit: consistent spacing across all panes.
+
+         --s-1: 4px   · command line, tight chrome
+         --s-2: 8px   · standard gap, row spacing
+         --s-3: 12px  · default panel inner padding
+         --s-4: 16px  · section gap, moderate spacing
+         --s-5: 24px  · large gap, zone separation
+         --s-6: 32px  · extra large, heading top margin
+     ────────────────────────────────────────────────────────────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+
   /* ─── DEPRECATED ALIASES — kept for one PR cycle to absorb in-flight work ──
      New code uses semantic names. Old names below resolve to semantic ones,
      so any stale --accent / --warn / --danger / --ok references continue to
@@ -1940,7 +1958,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 .panel__body {
-  padding: 10px 12px;
+  padding: var(--s-3);
   overflow: auto;
   flex: 1;
 }
@@ -1970,9 +1988,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: grid;
   grid-template-columns: 14px 1fr auto;
   gap: 8px;
-  padding: 6px 0;
+  padding: 6px 8px;
   border-bottom: 1px dashed var(--color-edge);
   cursor: pointer;
+  background: transparent;
+  color: var(--color-ink-secondary);
 }
 
 .alert-row:hover {
@@ -1981,7 +2001,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .alert-row[data-active="true"] {
   background: var(--color-elevated);
-  outline: 1px solid var(--color-decision);
+  border-left: 3px solid var(--color-decision);
+  padding-left: calc(8px - 3px);
+  color: var(--color-ink-primary);
 }
 
 .alert-row__pip {
@@ -2034,8 +2056,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .alert-row--typed[data-active="true"] {
   background: var(--color-elevated);
-  outline: 1px solid var(--color-decision);
-  outline-offset: 0;
+  border-left: 3px solid var(--color-decision);
+  padding-left: calc(32px - 3px);
+  color: var(--color-ink-primary);
 }
 
 .alert-row__event {
@@ -4458,6 +4481,39 @@ details.case-file__section > summary:focus-visible {
   padding-top: 10px;
   border-top: 1px dashed var(--color-edge);
   letter-spacing: 0.02em;
+}
+
+/* ── Empty stencil draft action ───────────────────────────────────────────
+   Primary affordance for opening the AI-proposed draft case when no case
+   is selected. The button is visible, primary-colored, tabbable, and
+   keyboard-accessible (Enter key triggers the action). */
+.empty-stencil__draft-action {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--s-5);
+  gap: var(--s-4);
+}
+
+.empty-stencil__draft-button {
+  background: var(--color-decision);
+  color: var(--color-substrate);
+  border: none;
+  padding: var(--s-3) var(--s-4);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.empty-stencil__draft-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 6px rgba(122, 169, 255, 0.3);
+}
+
+.empty-stencil__draft-button:focus-visible {
+  outline: 2px solid var(--color-decision);
+  outline-offset: 2px;
 }
 
 /* ── Substrate alert — drift / stale state ────────────────────────────────
