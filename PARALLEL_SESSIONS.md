@@ -51,7 +51,7 @@ not touch hooks, do not touch any other section of the file.
 
 | Session | Status | Started | Committed | Notes |
 |---|---|---|---|---|
-| S1 | not started | — | — | — |
+| S1 | claimed | 2026-05-02T00:00Z | — | Named-operator card + Workflow strip |
 | S2 | claimed | 2026-05-03T04:55Z | — | replay controls (prev/play-pause/next) |
 | S3 | not started | — | — | — |
 | S4 | not started | — | — | — |
