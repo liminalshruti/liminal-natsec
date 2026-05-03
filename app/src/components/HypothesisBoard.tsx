@@ -5,6 +5,7 @@ import {
   statusForHypothesis,
   type SpineNode
 } from "../lib/spineGraph.ts";
+import { ConfidenceBar } from "./ConfidenceBar.tsx";
 
 interface HypothesisBoardProps {
   hypotheses: SpineNode[];
@@ -80,20 +81,22 @@ export function HypothesisBoard({
           >
             <div className="action-row__title">
               <span>{node.title}</span>
-              <span className="tag tag--accent">
-                {posterior == null ? "—" : `${(posterior * 100).toFixed(0)}%`}
+              <span className={tagClass} style={{ fontSize: 9 }}>
+                {tagText}
               </span>
             </div>
+            <ConfidenceBar
+              value={posterior}
+              variant={status === "primary" ? "primary" : "default"}
+              label={`posterior probability ${posterior == null ? "unknown" : posterior.toFixed(2)}`}
+            />
             <div
               className="action-row__sub"
               style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}
             >
-              <span className={tagClass} style={{ fontSize: 9 }}>
-                {tagText}
-              </span>
               {status === "primary" && (
                 <span style={{ color: "var(--fg-2)" }}>
-                  {counts.supports}+ · {counts.weakens}− · {counts.contradicts}✕
+                  evidence {counts.supports}+ · {counts.weakens}− · {counts.contradicts}✕
                 </span>
               )}
               {node.status && (

@@ -12,6 +12,7 @@ import { specialistReadsForCase } from "../lib/specialistReads.ts";
 
 import { ActionOptions } from "./ActionOptions.tsx";
 import { CaseHandoffBanner } from "./CaseHandoffBanner.tsx";
+import { ConfidenceBar } from "./ConfidenceBar.tsx";
 import { EvidenceDrawer } from "./EvidenceDrawer.tsx";
 import { HypothesisBoard } from "./HypothesisBoard.tsx";
 import { ProvenanceTrace } from "./ProvenanceTrace.tsx";
@@ -45,6 +46,15 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
   );
   const primaryClaim = useMemo(() => primaryClaimForCase(caseId), [caseId]);
   const primaryClaimId = primaryClaim?.id ?? null;
+  const claimPosterior = useMemo(() => {
+    if (!primaryClaim) return null;
+    const data = (primaryClaim.data ?? {}) as Record<string, unknown>;
+    return typeof data.posterior === "number" ? (data.posterior as number) : null;
+  }, [primaryClaim]);
+  const claimStatus = useMemo(() => {
+    if (!primaryClaim) return null;
+    return primaryClaim.status ?? null;
+  }, [primaryClaim]);
 
   const [selectedHypothesisId, setSelectedHypothesisId] = useState<string | null>(null);
 
@@ -72,13 +82,31 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
         <div className="kv__k">claim</div>
         <div className="kv__v" style={{ wordBreak: "break-all" }}>
           {primaryClaimId ?? "—"}
+          {claimStatus && (
+            <span
+              className={
+                claimStatus.toLowerCase().includes("contested") ||
+                claimStatus.toLowerCase().includes("review")
+                  ? "tag tag--warn"
+                  : "tag"
+              }
+              style={{ marginLeft: 6, fontSize: 9 }}
+            >
+              {claimStatus}
+            </span>
+          )}
         </div>
-        <div className="kv__k">status</div>
+        <div className="kv__k">posterior</div>
+        <div className="kv__v">
+          <ConfidenceBar value={claimPosterior} variant="primary" />
+        </div>
+        <div className="kv__k">alert</div>
         <div className="kv__v">
           <span className="tag tag--warn">{selectedAlert.status}</span>
+          <span style={{ color: "var(--fg-2)", marginLeft: 8 }}>
+            score {selectedAlert.severity.toFixed(2)}
+          </span>
         </div>
-        <div className="kv__k">score</div>
-        <div className="kv__v">{selectedAlert.severity.toFixed(2)}</div>
       </div>
 
       <HypothesisBoard

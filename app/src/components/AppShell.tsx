@@ -17,7 +17,8 @@ interface AppShellProps {
   mapScenarioState: MapScenarioState | undefined;
   onMapScenarioChange: (next: MapScenarioState) => void;
   resetSignal: number;
-  onReset: () => void;
+  onReset: (mode?: "soft" | "full") => void;
+  resetToast: string | null;
 }
 
 export function AppShell({
@@ -29,13 +30,14 @@ export function AppShell({
   mapScenarioState,
   onMapScenarioChange,
   resetSignal,
-  onReset
+  onReset,
+  resetToast
 }: AppShellProps) {
   const eventId = eventIdFromCaseId(selectedCaseId);
   return (
     <div className="app-shell">
       <header className="app-topbar">
-        <span className="app-topbar__brand">SeaForge / Watchfloor</span>
+        <span className="app-topbar__brand">SeaForge · Watchfloor</span>
         <span style={{ color: "var(--fg-2)", fontSize: 12 }}>
           {scenario ? scenario.state.scenarioRunId : "loading scenario..."}
         </span>
@@ -72,7 +74,14 @@ export function AppShell({
         scenario={scenario}
         mapScenarioState={mapScenarioState}
         onReset={onReset}
+        onSelectAlert={onSelectAlert}
+        alerts={scenario?.state.alerts ?? []}
       />
+      {resetToast && (
+        <div className="reset-toast" role="status" aria-live="polite">
+          {resetToast}
+        </div>
+      )}
     </div>
   );
 }

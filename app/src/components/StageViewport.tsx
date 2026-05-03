@@ -28,7 +28,7 @@ export function StageViewport({
         {loading ? (
           <div className="stage-placeholder">
             <div className="stage-placeholder__inner">
-              <div className="stage-placeholder__case">preparing watchfloor...</div>
+              <div className="stage-placeholder__case">loading scenario...</div>
             </div>
           </div>
         ) : (

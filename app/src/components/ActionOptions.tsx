@@ -33,7 +33,7 @@ export function ActionOptions({ actions, ruleApplication }: ActionOptionsProps) 
         const tagText = entry.isRecommended
           ? "RECOMMENDED"
           : entry.wasPriorTop
-          ? "WAS TOP"
+          ? "PRIOR TOP"
           : `#${index + 1}`;
         return (
           <div key={entry.node.id} className="action-row">

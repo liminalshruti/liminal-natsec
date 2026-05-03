@@ -59,8 +59,9 @@ function RefusalCard({ read }: { read: SpecialistReadRecord }) {
           </>
         )}
         <div className="refusal-card__footnote">
-          The system would not produce a hostile-intent claim from this evidence
-          set. Honest refusal is preserved in the case record.
+          The Intent specialist did not produce a claim — the evidence set does
+          not meet the bounded-input threshold. The refusal is preserved in the
+          case record.
         </div>
       </div>
     </div>

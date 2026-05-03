@@ -140,8 +140,7 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
             borderRadius: 2
           }}
         >
-          Saved R-001 — re-open the second case to see the changed
-          recommendation.
+          R-001 saved · select Event 2 to see the changed recommendation.
         </div>
       )}
     </>
