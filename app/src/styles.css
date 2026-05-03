@@ -2787,3 +2787,25 @@ button:hover {
   /* DSL renders as a code-block-like inset so the rule text reads as a
      machine-evaluable artifact, distinct from the operator's narrative. */
 }
+
+/* Vault-framing meta on case-file section headers — workshop principle:
+   "every UI surface should feel like it's holding something." Each section
+   header now has a subtle right-aligned meta line that names what's being
+   held in custody (the brief, the chain, the evidence held, etc). Reads
+   as marginalia on the section verb, not as a competing label. */
+.case-file__section-header > span:first-child {
+  /* Section verb stays primary — same letter-spacing/case as before. */
+  flex: 0 0 auto;
+}
+
+.case-file__section-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary);
+  text-transform: none;
+  font-weight: 400;
+  margin-left: auto;
+  text-align: right;
+  font-style: italic;
+}
