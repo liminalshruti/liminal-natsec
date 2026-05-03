@@ -171,6 +171,15 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
               />
             </div>
           )}
+          {/* STRETCH-6: rule-earning-its-weight compounding edges visual.
+              Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-6 (Source 4 ·
+              Nyk · "mesh compounds visibly"). When a rule fires, the SVG
+              fans out edges from the rule chip to N prior cases the rule
+              now applies to — the durable-doctrine moment made visible.
+              Compounding mesh; review memory as moat. */}
+          {ruleApplication.changed && (
+            <RuleCompoundingEdges ruleId={ruleApplication.ruleId} />
+          )}
         </div>
       )}
       {caseId && !ruleApplication && (
@@ -304,6 +313,102 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
           rule saved · select Event 2 to see the changed recommendation.
         </div>
       )}
+    </div>
+  );
+}
+
+/** STRETCH-6: Rule-earning-its-weight compounding edges.
+ *
+ *  When R-001 fires on a case, fan out edges from the rule chip to
+ *  prior cases the rule now applies to. Demo-grade — the prior cases
+ *  are seeded for the demo (real graph wiring is V-Next), but the
+ *  visual register is the actual point: review memory accumulates,
+ *  rules earn their weight retroactively, doctrine compounds.
+ *
+ *  Per spec STRETCH-6 (Source 4 · Nyk · "mesh compounds visibly"):
+ *    "render the rule's edges fanning out from the rule chip to every
+ *     prior-case node it now touches. Compounding made visible. Judge
+ *     sees the *moat* — review memory as durable doctrine."
+ *
+ *  Composes with SHIP-3: dried evidence in a prior case can be
+ *  re-wetted by a newly-applied rule. Visual contract: dry → wet
+ *  via doctrine.
+ */
+function RuleCompoundingEdges({ ruleId: _ruleId }: { ruleId: string }) {
+  // Demo-seeded prior cases the rule now applies to. Same shape as the
+  // V-Next graph traversal would yield; static for now to keep this
+  // ship contained.
+  const priorCases = [
+    { id: "case_alara_01_event_2_", changed: true, label: "Event 2" },
+    { id: "case_marad_2026_004_cluster_", changed: true, label: "MARAD cluster" },
+    { id: "case_huge_imo9357183_", changed: false, label: "HUGE · IMO 9357183" },
+    { id: "case_qeshm_anchorage_", changed: false, label: "Qeshm anchorage" }
+  ];
+
+  const changedCount = priorCases.filter((c) => c.changed).length;
+
+  return (
+    <div className="rule-compounding" role="region" aria-label="Rule retroactive application">
+      <div className="rule-compounding__head">
+        <span className="rule-compounding__lead">RULE EARNING ITS WEIGHT</span>
+        <span className="rule-compounding__count">
+          {changedCount}/{priorCases.length} prior cases re-ranked
+        </span>
+      </div>
+      <svg
+        className="rule-compounding__svg"
+        viewBox="0 0 320 120"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        {/* Source node — the rule chip pivot */}
+        <circle cx="40" cy="60" r="5" className="rule-compounding__source" />
+        {priorCases.map((c, i) => {
+          const y = 18 + i * 28;
+          return (
+            <g key={c.id} className={`rule-compounding__edge${c.changed ? " rule-compounding__edge--changed" : ""}`}>
+              <path
+                d={`M 45 60 Q 160 ${(60 + y) / 2} 290 ${y}`}
+                className="rule-compounding__path"
+                fill="none"
+              />
+              <circle
+                cx="290"
+                cy={y}
+                r={c.changed ? 4 : 3}
+                className={`rule-compounding__target${
+                  c.changed ? " rule-compounding__target--changed" : ""
+                }`}
+              />
+            </g>
+          );
+        })}
+      </svg>
+      <ul className="rule-compounding__list">
+        {priorCases.map((c) => (
+          <li
+            key={c.id}
+            className={`rule-compounding__item${
+              c.changed ? " rule-compounding__item--changed" : ""
+            }`}
+          >
+            <span
+              className="rule-compounding__pip"
+              aria-hidden="true"
+            >
+              {c.changed ? "●" : "○"}
+            </span>
+            <code className="rule-compounding__case-id">{c.id}</code>
+            <span className="rule-compounding__case-label">{c.label}</span>
+            <span className="rule-compounding__verdict">
+              {c.changed ? "RE-RANKED" : "UNCHANGED"}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <div className="rule-compounding__footer">
+        the rule fires on cases this case never knew about · doctrine compounds
+      </div>
     </div>
   );
 }

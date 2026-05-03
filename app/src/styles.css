@@ -8717,3 +8717,202 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   border-top-color: var(--archival-edge);
   color: var(--archival-ink-faint);
 }
+
+/* ─── STRETCH-6: RULE-COMPOUNDING EDGES ─────────────────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-6 (Source 4 · Nyk).
+   When R-001 fires, fan out edges to N prior cases the rule re-ranks.
+   Compounding mesh; review memory as moat.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.rule-compounding {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-top: 1px dashed var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-ink-secondary);
+}
+
+.panel--working .rule-compounding {
+  border-top-color: var(--archival-edge);
+  color: var(--archival-ink-muted);
+}
+
+.rule-compounding__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.rule-compounding__lead {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 9px;
+  color: var(--color-resolved);
+  font-weight: 600;
+}
+
+.panel--working .rule-compounding__lead {
+  color: var(--archival-stamp);
+}
+
+.rule-compounding__count {
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-tertiary);
+}
+
+.panel--working .rule-compounding__count {
+  color: var(--archival-ink-faint);
+}
+
+.rule-compounding__svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin: 4px 0 8px;
+}
+
+.rule-compounding__source {
+  fill: var(--color-resolved);
+  filter: drop-shadow(0 0 4px rgba(110, 195, 168, 0.6));
+}
+
+.panel--working .rule-compounding__source {
+  fill: var(--archival-stamp);
+}
+
+.rule-compounding__path {
+  stroke: var(--color-edge-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.6;
+}
+
+.rule-compounding__edge--changed .rule-compounding__path {
+  stroke: var(--color-resolved);
+  stroke-width: 1.4;
+  opacity: 0.9;
+  stroke-dashoffset: 320;
+  stroke-dasharray: 320;
+  animation: rule-edge-draw 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes rule-edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.panel--working .rule-compounding__edge--changed .rule-compounding__path {
+  stroke: var(--archival-stamp);
+}
+
+.rule-compounding__target {
+  fill: var(--color-edge-strong);
+}
+
+.rule-compounding__target--changed {
+  fill: var(--color-resolved);
+  filter: drop-shadow(0 0 4px rgba(110, 195, 168, 0.5));
+}
+
+.panel--working .rule-compounding__target--changed {
+  fill: var(--archival-stamp);
+}
+
+.rule-compounding__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rule-compounding__item {
+  display: grid;
+  grid-template-columns: 14px auto 1fr auto;
+  gap: 8px;
+  align-items: baseline;
+  padding: 3px 0;
+  font-size: 9.5px;
+}
+
+.rule-compounding__pip {
+  color: var(--color-edge-strong);
+}
+
+.rule-compounding__item--changed .rule-compounding__pip {
+  color: var(--color-resolved);
+}
+
+.panel--working .rule-compounding__item--changed .rule-compounding__pip {
+  color: var(--archival-stamp);
+}
+
+.rule-compounding__case-id {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.04em;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.panel--working .rule-compounding__case-id {
+  background: rgba(176, 136, 80, 0.06);
+  color: var(--archival-ink-faint);
+}
+
+.rule-compounding__case-label {
+  color: var(--color-ink-secondary);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.panel--working .rule-compounding__case-label {
+  color: var(--archival-ink-muted);
+}
+
+.rule-compounding__verdict {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-edge-strong);
+}
+
+.rule-compounding__item--changed .rule-compounding__verdict {
+  color: var(--color-resolved);
+  font-weight: 500;
+}
+
+.panel--working .rule-compounding__item--changed .rule-compounding__verdict {
+  color: var(--archival-stamp);
+}
+
+.rule-compounding__footer {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--color-edge);
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-ink-tertiary);
+  text-align: center;
+}
+
+.panel--working .rule-compounding__footer {
+  border-top-color: var(--archival-edge);
+  color: var(--archival-ink-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rule-compounding__edge--changed .rule-compounding__path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
