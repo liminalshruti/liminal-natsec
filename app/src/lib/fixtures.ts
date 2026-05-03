@@ -35,7 +35,16 @@ interface FixtureNode {
   data?: Record<string, unknown>;
 }
 
-const SERVER_PATH = "/scenario/state?mode=real";
+// Demo critical path: fixture-mode synthetic Hormuz data is the locked
+// pitch path (per CLAUDE.md "demo critical path = fixtures + structural
+// guard"). Real mode is available via VITE_WATCHFLOOR_MODE=real for live-
+// feed runs, but demo is the default so the app boots into the make-or-
+// break beat with two custody cases preloaded, never an empty real-mode
+// "no real case generated" placeholder.
+const WATCHFLOOR_MODE =
+  ((import.meta as unknown as { env?: Record<string, string> }).env
+    ?.VITE_WATCHFLOOR_MODE) ?? "demo";
+const SERVER_PATH = `/scenario/state?mode=${WATCHFLOOR_MODE}`;
 const FETCH_TIMEOUT_MS = 1500;
 
 export interface LoadedScenario {
