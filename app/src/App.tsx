@@ -5,7 +5,7 @@ import type { ScenarioState as MapScenarioState } from "./components/MapWatchflo
 import { caseIdFromAlertId } from "./lib/spineGraph.ts";
 import { loadScenario, refreshRealScenario, type LoadedScenario } from "./lib/fixtures.ts";
 import { timelineAnchorForCase } from "./map/caseSignalScope.ts";
-import { clearSavedRules } from "./lib/reviewRulesStore.ts";
+import { clearSavedRules, loadSavedRules } from "./lib/reviewRulesStore.ts";
 import { loadUiMode, onUiModeChanged, saveUiMode, type UiMode } from "./lib/uiModeStore.ts";
 
 const DEMO_START_STATE: MapScenarioState = {
@@ -35,10 +35,27 @@ export function App() {
       .then((result) => {
         if (cancelled) return;
         setScenario(result);
-        const firstAlert = result.state.alerts[0] ?? null;
-        setSelectedAlertId(firstAlert?.id ?? null);
+
+        // AUDIT A3: If a rule is saved, prefer the alert linked to EV2 (event-2).
+        // Otherwise default to the first alert (EV1).
+        const savedRules = loadSavedRules();
+        const hasRuleSaved = savedRules.length > 0;
+
+        let selectedAlert = result.state.alerts[0] ?? null;
+        if (hasRuleSaved) {
+          // Find the event-2 alert (contains "event-2" in caseId)
+          const ev2Alert = result.state.alerts.find((alert) => {
+            const caseId = alert.caseId ?? caseIdFromAlertId(alert.id);
+            return caseId?.includes("event-2");
+          });
+          if (ev2Alert) {
+            selectedAlert = ev2Alert;
+          }
+        }
+
+        setSelectedAlertId(selectedAlert?.id ?? null);
         const anchor = timelineAnchorForCase(
-          firstAlert?.caseId ?? (firstAlert ? caseIdFromAlertId(firstAlert.id) : null)
+          selectedAlert?.caseId ?? (selectedAlert ? caseIdFromAlertId(selectedAlert.id) : null)
         );
         if (anchor) {
           setMapScenarioState((current) => ({

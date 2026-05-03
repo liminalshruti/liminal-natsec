@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { classifyStaleness, formatRelative } from "../lib/relativeTime.ts";
 import { caseIdFromAlertId, eventIdFromCaseId } from "../lib/spineGraph.ts";
+import { loadSavedRules } from "../lib/reviewRulesStore.ts";
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
@@ -34,9 +35,17 @@ export function CustodyQueue({
   // visible heartbeat. Operator at 0200 sees time itself moving — the
   // surface reads as alive, not paused.
   const [now, setNow] = useState(() => Date.now());
+  const [savedRules, setSavedRules] = useState(() => loadSavedRules());
+
   useEffect(() => {
     const handle = window.setInterval(() => setNow(Date.now()), 1_000);
     return () => window.clearInterval(handle);
+  }, []);
+
+  // AUDIT A3: Watch for saved rules changes and update state. The pip shows
+  // only when a rule exists. For this demo, R-001 applies to event-2.
+  useEffect(() => {
+    setSavedRules(loadSavedRules());
   }, []);
 
   if (loading) {
@@ -59,6 +68,9 @@ export function CustodyQueue({
         const isActive = alert.id === selectedAlertId;
         const relativeAge = formatRelative(alert.detectedAt, now);
         const staleness = classifyStaleness(alert.detectedAt, now);
+
+        // AUDIT A3: Show rule-applied pip on event-2 when a rule exists in savedRules.
+        const hasRuleApplied = savedRules.length > 0 && eventId === "event-2";
         return (
           <div
             key={alert.id}
@@ -103,6 +115,22 @@ export function CustodyQueue({
                 </span>
                 {staleness === "fresh" && (
                   <span className="alert-row__pulse" aria-hidden />
+                )}
+                {hasRuleApplied && (
+                  <span
+                    className="alert-row__rule-applied-pip"
+                    style={{
+                      display: "inline-block",
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      backgroundColor: "var(--color-refused)",
+                      marginLeft: "8px",
+                      cursor: "default"
+                    }}
+                    title="R-001 applied: rule from prior case changes recommendation"
+                    aria-label="R-001 applied"
+                  />
                 )}
               </div>
             </div>
