@@ -92,7 +92,7 @@ export function MapTelemetryHud({ scenario, scenarioState }: MapTelemetryHudProp
       },
       {
         label: "SOURCE",
-        value: sourceMode === "real cache" ? "REAL" : "FIXTURE",
+        value: sourceMode === "real sources" ? "REAL" : "FIXTURE",
         meta: refreshAgo.toUpperCase(),
         tone: state.mode === "real" ? "ok" : "neutral"
       }

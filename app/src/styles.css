@@ -145,8 +145,8 @@ button:hover {
      hypothesis fan-out). Working panel pins to the 560px right rail — wide
      enough for the verb + specialist reads + case file to read clearly,
      narrow enough that the map dominates the view. Substrate stays at the
-     320px left rail. Left-to-right column order now matches the
-     WorkflowStrip numbering: 01 SUBSTRATE → 02 STAGE → 03 WORKING.
+     320px left rail. Left-to-right column order matches the operator scan:
+     SUBSTRATE → STAGE → WORKING.
      Below 800px viewport height the analysis and case file split into
      bounded scroll regions instead of clipping. */
   --substrate-pane-width: 320px;
@@ -4746,49 +4746,6 @@ details.case-file__section > summary:focus-visible {
   margin: 0;
 }
 
-.workflow-strip {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 10px;
-  letter-spacing: 0.10em;
-  color: var(--color-ink-tertiary);
-  white-space: nowrap;
-  flex: 0 0 auto;
-}
-
-.workflow-strip__pane {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 4px;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-}
-
-.workflow-strip__num {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 12px;
-  letter-spacing: 0;
-}
-
-.workflow-strip__label {
-  font-family: var(--font-mono);
-}
-
-.workflow-strip__sep {
-  margin: 0 4px;
-  color: var(--color-ink-tertiary);
-  opacity: 0.5;
-}
-
-.workflow-strip__pane--active,
-.workflow-strip__pane--active .workflow-strip__num,
-.workflow-strip__pane--active .workflow-strip__label {
-  color: var(--color-decision);
-}
-
-
 /* ─── S2 REPLAY CONTROLS ─── */
 
 .replay-controls {
@@ -4932,9 +4889,8 @@ details.case-file__section > summary:focus-visible {
    Toggled via the topbar chip, /mode demo|live, or Ctrl+Shift+M. Default is
    "demo" (full pitch register). "live" hides the editorial scaffolding that
    reads as walkthrough chrome — handwritten phase prompts on the stage, the
-   driven stipple backdrop, the named-operator persona card, the four-pane
-   workflow tab strip — and disables the one-shot
-   phase-pulse on the breadcrumb. Every functional surface (proof chain, map
+   driven stipple backdrop, and the named-operator persona card — and disables
+   the one-shot phase-pulse on the breadcrumb. Every functional surface (proof chain, map
    data layers, command line, replay controls, banners, animations that
    communicate state change) stays identical in both modes. The toggle is a
    pure presentational layer; data-source mode (scenario.state.mode) is
@@ -4942,8 +4898,7 @@ details.case-file__section > summary:focus-visible {
 
 .app-shell[data-ui-mode="live"] .demo-prompt,
 .app-shell[data-ui-mode="live"] .stage-backdrop,
-.app-shell[data-ui-mode="live"] .named-operator,
-.app-shell[data-ui-mode="live"] .workflow-strip {
+.app-shell[data-ui-mode="live"] .named-operator {
   display: none;
 }
 

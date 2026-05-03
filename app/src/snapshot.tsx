@@ -36,7 +36,6 @@ import { ReviewMemory } from "./components/ReviewMemory.tsx";
 import { SpecialistReads } from "./components/SpecialistReads.tsx";
 import { SubstratePanel } from "./components/SubstratePanel.tsx";
 import { TypedObjectChip } from "./components/TypedObjectChip.tsx";
-import { WorkflowStrip } from "./components/WorkflowStrip.tsx";
 import { WorkingPanel } from "./components/WorkingPanel.tsx";
 
 // DemoPrompt + ReplayControls intentionally NOT imported — both deferred
@@ -205,7 +204,6 @@ const registry: Record<string, { label: string; render: Renderer; wide?: boolean
   // ReplayControls removed per Shayaun + Shruti agreement: hiding-data-
   // until-click was the wrong frame. The demo's beat structure is the
   // demo itself running its replay clock, not a UI affordance to seek.
-  WorkflowStrip: { label: "Workflow strip (topbar)", render: () => <WorkflowStrip /> },
   AiNoticeToast: {
     label: "AI notice toast (banner mode)",
     render: () => (
