@@ -1,6 +1,6 @@
 {
   "source": "GDELT",
-  "generated_at": "2026-05-03T06:12:15.673Z",
+  "generated_at": "2026-05-03T12:23:12.192Z",
   "request": {
     "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=%28%22Strait+of+Hormuz%22+OR+Hormuz%29+%28shipping+OR+tanker+OR+vessel+OR+AIS+OR+GNSS+OR+IRGC+OR+%22Bandar+Abbas%22+OR+Fujairah%29&mode=artlist&format=json&maxrecords=50&timespan=1month&sort=datedesc",
     "method": "GET",
@@ -20,39 +20,499 @@
     "status": 200,
     "statusText": "OK",
     "contentType": "application/json; charset=utf-8",
-    "bytes": 1401
+    "bytes": 22391
   },
   "body": {
     "articles": [
       {
-        "url": "https://www.vetogate.com/5647559",
+        "url": "https://www.straitstimes.com/business/sgx-unit-denies-swiss-traders-allegations-over-inaccurate-middle-east-oil-shipping-costs",
         "url_mobile": "",
-        "title": "في اجتماع خاص ، ترامب يبحث خياراته لخفض أسعار البنزين بعد حصار مضيق هرمز",
-        "seendate": "20260503T054500Z",
-        "socialimage": "",
-        "domain": "vetogate.com",
-        "language": "Arabic",
-        "sourcecountry": "Egypt"
+        "title": "SGX unit denies Swiss trader allegations over inaccurate Middle East oil shipping costs",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://cassette.sphdigital.com.sg/image/straitstimes/3c934f9571c8bf31c3419701760ae001cb1ce1d5f14e5e7da4191a38e568ab76",
+        "domain": "straitstimes.com",
+        "language": "English",
+        "sourcecountry": "Singapore"
       },
       {
-        "url": "https://www.smh.com.au/world/asia/the-iran-war-has-brought-another-vital-shipping-lane-into-sharper-focus-20260429-p5zsc1.html",
+        "url": "https://www.jwire.com.au/trump-iran-war-could-be-renewed/",
         "url_mobile": "",
-        "title": "US - Iran war has brought Malacca Strait into sharper focus",
-        "seendate": "20260503T054500Z",
-        "socialimage": "https://static.ffx.io/images/$zoom_0.2453012873956901%2C$multiply_0.7554%2C$ratio_1.777778%2C$width_1059%2C$x_150%2C$y_27/t_crop_custom/q_86%2Cf_auto/t_metro_analysis_no_age_social_wm/7770c631bd4ad83ce163235efe71f173d1d70dd3",
-        "domain": "smh.com.au",
+        "title": "Trump - Iran War Could Be Renewed Amid Tensions – J - Wire",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://www.jwire.com.au/wp-content/uploads/2026/03/trump.jpg",
+        "domain": "jwire.com.au",
         "language": "English",
         "sourcecountry": "Australia"
       },
       {
-        "url": "http://www.calcuttanews.net/news/279026740/iranian-supertanker-huge-bypasses-us-blockade-with-usd-220-million-oil-cargo-says-tankertrackers",
+        "url": "https://theconversation.com/80-of-africas-fertiliser-is-imported-how-food-systems-can-adapt-to-the-iran-shock-281664",
         "url_mobile": "",
-        "title": "Iranian supertanker  HUGE  bypasses US blockade with USD 220 million oil cargo , says TankerTrackers",
-        "seendate": "20260503T054500Z",
-        "socialimage": "https://image.chitra.live/api/v1/wps/a7fbe81/d255ab4e-9528-4a46-a815-c6e092d369ab/0/ANI-20260503035039-600x315.jpg",
-        "domain": "calcuttanews.net",
+        "title": "80 % of Africa fertiliser is imported : how food systems can adapt to the Iran shock",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://images.theconversation.com/files/732874/original/file-20260428-57-u5y43l.jpg?ixlib=rb-4.1.0&rect=0%2C0%2C6016%2C3008&q=45&auto=format&fit=crop",
+        "domain": "theconversation.com",
+        "language": "English",
+        "sourcecountry": "Australia"
+      },
+      {
+        "url": "https://unn.ua/ru/news/sudam-vrazhdebnikh-stran-pridetsya-platit-za-prokhod-smi-raskrili-namereniya-irana-otnositelno-ormuzskogo-proliva",
+        "url_mobile": "https://unn.ua/ru/amp/sudam-vrazhdebnikh-stran-pridetsya-platit-za-prokhod-smi-raskrili-namereniya-irana-otnositelno-ormuzskogo-proliva",
+        "title": "Судам  враждебных стран  придется платить за проход : СМИ раскрыли намерения Ирана относительно Ормузского пролива",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://unn.ua/img/2026/05/03/1777805178-1022-large.webp",
+        "domain": "unn.ua",
+        "language": "Russian",
+        "sourcecountry": ""
+      },
+      {
+        "url": "https://www.koreatimes.co.kr/foreignaffairs/20260503/korea-weighs-hormuz-mission-options-led-by-us-uk-france-coalitions",
+        "url_mobile": "https://www.koreatimes.co.kr/amp/foreignaffairs/20260503/korea-weighs-hormuz-mission-options-led-by-us-uk-france-coalitions",
+        "title": "Korea weighs Hormuz mission options led by US , united kingdom - France coalitions",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://newsimg.koreatimes.co.kr/2026/05/03/d4ba4894-fa7b-4180-805d-c8335696fccf.jpg",
+        "domain": "koreatimes.co.kr",
+        "language": "English",
+        "sourcecountry": "South Korea"
+      },
+      {
+        "url": "https://www.dailysabah.com/world/mid-east/us-stuck-between-impossible-military-ops-or-bad-deal-irgc",
+        "url_mobile": "https://www.dailysabah.com/world/mid-east/us-stuck-between-impossible-military-ops-or-bad-deal-irgc/amp",
+        "title": "US stuck between  impossible  military ops or  bad deal : IRGC",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://idsb.tmgrup.com.tr/ly/uploads/images/2026/05/03/thumbs/1200x675/439202.jpg",
+        "domain": "dailysabah.com",
+        "language": "English",
+        "sourcecountry": "Turkey"
+      },
+      {
+        "url": "https://aa.com.tr/en/middle-east/trump-must-choose-impossible-war-or-bad-deal-with-iran-says-irgc/3925547",
+        "url_mobile": "",
+        "title": "Trump must choose  impossible  war or  bad deal  with Iran , says IRGC",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://web-cdnprod.aa.com.tr/uploads/Contents/2026/05/03/thumbs_b_c_9c3754f271b480cfb61460758be65fd9.jpg",
+        "domain": "aa.com.tr",
+        "language": "English",
+        "sourcecountry": "Turkey"
+      },
+      {
+        "url": "https://www.theregister.com/2026/05/03/future_royal_navy_drones_high_tech/",
+        "url_mobile": "",
+        "title": "Royal Navy chief backs drones , robot ships",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://regmedia.co.uk/2026/05/01/shutterstockwarship.jpg",
+        "domain": "theregister.com",
+        "language": "English",
+        "sourcecountry": ""
+      },
+      {
+        "url": "http://www.zimbabwestar.com/news/279027026/opec-makes-first-output-decision-after-uae-exit-reuters",
+        "url_mobile": "",
+        "title": "OPEC+ makes first output decision after UAE exit Reuters",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/1a51182/d968f6a1-6129-41df-ae02-c5da7413254d/0/ZWFiNzY1ZTktNWY-600x315.jpg",
+        "domain": "zimbabwestar.com",
+        "language": "English",
+        "sourcecountry": "Zimbabwe"
+      },
+      {
+        "url": "https://www.messenger-inquirer.com/ap/ap_national_news/ap-news-summary-at-6-13-a-m-edt/article_3b1be6ae-900b-54aa-9d89-fe7f6daf9a6d.html",
+        "url_mobile": "",
+        "title": "AP News Summary at 6 : 13 a . m . EDT",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://bloximages.chicago2.vip.townnews.com/messenger-inquirer.com/content/tncms/custom/image/a2a4b15c-9ead-11ee-847f-2b2be1350ebd.jpg",
+        "domain": "messenger-inquirer.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://article.wn.com/view/2026/05/03/strait_of_hormuz_reopening_won_apost_mean_cheaper_shipping_a/",
+        "url_mobile": "",
+        "title": "Strait of Hormuz reopening wont mean cheaper shipping as insurance premiums surge",
+        "seendate": "20260503T120000Z",
+        "socialimage": "",
+        "domain": "article.wn.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://www.iranoilgas.com/news/details.aspx?id=28616&title=Kuwait+did+not+export+crude+oil+in+April:+Tanker+Trackers++",
+        "url_mobile": "",
+        "title": "Kuwait did not export crude oil in April : Tanker Trackers",
+        "seendate": "20260503T120000Z",
+        "socialimage": "http://www.iranoilgas.com/images/kuwait%20map1.jpg",
+        "domain": "iranoilgas.com",
+        "language": "English",
+        "sourcecountry": "Iran"
+      },
+      {
+        "url": "https://www.risingbd.com/international/news/648351",
+        "url_mobile": "https://www.risingbd.com/amp/international/news/648351",
+        "title": "ইসরায়েলের সঙ্গে সম্পর্ক জোরদারে প্রস্তুত সোমালিল্যান্ড",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://www.risingbd.com/media/imgAll/2026April/Somaliland-2605030948-fb.jpg",
+        "domain": "risingbd.com",
+        "language": "Bengali",
+        "sourcecountry": "Bangladesh"
+      },
+      {
+        "url": "https://profile.ru/news/abroad/ormuzskij-krizis-sudohodstvo-vnov-pochti-ostanovilos-1855145/",
+        "url_mobile": "https://profile.ru/news/abroad/ormuzskij-krizis-sudohodstvo-vnov-pochti-ostanovilos-1855145/amp/",
+        "title": "Ормузский кризис : судоходство вновь почти остановилось",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://profile.ru/wp-content/uploads/1855145-fb.jpeg",
+        "domain": "profile.ru",
+        "language": "Russian",
+        "sourcecountry": "Russia"
+      },
+      {
+        "url": "https://www.westhawaiitoday.com/2026/05/03/nation-world-news/trump-says-us-could-restart-iran-strikes-if-they-misbehave/",
+        "url_mobile": "",
+        "title": "Trump says US could restart Iran strikes  if they misbehave  ",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://www.westhawaiitoday.com/wp-content/uploads/sites/8/2026/05/web1_2026-05-02T114742Z_815300363_RC2V0LAWHFDK_RTRMADP_3_IRAN-CRISIS-DAILYLIFE.jpg",
+        "domain": "westhawaiitoday.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://www.interfax.ru/world/1087400",
+        "url_mobile": "https://www.interfax.ru/amp/1087400",
+        "title": "КСИР заявил , что Трамп должен выбрать между невозможной военной операцией и плохим соглашением",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://www.interfax.ru/aspimg/1087400.jpg",
+        "domain": "interfax.ru",
+        "language": "Russian",
+        "sourcecountry": "Russia"
+      },
+      {
+        "url": "https://www.kmjnow.com/2026/05/03/hormuz-blockade-keeps-global-energy-prices-high-as-talks-stall/",
+        "url_mobile": "",
+        "title": "Hormuz Blockade Keeps Global Energy Prices High as Talks Stall",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/4023/files/2026/05/878617662-1200x675.jpg",
+        "domain": "kmjnow.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://tribune.com.pk/story/2606142/opec-set-to-agree-third-oil-output-quota-hike-since-hormuz-closure-sources-say",
+        "url_mobile": "",
+        "title": "OPEC+ set to agree third oil output quota hike since Hormuz closure , sources say",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://i.tribune.com.pk/media/images/ships-and-boats-in-the-strait-of-hormuz1777802693-0/ships-and-boats-in-the-strait-of-hormuz1777802693-0-640x480.webp",
+        "domain": "tribune.com.pk",
+        "language": "English",
+        "sourcecountry": "Pakistan"
+      },
+      {
+        "url": "http://www.bignewsnetwork.com/news/279027026/opec-makes-first-output-decision-after-uae-exit-reuters",
+        "url_mobile": "",
+        "title": "OPEC+ makes first output decision after UAE exit Reuters",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/1a51182/d968f6a1-6129-41df-ae02-c5da7413254d/0/ZWFiNzY1ZTktNWY-600x315.jpg",
+        "domain": "bignewsnetwork.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://aa.com.tr/en/world/us-military-aircraft-activity-surges-toward-middle-east-amid-iran-tensions-tracker/3925404",
+        "url_mobile": "",
+        "title": "US military aircraft activity surges toward Middle East amid Iran tensions : Tracker",
+        "seendate": "20260503T120000Z",
+        "socialimage": "https://web-cdnprod.aa.com.tr/uploads/Contents/2026/05/03/thumbs_b_c_29bb9a0ea6a698fc164b87b206c7e666.jpg",
+        "domain": "aa.com.tr",
+        "language": "English",
+        "sourcecountry": "Turkey"
+      },
+      {
+        "url": "https://arabic.cnn.com/middle-east/article/2026/05/03/us-and-iran-as-far-apart-as-ever-on-strait-of-hormuz",
+        "url_mobile": "https://arabic.cnn.com/amphtml/middle-east/article/2026/05/03/us-and-iran-as-far-apart-as-ever-on-strait-of-hormuz",
+        "title": "أين نقف الآن بمضيق هرمز وسط التباعد الأمريكي الإيراني الأوسع",
+        "seendate": "20260503T120000Z",
+        "socialimage": "",
+        "domain": "arabic.cnn.com",
+        "language": "Arabic",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "http://eng.chinamil.com.cn/2025xb/W/N/16458729.html",
+        "url_mobile": "",
+        "title": "Iranian media reveal some details on proposal sent to U . S . via Pakistan",
+        "seendate": "20260503T114500Z",
+        "socialimage": "",
+        "domain": "eng.chinamil.com.cn",
+        "language": "English",
+        "sourcecountry": "China"
+      },
+      {
+        "url": "http://www.nigeriasun.com/news/279027026/opec-makes-first-output-decision-after-uae-exit-reuters",
+        "url_mobile": "",
+        "title": "OPEC+ makes first output decision after UAE exit Reuters",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/1a51182/d968f6a1-6129-41df-ae02-c5da7413254d/0/ZWFiNzY1ZTktNWY-600x315.jpg",
+        "domain": "nigeriasun.com",
+        "language": "English",
+        "sourcecountry": "Nigeria"
+      },
+      {
+        "url": "https://www.clactonandfrintongazette.co.uk/news/national/uk-today/26074728.brits-warned-summer-flights-may-change-amid-new-airline-rule/",
+        "url_mobile": "",
+        "title": "Brits warned summer flights may change amid new airline rule | Clacton and Frinton Gazette",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://www.clactonandfrintongazette.co.uk/resources/images/20867727.jpg?type=og-image",
+        "domain": "clactonandfrintongazette.co.uk",
+        "language": "English",
+        "sourcecountry": "United Kingdom"
+      },
+      {
+        "url": "https://www.chelmsfordweeklynews.co.uk/news/national/uk-today/26074728.brits-warned-summer-flights-may-change-amid-new-airline-rule/",
+        "url_mobile": "",
+        "title": "Brits warned summer flights may change amid new airline rule",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://www.chelmsfordweeklynews.co.uk/resources/images/20867727.jpg?type=og-image",
+        "domain": "chelmsfordweeklynews.co.uk",
+        "language": "English",
+        "sourcecountry": "United Kingdom"
+      },
+      {
+        "url": "http://www.strategypage.com/htmw/htproc/articles/2026050355819.aspx",
+        "url_mobile": "",
+        "title": "Procurement : Commercial Shipbuilding Surge",
+        "seendate": "20260503T114500Z",
+        "socialimage": "",
+        "domain": "strategypage.com",
+        "language": "English",
+        "sourcecountry": "China"
+      },
+      {
+        "url": "http://www.philippinetimes.com/news/279027026/opec-makes-first-output-decision-after-uae-exit-reuters",
+        "url_mobile": "",
+        "title": "OPEC+ makes first output decision after UAE exit Reuters",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/1a51182/d968f6a1-6129-41df-ae02-c5da7413254d/0/ZWFiNzY1ZTktNWY-600x315.jpg",
+        "domain": "philippinetimes.com",
+        "language": "English",
+        "sourcecountry": "Philippines"
+      },
+      {
+        "url": "https://www.finanzen.ch/nachrichten/rohstoffe/mit-dem-krieg-im-iran-zeichnen-sich-neue-seehandelsrouten-ab-1036098033",
+        "url_mobile": "",
+        "title": "Mit dem Krieg im Iran zeichnen sich neue Seehandelsrouten ab",
+        "seendate": "20260503T114500Z",
+        "socialimage": "",
+        "domain": "finanzen.ch",
+        "language": "German",
+        "sourcecountry": "Switzerland"
+      },
+      {
+        "url": "https://www.witneygazette.co.uk/news/national/uk-today/26074728.brits-warned-summer-flights-may-change-amid-new-airline-rule/",
+        "url_mobile": "",
+        "title": "Brits warned summer flights may change amid new airline rule",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://www.witneygazette.co.uk/resources/images/20867727.jpg?type=og-image",
+        "domain": "witneygazette.co.uk",
+        "language": "English",
+        "sourcecountry": "United Kingdom"
+      },
+      {
+        "url": "https://www.nbcconnecticut.com/news/national-international/trump-reviewing-iran-new-offer-but-doubts-is-acceptable/3732205/",
+        "url_mobile": "https://www.nbcconnecticut.com/news/national-international/trump-reviewing-iran-new-offer-but-doubts-is-acceptable/3732205/?amp=1",
+        "title": "Trump says he is reviewing Iran offer , doubts it is  acceptable  – NBC Connecticut",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://media.nbcconnecticut.com/2026/05/GettyImages-2273706708.jpg?quality=85&strip=all",
+        "domain": "nbcconnecticut.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://www.cnbc.com/2026/05/03/opec-announces-188000-barrels-per-day-output-increase-.html",
+        "url_mobile": "https://www.cnbc.com/amp/2026/05/03/opec-announces-188000-barrels-per-day-output-increase-.html",
+        "title": "OPEC+ announces 188 , 000 barrels - per - day output increase",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://image.cnbcfm.com/api/v1/image/108271644-1772399860135-gettyimages-2263738708-raa-opeciran260301_npSEy.jpeg?v=1772399905",
+        "domain": "cnbc.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://www.1007thetiger.com/2026/05/03/hormuz-blockade-keeps-global-energy-prices-high-as-talks-stall/",
+        "url_mobile": "",
+        "title": "Hormuz Blockade Keeps Global Energy Prices High as Talks Stall",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/4023/files/2026/05/878617662-1200x675.jpg",
+        "domain": "1007thetiger.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://www.nakedcapitalism.com/2026/05/whats-in-the-price-of-a-gallon-of-gas.html",
+        "url_mobile": "",
+        "title": "What in the Price of a Gallon of Gas ? | naked capitalism",
+        "seendate": "20260503T114500Z",
+        "socialimage": "",
+        "domain": "nakedcapitalism.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://www.focus.de/finanzen/iran-legt-usa-neues-hormus-angebot-vor-oelpreis-sinkt_442af84e-0b1d-4d43-8a60-962da6f00d57.html",
+        "url_mobile": "",
+        "title": "Iran legt united states neues Hormus - Angebot vor : Ölpreis sinkt",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://quadro.burda-forward.de/ctf/ca4e68cf-d09f-4db4-9b49-d6d49c92fe80.16745348-8675-4d2c-8446-4c856e3a2053.jpg?im=RegionOfInterestCrop=(1200,630),regionOfInterest=(2432,1564)&hash=4de036c1027fb60bc1bc030b513043b503decdab9167b2e81d3326b1ef5b93a8",
+        "domain": "focus.de",
+        "language": "German",
+        "sourcecountry": "Germany"
+      },
+      {
+        "url": "https://www.kabc.com/2026/05/03/hormuz-blockade-keeps-global-energy-prices-high-as-talks-stall/",
+        "url_mobile": "",
+        "title": "Hormuz Blockade Keeps Global Energy Prices High as Talks Stall",
+        "seendate": "20260503T114500Z",
+        "socialimage": "https://media-cdn.socastsrm.com/wordpress/wp-content/blogs.dir/4023/files/2026/05/878617662-1200x675.jpg",
+        "domain": "kabc.com",
+        "language": "English",
+        "sourcecountry": "United States"
+      },
+      {
+        "url": "https://internasional.kompas.com/read/2026/05/03/181137570/iran-sebut-as-terjebak-antara-operasi-militer-mustahil-dan-kesepakatan",
+        "url_mobile": "",
+        "title": "Iran Sebut AS Terjebak antara Operasi Militer Mustahil dan Kesepakatan Buruk",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://asset.kompas.com/crops/hjvisbgP4JO69dxdVastTD-wrhU=/0x0:6000x4000/1200x675/filters:watermark(data/photo/2026/01/30/697c815a5f0b9.png,0,-0,1)/data/photo/2026/03/09/69aec686b7358.jpg",
+        "domain": "internasional.kompas.com",
+        "language": "Indonesian",
+        "sourcecountry": "Indonesia"
+      },
+      {
+        "url": "http://www.iranherald.com/news/279026791/white-house-appoints-nick-stewart-as-adviser-to-diplomatic-team-for-iran-peace-talks",
+        "url_mobile": "",
+        "title": "White House appoints Nick Stewart as adviser to diplomatic team for Iran peace talks",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/2774a48/067ce47b-e7e6-478d-ba52-d67848824f87/0/ANI-20260503052627-600x315.jpg",
+        "domain": "iranherald.com",
+        "language": "English",
+        "sourcecountry": "Iran"
+      },
+      {
+        "url": "https://www.kreiszeitung.de/politik/iran-krieg-erneute-kaempfe-mit-den-usa-wahrscheinlich-erklaert-teheran-trump-zr-94289073.html",
+        "url_mobile": "",
+        "title": "Wackelige Waffenruhe : Iran rechnet mit erneuten Kämpfen gegen US - Militär",
+        "seendate": "20260503T113000Z",
+        "socialimage": "",
+        "domain": "kreiszeitung.de",
+        "language": "German",
+        "sourcecountry": "Germany"
+      },
+      {
+        "url": "https://inews.hket.com/article/4122972/%E4%B8%AD%E6%9D%B1%EF%BD%9C%E4%B9%9F%E9%96%80%E8%AD%89%E6%B2%B9%E8%BC%AA%E9%81%AD%E5%8A%AB%E6%8C%81%20%E9%87%8D%E7%87%83%E6%B5%B7%E9%81%8B%E5%AE%89%E5%85%A8%E7%96%91%E6%85%AE?mtc=80029",
+        "url_mobile": "",
+        "title": "中東｜也門證油輪遭劫持 重燃海運安全疑慮",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://static04.hket.com/res/v3/image/content/4120000/4122972/050326_169_iet_Wan__1200.jpg",
+        "domain": "inews.hket.com",
+        "language": "Chinese",
+        "sourcecountry": "China"
+      },
+      {
+        "url": "http://www.singaporestar.com/news/279023161/singaporean-pm-warns-mideast-crisis-to-prolong-supply-disruptions-raise-recession-risks",
+        "url_mobile": "",
+        "title": "Singaporean PM warns Mideast crisis to prolong supply disruptions , raise recession risks",
+        "seendate": "20260503T113000Z",
+        "socialimage": "",
+        "domain": "singaporestar.com",
+        "language": "English",
+        "sourcecountry": "Singapore"
+      },
+      {
+        "url": "https://inews.hket.com/article/4122990/%E7%BE%8E%E5%9C%8B%E9%97%9C%E7%A8%85%EF%BD%9C%E7%89%B9%E6%9C%97%E6%99%AE%E5%8D%87%E6%AD%90%E7%9B%9F%E6%B1%BD%E8%BB%8A%E8%87%B325-%20%E6%AD%90%E7%9B%9F%E6%89%B9%E4%B8%8D%E5%8F%AF%E6%8E%A5%E5%8F%97?mtc=80029",
+        "url_mobile": "",
+        "title": "美國關稅｜特朗普升歐盟汽車至25 % 歐盟批不可接受",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://static04.hket.com/res/v3/image/content/4120000/4122990/050326_169_iet_Dominic__1200.jpg",
+        "domain": "inews.hket.com",
+        "language": "Chinese",
+        "sourcecountry": "China"
+      },
+      {
+        "url": "http://www.iranherald.com/news/279027026/opec-makes-first-output-decision-after-uae-exit-reuters",
+        "url_mobile": "",
+        "title": "OPEC+ makes first output decision after UAE exit Reuters",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/1a51182/d968f6a1-6129-41df-ae02-c5da7413254d/0/ZWFiNzY1ZTktNWY-600x315.jpg",
+        "domain": "iranherald.com",
+        "language": "English",
+        "sourcecountry": "Iran"
+      },
+      {
+        "url": "https://www.siasat.com/sarv-shakti-becomes-first-india-linked-lpg-tanker-to-cross-hormuz-amid-blockade-3464102/",
+        "url_mobile": "",
+        "title": "Sarv Shakti becomes first India - linked LPG tanker to cross Hormuz amid blockade",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://cdn.siasat.com/wp-content/uploads/2026/05/sarv-shakti-lpg-tanker-tugboat-sea.jpg.jpg",
+        "domain": "siasat.com",
         "language": "English",
         "sourcecountry": "India"
+      },
+      {
+        "url": "http://www.afghanistansun.com/news/279026834/iran-executes-kurdish-man-in-jail-since-2022",
+        "url_mobile": "",
+        "title": "Iran Executes Kurdish Man In Jail Since 2022",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/43eb416/fc5200ab-cf63-4aa0-a189-f7c52dd5c369/0/NDBkYzUzODAtZjE-600x315.jpg",
+        "domain": "afghanistansun.com",
+        "language": "English",
+        "sourcecountry": "Afghanistan"
+      },
+      {
+        "url": "https://alfajertv.com/news/worldnews/728448.html",
+        "url_mobile": "",
+        "title": "مليون دولار للعبور .. أزمة مضيق هرمز تدفع السفن نحو قناة بنما – تلفزيون الفجر",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://alfajertv.com/wp-content/uploads/2026/05/afp_69f706c0d7a0-1777796800.webp",
+        "domain": "alfajertv.com",
+        "language": "Arabic",
+        "sourcecountry": "Israel"
+      },
+      {
+        "url": "http://www.singaporestar.com/news/279027025/tanker-carrying-russian-oil-to-arrive-in-japan-tomorrow",
+        "url_mobile": "",
+        "title": "Tanker carrying Russian oil to arrive in Japan tomorrow",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://image.chitra.live/api/v1/wps/5c484fe/a630189f-f984-4a53-846e-ed8d02562116/0/OWJmMjQ1NDctOTJ-600x315.jpg",
+        "domain": "singaporestar.com",
+        "language": "English",
+        "sourcecountry": "Singapore"
+      },
+      {
+        "url": "https://inews.hket.com/article/4122968/%E4%BC%8A%E6%9C%97%E6%88%B0%E7%88%AD%EF%BD%9CMSC%E6%93%AC%E9%96%8B%E9%80%9A%E6%96%B0%E8%88%AA%E7%B6%AB%20%E7%B9%9E%E9%81%8E%E9%9C%8D%E7%88%BE%E6%9C%A8%E8%8C%B2%E6%B5%B7%E5%B3%BD?mtc=80029",
+        "url_mobile": "",
+        "title": "伊朗戰爭｜MSC擬開通新航綫 繞過霍爾木茲海峽",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://static04.hket.com/res/v3/image/content/4120000/4122968/050326_169_iet_Wan__1200.jpg",
+        "domain": "inews.hket.com",
+        "language": "Chinese",
+        "sourcecountry": "China"
+      },
+      {
+        "url": "https://inews.hket.com/article/4122972/%E4%B8%AD%E6%9D%B1%EF%BD%9C%E4%B9%9F%E9%96%80%E8%AD%89%E6%B2%B9%E8%BC%AA%E9%81%AD%E5%8A%AB%E6%8C%81%20%E9%87%8D%E7%87%83%E6%B5%B7%E9%81%8B%E5%AE%89%E5%85%A8%E7%96%91%E6%85%AE?mtc=80023",
+        "url_mobile": "",
+        "title": "中東｜也門證油輪遭劫持 重燃海運安全疑慮",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://static04.hket.com/res/v3/image/content/4120000/4122972/050326_169_iet_Wan__1200.jpg",
+        "domain": "inews.hket.com",
+        "language": "Chinese",
+        "sourcecountry": "China"
+      },
+      {
+        "url": "https://alfajertv.com/cocktail/economy/728387.html",
+        "url_mobile": "",
+        "title": "لأول مرة منذ حرب الخليج .. صادرات نفط الكويت تهبط إلى  صفر برميل  – تلفزيون الفجر",
+        "seendate": "20260503T113000Z",
+        "socialimage": "https://alfajertv.com/wp-content/uploads/2026/05/sTl4s.webp",
+        "domain": "alfajertv.com",
+        "language": "Arabic",
+        "sourcecountry": "Israel"
       }
     ]
   }

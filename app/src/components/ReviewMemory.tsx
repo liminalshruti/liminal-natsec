@@ -5,6 +5,7 @@ import type { ReviewRuleApplication } from "../lib/spineGraph.ts";
 import {
   clearSavedRules,
   loadSavedRules,
+  onSavedRulesChanged,
   saveRule,
   type SavedReviewRule
 } from "../lib/reviewRulesStore.ts";
@@ -56,7 +57,9 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
   const draftRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
-    setSavedRules(loadSavedRules());
+    const refresh = () => setSavedRules(loadSavedRules());
+    refresh();
+    return onSavedRulesChanged(refresh);
   }, []);
 
   useEffect(() => {

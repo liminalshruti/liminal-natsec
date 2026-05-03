@@ -1,14 +1,14 @@
 {
   "mode": "real",
-  "generated_at": "2026-05-03T05:05:17.140Z",
+  "generated_at": "2026-05-03T06:12:15.673Z",
   "strict_real": true,
-  "dark_gap_threshold_min": 2,
+  "dark_gap_threshold_min": 20,
   "observation_count": 167,
   "track_count": 80,
-  "anomaly_count": 80,
-  "claim_count": 80,
-  "evidence_count": 80,
-  "action_count": 240,
+  "anomaly_count": 0,
+  "claim_count": 0,
+  "evidence_count": 0,
+  "action_count": 0,
   "source_statuses": [
     {
       "source": "AISSTREAM",
@@ -43,5 +43,5 @@
       "recordCount": 50
     }
   ],
-  "empty_reason": null
+  "empty_reason": "Real AIS observations were available, but no dark gap exceeded the configured threshold."
 }

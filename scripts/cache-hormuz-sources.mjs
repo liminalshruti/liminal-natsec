@@ -2,7 +2,7 @@ import { spawn } from "node:child_process";
 import { createHash, randomBytes } from "node:crypto";
 import { resolve4 } from "node:dns/promises";
 import { existsSync } from "node:fs";
-import { mkdir, rm, stat, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { loadConfigIniIntoEnv } from "./load-config-ini.mjs";
 
 loadConfigIniIntoEnv();
@@ -837,37 +837,101 @@ function base64Url(buffer) {
   return Buffer.from(buffer).toString("base64url");
 }
 
+// Synthetic fallback writers all stamp `"fixture_fallback": true` into the JSON
+// they emit. If a cached file is missing that marker, treat it as real data
+// from a prior live profile and refuse to clobber it.
+async function hasRealCacheData(fileName) {
+  const fileUrl = new URL(fileName, outputDir);
+  if (!existsSync(fileUrl)) return false;
+  try {
+    const text = await readFile(fileUrl, "utf8");
+    return !text.includes('"fixture_fallback": true');
+  } catch {
+    return false;
+  }
+}
+
 async function cacheSyntheticMissingSourceFallbacks() {
   const results = [];
-  results.push(await writeSyntheticGfwEventFeed("gfw-hormuz-gaps.json", "public-global-gaps-events:latest", ["GAP"]));
-  results.push(await writeSyntheticGfwEventFeed("gfw-hormuz-loitering.json", "public-global-loitering-events:latest", ["LOITERING"]));
-  results.push(await writeSyntheticGfwEventFeed("gfw-hormuz-port-visits.json", "public-global-port-visits-events:latest", ["PORT_VISIT"]));
-  await writeJson("aisstream-hormuz-sample.json", syntheticAisstreamSample());
-  results.push({ source: "AISSTREAM", ok: true, detail: "AISstream fixture fallback written.", fileName: "aisstream-hormuz-sample.json" });
-  results.push(await writeSyntheticCopernicusMarineCurrents({
-    metadataFileName: "copernicus-marine-hormuz-currents.metadata.json",
-    start: startDate.toISOString(),
-    end: endDate.toISOString()
-  }));
-  results.push(await writeSyntheticShodanMaritimeSearch());
-  results.push(await writeSyntheticAcledEvents("fallback profile"));
-  results.push(await writeSyntheticPortWatchDataset({
-    key: "hormuz-chokepoint-transits",
-    fileName: "portwatch-hormuz-chokepoint-transits.json",
-    title: "Daily chokepoint transit calls and trade volume estimates",
-    sourceItemUrl: "https://portwatch.imf.org/datasets/6cd06d3554474ea7a9aebfcc135021c2/about"
-  }, "fallback profile"));
-  results.push(await writeSyntheticPortWatchDataset({
-    key: "hormuz-disruptions",
-    fileName: "portwatch-hormuz-disruptions.json",
-    title: "PortWatch disruptions affecting Hormuz",
-    sourceItemUrl: "https://portwatch.imf.org/datasets/d9b37bf4b2104c85aebdcc0c1d8a2ab7/about"
-  }, "fallback profile"));
 
+  async function runFallback(fileName, source, writer) {
+    if (await hasRealCacheData(fileName)) {
+      return {
+        source,
+        ok: true,
+        detail: `${fileName}: real cache present — synthetic fallback skipped.`,
+        fileName,
+        skipped: true
+      };
+    }
+    return writer();
+  }
+
+  results.push(await runFallback(
+    "gfw-hormuz-gaps.json",
+    "GLOBAL_FISHING_WATCH",
+    () => writeSyntheticGfwEventFeed("gfw-hormuz-gaps.json", "public-global-gaps-events:latest", ["GAP"])
+  ));
+  results.push(await runFallback(
+    "gfw-hormuz-loitering.json",
+    "GLOBAL_FISHING_WATCH",
+    () => writeSyntheticGfwEventFeed("gfw-hormuz-loitering.json", "public-global-loitering-events:latest", ["LOITERING"])
+  ));
+  results.push(await runFallback(
+    "gfw-hormuz-port-visits.json",
+    "GLOBAL_FISHING_WATCH",
+    () => writeSyntheticGfwEventFeed("gfw-hormuz-port-visits.json", "public-global-port-visits-events:latest", ["PORT_VISIT"])
+  ));
+  results.push(await runFallback("aisstream-hormuz-sample.json", "AISSTREAM", async () => {
+    await writeJson("aisstream-hormuz-sample.json", syntheticAisstreamSample());
+    return { source: "AISSTREAM", ok: true, detail: "AISstream fixture fallback written.", fileName: "aisstream-hormuz-sample.json" };
+  }));
+  results.push(await runFallback(
+    "copernicus-marine-hormuz-currents.metadata.json",
+    "COPERNICUS_MARINE",
+    () => writeSyntheticCopernicusMarineCurrents({
+      metadataFileName: "copernicus-marine-hormuz-currents.metadata.json",
+      start: startDate.toISOString(),
+      end: endDate.toISOString()
+    })
+  ));
+  results.push(await runFallback(
+    "shodan-maritime-ais.json",
+    "SHODAN",
+    () => writeSyntheticShodanMaritimeSearch()
+  ));
+  results.push(await runFallback(
+    "acled-hormuz-events.json",
+    "ACLED",
+    () => writeSyntheticAcledEvents("fallback profile")
+  ));
+  results.push(await runFallback(
+    "portwatch-hormuz-chokepoint-transits.json",
+    "PORTWATCH",
+    () => writeSyntheticPortWatchDataset({
+      key: "hormuz-chokepoint-transits",
+      fileName: "portwatch-hormuz-chokepoint-transits.json",
+      title: "Daily chokepoint transit calls and trade volume estimates",
+      sourceItemUrl: "https://portwatch.imf.org/datasets/6cd06d3554474ea7a9aebfcc135021c2/about"
+    }, "fallback profile")
+  ));
+  results.push(await runFallback(
+    "portwatch-hormuz-disruptions.json",
+    "PORTWATCH",
+    () => writeSyntheticPortWatchDataset({
+      key: "hormuz-disruptions",
+      fileName: "portwatch-hormuz-disruptions.json",
+      title: "PortWatch disruptions affecting Hormuz",
+      sourceItemUrl: "https://portwatch.imf.org/datasets/d9b37bf4b2104c85aebdcc0c1d8a2ab7/about"
+    }, "fallback profile")
+  ));
+
+  const wroteCount = results.filter((result) => result.ok && !result.skipped).length;
+  const skippedCount = results.filter((result) => result.skipped).length;
   return {
     source: "SYNTHETIC_FALLBACKS",
     ok: results.every((result) => result.ok),
-    detail: `${results.filter((result) => result.ok).length}/${results.length} fallback cache files written.`,
+    detail: `${wroteCount}/${results.length} fallback cache files written, ${skippedCount} preserved (real cache present).`,
     files: results.map((result) => result.fileName).filter(Boolean)
   };
 }

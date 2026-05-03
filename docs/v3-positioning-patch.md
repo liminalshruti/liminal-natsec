@@ -208,7 +208,7 @@ At H8 Shayaun pushed a more ambitious scaffold than v3 v1 imagined. The reconcil
 - **Backend is on the critical path** — overrides the v2 PRD §12 "no backend" line, because AIP access is real.
 - **AIP Logic runs the specialists in production**; fixtures replay AIP outputs in demo mode through the same `guard.ts` middleware. Demo critical path = fixtures + structural guard. Live AIP = Q&A fallback only.
 - **Refusal is structurally enforced**, not prompt-suggested. `server/src/specialists/guard.ts` runs 7+ layered server-side checks (citation minimum, INTENT_INDICATOR requirement, posterior threshold, source-restriction, question-phrasing-without-evidence). Outputs that fail any layer are forced to `verdict: refused`. This is a stronger pitch beat than v3 v1 imagined.
-- **Desktop app via Tauri wrap.** Vite dev server runs inside a Tauri shell. `bun run dev:desktop` launches. Shruti owns visual; Shayaun owns map/replay.
+- **Desktop app via Electron wrap.** Vite dev server runs inside an Electron shell (`electron/main.cjs`). `bun run dev:desktop` launches. Shruti owns visual; Shayaun owns map/replay.
 - **Specialist reads grow to 6 rows.** Existing fixture has Kinematics / Identity / Intent / Collection / Visual; v3 adds **Signal Integrity** between Identity and Intent. Visual (M5) and Signal Integrity (v3 patch) are complementary.
 - **The Maven contrast pitch is unchanged** — Round 1 invisible, Round 2 explicit-augmenting.
 - **The make-or-break beat is upgraded.** v3 v1: *"second case changed by review rule + Signal Integrity contested"*. v3 v2: *"…and refusal is enforced server-side by the guard, not requested."*

@@ -25,7 +25,9 @@ Why: AIP Logic timing out mid-pitch would mean a refusal that wasn't earned narr
 
 ### Decision 2 — Desktop app, hard requirement
 
-Vite/React app gets wrapped with **Tauri** for desktop packaging. Shruti owns the visual surface; Tauri shell exists so the demo runs as a real desktop app, not a browser tab. `bun run dev:desktop` launches.
+Vite/React app gets wrapped with **Electron** for desktop packaging (`electron/main.cjs`, `electron/preload.cjs`, electron-builder for release). Shruti owns the visual surface; the Electron shell exists so the demo runs as a real desktop app, not a browser tab. `bun run dev:desktop` launches.
+
+(Earlier drafts of this decision named Tauri; the shipped wrapper is Electron 33. The decision — *desktop wrap, not browser tab* — is unchanged.)
 
 ### Decision 3 — v3 docs are positioning + pitch + Q&A canon; TECHNICAL_PLAN.md is engineering canon
 
@@ -143,7 +145,7 @@ These edits are made in the v3 patch v2 commit. See individual files for details
 1. **Signal Integrity row in `SpecialistReads.tsx`.** Existing fixture has Kinematics, Identity, Intent, Collection, Visual (5). v3 patch wants Kinematics, Identity, **Signal Integrity**, Intent, Collection (5). Visual is M5; Signal Integrity is the v3 patch addition. **Decision: keep both. 6 rows total.** Visual is the cross-modal CLIP read; Signal Integrity is the source-chain integrity read. They're complementary.
 2. **Where does Signal Integrity get its data?** New fixture file `fixtures/maritime/source-integrity-checks.json` (per v3 implementation plan §3). Shayaun owns. Connect to specialists registry under `name: "signal_integrity"`.
 3. **Causal line wiring.** "Intent refused because Signal Integrity contested" — does this read from `triggers_refusal_for` in fixture, or from the actual guard layer that fired? **Decision: read from guard report.** When `guard.ts` returns `forced_refused: true` with `layers: ["intent_indicator", "signal_integrity_contested"]`, the UI displays *"Intent refused because [Layer 2: INTENT_INDICATOR missing] AND [Layer 8: signal_integrity_contested]"*. Layer 8 is a v3-patch addition Shayaun adds to `guard.ts`.
-4. **Tauri wrap.** `bun run dev:desktop` launches a Tauri shell pointing at the Vite dev server. No code changes inside `app/`. Shruti owns visual; the wrap is invisible.
+4. **Electron wrap.** `bun run dev:desktop` launches an Electron shell (`electron/main.cjs`) pointing at the Vite dev server. No code changes inside `app/`. Shruti owns visual; the wrap is invisible.
 
 ---
 

@@ -3,6 +3,7 @@
 // top so the "next case changed" beat can reflect either source.
 
 const STORAGE_KEY = "seaforge:review-rules:v1";
+const CHANGE_EVENT = "liminal:review-rules-changed";
 
 export interface SavedReviewRule {
   id: string;
@@ -44,6 +45,7 @@ export function saveRule(rule: SavedReviewRule): SavedReviewRule[] {
   } catch {
     // best-effort; storage may be full
   }
+  notifyReviewRulesChanged();
   return next;
 }
 
@@ -52,6 +54,31 @@ export function clearSavedRules(): void {
   if (!storage) return;
   try {
     storage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+  notifyReviewRulesChanged();
+}
+
+export function onSavedRulesChanged(callback: () => void): () => void {
+  const storageListener = (event: StorageEvent) => {
+    if (event.key === STORAGE_KEY) callback();
+  };
+  const localListener = () => callback();
+
+  window.addEventListener("storage", storageListener);
+  window.addEventListener(CHANGE_EVENT, localListener);
+  return () => {
+    window.removeEventListener("storage", storageListener);
+    window.removeEventListener(CHANGE_EVENT, localListener);
+  };
+}
+
+function notifyReviewRulesChanged(): void {
+  try {
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent(CHANGE_EVENT));
+    }
   } catch {
     // ignore
   }

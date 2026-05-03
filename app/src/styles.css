@@ -79,7 +79,7 @@
 
   --color-ink-primary:    #e6ecf3;   /* slightly brighter — frontier readability */
   --color-ink-secondary:  #99a4b5;
-  --color-ink-tertiary:   #5b6577;
+  --color-ink-tertiary:   #7d8898;
   --color-ink-quaternary: #3a4252;   /* NEW — for ambient labels, far receded */
 
   /* ─── DEPRECATED ALIASES — kept for one PR cycle to absorb in-flight work ──
@@ -283,14 +283,52 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .topbar-crumbs__phase {
   margin-left: auto;
-  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-decision);
-  border: 1px solid rgba(110, 168, 254, 0.30);
-  background: rgba(110, 168, 254, 0.06);
-  padding: 1px 7px;
+  border: 1px solid rgba(122, 169, 255, 0.55);
+  background: rgba(122, 169, 255, 0.08);
+  padding: 2px 9px;
   border-radius: 2px;
+  transition: border-color 220ms ease, background 220ms ease;
+}
+
+.topbar-crumbs__phase-pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-decision);
+  box-shadow: 0 0 0 0 rgba(122, 169, 255, 0.55);
+}
+
+/* Phase change = key swap on the badge → component remounts → keyframe
+   replays once. The pip pulses twice over 1.4s so judges see the phase
+   advance without the badge becoming a marketing animation. */
+.topbar-crumbs__phase--just-changed {
+  animation: phase-frame-pulse 1400ms ease-out 1;
+}
+
+.topbar-crumbs__phase--just-changed .topbar-crumbs__phase-pip {
+  animation: phase-pip-pulse 1400ms ease-out 1;
+}
+
+@keyframes phase-frame-pulse {
+  0%   { border-color: rgba(122, 169, 255, 0.55); background: rgba(122, 169, 255, 0.08); }
+  20%  { border-color: rgba(122, 169, 255, 0.95); background: rgba(122, 169, 255, 0.20); }
+  60%  { border-color: rgba(122, 169, 255, 0.75); background: rgba(122, 169, 255, 0.12); }
+  100% { border-color: rgba(122, 169, 255, 0.55); background: rgba(122, 169, 255, 0.08); }
+}
+
+@keyframes phase-pip-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(122, 169, 255, 0.65); }
+  40%  { box-shadow: 0 0 0 4px rgba(122, 169, 255, 0); }
+  60%  { box-shadow: 0 0 0 0 rgba(122, 169, 255, 0.45); }
+  100% { box-shadow: 0 0 0 4px rgba(122, 169, 255, 0); }
 }
 
 /* ── DATA SOURCES chip cluster ──────────────────────────────────────────────
@@ -298,7 +336,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
    custody story: judges see vessel tracks AND see the 14 data sources
    converging — AIS feeds, satellite imagery (Sentinel via Copernicus),
    sanctions (OpenSanctions), port-state (UKMTO), maritime warnings (NAVAREA),
-   fishing/loitering (GFW), AI-port scans (Shodan/Censys), conflict events
+   fishing/loitering (GFW), AI-port scans (Shodan), conflict events
    (ACLED), OSINT (Exa), and the ontology layer (Foundry).
 
    Without this overlay the multi-modality is invisible — the map looks like
@@ -325,7 +363,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   font-family: var(--font-mono);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  max-width: 100%;
+  max-width: min(500px, calc(100% - 24px));
   transition: opacity 180ms ease;
   opacity: 0.72;
 }
@@ -339,7 +377,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
 }
 
@@ -376,10 +414,10 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  padding: 1px 6px 1px 5px;
+  padding: 2px 6px 2px 5px;
   border: 1px solid var(--color-edge);
   border-radius: 2px;
-  font-size: 9px;
+  font-size: 9.5px;
   letter-spacing: 0.04em;
   color: var(--color-ink-secondary);
   white-space: nowrap;
@@ -399,6 +437,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   box-shadow: 0 0 6px rgba(78, 160, 138, 0.5);
 }
 
+.data-source-chip--partial .data-source-chip__pip {
+  background: var(--color-contested);
+  box-shadow: 0 0 6px rgba(224, 153, 107, 0.38);
+}
+
 .data-source-chip--down .data-source-chip__pip {
   background: var(--color-contested);
 }
@@ -409,6 +452,15 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .data-source-chip__label {
   font-family: var(--font-mono);
+}
+
+.data-source-chip__guard {
+  padding-left: 4px;
+  border-left: 1px solid var(--color-edge);
+  color: var(--color-contested);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* ── MapLayers — multi-modal sensor layer toggles ──────────────────────────
@@ -865,10 +917,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 10px;
-  background: rgba(110, 168, 254, 0.12); /* --color-decision @ 12% alpha */
-  border-left: 2px solid var(--color-decision, #60a8ff);
-  font-size: 11px;
+  padding: 8px 12px;
+  background: rgba(122, 169, 255, 0.18); /* --color-decision @ 18% alpha */
+  border-left: 3px solid var(--color-decision, #60a8ff);
+  font-size: 13px;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-decision, #60a8ff);
@@ -1027,12 +1080,12 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .specialist-row {
   display: grid;
-  grid-template-columns: 110px 1fr auto;
-  gap: 6px;
+  grid-template-columns: minmax(104px, 0.24fr) minmax(0, 1fr) auto;
+  gap: 6px 8px;
   padding: 4px 6px;
   font-size: 11px;
   border-radius: 2px;
-  align-items: center;
+  align-items: start;
 }
 
 .specialist-row__name {
@@ -1041,24 +1094,68 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 }
 
 .specialist-row__summary {
-  color: var(--color-ink-tertiary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  color: var(--color-ink-secondary);
+  white-space: normal;
+  line-height: 1.4;
+  min-width: 0;
+}
+
+/* Status group — wraps the bare status chip and (when intent is refused) the
+   STRUCTURAL GUARD stamp. Stacks vertically when both are present so the row
+   does not horizontally explode. */
+.specialist-row__status-group {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
 }
 
 .specialist-row__status {
-  font-size: 9px;
-  letter-spacing: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  color: var(--color-ink-secondary);
+  background: rgba(155, 167, 184, 0.06);
+  align-self: center;
+  white-space: nowrap;
 }
 
 .specialist-row--refused .specialist-row__status {
-  color: var(--color-refused, #d35a5a);
+  color: var(--color-refused, #ec7558);
+  background: rgba(236, 117, 88, 0.20);
+  border-color: rgba(236, 117, 88, 0.65);
 }
 
 .specialist-row--ok .specialist-row__status {
-  color: var(--color-resolved, #5ad88a);
+  color: var(--color-resolved, #6ec3a8);
+  background: rgba(110, 195, 168, 0.10);
+  border-color: rgba(110, 195, 168, 0.40);
+}
+
+/* Signal Integrity gets the contested-amber chip (not refused-red) when its
+   status reads REFUSED — the row's content is "contested" semantically, and
+   the integrity row is already amber-bordered. The chip mirrors that. */
+.specialist-row--integrity.specialist-row--refused .specialist-row__status:not(.specialist-row__status--guard) {
+  color: var(--color-contested, #e0996b);
+  background: rgba(224, 153, 107, 0.20);
+  border-color: rgba(224, 153, 107, 0.65);
+}
+
+/* STRUCTURAL GUARD stamp — appears under the REFUSED chip on the intent row
+   only. Same chip shape as the status pill so the two read as a stacked pair,
+   not as a competing element. The stamp is the on-screen vocabulary judges
+   hear in Beat 6 of the demo script. */
+.specialist-row__status--guard {
+  color: var(--color-refused, #ec7558);
+  background: rgba(236, 117, 88, 0.16);
+  letter-spacing: 0.10em;
+  padding: 1px 6px;
 }
 
 .specialist-row--integrity {
@@ -1094,6 +1191,8 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   border-left: 2px dashed var(--color-refused, #d35a5a);
   margin-left: 0;
   position: relative;
+  background:
+    linear-gradient(90deg, rgba(236, 117, 88, 0.08) 0%, rgba(236, 117, 88, 0.025) 58%, transparent 100%);
 }
 
 .specialist-row--intent-following-integrity::before {
@@ -1105,6 +1204,54 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   width: 2px;
   background: var(--color-refused, #d35a5a);
   opacity: 0.6;
+}
+
+.specialist-row__causal-callout {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 9px 12px;
+  border: 1px solid rgba(236, 117, 88, 0.40);
+  border-left: 3px solid var(--color-refused);
+  border-radius: 2px;
+  background: rgba(236, 117, 88, 0.10);
+  color: var(--color-ink-primary);
+  font-size: 12px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+.specialist-row__causal-label {
+  color: var(--color-refused);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.specialist-row__causal-source {
+  color: var(--color-contested);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
+}
+
+.specialist-row__causal-link {
+  color: var(--color-ink-secondary);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.specialist-row__causal-target {
+  color: var(--color-refused);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.01em;
 }
 
 /* Redirect annotation: when intent is refused, the row visually routes the
@@ -1172,7 +1319,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;
   font-style: italic;
 }
 
@@ -1794,6 +1941,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 .action-row__title {
   display: flex;
   justify-content: space-between;
+  gap: 8px;
   font-size: 12px;
 }
 
@@ -1807,6 +1955,78 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 6px;
+}
+
+.hormuz-intel__coverage {
+  margin: 0 0 8px;
+  padding: 7px 8px;
+  border: 1px solid var(--color-edge);
+  border-left: 3px solid var(--color-decision);
+  border-radius: 2px;
+  background: rgba(20, 23, 31, 0.64);
+}
+
+.hormuz-intel__coverage-label {
+  margin-bottom: 6px;
+  color: var(--color-ink-tertiary);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.hormuz-intel__coverage-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.hormuz-intel__coverage-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 3px 6px;
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--color-ink-secondary);
+  font-size: 10.5px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.hormuz-intel__coverage-pip {
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--color-ink-tertiary);
+}
+
+.hormuz-intel__coverage-chip[data-status="available"] .hormuz-intel__coverage-pip {
+  background: var(--color-resolved);
+  box-shadow: 0 0 6px rgba(110, 195, 168, 0.45);
+}
+
+.hormuz-intel__coverage-chip[data-status="partial"] .hormuz-intel__coverage-pip,
+.hormuz-intel__coverage-chip[data-status="unavailable"] .hormuz-intel__coverage-pip {
+  background: var(--color-contested);
+}
+
+.hormuz-intel__coverage-chip[data-infra-only="true"] {
+  border-color: rgba(224, 153, 107, 0.42);
+}
+
+.hormuz-intel__coverage-state,
+.hormuz-intel__coverage-guard {
+  color: var(--color-ink-tertiary);
+  font-size: 9px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.hormuz-intel__coverage-guard {
+  color: var(--color-contested);
 }
 
 .hormuz-intel__group {
@@ -1837,6 +2057,14 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   margin: 0 6px 6px;
 }
 
+.hormuz-intel__title-tags {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
 .hormuz-intel__row[data-status="unavailable"] {
   border-style: dashed;
 }
@@ -1862,6 +2090,20 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   color: var(--color-contested);
   font-size: 10px;
   margin-top: 5px;
+}
+
+.hormuz-intel__claim-guard {
+  margin-top: 6px;
+  padding: 5px 7px;
+  border: 1px solid rgba(224, 153, 107, 0.38);
+  border-left: 3px solid var(--color-contested);
+  border-radius: 2px;
+  background: rgba(224, 153, 107, 0.07);
+  color: var(--color-contested);
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .hormuz-intel__policy {
@@ -1898,6 +2140,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 .tag--ok {
   border-color: var(--color-resolved);
   color: var(--color-resolved);
+}
+
+.tag--infra {
+  border-color: rgba(224, 153, 107, 0.52);
+  color: var(--color-contested);
 }
 
 .trace-strip {
@@ -2744,23 +2991,85 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   border: 1px solid var(--color-edge);
   border-radius: 2px;
   background: var(--color-elevated);
+  transition: background 200ms ease, opacity 200ms ease,
+    box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.action-list__row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.action-list__row-head > .tchip {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+/* Status pill — RECOMMENDED / PRIOR TOP / PRIMARY. Sits top-right of the row
+   and is the load-bearing read for the make-or-break action diff. Default
+   tint is decision-blue (PRIMARY); RECOMMENDED is resolved-green; PRIOR TOP
+   is contested-amber. 9px caps keeps it operational; the border + tinted
+   background is what makes it scan at 2× speed. */
+.action-list__row-tag {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 1px 7px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  color: var(--color-decision);
+  background: rgba(122, 169, 255, 0.08);
+}
+
+.action-list__row-tag[data-tag="recommended"] {
+  color: var(--color-resolved);
+  background: rgba(110, 195, 168, 0.10);
+}
+
+.action-list__row-tag[data-tag="prior-top"] {
+  color: var(--color-contested);
+  background: rgba(224, 153, 107, 0.08);
 }
 
 .action-list__row--recommended {
-  border-left: 2px solid var(--color-resolved, #4ea08a);
-  background: rgba(78, 160, 138, 0.04);
+  border-color: rgba(110, 195, 168, 0.55);
+  border-left: 3px solid var(--color-resolved, #6ec3a8);
+  background: rgba(110, 195, 168, 0.08);
 }
 
 .action-list__row--prior {
-  border-left: 2px solid var(--color-contested, #d18b3c);
-  background: rgba(209, 139, 60, 0.04);
-  opacity: 0.85;
+  border-left: 3px solid var(--color-contested, #e0996b);
+  background: rgba(224, 153, 107, 0.05);
 }
 
 .action-list__row[data-rule-fire="true"].action-list__row--recommended {
-  /* When a rule has fired, the RECOMMENDED row is the one judges should
-     read first. Subtle box-shadow lifts it slightly from the strip. */
-  box-shadow: 0 0 0 1px rgba(78, 160, 138, 0.2);
+  /* Rule fire moment: lift the recommended row with a soft halo so it
+     dominates the strip. Crossfades in via the .action-list__row transition. */
+  box-shadow: 0 0 0 1px rgba(110, 195, 168, 0.30),
+    0 2px 8px rgba(110, 195, 168, 0.12);
+}
+
+/* Non-recommended rows dim to 0.55 only when a rule has fired AND this
+   specific row is not the recommended one. Rows in the no-rule-fire state
+   stay at full opacity. */
+.action-list__row[data-rule-fire="true"]:not(.action-list__row--recommended) {
+  opacity: 0.55;
+}
+
+/* Demote the prior-top chip label visually when a rule has fired — line-through
+   tells the operator "this WAS the answer" without changing chip text. */
+.action-list__row[data-rule-fire="true"].action-list__row--prior .tchip__label {
+  text-decoration: line-through;
+  text-decoration-style: dashed;
+  text-decoration-color: rgba(224, 153, 107, 0.55);
+  text-decoration-thickness: 1px;
 }
 
 .action-list__kind {
@@ -4174,7 +4483,8 @@ details.case-file__section > summary:focus-visible {
    consistency.
    ──────────────────────────────────────────────────────────────────────── */
 .specialist-row__inputs {
-  flex-basis: 100%;
+  grid-column: 1 / -1;
+  min-width: 0;
   margin-top: 4px;
   padding-top: 4px;
   border-top: 1px dashed var(--color-edge);
@@ -4793,6 +5103,11 @@ button:disabled {
   background: linear-gradient(90deg, rgba(236, 117, 88, 0.04) 0%, transparent 60%);
 }
 
+.specialist-row--intent-following-integrity.specialist-row--refused {
+  background:
+    linear-gradient(90deg, rgba(236, 117, 88, 0.08) 0%, rgba(236, 117, 88, 0.025) 58%, transparent 100%);
+}
+
 .specialist-row__name {
   font-family: var(--font-mono);
   font-size: var(--type-caption);
@@ -5123,4 +5438,54 @@ button:disabled {
   border-bottom: 1px solid rgba(122, 169, 255, 0.18);
   border-left: 1px solid rgba(122, 169, 255, 0.18);
   border-right: 1px solid rgba(122, 169, 255, 0.18);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   DEMO-LAPTOP RESPONSIVE GUARDS
+   The .app-shell grid is tuned for 1440px+. Below that the substrate +
+   stage rails compress so the working panel — which holds the load-bearing
+   demo beats (zone 1 verb, specialist reads, review memory) — never falls
+   below ~360px of horizontal real estate. Demo runs on a laptop or
+   projector (typically 1280–1440 wide); 1024 is the backup-window risk
+   and 1280–1439 is the realistic primary case. Placed at end-of-file so
+   they win the cascade against later component overrides.
+   ────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 1439px) {
+  .app-shell {
+    grid-template-columns: 296px 1fr 480px;
+  }
+  .app-topbar {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .app-shell {
+    grid-template-columns: 272px 1fr 432px;
+  }
+  .app-topbar {
+    gap: 12px;
+    padding: 0 10px;
+  }
+  .app-topbar__brand {
+    font-size: 12px;
+    letter-spacing: -0.005em;
+  }
+  /* Two-line wrap instead of silent ellipsis when the working panel
+     compresses below the comfortable single-line width. */
+  .specialist-row__summary {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+@media (max-width: 1023px) {
+  .app-shell {
+    grid-template-columns: 240px 1fr 380px;
+  }
 }

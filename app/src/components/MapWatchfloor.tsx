@@ -86,6 +86,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const lastFlownCaseIdRef = useRef<string | null | undefined>(undefined);
   const lastFlownPhaseRef = useRef<Phase | null>(null);
   const lastVisiblePingSigRef = useRef<string>("");
+  const lastEmittedStateSigRef = useRef<string>("");
 
   const [load, setLoad] = useState<LoadState>({ kind: "loading" });
   const [mapReady, setMapReady] = useState(false);
@@ -106,7 +107,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
           setInternalState({
             phase: 1,
             clockIso: new Date(bounds.startMs).toISOString(),
-            isPlaying: true
+            isPlaying: false
           });
         }
       })
@@ -142,8 +143,21 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   useEffect(() => {
     if (isControlled) return;
     if (!internalState) return;
+    const sig = scenarioStateSig(internalState);
+    if (sig === lastEmittedStateSigRef.current) return;
+    lastEmittedStateSigRef.current = sig;
     props.onScenarioStateChange?.(internalState);
-  }, [internalState, isControlled, props]);
+  }, [internalState, isControlled, props.onScenarioStateChange]);
+
+  useEffect(() => {
+    if (isControlled) return;
+    if (!props.scenarioState) return;
+    if (!internalState) return;
+    const incomingSig = scenarioStateSig(props.scenarioState);
+    if (incomingSig === lastEmittedStateSigRef.current) return;
+    if (incomingSig === scenarioStateSig(internalState)) return;
+    setInternalState(props.scenarioState);
+  }, [internalState, isControlled, props.scenarioState]);
 
   // --- Playback rAF (uncontrolled mode only) ------------------------------
   // Advances `internalState.clockIso` so the map and the scrubber both move
@@ -273,6 +287,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       lastFlownAlertIdRef.current = undefined;
       lastFlownCaseIdRef.current = undefined;
       lastFlownPhaseRef.current = null;
+      lastEmittedStateSigRef.current = "";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [load.kind === "ready", props.resetSignal, props.rasterTilesUrl]);
@@ -431,6 +446,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
 }
 
 export default MapWatchfloor;
+
+function scenarioStateSig(state: ScenarioState): string {
+  return `${state.phase}|${state.clockIso}|${state.isPlaying ? 1 : 0}`;
+}
 
 // --- Sub-overlays ---------------------------------------------------------
 

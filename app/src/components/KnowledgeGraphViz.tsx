@@ -238,7 +238,13 @@ export function KnowledgeGraphViz({ caseId, fullscreen = false }: KnowledgeGraph
     const measure = () => {
       const rect = el.getBoundingClientRect();
       if (rect.width > 0 && rect.height > 0) {
-        setSize({ width: rect.width, height: rect.height });
+        const width = Math.round(rect.width);
+        const height = Math.round(rect.height);
+        setSize((current) =>
+          current.width === width && current.height === height
+            ? current
+            : { width, height }
+        );
       }
     };
     measure();

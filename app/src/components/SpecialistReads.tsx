@@ -112,7 +112,27 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
           >
             <span className="specialist-row__name">{read.specialist}</span>
             <span className="specialist-row__summary">{read.summary ?? "—"}</span>
-            <span className="specialist-row__status">{read.status}</span>
+            <span className="specialist-row__status-group">
+              <span className="specialist-row__status">{read.status}</span>
+              {isIntent && isRefused && (
+                <span className="specialist-row__status specialist-row__status--guard">
+                  STRUCTURAL GUARD
+                </span>
+              )}
+            </span>
+            {intentFollowingIntegrity && isRefused && (
+              <div
+                className="specialist-row__causal-callout"
+                aria-label="Intent refused because Signal Integrity is contested"
+              >
+                <span className="specialist-row__causal-label">causal guard</span>
+                <span className="specialist-row__causal-source">
+                  Signal Integrity contested
+                </span>
+                <span className="specialist-row__causal-link">therefore</span>
+                <span className="specialist-row__causal-target">Intent refused</span>
+              </div>
+            )}
             {/* Cited inputs strip — names the real cached files this specialist
                 deliberates over. The strip is collapsed (chip-row) by default
                 and expands on click to show the full footnote with sha256 +

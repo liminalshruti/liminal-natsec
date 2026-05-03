@@ -28,7 +28,15 @@ describe("Hormuz intel drawer model", () => {
     const model = buildHormuzIntelDrawerModel();
     const rows = model.groups.flatMap((group) => group.rows);
 
-    assert.equal(model.unavailableRows, 0);
+    assert.equal(model.unavailableRows, 1);
+    assert.ok(
+      rows.some(
+        (row) =>
+          row.source === "OPENSANCTIONS" &&
+          row.status === "unavailable" &&
+          row.summary.includes("OpenSanctions entity-risk search results are unavailable.")
+      )
+    );
     assert.ok(
       rows.some(
         (row) =>

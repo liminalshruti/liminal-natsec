@@ -55,7 +55,8 @@ export interface LoadedScenario {
 }
 
 export async function loadScenario(): Promise<LoadedScenario> {
-  const fallback = buildFallbackState();
+  const fallback =
+    WATCHFLOOR_MODE === "real" ? buildRealFallbackState() : buildDemoFallbackState();
   if (typeof fetch !== "function") {
     return fallbackResult(fallback, "fetch unavailable in runtime");
   }
@@ -205,7 +206,7 @@ function toActionView(record: Record<string, unknown>): ActionView {
   };
 }
 
-function buildFallbackState(): ScenarioStateView {
+function buildRealFallbackState(): ScenarioStateView {
   const summary = realGenerationSummary as Record<string, unknown>;
   const alerts = ((realAnomalyFixtures as FixtureFile).nodes ?? [])
     .filter((node) => node.type === "anomaly")
@@ -242,19 +243,22 @@ function buildFallbackState(): ScenarioStateView {
 }
 
 function buildDemoFallbackState(): ScenarioStateView {
-  const alerts: AlertView[] = ((anomalyFixtures as FixtureFile).nodes ?? []).map((node, index) => ({
-    id: node.id,
-    title: node.title ?? node.id,
-    detectedAt:
-      typeof node.data?.detected_at === "string"
-        ? (node.data.detected_at as string)
-        : typeof node.data?.window_end === "string"
-        ? (node.data.window_end as string)
-        : "",
-    severity: typeof node.data?.score === "number" ? (node.data.score as number) : 0.6,
-    rank: index + 1,
-    status: typeof node.data?.status === "string" ? (node.data.status as string) : "OPEN"
-  }));
+  const alerts: AlertView[] = ((anomalyFixtures as FixtureFile).nodes ?? [])
+    .filter((node) => node.type === "anomaly")
+    .map((node, index) => ({
+      id: node.id,
+      caseId: node.case_id,
+      title: node.title ?? node.id,
+      detectedAt:
+        typeof node.data?.detected_at === "string"
+          ? (node.data.detected_at as string)
+          : typeof node.data?.window_end === "string"
+          ? (node.data.window_end as string)
+          : "",
+      severity: typeof node.data?.score === "number" ? (node.data.score as number) : 0.6,
+      rank: index + 1,
+      status: typeof node.data?.status === "string" ? (node.data.status as string) : "OPEN"
+    }));
 
   const hypotheses: HypothesisView[] = ((hypothesisFixtures as FixtureFile).nodes ?? []).map(
     (node) => ({

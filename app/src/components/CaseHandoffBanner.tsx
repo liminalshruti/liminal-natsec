@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import type { ReviewRuleApplication } from "../lib/spineGraph.ts";
 import { eventIdFromCaseId } from "../lib/spineGraph.ts";
-import { loadSavedRules } from "../lib/reviewRulesStore.ts";
+import { loadSavedRules, onSavedRulesChanged } from "../lib/reviewRulesStore.ts";
 
 interface CaseHandoffBannerProps {
   caseId: string | null;
@@ -16,14 +16,9 @@ export function CaseHandoffBanner({
   const [hasSavedRule, setHasSavedRule] = useState(false);
 
   useEffect(() => {
-    setHasSavedRule(loadSavedRules().some((rule) => rule.active));
-    function onStorage(event: StorageEvent) {
-      if (event.key === "seaforge:review-rules:v1") {
-        setHasSavedRule(loadSavedRules().some((rule) => rule.active));
-      }
-    }
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
+    const refresh = () => setHasSavedRule(loadSavedRules().some((rule) => rule.active));
+    refresh();
+    return onSavedRulesChanged(refresh);
   }, [caseId]);
 
   if (!ruleApplication || !ruleApplication.changed) return null;

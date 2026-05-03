@@ -6,6 +6,12 @@ import { caseIdFromAlertId } from "./lib/spineGraph.ts";
 import { loadScenario, refreshRealScenario, type LoadedScenario } from "./lib/fixtures.ts";
 import { clearSavedRules } from "./lib/reviewRulesStore.ts";
 
+const DEMO_START_STATE: MapScenarioState = {
+  phase: 1,
+  clockIso: "2026-04-18T09:55:00.000Z",
+  isPlaying: false
+};
+
 export function App() {
   const [scenario, setScenario] = useState<LoadedScenario | null>(null);
   const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
@@ -40,8 +46,9 @@ export function App() {
   const handleReset = useCallback(
     (mode: "soft" | "full" = "full") => {
       setResetSignal((value) => value + 1);
-      setMapScenarioState(undefined);
+      setMapScenarioState(DEMO_START_STATE);
       if (mode === "full") {
+        setSelectedAlertId(scenario?.state.alerts[0]?.id ?? null);
         clearSavedRules();
         setResetToast("Refreshing real cache · saved rules cleared");
         refreshRealScenario()
@@ -51,7 +58,7 @@ export function App() {
         setResetToast("Map replay reset");
       }
     },
-    [fetchScenario]
+    [fetchScenario, scenario]
   );
 
   useEffect(() => {

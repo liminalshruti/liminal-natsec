@@ -36,15 +36,32 @@ export function ActionOptions({ actions, ruleApplication }: ActionOptionsProps) 
           : entry.wasPriorTop
           ? "action-list__row action-list__row--prior"
           : "action-list__row";
+        const tagText = entry.isRecommended
+          ? "RECOMMENDED"
+          : entry.wasPriorTop
+          ? "PRIOR TOP"
+          : index === 0
+          ? "PRIMARY"
+          : null;
         return (
           <div key={entry.node.id} className={rowClass} data-rule-fire={ruleChanged}>
-            <TypedObjectChip
-              kind="action"
-              id={entry.node.id}
-              label={entry.node.title}
-              status={status}
-              size="sm"
-            />
+            <div className="action-list__row-head">
+              <TypedObjectChip
+                kind="action"
+                id={entry.node.id}
+                label={entry.node.title}
+                status={status}
+                size="sm"
+              />
+              {tagText && (
+                <span
+                  className="action-list__row-tag"
+                  data-tag={tagText.toLowerCase().replace(/\s+/g, "-")}
+                >
+                  {tagText}
+                </span>
+              )}
+            </div>
             {kind && <div className="action-list__kind">{kind}</div>}
           </div>
         );

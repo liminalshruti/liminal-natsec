@@ -52,6 +52,41 @@ const SOURCE_LABEL: Record<string, string> = {
   BARENTSWATCH: "BarentsWatch"
 };
 
+const CHIP_GROUPS = [
+  {
+    id: "sentinel-copernicus",
+    label: "Sentinel/Copernicus",
+    sources: [
+      "COPERNICUS_CDSE_AUTH",
+      "COPERNICUS_CDSE_STAC",
+      "COPERNICUS_MARINE",
+      "SENTINEL_HUB"
+    ]
+  },
+  {
+    id: "navarea-ukmto",
+    label: "NAVAREA/UKMTO",
+    sources: ["NAVAREA_IX", "UKMTO"]
+  },
+  {
+    id: "shodan-infra",
+    label: "Shodan · infra-only",
+    sources: ["SHODAN"],
+    infrastructureOnly: true
+  }
+] as const;
+
+type RawSource = { key: string; label: string; ok: boolean };
+type ChipStatus = "ok" | "partial" | "down";
+type DisplaySource = {
+  key: string;
+  label: string;
+  ok: boolean;
+  status: ChipStatus;
+  title: string;
+  infrastructureOnly?: boolean;
+};
+
 function readSources(manifestData: SourceManifest): Array<{ key: string; label: string; ok: boolean }> {
   const results = manifestData.results ?? [];
   return results
@@ -68,8 +103,49 @@ function readSources(manifestData: SourceManifest): Array<{ key: string; label: 
     .filter((x): x is { key: string; label: string; ok: boolean } => x !== null);
 }
 
+function displaySources(rawSources: RawSource[]): DisplaySource[] {
+  const byKey = new Map(rawSources.map((source) => [source.key, source]));
+  const consumed = new Set<string>();
+  const grouped = CHIP_GROUPS.flatMap((group) => {
+    const groupSources = group.sources
+      .map((key) => byKey.get(key))
+      .filter((source): source is RawSource => Boolean(source));
+    if (groupSources.length === 0) return [];
+    for (const source of groupSources) consumed.add(source.key);
+    const okCount = groupSources.filter((source) => source.ok).length;
+    const status: ChipStatus =
+      okCount === groupSources.length ? "ok" : okCount > 0 ? "partial" : "down";
+    const sourceNames = groupSources.map((source) => source.label).join(", ");
+    const infrastructureOnly = "infrastructureOnly" in group && group.infrastructureOnly;
+    return [
+      {
+        key: group.id,
+        label: group.label,
+        ok: status === "ok",
+        status,
+        infrastructureOnly,
+        title: infrastructureOnly
+          ? `${sourceNames} · infrastructure-only; not vessel behavior evidence`
+          : `${sourceNames} · ${okCount}/${groupSources.length} available`
+      }
+    ];
+  });
+  const ungrouped = rawSources
+    .filter((source) => !consumed.has(source.key))
+    .map((source) => ({
+      key: source.key,
+      label: source.label,
+      ok: source.ok,
+      status: source.ok ? "ok" as const : "down" as const,
+      title: `${source.key} · ${source.ok ? "available" : "unavailable"}`
+    }));
+
+  return [...grouped, ...ungrouped];
+}
+
 export function DataSourcesChips() {
   const sources = useMemo(() => readSources(manifest as SourceManifest), []);
+  const chips = useMemo(() => displaySources(sources), [sources]);
   const [expanded, setExpanded] = useState(false);
 
   if (sources.length === 0) return null;
@@ -92,14 +168,17 @@ export function DataSourcesChips() {
         </span>
       </div>
       <div className="data-sources-chips__list">
-        {sources.map((s) => (
+        {chips.map((s) => (
           <span
             key={s.key}
-            className={`data-source-chip${s.ok ? " data-source-chip--ok" : " data-source-chip--down"}`}
-            title={`${s.key} · ${s.ok ? "available" : "unavailable"}`}
+            className={`data-source-chip data-source-chip--${s.status}`}
+            title={s.title}
           >
             <span className="data-source-chip__pip" aria-hidden />
             <span className="data-source-chip__label">{s.label}</span>
+            {s.infrastructureOnly && (
+              <span className="data-source-chip__guard">not vessel behavior</span>
+            )}
           </span>
         ))}
       </div>

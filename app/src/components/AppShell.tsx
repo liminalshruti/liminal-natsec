@@ -206,9 +206,11 @@ function Breadcrumb({
       )}
       {mapScenarioState && (
         <span
-          className="topbar-crumbs__phase"
+          key={`phase-${mapScenarioState.phase}`}
+          className="topbar-crumbs__phase topbar-crumbs__phase--just-changed"
           title={`Phase ${mapScenarioState.phase} · ${PHASE_LABELS[mapScenarioState.phase] ?? "—"}`}
         >
+          <span className="topbar-crumbs__phase-pip" aria-hidden />
           P{mapScenarioState.phase}
         </span>
       )}

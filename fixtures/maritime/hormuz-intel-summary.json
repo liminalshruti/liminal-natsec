@@ -1,23 +1,23 @@
 {
-  "generated_at": "2026-05-03T05:52:05.300Z",
+  "generated_at": "2026-05-03T12:23:12.192Z",
   "normalizer_version": "hormuz-intel-normalizer@0.1.0",
   "classification": "UNCLASSIFIED//OSINT_FIXTURE",
   "source_document_count": 26,
-  "evidence_item_count": 72,
-  "available_evidence_count": 72,
-  "unavailable_evidence_count": 0,
+  "evidence_item_count": 75,
+  "available_evidence_count": 74,
+  "unavailable_evidence_count": 1,
   "drawer_groups": {
     "Satellite": 11,
     "Maritime Warnings": 2,
-    "OSINT": 53,
-    "Entity Risk": 4,
+    "OSINT": 59,
+    "Entity Risk": 1,
     "Infrastructure Context": 2
   },
   "categories": {
     "GEO_SPATIOTEMPORAL_CORROBORATION": 8,
     "CROSS_MODAL_CONTEXT": 6,
-    "ENTITY_RISK_ENRICHMENT": 4,
-    "REGIONAL_SECURITY_CONTEXT": 26,
+    "ENTITY_RISK_ENRICHMENT": 1,
+    "REGIONAL_SECURITY_CONTEXT": 32,
     "VESSEL_IDENTITY_CORROBORATION": 26,
     "MARITIME_INFRASTRUCTURE_CONTEXT": 1,
     "INFRASTRUCTURE_CONTEXT_ONLY": 1
@@ -361,7 +361,7 @@
         "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
       },
       {
-        "evidence_id": "ev:hormuz:danti-ship:5d966dc3de",
+        "evidence_id": "ev:hormuz:danti-ship:695f14f9bd",
         "title": "Marinetraffic Ship resource from MARINETRAFFIC",
         "source": "DANTI",
         "category": "VESSEL_IDENTITY_CORROBORATION",
@@ -379,7 +379,7 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:danti-ship:8a34b102a0",
+        "evidence_id": "ev:hormuz:danti-ship:76556e0e71",
         "title": "Marinetraffic Ship resource from MARINETRAFFIC",
         "source": "DANTI",
         "category": "VESSEL_IDENTITY_CORROBORATION",
@@ -397,7 +397,7 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:danti-ship:cb3091fd0e",
+        "evidence_id": "ev:hormuz:danti-ship:8e5d98d9a3",
         "title": "Marinetraffic Ship resource from MARINETRAFFIC",
         "source": "DANTI",
         "category": "VESSEL_IDENTITY_CORROBORATION",
@@ -541,7 +541,7 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-p-246166:83316dd28c",
+        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-p-246166:340b28a031",
         "title": "Strait of Hormuz Traffic Grinds to Near Halt as Security Threat Remains ‘Critical,’ Advisory Warns",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
@@ -559,8 +559,8 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:97431756b5",
-        "title": "Dark ships and shadow fleets – what is crossing 'closed' Strait of Hormuz?",
+        "evidence_id": "ev:hormuz:exa-https-www-aljazeera-com-economy-2026-3-18-iran-a:594346a2fd",
+        "title": "Iran allowing more ships through Strait of Hormuz, data suggest | US-Israel war on Iran News | Al Jazeera",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
@@ -577,7 +577,7 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:9e260e5afb",
+        "evidence_id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:3503cd7433",
         "title": "Iran Strait of Hormuz Risk Advisory March 2026 - Maritime News",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
@@ -595,8 +595,8 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-www-polestarglobal-com-resources-strait-of:c5725b519c",
-        "title": "Strait of Hormuz GPS Spoofing & AIS Manipulation",
+        "evidence_id": "ev:hormuz:exa-https-www-shipmanagementinternational-com-news-8:fbba25fb62",
+        "title": "One month of war in the Gulf: Windward maps maritime disruption to date — SMI DIGITAL",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
@@ -613,8 +613,8 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:gdelt-https-example-invalid-gdelt-fixture-hormuz-ais:44c878ca2f",
-        "title": "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
+        "evidence_id": "ev:hormuz:gdelt-https-aa-com-tr-en-middle-east-trump-must-choo:85c11a08bd",
+        "title": "Trump must choose impossible war or bad deal with Iran , says IRGC",
         "source": "GDELT",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
@@ -631,8 +631,116 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:gdelt-https-example-invalid-gdelt-fixture-hormuz-shi:fba7c95b2c",
-        "title": "Fixture report on shipping security around Bandar Abbas and Fujairah",
+        "evidence_id": "ev:hormuz:gdelt-https-theconversation-com-80-of-africas-fertil:a2a5dcbb4a",
+        "title": "80 % of Africa fertiliser is imported : how food systems can adapt to the Iran shock",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-unn-ua-ru-news-sudam-vrazhdebnikh-stran-:e7bb659513",
+        "title": "Судам враждебных стран придется платить за проход : СМИ раскрыли намерения Ирана относительно Ормузского пролива",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-www-dailysabah-com-world-mid-east-us-stu:758d38fbf6",
+        "title": "US stuck between impossible military ops or bad deal : IRGC",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-www-jwire-com-au-trump-iran-war-could-be:28c44d3888",
+        "title": "Trump - Iran War Could Be Renewed Amid Tensions – J - Wire",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-www-koreatimes-co-kr-foreignaffairs-2026:52693c85b8",
+        "title": "Korea weighs Hormuz mission options led by US , united kingdom - France coalitions",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-www-straitstimes-com-business-sgx-unit-d:4c1c054b00",
+        "title": "SGX unit denies Swiss trader allegations over inaccurate Middle East oil shipping costs",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-www-theregister-com-2026-05-03-future-ro:6079bfc41a",
+        "title": "Royal Navy chief backs drones , robot ships",
         "source": "GDELT",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
@@ -955,67 +1063,13 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:opensanctions-iranian-oil-tanker:462ea81f38",
-        "title": "M K A entity-risk context",
+        "evidence_id": "ev:hormuz:opensanctions-unavailable:5428dae252",
+        "title": "OpenSanctions entity-risk cache unavailable",
         "source": "OPENSANCTIONS",
         "category": "ENTITY_RISK_ENRICHMENT",
         "bucket": "entity_risk",
-        "delta": 0.22,
-        "available": true,
-        "allowed_claim_classes": [
-          "entity_risk"
-        ],
-        "excluded_claim_classes": [
-          "kinematics",
-          "vessel_behavior",
-          "intent"
-        ],
-        "rationale": "OpenSanctions records affect entity-risk enrichment only."
-      },
-      {
-        "evidence_id": "ev:hormuz:opensanctions-irisl:2d894b8c44",
-        "title": "IRISL Maritime Training Institute entity-risk context",
-        "source": "OPENSANCTIONS",
-        "category": "ENTITY_RISK_ENRICHMENT",
-        "bucket": "entity_risk",
-        "delta": 0.22,
-        "available": true,
-        "allowed_claim_classes": [
-          "entity_risk"
-        ],
-        "excluded_claim_classes": [
-          "kinematics",
-          "vessel_behavior",
-          "intent"
-        ],
-        "rationale": "OpenSanctions records affect entity-risk enrichment only."
-      },
-      {
-        "evidence_id": "ev:hormuz:opensanctions-islamic-republic-of-iran-shipping-line:b2e9a384ec",
-        "title": "islamic republic of iran shipping lines investment entity-risk context",
-        "source": "OPENSANCTIONS",
-        "category": "ENTITY_RISK_ENRICHMENT",
-        "bucket": "entity_risk",
-        "delta": 0.22,
-        "available": true,
-        "allowed_claim_classes": [
-          "entity_risk"
-        ],
-        "excluded_claim_classes": [
-          "kinematics",
-          "vessel_behavior",
-          "intent"
-        ],
-        "rationale": "OpenSanctions records affect entity-risk enrichment only."
-      },
-      {
-        "evidence_id": "ev:hormuz:opensanctions-national-iranian-tanker-company:65a38e7f7a",
-        "title": "National Iranian Tanker Company entity-risk context",
-        "source": "OPENSANCTIONS",
-        "category": "ENTITY_RISK_ENRICHMENT",
-        "bucket": "entity_risk",
-        "delta": 0.22,
-        "available": true,
+        "delta": 0,
+        "available": false,
         "allowed_claim_classes": [
           "entity_risk"
         ],
@@ -1295,8 +1349,8 @@
     ],
     "totals": {
       "cross_modal_context": 2.16,
-      "entity_risk": 0.88,
-      "regional_context": 2.600000000000001,
+      "entity_risk": 0,
+      "regional_context": 3.2000000000000015,
       "identity_source_corroboration": 4.160000000000001,
       "infrastructure_context": 0.06
     }

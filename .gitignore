@@ -68,3 +68,8 @@ electron/node_modules/
 
 # Internal-only docs (full / pre-sanitization versions; stay local, never push)
 docs/internal/
+
+# Repo-root debug screenshots and dev state
+seaforge-*.png
+selection-*.png
+stage3-state.json

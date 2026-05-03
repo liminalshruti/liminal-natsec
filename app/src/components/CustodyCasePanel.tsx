@@ -47,6 +47,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
     () => (caseId ? reviewApplicationForCase(caseId) : null),
     [caseId]
   );
+  const changedRuleApplication = ruleApplication?.changed ? ruleApplication : null;
   const reads = useMemo(
     () => (caseId ? specialistReadsForCase(caseId) : []),
     [caseId]
@@ -89,13 +90,13 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
   // Concrete derivation lives in ActionOptions; here we surface the lead verb
   // + claim status as the WHILE-line for now (v3.2 will derive from ranked
   // ActionOptions once that contract exists).
-  const verbLabel = ruleApplication
+  const verbLabel = changedRuleApplication
     ? "RECOMMEND collection"
     : claimStatus?.toLowerCase().includes("contested")
     ? "RECOMMEND monitor"
     : "RECOMMEND review";
 
-  const postureLabel = ruleApplication
+  const postureLabel = changedRuleApplication
     ? null
     : claimStatus?.toLowerCase().includes("contested")
     ? "WHILE custody contested"
@@ -105,7 +106,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
     <>
       {/* ── OPERATIVE SURFACE (pinned) ──────────────────────────────────────── */}
       <div className="working__operative">
-        <CaseHandoffBanner caseId={caseId} ruleApplication={ruleApplication} />
+        <CaseHandoffBanner caseId={caseId} ruleApplication={changedRuleApplication} />
 
         <div className="zone1">
           {/* key={verbLabel} forces React to remount on label change so the
@@ -118,8 +119,8 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
               {postureLabel.replace(/^WHILE /i, "")}
             </div>
           )}
-          {ruleApplication && (
-            <div key={`r-${ruleApplication.ruleId}`} className="zone1__posture">
+          {changedRuleApplication && (
+            <div key={`r-${changedRuleApplication.ruleId}`} className="zone1__posture">
               <span className="zone1__posture-while">PRIOR RULE APPLIED</span>
             </div>
           )}
@@ -177,9 +178,39 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
           surface should feel like it's holding something, not resolving it."
           Section headers reframe from generic file-sections to vault
           holdings — each is an artifact in custody. Dragon-fold pattern
-          stays; the verb changes. */}
+          stays; the verb changes.
+
+          Section order is load-bearing for the 3-min demo. The proof chain
+          beats — Signal Integrity contested → Intent refused → Review rule
+          saved → Changed recommendation — must be visible without scrolling
+          past filler. Bounded actions (the PRIOR TOP / RECOMMENDED diff) and
+          Review memory (the rule-writing surface) lead the stack and start
+          open. Brief stays open as supporting narrative. The richer-but-
+          filler-in-3-min sections (Knowledge graph, Posterior surface,
+          Provenance chain, Evidence held) are demoted and closed by
+          default — preserved for Q&A, kept off the focal path. */}
       <div className="working__forensic">
         <div className="case-file">
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
+              <span>Bounded actions</span>
+              <span className="case-file__section-meta">recommendations under the guard</span>
+            </summary>
+            <div className="case-file__section-body">
+              <ActionOptions actions={actions} ruleApplication={changedRuleApplication} />
+            </div>
+          </details>
+
+          <details className="case-file__section" open>
+            <summary className="case-file__section-header">
+              <span>Review memory</span>
+              <span className="case-file__section-meta">operator doctrine</span>
+            </summary>
+            <div className="case-file__section-body">
+              <ReviewMemory ruleApplication={changedRuleApplication} caseId={caseId} />
+            </div>
+          </details>
+
           <details className="case-file__section" open>
             <summary className="case-file__section-header">
               <span>Brief</span>
@@ -194,8 +225,18 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
                 hypothesisCount={hypotheses.length}
                 reads={reads}
                 actions={actions}
-                ruleApplication={ruleApplication}
+                ruleApplication={changedRuleApplication}
               />
+            </div>
+          </details>
+
+          <details className="case-file__section">
+            <summary className="case-file__section-header">
+              <span>Knowledge graph</span>
+              <span className="case-file__section-meta">case subgraph · BFS depth 4</span>
+            </summary>
+            <div className="case-file__section-body">
+              <KnowledgeGraphViz caseId={caseId} />
             </div>
           </details>
 
@@ -206,16 +247,6 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </summary>
             <div className="case-file__section-body">
               <HypothesisSurface caseId={caseId} />
-            </div>
-          </details>
-
-          <details className="case-file__section" open>
-            <summary className="case-file__section-header">
-              <span>Knowledge graph</span>
-              <span className="case-file__section-meta">case subgraph · BFS depth 4</span>
-            </summary>
-            <div className="case-file__section-body">
-              <KnowledgeGraphViz caseId={caseId} />
             </div>
           </details>
 
@@ -237,26 +268,6 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             <div className="case-file__section-body">
               <EvidenceDrawer claimId={primaryClaimId} />
               <HormuzIntelDrawer />
-            </div>
-          </details>
-
-          <details className="case-file__section">
-            <summary className="case-file__section-header">
-              <span>Bounded actions</span>
-              <span className="case-file__section-meta">recommendations under the guard</span>
-            </summary>
-            <div className="case-file__section-body">
-              <ActionOptions actions={actions} ruleApplication={ruleApplication} />
-            </div>
-          </details>
-
-          <details className="case-file__section">
-            <summary className="case-file__section-header">
-              <span>Review memory</span>
-              <span className="case-file__section-meta">operator doctrine</span>
-            </summary>
-            <div className="case-file__section-body">
-              <ReviewMemory ruleApplication={ruleApplication} caseId={caseId} />
             </div>
           </details>
         </div>
