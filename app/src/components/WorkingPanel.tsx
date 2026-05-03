@@ -1,9 +1,14 @@
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import type { UiMode } from "../lib/uiModeStore.ts";
 import { CustodyCasePanel } from "./CustodyCasePanel.tsx";
+import { DraftCaseDetail } from "./DraftCaseDetail.tsx";
+import { DRAFT_CASE } from "../lib/draftCase.ts";
 
 interface WorkingPanelProps {
   selectedAlert: AlertView | null;
+  /** Currently-selected alert id, including non-AlertView ids like the
+   *  AI-proposed draft case (which doesn't have an AlertView shape). */
+  selectedAlertId?: string | null;
   scenarioState?: ScenarioStateView | null;
   loading: boolean;
   uiMode?: UiMode;
@@ -22,10 +27,18 @@ interface WorkingPanelProps {
 // at length, with scrolling. See docs/TECHNICAL_PLAN.md §0.2.
 export function WorkingPanel({
   selectedAlert,
+  selectedAlertId,
   loading,
   uiMode = "demo",
   replayPhase = 1
 }: WorkingPanelProps) {
+  // Draft-case route: when the AI-proposed draft case is selected (its id
+  // doesn't appear in the AlertView list), render DraftCaseDetail instead
+  // of CustodyCasePanel. The two surfaces share the working panel; the
+  // operator promotes a draft → it becomes a regular case the next time
+  // they visit it (status: "promoted" branch in DraftCaseDetail).
+  const isDraftSelected = selectedAlertId === DRAFT_CASE.id;
+
   return (
     <section
       className="panel panel--working"
@@ -37,8 +50,9 @@ export function WorkingPanel({
         <span className="tag">case</span>
       </div>
       {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
-      {!loading && !selectedAlert && <EmptyStencil uiMode={uiMode} />}
-      {!loading && selectedAlert && (
+      {!loading && !selectedAlert && !isDraftSelected && <EmptyStencil uiMode={uiMode} />}
+      {!loading && isDraftSelected && <DraftCaseDetail />}
+      {!loading && selectedAlert && !isDraftSelected && (
         <CustodyCasePanel selectedAlert={selectedAlert} replayPhase={replayPhase} />
       )}
     </section>

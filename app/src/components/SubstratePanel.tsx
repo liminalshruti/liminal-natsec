@@ -1,5 +1,6 @@
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
+import { DraftCaseCard } from "./DraftCaseCard.tsx";
 import { NamedOperatorCard } from "./NamedOperatorCard.tsx";
 import { WatchfloorOsintFeed } from "./WatchfloorOsintFeed.tsx";
 
@@ -43,6 +44,15 @@ export function SubstratePanel({
           selectedAlertId={selectedAlertId}
           onSelectAlert={onSelectAlert}
           loading={loading}
+        />
+        {/* DraftCaseCard — AI-proposed third case below the regular custody
+            queue. Visually distinct (dashed border + AI-PROPOSED badge)
+            until promoted. Click → working panel renders DraftCaseDetail.
+            Lives below the queue so it doesn't compete with the load-
+            bearing Caldera narrative beats. */}
+        <DraftCaseCard
+          selectedAlertId={selectedAlertId}
+          onSelect={onSelectAlert}
         />
         <WatchfloorOsintFeed />
       </div>

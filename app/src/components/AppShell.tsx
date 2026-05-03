@@ -21,6 +21,7 @@ import { StageViewport } from "./StageViewport.tsx";
 import { SubstratePanel } from "./SubstratePanel.tsx";
 import { WorkflowStrip } from "./WorkflowStrip.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
+import { AiNoticeToast } from "./AiNoticeToast.tsx";
 
 interface AppShellProps {
   scenario: LoadedScenario | null;
@@ -213,6 +214,7 @@ export function AppShell({
       />
       <WorkingPanel
         selectedAlert={selectedAlert}
+        selectedAlertId={selectedAlertId}
         scenarioState={scenario?.state ?? null}
         loading={!scenario}
         uiMode={uiMode}
@@ -234,6 +236,11 @@ export function AppShell({
           {resetToast}
         </div>
       )}
+      {/* AiNoticeToast — top-of-screen banner announcing the AI-discovered
+          draft case on demo start. Auto-collapses to a corner pill after
+          8s. Click → selects the draft case in the working panel. Lives at
+          the AppShell root so it overlays cleanly. */}
+      <AiNoticeToast onClickDraft={(id) => onSelectAlert(id)} />
     </div>
   );
 }
