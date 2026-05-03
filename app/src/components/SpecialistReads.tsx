@@ -4,99 +4,76 @@ interface SpecialistReadsProps {
   reads: SpecialistReadRecord[];
 }
 
+// Canonical order matches the SpecialistName enum in shared/domain/types.ts.
+// Order is load-bearing: Signal Integrity sits between Identity and Intent so
+// the causal connector (signal_integrity REFUSED → intent REFUSED) reads as
+// adjacent rows in the strip. v3.3 will promote this to schema-level
+// subordination per docs/TECHNICAL_PLAN.md §0.2 "B-now, C-roadmap".
+const CANONICAL_ORDER = [
+  "kinematics",
+  "identity",
+  "signal_integrity",
+  "intent",
+  "collection",
+  "visual"
+] as const;
+
+function normalize(name: string): string {
+  return name.toLowerCase().replace(/\s+/g, "_");
+}
+
+function rank(name: string): number {
+  const idx = (CANONICAL_ORDER as readonly string[]).indexOf(normalize(name));
+  return idx === -1 ? CANONICAL_ORDER.length : idx;
+}
+
+// v3.2 IA — Specialist Reads renders as a compact strip in Zone 2, not as a
+// card stack. Six rows in canonical order. Refused rows get visual emphasis
+// inline (color + status chip); the signal_integrity → intent pair shows a
+// vertical connector when both are present and the integrity row is refused.
 export function SpecialistReads({ reads }: SpecialistReadsProps) {
   if (reads.length === 0) {
-    return (
-      <>
-        <div className="subhead">Specialist Reads</div>
-        <div className="empty">no specialist reads for this case</div>
-      </>
-    );
+    return <div className="empty" style={{ fontSize: 11 }}>—</div>;
   }
-  // Surface refusals first — they're the epistemic guardrail moment.
-  const refusals = reads.filter((read) => read.status === "REFUSED");
-  const others = reads.filter((read) => read.status !== "REFUSED");
-  return (
-    <>
-      <div className="subhead">Specialist Reads</div>
-      {refusals.map((read) => (
-        <RefusalCard key={read.id} read={read} />
-      ))}
-      {others.map((read) => (
-        <ReadCard key={read.id} read={read} />
-      ))}
-    </>
-  );
-}
+  const ordered = [...reads].sort((a, b) => rank(a.specialist) - rank(b.specialist));
 
-function RefusalCard({ read }: { read: SpecialistReadRecord }) {
-  const rationale = read.refusalReason ?? read.summary ?? "Specialist refused to claim.";
-  return (
-    <div className="refusal-card" role="region" aria-label={`${read.specialist} refusal`}>
-      <div className="refusal-card__header">
-        <span className="refusal-card__icon" aria-hidden>
-          ⊘
-        </span>
-        <div>
-          <div className="refusal-card__specialist">{read.specialist}</div>
-          <div className="refusal-card__status">REFUSED</div>
-        </div>
-        <span className="tag tag--warn refusal-card__tag">STRUCTURAL GUARD</span>
-      </div>
-      <div className="refusal-card__body">
-        <div className="refusal-card__causal" aria-label="causal line">
-          <span className="refusal-card__causal-step">L2 INTENT_INDICATOR</span>
-          <span className="refusal-card__causal-arrow" aria-hidden>
-            ▸
-          </span>
-          <span className="refusal-card__causal-step">SIGNAL INTEGRITY CONTESTED</span>
-          <span className="refusal-card__causal-arrow" aria-hidden>
-            ▸
-          </span>
-          <span className="refusal-card__causal-step refusal-card__causal-step--terminal">
-            REFUSAL ENFORCED
-          </span>
-        </div>
-        <div className="refusal-card__label">Why refused</div>
-        <div className="refusal-card__text">{rationale}</div>
-        {read.citations && read.citations.length > 0 && (
-          <>
-            <div className="refusal-card__label" style={{ marginTop: 8 }}>
-              Bounded reads
-            </div>
-            <ul className="refusal-card__cites">
-              {read.citations.slice(0, 4).map((cite) => (
-                <li key={cite}>{cite}</li>
-              ))}
-            </ul>
-          </>
-        )}
-        <div className="refusal-card__footnote">
-          Refusal is a server-side invariant — not a UX choice. The guard
-          preserves this case in the record without producing an intent claim.
-        </div>
-      </div>
-    </div>
-  );
-}
+  // Connector check: render the dashed-left-border on intent only if the row
+  // immediately above it is signal_integrity AND signal_integrity is refused.
+  const integrityIdx = ordered.findIndex((r) => normalize(r.specialist) === "signal_integrity");
+  const intentIdx = ordered.findIndex((r) => normalize(r.specialist) === "intent");
+  const showConnector =
+    integrityIdx !== -1 &&
+    intentIdx !== -1 &&
+    intentIdx === integrityIdx + 1 &&
+    ordered[integrityIdx].status === "REFUSED";
 
-function ReadCard({ read }: { read: SpecialistReadRecord }) {
   return (
-    <div className="action-row">
-      <div className="action-row__title">
-        <span>{read.specialist}</span>
-        <span className="tag tag--ok">{read.status}</span>
-      </div>
-      {read.summary && <div className="action-row__sub">{read.summary}</div>}
-      {read.citations && read.citations.length > 0 && (
-        <div
-          className="action-row__sub"
-          style={{ fontSize: 10, marginTop: 4, color: "var(--fg-2)" }}
-        >
-          cites: {read.citations.slice(0, 2).join(", ")}
-          {read.citations.length > 2 ? "…" : ""}
-        </div>
-      )}
+    <div className="specialist-strip">
+      {ordered.map((read, i) => {
+        const isRefused = read.status === "REFUSED";
+        const isIntegrity = normalize(read.specialist) === "signal_integrity";
+        const isIntent = normalize(read.specialist) === "intent";
+        const intentFollowingIntegrity = showConnector && isIntent;
+        return (
+          <div
+            key={read.id}
+            className={[
+              "specialist-row",
+              isRefused ? "specialist-row--refused" : "specialist-row--ok",
+              isIntegrity ? "specialist-row--integrity" : "",
+              intentFollowingIntegrity ? "specialist-row--intent-following-integrity" : ""
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            title={read.summary ?? ""}
+            role="listitem"
+          >
+            <span className="specialist-row__name">{read.specialist}</span>
+            <span className="specialist-row__summary">{read.summary ?? "—"}</span>
+            <span className="specialist-row__status">{read.status}</span>
+          </div>
+        );
+      })}
     </div>
   );
 }

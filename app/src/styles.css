@@ -49,7 +49,12 @@ button:hover {
 
 .app-shell {
   display: grid;
-  grid-template-columns: 320px 1fr 380px;
+  /* Working panel widened from 380px → 540px to host operative + forensic
+     surfaces simultaneously (Round 2 IA spec). Stage absorbs the difference;
+     map composition recenters on the hero track at higher zoom to compensate
+     for the narrower stage width. Below 800px viewport height the case file
+     section collapses to a one-line affordance — see WorkingPanel.tsx. */
+  grid-template-columns: 320px 1fr 540px;
   grid-template-rows: 36px 1fr 32px;
   grid-template-areas:
     "topbar topbar topbar"
@@ -125,6 +130,251 @@ button:hover {
   grid-area: working;
   border-right: 0;
 }
+
+/* ─── Working Panel zones (v3.2 IA) ──────────────────────────────────────────
+   Pinned operative surface (Zone 1 verb+posture stack + Zone 2 hypothesis ×
+   specialist strip) above a scrolling forensic surface (Zone 3 case file with
+   dragon-fold sticky section headers). Operative state is now; forensic state
+   is history. The interaction matches the reader.
+   ----------------------------------------------------------------------------*/
+
+.working__operative {
+  /* Pinned. Native height ≈ 360px (no banner) → 420px (banner active). */
+  flex: 0 0 auto;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 12px 12px;
+  background: var(--bg-1);
+}
+
+.working__forensic {
+  /* Scroll region for the case file. Takes whatever vertical the operative
+     surface doesn't claim. position: relative anchors sticky section headers. */
+  flex: 1 1 auto;
+  overflow-y: auto;
+  position: relative;
+  background: var(--bg-0);
+  min-height: 0; /* allow flex child to shrink so overflow works in Chromium */
+}
+
+/* Zone 1 — verb + posture stack, with optional hero banner above */
+
+.zone1 {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.zone1__banner {
+  /* Hero banner for the rule-fire moment (Fork 6 staged crossfade).
+     Replaces Zone 1's normal header transiently per Fork 6.1 (iii). */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: var(--accent-bg, rgba(96, 168, 255, 0.12));
+  border-left: 2px solid var(--accent, #60a8ff);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent, #60a8ff);
+  animation: zone1-banner-in 280ms ease-out;
+}
+
+@keyframes zone1-banner-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.zone1__verb {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--fg-0);
+  /* Fork 6 staged crossfade: when the verb label changes (e.g., RECOMMEND
+     monitor → RECOMMEND collection on rule fire), the React key swap +
+     animation produces a 200ms crossfade. Offset 100ms after the posture
+     line so the two lines don't co-flicker. */
+  animation: zone1-verb-in 200ms ease 100ms both;
+}
+
+@keyframes zone1-verb-in {
+  from { opacity: 0.4; transform: translateY(-2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.zone1__posture {
+  /* Round 1 verb+posture is rendered as constraint-annotation register —
+     present, restrained, doesn't undermine the verb. v3.3 may promote to
+     posture-forward register for Round 2 (iii-b). */
+  font-size: 12px;
+  color: var(--fg-2);
+  letter-spacing: 0.02em;
+  animation: zone1-posture-in 200ms ease both;
+}
+
+@keyframes zone1-posture-in {
+  from { opacity: 0.5; }
+  to   { opacity: 1; }
+}
+
+.zone1__posture-while {
+  color: var(--warn, #d8a35a);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+/* Zone 2 — hypothesis × specialist interleave, two-column grid */
+
+.zone2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  align-items: start;
+}
+
+.zone2__col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zone2__col-header {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  margin-bottom: 4px;
+}
+
+/* Specialist Reads — strip rendering, with subordination marker for the
+   signal_integrity → intent connector (Fork 7 ii). */
+
+.specialist-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.specialist-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 6px;
+  padding: 4px 6px;
+  font-size: 11px;
+  border-radius: 2px;
+  align-items: center;
+}
+
+.specialist-row__name {
+  color: var(--fg-1);
+  letter-spacing: 0.04em;
+}
+
+.specialist-row__summary {
+  color: var(--fg-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.specialist-row__status {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.specialist-row--refused .specialist-row__status {
+  color: var(--err, #d35a5a);
+}
+
+.specialist-row--ok .specialist-row__status {
+  color: var(--ok, #5ad88a);
+}
+
+.specialist-row--integrity {
+  background: rgba(216, 163, 90, 0.06);
+  border-left: 2px solid var(--warn, #d8a35a);
+}
+
+/* Connector line: signal_integrity → intent. Renders as a left-edge bracket
+   on intent's row when both rows are present and signal_integrity is REFUSED.
+   v3.3 will promote this to a proper SVG connector for any cluster→target
+   subordination pattern (multi-specialist convergence). */
+
+.specialist-row--intent-following-integrity {
+  border-left: 2px dashed var(--err, #d35a5a);
+  margin-left: 0;
+  position: relative;
+}
+
+.specialist-row--intent-following-integrity::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -8px;
+  height: 8px;
+  width: 2px;
+  background: var(--err, #d35a5a);
+  opacity: 0.6;
+}
+
+/* Zone 3 — Case File with dragon-fold sticky section headers */
+
+.case-file {
+  display: flex;
+  flex-direction: column;
+}
+
+.case-file__section {
+  border-bottom: 1px solid var(--line);
+}
+
+.case-file__section-header {
+  /* Sticky header. Stays at top of scroll region while body scrolls. Headers
+     do NOT compound — only the most recent header is sticky at any moment. */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 8px 12px;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.case-file__section-body {
+  padding: 10px 12px 14px;
+  font-size: 12px;
+  color: var(--fg-1);
+  line-height: 1.55;
+}
+
+.case-file__placeholder {
+  /* Used when a section's full content is v3.3-roadmapped — gives the
+     procurement reader (P2) the architectural concept without overpromising. */
+  font-style: italic;
+  color: var(--fg-2);
+  font-size: 11px;
+}
+
+/* Below 800px viewport height, the case file collapses to a one-line affordance
+   and the operative surface takes the full panel. */
+@media (max-height: 799px) {
+  .working__forensic {
+    flex: 0 0 32px;
+    overflow: hidden;
+  }
+  .case-file__section-body {
+    display: none;
+  }
+}
+
 
 .panel__header {
   padding: 8px 12px;

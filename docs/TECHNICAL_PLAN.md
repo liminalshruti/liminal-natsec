@@ -59,7 +59,7 @@ v3.0 frontend was Vite + React + MapLibre (browser dev only). v3.1 adds the Elec
 
 ### Schema delta — `sourceIntegrityCheck` node + `caseIdFromAlertId` resolution
 
-The v3 positioning patch added `sourceIntegrityCheck` as an 11th node type for the Signal Integrity specialist read. v3.1 confirms it landed in `graph-spine/schema.ts`. Specialist Reads UI grew to 5 rows (Kinematics, Identity, **Signal Integrity**, Intent, Collection) — Signal Integrity sits between Identity and Intent and is causally linked to Intent's refusal via the `triggers_refusal_for` field on the read object.
+The v3 positioning patch added `sourceIntegrityCheck` as an 11th node type for the Signal Integrity specialist read. v3.1 confirms it landed in `graph-spine/schema.ts`. Specialist Reads UI grew to 6 rows (Kinematics, Identity, **Signal Integrity**, Intent, Collection, Visual) — Signal Integrity sits between Identity and Intent and is causally linked to Intent's refusal via the connector pattern in the strip. v3.2 §0.2 documents the full IA and the B-now / C-roadmap evolution path for Signal Integrity.
 
 **Bug fix shipped (PR #6):** `caseIdFromAlertId(alertId)` was returning `null` for server-emitted anomaly ids because of an `_` vs `-` drift between server format (`anom:identity_churn:trk-caldera:...`) and fixture spine format (`anom:identity-churn:trk-caldera:...`). Three-pass resolution now: exact match → normalized (`_`→`-`) match → regex fallback on `event-1`/`event-2`. Without this fix, the entire H8 gate was empty: hypothesis board, evidence drawer, provenance trace, action options, specialist reads, and review memory all defaulted to empty when an alert was selected. With the fix, the make-or-break beat path (beats 4–8 of the SpeedRun) renders end-to-end.
 
@@ -102,6 +102,92 @@ Two rules govern the next ~14 hours:
 | Review Memory: save R-001 → event-2 recommendation changes | 🟡 walkthrough verification pending |
 | Reset (Ctrl+Shift+R) | 🟡 walkthrough verification pending |
 | Tagline / brand bar | 🟡 walkthrough verification pending |
+
+---
+
+## 0.2 Information Architecture — Working Panel zones (v3.2)
+
+The Working Panel is not a dashboard, not an inspector, not a form. It is a **custody artifact under live evaluation**. Custody artifact = the evidence chain for one contested target, with epistemic state (claim, posterior, hypotheses, evidence) and procedural state (action, refusal, applied rule). Live evaluation = the operator is reading it under time pressure to make a recommendation, while the underlying state is still moving.
+
+The closest design precedents are operator surfaces (court case file, medical chart for a coding patient, reactor panel during a transient, ATC strip) — not SaaS surfaces. The grammar of those surfaces is *pinned-decision-with-scrolling-history*, not *equal-weight-grid*.
+
+### Three personas, three reading orders
+
+| Persona | Job | Reading order | Time budget |
+|---|---|---|---|
+| **P1 — Watch officer (named ICP)** | Decide escalate / monitor / request collection | Verb → posture → receipt-on-disagreement | ~30s normal, ~2 min in argument mode |
+| **P2 — Procurement reader (buyer)** | Evaluate as governance artifact: refusable, auditable, defensible | Refusal → enforcement mechanism → audit trail → operator correction | Long-form, ~1hr per screenshot |
+| **P3 — Hackathon judge** | Decide if defense-grade vs demo-grade | Operator literacy in 5s → make-or-break beat in 75s → differentiator | 5s first impression, 75s for the beat |
+
+### Lexicon (canonical for Liminal Custody and downstream Liminal products)
+
+- **Operative receipt** — Zone 1 + Zone 2 of the working panel. Decision-time density. Pinned. Reader: P1, P3.
+- **Forensic receipt** — Zone 3 (case file). Document-density. Scrolls with dragon-fold sticky section headers. Reader: P2, P1-in-argument-mode, P3-in-Q&A.
+- **Verb-with-posture** — Zone 1's two-line dual-state pattern. Verb first ("RECOMMEND monitor"), posture second ("WHILE custody contested"). Constraint annotation register, not hedging register.
+- **Specialist-reads-as-strip** — Zone 2's right column: 6 specialist reads in canonical order, glanceable, with a causal connector from `signal_integrity` (when refused) to `intent`. CSS-only subordination at v3.2; v3.3 promotes to schema-level.
+- **Dragon-fold** — Zone 3's case file pattern. Five section headers (Exec Summary / Provenance / Evidence / Action Options / Review Memory) are sticky; bodies render below their headers and scroll. The forensic surface advertises its own architecture without forcing readers to discover it.
+- **Operative state is now; forensic state is history.** The interaction matches the reader.
+
+### Layout invariants
+
+```
+.app-shell — three columns
+  substrate (320px)  |  stage (1fr)  |  working (540px)
+
+.panel--working — two regions vertically
+  .working__operative  — flex: 0 0 auto; pinned; ~360-420px height
+    .zone1            — verb + posture + (optional) hero banner
+    .kv               — case + claim + posterior key-values
+    .zone2            — two-column grid: hypotheses | specialist reads
+  .working__forensic   — flex: 1 1 auto; overflow-y: auto; scroll region
+    .case-file
+      .case-file__section × 5  — sticky headers, scrolling bodies
+```
+
+**Minimum viewport:** 800px height. Below this, `.working__forensic` collapses to a one-line affordance and the operative surface takes the full panel. Demo machine target: 900px+.
+
+**Scroll position state:** resets to top of forensic region when the selected case changes (case 2 is a different document than case 1).
+
+### The Round 1 / 2 / 3 IA forks (resolved)
+
+| Fork | Resolution | Rationale |
+|---|---|---|
+| R1 — Zone 1 line 1 | (iii) Verb + posture stack | Operator C2 grammar; verb-first instinct preserved, hedging visible as a register-shift |
+| R1 — Surface navigation | Both keystroke + visible link | Honor different reading orders |
+| R1 — Case file spatial | Below working panel split | Forensic surface anchored to operative, never disconnected |
+| R1 — Zone 2 grid | Two-column interleaved | Causal flow visible (specialist reads contribute → hypothesis posteriors) |
+| R2 — Panel width | 380px → 540px | Stage absorbs the 160px difference; map recenters on hero track |
+| R2 — Case file default | Open by default during demo | Judges see whole architecture at once |
+| R2 — Rule-fire moment | Full-width hero banner above Zone 1 | Visible to back-of-room judges |
+| R2 — Case file vocabulary | Hybrid: same chrome, document layout | Brand-cohesive, document-shaped |
+| R3 — Vertical-budget conflict | Pinned operative + scrolling forensic | Operator-grade C2 pattern; operative-state is *now*, forensic-state is *history* |
+| R3 — Empty state | (iii) Default-load case 1 | First frame matters more than production purity |
+| R3 — Rule-fire timing | (ii) Staged crossfade | 100ms hold → posture 200ms → verb 200ms (offset 100ms) → R-001 chip 200ms (offset 100ms) ≈ 500ms total |
+| R3 — Case file scroll affordance | (iii) Dragon-fold sticky headers | Forensic surface advertises its own architecture |
+| R3 — Signal Integrity | (ii) Subordinated to Intent | Causal connector visible in strip; schema-level subordination is v3.3 |
+
+### Signal Integrity — B-now, C-roadmap
+
+The v3.0 schema canon shipped with five specialists (`kinematics, identity, intent, collection, visual`). The v3 positioning patch named six (adding `signal_integrity`). At v3.2, we resolved the divergence by **shipping B**: `signal_integrity` is added to the `SpecialistName` enum as a sixth specialist, with a stub specialist that emits a deterministic CONTESTED verdict for the dark-gap + identity-churn case.
+
+The stub's `summary` field is **authored as the C-narrative** so the row carries both densities at once:
+
+> *"Source chain contested. Identity flags MMSI metadata mismatch. Visual flags AIS-class mismatch. Kinematic continuity within plausible spoofing envelope. Three independent specialists converge on source-chain compromise."*
+
+A judge reading the row in 5 seconds sees the B claim ("Signal Integrity: REFUSED"). A judge expanding the row to read its summary sees the C narrative (multi-specialist convergence). The artifact carries both — operative-density on the surface, procurement-density in the field.
+
+**v3.3 evolution to C:** the Signal Integrity row becomes a *convergence aggregator* over Identity-discontinuity + Visual-class-mismatch + Kinematic-spoofing-envelope. The row stays the same in the UI (legibility primitive); the architecture below it becomes "three independent specialists, structurally validated, converging on a source-chain verdict." Defense in depth — an attacker must spoof three independent reads, not one.
+
+The B→C path is documented here so future-Shayaun and future-Shruti know the row is a *deliberate sequencing*, not an architectural accident. The technical plan is the receipt.
+
+### v3.3 deferred items (not blocking demo)
+
+- **Forensic case file as formatted intelligence product** — render the case file with the structure of a watchfloor brief (header / exec summary / hypotheses with confidence levels / evidence inventory / refusals with structural justification / review-rule history). Currently scaffolded with placeholders; v3.3 promotes to full document layout.
+- **Signal Integrity convergence aggregator** — schema-level subordination of Identity + Visual + Kinematics under signal_integrity. CSS-only at v3.2.
+- **Operative surface as graph** — current rendering is document-grade. The product is structurally a graph (hypotheses with weighted contributions from refusable specialist reads). v3.3 may explore graph-rendering for the operative surface as an alternative density.
+- **Round 2 verb-posture register** — current treatment is (iii-a) constraint-annotation register. v3.3 promotes to (iii-b) posture-forward register for stage demos with longer dwell time.
+
+---
 
 ### PR landing log (May 2 → May 3)
 

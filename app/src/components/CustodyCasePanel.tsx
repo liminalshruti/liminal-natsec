@@ -24,6 +24,9 @@ interface CustodyCasePanelProps {
   selectedAlert: AlertView;
 }
 
+// v3.2 IA — see WorkingPanel.tsx and docs/TECHNICAL_PLAN.md §0.2.
+// Operative surface (Zones 1+2) is pinned; forensic surface (Zone 3 case file)
+// scrolls with dragon-fold sticky section headers.
 export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
   const caseId = useMemo(
     () => caseIdFromAlertId(selectedAlert.id),
@@ -70,58 +73,145 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
     });
   }, [hypotheses]);
 
+  // Reset case-file scroll position when the selected case changes —
+  // case 2 is a different document than case 1, top of the new doc.
+  useEffect(() => {
+    const forensic = document.querySelector(".working__forensic");
+    if (forensic) forensic.scrollTop = 0;
+  }, [caseId]);
+
+  // ── Zone 1 verb derivation ────────────────────────────────────────────────
+  // Verb-with-posture (Round 1 fork iii). Verb is the system's recommendation;
+  // posture-WHILE clause is the constraint annotation that hedges honestly.
+  // Concrete derivation lives in ActionOptions; here we surface the lead verb
+  // + claim status as the WHILE-line for now (v3.2 will derive from ranked
+  // ActionOptions once that contract exists).
+  const verbLabel = ruleApplication
+    ? "RECOMMEND collection"
+    : claimStatus?.toLowerCase().includes("contested")
+    ? "RECOMMEND monitor"
+    : "RECOMMEND review";
+
+  const postureLabel = ruleApplication
+    ? null
+    : claimStatus?.toLowerCase().includes("contested")
+    ? "WHILE custody contested"
+    : null;
+
   return (
     <>
-      <CaseHandoffBanner caseId={caseId} ruleApplication={ruleApplication} />
-      <div className="kv">
-        <div className="kv__k">case</div>
-        <div className="kv__v">{caseId ?? selectedAlert.title}</div>
-        <div className="kv__k">alert</div>
-        <div className="kv__v" style={{ wordBreak: "break-all" }}>
-          {selectedAlert.id}
-        </div>
-        <div className="kv__k">claim</div>
-        <div className="kv__v" style={{ wordBreak: "break-all" }}>
-          {primaryClaimId ?? "—"}
-          {claimStatus && (
-            <span
-              className={
-                claimStatus.toLowerCase().includes("contested") ||
-                claimStatus.toLowerCase().includes("review")
-                  ? "tag tag--warn"
-                  : "tag"
-              }
-              style={{ marginLeft: 6, fontSize: 9 }}
-            >
-              {claimStatus}
-            </span>
+      {/* ── OPERATIVE SURFACE (pinned) ──────────────────────────────────────── */}
+      <div className="working__operative">
+        <CaseHandoffBanner caseId={caseId} ruleApplication={ruleApplication} />
+
+        <div className="zone1">
+          {/* key={verbLabel} forces React to remount on label change so the
+              CSS keyframe replays — produces the staged crossfade visible to
+              judges during the rule-fire moment. */}
+          <div key={`v-${verbLabel}`} className="zone1__verb">{verbLabel}</div>
+          {postureLabel && (
+            <div key={`p-${postureLabel}`} className="zone1__posture">
+              <span className="zone1__posture-while">WHILE</span>
+              {postureLabel.replace(/^WHILE /i, "")}
+            </div>
+          )}
+          {ruleApplication && (
+            <div key={`r-${ruleApplication.ruleId}`} className="zone1__posture">
+              <span className="zone1__posture-while">PRIOR RULE APPLIED</span>
+            </div>
           )}
         </div>
-        <div className="kv__k">posterior</div>
-        <div className="kv__v">
-          <ConfidenceBar value={claimPosterior} variant="primary" />
+
+        <div className="kv" style={{ marginBottom: 10 }}>
+          <div className="kv__k">case</div>
+          <div className="kv__v">{caseId ?? selectedAlert.title}</div>
+          <div className="kv__k">claim</div>
+          <div className="kv__v" style={{ wordBreak: "break-all" }}>
+            {primaryClaimId ?? "—"}
+            {claimStatus && (
+              <span
+                className={
+                  claimStatus.toLowerCase().includes("contested") ||
+                  claimStatus.toLowerCase().includes("review")
+                    ? "tag tag--warn"
+                    : "tag"
+                }
+                style={{ marginLeft: 6, fontSize: 9 }}
+              >
+                {claimStatus}
+              </span>
+            )}
+          </div>
+          <div className="kv__k">posterior</div>
+          <div className="kv__v">
+            <ConfidenceBar value={claimPosterior} variant="primary" />
+          </div>
         </div>
-        <div className="kv__k">alert</div>
-        <div className="kv__v">
-          <span className="tag tag--warn">{selectedAlert.status}</span>
-          <span style={{ color: "var(--fg-2)", marginLeft: 8 }}>
-            score {selectedAlert.severity.toFixed(2)}
-          </span>
+
+        {/* Zone 2 — hypothesis × specialist interleave (two columns).
+            HypothesisBoard left, SpecialistReads right. CSS-only causal
+            subordination; v3.3 promotes to schema-level. */}
+        <div className="zone2">
+          <div className="zone2__col">
+            <div className="zone2__col-header">Hypotheses</div>
+            <HypothesisBoard
+              hypotheses={hypotheses}
+              primaryClaimId={primaryClaimId}
+              selectedHypothesisId={selectedHypothesisId}
+              onSelectHypothesis={setSelectedHypothesisId}
+            />
+          </div>
+          <div className="zone2__col">
+            <div className="zone2__col-header">Specialist reads</div>
+            <SpecialistReads reads={reads} />
+          </div>
         </div>
       </div>
 
-      <HypothesisBoard
-        hypotheses={hypotheses}
-        primaryClaimId={primaryClaimId}
-        selectedHypothesisId={selectedHypothesisId}
-        onSelectHypothesis={setSelectedHypothesisId}
-      />
-      <ProvenanceTrace claimId={primaryClaimId} />
-      <EvidenceDrawer claimId={primaryClaimId} />
-      <HormuzIntelDrawer />
-      <ActionOptions actions={actions} ruleApplication={ruleApplication} />
-      <SpecialistReads reads={reads} />
-      <ReviewMemory ruleApplication={ruleApplication} caseId={caseId} />
+      {/* ── FORENSIC SURFACE (scroll region, dragon-fold sticky headers) ──── */}
+      <div className="working__forensic">
+        <div className="case-file">
+          <section className="case-file__section">
+            <div className="case-file__section-header">Executive summary</div>
+            <div className="case-file__section-body">
+              <span className="case-file__placeholder">
+                Source-chain integrity for {caseId ?? "this case"} is{" "}
+                {claimStatus ?? "unevaluated"}. v3.3 will render a formatted
+                intelligence-product summary here for procurement readers.
+              </span>
+            </div>
+          </section>
+
+          <section className="case-file__section">
+            <div className="case-file__section-header">Provenance trace</div>
+            <div className="case-file__section-body">
+              <ProvenanceTrace claimId={primaryClaimId} />
+            </div>
+          </section>
+
+          <section className="case-file__section">
+            <div className="case-file__section-header">Evidence inventory</div>
+            <div className="case-file__section-body">
+              <EvidenceDrawer claimId={primaryClaimId} />
+              <HormuzIntelDrawer />
+            </div>
+          </section>
+
+          <section className="case-file__section">
+            <div className="case-file__section-header">Action options</div>
+            <div className="case-file__section-body">
+              <ActionOptions actions={actions} ruleApplication={ruleApplication} />
+            </div>
+          </section>
+
+          <section className="case-file__section">
+            <div className="case-file__section-header">Review memory</div>
+            <div className="case-file__section-body">
+              <ReviewMemory ruleApplication={ruleApplication} caseId={caseId} />
+            </div>
+          </section>
+        </div>
+      </div>
     </>
   );
 }

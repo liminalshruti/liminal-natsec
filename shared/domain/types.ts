@@ -82,6 +82,7 @@ export interface FixturePackDto {
 export type SpecialistName =
   | "kinematics"
   | "identity"
+  | "signal_integrity"
   | "intent"
   | "collection"
   | "visual";
@@ -174,6 +175,7 @@ export interface Specialist {
 export const SPECIALIST_NAMES: readonly SpecialistName[] = [
   "kinematics",
   "identity",
+  "signal_integrity",
   "intent",
   "collection",
   "visual"

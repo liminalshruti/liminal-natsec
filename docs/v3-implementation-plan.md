@@ -115,7 +115,7 @@ The `triggers_refusal_for` field is what makes the UI causally legible: Intent r
 
 ## 4. UI delta
 
-`app/src/components/SpecialistReads.tsx` (already in v2 plan) renders 5 rows instead of 4.
+`app/src/components/SpecialistReads.tsx` (already in v2 plan) renders 6 rows instead of 4. v3.2 confirms the canonical order is Kinematics → Identity → **Signal Integrity** → Intent → Collection → Visual.
 
 Row order:
 
@@ -154,7 +154,7 @@ The Signal Integrity *component* is rendered by Shruti's `SpecialistReads.tsx`. 
 ### Shruti — additions to v2 lane
 
 ```
-+ Specialist reads UI delta (5 rows, causal-legibility line)
++ Specialist reads UI delta (6 rows incl. Visual, causal-legibility line from signal_integrity → intent)
 + Round 1 / Round 2 scripts
 + Architecture visual showing pre-command layer
 + Maven-augmenting frame in deck

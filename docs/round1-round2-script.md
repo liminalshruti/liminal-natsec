@@ -100,7 +100,7 @@
 
 (Same flow as Round 1, slightly slower. Add this emphasis on the causal beat:)
 
-> "Watch this carefully. Identity is fine. Kinematics is fine. **Signal Integrity is contested.** Intent refuses — but not because we told it to. We run a structural guard server-side. Seven layered checks. Citation count, indicator evidence, posterior threshold, source restrictions. The guard catches AIP outputs that don't pass and *forces* refusal before they ever persist. **Restraint isn't a feature. It's an invariant.**"
+> "Watch this carefully. Identity flags a metadata mismatch. Visual flags an AIS-class mismatch — CLIP says tanker, AIS declares cargo. Kinematics flags continuity inside a known spoofing envelope. **Signal Integrity says contested — three independent specialists converge on source-chain compromise.** That's defense in depth. An attacker has to spoof three independent reads, not one. And because Signal Integrity is contested, **Intent refuses** — but not because we told it to. We run a structural guard server-side. Seven layered checks: citation count, indicator evidence, posterior threshold, source restrictions. The guard catches AIP outputs that don't pass and *forces* refusal before they ever persist. **Restraint isn't a feature. It's an invariant.**"
 
 **Review Memory + portability (1:45 – 2:15) — Shruti:**
 
