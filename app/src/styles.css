@@ -3964,3 +3964,59 @@ details.case-file__section > summary:focus-visible {
 /* ─── S4 CAUSAL TRACE BANNER ─── */
 
 /* ─── S5 POSTURE-FORWARD REGISTER ─── */
+
+/* ─── DRILL-DOWN POLISH ──────────────────────────────────────────────────────
+   Two small additions, both additive-only (no rule overrides):
+   1. tchip__drill — a small chevron rendered inside any chip that has an
+      onClick handler. Tells the eye "this surface drills further." Keeps
+      static chips quiet (no chevron when no handler).
+   2. evidence-card__drill-trail — a breadcrumb-shaped strip that appears
+      at the top of an expanded evidence card, teaching the operator the
+      drill structure (case › evidence › cited source). Same teaching
+      spine as Palantir Workshop's breadcrumb but local to the card.
+   ──────────────────────────────────────────────────────────────────────── */
+.tchip__drill {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--color-ink-tertiary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1;
+  opacity: 0.55;
+  transform: translateX(0);
+  transition: transform 120ms ease-out, opacity 120ms ease-out, color 120ms ease-out;
+}
+
+.tchip--clickable:hover .tchip__drill,
+.tchip--clickable:focus-visible .tchip__drill {
+  opacity: 1;
+  transform: translateX(2px);
+  color: var(--color-decision);
+}
+
+.evidence-card__drill-trail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px 5px;
+  margin-bottom: 2px;
+  border-bottom: 1px dashed var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  color: var(--color-ink-tertiary);
+}
+
+.evidence-card__drill-trail-sep {
+  color: var(--color-edge);
+  font-size: 11px;
+}
+
+.evidence-card__drill-trail-leaf {
+  color: var(--color-decision);
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-size: 10px;
+}

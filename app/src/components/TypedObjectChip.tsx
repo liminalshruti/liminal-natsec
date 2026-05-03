@@ -131,6 +131,12 @@ export function TypedObjectChip({
       {typeof posterior === "number" && (
         <span className="tchip__posterior">{Math.round(posterior * 100)}%</span>
       )}
+      {/* Drill chevron — visual signal that this chip drills down to a deeper
+          surface (the case panel, the citation footer, the cited document).
+          Rendered only when onClick is wired so static chips stay quiet. The
+          register matches the substrate panel's "drill-affordance" workshop
+          principle: clickable surfaces must SAY they're clickable. */}
+      {onClick && <span className="tchip__drill" aria-hidden="true">›</span>}
     </span>
   );
 }
