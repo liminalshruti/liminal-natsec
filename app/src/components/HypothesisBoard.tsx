@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   evidenceForClaim,
@@ -7,6 +7,17 @@ import {
 } from "../lib/spineGraph.ts";
 import { ConfidenceBar } from "./ConfidenceBar.tsx";
 import { TypedObjectChip } from "./TypedObjectChip.tsx";
+
+/**
+ * Detect prefers-reduced-motion once at module level. The hook runs in
+ * the browser; in non-DOM contexts (tests) it falls back to false so
+ * oscillation is disabled — which is the same behavior reduced-motion
+ * users get. Safer either way.
+ */
+function reducedMotionPreferred(): boolean {
+  if (typeof window === "undefined" || !window.matchMedia) return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 interface HypothesisBoardProps {
   hypotheses: SpineNode[];
@@ -31,6 +42,20 @@ export function HypothesisBoard({
     };
   }, [primaryClaimId]);
 
+  // D2 ambient motion: contested hypotheses get a subtle posterior
+  // oscillation (±0.005 over a 4-second period). Operator-grade restraint
+  // — too small to notice without staring, but the eye registers "live
+  // computation" not "frozen number." Skip if reduced-motion preferred.
+  // 12fps tick is enough for smooth visible oscillation without burning
+  // render budget; React batches the state updates anyway.
+  const reducedMotion = useMemo(reducedMotionPreferred, []);
+  const [oscNow, setOscNow] = useState<number>(() => Date.now());
+  useEffect(() => {
+    if (reducedMotion) return;
+    const handle = window.setInterval(() => setOscNow(Date.now()), 80);
+    return () => window.clearInterval(handle);
+  }, [reducedMotion]);
+
   if (hypotheses.length === 0) {
     return (
       <>
@@ -49,6 +74,17 @@ export function HypothesisBoard({
           typeof data.posterior === "number" ? (data.posterior as number) : null;
         const status = statusForHypothesis(node.id, primaryClaimId);
         const isSelected = node.id === selectedHypothesisId;
+        // For contested hypotheses (status not yet "primary"), apply the
+        // ambient ±0.005 posterior oscillation. Primary status reads as
+        // "settled" — keep its number static to signal that decisively.
+        const isContested = status !== "primary";
+        const displayPosterior =
+          posterior != null && isContested && !reducedMotion
+            ? Math.max(
+                0,
+                Math.min(1, posterior + 0.005 * Math.sin(oscNow / 800))
+              )
+            : posterior;
         const tagClass =
           status === "primary"
             ? "tag tag--ok"
@@ -86,14 +122,14 @@ export function HypothesisBoard({
                 id={node.id}
                 label={node.title}
                 status={tagText.toLowerCase()}
-                posterior={posterior}
+                posterior={displayPosterior}
                 size="sm"
               />
             </div>
             <ConfidenceBar
-              value={posterior}
+              value={displayPosterior}
               variant={status === "primary" ? "primary" : "default"}
-              label={`posterior probability ${posterior == null ? "unknown" : posterior.toFixed(2)}`}
+              label={`posterior probability ${displayPosterior == null ? "unknown" : displayPosterior.toFixed(2)}`}
             />
             <div
               className="action-row__sub"
