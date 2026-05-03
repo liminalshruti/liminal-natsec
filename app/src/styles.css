@@ -157,14 +157,17 @@ button:hover {
     minmax(420px, 1fr)
     8px
     var(--working-pane-width);
-  /* SHIP-5: 22px chyron row added above topbar. Total chrome height up
-     22px from prior layout — pane content gets one less row, but the
-     broadcast register pays the cost back in operator-context legibility. */
-  grid-template-rows: 22px 36px 1fr 32px;
+  /* SHIP-5: 22px broadcast chyron above topbar.
+     STRETCH-1: 18px substrate-state chyron above command line.
+     Total chrome height up 40px from prior layout — pane content
+     shrinks by that, but the broadcast + substrate-state pair gives
+     full system-state legibility from frame 1 to verdict. */
+  grid-template-rows: 22px 36px 1fr 18px 32px;
   grid-template-areas:
     "chyron chyron chyron chyron chyron"
     "topbar topbar topbar topbar topbar"
     "substrate resize-left stage resize-right working"
+    "subchyron subchyron subchyron subchyron subchyron"
     "command command command command command";
   height: 100vh;
   background: var(--color-substrate);
@@ -8517,6 +8520,84 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
     animation: none;
   }
 }
-    animation: none;
-  }
+
+/* ─── STRETCH-1 SUBSTRATE-STATE CHYRON ─────────────────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-1 (Source 10 · aerockrose).
+   Single bottom line, mnemonic register, system's continuous self-state
+   in plain English. Threads non-technical judges through any beat they
+   miss. Composes with SHIP-3 wet/drying/dry vocabulary.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.substrate-state-chyron {
+  grid-area: subchyron;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: var(--color-frame);
+  border-top: 1px solid var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-tertiary);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.substrate-state-chyron__lead {
+  color: var(--color-ink-quaternary, rgba(184, 197, 212, 0.32));
+  letter-spacing: 0.10em;
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__stance {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__stance--holding {
+  color: var(--color-contested);
+}
+
+.substrate-state-chyron__stance--settling {
+  color: var(--color-ink-tertiary);
+}
+
+.substrate-state-chyron__stance--reviewing {
+  color: var(--color-resolved);
+}
+
+.substrate-state-chyron__sep {
+  color: var(--color-edge-strong);
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__sep--leading {
+  margin-left: auto;
+}
+
+.substrate-state-chyron__seg {
+  color: var(--color-ink-secondary);
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__seg strong {
+  color: var(--color-ink-primary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.substrate-state-chyron__handoff {
+  /* Trailing free-text segment — names the current beat in plain English.
+     Slightly italic so it reads as system-narration, not chrome. */
+  color: var(--color-ink-secondary);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+  min-width: 0;
 }

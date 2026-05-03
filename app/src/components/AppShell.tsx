@@ -229,6 +229,11 @@ export function AppShell({
         uiMode={uiMode}
         replayPhase={mapScenarioState?.phase ?? 1}
       />
+      {/* STRETCH-1: substrate-state chyron at the bottom — system's
+          continuous self-narration in plain English. Threads non-
+          technical judges through any demo beat they miss. Per
+          INSPO_TO_SURFACE_MAP.md §STRETCH-1 (Source 10 · aerockrose). */}
+      <SubstrateStateChyron scenario={scenario} scenarioState={mapScenarioState} />
       <CommandLine
         scenario={scenario}
         mapScenarioState={mapScenarioState}
