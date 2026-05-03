@@ -8284,6 +8284,115 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   text-transform: uppercase;
   font-weight: 500;
 }
+
+/* ─── SHIP-2 RELUCTANT CHROME — driven readouts on HUD + MUB gutters ───────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-2 (Source 1 · Ricky).
+   Every margin label = a measurable property the system is currently
+   reading. Mnemonic stacks; alive simulation lives in the center;
+   instrumentation lives in the gutters.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* MAP TELEMETRY HUD — re-tune toward MUB-mnemonic register.
+   Existing class .map-telemetry-hud already exists — these rules layer
+   on top to tighten the typography contract. */
+
+.map-telemetry-hud__row-label {
+  /* Mnemonic 3-letter stacks: "MMSI · CHURN", "DARK · GAP", "SIG · INT".
+     Tighter tracking, smaller size, ink-quaternary so the value reads
+     as the loud word and the label as the property name. */
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-quaternary, rgba(184, 197, 212, 0.32));
+}
+
+.map-telemetry-hud__row-value {
+  /* Loud value — the measurable. Slightly larger than before;
+     ink-primary so the number/state pops past the label. */
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--color-ink-primary);
+}
+
+.map-telemetry-hud__row-meta {
+  /* Secondary annotation — the meta context for the value
+     (e.g. "2 IDS · 1 TARGET", "GUARD L2 · LIVE"). Mono-tracked-out,
+     muted-secondary tone. */
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+/* Tone-driven left border accents — alert/warn/ok/neutral rows wear
+   different stamp colors so the eye picks up state without reading
+   the whole stack. Composes with existing tone-row classes. */
+.map-telemetry-hud__row--alert {
+  border-left-color: var(--color-refused);
+}
+.map-telemetry-hud__row--warn {
+  border-left-color: var(--color-contested);
+}
+.map-telemetry-hud__row--ok {
+  border-left-color: var(--color-resolved);
+}
+.map-telemetry-hud__row--neutral {
+  border-left-color: var(--color-edge);
+}
+
+/* SPECIALIST ROW MUB GUTTER — 3-letter mnemonic in a fixed-width gutter
+   on the left edge of every specialist row. Full name slides into a
+   hidden span (still in DOM for a11y; revealed on hover via title). */
+
+.specialist-row__name {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  cursor: help;
+}
+
+.specialist-row__mub {
+  /* Fixed-width gutter — same x-offset across all 6 rows so the eye
+     reads the column as a vertical mnemonic strip. */
+  display: inline-block;
+  min-width: 28px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-decision);
+  /* Subtle box-shadow inset on the right edge — creates an implied
+     vertical column rule across all 6 rows without a real border. */
+  border-right: 1px solid var(--color-edge);
+  padding-right: 8px;
+  text-align: left;
+}
+
+.specialist-row__name-full {
+  /* Full specialist name — shown next to the MUB at normal density,
+     not hidden. The MUB IS the operator's eye anchor; the full name
+     stays present for non-pilot readers. */
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+}
+
+/* In archival register the MUB picks up the stamp color, full name muted. */
+.panel--working .specialist-row__mub {
+  color: var(--archival-stamp);
+  border-right-color: var(--archival-edge);
+}
+
+.panel--working .specialist-row__name-full {
+  color: var(--archival-ink-faint);
+}
     animation: none;
   }
 }
