@@ -1,6 +1,6 @@
 {
   "source": "SHODAN",
-  "generated_at": "2026-05-03T02:40:57.696Z",
+  "generated_at": "2026-05-03T03:27:22.334Z",
   "fixture_mode": true,
   "fixture_reason": "Live Shodan AIS search returned 403; synthetic response preserves host-search shape for infrastructure-only demo use.",
   "request": {
@@ -31,7 +31,7 @@
         "org": "Fixture Maritime Network",
         "isp": "Fixture ISP",
         "transport": "tcp",
-        "timestamp": "2026-04-03T08:40:57.697Z",
+        "timestamp": "2026-04-03T09:27:22.335Z",
         "location": {
           "country_name": "Oman",
           "country_code": "OM",
@@ -51,7 +51,7 @@
         "org": "Fixture Port Services",
         "isp": "Fixture ISP",
         "transport": "tcp",
-        "timestamp": "2026-04-03T09:40:57.697Z",
+        "timestamp": "2026-04-03T10:27:22.335Z",
         "location": {
           "country_name": "United Arab Emirates",
           "country_code": "AE",

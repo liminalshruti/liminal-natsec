@@ -1,8 +1,9 @@
-import type { AlertView } from "../lib/types.ts";
+import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { CustodyCasePanel } from "./CustodyCasePanel.tsx";
 
 interface WorkingPanelProps {
   selectedAlert: AlertView | null;
+  scenarioState?: ScenarioStateView | null;
   loading: boolean;
 }
 

@@ -31,6 +31,7 @@ export interface ScenarioState {
   capabilities: { poll: boolean; stream: boolean; replay: boolean };
   tracks: Array<Record<string, unknown>>;
   anomalies: Array<Record<string, unknown>>;
+  hypotheses: Array<Record<string, unknown>>;
   claims: Array<Record<string, unknown>>;
   actions: Array<Record<string, unknown>>;
   ranking: Array<Record<string, unknown>>;
@@ -153,6 +154,7 @@ export async function getScenarioState(
 ): Promise<ScenarioState> {
   const tracks = await sortedProps(store, "Track", "object_id");
   const anomalies = await sortedProps(store, "Anomaly", "rank");
+  const hypotheses = await sortedProps(store, "Hypothesis", "object_id");
   const claims = await sortedProps(store, "Claim", "object_id");
   const actions = await sortedProps(store, "CollectionAction", "rank");
   const ranking = actions.map((action) => ({
@@ -170,6 +172,7 @@ export async function getScenarioState(
     capabilities: { poll: true, stream: false, replay: true },
     tracks,
     anomalies,
+    hypotheses,
     claims,
     actions,
     ranking,

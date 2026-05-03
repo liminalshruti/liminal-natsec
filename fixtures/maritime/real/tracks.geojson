@@ -1,0 +1,56 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "schema_version": "seaforge.real-tracks.v1",
+    "aoi": {
+      "aoi_id": "aoi:real:hormuz",
+      "name": "Strait of Hormuz real-data AOI",
+      "bbox": [
+        54.4,
+        24.5,
+        57.8,
+        27.2
+      ]
+    },
+    "canonical_timestamps": null
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "aoi:real:hormuz",
+      "properties": {
+        "kind": "monitored_zone",
+        "aoi_id": "aoi:real:hormuz",
+        "name": "Strait of Hormuz real-data AOI",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              54.4,
+              24.5
+            ],
+            [
+              57.8,
+              24.5
+            ],
+            [
+              57.8,
+              27.2
+            ],
+            [
+              54.4,
+              27.2
+            ],
+            [
+              54.4,
+              24.5
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "mode": "real",
+  "generated_at": "2026-05-03T03:18:23.927Z",
+  "strict_real": true,
+  "dark_gap_threshold_min": 20,
+  "observation_count": 0,
+  "track_count": 0,
+  "anomaly_count": 0,
+  "claim_count": 0,
+  "evidence_count": 0,
+  "action_count": 0,
+  "source_statuses": [
+    {
+      "source": "AISSTREAM",
+      "status": "excluded_fixture_fallback",
+      "detail": "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
+      "fileName": "aisstream-hormuz-sample.json",
+      "generatedAt": "2026-05-03T02:40:57.696Z",
+      "recordCount": 0
+    },
+    {
+      "source": "GLOBAL_FISHING_WATCH",
+      "status": "excluded_fixture_fallback",
+      "detail": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
+      "fileName": "gfw-hormuz-gaps.json",
+      "generatedAt": "2026-05-03T02:40:57.696Z",
+      "recordCount": 0
+    },
+    {
+      "source": "GLOBAL_FISHING_WATCH",
+      "status": "excluded_fixture_fallback",
+      "detail": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
+      "fileName": "gfw-hormuz-loitering.json",
+      "generatedAt": "2026-05-03T02:40:57.696Z",
+      "recordCount": 0
+    },
+    {
+      "source": "GLOBAL_FISHING_WATCH",
+      "status": "excluded_fixture_fallback",
+      "detail": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
+      "fileName": "gfw-hormuz-port-visits.json",
+      "generatedAt": "2026-05-03T02:40:57.696Z",
+      "recordCount": 0
+    }
+  ],
+  "empty_reason": "No real AIS observations were available. Fixture-mode provider fallbacks were excluded from real mode."
+}

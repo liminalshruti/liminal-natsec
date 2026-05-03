@@ -59,7 +59,11 @@ export function CommandLine({
 
   const sourceStatus = scenario
     ? scenario.source === "server"
-      ? `seeded ${scenario.state.seededAt}`
+      ? scenario.state.mode === "real"
+        ? `real ${scenario.state.caseGenerationStatus?.toLowerCase() ?? "cache"}`
+        : `seeded ${scenario.state.seededAt}`
+      : scenario.state.mode === "real"
+      ? "static real cache"
       : `fallback ${scenario.warning ?? "offline"}`
     : "connecting...";
 
@@ -134,7 +138,7 @@ function runCommand(command: string, ctx: CommandContext): CommandResult {
       };
     case "reset":
       ctx.onReset("full");
-      return { status: "ok", message: "demo reset (rules cleared)" };
+      return { status: "ok", message: "scenario reset (rules cleared)" };
     case "map-reset":
       ctx.onReset("soft");
       return { status: "ok", message: "map replay reset" };

@@ -1,9 +1,10 @@
-import type { AlertView } from "../lib/types.ts";
+import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
 import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
 
 interface SubstratePanelProps {
   alerts: AlertView[];
+  scenarioState: ScenarioStateView | null;
   selectedAlertId: string | null;
   onSelectAlert: (id: string) => void;
   loading: boolean;
@@ -11,6 +12,7 @@ interface SubstratePanelProps {
 
 export function SubstratePanel({
   alerts,
+  scenarioState,
   selectedAlertId,
   onSelectAlert,
   loading
@@ -24,6 +26,7 @@ export function SubstratePanel({
       <div className="panel__body">
         <CustodyQueue
           alerts={alerts}
+          scenarioState={scenarioState}
           selectedAlertId={selectedAlertId}
           onSelectAlert={onSelectAlert}
           loading={loading}

@@ -28,6 +28,12 @@ Danti-only refresh:
 node scripts/cache-hormuz-sources.mjs --profile=danti
 ```
 
+ACLED-only refresh:
+
+```sh
+node scripts/cache-hormuz-sources.mjs --profile=acled
+```
+
 Fixture fallbacks for blocked/empty providers:
 
 ```sh
@@ -37,6 +43,7 @@ node scripts/cache-hormuz-sources.mjs --profile=fallbacks
 Expected source files:
 
 - `aisstream-hormuz-sample.json` — bounded AISstream WebSocket sample.
+- `acled-auth.json` — ACLED OAuth credential check with tokens stripped.
 - `acled-hormuz-events.json` — ACLED-shaped regional event context; fixture fallback when live read is blocked.
 - `foundry-ontologies.json` — Foundry token reachability and visible ontology metadata, when access allows it.
 - `danti-auth.json` — Danti OIDC/browser-login credential check with tokens stripped.
@@ -48,7 +55,7 @@ Expected source files:
 - `gfw-hormuz-loitering.json` — Global Fishing Watch loitering event query.
 - `shodan-api-info.json` — Shodan key/account capability check.
 - `shodan-maritime-ais.json` — Shodan AIS-related infrastructure search.
-- `censys-maritime-infrastructure.json` — Censys Platform maritime/AIS/NMEA infrastructure search; infrastructure-only context.
+- `censys-maritime-infrastructure.json` — Censys Platform maritime/AIS/NMEA infrastructure search; infrastructure-only context. Free-plan Platform accounts have no organization ID, so this is expected to use fixture fallback until an org UUID/API entitlement is available.
 - `opensanctions-hormuz-maritime-entities.json` — OpenSanctions searches for maritime/sanctions entities relevant to Hormuz.
 - `copernicus-cdse-auth.json` — CDSE credential check with tokens stripped.
 - `copernicus-cdse-sentinel1-stac.json` — recent Sentinel-1 GRD STAC metadata over Hormuz.

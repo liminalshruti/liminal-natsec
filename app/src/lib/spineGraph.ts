@@ -21,6 +21,12 @@ import claims from "../../../fixtures/maritime/claims.json" with { type: "json" 
 import evidence from "../../../fixtures/maritime/evidence.json" with { type: "json" };
 import actions from "../../../fixtures/maritime/actions.json" with { type: "json" };
 import reviewRules from "../../../fixtures/maritime/review-rules.json" with { type: "json" };
+import realObservations from "../../../fixtures/maritime/real/observations.json" with { type: "json" };
+import realAnomalies from "../../../fixtures/maritime/real/anomalies.json" with { type: "json" };
+import realHypotheses from "../../../fixtures/maritime/real/hypotheses.json" with { type: "json" };
+import realClaims from "../../../fixtures/maritime/real/claims.json" with { type: "json" };
+import realEvidence from "../../../fixtures/maritime/real/evidence.json" with { type: "json" };
+import realActions from "../../../fixtures/maritime/real/actions.json" with { type: "json" };
 
 let cachedGraph: Graph | null = null;
 
@@ -33,6 +39,12 @@ export function getMaritimeGraph(): Graph {
     claims,
     evidence,
     actions,
+    realObservations,
+    realAnomalies,
+    realHypotheses,
+    realClaims,
+    realEvidence,
+    realActions,
     reviewRules
   ]);
   return cachedGraph;

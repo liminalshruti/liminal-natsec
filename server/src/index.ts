@@ -5,6 +5,7 @@ import { registerAnomalyRoutes } from "./routes/anomalies.ts";
 import { registerDebugRoutes } from "./routes/debug.ts";
 import { registerIngestRoutes } from "./routes/ingest.ts";
 import { registerProvenanceRoutes } from "./routes/provenance.ts";
+import { registerRealRoutes } from "./routes/real.ts";
 import { registerReplayRoutes } from "./routes/replay.ts";
 import { registerScenarioRoutes } from "./routes/scenario.ts";
 import { registerSpecialistRoutes } from "./routes/specialists.ts";
@@ -15,6 +16,7 @@ export function createApp(store: OperationalStore = createLocalStore()) {
   const app = new Hono();
 
   registerDebugRoutes(app, store);
+  registerRealRoutes(app);
   registerScenarioRoutes(app, store);
   registerReplayRoutes(app, store);
   registerIngestRoutes(app, store);

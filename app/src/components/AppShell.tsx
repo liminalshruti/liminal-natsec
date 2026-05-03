@@ -34,6 +34,8 @@ export function AppShell({
   resetToast
 }: AppShellProps) {
   const eventId = eventIdFromCaseId(selectedCaseId);
+  const modeLabel = scenario?.state.mode === "real" ? "real cache" : "demo fixture";
+  const timestamp = scenario?.state.lastRefreshAt ?? scenario?.state.seededAt;
   return (
     <div className="app-shell">
       <header className="app-topbar">
@@ -52,11 +54,13 @@ export function AppShell({
         )}
         <div className="app-topbar__status">
           <SourceIndicator scenario={scenario} />
-          <span>fixtures: maritime/alara-01</span>
+          <span>{modeLabel}</span>
+          {timestamp && <span title={timestamp}>{formatShortTime(timestamp)}</span>}
         </div>
       </header>
       <SubstratePanel
         alerts={scenario?.state.alerts ?? []}
+        scenarioState={scenario?.state ?? null}
         selectedAlertId={selectedAlertId}
         onSelectAlert={onSelectAlert}
         loading={!scenario}
@@ -65,11 +69,16 @@ export function AppShell({
         selectedAlert={selectedAlert}
         selectedCaseId={selectedCaseId}
         loading={!scenario}
+        scenario={scenario}
         scenarioState={mapScenarioState}
         onScenarioStateChange={onMapScenarioChange}
         resetSignal={resetSignal}
       />
-      <WorkingPanel selectedAlert={selectedAlert} loading={!scenario} />
+      <WorkingPanel
+        selectedAlert={selectedAlert}
+        scenarioState={scenario?.state ?? null}
+        loading={!scenario}
+      />
       <CommandLine
         scenario={scenario}
         mapScenarioState={mapScenarioState}
@@ -111,7 +120,15 @@ function SourceIndicator({ scenario }: { scenario: LoadedScenario | null }) {
   if (scenario.source === "server") {
     return (
       <span>
-        <span className="app-topbar__dot app-topbar__dot--ok" /> live server
+        <span className="app-topbar__dot app-topbar__dot--ok" />{" "}
+        {scenario.state.mode === "real" ? "server real" : "live server"}
+      </span>
+    );
+  }
+  if (scenario.state.mode === "real") {
+    return (
+      <span title={scenario.warning ?? "static real cache"}>
+        <span className="app-topbar__dot app-topbar__dot--fallback" /> static real cache
       </span>
     );
   }
@@ -120,4 +137,10 @@ function SourceIndicator({ scenario }: { scenario: LoadedScenario | null }) {
       <span className="app-topbar__dot app-topbar__dot--fallback" /> fixture fallback
     </span>
   );
+}
+
+function formatShortTime(iso: string): string {
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return date.toISOString().slice(0, 16).replace("T", " ") + "Z";
 }

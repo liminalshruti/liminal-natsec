@@ -14,6 +14,7 @@ const proxiedPaths = [
   "/actions",
   "/provenance",
   "/replay",
+  "/real",
   "/ingest",
   "/health"
 ];

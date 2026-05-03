@@ -30,8 +30,8 @@ interface CustodyCasePanelProps {
 // scrolls with dragon-fold sticky section headers.
 export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
   const caseId = useMemo(
-    () => caseIdFromAlertId(selectedAlert.id),
-    [selectedAlert.id]
+    () => selectedAlert.caseId ?? caseIdFromAlertId(selectedAlert.id),
+    [selectedAlert.caseId, selectedAlert.id]
   );
   const hypotheses = useMemo(
     () => (caseId ? hypothesesForCase(caseId) : []),

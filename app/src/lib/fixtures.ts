@@ -7,19 +7,35 @@ import type {
   AlertView,
   ClaimView,
   HypothesisView,
-  ScenarioStateView
+  ScenarioStateView,
+  SourceStatusView
 } from "./types.ts";
 
 import anomalyFixtures from "../../../fixtures/maritime/anomalies.json" with { type: "json" };
 import claimFixtures from "../../../fixtures/maritime/claims.json" with { type: "json" };
 import hypothesisFixtures from "../../../fixtures/maritime/hypotheses.json" with { type: "json" };
 import actionFixtures from "../../../fixtures/maritime/actions.json" with { type: "json" };
+import realAnomalyFixtures from "../../../fixtures/maritime/real/anomalies.json" with { type: "json" };
+import realClaimFixtures from "../../../fixtures/maritime/real/claims.json" with { type: "json" };
+import realHypothesisFixtures from "../../../fixtures/maritime/real/hypotheses.json" with { type: "json" };
+import realActionFixtures from "../../../fixtures/maritime/real/actions.json" with { type: "json" };
+import realGenerationSummary from "../../../fixtures/maritime/real/generation-summary.json" with { type: "json" };
+import realSourceStatuses from "../../../fixtures/maritime/real/source-status.json" with { type: "json" };
 
 interface FixtureFile {
-  nodes?: Array<{ id: string; title?: string; data?: Record<string, unknown> }>;
+  nodes?: FixtureNode[];
 }
 
-const SERVER_PATH = "/scenario/state";
+interface FixtureNode {
+  id: string;
+  type?: string;
+  title?: string;
+  case_id?: string;
+  status?: string;
+  data?: Record<string, unknown>;
+}
+
+const SERVER_PATH = "/scenario/state?mode=real";
 const FETCH_TIMEOUT_MS = 1500;
 
 export interface LoadedScenario {
@@ -52,6 +68,14 @@ export async function loadScenario(): Promise<LoadedScenario> {
   }
 }
 
+export async function refreshRealScenario(): Promise<void> {
+  if (typeof fetch !== "function") return;
+  const response = await fetchWithTimeout("/real/refresh", 5000, { method: "POST" });
+  if (!response.ok) {
+    throw new Error(`real refresh responded ${response.status}`);
+  }
+}
+
 function fallbackResult(state: ScenarioStateView, warning: string): LoadedScenario {
   return {
     source: "fallback",
@@ -61,31 +85,53 @@ function fallbackResult(state: ScenarioStateView, warning: string): LoadedScenar
   };
 }
 
-async function fetchWithTimeout(path: string, timeoutMs: number): Promise<Response> {
+async function fetchWithTimeout(
+  path: string,
+  timeoutMs: number,
+  init: RequestInit = {}
+): Promise<Response> {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    return await fetch(path, { signal: controller.signal, headers: { accept: "application/json" } });
+    return await fetch(path, {
+      ...init,
+      signal: controller.signal,
+      headers: { accept: "application/json", ...init.headers }
+    });
   } finally {
     clearTimeout(timer);
   }
 }
 
-function projectServerState(
+export function projectServerState(
   raw: Record<string, unknown>,
   fallback: ScenarioStateView
 ): ScenarioStateView {
   const anomalies = asArray(raw.anomalies);
+  const hypotheses = asArray(raw.hypotheses);
   const claims = asArray(raw.claims);
   const actions = asArray(raw.actions);
+  const sourceStatuses = asArray(raw.sourceStatuses).map(toSourceStatusView);
+  const mode = raw.mode === "real" ? "real" : "demo";
+  const useFallbackRows = mode !== "real";
 
   return {
     scenarioRunId: typeof raw.scenarioRunId === "string" ? raw.scenarioRunId : fallback.scenarioRunId,
     seededAt: typeof raw.seededAt === "string" ? raw.seededAt : fallback.seededAt,
-    alerts: anomalies.length > 0 ? anomalies.map(toAlertView) : fallback.alerts,
-    hypotheses: claims.length > 0 ? claims.map(toHypothesisView) : fallback.hypotheses,
-    claims: claims.length > 0 ? claims.map(toClaimView) : fallback.claims,
-    actions: actions.length > 0 ? actions.map(toActionView) : fallback.actions
+    mode,
+    strictReal: raw.strictReal === true,
+    caseGenerationStatus:
+      raw.caseGenerationStatus === "READY" || raw.caseGenerationStatus === "NO_REAL_CASE"
+        ? raw.caseGenerationStatus
+        : undefined,
+    lastRefreshAt: typeof raw.lastRefreshAt === "string" ? raw.lastRefreshAt : undefined,
+    emptyReason: typeof raw.emptyReason === "string" ? raw.emptyReason : null,
+    sourceStatuses,
+    tracksUrl: typeof raw.tracksUrl === "string" ? raw.tracksUrl : undefined,
+    alerts: anomalies.length > 0 ? anomalies.map(toAlertView) : useFallbackRows ? fallback.alerts : [],
+    hypotheses: hypotheses.length > 0 ? hypotheses.map(toHypothesisView) : useFallbackRows ? fallback.hypotheses : [],
+    claims: claims.length > 0 ? claims.map(toClaimView) : useFallbackRows ? fallback.claims : [],
+    actions: actions.length > 0 ? actions.map(toActionView) : useFallbackRows ? fallback.actions : []
   };
 }
 
@@ -97,7 +143,8 @@ function toAlertView(record: Record<string, unknown>): AlertView {
   const id = (record.object_id as string) ?? (record.objectId as string) ?? "unknown";
   return {
     id,
-    title: (record.summary as string) ?? (record.anomaly_type as string) ?? id,
+    caseId: (record.case_id as string) ?? (record.caseId as string) ?? undefined,
+    title: (record.summary as string) ?? (record.title as string) ?? (record.anomaly_type as string) ?? id,
     detectedAt: (record.detected_at as string) ?? (record.window_end as string) ?? "",
     severity: typeof record.score === "number" ? record.score : 0,
     rank: typeof record.rank === "number" ? record.rank : 99,
@@ -105,11 +152,25 @@ function toAlertView(record: Record<string, unknown>): AlertView {
   };
 }
 
+function toSourceStatusView(record: Record<string, unknown>): SourceStatusView {
+  return {
+    source: typeof record.source === "string" ? record.source : "UNKNOWN",
+    status: typeof record.status === "string" ? record.status : "unavailable",
+    detail: typeof record.detail === "string" ? record.detail : "status unavailable",
+    fileName: typeof record.fileName === "string" ? record.fileName : undefined,
+    generatedAt:
+      typeof record.generatedAt === "string" || record.generatedAt === null
+        ? record.generatedAt
+        : undefined,
+    recordCount: typeof record.recordCount === "number" ? record.recordCount : undefined
+  };
+}
+
 function toHypothesisView(record: Record<string, unknown>): HypothesisView {
   const id = (record.object_id as string) ?? (record.objectId as string) ?? "unknown";
   return {
     id,
-    label: (record.hypothesis as string) ?? id,
+    label: (record.hypothesis as string) ?? (record.title as string) ?? id,
     posterior: typeof record.posterior === "number" ? record.posterior : 0,
     status: (record.status as string) ?? "UNRESOLVED"
   };
@@ -136,6 +197,42 @@ function toActionView(record: Record<string, unknown>): ActionView {
 }
 
 function buildFallbackState(): ScenarioStateView {
+  const summary = realGenerationSummary as Record<string, unknown>;
+  const alerts = ((realAnomalyFixtures as FixtureFile).nodes ?? [])
+    .filter((node) => node.type === "anomaly")
+    .map((node) => toAlertView(fixtureNodeToRecord(node)));
+  const hypotheses = ((realHypothesisFixtures as FixtureFile).nodes ?? [])
+    .filter((node) => node.type === "hypothesis")
+    .map((node) => toHypothesisView(fixtureNodeToRecord(node)));
+  const claims = ((realClaimFixtures as FixtureFile).nodes ?? [])
+    .filter((node) => node.type === "claim")
+    .map((node) => toClaimView(fixtureNodeToRecord(node)));
+  const actions = ((realActionFixtures as FixtureFile).nodes ?? [])
+    .filter((node) => node.type === "actionOption")
+    .map((node) => toActionView(fixtureNodeToRecord(node)));
+  const generatedAt =
+    typeof summary.generated_at === "string" ? summary.generated_at : new Date(0).toISOString();
+
+  return {
+    scenarioRunId: "real:hormuz:static-cache",
+    seededAt: generatedAt,
+    mode: "real",
+    strictReal: true,
+    caseGenerationStatus: alerts.length > 0 ? "READY" : "NO_REAL_CASE",
+    lastRefreshAt: generatedAt,
+    emptyReason: typeof summary.empty_reason === "string" ? summary.empty_reason : null,
+    sourceStatuses: Array.isArray(realSourceStatuses)
+      ? (realSourceStatuses as Array<Record<string, unknown>>).map(toSourceStatusView)
+      : [],
+    tracksUrl: "/fixtures/maritime/real/tracks.geojson",
+    alerts,
+    hypotheses,
+    claims,
+    actions
+  };
+}
+
+function buildDemoFallbackState(): ScenarioStateView {
   const alerts: AlertView[] = ((anomalyFixtures as FixtureFile).nodes ?? []).map((node, index) => ({
     id: node.id,
     title: node.title ?? node.id,
@@ -189,9 +286,21 @@ function buildFallbackState(): ScenarioStateView {
   return {
     scenarioRunId: "fallback:alara-01",
     seededAt: new Date(0).toISOString(),
+    mode: "demo",
     alerts,
     hypotheses,
     claims,
     actions
+  };
+}
+
+function fixtureNodeToRecord(node: FixtureNode): Record<string, unknown> {
+  return {
+    ...(node.data ?? {}),
+    object_id: node.id,
+    objectId: node.id,
+    title: node.title,
+    case_id: node.case_id,
+    status: node.status ?? node.data?.status
   };
 }

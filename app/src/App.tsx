@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AppShell } from "./components/AppShell.tsx";
 import type { ScenarioState as MapScenarioState } from "./components/MapWatchfloor.tsx";
 import { caseIdFromAlertId } from "./lib/spineGraph.ts";
-import { loadScenario, type LoadedScenario } from "./lib/fixtures.ts";
+import { loadScenario, refreshRealScenario, type LoadedScenario } from "./lib/fixtures.ts";
 import { clearSavedRules } from "./lib/reviewRulesStore.ts";
 
 export function App() {
@@ -43,8 +43,10 @@ export function App() {
       setMapScenarioState(undefined);
       if (mode === "full") {
         clearSavedRules();
-        setResetToast("Demo reset · saved rules cleared · scenario reseeded");
-        fetchScenario();
+        setResetToast("Refreshing real cache · saved rules cleared");
+        refreshRealScenario()
+          .catch(() => undefined)
+          .finally(fetchScenario);
       } else {
         setResetToast("Map replay reset");
       }
@@ -76,8 +78,8 @@ export function App() {
 
   const selectedCaseId = useMemo(() => {
     if (!selectedAlertId) return null;
-    return caseIdFromAlertId(selectedAlertId);
-  }, [selectedAlertId]);
+    return selectedAlert?.caseId ?? caseIdFromAlertId(selectedAlertId);
+  }, [selectedAlert, selectedAlertId]);
 
   const handleScenarioChange = useCallback((next: MapScenarioState) => {
     setMapScenarioState(next);

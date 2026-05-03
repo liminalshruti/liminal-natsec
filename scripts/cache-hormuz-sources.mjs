@@ -34,6 +34,7 @@ const endDate = new Date();
 const startDate = new Date(endDate.getTime() - 30 * 24 * 60 * 60 * 1000);
 const isoDateTimeRange = `${startDate.toISOString()}/${endDate.toISOString()}`;
 const cacheProfile = parseCacheProfile(process.argv.slice(2));
+const acledAuthAttempts = [];
 
 await mkdir(outputDir, { recursive: true });
 
@@ -56,6 +57,10 @@ if (cacheProfile === "all" || cacheProfile === "fast") {
 
 if (cacheProfile === "all" || cacheProfile === "fast" || cacheProfile === "danti") {
   results.push(await cacheDantiHormuzSearch());
+}
+
+if (cacheProfile === "acled") {
+  results.push(await cacheAcledHormuzEvents());
 }
 
 if (cacheProfile === "fallbacks") {
@@ -312,14 +317,15 @@ async function cacheDantiHormuzSearch() {
 }
 
 async function cacheAcledHormuzEvents() {
-  const token = envOr("ACLED_ACCESS_TOKEN");
+  const auth = await getAcledAccessToken();
+  const token = auth.token;
   const baseUrl = envOr("ACLED_READ_URL", "https://acleddata.com/api/acled/read");
   const url = new URL(baseUrl);
   url.searchParams.set("limit", envOr("ACLED_QUERY_LIMIT", "10"));
   url.searchParams.set("country", envOr("ACLED_COUNTRY", "Iran"));
 
   if (!token) {
-    return writeSyntheticAcledEvents("ACLED_ACCESS_TOKEN missing");
+    return writeSyntheticAcledEvents(auth.detail);
   }
 
   const response = await fetchJson({
@@ -340,11 +346,12 @@ async function cacheAcledHormuzEvents() {
     request: {
       url: url.toString(),
       method: "GET",
-      metadata: {
-        country: url.searchParams.get("country"),
-        limit: url.searchParams.get("limit"),
-        token_cached: false
-      }
+    metadata: {
+      country: url.searchParams.get("country"),
+      limit: url.searchParams.get("limit"),
+      auth_source: auth.source,
+      token_cached: false
+    }
     },
     response: response.response,
     body: response.body,
@@ -361,6 +368,146 @@ async function cacheAcledHormuzEvents() {
     detail: `acled-hormuz-events.json: ${response.response.status} ${response.response.statusText ?? "OK"}`,
     fileName: "acled-hormuz-events.json"
   };
+}
+
+async function getAcledAccessToken() {
+  const username = envOr("ACLED_USERNAME");
+  const password = envOr("ACLED_PASSWORD");
+  const refreshToken = envOr("ACLED_REFRESH_TOKEN");
+  const accessToken = envOr("ACLED_ACCESS_TOKEN");
+  const tokenUrl = envOr("ACLED_TOKEN_URL", "https://acleddata.com/oauth/token");
+  const clientId = envOr("ACLED_CLIENT_ID", "acled");
+
+  if (username && password) {
+    const auth = await fetchAcledToken({
+      tokenUrl,
+      clientId,
+      body: {
+        username,
+        password,
+        grant_type: "password"
+      },
+      source: "username_password"
+    });
+    if (auth.token) return auth;
+  }
+
+  if (refreshToken) {
+    const auth = await fetchAcledToken({
+      tokenUrl,
+      clientId,
+      body: {
+        refresh_token: refreshToken,
+        grant_type: "refresh_token"
+      },
+      source: "refresh_token"
+    });
+    if (auth.token) return auth;
+  }
+
+  if (accessToken) {
+    return {
+      token: accessToken,
+      source: "access_token",
+      detail: "using configured ACLED_ACCESS_TOKEN"
+    };
+  }
+
+  return {
+    token: "",
+    source: "missing",
+    detail: "ACLED_USERNAME/ACLED_PASSWORD or ACLED_ACCESS_TOKEN missing"
+  };
+}
+
+async function fetchAcledToken({ tokenUrl, clientId, body, source }) {
+  const form = new URLSearchParams({ ...body, client_id: clientId });
+  try {
+    const response = await fetchWithTimeout(tokenUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json"
+      },
+      body: form
+    }, 20_000);
+    const text = await response.text();
+    let parsed;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      parsed = { raw_text: truncate(text, 10_000) };
+    }
+
+    const token = typeof parsed.access_token === "string" ? parsed.access_token : "";
+    await writeAcledAuthAttempt({
+      tokenUrl,
+      clientId,
+      source,
+      response: {
+        ok: response.ok,
+        status: response.status,
+        statusText: response.statusText,
+        contentType: response.headers.get("content-type"),
+        bytes: text.length
+      },
+      body: {
+        token_type: typeof parsed.token_type === "string" ? parsed.token_type : null,
+        expires_in: Number.isFinite(parsed.expires_in) ? parsed.expires_in : null,
+        access_token_received: Boolean(parsed.access_token),
+        refresh_token_received: Boolean(parsed.refresh_token),
+        error: typeof parsed.error === "string" ? parsed.error : null,
+        error_description:
+          typeof parsed.error_description === "string"
+            ? truncate(parsed.error_description, 300)
+            : null
+      }
+    });
+
+    return {
+      token,
+      source,
+      detail: token
+        ? `ACLED OAuth ${source} succeeded`
+        : `ACLED OAuth ${source} failed with ${response.status} ${response.statusText}`
+    };
+  } catch (error) {
+    await writeAcledAuthAttempt({
+      tokenUrl,
+      clientId,
+      source,
+      response: { ok: false },
+      error: error instanceof Error ? error.message : String(error)
+    });
+    return {
+      token: "",
+      source,
+      detail: `ACLED OAuth ${source} failed: ${error instanceof Error ? error.message : String(error)}`
+    };
+  }
+}
+
+async function writeAcledAuthAttempt({ tokenUrl, clientId, source, response, body, error }) {
+  acledAuthAttempts.push({
+    request: {
+      url: tokenUrl,
+      method: "POST",
+      metadata: {
+        auth_source: source,
+        client_id: clientId,
+        credentials_cached: false
+      }
+    },
+    response,
+    body,
+    error
+  });
+
+  await writeJson("acled-auth.json", {
+    source: "ACLED_AUTH",
+    generated_at: generatedAt,
+    attempts: acledAuthAttempts
+  });
 }
 
 async function getDantiOidcToken({ username, password, authBaseUrl, appUrl, clientId, scope }) {
@@ -1325,11 +1472,14 @@ async function cacheCensysMaritimeInfrastructure() {
   if (!token) {
     return { source: "CENSYS", ok: false, detail: "CENSYS_API_TOKEN missing; skipped." };
   }
+  if (!organizationId) {
+    return writeSyntheticCensysMaritimeInfrastructure(
+      "CENSYS_ORGANIZATION_ID missing; Censys free-plan Platform accounts have no organization ID and can only use Global Search through the Platform UI"
+    );
+  }
 
   const url = new URL(`${baseUrl}/global/search/query`);
-  if (organizationId) {
-    url.searchParams.set("organization_id", organizationId);
-  }
+  url.searchParams.set("organization_id", organizationId);
 
   const query = [
     "host.services.port=10110",
@@ -2124,11 +2274,12 @@ function parseCacheProfile(args) {
     profile === "fast" ||
     profile === "slow" ||
     profile === "danti" ||
+    profile === "acled" ||
     profile === "fallbacks"
   ) {
     return profile;
   }
-  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, or fallbacks.`);
+  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, acled, or fallbacks.`);
 }
 
 function redactUrl(rawUrl, queryParams) {
