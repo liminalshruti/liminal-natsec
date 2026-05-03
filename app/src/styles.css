@@ -7290,6 +7290,115 @@ button:disabled {
   font-weight: 700;
 }
 
+/* Post-promote next-steps section — what happens after operator confirms.
+   Three explicit paths in instrument register: open custody review,
+   request collection (default), save as durable rule. Plus a command-
+   line affordance footer pointing at the existing /event + /help slash
+   commands so the operator knows where to go next. */
+.draft-case-detail__next-steps {
+  margin-top: 18px;
+  padding: 18px 20px 16px;
+  border-top: 1px dashed var(--color-edge);
+  background: linear-gradient(
+    180deg,
+    rgba(110, 195, 168, 0.025) 0%,
+    transparent 60%
+  );
+}
+
+.draft-case-detail__next-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-resolved);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.draft-case-detail__next-lead {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--color-ink-secondary);
+  margin: 0 0 14px;
+}
+
+.draft-case-detail__next-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: next-step;
+}
+
+.draft-case-detail__next-step {
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  border-radius: 6px;
+  transition: border-color var(--motion-fast) var(--motion-ease-out);
+}
+
+.draft-case-detail__next-step:hover {
+  border-color: rgba(110, 195, 168, 0.4);
+}
+
+.draft-case-detail__next-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(110, 195, 168, 0.10);
+  color: var(--color-resolved);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.draft-case-detail__next-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--color-ink-primary);
+  margin-bottom: 3px;
+}
+
+.draft-case-detail__next-desc {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+  font-style: italic;
+}
+
+.draft-case-detail__next-affordance {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.04em;
+  padding-top: 12px;
+  border-top: 1px dashed var(--color-edge);
+}
+
+.draft-case-detail__next-affordance code {
+  background: rgba(122, 169, 255, 0.10);
+  color: var(--color-decision);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9.5px;
+}
+
 /* ─── B-1 DRAG-AND-DROP — signal → stage ──────────────────────────────────
    Drag-source: each .draft-case-signal becomes draggable. While dragging,
    body gets `liminal-dragging-signal` class; the source signal dims to
