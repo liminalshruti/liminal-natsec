@@ -83,7 +83,19 @@ export function actionsForCase(caseId: string): SpineNode[] {
 export function caseIdFromAlertId(alertId: string): string | null {
   const graph = getMaritimeGraph();
   const node = graph.getNode(alertId);
-  return node?.case_id ?? null;
+  if (node?.case_id) return node.case_id;
+  // Server-side anomaly ids occasionally diverge from the spine fixture
+  // (underscore vs hyphen), so fall back to a regex parse on event-1/event-2.
+  const match = alertId.match(/event[-_]?([12])/);
+  if (match) return `case:alara-01:event-${match[1]}`;
+  return null;
+}
+
+export function eventIdFromCaseId(caseId: string | null): "event-1" | "event-2" | null {
+  if (!caseId) return null;
+  if (caseId.endsWith("event-1")) return "event-1";
+  if (caseId.endsWith("event-2")) return "event-2";
+  return null;
 }
 
 export function topActionForClaim(claimId: string): SpineNode | null {

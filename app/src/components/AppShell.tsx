@@ -1,6 +1,9 @@
 import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
+import { eventIdFromCaseId } from "../lib/spineGraph.ts";
+import { PHASE_LABELS } from "../map/tokens.ts";
 import { CommandLine } from "./CommandLine.tsx";
+import type { ScenarioState as MapScenarioState } from "./MapWatchfloor.tsx";
 import { StageViewport } from "./StageViewport.tsx";
 import { SubstratePanel } from "./SubstratePanel.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
@@ -9,15 +12,26 @@ interface AppShellProps {
   scenario: LoadedScenario | null;
   selectedAlertId: string | null;
   selectedAlert: AlertView | null;
+  selectedCaseId: string | null;
   onSelectAlert: (id: string) => void;
+  mapScenarioState: MapScenarioState | undefined;
+  onMapScenarioChange: (next: MapScenarioState) => void;
+  resetSignal: number;
+  onReset: () => void;
 }
 
 export function AppShell({
   scenario,
   selectedAlertId,
   selectedAlert,
-  onSelectAlert
+  selectedCaseId,
+  onSelectAlert,
+  mapScenarioState,
+  onMapScenarioChange,
+  resetSignal,
+  onReset
 }: AppShellProps) {
+  const eventId = eventIdFromCaseId(selectedCaseId);
   return (
     <div className="app-shell">
       <header className="app-topbar">
@@ -25,6 +39,15 @@ export function AppShell({
         <span style={{ color: "var(--fg-2)", fontSize: 12 }}>
           {scenario ? scenario.state.scenarioRunId : "loading scenario..."}
         </span>
+        <PhaseBadge state={mapScenarioState} />
+        {eventId && (
+          <span
+            className={`tag ${eventId === "event-2" ? "tag--ok" : "tag--accent"}`}
+            title="Selected case event"
+          >
+            {eventId === "event-1" ? "EVENT 1" : "EVENT 2"}
+          </span>
+        )}
         <div className="app-topbar__status">
           <SourceIndicator scenario={scenario} />
           <span>fixtures: maritime/alara-01</span>
@@ -36,10 +59,35 @@ export function AppShell({
         onSelectAlert={onSelectAlert}
         loading={!scenario}
       />
-      <StageViewport selectedAlert={selectedAlert} loading={!scenario} />
+      <StageViewport
+        selectedAlert={selectedAlert}
+        selectedCaseId={selectedCaseId}
+        loading={!scenario}
+        scenarioState={mapScenarioState}
+        onScenarioStateChange={onMapScenarioChange}
+        resetSignal={resetSignal}
+      />
       <WorkingPanel selectedAlert={selectedAlert} loading={!scenario} />
-      <CommandLine scenario={scenario} />
+      <CommandLine
+        scenario={scenario}
+        mapScenarioState={mapScenarioState}
+        onReset={onReset}
+      />
     </div>
+  );
+}
+
+function PhaseBadge({ state }: { state: MapScenarioState | undefined }) {
+  if (!state) return null;
+  const label = PHASE_LABELS[state.phase] ?? "—";
+  return (
+    <span
+      className="tag tag--accent"
+      title={`Phase ${state.phase} · ${label}`}
+      style={{ marginLeft: 4 }}
+    >
+      P{state.phase} · {label}
+    </span>
   );
 }
 

@@ -1,28 +1,23 @@
-import { useEffect, useState } from "react";
-
 import type { AlertView } from "../lib/types.ts";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
 
 interface StageViewportProps {
   selectedAlert: AlertView | null;
+  selectedCaseId: string | null;
   loading: boolean;
+  scenarioState: ScenarioState | undefined;
+  onScenarioStateChange: (next: ScenarioState) => void;
+  resetSignal: number;
 }
 
-export function StageViewport({ selectedAlert, loading }: StageViewportProps) {
-  const [scenarioState, setScenarioState] = useState<ScenarioState | undefined>(undefined);
-  const [resetSignal, setResetSignal] = useState(0);
-
-  useEffect(() => {
-    function onKey(event: KeyboardEvent) {
-      if (event.ctrlKey && event.shiftKey && (event.key === "r" || event.key === "R")) {
-        event.preventDefault();
-        setResetSignal((value) => value + 1);
-      }
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
+export function StageViewport({
+  selectedAlert,
+  selectedCaseId,
+  loading,
+  scenarioState,
+  onScenarioStateChange,
+  resetSignal
+}: StageViewportProps) {
   return (
     <main className="panel panel--stage" aria-label="Stage">
       <div className="panel__header">
@@ -39,8 +34,9 @@ export function StageViewport({ selectedAlert, loading }: StageViewportProps) {
         ) : (
           <MapWatchfloor
             scenarioState={scenarioState}
-            onScenarioStateChange={setScenarioState}
+            onScenarioStateChange={onScenarioStateChange}
             selectedAlertId={selectedAlert?.id ?? null}
+            selectedCaseId={selectedCaseId}
             resetSignal={resetSignal}
             style={{ position: "absolute", inset: 0 }}
           />
