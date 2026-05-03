@@ -206,6 +206,7 @@ export function AppShell({
         scenarioState={mapScenarioState}
         onScenarioStateChange={onMapScenarioChange}
         resetSignal={resetSignal}
+        onClearCaseSelection={() => onSelectAlert(null)}
       />
       <PaneResizeHandle
         pane="working"

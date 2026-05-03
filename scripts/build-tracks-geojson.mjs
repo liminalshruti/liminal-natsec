@@ -71,7 +71,7 @@ const T = {
   }
 };
 
-// --- Event 1 — MMSI-111 → MMSI-222 (the headline scenario) -----------------
+// --- Event 1 — fixture track A -> fixture track B ---------------------------
 
 // Track A pre-gap: 6 pings, every ~3 minutes. Last two anchored on
 // observations.json; earlier ones extrapolated backward at constant velocity
@@ -136,7 +136,7 @@ console.log(`Kalman result: mahalanobis=${prediction.mahalanobis.toFixed(3)} ` +
             `predicted=(${prediction.predictedState.lat.toFixed(5)}, ` +
             `${prediction.predictedState.lon.toFixed(5)})`);
 
-// --- Event 2 — MMSI-271990222 (HARBOR KITE) reappearance -------------------
+// --- Event 2 — MMSI-271990222 (FIXTURE TRACK C) reappearance -------------------
 //
 // Hidden until phase >= 6 (gated by phase_min property). Coordinates from
 // observations.json. We don't run Kalman here — Event 2 doesn't need the
@@ -220,7 +220,7 @@ features.push({
     role: "A",
     case_id: "case:alara-01:event-1",
     mmsi: "366700111",
-    vessel_name: "MV CALDERA",
+    vessel_name: "FIXTURE TRACK A",
     t_start_iso: T.event1.track_a_first_iso,
     t_end_iso:   T.event1.track_a_last_iso,
     t_start_ms:  ms(T.event1.track_a_first_iso),
@@ -322,7 +322,7 @@ features.push({
     role: "B",
     case_id: "case:alara-01:event-1",
     mmsi: "538009771",
-    vessel_name: "CALDERA M",
+    vessel_name: "FIXTURE TRACK B",
     t_start_iso: T.event1.track_b_first_iso,
     t_end_iso:   T.event1.track_b_last_iso,
     t_start_ms:  ms(T.event1.track_b_first_iso),
@@ -362,7 +362,7 @@ features.push({
     role: "A",
     case_id: "case:alara-01:event-2",
     mmsi: "271990222",
-    vessel_name: "MV HARBOR KITE",
+    vessel_name: "FIXTURE TRACK C",
     t_start_iso: trackA2_pings[0].iso,
     t_end_iso:   trackA2_pings.at(-1).iso,
     t_start_ms:  ms(trackA2_pings[0].iso),
@@ -436,7 +436,7 @@ features.push({
     role: "B",
     case_id: "case:alara-01:event-2",
     mmsi: "271990222",
-    vessel_name: "MV HARBOR KITE",
+    vessel_name: "FIXTURE TRACK C",
     t_start_iso: trackB2_pings[0].iso,
     t_end_iso:   trackB2_pings.at(-1).iso,
     t_start_ms:  ms(trackB2_pings[0].iso),

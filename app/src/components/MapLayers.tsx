@@ -30,7 +30,7 @@ interface LayerSpec {
   label: string;
   /** What modality this layer represents — used in the summary panel. */
   modality: string;
-  /** Default visibility — AIS is always on; intel layers default off. */
+  /** Default visibility for map overlays. */
   defaultOn: boolean;
   /** Number of entries this layer is contributing to the current scenario. */
   count: number;
@@ -56,13 +56,13 @@ function buildLayers(): LayerSpec[] {
       defaultOn: true,
       count: 808,
       summary:
-        "Archived DANTI/MarineTraffic vessel pull: 21 sanctioned live-coordinate vessels, 65 order/China-routing strings, Qeshm/Bandar Abbas clusters, and ROSHAK speed anomaly."
+        "Archived DANTI/MarineTraffic vessel pull: 21 sanctioned Hormuz coordinates, 65 order/China-routing strings, Qeshm/Bandar Abbas clusters, ROSHAK speed anomaly, plus sourced HUGE last-known AIS backfill."
     },
     {
       key: "gfw",
       label: "GFW",
       modality: "identity/gaps/loitering",
-      defaultOn: false,
+      defaultOn: true,
       count:
         safeArrayCount(gfwGaps) +
         safeArrayCount(gfwLoitering) +
@@ -83,7 +83,7 @@ function buildLayers(): LayerSpec[] {
       key: "opensanctions",
       label: "OFAC/Sanctions",
       modality: "designation / entity risk",
-      defaultOn: false,
+      defaultOn: true,
       count: Math.max(50, safeArrayCount(opensanctions)),
       summary:
         "OFAC Iran-program maritime filter: 50 vessels, 38 crude/products tankers, largely NITC-linked. OpenSanctions remains entity enrichment."

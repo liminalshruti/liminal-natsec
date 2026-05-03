@@ -25,14 +25,12 @@ export const COLORS = {
 } as const;
 
 export const PHASE_LABELS: Record<number, string> = {
-  1: "Watch box traffic",
-  2: "MMSI-111 dark gap",
-  3: "CALDERA M reappears",
+  1: "Real source intake",
+  2: "Gap candidate",
+  3: "Identity review",
   4: "Custody case",
   5: "Refusal + collection",
-  6: "72h rule memory"
+  6: "Rule memory"
 };
 
-// Demo replay: jumps in seconds, but the timeline label says 72 hours so the
-// scenario feels operationally grounded (per PRD §9.1).
-export const TIMELINE_LABEL = "72-hour review window - Hormuz Watch Box 01";
+export const TIMELINE_LABEL = "Real source review - Hormuz Watch Box 01";

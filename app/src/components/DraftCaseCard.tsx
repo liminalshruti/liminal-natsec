@@ -14,13 +14,15 @@
 import { useDraftCase } from "../lib/useDraftCase.ts";
 
 export function DraftCaseCard({
+  draftCaseId,
   selectedAlertId,
   onSelect
 }: {
+  draftCaseId: string;
   selectedAlertId: string | null;
   onSelect: (caseId: string) => void;
 }) {
-  const { draft, attachedCount } = useDraftCase();
+  const { draft, attachedCount } = useDraftCase(draftCaseId);
 
   const isSelected = selectedAlertId === draft.id;
   const isPromoted = draft.status === "promoted";

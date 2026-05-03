@@ -32,6 +32,11 @@ import { useEffect, useMemo, useState } from "react";
 
 import dantiShips from "../../../fixtures/maritime/live-cache/danti-hormuz-ship-best-size-200.json" with { type: "json" };
 import { useLiveMap } from "../lib/mapBridge.ts";
+import {
+  caseIdsForDantiTraffic,
+  encodeCaseIds,
+  matchesCaseScope
+} from "../map/caseSignalScope.ts";
 
 const AOI_BBOX = { lon_min: 54.4, lat_min: 24.5, lon_max: 57.8, lat_max: 27.2 };
 
@@ -51,6 +56,7 @@ interface ShipRecord {
   lat: number;
   lon: number;
   isFoc: boolean;
+  caseIds: string;
 }
 
 interface DantiShipDoc {
@@ -105,6 +111,20 @@ function loadShips(): ShipRecord[] {
     if (mmsi && seen.has(mmsi)) continue;
     if (mmsi) seen.add(mmsi);
     const coords = doc.geometry?.coordinates ?? [];
+    const speedKn = p.speed ? Number(p.speed) : 0;
+    const caseIds = caseIdsForDantiTraffic({
+      name: p.ship_name,
+      mmsi: p.mmsi,
+      imo: p.imo,
+      flag: p.flag,
+      destination: p.destination,
+      currentPort: p.current_port,
+      lastPort: p.last_port,
+      isIranFlag: p.flag === "IR",
+      isOrderDestination: /\b(TO ORDER|FOR ORDER|ORDER|CHINA OWNER)\b/i.test(p.destination ?? ""),
+      isImplausibleSpeed: speedKn >= 30,
+      isChinaRouting: /CHINA|ZHUHAI|CJK/i.test(`${p.destination ?? ""} ${p.last_port ?? ""}`),
+    });
     out.push({
       id: doc.documentId ?? `ship:${mmsi ?? out.length}`,
       name: p.ship_name ?? "UNKNOWN",
@@ -112,13 +132,14 @@ function loadShips(): ShipRecord[] {
       imo: p.imo,
       flag: p.flag,
       length_m: p.length ? Number(p.length) : undefined,
-      speed_kn: p.speed ? Number(p.speed) : 0,
+      speed_kn: speedKn,
       course_deg: p.course ? Number(p.course) : 0,
       current_port: p.current_port,
       destination: p.destination,
       lat: coords[1] as number,
       lon: coords[0] as number,
-      isFoc: FOC_FLAGS.has(p.flag ?? "")
+      isFoc: FOC_FLAGS.has(p.flag ?? ""),
+      caseIds: encodeCaseIds(caseIds)
     });
   }
   return out;
@@ -136,7 +157,7 @@ function speedGlyph(speedKn: number): number {
   return 20; // very fast
 }
 
-export function RealShipsOverlay() {
+export function RealShipsOverlay({ selectedCaseId = null }: { selectedCaseId?: string | null }) {
   const ships = useMemo(loadShips, []);
   const [active, setActive] = useState(true); // AIS layer is default-on
   const [hoverId, setHoverId] = useState<string | null>(null);
@@ -158,7 +179,10 @@ export function RealShipsOverlay() {
 
   if (!active || !map) return null;
 
-  const hovered = hoverId ? ships.find((s) => s.id === hoverId) : null;
+  const scopedShips = selectedCaseId
+    ? ships.filter((ship) => matchesCaseScope(ship.caseIds, selectedCaseId))
+    : ships;
+  const hovered = hoverId ? scopedShips.find((s) => s.id === hoverId) : null;
   // Pre-compute screen coords once per render. map.project converts
   // [lon, lat] → {x, y} pixels in the map container. Ships outside the
   // current viewport are filtered out so we don't render glyphs that
@@ -168,7 +192,7 @@ export function RealShipsOverlay() {
   const H = container.clientHeight;
   type Projected = { ship: typeof ships[number]; x: number; y: number };
   const projected: Projected[] = [];
-  for (const ship of ships) {
+  for (const ship of scopedShips) {
     const p = map.project([ship.lon, ship.lat]);
     if (p.x < -40 || p.x > W + 40 || p.y < -40 || p.y > H + 40) continue;
     projected.push({ ship, x: p.x, y: p.y });

@@ -1,4 +1,85 @@
 {
-  "nodes": [],
+  "nodes": [
+    {
+      "id": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "claim",
+      "title": "Cached sanctioned-fleet coordinate watch is supported by cached OSINT",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "status": "CONTESTED",
+      "data": {
+        "claim_kind": "CACHED_OSINT_CUSTODY_REVIEW",
+        "prior": 0.5,
+        "delta": 0.38,
+        "posterior": 0.88,
+        "confidence": 0.88,
+        "summary": "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
+      }
+    },
+    {
+      "id": "claim:real:hormuz:loitering-clusters:custody:h1",
+      "type": "claim",
+      "title": "Cached Qeshm and Bandar Abbas loitering clusters is supported by cached OSINT",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "status": "CONTESTED",
+      "data": {
+        "claim_kind": "CACHED_OSINT_CUSTODY_REVIEW",
+        "prior": 0.5,
+        "delta": 0.34,
+        "posterior": 0.84,
+        "confidence": 0.84,
+        "summary": "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
+      }
+    },
+    {
+      "id": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "claim",
+      "title": "Cached foreign-flag Iranian last-port pattern is supported by cached OSINT",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "status": "CONTESTED",
+      "data": {
+        "claim_kind": "CACHED_OSINT_CUSTODY_REVIEW",
+        "prior": 0.5,
+        "delta": 0.31,
+        "posterior": 0.81,
+        "confidence": 0.81,
+        "summary": "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
+      }
+    },
+    {
+      "id": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "claim",
+      "title": "Cached grey-market and China-routing indicators is supported by cached OSINT",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "status": "CONTESTED",
+      "data": {
+        "claim_kind": "CACHED_OSINT_CUSTODY_REVIEW",
+        "prior": 0.5,
+        "delta": 0.28,
+        "posterior": 0.78,
+        "confidence": 0.78,
+        "summary": "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
+      }
+    },
+    {
+      "id": "claim:real:hormuz:roshak-signal-integrity:custody:h1",
+      "type": "claim",
+      "title": "Cached ROSHAK signal-integrity review is supported by cached OSINT",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "status": "SUPPORTED",
+      "data": {
+        "claim_kind": "CACHED_OSINT_CUSTODY_REVIEW",
+        "prior": 0.5,
+        "delta": 0.36,
+        "posterior": 0.86,
+        "confidence": 0.86,
+        "summary": "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
+      }
+    }
+  ],
   "edges": []
 }

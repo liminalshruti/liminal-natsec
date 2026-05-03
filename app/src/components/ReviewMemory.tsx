@@ -12,7 +12,7 @@ import {
 import { TypedEdge, TypedObjectChip } from "./TypedObjectChip.tsx";
 
 const SEED_RULE_ID = "rr:watchfloor:dark-gap-sar-first:v1";
-const SEED_RULE_TITLE = "Hormuz Watch Box dark gap -> request SAR/RF first";
+const SEED_RULE_TITLE = "Hormuz Watch Box real gap -> request SAR/RF first";
 const SEED_RULE_DSL = R001_DSL;
 
 // The default rule text the operator sees pre-populated in the writing field.
@@ -20,7 +20,7 @@ const SEED_RULE_DSL = R001_DSL;
 // Workshop principle: rule-writing should feel like writing, not clicking. The
 // pre-populated text is a *suggestion in the operator's voice*, not a form field.
 const SEED_RULE_DRAFT =
-  "Inside Hormuz Watch Box 01, when a case matches the MMSI-111 / MV CALDERA dark-gap custody pattern during the 72-hour review window, request SAR/RF imagery before any Escalate option is offered.";
+  "Inside Hormuz Watch Box 01, when real cached sources produce a dark-gap custody case with corroboration, request SAR/RF imagery before any Escalate option is offered.";
 
 // Compact relative-time renderer for the correction stream. Watchfloor doctrine
 // is chronological; the time format reads as a ledger entry, not a verbose

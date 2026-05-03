@@ -1,4 +1,5 @@
 import type { LayerSpecification } from "maplibre-gl";
+import { caseEventId, caseScopeToken } from "./caseSignalScope.ts";
 import { COLORS } from "./tokens.ts";
 
 // Source ids — referenced by the component when calling addSource.
@@ -29,8 +30,25 @@ export interface LayerInputs {
 // dots and ship-icon sprites; the dark-gap beat reads as a temporal gap in
 // pings + an MMSI label change.
 export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
-  const { phase } = inputs;
+  const { phase, selectedCaseId } = inputs;
   const phaseAllowed = ["<=", ["get", "phase_min"], phase];
+  const eventScoped = (base: unknown[]): unknown[] => {
+    const eventId = caseEventId(selectedCaseId);
+    return eventId ? ["all", base, ["==", ["get", "event_id"], eventId]] : base;
+  };
+  const overlayScoped = (base: unknown[]): unknown[] => {
+    if (!selectedCaseId) return base;
+    return [
+      "all",
+      base,
+      ["in", caseScopeToken(selectedCaseId), ["coalesce", ["get", "case_ids"], ""]]
+    ];
+  };
+  const sanctionedPointKinds = [
+    "in",
+    ["get", "kind"],
+    ["literal", ["sanctioned_vessel", "third_party_ais_last_known"]]
+  ];
 
   return [
     // Monitored zone fill (under everything else).
@@ -61,14 +79,14 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       id: "layer:predicted-ellipse-fill",
       type: "fill",
       source: SOURCES.staticGeoJson,
-      filter: ["all", ["==", ["get", "kind"], "predicted_ellipse_95"], phaseAllowed],
+      filter: eventScoped(["all", ["==", ["get", "kind"], "predicted_ellipse_95"], phaseAllowed]),
       paint: { "fill-color": COLORS.predictedEllipseFill }
     },
     {
       id: "layer:predicted-ellipse-line",
       type: "line",
       source: SOURCES.staticGeoJson,
-      filter: ["all", ["==", ["get", "kind"], "predicted_ellipse_95"], phaseAllowed],
+      filter: eventScoped(["all", ["==", ["get", "kind"], "predicted_ellipse_95"], phaseAllowed]),
       paint: {
         "line-color": COLORS.predictedEllipseLine,
         "line-width": 1.2,
@@ -207,7 +225,7 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       id: "layer:gfw-gap-ring",
       type: "circle",
       source: SOURCES.dantiSanctionedOverlay,
-      filter: ["==", ["get", "kind"], "ais_gap"],
+      filter: overlayScoped(["==", ["get", "kind"], "ais_gap"]),
       paint: {
         // Visual encoding: ring radius scales with how long the vessel was
         // dark. Caps at ~24px so a multi-day gap doesn't swallow the map.
@@ -229,7 +247,7 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       id: "layer:gfw-gap-labels",
       type: "symbol",
       source: SOURCES.dantiSanctionedOverlay,
-      filter: ["==", ["get", "kind"], "ais_gap"],
+      filter: overlayScoped(["==", ["get", "kind"], "ais_gap"]),
       layout: {
         "text-field": [
           "format",
@@ -257,7 +275,7 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       id: "layer:sanctioned-halo",
       type: "circle",
       source: SOURCES.dantiSanctionedOverlay,
-      filter: ["==", ["get", "kind"], "sanctioned_vessel"],
+      filter: overlayScoped(sanctionedPointKinds),
       paint: {
         "circle-radius": 11,
         "circle-color": "rgba(227, 109, 90, 0.18)",
@@ -269,7 +287,7 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       id: "layer:sanctioned-dot",
       type: "circle",
       source: SOURCES.dantiSanctionedOverlay,
-      filter: ["==", ["get", "kind"], "sanctioned_vessel"],
+      filter: overlayScoped(sanctionedPointKinds),
       paint: {
         "circle-radius": 4.5,
         "circle-color": "#e36d5a",
@@ -281,7 +299,7 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
       id: "layer:sanctioned-labels",
       type: "symbol",
       source: SOURCES.dantiSanctionedOverlay,
-      filter: ["==", ["get", "kind"], "sanctioned_vessel"],
+      filter: overlayScoped(sanctionedPointKinds),
       layout: {
         "text-field": [
           "format",

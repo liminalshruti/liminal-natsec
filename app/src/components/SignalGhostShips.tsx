@@ -17,7 +17,7 @@
 // editorial overlay that signals "the operator just attached this"; the
 // real geographic projection happens via Shayaun's MapLibre layers.
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDraftCase } from "../lib/useDraftCase.ts";
 import {
   SIGNAL_ATTACHED_EVENT,
@@ -43,6 +43,7 @@ const SIGNAL_KIND_GLYPH: Record<string, string> = {
   sanctions: "✕",
   advisory: "⚑",
   imagery: "◉",
+  "ship-vessel": "◆",
   osint: "◇"
 };
 
@@ -51,12 +52,17 @@ const SIGNAL_KIND_TONE: Record<string, string> = {
   sanctions: "refused",
   advisory: "decision",
   imagery: "decision",
+  "ship-vessel": "decision",
   osint: "ink-tertiary"
 };
 
 export function SignalGhostShips() {
-  const { draft } = useDraftCase();
+  const { draftCases } = useDraftCase();
   const [ghosts, setGhosts] = useState<Ghost[]>([]);
+  const signals = useMemo(
+    () => draftCases.flatMap((draft) => draft.candidateSignals),
+    [draftCases]
+  );
 
   // Listen for drop events from SignalDropZone (B-1).
   useEffect(() => {
@@ -67,7 +73,7 @@ export function SignalGhostShips() {
 
       // Find the signal metadata from the draft store so we can label
       // and ic-on the ghost. If the signal doesn't exist (race), no-op.
-      const signal = draft.candidateSignals.find((s) => s.id === signalId);
+      const signal = signals.find((s) => s.id === signalId);
       if (!signal) return;
 
       setGhosts((prev) => {
@@ -89,9 +95,9 @@ export function SignalGhostShips() {
     }
     window.addEventListener(SIGNAL_ATTACHED_EVENT, handler);
     return () => window.removeEventListener(SIGNAL_ATTACHED_EVENT, handler);
-    // We re-bind when draft.candidateSignals changes so the handler captures
+    // We re-bind when draft signals change so the handler captures
     // the current signal list.
-  }, [draft.candidateSignals]);
+  }, [signals]);
 
   // Reconcile ghosts → only show ghosts for currently-attached signals.
   // When a signal detaches (toggle back to unattached) or the case is
@@ -99,11 +105,11 @@ export function SignalGhostShips() {
   useEffect(() => {
     setGhosts((prev) =>
       prev.filter((g) => {
-        const sig = draft.candidateSignals.find((s) => s.id === g.signalId);
+        const sig = signals.find((s) => s.id === g.signalId);
         return sig?.attached;
       })
     );
-  }, [draft.candidateSignals]);
+  }, [signals]);
 
   if (ghosts.length === 0) return null;
 

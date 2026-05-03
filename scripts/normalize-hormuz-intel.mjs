@@ -522,7 +522,7 @@ export function normalizeHormuzIntel(options = {}) {
         observedAt: summary.time_max,
         confidence: 0.64,
         reliability: 0.66,
-        summary: `Danti cached ${summary.record_count} MarineTraffic ship-position records around Hormuz (${summary.unique_vessels} unique vessels, ${summary.tanker_records} tanker records, ${summary.iran_flag_records} Iran-flag records). Snapshot window ${summary.time_min} to ${summary.time_max}; identity/source context only, not current 72-hour behavior.`,
+        summary: `Danti cached ${summary.record_count} MarineTraffic ship-position records around Hormuz (${summary.unique_vessels} unique vessels, ${summary.tanker_records} tanker records, ${summary.iran_flag_records} Iran-flag records). Snapshot window ${summary.time_min} to ${summary.time_max}; identity/source context only, not current vessel behavior.`,
         attributes: summary
       })
     );
@@ -558,7 +558,7 @@ export function normalizeHormuzIntel(options = {}) {
             latest_speed_raw: latest.speed_raw,
             latest_course: latest.course,
             latest_current_port: latest.current_port,
-            note: "DANTI/MarineTraffic snapshot is archived April 2 data and is excluded from current 72-hour vessel-behavior claims."
+            note: "DANTI/MarineTraffic snapshot is archived April 2 data and is excluded from current vessel-behavior claims."
           })
         })
       );
@@ -647,7 +647,7 @@ export function normalizeHormuzIntel(options = {}) {
           summary:
             "GDELT live request was unavailable or rate-limited; fixture fallback articles are excluded from real OSINT signals.",
           attributes: compactRecord({
-            fixture_reason: sanitizeText(stringValue(doc.file.json?.fixture_reason), 280)
+            fixture_reason: fixtureModeExcludedReason("GDELT DOC 2.0")
           })
         })
       );
@@ -1008,7 +1008,9 @@ export function normalizeHormuzIntel(options = {}) {
             unique_mmsis: numberValue(doc.file.json?.unique_mmsis),
             collection_reason: sanitizeText(collectionReason, 280),
             fixture_mode: isFixtureFallback,
-            fixture_reason: sanitizeText(stringValue(doc.file.json?.fixture_reason), 280)
+            fixture_reason: isFixtureFallback
+              ? fixtureModeExcludedReason("AISstream")
+              : sanitizeText(stringValue(doc.file.json?.fixture_reason), 280)
           })
         })
       );
@@ -1803,6 +1805,10 @@ function sanitizeText(value, maxLength = 320) {
     .trim();
   if (redacted.length <= maxLength) return redacted || null;
   return `${redacted.slice(0, maxLength - 1).trim()}…`;
+}
+
+function fixtureModeExcludedReason(provider) {
+  return `${provider} cache is marked fixture_mode and excluded from strict-real case generation.`;
 }
 
 function sanitizeUrl(value) {

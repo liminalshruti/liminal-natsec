@@ -13,10 +13,8 @@
       ]
     },
     "review_window": {
-      "label": "72-hour review window",
-      "hours": 72,
-      "replay_anchor": "MMSI-111 / MV CALDERA",
-      "scope_note": "The 72-hour window is the operator case-review horizon. Source timestamps keep their original dates; archived context is not treated as current vessel behavior."
+      "label": "real cached AIS/GFW source window",
+      "scope_note": "The review window is derived from real source timestamps. Archived context is not treated as current vessel behavior."
     },
     "canonical_timestamps": null
   },
@@ -28,7 +26,7 @@
         "kind": "monitored_zone",
         "aoi_id": "aoi:real:hormuz",
         "name": "Hormuz Watch Box 01",
-        "review_window_hours": 72,
+        "source_window": "real cached AIS/GFW source window",
         "phase_min": 1
       },
       "geometry": {

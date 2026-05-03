@@ -132,6 +132,60 @@
   color: #f0a040;
 }
 
+/* --- Signal scope badge -------------------------------------------------- */
+
+.map-scope-badge {
+  position: absolute;
+  top: 52px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 28px);
+  padding: 7px 10px;
+  background: rgba(6, 18, 31, 0.82);
+  border: 1px solid rgba(103, 184, 214, 0.34);
+  border-radius: 3px;
+  color: #cfdbe8;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  z-index: 3;
+}
+.map-scope-badge[data-scope="case"] {
+  border-color: rgba(255, 224, 130, 0.42);
+}
+.map-scope-badge__mode {
+  color: #67b8d6;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.map-scope-badge[data-scope="case"] .map-scope-badge__mode {
+  color: #ffe082;
+}
+.map-scope-badge__label,
+.map-scope-badge__count {
+  color: #9aa9b8;
+  white-space: nowrap;
+}
+.map-scope-badge__clear {
+  height: 22px;
+  padding: 0 8px;
+  border: 1px solid rgba(255, 224, 130, 0.32);
+  border-radius: 3px;
+  background: rgba(255, 224, 130, 0.08);
+  color: #ffe082;
+  font: inherit;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.map-scope-badge__clear:hover {
+  border-color: rgba(255, 224, 130, 0.62);
+  background: rgba(255, 224, 130, 0.14);
+}
+
 /* --- Selected-case emphasis (canvas-side dimming complements this) ------ */
 
 .map-watchfloor[data-selected="case"] .map-watchfloor-canvas::after {

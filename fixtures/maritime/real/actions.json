@@ -1,4 +1,571 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "act:real:hormuz:sdn-live-fleet:request",
+      "type": "actionOption",
+      "title": "request sar or rf corroboration",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "status": "RECOMMENDED_REQUIRES_OPERATOR",
+      "data": {
+        "caseId": "case:real:hormuz:sdn-live-fleet",
+        "kind": "REQUEST_SAR_OR_RF_CORROBORATION",
+        "defaultPriority": 1,
+        "ranking_score": 0.88,
+        "trigger": "SANCTIONED_FLEET"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:sdn-live-fleet:monitor",
+      "type": "actionOption",
+      "title": "monitor only",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:sdn-live-fleet",
+        "kind": "MONITOR_ONLY",
+        "defaultPriority": 2,
+        "ranking_score": 0.35,
+        "trigger": "SANCTIONED_FLEET"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:sdn-live-fleet:hold",
+      "type": "actionOption",
+      "title": "hold custody open",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:sdn-live-fleet",
+        "kind": "HOLD_CUSTODY_OPEN",
+        "defaultPriority": 3,
+        "ranking_score": 0.35,
+        "trigger": "SANCTIONED_FLEET"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:loitering-clusters:request",
+      "type": "actionOption",
+      "title": "request sar or rf corroboration",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "status": "RECOMMENDED_REQUIRES_OPERATOR",
+      "data": {
+        "caseId": "case:real:hormuz:loitering-clusters",
+        "kind": "REQUEST_SAR_OR_RF_CORROBORATION",
+        "defaultPriority": 1,
+        "ranking_score": 0.84,
+        "trigger": "LOITERING_CLUSTERS"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:loitering-clusters:monitor",
+      "type": "actionOption",
+      "title": "monitor only",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:loitering-clusters",
+        "kind": "MONITOR_ONLY",
+        "defaultPriority": 2,
+        "ranking_score": 0.35,
+        "trigger": "LOITERING_CLUSTERS"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:loitering-clusters:hold",
+      "type": "actionOption",
+      "title": "hold custody open",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:loitering-clusters",
+        "kind": "HOLD_CUSTODY_OPEN",
+        "defaultPriority": 3,
+        "ranking_score": 0.35,
+        "trigger": "LOITERING_CLUSTERS"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:iran-last-port-laundering:request",
+      "type": "actionOption",
+      "title": "request sar or rf corroboration",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "status": "RECOMMENDED_REQUIRES_OPERATOR",
+      "data": {
+        "caseId": "case:real:hormuz:iran-last-port-laundering",
+        "kind": "REQUEST_SAR_OR_RF_CORROBORATION",
+        "defaultPriority": 1,
+        "ranking_score": 0.81,
+        "trigger": "IRAN_LAST_PORT_LAUNDERING"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:iran-last-port-laundering:monitor",
+      "type": "actionOption",
+      "title": "monitor only",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:iran-last-port-laundering",
+        "kind": "MONITOR_ONLY",
+        "defaultPriority": 2,
+        "ranking_score": 0.35,
+        "trigger": "IRAN_LAST_PORT_LAUNDERING"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:iran-last-port-laundering:hold",
+      "type": "actionOption",
+      "title": "hold custody open",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:iran-last-port-laundering",
+        "kind": "HOLD_CUSTODY_OPEN",
+        "defaultPriority": 3,
+        "ranking_score": 0.35,
+        "trigger": "IRAN_LAST_PORT_LAUNDERING"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:grey-market-china-routing:request",
+      "type": "actionOption",
+      "title": "request sar or rf corroboration",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "status": "RECOMMENDED_REQUIRES_OPERATOR",
+      "data": {
+        "caseId": "case:real:hormuz:grey-market-china-routing",
+        "kind": "REQUEST_SAR_OR_RF_CORROBORATION",
+        "defaultPriority": 1,
+        "ranking_score": 0.78,
+        "trigger": "GREY_MARKET_CHINA_ROUTING"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:grey-market-china-routing:monitor",
+      "type": "actionOption",
+      "title": "monitor only",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:grey-market-china-routing",
+        "kind": "MONITOR_ONLY",
+        "defaultPriority": 2,
+        "ranking_score": 0.35,
+        "trigger": "GREY_MARKET_CHINA_ROUTING"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:grey-market-china-routing:hold",
+      "type": "actionOption",
+      "title": "hold custody open",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:grey-market-china-routing",
+        "kind": "HOLD_CUSTODY_OPEN",
+        "defaultPriority": 3,
+        "ranking_score": 0.35,
+        "trigger": "GREY_MARKET_CHINA_ROUTING"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:roshak-signal-integrity:request",
+      "type": "actionOption",
+      "title": "review ais signal integrity",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "status": "RECOMMENDED_REQUIRES_OPERATOR",
+      "data": {
+        "caseId": "case:real:hormuz:roshak-signal-integrity",
+        "kind": "REVIEW_AIS_SIGNAL_INTEGRITY",
+        "defaultPriority": 1,
+        "ranking_score": 0.86,
+        "trigger": "SIGNAL_INTEGRITY"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:roshak-signal-integrity:monitor",
+      "type": "actionOption",
+      "title": "monitor only",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:roshak-signal-integrity",
+        "kind": "MONITOR_ONLY",
+        "defaultPriority": 2,
+        "ranking_score": 0.35,
+        "trigger": "SIGNAL_INTEGRITY"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    },
+    {
+      "id": "act:real:hormuz:roshak-signal-integrity:hold",
+      "type": "actionOption",
+      "title": "hold custody open",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "status": "AVAILABLE",
+      "data": {
+        "caseId": "case:real:hormuz:roshak-signal-integrity",
+        "kind": "HOLD_CUSTODY_OPEN",
+        "defaultPriority": 3,
+        "ranking_score": 0.35,
+        "trigger": "SIGNAL_INTEGRITY"
+      },
+      "archetype": {
+        "archetype_primary": "Sovereign",
+        "archetype_role": "decision"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:claim:real:hormuz:sdn-live-fleet:custody:h1:triggers:act:real:hormuz:sdn-live-fleet:request",
+      "type": "TRIGGERS",
+      "from": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "to": "act:real:hormuz:sdn-live-fleet:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "claim:real:hormuz:sdn-live-fleet:custody:h1"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:sdn-live-fleet:recommends:act:real:hormuz:sdn-live-fleet:request",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:sdn-live-fleet",
+      "to": "act:real:hormuz:sdn-live-fleet:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:sdn-live-fleet"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:sdn-live-fleet:recommends:act:real:hormuz:sdn-live-fleet:monitor",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:sdn-live-fleet",
+      "to": "act:real:hormuz:sdn-live-fleet:monitor",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:sdn-live-fleet"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:sdn-live-fleet:recommends:act:real:hormuz:sdn-live-fleet:hold",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:sdn-live-fleet",
+      "to": "act:real:hormuz:sdn-live-fleet:hold",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:sdn-live-fleet"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:claim:real:hormuz:loitering-clusters:custody:h1:triggers:act:real:hormuz:loitering-clusters:request",
+      "type": "TRIGGERS",
+      "from": "claim:real:hormuz:loitering-clusters:custody:h1",
+      "to": "act:real:hormuz:loitering-clusters:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "claim:real:hormuz:loitering-clusters:custody:h1"
+        ],
+        "confidence": 0.84
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:loitering-clusters:recommends:act:real:hormuz:loitering-clusters:request",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:loitering-clusters",
+      "to": "act:real:hormuz:loitering-clusters:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:loitering-clusters"
+        ],
+        "confidence": 0.84
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:loitering-clusters:recommends:act:real:hormuz:loitering-clusters:monitor",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:loitering-clusters",
+      "to": "act:real:hormuz:loitering-clusters:monitor",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:loitering-clusters"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:loitering-clusters:recommends:act:real:hormuz:loitering-clusters:hold",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:loitering-clusters",
+      "to": "act:real:hormuz:loitering-clusters:hold",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:loitering-clusters"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:claim:real:hormuz:iran-last-port-laundering:custody:h1:triggers:act:real:hormuz:iran-last-port-laundering:request",
+      "type": "TRIGGERS",
+      "from": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "to": "act:real:hormuz:iran-last-port-laundering:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "claim:real:hormuz:iran-last-port-laundering:custody:h1"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:iran-last-port-laundering:recommends:act:real:hormuz:iran-last-port-laundering:request",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:iran-last-port-laundering",
+      "to": "act:real:hormuz:iran-last-port-laundering:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:iran-last-port-laundering"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:iran-last-port-laundering:recommends:act:real:hormuz:iran-last-port-laundering:monitor",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:iran-last-port-laundering",
+      "to": "act:real:hormuz:iran-last-port-laundering:monitor",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:iran-last-port-laundering"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:iran-last-port-laundering:recommends:act:real:hormuz:iran-last-port-laundering:hold",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:iran-last-port-laundering",
+      "to": "act:real:hormuz:iran-last-port-laundering:hold",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:iran-last-port-laundering"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:claim:real:hormuz:grey-market-china-routing:custody:h1:triggers:act:real:hormuz:grey-market-china-routing:request",
+      "type": "TRIGGERS",
+      "from": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "to": "act:real:hormuz:grey-market-china-routing:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "claim:real:hormuz:grey-market-china-routing:custody:h1"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:grey-market-china-routing:recommends:act:real:hormuz:grey-market-china-routing:request",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:grey-market-china-routing",
+      "to": "act:real:hormuz:grey-market-china-routing:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:grey-market-china-routing"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:grey-market-china-routing:recommends:act:real:hormuz:grey-market-china-routing:monitor",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:grey-market-china-routing",
+      "to": "act:real:hormuz:grey-market-china-routing:monitor",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:grey-market-china-routing"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:grey-market-china-routing:recommends:act:real:hormuz:grey-market-china-routing:hold",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:grey-market-china-routing",
+      "to": "act:real:hormuz:grey-market-china-routing:hold",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:grey-market-china-routing"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:claim:real:hormuz:roshak-signal-integrity:custody:h1:triggers:act:real:hormuz:roshak-signal-integrity:request",
+      "type": "TRIGGERS",
+      "from": "claim:real:hormuz:roshak-signal-integrity:custody:h1",
+      "to": "act:real:hormuz:roshak-signal-integrity:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "claim:real:hormuz:roshak-signal-integrity:custody:h1"
+        ],
+        "confidence": 0.86
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:roshak-signal-integrity:recommends:act:real:hormuz:roshak-signal-integrity:request",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:roshak-signal-integrity",
+      "to": "act:real:hormuz:roshak-signal-integrity:request",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:roshak-signal-integrity"
+        ],
+        "confidence": 0.86
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:roshak-signal-integrity:recommends:act:real:hormuz:roshak-signal-integrity:monitor",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:roshak-signal-integrity",
+      "to": "act:real:hormuz:roshak-signal-integrity:monitor",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:roshak-signal-integrity"
+        ],
+        "confidence": 0.35
+      }
+    },
+    {
+      "id": "edge:case:real:hormuz:roshak-signal-integrity:recommends:act:real:hormuz:roshak-signal-integrity:hold",
+      "type": "RECOMMENDS",
+      "from": "case:real:hormuz:roshak-signal-integrity",
+      "to": "act:real:hormuz:roshak-signal-integrity:hold",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "case:real:hormuz:roshak-signal-integrity"
+        ],
+        "confidence": 0.35
+      }
+    }
+  ]
 }

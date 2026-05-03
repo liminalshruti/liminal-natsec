@@ -1,6 +1,7 @@
 import type { Feature, Point, Polygon, LineString } from "geojson";
 import type maplibregl from "maplibre-gl";
 import type { TracksFixture } from "./fixtureLoader.ts";
+import { HUGE_LAST_KNOWN_AIS } from "./caseSignalScope.ts";
 import type { Phase } from "./replay.ts";
 import { INITIAL_VIEW } from "./style.ts";
 
@@ -30,7 +31,7 @@ export type CameraOptions = FlyOptions | FitBoundsOptions;
 const SOFT = { speed: 0.8, curve: 1.4 };
 
 // Per-phase target. Phase 1 stays wide; phases 2–5 zoom into the dark gap;
-// phase 6 jumps east to MV HARBOR KITE. Coordinates pulled from the fixture
+// phase 6 jumps east to the second fixture track. Coordinates pulled from the fixture
 // metadata so a future fixture update doesn't drift the camera.
 export function flyForPhaseOptions(
   fixture: TracksFixture,
@@ -86,20 +87,14 @@ export function flyForCaseBoundsOptions(
   if (!pings) return null;
 
   if (caseId === "case:alara-01:event-1") {
-    const aLast = pings.event_1.track_a_last;
-    const bFirst = pings.event_1.track_b_first;
+    const a1 = pings.event_1.track_a_last;
+    const b1 = pings.event_1.track_b_first;
     return boundsFromPoints(
       [
-        [aLast.lon, aLast.lat],
-        [bFirst.lon, bFirst.lat]
+        [a1.lon, a1.lat],
+        [b1.lon, b1.lat]
       ],
-      // Pull the predicted state in too if metadata has it.
-      fixture.metadata?.kalman_event_1?.predicted_state
-        ? [
-            fixture.metadata.kalman_event_1.predicted_state.lon,
-            fixture.metadata.kalman_event_1.predicted_state.lat
-          ]
-        : null
+      HUGE_LAST_KNOWN_AIS.coordinates
     );
   }
   if (caseId === "case:alara-01:event-2") {

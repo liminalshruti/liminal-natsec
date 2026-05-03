@@ -4,6 +4,7 @@ import { AppShell } from "./components/AppShell.tsx";
 import type { ScenarioState as MapScenarioState } from "./components/MapWatchfloor.tsx";
 import { caseIdFromAlertId } from "./lib/spineGraph.ts";
 import { loadScenario, refreshRealScenario, type LoadedScenario } from "./lib/fixtures.ts";
+import { timelineAnchorForCase } from "./map/caseSignalScope.ts";
 import { clearSavedRules } from "./lib/reviewRulesStore.ts";
 import { loadUiMode, onUiModeChanged, saveUiMode, type UiMode } from "./lib/uiModeStore.ts";
 
@@ -34,7 +35,19 @@ export function App() {
       .then((result) => {
         if (cancelled) return;
         setScenario(result);
-        setSelectedAlertId(result.state.alerts[0]?.id ?? null);
+        const firstAlert = result.state.alerts[0] ?? null;
+        setSelectedAlertId(firstAlert?.id ?? null);
+        const anchor = timelineAnchorForCase(
+          firstAlert?.caseId ?? (firstAlert ? caseIdFromAlertId(firstAlert.id) : null)
+        );
+        if (anchor) {
+          setMapScenarioState((current) => ({
+            ...current,
+            clockIso: anchor.clockIso,
+            phase: anchor.phase,
+            isPlaying: false,
+          }));
+        }
       })
       .catch((cause) => {
         if (cancelled) return;
@@ -54,7 +67,19 @@ export function App() {
       setResetSignal((value) => value + 1);
       setMapScenarioState(DEMO_START_STATE);
       if (mode === "full") {
-        setSelectedAlertId(scenario?.state.alerts[0]?.id ?? null);
+        const firstAlert = scenario?.state.alerts[0] ?? null;
+        setSelectedAlertId(firstAlert?.id ?? null);
+        const anchor = timelineAnchorForCase(
+          firstAlert?.caseId ?? (firstAlert ? caseIdFromAlertId(firstAlert.id) : null)
+        );
+        if (anchor) {
+          setMapScenarioState({
+            ...DEMO_START_STATE,
+            clockIso: anchor.clockIso,
+            phase: anchor.phase,
+            isPlaying: false,
+          });
+        }
         clearSavedRules();
         setResetToast("Refreshing real cache · saved rules cleared");
         refreshRealScenario()
@@ -114,6 +139,24 @@ export function App() {
     setMapScenarioState(next);
   }, []);
 
+  const handleSelectAlert = useCallback(
+    (id: string | null) => {
+      setSelectedAlertId(id);
+      if (!id) return;
+      const alert = scenario?.state.alerts.find((candidate) => candidate.id === id);
+      const caseId = alert?.caseId ?? caseIdFromAlertId(id);
+      const anchor = timelineAnchorForCase(caseId);
+      if (!anchor) return;
+      setMapScenarioState((current) => ({
+        ...current,
+        clockIso: anchor.clockIso,
+        phase: anchor.phase,
+        isPlaying: false,
+      }));
+    },
+    [scenario]
+  );
+
   if (error) {
     return (
       <div className="app-shell" style={{ display: "grid", placeItems: "center" }}>
@@ -128,7 +171,7 @@ export function App() {
       selectedAlertId={selectedAlertId}
       selectedAlert={selectedAlert}
       selectedCaseId={selectedCaseId}
-      onSelectAlert={setSelectedAlertId}
+      onSelectAlert={handleSelectAlert}
       mapScenarioState={mapScenarioState}
       onMapScenarioChange={handleScenarioChange}
       resetSignal={resetSignal}

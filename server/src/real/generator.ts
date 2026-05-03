@@ -19,13 +19,9 @@ const DEFAULT_DARK_GAP_THRESHOLD_MIN = Number(
 const WATCH_CONTEXT = {
   ruleAoiId: "aoi:alara-eez-box-01",
   watchBoxName: "Hormuz Watch Box 01",
-  replayAnchor: "MMSI-111 / MV CALDERA",
-  replayAnchorFullMmsi: "366700111",
-  replayAnchorVesselName: "MV CALDERA",
-  reviewWindowLabel: "72-hour review window",
-  reviewWindowHours: 72,
+  sourceLabel: "real cached AIS/GFW source window",
   scopeNote:
-    "The 72-hour window is the operator case-review horizon. Source timestamps keep their original dates; archived context is not treated as current vessel behavior."
+    "The review window is derived from real source timestamps. Archived context is not treated as current vessel behavior."
 } as const;
 
 const HORMUZ_AOI = {
@@ -42,6 +38,47 @@ const HORMUZ_AOI = {
     ]
   ]
 };
+
+const DANTI_SOURCE_FILES = [
+  "danti-hormuz-ship-all-paginated.json",
+  "danti-hormuz-ship-best-size-1000.json",
+  "danti-hormuz-all-size-1000.json"
+] as const;
+
+const SANCTIONED_FLEET_NAMES = [
+  "ADRIAN DARYA",
+  "HAMOUNA",
+  "AZARGOUN",
+  "KASHAN",
+  "SHAYAN 1",
+  "AMIR ABBAS",
+  "MATIN",
+  "KAMINEH",
+  "DARYABAR",
+  "NOUR 1",
+  "BASKAR",
+  "ARTARIA",
+  "DARYA MAHER",
+  "GOLSAN",
+  "HOMA",
+  "JAMIL 8",
+  "OURA",
+  "SAVAHEL",
+  "SHAMIM",
+  "ARAM 110",
+  "PETUNIA"
+] as const;
+
+const FOREIGN_IRAN_LAST_PORT_NAMES = [
+  "YEKTA II",
+  "TINA II",
+  "MARIVEX",
+  "ELPIS",
+  "KOTOKU MARU NO.10",
+  "CAPILANO"
+] as const;
+
+const CHINA_ROUTING_NAMES = ["HAMOUNA", "DARYABAR"] as const;
 
 export type RealProviderStatusKind =
   | "available"
@@ -97,6 +134,62 @@ interface RealAnomaly {
   gapMinutes: number;
   gfwEvents: GfwEvent[];
   score: number;
+}
+
+interface DantiDocument {
+  documentId: string;
+  authoredOn: string | null;
+  sourceFile: string;
+  sourceSha256: string;
+  sourcePointer: string;
+  geometry: { coordinates?: unknown };
+  properties: Record<string, unknown>;
+}
+
+interface CachedOsintCase {
+  id: string;
+  title: string;
+  stage: string;
+  leadSummary: string;
+  keyFindings: string[];
+  sourceMix: string[];
+  features: Record<string, unknown>;
+  caseKind: string;
+  primarySignal: string;
+  score: number;
+  signals: CachedOsintSignal[];
+}
+
+interface CachedOsintSignal {
+  id: string;
+  title: string;
+  summary: string;
+  detectedAt: string;
+  score: number;
+  signalKind: string;
+  sourceFile: string;
+  sourcePointer: string;
+  sourceProvider: string;
+  sourceSha256?: string;
+  danti?: DantiVesselSnapshot;
+  attributes?: Record<string, unknown>;
+}
+
+interface DantiVesselSnapshot {
+  name: string;
+  imo: string | null;
+  mmsi: string | null;
+  flag: string | null;
+  shipType: string | null;
+  status: string | null;
+  currentPort: string | null;
+  lastPort: string | null;
+  destination: string | null;
+  lat: number | null;
+  lon: number | null;
+  speedKn: number | null;
+  courseDeg: number | null;
+  observedAt: string;
 }
 
 export interface RealGenerationSummary {
@@ -164,16 +257,19 @@ export function generateRealWatchfloor(
 
   const ais = loadAisObservations(liveCacheDir);
   const gfw = loadGfwEvents(liveCacheDir);
-  const sourceStatus = [...ais.statuses, ...gfw.statuses];
+  const cachedOsint = loadCachedOsintCases(liveCacheDir, maritimeDir);
+  const sourceStatus = [...ais.statuses, ...gfw.statuses, ...cachedOsint.statuses];
   const observationsByMmsi = groupBy(ais.observations, (observation) => observation.mmsi);
   const anomalies = detectDarkGaps(observationsByMmsi, gfw.events, thresholdMin);
   const graph = buildGraphSections({
     generatedAt,
     observations: ais.observations,
     anomalies,
-    contextEvidence: loadRealContextEvidence(maritimeDir)
+    cachedOsintCases: cachedOsint.cases,
+    contextEvidence: cachedOsint.contextEvidence
   });
   const tracks = buildTracksGeoJson(ais.observations, anomalies);
+  const generatedAnomalyCount = graph.anomalies.nodes.filter((node) => node.type === "anomaly").length;
 
   const summary: RealGenerationSummary = {
     mode: "real",
@@ -182,12 +278,12 @@ export function generateRealWatchfloor(
     dark_gap_threshold_min: thresholdMin,
     observation_count: ais.observations.length,
     track_count: observationsByMmsi.size,
-    anomaly_count: anomalies.length,
+    anomaly_count: generatedAnomalyCount,
     claim_count: graph.claims.nodes.length,
     evidence_count: graph.evidence.nodes.length,
     action_count: graph.actions.nodes.length,
     source_statuses: sourceStatus,
-    empty_reason: emptyReason(ais.observations, anomalies, sourceStatus)
+    empty_reason: emptyReason(ais.observations, generatedAnomalyCount, sourceStatus)
   };
 
   if (options.write) {
@@ -244,9 +340,7 @@ function loadAisObservations(liveCacheDir: URL): {
         {
           source: "AISSTREAM",
           status: "excluded_fixture_fallback",
-          detail:
-            stringValue(file.json.fixture_reason) ??
-            "AISstream cache is marked fixture_mode and is excluded from real mode",
+          detail: "AISstream cache is marked fixture_mode and is excluded from strict-real mode",
           fileName,
           generatedAt,
           recordCount: 0
@@ -345,9 +439,7 @@ function loadGfwEvents(liveCacheDir: URL): {
       statuses.push({
         source: "GLOBAL_FISHING_WATCH",
         status: "excluded_fixture_fallback",
-        detail:
-          stringValue(file.json.fixture_reason) ??
-          `${fileName} is marked fixture_mode and excluded from real mode`,
+        detail: `${fileName} is marked fixture_mode and excluded from strict-real mode`,
         fileName,
         generatedAt,
         recordCount: 0
@@ -435,6 +527,7 @@ function buildGraphSections(input: {
   generatedAt: string;
   observations: AisObservation[];
   anomalies: RealAnomaly[];
+  cachedOsintCases: CachedOsintCase[];
   contextEvidence: HormuzEvidenceItem[];
 }): {
   observations: FixtureSection;
@@ -474,10 +567,9 @@ function buildGraphSections(input: {
 
   input.anomalies.forEach((anomaly, index) => {
     const reviewWindowStart = anomaly.start.observedAt;
-    const reviewWindowEnd = new Date(
-      anomaly.start.t + WATCH_CONTEXT.reviewWindowHours * 60 * 60 * 1000
-    ).toISOString();
-    const caseContext = realCaseContext(reviewWindowStart, reviewWindowEnd);
+    const reviewWindowEnd = anomaly.end.observedAt;
+    const reviewWindow = reviewWindowLabel(reviewWindowStart, reviewWindowEnd);
+    const caseContext = realCaseContext(reviewWindowStart, reviewWindowEnd, reviewWindow);
     const caseTitle = `${anomaly.name ?? anomaly.mmsi} dark gap in ${WATCH_CONTEXT.watchBoxName}`;
     anomalies.nodes.push({
       id: anomaly.caseId,
@@ -497,14 +589,11 @@ function buildGraphSections(input: {
           aoi_id: WATCH_CONTEXT.ruleAoiId,
           real_aoi_id: HORMUZ_AOI.id,
           aoi_name: WATCH_CONTEXT.watchBoxName,
-          review_window_hours: WATCH_CONTEXT.reviewWindowHours,
-          anchor_mmsi_short: "111",
-          anchor_mmsi: WATCH_CONTEXT.replayAnchorFullMmsi,
-          anchor_vessel_name: WATCH_CONTEXT.replayAnchorVesselName
+          review_window_label: reviewWindow
         },
         case_context: caseContext,
         lead_summary:
-          `${WATCH_CONTEXT.replayAnchor} is the replay anchor for this custody pattern; this generated case keeps its own strict-real MMSI ${anomaly.mmsi} inside ${WATCH_CONTEXT.watchBoxName}.`
+          `Strict-real AIS/GFW sources generated a custody-review case for MMSI ${anomaly.mmsi} inside ${WATCH_CONTEXT.watchBoxName}.`
       }
     });
     anomalies.nodes.push({
@@ -525,10 +614,9 @@ function buildGraphSections(input: {
         aoi_id: WATCH_CONTEXT.ruleAoiId,
         real_aoi_id: HORMUZ_AOI.id,
         watch_box_name: WATCH_CONTEXT.watchBoxName,
-        review_window_label: WATCH_CONTEXT.reviewWindowLabel,
+        review_window_label: reviewWindow,
         review_window_start: reviewWindowStart,
         review_window_end: reviewWindowEnd,
-        replay_anchor: WATCH_CONTEXT.replayAnchor,
         score: anomaly.score,
         status: "OPEN",
         rank: index + 1
@@ -633,22 +721,875 @@ function buildGraphSections(input: {
     }
   });
 
+  appendCachedOsintCases({
+    generatedAt: input.generatedAt,
+    cases: input.cachedOsintCases,
+    anomalies,
+    hypotheses,
+    claims,
+    evidence,
+    actions,
+    startingRank: input.anomalies.length + 1
+  });
+
   return { observations, anomalies, hypotheses, claims, evidence, actions };
 }
 
-function realCaseContext(reviewWindowStart: string, reviewWindowEnd: string): Record<string, unknown> {
+function appendCachedOsintCases(input: {
+  generatedAt: string;
+  cases: CachedOsintCase[];
+  anomalies: FixtureSection;
+  hypotheses: FixtureSection;
+  claims: FixtureSection;
+  evidence: FixtureSection;
+  actions: FixtureSection;
+  startingRank: number;
+}): void {
+  let rank = input.startingRank;
+  for (const cachedCase of input.cases) {
+    const caseRank = rank;
+    const sourceWindow = sourceWindowForSignals(cachedCase.signals);
+    const caseContext = {
+      ...realCaseContext(sourceWindow.start, sourceWindow.end, sourceWindow.label),
+      primary_real_signal: cachedCase.primarySignal,
+      scope_note:
+        "This case is generated only from cached OSINT files in the repository. No live refresh or fixture-mode provider fallback is used."
+    };
+    const claimId = `claim:${cachedCase.id.replace(/^case:/, "")}:custody:h1`;
+    const hypothesisId = `hyp:${cachedCase.id.replace(/^case:/, "")}:h1`;
+
+    input.anomalies.nodes.push({
+      id: cachedCase.id,
+      type: "case",
+      title: cachedCase.title,
+      created_at: input.generatedAt,
+      case_id: cachedCase.id,
+      status: "OPEN",
+      data: {
+        source_mode: "real",
+        scenario_id: "hormuz-cached-osint",
+        stage: cachedCase.stage,
+        strict_real: true,
+        cached_only: true,
+        case_kind: cachedCase.caseKind,
+        rank: caseRank,
+        detected_at: sourceWindow.end,
+        features: {
+          ...cachedCase.features,
+          signal_count: cachedCase.signals.length,
+          candidate_continuity_score: cachedCase.score,
+          aoi_id: WATCH_CONTEXT.ruleAoiId,
+          real_aoi_id: HORMUZ_AOI.id,
+          aoi_name: WATCH_CONTEXT.watchBoxName,
+          review_window_label: sourceWindow.label
+        },
+        case_context: caseContext,
+        lead_summary: cachedCase.leadSummary,
+        key_findings: cachedCase.keyFindings,
+        source_mix: cachedCase.sourceMix
+      }
+    });
+
+    input.hypotheses.nodes.push({
+      id: hypothesisId,
+      type: "hypothesis",
+      title: `${cachedCase.title} requires collection-first review`,
+      created_at: input.generatedAt,
+      case_id: cachedCase.id,
+      status: "UNRESOLVED",
+      data: {
+        hypothesis_kind: "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+        posterior: cachedCase.score,
+        summary:
+          "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+      }
+    });
+
+    input.claims.nodes.push({
+      id: claimId,
+      type: "claim",
+      title: `${cachedCase.title} is supported by cached OSINT`,
+      created_at: input.generatedAt,
+      case_id: cachedCase.id,
+      status: cachedCase.caseKind === "signal_integrity" ? "SUPPORTED" : "CONTESTED",
+      data: {
+        claim_kind: "CACHED_OSINT_CUSTODY_REVIEW",
+        prior: 0.5,
+        delta: Number((cachedCase.score - 0.5).toFixed(2)),
+        posterior: cachedCase.score,
+        confidence: cachedCase.score,
+        summary:
+          "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
+      }
+    });
+    input.hypotheses.edges.push(
+      edge(
+        `edge:${hypothesisId}:supports:${claimId}`,
+        "SUPPORTS",
+        hypothesisId,
+        claimId,
+        input.generatedAt,
+        cachedCase.signals.map((signal) => signal.id).slice(0, 12),
+        cachedCase.score
+      )
+    );
+
+    for (const signal of cachedCase.signals) {
+      const evidenceId = `ev:${signal.id.replace(/^anom:/, "")}`;
+      const vessel = signal.danti;
+      input.anomalies.nodes.push({
+        id: signal.id,
+        type: "anomaly",
+        title: signal.title,
+        created_at: input.generatedAt,
+        case_id: cachedCase.id,
+        status: "OPEN",
+        data: {
+          anomaly_type: signal.signalKind,
+          summary: signal.summary,
+          detected_at: signal.detectedAt,
+          window_start: signal.detectedAt,
+          window_end: signal.detectedAt,
+          score: signal.score,
+          rank,
+          status: "OPEN",
+          watch_box_name: WATCH_CONTEXT.watchBoxName,
+          review_window_label: sourceWindow.label,
+          source_file: signal.sourceFile,
+          source_pointer: signal.sourcePointer,
+          source_provider: signal.sourceProvider,
+          source_sha256: signal.sourceSha256,
+          vessel_name: vessel?.name,
+          imo: vessel?.imo,
+          mmsi: vessel?.mmsi,
+          flag: vessel?.flag,
+          ship_type: vessel?.shipType,
+          current_port: vessel?.currentPort,
+          last_port: vessel?.lastPort,
+          destination: vessel?.destination,
+          lat: vessel?.lat,
+          lon: vessel?.lon,
+          speed_kn: vessel?.speedKn,
+          course_deg: vessel?.courseDeg,
+          ...(signal.attributes ?? {})
+        },
+        archetype: {
+          archetype_primary: cachedCase.caseKind === "signal_integrity" ? "Trickster" : "Sage",
+          archetype_role: "perception"
+        }
+      });
+      input.evidence.nodes.push({
+        id: evidenceId,
+        type: "evidence",
+        title: signal.title,
+        created_at: input.generatedAt,
+        case_id: cachedCase.id,
+        data: {
+          evidence_type: signal.signalKind,
+          llr_nats: Number((signal.score - 0.5).toFixed(2)),
+          summary: signal.summary,
+          source_file: signal.sourceFile,
+          source_pointer: signal.sourcePointer,
+          source_provider: signal.sourceProvider,
+          source_sha256: signal.sourceSha256,
+          cached_only: true
+        }
+      });
+      input.evidence.edges.push(
+        edge(
+          `edge:${evidenceId}:supports:${claimId}`,
+          "SUPPORTS",
+          evidenceId,
+          claimId,
+          input.generatedAt,
+          [signal.id],
+          signal.score
+        )
+      );
+      input.anomalies.edges.push(
+        edge(
+          `edge:${signal.id}:derived:${evidenceId}`,
+          "DERIVED_FROM",
+          signal.id,
+          evidenceId,
+          input.generatedAt,
+          [evidenceId],
+          signal.score
+        )
+      );
+      rank += 1;
+    }
+
+    const primaryAction =
+      cachedCase.caseKind === "signal_integrity"
+        ? "REVIEW_AIS_SIGNAL_INTEGRITY"
+        : "REQUEST_SAR_OR_RF_CORROBORATION";
+    const actionRows = [
+      [`act:${cachedCase.id.replace(/^case:/, "")}:request`, primaryAction, 1, "RECOMMENDED_REQUIRES_OPERATOR"],
+      [`act:${cachedCase.id.replace(/^case:/, "")}:monitor`, "MONITOR_ONLY", 2, "AVAILABLE"],
+      [`act:${cachedCase.id.replace(/^case:/, "")}:hold`, "HOLD_CUSTODY_OPEN", 3, "AVAILABLE"]
+    ] as const;
+    for (const [id, kind, priority, status] of actionRows) {
+      input.actions.nodes.push({
+        id,
+        type: "actionOption",
+        title: kind.replace(/_/g, " ").toLowerCase(),
+        created_at: input.generatedAt,
+        case_id: cachedCase.id,
+        status,
+        data: {
+          caseId: cachedCase.id,
+          kind,
+          defaultPriority: priority,
+          ranking_score: priority === 1 ? cachedCase.score : 0.35,
+          trigger: cachedCase.caseKind.toUpperCase()
+        },
+        archetype: {
+          archetype_primary: "Sovereign",
+          archetype_role: "decision"
+        }
+      });
+      if (priority === 1) {
+        input.actions.edges.push(
+          edge(
+            `edge:${claimId}:triggers:${id}`,
+            "TRIGGERS",
+            claimId,
+            id,
+            input.generatedAt,
+            [claimId],
+            cachedCase.score
+          )
+        );
+      }
+      input.actions.edges.push(
+        edge(
+          `edge:${cachedCase.id}:recommends:${id}`,
+          "RECOMMENDS",
+          cachedCase.id,
+          id,
+          input.generatedAt,
+          [cachedCase.id],
+          priority === 1 ? cachedCase.score : 0.35
+        )
+      );
+    }
+  }
+}
+
+function realCaseContext(
+  reviewWindowStart: string,
+  reviewWindowEnd: string,
+  label: string
+): Record<string, unknown> {
   return {
     watch_box_id: WATCH_CONTEXT.ruleAoiId,
     generated_aoi_id: HORMUZ_AOI.id,
     watch_box_name: WATCH_CONTEXT.watchBoxName,
-    replay_anchor: WATCH_CONTEXT.replayAnchor,
-    replay_anchor_full_mmsi: WATCH_CONTEXT.replayAnchorFullMmsi,
-    review_window_label: WATCH_CONTEXT.reviewWindowLabel,
-    review_window_hours: WATCH_CONTEXT.reviewWindowHours,
+    primary_real_signal: WATCH_CONTEXT.sourceLabel,
+    review_window_label: label,
     review_window_start: reviewWindowStart,
     review_window_end: reviewWindowEnd,
     scope_note: WATCH_CONTEXT.scopeNote
   };
+}
+
+function reviewWindowLabel(startIso: string, endIso: string): string {
+  const start = Date.parse(startIso);
+  const end = Date.parse(endIso);
+  if (!Number.isFinite(start) || !Number.isFinite(end)) return WATCH_CONTEXT.sourceLabel;
+  const minutes = Math.max(0, Math.round((end - start) / 60_000));
+  if (minutes < 60) return `${minutes} minute AIS gap window`;
+  const hours = minutes / 60;
+  if (hours < 48) return `${hours.toFixed(1)} hour AIS gap window`;
+  return `${shortDate(start)} to ${shortDate(end)} AIS gap window`;
+}
+
+function loadCachedOsintCases(
+  liveCacheDir: URL,
+  maritimeDir: URL
+): {
+  cases: CachedOsintCase[];
+  statuses: RealProviderStatus[];
+  contextEvidence: HormuzEvidenceItem[];
+} {
+  const danti = loadDantiDocuments(liveCacheDir);
+  const contextEvidence = loadRealContextEvidence(maritimeDir);
+  const statuses: RealProviderStatus[] = [
+    ...danti.statuses,
+    {
+      source: "HORMUZ_NORMALIZED_EVIDENCE",
+      status: contextEvidence.length > 0 ? "available" : "unavailable",
+      detail:
+        contextEvidence.length > 0
+          ? `${contextEvidence.length} cached normalized evidence items available`
+          : "No cached normalized Hormuz evidence items available",
+      fileName: "hormuz-evidence-items.json",
+      recordCount: contextEvidence.length
+    }
+  ];
+
+  return {
+    cases: danti.documents.length > 0
+      ? buildCachedOsintCases(danti.documents, contextEvidence)
+      : [],
+    statuses,
+    contextEvidence
+  };
+}
+
+function buildCachedOsintCases(
+  docs: DantiDocument[],
+  contextEvidence: HormuzEvidenceItem[]
+): CachedOsintCase[] {
+  const cases: CachedOsintCase[] = [];
+  const evidenceById = new Map(contextEvidence.map((item) => [item.id, item]));
+  const sdnSummary = evidenceById.get("ev:hormuz:synthesis:live-sdn-coordinates");
+  const routingSummary = evidenceById.get("ev:hormuz:synthesis:grey-market-routing");
+  const roshakSummary = evidenceById.get("ev:hormuz:synthesis:roshak-spoofing-signal");
+
+  const sanctionedSignals = SANCTIONED_FLEET_NAMES
+    .map((name) => latestDantiByName(docs, name))
+    .filter((doc): doc is DantiDocument => Boolean(doc))
+    .map((doc) => dantiSignal({
+      doc,
+      idPrefix: "anom:real:hormuz:sdn-live-fleet",
+      signalKind: "CACHED_DANTI_SANCTIONED_COORDINATE",
+      score: 0.88,
+      title: `${dantiSnapshot(doc).name} cached coordinate watchlist hit`,
+      summary: `${dantiSnapshot(doc).name} (${identityLabel(dantiSnapshot(doc))}) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.`
+    }));
+  if (sanctionedSignals.length > 0) {
+    cases.push({
+      id: "case:real:hormuz:sdn-live-fleet",
+      title: "Cached sanctioned-fleet coordinate watch",
+      stage: "cached_sdn_coordinate_case",
+      caseKind: "sanctioned_fleet",
+      primarySignal: "Cached DANTI/MarineTraffic coordinates + normalized OFAC/NITC/IRISL synthesis",
+      score: 0.88,
+      leadSummary:
+        sdnSummary?.summary ??
+        "Cached DANTI/MarineTraffic rows identify Iranian-linked watchlist vessels with coordinates in the Hormuz source window.",
+      keyFindings: [
+        `${sanctionedSignals.length} named cached DANTI rows are mapped as individual alerts; missing rows are skipped rather than fabricated.`,
+        "The case preserves identity/source custody and recommends corroboration before any behavior or intent assertion.",
+        "Named examples include ADRIAN DARYA, HAMOUNA, AZARGOUN, KASHAN, SHAYAN 1, MATIN, KAMINEH, and DARYABAR."
+      ],
+      sourceMix: ["DANTI/MarineTraffic", "OFAC/OpenSanctions", "cached normalized OSINT"],
+      features: {
+        cached_sanctioned_coordinate_alerts: sanctionedSignals.length,
+        normalized_synthesis_evidence_id: sdnSummary?.id ?? null
+      },
+      signals: sanctionedSignals
+    });
+  }
+
+  const qeshmDocs = uniqueLatestByVessel(
+    docs.filter((doc) => isQeshmStationarySignal(dantiSnapshot(doc)))
+  );
+  const bandarDocs = uniqueLatestByVessel(
+    docs.filter((doc) => isBandarAbbasAnchorageSignal(dantiSnapshot(doc)))
+  );
+  const loiteringSignals = [
+    clusterSignal({
+      id: "anom:real:hormuz:loitering:qeshm",
+      title: "Qeshm stationary cluster in cached DANTI pull",
+      signalKind: "CACHED_DANTI_LOITERING_CLUSTER",
+      score: 0.84,
+      docs: qeshmDocs,
+      center: { lat: 26.97, lon: 55.75 },
+      summary: `${qeshmDocs.length} unique cached DANTI vessels are stationary near Qeshm around 26.97N, 55.75E.`
+    }),
+    clusterSignal({
+      id: "anom:real:hormuz:loitering:bandar-abbas",
+      title: "Bandar Abbas anchorage density cluster in cached DANTI pull",
+      signalKind: "CACHED_DANTI_ANCHORAGE_CLUSTER",
+      score: 0.83,
+      docs: bandarDocs,
+      center: { lat: 27.05, lon: 56.28 },
+      summary: `${bandarDocs.length} unique cached DANTI vessels reference Bandar Abbas anchorage or adjacent anchorage routing.`
+    })
+  ].filter((signal) => Number(signal.attributes?.cluster_count) > 0);
+  if (loiteringSignals.length > 0) {
+    cases.push({
+      id: "case:real:hormuz:loitering-clusters",
+      title: "Cached Qeshm and Bandar Abbas loitering clusters",
+      stage: "cached_loitering_cluster_case",
+      caseKind: "loitering_clusters",
+      primarySignal: "Cached DANTI/MarineTraffic stationary and anchorage rows",
+      score: 0.84,
+      leadSummary:
+        "Cached DANTI/MarineTraffic rows show stationary or anchorage-density clusters near Qeshm and Bandar Abbas; the case opens collection review without inferring intent.",
+      keyFindings: [
+        `${qeshmDocs.length} unique vessels are stationary near Qeshm in the cached pull.`,
+        `${bandarDocs.length} unique vessels reference Bandar Abbas anchorage or adjacent anchorage routing in the cached pull.`,
+        "The alert rows are cluster-level because the leverage is the density pattern, not a single hull."
+      ],
+      sourceMix: ["DANTI/MarineTraffic"],
+      features: {
+        qeshm_stationary_vessels: qeshmDocs.length,
+        bandar_abbas_anchorage_vessels: bandarDocs.length
+      },
+      signals: loiteringSignals
+    });
+  }
+
+  const foreignSignals = FOREIGN_IRAN_LAST_PORT_NAMES
+    .map((name) => latestDantiByName(docs, name))
+    .filter((doc): doc is DantiDocument => Boolean(doc))
+    .map((doc) => dantiSignal({
+      doc,
+      idPrefix: "anom:real:hormuz:iran-last-port",
+      signalKind: "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+      score: 0.81,
+      title: `${dantiSnapshot(doc).name} foreign flag with Iranian last port`,
+      summary: `${dantiSnapshot(doc).name} (${identityLabel(dantiSnapshot(doc))}) is foreign-flagged in the cached DANTI row and lists Iranian last_port ${dantiSnapshot(doc).lastPort ?? "unknown"}.`
+    }));
+  if (foreignSignals.length > 0) {
+    cases.push({
+      id: "case:real:hormuz:iran-last-port-laundering",
+      title: "Cached foreign-flag Iranian last-port pattern",
+      stage: "cached_iran_last_port_case",
+      caseKind: "iran_last_port_laundering",
+      primarySignal: "Cached DANTI/MarineTraffic foreign-flag rows with Iranian last_port",
+      score: 0.81,
+      leadSummary:
+        "Six named foreign-flag cached DANTI rows carry Iranian last_port values, a sanctions-laundering review signal that remains bounded to routing/source custody.",
+      keyFindings: [
+        `${foreignSignals.length} named vessels are mapped as individual alerts: ${foreignSignals.map((signal) => signal.danti?.name).filter(Boolean).join(", ")}.`,
+        "The case treats flag/last-port mismatch as a laundering indicator, not proof of cargo origin or intent."
+      ],
+      sourceMix: ["DANTI/MarineTraffic"],
+      features: {
+        foreign_flag_iran_last_port_alerts: foreignSignals.length
+      },
+      signals: foreignSignals
+    });
+  }
+
+  const orderDocs = uniqueByDocumentId(docs.filter((doc) => isOrderDestinationSignal(dantiSnapshot(doc).destination)));
+  const orderSignals = orderDocs.map((doc) => {
+    const snapshot = dantiSnapshot(doc);
+    return dantiSignal({
+      doc,
+      idKey: sha(doc.documentId).slice(0, 12),
+      idPrefix: "anom:real:hormuz:grey-market-order",
+      signalKind: "CACHED_DANTI_GREY_MARKET_DESTINATION",
+      score: 0.68,
+      title: `${snapshot.name} grey-market destination string`,
+      summary: `${snapshot.name} (${identityLabel(snapshot)}) carries cached destination "${snapshot.destination ?? "unknown"}".`
+    });
+  });
+  const chinaSignals = CHINA_ROUTING_NAMES
+    .map((name) => latestDantiByName(docs, name))
+    .filter((doc): doc is DantiDocument => Boolean(doc))
+    .map((doc) => dantiSignal({
+      doc,
+      idPrefix: "anom:real:hormuz:china-routing",
+      signalKind: "CACHED_DANTI_CHINA_ROUTING",
+      score: 0.78,
+      title: `${dantiSnapshot(doc).name} China-routing evidence`,
+      summary: `${dantiSnapshot(doc).name} (${identityLabel(dantiSnapshot(doc))}) carries cached China-routing context via last_port/destination ${[dantiSnapshot(doc).lastPort, dantiSnapshot(doc).destination].filter(Boolean).join(" / ")}.`
+    }));
+  const routingSignals = [...orderSignals, ...chinaSignals];
+  if (routingSignals.length > 0) {
+    cases.push({
+      id: "case:real:hormuz:grey-market-china-routing",
+      title: "Cached grey-market and China-routing indicators",
+      stage: "cached_grey_market_routing_case",
+      caseKind: "grey_market_china_routing",
+      primarySignal: "Cached DANTI destination and last_port strings",
+      score: 0.78,
+      leadSummary:
+        routingSummary?.summary ??
+        "Cached DANTI destination and last_port strings show order/China-routing indicators across the Hormuz pull.",
+      keyFindings: [
+        `${orderSignals.length} unique cached DANTI documents contain TO ORDER / FOR ORDER / CHINA OWNER-style destination strings.`,
+        "HAMOUNA and DARYABAR are retained as separate China-routing alerts because their cached last_port values are ZHUHAI and CJK.",
+        "Routing strings are treated as grey-market indicators requiring review, not cargo or ownership proof."
+      ],
+      sourceMix: ["DANTI/MarineTraffic", "cached normalized OSINT"],
+      features: {
+        grey_market_destination_alerts: orderSignals.length,
+        china_routing_alerts: chinaSignals.length,
+        normalized_synthesis_evidence_id: routingSummary?.id ?? null
+      },
+      signals: routingSignals
+    });
+  }
+
+  const roshakDoc = latestDantiByName(docs, "ROSHAK");
+  if (roshakDoc) {
+    const snapshot = dantiSnapshot(roshakDoc);
+    const roshakSignal = dantiSignal({
+      doc: roshakDoc,
+      idPrefix: "anom:real:hormuz:signal-integrity",
+      signalKind: "CACHED_DANTI_IMPLAUSIBLE_SPEED",
+      score: 0.86,
+      title: "ROSHAK reports physically implausible speed",
+      summary:
+        roshakSummary?.summary ??
+        `ROSHAK (${identityLabel(snapshot)}) reports speed=${snapshot.speedKn ?? "unknown"} kt in the cached DANTI row, a signal-integrity review indicator.`
+    });
+    cases.push({
+      id: "case:real:hormuz:roshak-signal-integrity",
+      title: "Cached ROSHAK signal-integrity review",
+      stage: "cached_signal_integrity_case",
+      caseKind: "signal_integrity",
+      primarySignal: "Cached DANTI/MarineTraffic implausible speed row",
+      score: 0.86,
+      leadSummary:
+        "ROSHAK reports a physically implausible speed in the cached DANTI/MarineTraffic pull; the case is limited to AIS/data-quality review.",
+      keyFindings: [
+        `Cached speed is ${snapshot.speedKn ?? "unknown"} kt for ${snapshot.name}, above the configured plausibility threshold.`,
+        "The finding is treated as spoofing/data-quality evidence, not a movement or intent claim."
+      ],
+      sourceMix: ["DANTI/MarineTraffic", "cached normalized OSINT"],
+      features: {
+        implausible_speed_kn: snapshot.speedKn,
+        normalized_synthesis_evidence_id: roshakSummary?.id ?? null
+      },
+      signals: [roshakSignal]
+    });
+  }
+
+  return cases;
+}
+
+function loadDantiDocuments(liveCacheDir: URL): {
+  documents: DantiDocument[];
+  statuses: RealProviderStatus[];
+} {
+  const documents: DantiDocument[] = [];
+  const statuses: RealProviderStatus[] = [];
+  for (const fileName of DANTI_SOURCE_FILES) {
+    const file = readCacheJson(liveCacheDir, fileName);
+    if (!file.exists) {
+      statuses.push({
+        source: "DANTI_MARINETRAFFIC",
+        status: "unavailable",
+        detail: `${fileName} missing from cached OSINT inputs`,
+        fileName
+      });
+      continue;
+    }
+
+    const before = documents.length;
+    documents.push(...normalizeDantiFile(file.json, fileName, file.sha256));
+    statuses.push({
+      source: "DANTI_MARINETRAFFIC",
+      status: documents.length > before ? "available" : "unavailable",
+      detail: `${documents.length - before} cached DANTI ship records normalized from ${fileName}`,
+      fileName,
+      generatedAt:
+        stringValue(file.json.collected_at) ??
+        stringValue(file.json.generated_at) ??
+        null,
+      recordCount: documents.length - before
+    });
+  }
+  return { documents, statuses };
+}
+
+function normalizeDantiFile(
+  json: Record<string, unknown>,
+  sourceFile: string,
+  sourceSha256: string
+): DantiDocument[] {
+  const out: DantiDocument[] = [];
+  const topDocs = arrayValue(json.documents);
+  topDocs.forEach((value, index) => {
+    const doc = normalizeDantiDocument(value, sourceFile, sourceSha256, `$.documents[${index}]`);
+    if (doc) out.push(doc);
+  });
+
+  const body = recordValue(json.body);
+  const categories = arrayValue(body.resultDocuments);
+  categories.forEach((categoryValue, categoryIndex) => {
+    const category = recordValue(categoryValue);
+    if (stringValue(category.category) !== "SHIP") return;
+    arrayValue(category.documents).forEach((value, index) => {
+      const doc = normalizeDantiDocument(
+        value,
+        sourceFile,
+        sourceSha256,
+        `$.body.resultDocuments[${categoryIndex}].documents[${index}]`
+      );
+      if (doc) out.push(doc);
+    });
+  });
+  return out;
+}
+
+function normalizeDantiDocument(
+  value: unknown,
+  sourceFile: string,
+  sourceSha256: string,
+  sourcePointer: string
+): DantiDocument | null {
+  const raw = recordValue(value);
+  const properties = recordValue(raw.properties);
+  const documentId = stringValue(raw.documentId) ?? stringValue(properties._dId);
+  const authoredOn =
+    stringValue(raw.authoredOn) ??
+    stringValue(properties.datetime) ??
+    stringValue(properties._dTimeOfIngest);
+  if (!documentId || !stringValue(properties.ship_name)) return null;
+  return {
+    documentId,
+    authoredOn,
+    sourceFile: `fixtures/maritime/live-cache/${sourceFile}`,
+    sourceSha256,
+    sourcePointer,
+    geometry: recordValue(raw.geometry),
+    properties
+  };
+}
+
+function dantiSignal(input: {
+  doc: DantiDocument;
+  idPrefix: string;
+  idKey?: string;
+  signalKind: string;
+  score: number;
+  title: string;
+  summary: string;
+}): CachedOsintSignal {
+  const snapshot = dantiSnapshot(input.doc);
+  const stableKey = input.idKey ?? slug(snapshot.imo ?? snapshot.mmsi ?? snapshot.name);
+  return {
+    id: `${input.idPrefix}:${stableKey}`,
+    title: input.title,
+    summary: input.summary,
+    detectedAt: snapshot.observedAt,
+    score: input.score,
+    signalKind: input.signalKind,
+    sourceFile: input.doc.sourceFile,
+    sourcePointer: input.doc.sourcePointer,
+    sourceProvider: "DANTI / MarineTraffic cached ship pull",
+    sourceSha256: input.doc.sourceSha256,
+    danti: snapshot
+  };
+}
+
+function clusterSignal(input: {
+  id: string;
+  title: string;
+  signalKind: string;
+  score: number;
+  docs: DantiDocument[];
+  center: { lat: number; lon: number };
+  summary: string;
+}): CachedOsintSignal {
+  const first = input.docs[0];
+  const timestamps = input.docs
+    .map((doc) => dantiSnapshot(doc).observedAt)
+    .filter((value) => Number.isFinite(Date.parse(value)));
+  const detectedAt = timestamps.sort()[timestamps.length - 1] ?? new Date(0).toISOString();
+  return {
+    id: input.id,
+    title: input.title,
+    summary: input.summary,
+    detectedAt,
+    score: input.score,
+    signalKind: input.signalKind,
+    sourceFile: first?.sourceFile ?? "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+    sourcePointer: "$.documents[?(@.properties.current_port || @.properties.last_port)]",
+    sourceProvider: "DANTI / MarineTraffic cached ship pull",
+    sourceSha256: first?.sourceSha256,
+    attributes: {
+      cluster_count: input.docs.length,
+      cluster_center_lat: input.center.lat,
+      cluster_center_lon: input.center.lon,
+      cluster_vessels: input.docs.map((doc) => {
+        const snapshot = dantiSnapshot(doc);
+        return compactRecord({
+          name: snapshot.name,
+          imo: snapshot.imo,
+          mmsi: snapshot.mmsi,
+          flag: snapshot.flag,
+          lat: snapshot.lat,
+          lon: snapshot.lon,
+          speed_kn: snapshot.speedKn,
+          current_port: snapshot.currentPort,
+          last_port: snapshot.lastPort
+        });
+      })
+    }
+  };
+}
+
+function dantiSnapshot(doc: DantiDocument): DantiVesselSnapshot {
+  const p = doc.properties;
+  const coords = Array.isArray(doc.geometry.coordinates) ? doc.geometry.coordinates : [];
+  const observedAt =
+    doc.authoredOn ??
+    stringValue(p.datetime) ??
+    stringValue(p._dTimeOfIngest) ??
+    new Date(0).toISOString();
+  return {
+    name: normalizeName(stringValue(p.ship_name) ?? "UNKNOWN"),
+    imo: nullableString(p.imo),
+    mmsi: nullableString(p.mmsi),
+    flag: nullableString(p.flag),
+    shipType: nullableString(p.type_name) ?? nullableString(p.ship_type),
+    status: nullableString(p.status),
+    currentPort: nullableString(p.current_port),
+    lastPort: nullableString(p.last_port),
+    destination: nullableString(p.destination),
+    lat: finiteNumberValue(p.latitude) ?? finiteNumberValue(coords[1]),
+    lon: finiteNumberValue(p.longitude) ?? finiteNumberValue(coords[0]),
+    speedKn: finiteNumberValue(p.speed),
+    courseDeg: finiteNumberValue(p.course),
+    observedAt
+  };
+}
+
+function latestDantiByName(docs: DantiDocument[], name: string): DantiDocument | null {
+  const normalized = normalizeName(name);
+  return choosePreferredDantiDoc(
+    docs.filter((doc) => dantiSnapshot(doc).name === normalized)
+  );
+}
+
+function uniqueByDocumentId(docs: DantiDocument[]): DantiDocument[] {
+  const byId = new Map<string, DantiDocument>();
+  for (const doc of docs) {
+    const previous = byId.get(doc.documentId);
+    const preferred = choosePreferredDantiDoc([previous, doc].filter(Boolean) as DantiDocument[]);
+    if (preferred) byId.set(doc.documentId, preferred);
+  }
+  return [...byId.values()].sort(compareDantiForDisplay);
+}
+
+function uniqueLatestByVessel(docs: DantiDocument[]): DantiDocument[] {
+  const byVessel = new Map<string, DantiDocument>();
+  for (const doc of docs) {
+    const snapshot = dantiSnapshot(doc);
+    const key = snapshot.imo && snapshot.imo !== "0"
+      ? `imo:${snapshot.imo}`
+      : snapshot.mmsi
+      ? `mmsi:${snapshot.mmsi}`
+      : `name:${snapshot.name}`;
+    const previous = byVessel.get(key);
+    const preferred = choosePreferredDantiDoc([previous, doc].filter(Boolean) as DantiDocument[]);
+    if (preferred) byVessel.set(key, preferred);
+  }
+  return [...byVessel.values()].sort(compareDantiForDisplay);
+}
+
+function choosePreferredDantiDoc(docs: DantiDocument[]): DantiDocument | null {
+  if (docs.length === 0) return null;
+  return [...docs].sort((left, right) => compareDantiPreference(right, left))[0] ?? null;
+}
+
+function compareDantiPreference(left: DantiDocument, right: DantiDocument): number {
+  const leftTime = Date.parse(dantiSnapshot(left).observedAt);
+  const rightTime = Date.parse(dantiSnapshot(right).observedAt);
+  if (Number.isFinite(leftTime) && Number.isFinite(rightTime) && leftTime !== rightTime) {
+    return leftTime - rightTime;
+  }
+  return sourcePriority(left.sourceFile) - sourcePriority(right.sourceFile);
+}
+
+function compareDantiForDisplay(left: DantiDocument, right: DantiDocument): number {
+  const leftSnapshot = dantiSnapshot(left);
+  const rightSnapshot = dantiSnapshot(right);
+  return (
+    leftSnapshot.name.localeCompare(rightSnapshot.name) ||
+    (leftSnapshot.imo ?? "").localeCompare(rightSnapshot.imo ?? "") ||
+    left.documentId.localeCompare(right.documentId)
+  );
+}
+
+function sourcePriority(sourceFile: string): number {
+  if (sourceFile.endsWith("danti-hormuz-ship-all-paginated.json")) return 3;
+  if (sourceFile.endsWith("danti-hormuz-ship-best-size-1000.json")) return 2;
+  if (sourceFile.endsWith("danti-hormuz-all-size-1000.json")) return 1;
+  return 0;
+}
+
+function isQeshmStationarySignal(snapshot: DantiVesselSnapshot): boolean {
+  if (snapshot.lat === null || snapshot.lon === null || snapshot.speedKn === null) return false;
+  return (
+    Math.abs(snapshot.lat - 26.97) <= 0.08 &&
+    Math.abs(snapshot.lon - 55.75) <= 0.12 &&
+    snapshot.speedKn <= 0.5
+  );
+}
+
+function isBandarAbbasAnchorageSignal(snapshot: DantiVesselSnapshot): boolean {
+  const text = normalizeName(
+    [snapshot.currentPort, snapshot.lastPort, snapshot.destination].filter(Boolean).join(" ")
+  );
+  return text.includes("BANDAR ABBAS ANCH");
+}
+
+function isOrderDestinationSignal(destination: string | null): boolean {
+  return /\b(TO ORDER|FOR ORDER|FOR ORDERS|ORDER|CHINA OWNER)\b/i.test(destination ?? "");
+}
+
+function sourceWindowForSignals(signals: CachedOsintSignal[]): {
+  start: string;
+  end: string;
+  label: string;
+} {
+  const times = signals
+    .map((signal) => Date.parse(signal.detectedAt))
+    .filter((value) => Number.isFinite(value));
+  if (times.length === 0) {
+    const fallback = new Date(0).toISOString();
+    return { start: fallback, end: fallback, label: "cached OSINT source window" };
+  }
+  const min = Math.min(...times);
+  const max = Math.max(...times);
+  return {
+    start: new Date(min).toISOString(),
+    end: new Date(max).toISOString(),
+    label: `${shortDate(min)} to ${shortDate(max)} cached OSINT source window`
+  };
+}
+
+function identityLabel(snapshot: DantiVesselSnapshot): string {
+  if (snapshot.imo) return `IMO ${snapshot.imo}`;
+  if (snapshot.mmsi) return `MMSI ${snapshot.mmsi}`;
+  return "no IMO/MMSI";
+}
+
+function compactRecord(input: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(input).filter(([, value]) => value !== null && value !== undefined && value !== "")
+  );
+}
+
+function normalizeName(value: string): string {
+  return value.trim().toUpperCase().replace(/\s+/g, " ");
+}
+
+function nullableString(value: unknown): string | null {
+  const parsed = stringValue(value);
+  if (!parsed || parsed === "0") return null;
+  return parsed;
+}
+
+function finiteNumberValue(value: unknown): number | null {
+  if (typeof value === "number" && Number.isFinite(value)) return value;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
+}
+
+function slug(value: string): string {
+  return normalizeName(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function shortDate(ms: number): string {
+  return new Date(ms).toISOString().slice(0, 10);
 }
 
 function buildTracksGeoJson(
@@ -663,7 +1604,7 @@ function buildTracksGeoJson(
         kind: "monitored_zone",
         aoi_id: HORMUZ_AOI.id,
         name: HORMUZ_AOI.name,
-        review_window_hours: WATCH_CONTEXT.reviewWindowHours,
+        source_window: WATCH_CONTEXT.sourceLabel,
         phase_min: 1
       },
       geometry: {
@@ -773,9 +1714,7 @@ function buildTracksGeoJson(
         bbox: HORMUZ_AOI.bbox
       },
       review_window: {
-        label: WATCH_CONTEXT.reviewWindowLabel,
-        hours: WATCH_CONTEXT.reviewWindowHours,
-        replay_anchor: WATCH_CONTEXT.replayAnchor,
+        label: WATCH_CONTEXT.sourceLabel,
         scope_note: WATCH_CONTEXT.scopeNote
       },
       canonical_timestamps: anomaly
@@ -843,10 +1782,10 @@ function loadRealContextEvidence(maritimeDir: URL): HormuzEvidenceItem[] {
 
 function emptyReason(
   observations: AisObservation[],
-  anomalies: RealAnomaly[],
+  anomalyCount: number,
   statuses: RealProviderStatus[]
 ): string | null {
-  if (anomalies.length > 0) return null;
+  if (anomalyCount > 0) return null;
   if (observations.length === 0) {
     const excluded = statuses.filter((status) => status.status === "excluded_fixture_fallback");
     if (excluded.length > 0) {
@@ -854,7 +1793,7 @@ function emptyReason(
     }
     return `No real AIS observations were available for ${WATCH_CONTEXT.watchBoxName} in the current refresh window.`;
   }
-  return `${WATCH_CONTEXT.watchBoxName} real AIS observations were available, but no generated dark-gap case exceeded the configured threshold during the ${WATCH_CONTEXT.reviewWindowLabel}.`;
+  return `${WATCH_CONTEXT.watchBoxName} real AIS observations were available, but no generated dark-gap case exceeded the configured threshold.`;
 }
 
 function edge(

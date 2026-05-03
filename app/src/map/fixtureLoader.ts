@@ -77,8 +77,8 @@ export interface TracksFixture extends FeatureCollection {
   metadata?: {
     schema_version: string;
     aoi: { aoi_id: string; name: string; bbox: [number, number, number, number] };
-    canonical_timestamps: CanonicalTimestamps;
-    canonical_pings: {
+    canonical_timestamps?: CanonicalTimestamps | null;
+    canonical_pings?: {
       event_1: {
         track_a_last:  { mmsi: string; iso: string; lat: number; lon: number };
         track_b_first: { mmsi: string; iso: string; lat: number; lon: number };
@@ -120,15 +120,20 @@ function validate(fc: TracksFixture): void {
     throw new TracksFixtureError("not a FeatureCollection");
   }
 
-  const requiredKinds = new Set<FeatureKind>([
-    "monitored_zone",
-    "background_track",
-    "hero_track",
-    "hero_ping",
-    "dark_gap",
-    "predicted_corridor",
-    "predicted_ellipse_95"
-  ]);
+  const hasReplayTimeline = Boolean(fc.metadata?.canonical_timestamps);
+  const requiredKinds = new Set<FeatureKind>(
+    hasReplayTimeline
+      ? [
+          "monitored_zone",
+          "background_track",
+          "hero_track",
+          "hero_ping",
+          "dark_gap",
+          "predicted_corridor",
+          "predicted_ellipse_95"
+        ]
+      : ["monitored_zone"]
+  );
   const seen = new Set<string>();
 
   for (const f of fc.features) {
@@ -147,6 +152,8 @@ function validate(fc: TracksFixture): void {
       throw new TracksFixtureError(`fixture missing required kind: ${k}`);
     }
   }
+
+  if (!hasReplayTimeline) return;
 
   // Demo invariant: Track B's first ping must lie inside the predicted
   // 95% ellipse. The whole "second identity emerges where Kalman expected"

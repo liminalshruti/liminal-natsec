@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type ReactNode
 } from "react";
+import type { FeatureCollection } from "geojson";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./MapWatchfloor.css";
@@ -31,6 +32,12 @@ import { attachTileFailureRecovery } from "../map/fallback.ts";
 import { tryLiveKalmanEllipse } from "../map/kalmanAdapter.ts";
 import { TimelineScrubber } from "../map/TimelineScrubber.tsx";
 import { MapLabels } from "../map/MapLabels.tsx";
+import {
+  CASE_HUGE_IDENTITY,
+  caseIdsForSanctionedOverlay,
+  caseScopeLabel,
+  encodeCaseIds
+} from "../map/caseSignalScope.ts";
 import { loadShipIcons } from "../map/shipIcons.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
 import {
@@ -69,6 +76,9 @@ export interface MapWatchfloorProps {
   // Optional override for the fixture URL — useful in tests.
   fixtureUrl?: string;
 
+  // Clears the case filter and returns the stage to all mappable OSINT.
+  onClearCaseSelection?: () => void;
+
   // Optional raster basemap URL. If absent, the dark-navy paint stands alone.
   // Suggested: import.meta.env.VITE_MAP_TILES_URL.
   rasterTilesUrl?: string;
@@ -105,6 +115,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const [dantiTraffic, setDantiTraffic] = useState<DantiTrafficArchive | null>(null);
   const [visibleDantiTraffic, setVisibleDantiTraffic] =
     useState<VisibleDantiTraffic | null>(null);
+  const [visibleHeroPingCount, setVisibleHeroPingCount] = useState(0);
   const [mapReady, setMapReady] = useState(false);
   const [internalState, setInternalState] = useState<ScenarioState | null>(null);
 
@@ -337,7 +348,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
             const source = map.getSource(SOURCES.dantiSanctionedOverlay) as
               | maplibregl.GeoJSONSource
               | undefined;
-            source?.setData(fc);
+            source?.setData(enrichSanctionedOverlayCaseIds(fc as FeatureCollection));
           })
           .catch(() => {
             /* silent — overlay is enrichment, not a demo invariant */
@@ -368,9 +379,6 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
         }
         setMapReady(true);
         props.onMapReady?.(map);
-        // Register the map with the global bridge so SVG overlays
-        // (RealShipsOverlay, MapInkBase, MapOverlays) can subscribe to
-        // move/zoom and re-project lat/lon to current screen coords.
         bridgeUnregister = registerMap(map);
       });
     });
@@ -443,7 +451,8 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     if (!source) return;
     const visible = selectVisibleHeroPings(load.fixture, {
       phase: effectivePhase,
-      clockMs: Date.parse(effectiveState.clockIso)
+      clockMs: Date.parse(effectiveState.clockIso),
+      caseId: props.selectedCaseId ?? null
     });
     const sig =
       `${effectivePhase}|` +
@@ -453,7 +462,8 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     if (sig === lastVisiblePingSigRef.current) return;
     lastVisiblePingSigRef.current = sig;
     source.setData(visible);
-  }, [effectiveState, effectivePhase, load, mapReady]);
+    setVisibleHeroPingCount(visible.features.length);
+  }, [effectiveState, effectivePhase, load, mapReady, props.selectedCaseId]);
 
   // --- Push archived DANTI traffic into the live source ------------------
   useEffect(() => {
@@ -468,10 +478,11 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     const visible = selectVisibleDantiTraffic(
       dantiTraffic,
       load.fixture,
-      Date.parse(effectiveState.clockIso)
+      Date.parse(effectiveState.clockIso),
+      { caseId: props.selectedCaseId ?? null }
     );
     const sig =
-      `${visible.archiveClockIso ?? "none"}|` +
+      `${props.selectedCaseId ?? "all"}|${visible.archiveClockIso ?? "none"}|` +
       visible.featureCollection.features
         .map((f) => `${f.id}:${f.properties.t_epoch_ms}`)
         .join(",");
@@ -479,7 +490,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     lastVisibleDantiSigRef.current = sig;
     source.setData(visible.featureCollection);
     setVisibleDantiTraffic(visible);
-  }, [dantiTraffic, effectiveState, load, mapReady]);
+  }, [dantiTraffic, effectiveState, load, mapReady, props.selectedCaseId]);
 
   // --- Phase-driven camera ------------------------------------------------
   useEffect(() => {
@@ -566,6 +577,17 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
               phase={effectivePhase}
             />
           )}
+          {load.kind === "ready" && effectiveState && (
+            <SignalScopeBadge
+              selectedCaseId={props.selectedCaseId ?? null}
+              replayedPoints={
+                visibleHeroPingCount +
+                (visibleDantiTraffic?.visibleVessels ?? 0) +
+                (props.selectedCaseId === CASE_HUGE_IDENTITY ? 1 : 0)
+              }
+              onClear={props.onClearCaseSelection}
+            />
+          )}
           <PhaseBadge phase={effectivePhase} />
           {visibleDantiTraffic && (
             <DantiTrafficBadge traffic={visibleDantiTraffic} />
@@ -621,6 +643,41 @@ function DantiTrafficBadge({ traffic }: { traffic: VisibleDantiTraffic }): React
   );
 }
 
+function SignalScopeBadge({
+  selectedCaseId,
+  replayedPoints,
+  onClear
+}: {
+  selectedCaseId: string | null;
+  replayedPoints: number;
+  onClear?: () => void;
+}): ReactNode {
+  const isCaseScoped = Boolean(selectedCaseId);
+  return (
+    <div className="map-scope-badge" data-scope={isCaseScoped ? "case" : "all"}>
+      <span className="map-scope-badge__mode">
+        {isCaseScoped ? "Case replay" : "Watchfloor replay"}
+      </span>
+      <span className="map-scope-badge__label">
+        {caseScopeLabel(selectedCaseId)}
+      </span>
+      <span className="map-scope-badge__count">
+        {replayedPoints} mapped signals
+      </span>
+      {isCaseScoped && onClear && (
+        <button
+          type="button"
+          className="map-scope-badge__clear"
+          onClick={onClear}
+          title="Clear case filter and show all mappable OSINT"
+        >
+          Clear case
+        </button>
+      )}
+    </div>
+  );
+}
+
 function FallbackOverlay({ error }: { error: Error }): ReactNode {
   return (
     <div className="map-fallback" role="img" aria-label="Map unavailable — showing static demo geometry">
@@ -637,6 +694,34 @@ function FallbackOverlay({ error }: { error: Error }): ReactNode {
       <div className="map-fallback-caption">map renderer offline · {truncateError(error.message)}</div>
     </div>
   );
+}
+
+function enrichSanctionedOverlayCaseIds(fc: FeatureCollection): FeatureCollection {
+  return {
+    ...fc,
+    features: fc.features.map((feature) => {
+      const props = feature.properties ?? {};
+      const caseIds = caseIdsForSanctionedOverlay({
+        kind: stringProp(props.kind),
+        shipName: stringProp(props.ship_name),
+        name: stringProp(props.name),
+        mmsi: stringProp(props.mmsi),
+        imo: stringProp(props.imo),
+        operator: stringProp(props.operator),
+      });
+      return {
+        ...feature,
+        properties: {
+          ...props,
+          case_ids: encodeCaseIds(caseIds),
+        },
+      };
+    }),
+  };
+}
+
+function stringProp(value: unknown): string | undefined {
+  return typeof value === "string" ? value : undefined;
 }
 
 function truncateError(msg: string): string {

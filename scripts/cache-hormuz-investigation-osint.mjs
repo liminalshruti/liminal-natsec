@@ -417,7 +417,7 @@ async function cachePaidManualSourcePlan() {
       {
         source: "SPIRE_MARITIME",
         status: "credentials_or_export_required",
-        desired_data: "Historical AIS position, static vessel, dark activity, port events for REGIONAL_BBOX over the past 72h+.",
+        desired_data: "Historical AIS position, static vessel, dark activity, port events for REGIONAL_BBOX over the source-specific collection window.",
         why_it_matters: "Best available route to real vessel behavior and dark-gap validation."
       },
       {
@@ -524,7 +524,7 @@ async function cacheGfwNamedVesselSearches() {
     generated_at: generatedAt,
     request: {
       dataset: "public-global-vessel-identity:latest",
-      note: "Named vessel identity lookup for candidates surfaced by 72-hour open web / warning OSINT. Identity only; not behavior evidence."
+      note: "Named vessel identity lookup for candidates surfaced by open web / warning OSINT. Identity only; not behavior evidence."
     },
     response: {
       ok: records.some((record) => record.ok),

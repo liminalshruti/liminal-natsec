@@ -24,6 +24,7 @@ interface StageViewportProps {
   scenarioState: ScenarioState | undefined;
   onScenarioStateChange: (next: ScenarioState) => void;
   resetSignal: number;
+  onClearCaseSelection: () => void;
 }
 
 export function StageViewport({
@@ -33,7 +34,8 @@ export function StageViewport({
   scenario,
   scenarioState,
   onScenarioStateChange,
-  resetSignal
+  resetSignal,
+  onClearCaseSelection
 }: StageViewportProps) {
   return (
     <main className="panel panel--stage" aria-label="Stage">
@@ -46,16 +48,6 @@ export function StageViewport({
           <div className="stage-placeholder">
             <div className="stage-placeholder__inner">
               <div className="stage-placeholder__case">loading scenario...</div>
-            </div>
-          </div>
-        ) : scenario?.state.mode === "real" && !selectedAlert ? (
-          <div className="stage-placeholder">
-            <div className="stage-placeholder__inner">
-              <div className="stage-placeholder__case">no real case generated</div>
-              <div className="stage-placeholder__note">
-                {scenario.state.emptyReason ??
-                  "Real cached sources are available, but no custody case met the threshold."}
-              </div>
             </div>
           </div>
         ) : (
@@ -75,6 +67,7 @@ export function StageViewport({
               selectedCaseId={selectedCaseId}
               resetSignal={resetSignal}
               fixtureUrl={scenario?.state.mode === "real" ? scenario.state.tracksUrl : undefined}
+              onClearCaseSelection={onClearCaseSelection}
               style={{ position: "absolute", inset: 0 }}
             />
             {/* MapOverlays: cache-driven translucent intel layers (GFW gaps,
@@ -82,7 +75,7 @@ export function StageViewport({
                 via the `liminal:map-layers-changed` window event. Each layer
                 projects real cache geometry to the AOI bbox. The overhead-
                 projector "stack of transparent sheets" idea, made functional. */}
-            <MapOverlays />
+            <MapOverlays selectedCaseId={selectedCaseId} />
             {/* RealShipsOverlay: M-4. Top-50 real MarineTraffic vessels
                 from Shayaun's Danti corpus, rendered as directional flow
                 arrows whose orientation = AIS course and length = speed.
@@ -92,7 +85,7 @@ export function StageViewport({
                 Visibility tied to the AIS chip in MapLayers via the same
                 window event MapOverlays uses. The "why don't we have this
                 in real life yet" moment of the demo. */}
-            <RealShipsOverlay />
+            <RealShipsOverlay selectedCaseId={selectedCaseId} />
             {/* MapInstrumentBezels: ASCII corner brackets + edge tick marks
                 + center crosshair + AOI coordinate readouts. Makes the stage
                 read as a radar viewport, not a generic map. Per the May-1

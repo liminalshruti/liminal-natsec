@@ -2,7 +2,7 @@ import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import type { UiMode } from "../lib/uiModeStore.ts";
 import { CustodyCasePanel } from "./CustodyCasePanel.tsx";
 import { DraftCaseDetail } from "./DraftCaseDetail.tsx";
-import { DRAFT_CASE } from "../lib/draftCase.ts";
+import { isDraftCaseId } from "../lib/draftCase.ts";
 
 interface WorkingPanelProps {
   selectedAlert: AlertView | null;
@@ -19,8 +19,7 @@ interface WorkingPanelProps {
 
 // v3.2 IA — Working Panel splits into two regions vertically:
 //   .working__operative  — Zone 1 (verb + posture + hero banner) and
-//                          Zone 2 (hypothesis × specialist interleave).
-//                          Pinned until content would clip; then bounded scroll.
+//                          Zone 2 (hypothesis × specialist interleave). Pinned.
 //   .working__forensic   — Zone 3 (case file as dragon-fold). Scroll region.
 //
 // Operative state is now; forensic state is history. The interaction matches
@@ -38,7 +37,7 @@ export function WorkingPanel({
   // of CustodyCasePanel. The two surfaces share the working panel; the
   // operator promotes a draft → it becomes a regular case the next time
   // they visit it (status: "promoted" branch in DraftCaseDetail).
-  const isDraftSelected = selectedAlertId === DRAFT_CASE.id;
+  const isDraftSelected = isDraftCaseId(selectedAlertId);
 
   return (
     <section
@@ -53,7 +52,7 @@ export function WorkingPanel({
       <div className="working__content">
         {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
         {!loading && !selectedAlert && !isDraftSelected && <EmptyStencil uiMode={uiMode} />}
-        {!loading && isDraftSelected && <DraftCaseDetail />}
+        {!loading && isDraftSelected && <DraftCaseDetail caseId={selectedAlertId} />}
         {!loading && selectedAlert && !isDraftSelected && (
           <CustodyCasePanel selectedAlert={selectedAlert} replayPhase={replayPhase} />
         )}

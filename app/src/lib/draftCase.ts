@@ -1,6 +1,6 @@
-// AI-proposed draft case — the third case Liminal Agents discovered while
-// scanning the cached substrate. Real data, real provenance, but the case
-// itself is in DRAFT state until the operator promotes it by attaching
+// AI-proposed draft cases — single-vessel cases Liminal Agents discovered
+// while scanning the cached substrate. Real data, real provenance, but each
+// case itself is in DRAFT state until the operator promotes it by attaching
 // signals.
 //
 // Source: fixtures/maritime/live-cache/dark-vessel-marad-2026-004-overlap.json
@@ -22,10 +22,10 @@
 //
 // What the operator does:
 //   - Sees a notice toast on demo start: "Liminal Agents discovered a new
-//     pattern. Draft case stubbed."
-//   - Sees the draft case in substrate panel with DRAFT · AI-PROPOSED visual
+//     pattern. Draft cases stubbed."
+//   - Sees draft cases in substrate panel with DRAFT · AI-PROPOSED visual
 //     treatment (dashed border, lower opacity, badge)
-//   - Clicks the draft case → working panel opens with candidate signals
+//   - Clicks a draft case → working panel opens with candidate signals
 //     listed
 //   - Click-to-attach signals; once 2+ attached the "promote to case" button
 //     activates
@@ -76,6 +76,7 @@ export interface DraftCandidateSignal {
     /** lat/lon of the most recent AIS ping. */
     lat?: number;
     lon?: number;
+    observed_at?: string;
     /** Why this vessel is interesting — derived heuristic, NOT an
      *  AI-asserted claim. Just shows the operator the AI's reasoning. */
     flag_note?: string;
@@ -125,7 +126,11 @@ interface MaradRow {
 
 interface MaradFile {
   rows?: MaradRow[];
-  summary?: { intentional_disabling_count?: number; rows?: number };
+  summary?: {
+    intentional_disabling_count?: number;
+    total_intentional_gaps_recent?: number;
+    rows?: number;
+  };
   marad_advisory?: { id?: string; title?: string; effective?: string };
 }
 
@@ -142,24 +147,12 @@ const WATCH_CONTEXT: DraftCaseContext = {
     "The review window is derived from the real GFW gap rows. Source timestamps keep their original dates; archived context is not treated as current vessel behavior."
 };
 
-// Convert real MARAD rows into candidate signals. Each row becomes one signal.
-const candidatesFromRows: DraftCandidateSignal[] = rows.slice(0, 5).map((row, i) => ({
-  id: `sig:marad:${row.mmsi ?? i}`,
-  label: `${row.name ?? "UNKNOWN"} · MMSI ${row.mmsi ?? "—"} · ${row.flag ?? "??"}`,
-  kind: "ais-gap" as const,
-  summary: `GFW detected ${row.durationHours?.toFixed(1) ?? "?"}h intentional broadcast gap (${row.start?.slice(0, 10)} -> ${row.end?.slice(0, 10)}); ${watchBoxClassification(row)} ${WATCH_CONTEXT.watchBoxName}.`,
-  source_file: "fixtures/maritime/live-cache/dark-vessel-marad-2026-004-overlap.json",
-  source_pointer: `$.rows[${i}]`,
-  source_provider: "Global Fishing Watch + MARAD MSCI",
-  attached: false
-}));
-
 // One synthesis-level signal naming the advisory itself.
 const advisorySignal: DraftCandidateSignal = {
   id: "sig:marad-advisory",
   label: `MARAD MSCI ${data.marad_advisory?.id ?? "2026-004"} active`,
   kind: "advisory",
-  summary: `${data.marad_advisory?.title ?? "Persian Gulf / Strait of Hormuz / Gulf of Oman"} - active ${data.marad_advisory?.effective ?? ""}; reviewed inside ${WATCH_CONTEXT.reviewWindowLabel}.`,
+  summary: `${data.marad_advisory?.title ?? "Persian Gulf / Strait of Hormuz / Gulf of Oman"} - active ${data.marad_advisory?.effective ?? ""}; shared advisory context only.`,
   source_file: "fixtures/maritime/live-cache/marad-msci-advisories.json",
   source_pointer: "$.advisories[?(@.id=='2026-004')]",
   source_provider: "U.S. Maritime Administration (MARAD)",
@@ -176,6 +169,21 @@ const sanctionsSignal: DraftCandidateSignal = {
   source_file: "fixtures/maritime/live-cache/ofac-maritime-sanctions-matches.json",
   source_pointer: "$.records",
   source_provider: "OFAC + Global Fishing Watch identity histories",
+  attached: false
+};
+
+// One context-only GFW signal. This is deliberately not a case subject:
+// the GFW rows are their own vessel/gap events, and only become evidence
+// for a Danti vessel if an operator attaches a direct identity/time match.
+const gfwContextSignal: DraftCandidateSignal = {
+  id: "sig:gfw-gap-context",
+  label: `${data.summary?.total_intentional_gaps_recent ?? rows.length} GFW intentional-disabling rows · context`,
+  kind: "ais-gap",
+  summary:
+    "Real GFW intentional-disabling rows overlap the MARAD corridor, but they are corridor context only for this vessel until a direct MMSI, IMO, or time-window match is attached.",
+  source_file: "fixtures/maritime/live-cache/dark-vessel-marad-2026-004-overlap.json",
+  source_pointer: "$.rows",
+  source_provider: "Global Fishing Watch + MARAD MSCI",
   attached: false
 };
 
@@ -260,6 +268,7 @@ function buildVesselSignals(): DraftCandidateSignal[] {
         eta: p.eta,
         lat,
         lon,
+        observed_at: p.datetime,
         flag_note: featured.flag_note
       }
     });
@@ -269,26 +278,58 @@ function buildVesselSignals(): DraftCandidateSignal[] {
 
 const vesselSignals: DraftCandidateSignal[] = buildVesselSignals();
 
-export const DRAFT_CASE: DraftCase = {
-  id: "case:draft:marad-2026-004-cluster",
-  title: "Hormuz Watch Box dark-vessel proposal",
-  tagline: `${(data.summary?.intentional_disabling_count ?? rows.length) + vesselSignals.length} vessels · ${WATCH_CONTEXT.watchBoxName} · real source window`,
-  rationale:
-    `Liminal Agents flagged intentional-broadcast-gap events overlapping the active MARAD MSCI 2026-004 advisory corridor and cross-cited the real Danti MarineTraffic feed: ${vesselSignals.length} vessels under flags-of-convenience match the corridor profile. The proposal stays in review until the operator attaches enough real signals.`,
-  confidence: 0.72,
-  status: "draft",
-  candidateSignals: [advisorySignal, ...candidatesFromRows, ...vesselSignals, sanctionsSignal],
-  context: WATCH_CONTEXT
-};
+export const DRAFT_CASES: DraftCase[] = vesselSignals.map((vesselSignal, index) => {
+  const vessel = vesselSignal.vessel;
+  const name = vessel?.name ?? vesselSignal.label.split(" · ")[0] ?? "Unknown vessel";
+  const mmsi = vessel?.mmsi ?? `unknown-${index + 1}`;
+  const caseId = `case:draft:hormuz:${mmsi}`;
+  const observedMs = vessel?.observed_at ? Date.parse(vessel.observed_at) : NaN;
+  const observedLabel = Number.isFinite(observedMs)
+    ? `${shortDate(observedMs)} Danti source timestamp`
+    : WATCH_CONTEXT.reviewWindowLabel;
+
+  return {
+    id: caseId,
+    title: `${name} watch-box vessel proposal`,
+    tagline: `${vessel?.flag ?? "??"} · MMSI ${mmsi} · single-vessel draft`,
+    rationale:
+      `Liminal Agents surfaced ${name} as an individual watch-box draft from the real Danti MarineTraffic feed. MARAD 2026-004 and the GFW intentional-disabling rows remain shared corridor context; this case does not assert coordination with the other flagged vessels.`,
+    confidence: 0.72,
+    status: "draft",
+    candidateSignals: [
+      signalForCase(caseId, {
+        ...vesselSignal,
+        summary: `${vesselSignal.summary}. Subject vessel for this draft; not bundled with other vessels.`
+      }),
+      signalForCase(caseId, advisorySignal),
+      signalForCase(caseId, gfwContextSignal),
+      signalForCase(caseId, sanctionsSignal)
+    ],
+    context: {
+      ...WATCH_CONTEXT,
+      primaryRealSignal: "Danti MarineTraffic vessel record + MARAD 2026-004 context",
+      reviewWindowLabel: observedLabel,
+      scopeNote:
+        "This is a single-vessel draft. Shared MARAD/GFW watch-box facts are context only unless a direct vessel-specific signal is attached."
+    }
+  };
+});
+
+export const DRAFT_CASE = DRAFT_CASES[0]!;
+
+export function isDraftCaseId(caseId: string | null | undefined): boolean {
+  return typeof caseId === "string" && DRAFT_CASES.some((draft) => draft.id === caseId);
+}
 
 /** Threshold of attached signals that activates the promote-to-case action. */
 export const PROMOTE_THRESHOLD = 2;
 
-function watchBoxClassification(row: MaradRow): string {
-  if (row.marad_classification === "BOTH_INSIDE") return "both endpoints inside";
-  if (row.marad_classification === "ONE_END_INSIDE") return "one endpoint inside";
-  if (row.marad_classification === "OUTSIDE") return "outside the watch box but retained as advisory context for";
-  return "pending geofence review for";
+function signalForCase(caseId: string, signal: DraftCandidateSignal): DraftCandidateSignal {
+  return {
+    ...signal,
+    id: `${caseId}:${signal.id}`,
+    attached: false
+  };
 }
 
 function sourceWindowFromRows(inputRows: MaradRow[]): string {

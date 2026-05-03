@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { describe, it } from "node:test";
 
 import {
@@ -132,5 +133,20 @@ describe("app spineGraph integration", () => {
       statusForHypothesis("hyp:alara-01:event-1:h2", claim!.id),
       "alternative"
     );
+  });
+
+  it("case-facing demo copy does not expose a fixed 72-hour review window", () => {
+    const files = [
+      "../../fixtures/maritime/anomalies.json",
+      "../../fixtures/maritime/evidence.json",
+      "../../fixtures/maritime/hormuz-evidence-items.json",
+      "../src/map/tokens.ts",
+      "../src/components/ReviewMemory.tsx",
+    ];
+    const body = files
+      .map((path) => readFileSync(new URL(path, import.meta.url), "utf8"))
+      .join("\n");
+
+    assert.doesNotMatch(body, /72-hour review window|72 hours|72h/i);
   });
 });

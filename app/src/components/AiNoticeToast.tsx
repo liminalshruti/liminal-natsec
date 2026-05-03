@@ -22,9 +22,10 @@ export function AiNoticeToast({
    *  draft case in the substrate panel. */
   onClickDraft: (caseId: string) => void;
 }) {
-  const { draft } = useDraftCase();
+  const { draftCases } = useDraftCase();
   const [mode, setMode] = useState<"banner" | "pill" | "hidden">("banner");
   const [autoCollapsed, setAutoCollapsed] = useState(false);
+  const activeDraft = draftCases.find((draft) => draft.status === "draft") ?? null;
 
   // Auto-collapse banner → pill after TTL.
   useEffect(() => {
@@ -36,16 +37,16 @@ export function AiNoticeToast({
     return () => clearTimeout(t);
   }, [mode]);
 
-  // Once promoted, the toast is no longer relevant — hide.
+  // Once all drafts are promoted, the toast is no longer relevant — hide.
   useEffect(() => {
-    if (draft.status === "promoted") {
+    if (!draftCases.some((draft) => draft.status === "draft")) {
       setMode("hidden");
     }
-  }, [draft.status]);
+  }, [draftCases]);
 
-  if (mode === "hidden") return null;
+  if (mode === "hidden" || !activeDraft) return null;
 
-  const click = () => onClickDraft(draft.id);
+  const click = () => onClickDraft(activeDraft.id);
 
   if (mode === "pill") {
     return (
@@ -58,7 +59,7 @@ export function AiNoticeToast({
         <span className="ai-notice-pill__pulse" aria-hidden="true" />
         <span className="ai-notice-pill__icon" aria-hidden="true">⊕</span>
         <span className="ai-notice-pill__text">
-          AI draft · {draft.title}
+          AI drafts · {draftCases.filter((draft) => draft.status === "draft").length} vessels
         </span>
       </button>
     );
@@ -77,11 +78,15 @@ export function AiNoticeToast({
           <div className="ai-notice-banner__head">
             <span className="ai-notice-banner__label">LIMINAL AGENTS · DISCOVERY</span>
             <span className="ai-notice-banner__confidence">
-              confidence {(draft.confidence * 100).toFixed(0)}%
+              confidence {(activeDraft.confidence * 100).toFixed(0)}%
             </span>
           </div>
-          <div className="ai-notice-banner__title">{draft.title}</div>
-          <div className="ai-notice-banner__sub">{draft.tagline}</div>
+          <div className="ai-notice-banner__title">
+            {draftCases.length} single-vessel drafts discovered
+          </div>
+          <div className="ai-notice-banner__sub">
+            {activeDraft.title} · no aggregate case opened
+          </div>
         </div>
         <span className="ai-notice-banner__cta">view draft ›</span>
       </button>

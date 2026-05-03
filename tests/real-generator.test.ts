@@ -88,6 +88,63 @@ describe("real watchfloor generator", () => {
       false
     );
   });
+
+  it("derives cached-real OSINT cases from repository cache without live fetches", () => {
+    const result = generateRealWatchfloor();
+    const cases = result.anomalies.nodes.filter((node) => node.type === "case");
+    const alerts = result.anomalies.nodes.filter((node) => node.type === "anomaly");
+
+    assert.equal(result.summary.strict_real, true);
+    assert.equal(result.summary.empty_reason, null);
+    assert.equal(result.summary.anomaly_count, 97);
+    assert.deepEqual(
+      cases.map((node) => node.id).sort(),
+      [
+        "case:real:hormuz:grey-market-china-routing",
+        "case:real:hormuz:iran-last-port-laundering",
+        "case:real:hormuz:loitering-clusters",
+        "case:real:hormuz:roshak-signal-integrity",
+        "case:real:hormuz:sdn-live-fleet"
+      ]
+    );
+
+    const signalCounts = new Map(
+      cases.map((node) => [
+        node.id,
+        (node.data as Record<string, any>)?.features?.signal_count
+      ])
+    );
+    assert.equal(signalCounts.get("case:real:hormuz:sdn-live-fleet"), 21);
+    assert.equal(signalCounts.get("case:real:hormuz:loitering-clusters"), 2);
+    assert.equal(signalCounts.get("case:real:hormuz:iran-last-port-laundering"), 6);
+    assert.equal(signalCounts.get("case:real:hormuz:grey-market-china-routing"), 67);
+    assert.equal(signalCounts.get("case:real:hormuz:roshak-signal-integrity"), 1);
+
+    assert.ok(
+      alerts.some(
+        (node) =>
+          node.case_id === "case:real:hormuz:roshak-signal-integrity" &&
+          (node.data as Record<string, unknown>)?.speed_kn === 31
+      ),
+      "expected ROSHAK implausible-speed alert"
+    );
+    assert.ok(
+      alerts.every((node) =>
+        String((node.data as Record<string, unknown>)?.source_file ?? "").startsWith(
+          "fixtures/maritime/live-cache/"
+        )
+      ),
+      "every cached OSINT alert should carry a live-cache source file"
+    );
+    assert.ok(
+      result.sourceStatus.some(
+        (status) =>
+          status.source === "DANTI_MARINETRAFFIC" &&
+          status.status === "available"
+      ),
+      "expected cached DANTI status"
+    );
+  });
 });
 
 function makeTempLiveCache(input: {

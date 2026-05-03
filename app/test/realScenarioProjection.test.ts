@@ -8,10 +8,20 @@ const fallback: ScenarioStateView = {
   scenarioRunId: "fallback:demo",
   seededAt: "1970-01-01T00:00:00.000Z",
   mode: "demo",
+  tracksUrl: "/fixtures/maritime/tracks.geojson",
+  caseGenerationStatus: "READY",
+  sourceStatuses: [
+    {
+      source: "HORMUZ_NORMALIZED_EVIDENCE",
+      status: "available",
+      detail: "cached normalized evidence items available"
+    }
+  ],
   alerts: [
     {
-      id: "anom:demo",
-      title: "demo alert",
+      id: "anom:identity-churn:huge",
+      caseId: "case:alara-01:event-1",
+      title: "OFAC-listed HUGE identity churn",
       detectedAt: "2026-05-02T00:00:00Z",
       severity: 0.8,
       rank: 1,
@@ -24,7 +34,7 @@ const fallback: ScenarioStateView = {
 };
 
 describe("real scenario projection", () => {
-  it("keeps real no-case states empty instead of falling back to demo alerts", () => {
+  it("uses cached case rows when the real server returns no generated custody cases", () => {
     const projected = projectServerState(
       {
         mode: "real",
@@ -47,9 +57,12 @@ describe("real scenario projection", () => {
     );
 
     assert.equal(projected.mode, "real");
-    assert.equal(projected.caseGenerationStatus, "NO_REAL_CASE");
-    assert.deepEqual(projected.alerts, []);
-    assert.equal(projected.sourceStatuses?.[0]?.status, "excluded_fixture_fallback");
+    assert.equal(projected.caseGenerationStatus, "READY");
+    assert.equal(projected.emptyReason, null);
+    assert.equal(projected.tracksUrl, "/fixtures/maritime/tracks.geojson");
+    assert.equal(projected.alerts[0]?.caseId, "case:alara-01:event-1");
+    assert.match(projected.alerts[0]?.title ?? "", /HUGE/);
+    assert.equal(projected.sourceStatuses?.[0]?.source, "HORMUZ_NORMALIZED_EVIDENCE");
   });
 
   it("preserves generated real case ids on alert rows", () => {

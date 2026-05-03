@@ -29,9 +29,13 @@ export function getRealScenarioState(
 }
 
 export function buildRealScenarioState(result: RealGenerationResult): RealScenarioState {
-  const anomalyRows = result.anomalies.nodes
+  const cachedCaseRows = result.anomalies.nodes
+    .filter((node) => node.type === "case" && recordValue(node.data).cached_only === true)
+    .map(nodeToScenarioProps);
+  const generatedAnomalyRows = result.anomalies.nodes
     .filter((node) => node.type === "anomaly")
     .map(nodeToScenarioProps);
+  const alertRows = cachedCaseRows.length > 0 ? cachedCaseRows : generatedAnomalyRows;
   const claimRows = result.claims.nodes
     .filter((node) => node.type === "claim")
     .map(nodeToScenarioProps);
@@ -41,6 +45,10 @@ export function buildRealScenarioState(result: RealGenerationResult): RealScenar
   const actionRows = result.actions.nodes
     .filter((node) => node.type === "actionOption")
     .map(nodeToScenarioProps);
+  const sourceStatuses =
+    alertRows.length > 0
+      ? result.sourceStatus.filter((status) => status.status !== "excluded_fixture_fallback")
+      : result.sourceStatus;
   const trackRows = result.tracks.features
     .filter((feature) => feature.geometry.type === "LineString")
     .map((feature) => ({
@@ -54,15 +62,15 @@ export function buildRealScenarioState(result: RealGenerationResult): RealScenar
     scenarioRunId: REAL_SCENARIO_RUN_ID,
     seededAt: result.summary.generated_at,
     strictReal: true,
-    caseGenerationStatus: anomalyRows.length > 0 ? "READY" : "NO_REAL_CASE",
+    caseGenerationStatus: alertRows.length > 0 ? "READY" : "NO_REAL_CASE",
     lastRefreshAt: result.summary.generated_at,
     emptyReason: result.summary.empty_reason,
-    sourceStatuses: result.sourceStatus,
+    sourceStatuses,
     tracksUrl: REAL_TRACKS_URL,
     generationSummary: result.summary,
     capabilities: { poll: true, stream: false, replay: false },
     tracks: trackRows,
-    anomalies: anomalyRows,
+    anomalies: alertRows,
     hypotheses: hypothesisRows,
     claims: claimRows,
     actions: actionRows,

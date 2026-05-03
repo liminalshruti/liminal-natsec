@@ -9,9 +9,9 @@
 // this state, so AppShell stays simple.
 
 import { useEffect, useState } from "react";
-import { DRAFT_CASE, PROMOTE_THRESHOLD, type DraftCase, type DraftCandidateSignal } from "./draftCase.ts";
+import { DRAFT_CASES, PROMOTE_THRESHOLD, type DraftCase, type DraftCandidateSignal } from "./draftCase.ts";
 
-let state: DraftCase = { ...DRAFT_CASE, candidateSignals: DRAFT_CASE.candidateSignals.map((s) => ({ ...s })) };
+let state: DraftCase[] = cloneDraftCases(DRAFT_CASES);
 
 /** B-3: signals that just flipped to attached. Used to drive a one-shot
  *  celebration animation. Cleared per-id after RECENT_ATTACH_TTL_MS so the
@@ -25,8 +25,9 @@ function emit() {
   listeners.forEach((l) => l());
 }
 
-export function useDraftCase(): {
+export function useDraftCase(caseId?: string | null): {
   draft: DraftCase;
+  draftCases: DraftCase[];
   attachedCount: number;
   canPromote: boolean;
   /** True if this signal id was attached within the last RECENT_ATTACH_TTL_MS.
@@ -45,22 +46,27 @@ export function useDraftCase(): {
     };
   }, []);
 
-  const attachedCount = state.candidateSignals.filter((s) => s.attached).length;
-  const canPromote = state.status === "draft" && attachedCount >= PROMOTE_THRESHOLD;
+  const draft = findDraft(caseId);
+  const attachedCount = draft.candidateSignals.filter((s) => s.attached).length;
+  const canPromote = draft.status === "draft" && attachedCount >= PROMOTE_THRESHOLD;
 
   return {
-    draft: state,
+    draft,
+    draftCases: state,
     attachedCount,
     canPromote,
     isRecentlyAttached: (signalId: string) => recentlyAttached.has(signalId),
     toggleAttach: (signalId: string) => {
-      const wasAttached = state.candidateSignals.find((s) => s.id === signalId)?.attached ?? false;
-      state = {
-        ...state,
-        candidateSignals: state.candidateSignals.map((s) =>
+      const wasAttached =
+        state
+          .flatMap((draftCase) => draftCase.candidateSignals)
+          .find((s) => s.id === signalId)?.attached ?? false;
+      state = state.map((draftCase) => ({
+        ...draftCase,
+        candidateSignals: draftCase.candidateSignals.map((s) =>
           s.id === signalId ? { ...s, attached: !s.attached } : s
         )
-      };
+      }));
       // Trigger the B-3 celebration only on the attach side of the toggle.
       if (!wasAttached) {
         recentlyAttached.add(signalId);
@@ -75,11 +81,13 @@ export function useDraftCase(): {
     },
     promote: () => {
       if (!canPromote) return;
-      state = { ...state, status: "promoted" };
+      state = state.map((draftCase) =>
+        draftCase.id === draft.id ? { ...draftCase, status: "promoted" } : draftCase
+      );
       emit();
     },
     reset: () => {
-      state = { ...DRAFT_CASE, candidateSignals: DRAFT_CASE.candidateSignals.map((s) => ({ ...s })) };
+      state = cloneDraftCases(DRAFT_CASES);
       recentlyAttached = new Set();
       emit();
     }
@@ -87,3 +95,22 @@ export function useDraftCase(): {
 }
 
 export type { DraftCase, DraftCandidateSignal };
+
+function findDraft(caseId?: string | null): DraftCase {
+  if (caseId) {
+    const matched = state.find((draft) => draft.id === caseId);
+    if (matched) return matched;
+  }
+  return state[0]!;
+}
+
+function cloneDraftCases(drafts: DraftCase[]): DraftCase[] {
+  return drafts.map((draft) => ({
+    ...draft,
+    context: { ...draft.context },
+    candidateSignals: draft.candidateSignals.map((signal) => ({
+      ...signal,
+      vessel: signal.vessel ? { ...signal.vessel } : undefined
+    }))
+  }));
+}

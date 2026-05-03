@@ -27,7 +27,7 @@ interface DropFlash {
 }
 
 export function SignalDropZone() {
-  const { toggleAttach, draft } = useDraftCase();
+  const { toggleAttach, draftCases } = useDraftCase();
   const [active, setActive] = useState(false);
   const [hover, setHover] = useState(false);
   const [flashes, setFlashes] = useState<DropFlash[]>([]);
@@ -49,8 +49,10 @@ export function SignalDropZone() {
   }, []);
 
   // Ignore drops if no draft signals exist or all are already attached.
-  const hasDroppableSignals = draft.candidateSignals.some((s) => !s.attached);
-  if (!hasDroppableSignals && draft.status === "promoted") return null;
+  const hasDroppableSignals = draftCases.some(
+    (draft) => draft.status === "draft" && draft.candidateSignals.some((s) => !s.attached)
+  );
+  if (!hasDroppableSignals) return null;
 
   return (
     <div

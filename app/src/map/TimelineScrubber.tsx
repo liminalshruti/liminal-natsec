@@ -26,6 +26,7 @@ export function TimelineScrubber(props: TimelineScrubberProps) {
   const [isDragging, setIsDragging] = useState(false);
 
   const currentMs = Date.parse(clockIso);
+  const hasTimeline = ticks.length > 0 && bounds.endMs > bounds.startMs;
 
   const updateFromClientX = useCallback(
     (clientX: number) => {
@@ -67,6 +68,8 @@ export function TimelineScrubber(props: TimelineScrubberProps) {
   const playheadPct = clamp01(
     (currentMs - bounds.startMs) / Math.max(1, bounds.endMs - bounds.startMs)
   ) * 100;
+
+  if (!hasTimeline) return null;
 
   return (
     <div className="map-scrubber">

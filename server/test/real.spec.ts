@@ -5,7 +5,7 @@ import { createApp } from "../src/index.ts";
 import { createLocalStore } from "../src/stores/local.ts";
 
 describe("real scenario routes", () => {
-  it("serves strict real mode by default without demo alert fallback", async () => {
+  it("serves cached strict-real OSINT cases by default without demo fallback", async () => {
     const app = createApp(createLocalStore());
     const response = await app.request("/scenario/state");
     const body = await response.json() as Record<string, unknown>;
@@ -13,11 +13,14 @@ describe("real scenario routes", () => {
     assert.equal(response.status, 200);
     assert.equal(body.mode, "real");
     assert.equal(body.strictReal, true);
-    assert.equal(body.caseGenerationStatus, "NO_REAL_CASE");
-    assert.deepEqual(body.anomalies, []);
-    assert.match(
-      String(body.emptyReason),
-      /Fixture-mode provider fallbacks were excluded|no dark gap exceeded the configured threshold/
+    assert.equal(body.caseGenerationStatus, "READY");
+    assert.equal(body.emptyReason, null);
+    assert.ok(Array.isArray(body.anomalies));
+    assert.equal((body.anomalies as unknown[]).length, 5);
+    assert.ok(
+      (body.anomalies as Array<Record<string, unknown>>).some(
+        (row) => row.object_id === "case:real:hormuz:roshak-signal-integrity"
+      )
     );
   });
 

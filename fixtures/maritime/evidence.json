@@ -9,7 +9,7 @@
       "data": {
         "evidence_type": "VESSEL_IDENTITY_HISTORY",
         "llr_nats": 1.9,
-        "summary": "GFW shows HUGE current AIS identity as MMSI 422206900 / IRN while preserving IMO 9357183 across the identity chain. This enriches the Hormuz Watch Box 01 custody pattern anchored visually by MMSI-111 / MV CALDERA.",
+        "summary": "GFW shows HUGE current AIS identity as MMSI 422206900 / IRN while preserving IMO 9357183 across the identity chain.",
         "citation": {
           "label": "GFW · HUGE identity history",
           "source_file": "fixtures/maritime/live-cache/gfw-huge-imo9357183-identity-history.json",
@@ -67,7 +67,7 @@
       "data": {
         "evidence_type": "INTENT_GUARD",
         "llr_nats": -0.4,
-        "summary": "The identity chain is strong, but it does not prove hostile intent or current behavior. The 72-hour review window is a case-review horizon; the guard requires collection/corroboration before any intent assertion.",
+        "summary": "The identity chain is strong, but it does not prove hostile intent or current behavior. The review window is whatever real source span the case needs; the guard requires collection/corroboration before any intent assertion.",
         "citation": {
           "label": "Demo guard · source-family policy",
           "source_file": "fixtures/maritime/hormuz-evidence-items.json",

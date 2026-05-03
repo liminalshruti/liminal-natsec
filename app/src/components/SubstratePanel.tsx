@@ -1,4 +1,5 @@
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
+import { DRAFT_CASES } from "../lib/draftCase.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
 import { DraftCaseCard } from "./DraftCaseCard.tsx";
 import { NamedOperatorCard } from "./NamedOperatorCard.tsx";
@@ -45,15 +46,17 @@ export function SubstratePanel({
           onSelectAlert={onSelectAlert}
           loading={loading}
         />
-        {/* DraftCaseCard — AI-proposed third case below the regular custody
-            queue. Visually distinct (dashed border + AI-PROPOSED badge)
-            until promoted. Click → working panel renders DraftCaseDetail.
-            Lives below the queue so it doesn't compete with the load-
-            bearing Caldera narrative beats. */}
-        <DraftCaseCard
-          selectedAlertId={selectedAlertId}
-          onSelect={onSelectAlert}
-        />
+        {/* AI-proposed single-vessel drafts below the regular custody queue.
+            Each card is its own case; the shared Hormuz watch-box context
+            never becomes an aggregate case claim. */}
+        {DRAFT_CASES.map((draft) => (
+          <DraftCaseCard
+            key={draft.id}
+            draftCaseId={draft.id}
+            selectedAlertId={selectedAlertId}
+            onSelect={onSelectAlert}
+          />
+        ))}
         <WatchfloorOsintFeed />
       </div>
     </aside>

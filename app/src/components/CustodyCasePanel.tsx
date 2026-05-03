@@ -320,11 +320,11 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
     : [];
   const contextItems = [
     stringValue(context.watch_box_name) ?? stringValue(features.aoi_name),
-    stringValue(context.replay_anchor),
+    stringValue(context.primary_real_signal),
     stringValue(context.review_window_label) ??
-      (typeof features.review_window_hours === "number"
-        ? `${features.review_window_hours}h review window`
-        : null)
+      stringValue(context.source_window_label) ??
+      stringValue(features.review_window_label) ??
+      stringValue(features.source_window_label)
   ].filter((item): item is string => Boolean(item));
   const scopeNote = stringValue(context.scope_note);
 

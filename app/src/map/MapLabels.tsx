@@ -127,14 +127,14 @@ function computeLabels(fixture: TracksFixture, phase: Phase): LabelDef[] {
     {
       id: "label:event-1:A",
       lonLat: [ev1A.lon, ev1A.lat],
-      text: `MMSI-${ev1A.mmsi.slice(-3)} · MV CALDERA`,
+      text: `MMSI-${ev1A.mmsi.slice(-3)} · FIXTURE TRACK A`,
       variant: "vessel-A",
       visible: phase >= 1
     },
     {
       id: "label:event-1:B",
       lonLat: [ev1B.lon, ev1B.lat],
-      text: `MMSI-${ev1B.mmsi.slice(-3)} · CALDERA M`,
+      text: `MMSI-${ev1B.mmsi.slice(-3)} · FIXTURE TRACK B`,
       variant: "vessel-B",
       visible: phase >= 3
     },
@@ -157,14 +157,14 @@ function computeLabels(fixture: TracksFixture, phase: Phase): LabelDef[] {
     {
       id: "label:event-2:A",
       lonLat: [ev2A.lon, ev2A.lat],
-      text: `MMSI-${ev2A.mmsi.slice(-3)} · MV HARBOR KITE`,
+      text: `MMSI-${ev2A.mmsi.slice(-3)} · FIXTURE TRACK C`,
       variant: "vessel-A",
       visible: phase >= 6
     },
     {
       id: "label:event-2:B",
       lonLat: [ev2B.lon, ev2B.lat],
-      text: `MMSI-${ev2B.mmsi.slice(-3)} · HARBOR KITE reappear`,
+      text: `MMSI-${ev2B.mmsi.slice(-3)} · FIXTURE TRACK C reappear`,
       variant: "vessel-B",
       visible: phase >= 6
     }

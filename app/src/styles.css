@@ -142,13 +142,13 @@ button:hover {
   display: grid;
   /* Stage takes the center flex region — the map IS the watchstanding glance
      and the visual anchor for every demo beat (dark gap, second identity,
-     hypothesis fan-out). Working panel pins to the 560px right rail — wide
+     hypothesis fan-out). Working panel pins to the 520px right rail — wide
      enough for the verb + specialist reads + case file to read clearly,
      narrow enough that the map dominates the view. Substrate stays at the
      320px left rail. Left-to-right column order now matches the
      WorkflowStrip numbering: 01 SUBSTRATE → 02 STAGE → 03 WORKING.
-     Below 800px viewport height the analysis and case file split into
-     bounded scroll regions instead of clipping. */
+     Below 800px viewport height the case file section collapses to a
+     one-line affordance — see WorkingPanel.tsx. */
   --substrate-pane-width: 320px;
   --working-pane-width: 560px;
   grid-template-columns:
@@ -1990,40 +1990,6 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   padding: 0 4px;
 }
 
-/* M-5: sort-mode toggle (newest / high-signal). Tiny segmented control. */
-.watchfloor-osint-feed__sort {
-  display: inline-flex;
-  gap: 0;
-  margin-right: auto;
-  margin-left: 8px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 1px;
-}
-
-.watchfloor-osint-feed__sort-btn {
-  font-family: var(--font-mono);
-  font-size: 8.5px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  background: transparent;
-  border: none;
-  color: var(--color-ink-tertiary);
-  padding: 2px 7px;
-  border-radius: 3px;
-  cursor: pointer;
-  transition: background 120ms ease-out, color 120ms ease-out;
-}
-
-.watchfloor-osint-feed__sort-btn:hover {
-  color: var(--color-ink-secondary);
-}
-
-.watchfloor-osint-feed__sort-btn[data-active="true"] {
-  background: rgba(122, 169, 255, 0.18);
-  color: var(--color-decision);
-}
-
 .watchfloor-osint-feed__chips {
   display: flex;
   flex-wrap: wrap;
@@ -2288,58 +2254,6 @@ a.osint-signal-row__inner {
 .empty {
   color: var(--color-ink-tertiary);
   font-style: italic;
-}
-
-.real-empty {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  color: var(--fg-1);
-}
-
-.real-empty__title {
-  color: var(--fg-0);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.real-empty__body {
-  color: var(--fg-1);
-  font-size: 11px;
-}
-
-.source-status-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.source-status-row {
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  padding: 6px 8px;
-  background: var(--bg-2);
-}
-
-.source-status-row[data-status="excluded_fixture_fallback"] {
-  border-color: var(--warn);
-}
-
-.source-status-row__head {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  color: var(--fg-0);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.source-status-row__detail {
-  margin-top: 4px;
-  color: var(--fg-2);
-  font-size: 10px;
 }
 
 .action-row {
@@ -7036,56 +6950,6 @@ button:disabled {
   font-weight: 700;
 }
 
-/* B-3 celebration — when a signal just attached (within last ~1.2s),
-   the row briefly flashes a resolved-tone glow + outline pulse. The
-   toggle button does a quick scale-pop to draw the eye. Subtle but
-   confirms the attach succeeded — pairs with B-2's ghost-ship
-   materialization on the map for full attach choreography. */
-.draft-case-signal--just-attached {
-  animation: draft-signal-celebrate 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-@keyframes draft-signal-celebrate {
-  0% {
-    box-shadow: 0 0 0 0 rgba(110, 195, 168, 0);
-    transform: translateX(0);
-  }
-  10% {
-    box-shadow:
-      0 0 0 2px rgba(110, 195, 168, 0.6),
-      0 0 24px rgba(110, 195, 168, 0.4);
-    transform: translateX(0);
-  }
-  35% {
-    box-shadow:
-      0 0 0 1px rgba(110, 195, 168, 0.4),
-      0 0 18px rgba(110, 195, 168, 0.25);
-    transform: translateX(2px);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(110, 195, 168, 0);
-    transform: translateX(0);
-  }
-}
-
-.draft-case-signal--just-attached .draft-case-signal__toggle {
-  animation: draft-toggle-pop 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-@keyframes draft-toggle-pop {
-  0%   { transform: scale(1); }
-  20%  { transform: scale(1.2) rotate(-6deg); }
-  40%  { transform: scale(0.94) rotate(3deg); }
-  100% { transform: scale(1) rotate(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .draft-case-signal--just-attached,
-  .draft-case-signal--just-attached .draft-case-signal__toggle {
-    animation: none;
-  }
-}
-
 .draft-case-signal__toggle:disabled {
   cursor: default;
   opacity: 0.7;
@@ -7164,56 +7028,6 @@ button:disabled {
   padding: 1px 4px;
   border-radius: 2px;
   font-size: 9px;
-}
-
-/* M-1: Real vessel-card data renders below the summary on ship-vessel
-   signals. Tabular KV strip, instrument register, dense but readable. */
-.draft-case-signal__vessel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 4px 12px;
-  margin: 6px 0 4px;
-  padding: 6px 8px;
-  background: rgba(122, 169, 255, 0.04);
-  border-left: 2px solid rgba(122, 169, 255, 0.4);
-  border-radius: 3px;
-}
-
-.draft-case-signal__vessel-kv {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  line-height: 1.3;
-}
-
-.draft-case-signal__vessel-kv dt {
-  color: var(--color-ink-tertiary);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  font-size: 8.5px;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.draft-case-signal__vessel-kv dd {
-  color: var(--color-ink-primary);
-  margin: 0;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
-
-.draft-case-signal__vessel-dest {
-  color: var(--color-decision) !important;
-  font-style: italic;
-}
-
-/* Ship-vessel kind chip — same decision-blue as advisory but with a
-   subtle outline so it reads as "specific vessel telemetry" not just
-   "general advisory." */
-.draft-case-signal__kind[data-tone="decision"][data-kind="ship-vessel"] {
-  border: 1px solid rgba(122, 169, 255, 0.35);
 }
 
 /* PROMOTE CTA */
@@ -7613,197 +7427,5 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   }
   .signal-ghost--materializing {
     opacity: 0.55;
-  }
-}
-
-/* ─── M-4: REAL SHIPS OVERLAY — top-50 MarineTraffic vessels as flow arrows ─
-   Each ship: directional triangle (orientation = course, length = speed).
-   Anchored ships (speed=0) render as circles. FOC flags get an amber ring.
-   Hover → vessel-card popover with full vessel telemetry.
-   ───────────────────────────────────────────────────────────────────────── */
-
-.real-ships-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 6; /* above MapOverlays (3), below SignalGhostShips (55) */
-  pointer-events: none; /* but child <g> elements opt back in */
-}
-
-/* Re-enable pointer-events on the ship glyphs themselves so hover works. */
-.real-ships-overlay .real-ship {
-  pointer-events: auto;
-  cursor: crosshair;
-  transition: filter 200ms cubic-bezier(0.22, 0.61, 0.36, 1),
-              transform 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.real-ships-overlay .real-ship--moving .real-ship__hull {
-  fill: rgba(184, 197, 212, 0.55);
-  stroke: rgba(232, 240, 252, 0.85);
-  stroke-width: 0.4;
-}
-
-.real-ships-overlay .real-ship--anchored .real-ship__hull {
-  fill: rgba(184, 197, 212, 0.32);
-  stroke: rgba(232, 240, 252, 0.55);
-  stroke-width: 0.5;
-}
-
-/* FOC ring — flags-of-convenience vessels get a subtle amber outer ring */
-.real-ship__foc-ring {
-  stroke: rgba(224, 153, 107, 0.45);
-  stroke-width: 0.7;
-  stroke-dasharray: 1.4 1.6;
-  opacity: 0.85;
-  transition: stroke 200ms ease-out, stroke-width 200ms ease-out;
-}
-
-.real-ship--hover .real-ship__foc-ring {
-  stroke: rgba(224, 153, 107, 0.95);
-  stroke-width: 1.2;
-}
-
-.real-ship--hover .real-ship__hull {
-  fill: rgba(232, 240, 252, 0.95);
-  stroke: rgba(122, 169, 255, 1);
-  stroke-width: 0.8;
-  filter: drop-shadow(0 0 6px rgba(122, 169, 255, 0.6))
-          drop-shadow(0 0 12px rgba(122, 169, 255, 0.3));
-}
-
-.real-ship--hover.real-ship--foc .real-ship__hull {
-  stroke: rgba(224, 153, 107, 1);
-  filter: drop-shadow(0 0 6px rgba(224, 153, 107, 0.7))
-          drop-shadow(0 0 14px rgba(224, 153, 107, 0.35));
-}
-
-/* SHIP HOVER CARD — popover with full vessel telemetry */
-
-.real-ship-card {
-  position: absolute;
-  z-index: 65; /* above SignalDropZone (60) so hover popover wins */
-  min-width: 240px;
-  max-width: 320px;
-  padding: 10px 12px;
-  background: rgba(8, 9, 12, 0.92);
-  backdrop-filter: blur(14px) saturate(1.4);
-  -webkit-backdrop-filter: blur(14px) saturate(1.4);
-  border: 1px solid rgba(122, 169, 255, 0.42);
-  border-radius: 6px;
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(122, 169, 255, 0.10),
-    0 0 24px rgba(122, 169, 255, 0.18);
-  font-family: var(--font-mono);
-  pointer-events: none;
-  transform: translate(14px, -50%);
-  animation: real-ship-card-in 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-@keyframes real-ship-card-in {
-  0%   { opacity: 0; transform: translate(8px, -50%) scale(0.96); }
-  100% { opacity: 1; transform: translate(14px, -50%) scale(1); }
-}
-
-.real-ship-card[data-flip-x="true"] {
-  transform: translate(calc(-100% - 14px), -50%);
-}
-
-.real-ship-card[data-flip-y="true"] {
-  /* When near the bottom edge, anchor the card from above the cursor.
-     Combined with flip-x via the same data attribute. */
-  transform: translate(14px, calc(-100% + 14px));
-}
-
-.real-ship-card[data-flip-x="true"][data-flip-y="true"] {
-  transform: translate(calc(-100% - 14px), calc(-100% + 14px));
-}
-
-.real-ship-card__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 6px;
-  padding-bottom: 5px;
-  border-bottom: 1px dashed rgba(122, 169, 255, 0.22);
-}
-
-.real-ship-card__name {
-  font-family: var(--font-serif);
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--color-ink-primary);
-}
-
-.real-ship-card__flag {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 2px 6px;
-  border-radius: 3px;
-  background: rgba(122, 169, 255, 0.10);
-  color: var(--color-decision);
-  white-space: nowrap;
-}
-
-.real-ship-card__flag--foc {
-  background: rgba(224, 153, 107, 0.14);
-  color: var(--color-contested);
-}
-
-.real-ship-card__kv {
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 3px 14px;
-}
-
-.real-ship-card__kv > div {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  font-size: 10px;
-}
-
-.real-ship-card__kv dt {
-  color: var(--color-ink-tertiary);
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  font-size: 8.5px;
-  margin: 0;
-  flex-shrink: 0;
-}
-
-.real-ship-card__kv dd {
-  color: var(--color-ink-primary);
-  margin: 0;
-  font-weight: 500;
-}
-
-.real-ship-card__dest {
-  grid-column: 1 / -1;
-}
-
-.real-ship-card__dest dd {
-  color: var(--color-decision);
-  font-style: italic;
-}
-
-.real-ship-card__footer {
-  margin-top: 6px;
-  padding-top: 5px;
-  border-top: 1px dashed rgba(122, 169, 255, 0.16);
-  font-size: 8.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-ink-tertiary);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .real-ship-card {
-    animation: none;
   }
 }

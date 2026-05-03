@@ -1,4 +1,3013 @@
 {
-  "nodes": [],
-  "edges": []
+  "nodes": [
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9359416",
+      "type": "evidence",
+      "title": "ADRIAN DARYA cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "ADRIAN DARYA (IMO 9359416) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[492]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9820271",
+      "type": "evidence",
+      "title": "HAMOUNA cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "HAMOUNA (IMO 9820271) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[472]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9283019",
+      "type": "evidence",
+      "title": "AZARGOUN cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "AZARGOUN (IMO 9283019) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[50]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9270696",
+      "type": "evidence",
+      "title": "KASHAN cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "KASHAN (IMO 9270696) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[390]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9420356",
+      "type": "evidence",
+      "title": "SHAYAN 1 cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "SHAYAN 1 (IMO 9420356) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[55]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9452191",
+      "type": "evidence",
+      "title": "AMIR ABBAS cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "AMIR ABBAS (IMO 9452191) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[53]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9446415",
+      "type": "evidence",
+      "title": "MATIN cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "MATIN (IMO 9446415) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[179]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9744271",
+      "type": "evidence",
+      "title": "KAMINEH cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "KAMINEH (IMO 9744271) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[328]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9369710",
+      "type": "evidence",
+      "title": "DARYABAR cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "DARYABAR (IMO 9369710) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[392]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9506370",
+      "type": "evidence",
+      "title": "NOUR 1 cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "NOUR 1 (IMO 9506370) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[349]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9405942",
+      "type": "evidence",
+      "title": "BASKAR cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "BASKAR (IMO 9405942) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[177]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9226944",
+      "type": "evidence",
+      "title": "ARTARIA cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "ARTARIA (IMO 9226944) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[51]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9619751",
+      "type": "evidence",
+      "title": "DARYA MAHER cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "DARYA MAHER (IMO 9619751) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[619]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9165815",
+      "type": "evidence",
+      "title": "GOLSAN cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "GOLSAN (IMO 9165815) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[49]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9452414",
+      "type": "evidence",
+      "title": "HOMA cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "HOMA (IMO 9452414) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[52]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9573086",
+      "type": "evidence",
+      "title": "JAMIL 8 cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "JAMIL 8 (IMO 9573086) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[103]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9387815",
+      "type": "evidence",
+      "title": "OURA cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "OURA (IMO 9387815) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[409]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9419187",
+      "type": "evidence",
+      "title": "SAVAHEL cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "SAVAHEL (IMO 9419187) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[54]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9270658",
+      "type": "evidence",
+      "title": "SHAMIM cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "SHAMIM (IMO 9270658) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[408]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9495911",
+      "type": "evidence",
+      "title": "ARAM 110 cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "ARAM 110 (IMO 9495911) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[125]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:sdn-live-fleet:9820336",
+      "type": "evidence",
+      "title": "PETUNIA cached coordinate watchlist hit",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "data": {
+        "evidence_type": "CACHED_DANTI_SANCTIONED_COORDINATE",
+        "llr_nats": 0.38,
+        "summary": "PETUNIA (IMO 9820336) appears in the cached DANTI/MarineTraffic ship pull with coordinates inside the Hormuz review area.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[338]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:loitering:qeshm",
+      "type": "evidence",
+      "title": "Qeshm stationary cluster in cached DANTI pull",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "data": {
+        "evidence_type": "CACHED_DANTI_LOITERING_CLUSTER",
+        "llr_nats": 0.34,
+        "summary": "8 unique cached DANTI vessels are stationary near Qeshm around 26.97N, 55.75E.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[?(@.properties.current_port || @.properties.last_port)]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:loitering:bandar-abbas",
+      "type": "evidence",
+      "title": "Bandar Abbas anchorage density cluster in cached DANTI pull",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "data": {
+        "evidence_type": "CACHED_DANTI_ANCHORAGE_CLUSTER",
+        "llr_nats": 0.33,
+        "summary": "17 unique cached DANTI vessels reference Bandar Abbas anchorage or adjacent anchorage routing.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[?(@.properties.current_port || @.properties.last_port)]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:iran-last-port:1085564",
+      "type": "evidence",
+      "title": "YEKTA II foreign flag with Iranian last port",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "data": {
+        "evidence_type": "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+        "llr_nats": 0.31,
+        "summary": "YEKTA II (IMO 1085564) is foreign-flagged in the cached DANTI row and lists Iranian last_port RAJAEI.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[508]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:iran-last-port:8535386",
+      "type": "evidence",
+      "title": "TINA II foreign flag with Iranian last port",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "data": {
+        "evidence_type": "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+        "llr_nats": 0.31,
+        "summary": "TINA II (IMO 8535386) is foreign-flagged in the cached DANTI row and lists Iranian last_port BANDAR ABBAS ANCH.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[129]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:iran-last-port:9464156",
+      "type": "evidence",
+      "title": "MARIVEX foreign flag with Iranian last port",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "data": {
+        "evidence_type": "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+        "llr_nats": 0.31,
+        "summary": "MARIVEX (IMO 9464156) is foreign-flagged in the cached DANTI row and lists Iranian last_port RAJAEI.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[383]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:iran-last-port:9212400",
+      "type": "evidence",
+      "title": "ELPIS foreign flag with Iranian last port",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "data": {
+        "evidence_type": "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+        "llr_nats": 0.31,
+        "summary": "ELPIS (IMO 9212400) is foreign-flagged in the cached DANTI row and lists Iranian last_port BUSHEHR.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[231]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:iran-last-port:9159476",
+      "type": "evidence",
+      "title": "KOTOKU MARU NO.10 foreign flag with Iranian last port",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "data": {
+        "evidence_type": "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+        "llr_nats": 0.31,
+        "summary": "KOTOKU MARU NO.10 (IMO 9159476) is foreign-flagged in the cached DANTI row and lists Iranian last_port BANDAR ABBAS ANCH.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[56]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:iran-last-port:9358577",
+      "type": "evidence",
+      "title": "CAPILANO foreign flag with Iranian last port",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "data": {
+        "evidence_type": "CACHED_DANTI_FOREIGN_FLAG_IRAN_LAST_PORT",
+        "llr_nats": 0.31,
+        "summary": "CAPILANO (IMO 9358577) is foreign-flagged in the cached DANTI row and lists Iranian last_port RAJAEI.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[89]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:7904e6188b50",
+      "type": "evidence",
+      "title": "ASP AVANA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "ASP AVANA (IMO 9783899) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[335]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:1ffe38f52d10",
+      "type": "evidence",
+      "title": "ASP AVANA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "ASP AVANA (IMO 9783899) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[481]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:19d0d6b1ffed",
+      "type": "evidence",
+      "title": "ASP AVANA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "ASP AVANA (IMO 9783899) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[120]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:5544585c02fc",
+      "type": "evidence",
+      "title": "ASP AVANA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "ASP AVANA (IMO 9783899) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[115]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:820fe0eedb0b",
+      "type": "evidence",
+      "title": "ASP AVANA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "ASP AVANA (IMO 9783899) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[222]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:fed24efb9e24",
+      "type": "evidence",
+      "title": "DANAE grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "DANAE (IMO 9719587) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[119]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:bebaa7a1ac17",
+      "type": "evidence",
+      "title": "DANAE grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "DANAE (IMO 9719587) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[476]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:6e38dc62a536",
+      "type": "evidence",
+      "title": "EASTERN BUND grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "EASTERN BUND (IMO 9459333) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[575]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:03f5c8da1f29",
+      "type": "evidence",
+      "title": "EASTERN BUND grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "EASTERN BUND (IMO 9459333) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[300]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:62a2f89afeeb",
+      "type": "evidence",
+      "title": "EASTERN BUND grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "EASTERN BUND (IMO 9459333) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[75]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:c180c9b8d482",
+      "type": "evidence",
+      "title": "EASTERN BUND grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "EASTERN BUND (IMO 9459333) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[72]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:20692a386f9d",
+      "type": "evidence",
+      "title": "FRANBO PROGRESS grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "FRANBO PROGRESS (IMO 9510034) carries cached destination \"CHINA OWNER/CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[543]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:a98a155bbbb3",
+      "type": "evidence",
+      "title": "FRANBO PROGRESS grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "FRANBO PROGRESS (IMO 9510034) carries cached destination \"CHINA OWNER/CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[31]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:2fa23f328fc0",
+      "type": "evidence",
+      "title": "HEILAN BROTHER grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HEILAN BROTHER (IMO 9606792) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[554]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:4aa980bdca5f",
+      "type": "evidence",
+      "title": "HEILAN BROTHER grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HEILAN BROTHER (IMO 9606792) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[278]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:5cfa6bccef2e",
+      "type": "evidence",
+      "title": "HEILAN BROTHER grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HEILAN BROTHER (IMO 9606792) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[167]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:aa614f8aa57f",
+      "type": "evidence",
+      "title": "HEILAN JOURNEY grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HEILAN JOURNEY (IMO 9606778) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[386]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:902d91cd9dbe",
+      "type": "evidence",
+      "title": "HEILAN JOURNEY grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HEILAN JOURNEY (IMO 9606778) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[266]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:0b5181cc5bc2",
+      "type": "evidence",
+      "title": "HONESTAR grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HONESTAR (IMO 9187368) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[413]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:e94244a447a4",
+      "type": "evidence",
+      "title": "HONESTAR grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "HONESTAR (IMO 9187368) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[58]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:4b238329d232",
+      "type": "evidence",
+      "title": "JNS CRANE grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "JNS CRANE (IMO 1100792) carries cached destination \"CHINA OWNER&CREW PKG\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[516]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:5bb63b4220ba",
+      "type": "evidence",
+      "title": "KSL DANYANG grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "KSL DANYANG (IMO 9696890) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[30]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:952fb8be3ca1",
+      "type": "evidence",
+      "title": "KSL DANYANG grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "KSL DANYANG (IMO 9696890) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[157]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:7794fb0ac00b",
+      "type": "evidence",
+      "title": "KSL DANYANG grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "KSL DANYANG (IMO 9696890) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[384]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:e61aaf88e501",
+      "type": "evidence",
+      "title": "KSL QINGYANG grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "KSL QINGYANG (IMO 9578050) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[223]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:b40caf666779",
+      "type": "evidence",
+      "title": "KSL QINGYANG grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "KSL QINGYANG (IMO 9578050) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[483]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:9b942887ea55",
+      "type": "evidence",
+      "title": "LION grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "LION (IMO 9838577) carries cached destination \"PG FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[130]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:e451eb3da15e",
+      "type": "evidence",
+      "title": "LOTUS RISING grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "LOTUS RISING (IMO 9217656) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[252]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:2e529c4cd342",
+      "type": "evidence",
+      "title": "LOTUS RISING grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "LOTUS RISING (IMO 9217656) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[39]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:9c870c560031",
+      "type": "evidence",
+      "title": "LOTUS RISING grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "LOTUS RISING (IMO 9217656) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[367]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:f9b17d7e7366",
+      "type": "evidence",
+      "title": "MARAL grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MARAL (IMO 9251896) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[595]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:4ef22c7e2f8d",
+      "type": "evidence",
+      "title": "MARAL grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MARAL (IMO 9251896) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[452]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:f905e69cd411",
+      "type": "evidence",
+      "title": "MARIVEX grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MARIVEX (IMO 9464156) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[383]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:aca2cf696d3a",
+      "type": "evidence",
+      "title": "MAYA GAS I grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MAYA GAS I (IMO 9172753) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[414]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:25482c9ae68b",
+      "type": "evidence",
+      "title": "MAYA GAS I grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MAYA GAS I (IMO 9172753) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[60]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:0870ec7cf8fb",
+      "type": "evidence",
+      "title": "MIAOULIS 21 grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MIAOULIS 21 (IMO 9886641) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[493]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:5b523138d4e7",
+      "type": "evidence",
+      "title": "MIAOULIS 21 grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MIAOULIS 21 (IMO 9886641) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[348]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:8224bdff0202",
+      "type": "evidence",
+      "title": "MIAOULIS 21 grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "MIAOULIS 21 (IMO 9886641) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[233]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:7118860a50da",
+      "type": "evidence",
+      "title": "NAMRATA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "NAMRATA (IMO 9401154) carries cached destination \"DUBAI FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[284]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:e9fa82154571",
+      "type": "evidence",
+      "title": "NOZO grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "NOZO (IMO 9323871) carries cached destination \"CHINA OWNER & CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[439]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:f8dddb4544f7",
+      "type": "evidence",
+      "title": "PACIFIC STAR I grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "PACIFIC STAR I (IMO 9318321) carries cached destination \"ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[66]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:077de5a5f702",
+      "type": "evidence",
+      "title": "PACIFIC STAR I grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "PACIFIC STAR I (IMO 9318321) carries cached destination \"ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[571]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:6c7f71678876",
+      "type": "evidence",
+      "title": "POLY ODYSSEY grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "POLY ODYSSEY (IMO 9609811) carries cached destination \"CHINA OWNER&CHINESE\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[74]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:102cfeebbaea",
+      "type": "evidence",
+      "title": "SAPHIRA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "SAPHIRA (IMO 7924425) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[66]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:2911b1e70cac",
+      "type": "evidence",
+      "title": "SAPHIRA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "SAPHIRA (IMO 7924425) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[568]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:bd9f40c632d3",
+      "type": "evidence",
+      "title": "SAPHIRA grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "SAPHIRA (IMO 7924425) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[182]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:4b5bbf4d35d1",
+      "type": "evidence",
+      "title": "SHUN FU XING grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "SHUN FU XING (IMO 9213363) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[254]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:96751edafa0d",
+      "type": "evidence",
+      "title": "SHUN FU XING grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "SHUN FU XING (IMO 9213363) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[13]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:300ba9f95213",
+      "type": "evidence",
+      "title": "SHUN FU XING grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "SHUN FU XING (IMO 9213363) carries cached destination \"CHINA OWNER&CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[145]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:57bbdfcd1cf7",
+      "type": "evidence",
+      "title": "STI ELYSEES grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "STI ELYSEES (IMO 9688829) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[195]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:c4c428e533ad",
+      "type": "evidence",
+      "title": "STI ELYSEES grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "STI ELYSEES (IMO 9688829) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[434]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:0283103a31ab",
+      "type": "evidence",
+      "title": "STI ELYSEES grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "STI ELYSEES (IMO 9688829) carries cached destination \"FOR ORDERS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[581]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:dba1dea1746b",
+      "type": "evidence",
+      "title": "TB LINHAI grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "TB LINHAI (IMO 9150406) carries cached destination \"CHINA OWNER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[499]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:80f7e4997422",
+      "type": "evidence",
+      "title": "V GEM grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "V GEM (IMO 9221889) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[253]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:48a4866dab52",
+      "type": "evidence",
+      "title": "V GEM grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "V GEM (IMO 9221889) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[368]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:79071a352830",
+      "type": "evidence",
+      "title": "V MONOCEROS grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "V MONOCEROS (IMO 9478470) carries cached destination \"CHINA OWNER & CREWS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[34]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:0c8ca05a3e81",
+      "type": "evidence",
+      "title": "V MONOCEROS grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "V MONOCEROS (IMO 9478470) carries cached destination \"CHINA OWNER & CREWS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[52]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:59058f7dbf0b",
+      "type": "evidence",
+      "title": "V MONOCEROS grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "V MONOCEROS (IMO 9478470) carries cached destination \"CHINA OWNER & CREWS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[161]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:2d2a0b76132f",
+      "type": "evidence",
+      "title": "V MONOCEROS grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "V MONOCEROS (IMO 9478470) carries cached destination \"CHINA OWNER & CREWS\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[389]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:7bebca34020e",
+      "type": "evidence",
+      "title": "VICSTAR grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "VICSTAR (IMO 9206009) carries cached destination \"CHINA OWNER AND CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[282]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:035f811469ef",
+      "type": "evidence",
+      "title": "VICSTAR grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "VICSTAR (IMO 9206009) carries cached destination \"CHINA OWNER AND CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[46]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:480f786312ae",
+      "type": "evidence",
+      "title": "VICSTAR grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "VICSTAR (IMO 9206009) carries cached destination \"CHINA OWNER AND CREW\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[174]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:b8161891ea37",
+      "type": "evidence",
+      "title": "YONG TAI grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "YONG TAI (IMO 9231511) carries cached destination \"FOR ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[12]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:d8871fb44fbd",
+      "type": "evidence",
+      "title": "YURI grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "YURI (IMO 9235737) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[242]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:grey-market-order:99061d44a7ce",
+      "type": "evidence",
+      "title": "YURI grey-market destination string",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_GREY_MARKET_DESTINATION",
+        "llr_nats": 0.18,
+        "summary": "YURI (IMO 9235737) carries cached destination \"TO ORDER\".",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[527]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:china-routing:9820271",
+      "type": "evidence",
+      "title": "HAMOUNA China-routing evidence",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_CHINA_ROUTING",
+        "llr_nats": 0.28,
+        "summary": "HAMOUNA (IMO 9820271) carries cached China-routing context via last_port/destination ZHUHAI / IRBND.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[472]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:china-routing:9369710",
+      "type": "evidence",
+      "title": "DARYABAR China-routing evidence",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "data": {
+        "evidence_type": "CACHED_DANTI_CHINA_ROUTING",
+        "llr_nats": 0.28,
+        "summary": "DARYABAR (IMO 9369710) carries cached China-routing context via last_port/destination CJK / IRBND.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-1000.json",
+        "source_pointer": "$.body.resultDocuments[4].documents[392]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "31c352a17af43e015c8042e5d80855d3c927ce0740613c4ec0fe164dbffeee41",
+        "cached_only": true
+      }
+    },
+    {
+      "id": "ev:real:hormuz:signal-integrity:9405966",
+      "type": "evidence",
+      "title": "ROSHAK reports physically implausible speed",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "data": {
+        "evidence_type": "CACHED_DANTI_IMPLAUSIBLE_SPEED",
+        "llr_nats": 0.36,
+        "summary": "ROSHAK (IMO 9405966) reports speed=31 kt in the cached DANTI row, a signal-integrity review indicator.",
+        "source_file": "fixtures/maritime/live-cache/danti-hormuz-ship-all-paginated.json",
+        "source_pointer": "$.documents[410]",
+        "source_provider": "DANTI / MarineTraffic cached ship pull",
+        "source_sha256": "731f4dd2c97880aee164c1317a45a5b8d88940250c7f77531f964a574e7e63ce",
+        "cached_only": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9359416:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9359416",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9359416"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9820271:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9820271",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9820271"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9283019:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9283019",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9283019"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9270696:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9270696",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9270696"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9420356:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9420356",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9420356"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9452191:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9452191",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9452191"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9446415:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9446415",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9446415"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9744271:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9744271",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9744271"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9369710:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9369710",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9369710"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9506370:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9506370",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9506370"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9405942:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9405942",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9405942"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9226944:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9226944",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9226944"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9619751:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9619751",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9619751"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9165815:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9165815",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9165815"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9452414:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9452414",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9452414"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9573086:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9573086",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9573086"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9387815:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9387815",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9387815"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9419187:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9419187",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9419187"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9270658:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9270658",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9270658"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9495911:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9495911",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9495911"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:sdn-live-fleet:9820336:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:sdn-live-fleet:9820336",
+      "to": "claim:real:hormuz:sdn-live-fleet:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9820336"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:loitering:qeshm:supports:claim:real:hormuz:loitering-clusters:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:loitering:qeshm",
+      "to": "claim:real:hormuz:loitering-clusters:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:loitering:qeshm"
+        ],
+        "confidence": 0.84
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:loitering:bandar-abbas:supports:claim:real:hormuz:loitering-clusters:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:loitering:bandar-abbas",
+      "to": "claim:real:hormuz:loitering-clusters:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:loitering:bandar-abbas"
+        ],
+        "confidence": 0.83
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:iran-last-port:1085564:supports:claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:iran-last-port:1085564",
+      "to": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:1085564"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:iran-last-port:8535386:supports:claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:iran-last-port:8535386",
+      "to": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:8535386"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:iran-last-port:9464156:supports:claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:iran-last-port:9464156",
+      "to": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:9464156"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:iran-last-port:9212400:supports:claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:iran-last-port:9212400",
+      "to": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:9212400"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:iran-last-port:9159476:supports:claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:iran-last-port:9159476",
+      "to": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:9159476"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:iran-last-port:9358577:supports:claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:iran-last-port:9358577",
+      "to": "claim:real:hormuz:iran-last-port-laundering:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:9358577"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:7904e6188b50:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:7904e6188b50",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7904e6188b50"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:1ffe38f52d10:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:1ffe38f52d10",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:1ffe38f52d10"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:19d0d6b1ffed:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:19d0d6b1ffed",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:19d0d6b1ffed"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:5544585c02fc:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:5544585c02fc",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:5544585c02fc"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:820fe0eedb0b:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:820fe0eedb0b",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:820fe0eedb0b"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:fed24efb9e24:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:fed24efb9e24",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:fed24efb9e24"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:bebaa7a1ac17:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:bebaa7a1ac17",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:bebaa7a1ac17"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:6e38dc62a536:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:6e38dc62a536",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:6e38dc62a536"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:03f5c8da1f29:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:03f5c8da1f29",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:03f5c8da1f29"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:62a2f89afeeb:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:62a2f89afeeb",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:62a2f89afeeb"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:c180c9b8d482:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:c180c9b8d482",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:c180c9b8d482"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:20692a386f9d:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:20692a386f9d",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:20692a386f9d"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:a98a155bbbb3:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:a98a155bbbb3",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:a98a155bbbb3"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:2fa23f328fc0:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:2fa23f328fc0",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:2fa23f328fc0"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:4aa980bdca5f:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:4aa980bdca5f",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:4aa980bdca5f"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:5cfa6bccef2e:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:5cfa6bccef2e",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:5cfa6bccef2e"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:aa614f8aa57f:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:aa614f8aa57f",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:aa614f8aa57f"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:902d91cd9dbe:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:902d91cd9dbe",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:902d91cd9dbe"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:0b5181cc5bc2:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:0b5181cc5bc2",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:0b5181cc5bc2"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:e94244a447a4:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:e94244a447a4",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:e94244a447a4"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:4b238329d232:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:4b238329d232",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:4b238329d232"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:5bb63b4220ba:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:5bb63b4220ba",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:5bb63b4220ba"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:952fb8be3ca1:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:952fb8be3ca1",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:952fb8be3ca1"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:7794fb0ac00b:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:7794fb0ac00b",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7794fb0ac00b"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:e61aaf88e501:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:e61aaf88e501",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:e61aaf88e501"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:b40caf666779:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:b40caf666779",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:b40caf666779"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:9b942887ea55:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:9b942887ea55",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:9b942887ea55"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:e451eb3da15e:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:e451eb3da15e",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:e451eb3da15e"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:2e529c4cd342:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:2e529c4cd342",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:2e529c4cd342"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:9c870c560031:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:9c870c560031",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:9c870c560031"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:f9b17d7e7366:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:f9b17d7e7366",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:f9b17d7e7366"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:4ef22c7e2f8d:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:4ef22c7e2f8d",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:4ef22c7e2f8d"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:f905e69cd411:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:f905e69cd411",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:f905e69cd411"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:aca2cf696d3a:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:aca2cf696d3a",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:aca2cf696d3a"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:25482c9ae68b:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:25482c9ae68b",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:25482c9ae68b"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:0870ec7cf8fb:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:0870ec7cf8fb",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:0870ec7cf8fb"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:5b523138d4e7:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:5b523138d4e7",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:5b523138d4e7"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:8224bdff0202:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:8224bdff0202",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:8224bdff0202"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:7118860a50da:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:7118860a50da",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7118860a50da"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:e9fa82154571:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:e9fa82154571",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:e9fa82154571"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:f8dddb4544f7:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:f8dddb4544f7",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:f8dddb4544f7"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:077de5a5f702:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:077de5a5f702",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:077de5a5f702"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:6c7f71678876:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:6c7f71678876",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:6c7f71678876"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:102cfeebbaea:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:102cfeebbaea",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:102cfeebbaea"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:2911b1e70cac:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:2911b1e70cac",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:2911b1e70cac"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:bd9f40c632d3:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:bd9f40c632d3",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:bd9f40c632d3"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:4b5bbf4d35d1:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:4b5bbf4d35d1",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:4b5bbf4d35d1"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:96751edafa0d:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:96751edafa0d",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:96751edafa0d"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:300ba9f95213:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:300ba9f95213",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:300ba9f95213"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:57bbdfcd1cf7:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:57bbdfcd1cf7",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:57bbdfcd1cf7"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:c4c428e533ad:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:c4c428e533ad",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:c4c428e533ad"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:0283103a31ab:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:0283103a31ab",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:0283103a31ab"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:dba1dea1746b:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:dba1dea1746b",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:dba1dea1746b"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:80f7e4997422:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:80f7e4997422",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:80f7e4997422"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:48a4866dab52:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:48a4866dab52",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:48a4866dab52"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:79071a352830:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:79071a352830",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:79071a352830"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:0c8ca05a3e81:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:0c8ca05a3e81",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:0c8ca05a3e81"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:59058f7dbf0b:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:59058f7dbf0b",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:59058f7dbf0b"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:2d2a0b76132f:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:2d2a0b76132f",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:2d2a0b76132f"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:7bebca34020e:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:7bebca34020e",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7bebca34020e"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:035f811469ef:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:035f811469ef",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:035f811469ef"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:480f786312ae:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:480f786312ae",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:480f786312ae"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:b8161891ea37:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:b8161891ea37",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:b8161891ea37"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:d8871fb44fbd:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:d8871fb44fbd",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:d8871fb44fbd"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:grey-market-order:99061d44a7ce:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:grey-market-order:99061d44a7ce",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:99061d44a7ce"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:china-routing:9820271:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:china-routing:9820271",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:china-routing:9820271"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:china-routing:9369710:supports:claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:china-routing:9369710",
+      "to": "claim:real:hormuz:grey-market-china-routing:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:china-routing:9369710"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "edge:ev:real:hormuz:signal-integrity:9405966:supports:claim:real:hormuz:roshak-signal-integrity:custody:h1",
+      "type": "SUPPORTS",
+      "from": "ev:real:hormuz:signal-integrity:9405966",
+      "to": "claim:real:hormuz:roshak-signal-integrity:custody:h1",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:signal-integrity:9405966"
+        ],
+        "confidence": 0.86
+      }
+    }
+  ]
 }

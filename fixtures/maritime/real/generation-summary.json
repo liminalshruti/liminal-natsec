@@ -5,15 +5,15 @@
   "dark_gap_threshold_min": 20,
   "observation_count": 0,
   "track_count": 0,
-  "anomaly_count": 0,
-  "claim_count": 0,
-  "evidence_count": 0,
-  "action_count": 0,
+  "anomaly_count": 97,
+  "claim_count": 5,
+  "evidence_count": 97,
+  "action_count": 15,
   "source_statuses": [
     {
       "source": "AISSTREAM",
       "status": "excluded_fixture_fallback",
-      "detail": "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
+      "detail": "AISstream cache is marked fixture_mode and is excluded from strict-real mode",
       "fileName": "aisstream-hormuz-sample.json",
       "generatedAt": "2026-05-03T14:11:46.371Z",
       "recordCount": 0
@@ -41,7 +41,38 @@
       "fileName": "gfw-hormuz-port-visits.json",
       "generatedAt": "2026-05-03T14:11:46.371Z",
       "recordCount": 50
+    },
+    {
+      "source": "DANTI_MARINETRAFFIC",
+      "status": "available",
+      "detail": "649 cached DANTI ship records normalized from danti-hormuz-ship-all-paginated.json",
+      "fileName": "danti-hormuz-ship-all-paginated.json",
+      "generatedAt": "2026-05-03T15:02:56.004Z",
+      "recordCount": 649
+    },
+    {
+      "source": "DANTI_MARINETRAFFIC",
+      "status": "available",
+      "detail": "500 cached DANTI ship records normalized from danti-hormuz-ship-best-size-1000.json",
+      "fileName": "danti-hormuz-ship-best-size-1000.json",
+      "generatedAt": null,
+      "recordCount": 500
+    },
+    {
+      "source": "DANTI_MARINETRAFFIC",
+      "status": "available",
+      "detail": "500 cached DANTI ship records normalized from danti-hormuz-all-size-1000.json",
+      "fileName": "danti-hormuz-all-size-1000.json",
+      "generatedAt": null,
+      "recordCount": 500
+    },
+    {
+      "source": "HORMUZ_NORMALIZED_EVIDENCE",
+      "status": "available",
+      "detail": "79 cached normalized evidence items available",
+      "fileName": "hormuz-evidence-items.json",
+      "recordCount": 79
     }
   ],
-  "empty_reason": "No real AIS observations were available for Hormuz Watch Box 01. Fixture-mode provider fallbacks were excluded from real mode."
+  "empty_reason": null
 }

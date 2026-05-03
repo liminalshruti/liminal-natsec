@@ -31,9 +31,10 @@ import gfwGaps from "../../../fixtures/maritime/live-cache/gfw-hormuz-gaps.json"
 import opensanctions from "../../../fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json" with { type: "json" };
 import sentinel1 from "../../../fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json" with { type: "json" };
 import { useLiveMap } from "../lib/mapBridge.ts";
+import { CASE_HORMUZ_SYNTHESIS, CASE_HUGE_IDENTITY } from "../map/caseSignalScope.ts";
 
-// Same default-on set as MapLayers.tsx — AIS only by default.
-const DEFAULT_ACTIVE: ReadonlySet<string> = new Set(["ais"]);
+// Same default-on set as MapLayers.tsx.
+const DEFAULT_ACTIVE: ReadonlySet<string> = new Set(["ais", "gfw", "opensanctions"]);
 
 interface GapEntry {
   id: string;
@@ -49,7 +50,7 @@ interface SanctionEntity {
   // deterministic pseudo-spread across the AOI for editorial purposes.
 }
 
-export function MapOverlays() {
+export function MapOverlays({ selectedCaseId = null }: { selectedCaseId?: string | null }) {
   const [active, setActive] = useState<ReadonlySet<string>>(DEFAULT_ACTIVE);
   const { map } = useLiveMap();
 
@@ -84,6 +85,8 @@ export function MapOverlays() {
   // went silent here" event with lat/lon and duration.
   const gapEntries: GapEntry[] =
     (gfwGaps as { body?: { entries?: GapEntry[] } }).body?.entries ?? [];
+  const visibleGapEntries =
+    !selectedCaseId || selectedCaseId === CASE_HORMUZ_SYNTHESIS ? gapEntries : [];
 
   // OpenSanctions entities — array under `results`. We don't have positions
   // for each (the cached file is identity-resolution data, not geographic),
@@ -92,6 +95,11 @@ export function MapOverlays() {
   // visualization is the gesture toward "these entities are present."
   const sanctionsResults: SanctionEntity[] =
     (opensanctions as { results?: SanctionEntity[] }).results ?? [];
+  const visibleSanctionsResults = selectedCaseId === CASE_HUGE_IDENTITY
+    ? sanctionsResults.filter((entity) => /HUGE|HATEF|9357183/i.test(entity.caption ?? entity.id ?? ""))
+    : selectedCaseId === CASE_HORMUZ_SYNTHESIS || !selectedCaseId
+      ? sanctionsResults
+      : [];
 
   // Sentinel-1 SAR — the metadata names a bbox via request.metadata.bbox.
   const sarBbox: number[] | null =
@@ -160,12 +168,12 @@ export function MapOverlays() {
       {/* GFW gap polygons — each entry is a circular indicator at the gap
           centroid with radius proportional to durationHours. */}
       {active.has("gfw") &&
-        gapEntries.map((gap, i) => {
+        visibleGapEntries.map((gap, i) => {
           if (!gap.position) return null;
           const { x: cx, y: cy } = project(gap.position.lon, gap.position.lat);
           const radius = Math.max(20, (gap.durationHours ?? 1) * 30);
           return (
-            <g key={`gfw-${gap.id ?? i}`} className="map-overlay map-overlay--gfw">
+            <g key={`gfw-${gap.id ?? "anon"}-${i}`} className="map-overlay map-overlay--gfw">
               <circle
                 cx={cx}
                 cy={cy}
@@ -195,16 +203,16 @@ export function MapOverlays() {
           The chip strip's count is the true source of truth; this is the
           gesture toward "these entities exist in the AOI." */}
       {active.has("opensanctions") &&
-        sanctionsResults.slice(0, 10).map((entity, i) => {
+        visibleSanctionsResults.slice(0, 10).map((entity, i) => {
           // Spread entities along the strait centerline — i / N produces a
           // deterministic arc from west (Bandar-e-Lengeh side) to east
           // (Gulf of Oman side).
-          const t = (i + 0.5) / Math.min(sanctionsResults.length, 10);
+          const t = (i + 0.5) / Math.max(1, Math.min(visibleSanctionsResults.length, 10));
           const lon = SPREAD_BBOX.lon_min + 0.5 + t * (SPREAD_BBOX.lon_max - SPREAD_BBOX.lon_min - 1);
           const lat = 26.05 + Math.sin(t * Math.PI) * 0.15; // arc up over Qeshm
           const { x: cx, y: cy } = project(lon, lat);
           return (
-            <g key={`os-${entity.id ?? i}`} className="map-overlay map-overlay--sanctions">
+            <g key={`os-${entity.id ?? "anon"}-${i}`} className="map-overlay map-overlay--sanctions">
               <circle
                 cx={cx}
                 cy={cy}

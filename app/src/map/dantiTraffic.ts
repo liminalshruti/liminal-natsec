@@ -1,5 +1,10 @@
 import type { Feature, FeatureCollection, Point } from "geojson";
 import type { TracksFixture } from "./fixtureLoader.ts";
+import {
+  caseIdsForDantiTraffic,
+  encodeCaseIds,
+  matchesCaseScope
+} from "./caseSignalScope.ts";
 import { timelineBounds } from "./replay.ts";
 
 export const DANTI_TRAFFIC_PATH =
@@ -16,6 +21,7 @@ export interface DantiTrafficPointProps {
   ship_type: string;
   status: string;
   destination: string;
+  last_port: string;
   current_port: string;
   observed_at: string;
   t_epoch_ms: number;
@@ -30,6 +36,7 @@ export interface DantiTrafficPointProps {
   is_implausible_speed: boolean;
   is_china_routing: boolean;
   risk_tags: string;
+  case_ids: string;
 }
 
 export interface DantiTrafficArchive {
@@ -48,6 +55,10 @@ export interface VisibleDantiTraffic {
   visibleVessels: number;
   totalVessels: number;
   signalVessels: number;
+}
+
+export interface DantiTrafficSelectionOptions {
+  caseId?: string | null;
 }
 
 interface DantiPayload {
@@ -106,10 +117,13 @@ export function buildDantiTrafficArchive(
     const speed = numberValue(props.speed ?? display.speed);
     const destination = stringValue(props.destination) || stringValue(display.destination);
     const lastPort = stringValue(props.last_port);
+    const currentPort = stringValue(props.current_port);
     const isOrderDestination = isOrderDestinationSignal(destination);
     const isForeignFlagIranLastPort = isForeignFlagIranLastPortSignal(flag, lastPort);
     const isImplausibleSpeed = speed !== null && speed >= 30;
     const isChinaRouting = isChinaRoutingSignal(destination, lastPort);
+    const isIranFlagSignal = isIranFlag(flag, props.raw_vessel_data);
+    const isAnchorOrMooredSignal = isAnchorOrMoored(status, props.status, speed);
     const riskTags = [
       isOrderDestination ? "order-destination" : null,
       isForeignFlagIranLastPort ? "foreign-flag-iran-last-port" : null,
@@ -118,6 +132,21 @@ export function buildDantiTrafficArchive(
     ]
       .filter(Boolean)
       .join(",");
+    const caseIds = caseIdsForDantiTraffic({
+      name,
+      mmsi,
+      imo,
+      flag,
+      destination,
+      lastPort,
+      currentPort,
+      isIranFlag: isIranFlagSignal,
+      isOrderDestination,
+      isForeignFlagIranLastPort,
+      isImplausibleSpeed,
+      isChinaRouting,
+      isAnchorOrMoored: isAnchorOrMooredSignal,
+    });
 
     const feature: Feature<Point, DantiTrafficPointProps> = {
       type: "Feature",
@@ -133,20 +162,22 @@ export function buildDantiTrafficArchive(
         ship_type: shipType,
         status,
         destination,
-        current_port: stringValue(props.current_port),
+        last_port: lastPort,
+        current_port: currentPort,
         observed_at: observedAt,
         t_epoch_ms: tEpochMs,
         speed,
         course: numberValue(props.course),
         is_tanker: isTanker(shipType, props.raw_vessel_data),
-        is_iran_flag: isIranFlag(flag, props.raw_vessel_data),
+        is_iran_flag: isIranFlagSignal,
         is_underway: isUnderway(status, props.status, speed),
-        is_anchor_or_moored: isAnchorOrMoored(status, props.status, speed),
+        is_anchor_or_moored: isAnchorOrMooredSignal,
         is_order_destination: isOrderDestination,
         is_foreign_flag_iran_last_port: isForeignFlagIranLastPort,
         is_implausible_speed: isImplausibleSpeed,
         is_china_routing: isChinaRouting,
         risk_tags: riskTags,
+        case_ids: encodeCaseIds(caseIds),
       },
       geometry: {
         type: "Point",
@@ -177,7 +208,8 @@ export function buildDantiTrafficArchive(
 export function selectVisibleDantiTraffic(
   archive: DantiTrafficArchive | null,
   fixture: TracksFixture,
-  clockMs: number
+  clockMs: number,
+  opts: DantiTrafficSelectionOptions = {}
 ): VisibleDantiTraffic {
   if (!archive) {
     return {
@@ -193,9 +225,17 @@ export function selectVisibleDantiTraffic(
 
   const archiveClockMs = archiveTimeForScenarioClock(archive, fixture, clockMs);
   const latestByVessel = new Map<string, Feature<Point, DantiTrafficPointProps>>();
+  const scopedTotalVessels = opts.caseId
+    ? new Set(
+        archive.features
+          .filter((feature) => matchesCaseScope(feature.properties.case_ids, opts.caseId))
+          .map(vesselKey)
+      ).size
+    : archive.totalVessels;
 
   for (const feature of archive.features) {
     if (feature.properties.t_epoch_ms > archiveClockMs) break;
+    if (!matchesCaseScope(feature.properties.case_ids, opts.caseId)) continue;
     latestByVessel.set(vesselKey(feature), feature);
   }
 
@@ -207,7 +247,7 @@ export function selectVisibleDantiTraffic(
     archiveStartIso: new Date(archive.startMs).toISOString(),
     archiveEndIso: new Date(archive.endMs).toISOString(),
     visibleVessels: visible.length,
-    totalVessels: archive.totalVessels,
+    totalVessels: scopedTotalVessels,
     signalVessels: visible.filter(hasRiskSignal).length,
   };
 }

@@ -23,12 +23,12 @@ const SIGNAL_KIND_LABELS: Record<string, { label: string; tone: string }> = {
   sanctions: { label: "OFAC · SANCTIONS", tone: "refused" },
   advisory: { label: "MARAD · ADVISORY", tone: "decision" },
   imagery: { label: "SAR · IMAGERY", tone: "decision" },
-  osint: { label: "OSINT", tone: "ink-tertiary" },
-  "ship-vessel": { label: "AIS · MARINETRAFFIC", tone: "decision" }
+  "ship-vessel": { label: "DANTI · VESSEL", tone: "decision" },
+  osint: { label: "OSINT", tone: "ink-tertiary" }
 };
 
-export function DraftCaseDetail() {
-  const { draft, attachedCount, canPromote, isRecentlyAttached, toggleAttach, promote } = useDraftCase();
+export function DraftCaseDetail({ caseId }: { caseId?: string | null }) {
+  const { draft, attachedCount, canPromote, toggleAttach, promote } = useDraftCase(caseId);
 
   const isPromoted = draft.status === "promoted";
 
@@ -56,7 +56,7 @@ export function DraftCaseDetail() {
         </div>
         <div className="draft-case-detail__context" aria-label="Draft case context">
           <span>{draft.context.watchBoxName}</span>
-          <span>{draft.context.replayAnchor}</span>
+          <span>{draft.context.primaryRealSignal}</span>
           <span>{draft.context.reviewWindowLabel}</span>
         </div>
         <p className="draft-case-detail__scope-note">{draft.context.scopeNote}</p>
@@ -83,13 +83,7 @@ export function DraftCaseDetail() {
             return (
               <li
                 key={signal.id}
-                className={[
-                  "draft-case-signal",
-                  signal.attached ? "draft-case-signal--attached" : "",
-                  isRecentlyAttached(signal.id) ? "draft-case-signal--just-attached" : ""
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
+                className={`draft-case-signal${signal.attached ? " draft-case-signal--attached" : ""}`}
                 data-tone={kindMeta.tone}
                 draggable={!isPromoted && !signal.attached}
                 onDragStart={(e) => {
@@ -142,61 +136,6 @@ export function DraftCaseDetail() {
                   <div className="draft-case-signal__summary">
                     {signal.summary}
                   </div>
-                  {/* M-1: vessel card — when the signal carries real
-                      MarineTraffic vessel telemetry, render a tabular
-                      KV strip with port-of-origin, destination, ETA,
-                      length, and current course/speed. Anchors the
-                      AI's claim with judge-verifiable real data. */}
-                  {signal.vessel && (
-                    <dl className="draft-case-signal__vessel">
-                      {signal.vessel.imo && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>IMO</dt><dd>{signal.vessel.imo}</dd>
-                        </div>
-                      )}
-                      {signal.vessel.length_m != null && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>length</dt><dd>{signal.vessel.length_m.toFixed(0)}m</dd>
-                        </div>
-                      )}
-                      {signal.vessel.last_port && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>last port</dt><dd>{signal.vessel.last_port}</dd>
-                        </div>
-                      )}
-                      {signal.vessel.current_port && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>current port</dt><dd>{signal.vessel.current_port}</dd>
-                        </div>
-                      )}
-                      {signal.vessel.destination && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>destination</dt>
-                          <dd className="draft-case-signal__vessel-dest">
-                            {signal.vessel.destination}
-                          </dd>
-                        </div>
-                      )}
-                      {signal.vessel.speed_kn != null && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>speed</dt><dd>{signal.vessel.speed_kn.toFixed(1)} kn</dd>
-                        </div>
-                      )}
-                      {signal.vessel.course_deg != null && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>course</dt><dd>{signal.vessel.course_deg.toFixed(0)}°</dd>
-                        </div>
-                      )}
-                      {signal.vessel.lat != null && signal.vessel.lon != null && (
-                        <div className="draft-case-signal__vessel-kv">
-                          <dt>position</dt>
-                          <dd>
-                            {signal.vessel.lat.toFixed(3)}°N · {signal.vessel.lon.toFixed(3)}°E
-                          </dd>
-                        </div>
-                      )}
-                    </dl>
-                  )}
                   <div className="draft-case-signal__source">
                     📎 {signal.source_provider} ·{" "}
                     <code>{signal.source_pointer}</code>

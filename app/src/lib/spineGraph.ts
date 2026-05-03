@@ -27,6 +27,7 @@ import realHypotheses from "../../../fixtures/maritime/real/hypotheses.json" wit
 import realClaims from "../../../fixtures/maritime/real/claims.json" with { type: "json" };
 import realEvidence from "../../../fixtures/maritime/real/evidence.json" with { type: "json" };
 import realActions from "../../../fixtures/maritime/real/actions.json" with { type: "json" };
+import { fixturePackForPresentation } from "./presentationText.ts";
 
 let cachedGraph: Graph | null = null;
 
@@ -46,7 +47,7 @@ export function getMaritimeGraph(): Graph {
     realEvidence,
     realActions,
     reviewRules
-  ]);
+  ].map(fixturePackForPresentation));
   return cachedGraph;
 }
 
@@ -124,6 +125,7 @@ export function eventIdFromCaseId(caseId: string | null): "event-1" | "event-2" 
   if (!caseId) return null;
   if (caseId.endsWith("event-1")) return "event-1";
   if (caseId.endsWith("event-2")) return "event-2";
+  if (caseId.startsWith("case:real:hormuz:")) return "event-2";
   return null;
 }
 

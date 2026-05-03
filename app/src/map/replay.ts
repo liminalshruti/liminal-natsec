@@ -1,5 +1,6 @@
 import type { Feature, FeatureCollection, Point } from "geojson";
 import type { HeroPingProps, TracksFixture } from "./fixtureLoader.ts";
+import { caseEventId } from "./caseSignalScope.ts";
 
 // Pure functions. No React, no maplibre-gl, no globals — easy to unit-test
 // and easy to reason about. Component code calls these and feeds the result
@@ -24,6 +25,7 @@ function phaseAllows(props: HeroPingProps, phase: Phase): boolean {
 export interface VisiblePingsOptions {
   phase: Phase;
   clockMs: number;        // pings with t_epoch_ms <= clockMs are visible
+  caseId?: string | null;
 }
 
 export function selectVisibleHeroPings(
@@ -32,10 +34,12 @@ export function selectVisibleHeroPings(
 ): FeatureCollection<Point, HeroPingProps & { is_latest: boolean }> {
   type EnrichedFeature = Feature<Point, HeroPingProps & { is_latest: boolean }>;
   const candidates: EnrichedFeature[] = [];
+  const scopedEventId = caseEventId(opts.caseId);
 
   for (const f of fixture.features) {
     const props = f.properties as HeroPingProps | null;
     if (!props || props.kind !== "hero_ping") continue;
+    if (scopedEventId && props.event_id !== scopedEventId) continue;
     if (!phaseAllows(props, opts.phase)) continue;
     if (typeof props.t_epoch_ms !== "number") continue;
     if (props.t_epoch_ms > opts.clockMs) continue;

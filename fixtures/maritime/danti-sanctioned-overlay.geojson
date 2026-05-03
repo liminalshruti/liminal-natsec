@@ -5,17 +5,53 @@
     "source": "liminal-natsec / scripts/danti-pull-full.mjs + GFW gaps cache",
     "counts": {
       "sanctioned_vessels": 21,
-      "ais_gaps": 15
+      "ais_gaps": 15,
+      "third_party_ais_last_known": 1
     },
     "aoi": "Strait of Hormuz / Persian Gulf / Gulf of Oman",
     "notes": [
       "Sanctioned vessel positions are 2026-04-02 to 2026-04-05 (Danti SHIP corpus is bounded to that window).",
       "GFW AIS gap events span 2024-01 to 2026-04 with most clustered Mar–Apr 2026.",
       "Zero MMSI overlap between the two layers: the 21 IRISL/NITC ships use Iranian MID 422 and likely do not broadcast (so do not appear in GFW gap detection); the 18 GFW gap-flagged vessels are flag-of-convenience (PAN/LBR/MHL/KNA/QAT/MLT/PRT).",
-      "No-overlap is itself an OSINT signal: two distinct rings — Iranian-flagged tonnage moving openly between Iranian anchorages, and FoC tonnage executing dark periods in the Gulf of Oman approaches."
+      "No-overlap is itself an OSINT signal: two distinct rings — Iranian-flagged tonnage moving openly between Iranian anchorages, and FoC tonnage executing dark periods in the Gulf of Oman approaches.",
+      "HUGE is backfilled from third-party open AIS pages because it is not present in the local DANTI ship cache; use as last-known identity/location context only, not Hormuz behavior evidence."
     ]
   },
   "features": [
+    {
+      "type": "Feature",
+      "id": "third-party-ais-huge-9357183-20260319T163100Z",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          102.02867,
+          2.148
+        ]
+      },
+      "properties": {
+        "kind": "third_party_ais_last_known",
+        "source": "MyShipTracking",
+        "source_url": "https://www.myshiptracking.com/vessels/huge-mmsi-422206900-imo-9357183",
+        "source_secondary": "VesselFinder / Maritime Optima region-level current pages",
+        "ship_name": "HUGE",
+        "mmsi": "422206900",
+        "imo": "9357183",
+        "flag": "IR",
+        "callsign": "EPJE5",
+        "ship_type": "Crude Oil Tanker",
+        "speed": "15.1",
+        "course": "307",
+        "status": "Under way using engine",
+        "area": "Malacca Strait",
+        "destination": "FOR ORDER",
+        "datetime": "2026-03-19T16:31:00Z",
+        "operator": "NITC / OFAC SDN",
+        "attribution": "OFAC-listed tanker identity backfill",
+        "sanctions_basis": "OFAC SDN row 15054 lists IMO 9357183; GFW identity history resolves current MMSI 422206900",
+        "position_basis": "MyShipTracking reports coordinates 2.14800 N / 102.02867 E at 2026-03-19 16:31 UTC; newer open pages corroborate Indonesia/Bali Sea region but do not expose exact coordinates.",
+        "evidence_use": "last-known third-party AIS position only; not evidence of current Hormuz vessel behavior"
+      }
+    },
     {
       "type": "Feature",
       "id": "sanctioned-9283019",

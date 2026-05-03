@@ -34,7 +34,7 @@ export const fixtureRecords: FixtureSourceRaw[] = [
     lat: 26.5292,
     lon: 56.2718,
     mmsi: "366700111",
-    name: "MV CALDERA",
+    name: "FIXTURE TRACK A",
     sog: 12.2,
     cog: 83.9
   },
@@ -47,7 +47,7 @@ export const fixtureRecords: FixtureSourceRaw[] = [
     lat: 26.53112,
     lon: 56.32018,
     mmsi: "366700111",
-    name: "MV CALDERA",
+    name: "FIXTURE TRACK A",
     sog: 12.4,
     cog: 84.2
   },
@@ -60,7 +60,7 @@ export const fixtureRecords: FixtureSourceRaw[] = [
     lat: 26.5391,
     lon: 56.81844,
     mmsi: "538009771",
-    name: "CALDERA M",
+    name: "FIXTURE TRACK B",
     sog: 12,
     cog: 86.1
   },
@@ -83,7 +83,7 @@ export const fixtureRecords: FixtureSourceRaw[] = [
     lat: 26.552,
     lon: 56.407,
     mmsi: "271990222",
-    name: "MV HARBOR KITE",
+    name: "FIXTURE TRACK C",
     sog: 10.1,
     cog: 81.2
   },
@@ -106,7 +106,7 @@ export const fixtureRecords: FixtureSourceRaw[] = [
     lat: 26.569,
     lon: 56.792,
     mmsi: "271990222",
-    name: "MV HARBOR KITE",
+    name: "FIXTURE TRACK C",
     sog: 10.4,
     cog: 82
   }
@@ -129,7 +129,7 @@ export const fixtureObjects: FixtureObjectWrite[] = [
     id: "vsl:cluster:caldera-01",
     props: {
       object_id: "vsl:cluster:caldera-01",
-      canonical_name: "MV CALDERA",
+      canonical_name: "FIXTURE TRACK A",
       mmsi_set: ["366700111", "538009771"],
       imo: "IMO9388800",
       length_m: 183,
@@ -143,7 +143,7 @@ export const fixtureObjects: FixtureObjectWrite[] = [
     id: "vsl:cluster:harbor-kite-01",
     props: {
       object_id: "vsl:cluster:harbor-kite-01",
-      canonical_name: "MV HARBOR KITE",
+      canonical_name: "FIXTURE TRACK C",
       mmsi_set: ["271990222"],
       vessel_type: 70,
       updated_at: FIXTURE_INGESTED_AT
