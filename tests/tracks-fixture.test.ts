@@ -222,6 +222,137 @@ describe("map replay module — phase + clock gating", () => {
   });
 });
 
+describe("map layers — phase styling + selection emphasis", () => {
+  it("Track A line color shifts cyan → muted at phase >= 2", async (t) => {
+    if (
+      skipIfMissing(
+        t,
+        ["app/src/map/layers.ts", "app/src/map/tokens.ts"],
+        "map layers"
+      )
+    ) {
+      return;
+    }
+    const layers = await import(repoUrl("app/src/map/layers.ts").href);
+    const tokens = await import(repoUrl("app/src/map/tokens.ts").href);
+
+    const phase1 = layers.buildLayers({ phase: 1 });
+    const phase2 = layers.buildLayers({ phase: 2 });
+    const trackAPhase1 = phase1.find((l: any) => l.id === "layer:hero-track-A");
+    const trackAPhase2 = phase2.find((l: any) => l.id === "layer:hero-track-A");
+
+    assert.equal(trackAPhase1.paint["line-color"], tokens.COLORS.heroTrackANormal);
+    assert.equal(trackAPhase2.paint["line-color"], tokens.COLORS.heroTrackAWarned);
+    assert.notEqual(
+      trackAPhase1.paint["line-color"],
+      trackAPhase2.paint["line-color"],
+      "Track A must visually shift when the anomaly fires"
+    );
+  });
+
+  it("selecting a case adds a halo layer + dims background traffic", async (t) => {
+    if (skipIfMissing(t, ["app/src/map/layers.ts"], "map layers")) return;
+    const layers = await import(repoUrl("app/src/map/layers.ts").href);
+
+    const noSelection = layers.buildLayers({ phase: 3 });
+    const withSelection = layers.buildLayers({
+      phase: 3,
+      selectedCaseId: "case:alara-01:event-1"
+    });
+
+    const haloNoSelection = noSelection.find(
+      (l: any) => l.id === "layer:hero-selection-halo"
+    );
+    const haloWithSelection = withSelection.find(
+      (l: any) => l.id === "layer:hero-selection-halo"
+    );
+    assert.ok(haloNoSelection, "halo layer must exist (with no-match filter when nothing is selected)");
+    assert.ok(haloWithSelection, "halo layer must exist when a case is selected");
+
+    const haloFilter = JSON.stringify(haloWithSelection.filter);
+    assert.ok(
+      haloFilter.includes("case:alara-01:event-1"),
+      "halo filter must reference the selected case_id"
+    );
+
+    const bgNo = noSelection.find((l: any) => l.id === "layer:background-tracks");
+    const bgYes = withSelection.find((l: any) => l.id === "layer:background-tracks");
+    assert.ok(
+      bgYes.paint["line-opacity"] < bgNo.paint["line-opacity"],
+      "background traffic must dim when a case is selected"
+    );
+  });
+});
+
+describe("camera framing — fitBounds for case selection", () => {
+  it("flyForCaseBoundsOptions returns bounds covering both hero tracks", async (t) => {
+    if (
+      skipIfMissing(
+        t,
+        ["fixtures/maritime/tracks.geojson", "app/src/map/flyTo.ts"],
+        "case bounds"
+      )
+    ) {
+      return;
+    }
+    const fc = loadFixture();
+    const flyTo = await import(repoUrl("app/src/map/flyTo.ts").href);
+
+    const opts1 = flyTo.flyForCaseBoundsOptions(fc, "case:alara-01:event-1");
+    assert.equal(opts1.kind, "bounds");
+    const [[swLon, swLat], [neLon, neLat]] = opts1.bounds;
+
+    const aLast = fc.metadata.canonical_pings.event_1.track_a_last;
+    const bFirst = fc.metadata.canonical_pings.event_1.track_b_first;
+
+    assert.ok(swLon <= aLast.lon && swLon <= bFirst.lon, "SW lon contains both tracks");
+    assert.ok(neLon >= aLast.lon && neLon >= bFirst.lon, "NE lon contains both tracks");
+    assert.ok(swLat <= aLast.lat && swLat <= bFirst.lat, "SW lat contains both tracks");
+    assert.ok(neLat >= aLast.lat && neLat >= bFirst.lat, "NE lat contains both tracks");
+
+    const opts2 = flyTo.flyForCaseBoundsOptions(fc, "case:alara-01:event-2");
+    assert.equal(opts2.kind, "bounds");
+    const danti = fc.metadata.canonical_pings.event_2.danti;
+    const [[sw2Lon, sw2Lat], [ne2Lon, ne2Lat]] = opts2.bounds;
+    assert.ok(sw2Lon <= danti.lon && ne2Lon >= danti.lon, "Event 2 bounds include Danti detection");
+    assert.ok(sw2Lat <= danti.lat && ne2Lat >= danti.lat);
+
+    const miss = flyTo.flyForCaseBoundsOptions(fc, "case:nonexistent");
+    assert.equal(miss, null);
+  });
+
+  it("flyForAlertOptions routes Event-1 anomalies to Event-1 case bounds", async (t) => {
+    if (
+      skipIfMissing(
+        t,
+        ["fixtures/maritime/tracks.geojson", "app/src/map/flyTo.ts"],
+        "alert framing"
+      )
+    ) {
+      return;
+    }
+    const fc = loadFixture();
+    const flyTo = await import(repoUrl("app/src/map/flyTo.ts").href);
+
+    const opts = flyTo.flyForAlertOptions(
+      fc,
+      "anom:identity-churn:trk-caldera:20260418T1015:1f44"
+    );
+    assert.ok(opts);
+    assert.equal(opts.kind, "bounds");
+
+    const opts2 = flyTo.flyForAlertOptions(
+      fc,
+      "anom:dark-gap:trk-271990222:20260418T1220:cc90"
+    );
+    assert.ok(opts2);
+    assert.equal(opts2.kind, "bounds");
+
+    const noId = flyTo.flyForAlertOptions(fc, null);
+    assert.equal(noId, null);
+  });
+});
+
 // Ray-casting point-in-polygon, duplicated here so tests stay self-contained.
 function pointInPolygon(point: [number, number], ring: number[][]): boolean {
   let inside = false;
