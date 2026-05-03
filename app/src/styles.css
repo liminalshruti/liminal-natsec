@@ -4014,6 +4014,33 @@ details.case-file__section > summary:focus-visible {
   color: var(--color-ink-tertiary);
 }
 
+/* ─── D1 FOCUS STATE ─────────────────────────────────────────────────────────
+   The operator's eye should land on ONE thing first. Active pane stays at
+   full opacity and saturation; inactive panes dim to 0.72 + slight
+   desaturate so they recede without disappearing. The active pane is
+   determined by `data-active-pane` on the .app-shell wrapper:
+     working — when a case is selected (operationally hot)
+     stage   — when no case is selected (watchstanding glance)
+     substrate — reserved for v3.3 (alert hover)
+   The dim is a unified opacity+saturate change so it reads as a single
+   "step back" rather than two separate effects. */
+
+.app-shell .panel {
+  transition: opacity 280ms ease, filter 280ms ease;
+}
+
+.app-shell[data-active-pane="working"] .panel--substrate,
+.app-shell[data-active-pane="working"] .panel--stage,
+.app-shell[data-active-pane="stage"] .panel--substrate,
+.app-shell[data-active-pane="stage"] .panel--working,
+.app-shell[data-active-pane="substrate"] .panel--stage,
+.app-shell[data-active-pane="substrate"] .panel--working {
+  opacity: 0.72;
+  filter: saturate(0.85);
+}
+
+/* ─── D2 AMBIENT MOTION ─── */
+
 .evidence-card__drill-trail-sep {
   color: var(--color-edge);
   font-size: 11px;
@@ -4025,6 +4052,56 @@ details.case-file__section > summary:focus-visible {
   text-transform: none;
   font-size: 10px;
 }
+
+/* ─── D3 VARIED DENSITY ─────────────────────────────────────────────────────
+   Real instruments have varied surfaces — some flush, some raised; some
+   chrome-heavy, some chrome-free. Our previous treatment was uniform N
+   rectangles with identical chrome (border, header, padding) on every
+   pane. Eye couldn't read it as one instrument.
+   Fix: when a pane is inactive (per data-active-pane from D1), strip
+   its border, dim its panel header, and let it read as a flush surface.
+   The active pane keeps full chrome AND gets an accent top-border —
+   the eye lands here unambiguously.
+   These rules layer on top of D1's opacity dim. D1 says "this pane is
+   secondary." D3 says "and it's a flush surface, not a raised card." */
+
+/* Inactive panes lose their border so they read as flush surfaces. */
+.app-shell[data-active-pane="working"] .panel--substrate,
+.app-shell[data-active-pane="working"] .panel--stage,
+.app-shell[data-active-pane="stage"] .panel--substrate,
+.app-shell[data-active-pane="stage"] .panel--working,
+.app-shell[data-active-pane="substrate"] .panel--stage,
+.app-shell[data-active-pane="substrate"] .panel--working {
+  border-color: transparent;
+}
+
+/* Inactive panel headers dim further — already opacity-dimmed by D1,
+   D3 reduces them to text-only register without the border-bottom
+   chrome that signals "this header is the start of a card." */
+.app-shell[data-active-pane="working"] .panel--substrate .panel__header,
+.app-shell[data-active-pane="working"] .panel--stage .panel__header,
+.app-shell[data-active-pane="stage"] .panel--substrate .panel__header,
+.app-shell[data-active-pane="stage"] .panel--working .panel__header,
+.app-shell[data-active-pane="substrate"] .panel--stage .panel__header,
+.app-shell[data-active-pane="substrate"] .panel--working .panel__header {
+  opacity: 0.6;
+  border-bottom-color: transparent;
+}
+
+/* Active pane gets an accent top border — eye lands here unambiguously.
+   Two-pixel solid in --color-decision so it reads as "this is the one
+   you're reading." Active pane keeps its panel border too. */
+.app-shell[data-active-pane="working"] .panel--working {
+  border-top: 2px solid var(--color-decision);
+}
+.app-shell[data-active-pane="stage"] .panel--stage {
+  border-top: 2px solid var(--color-decision);
+}
+.app-shell[data-active-pane="substrate"] .panel--substrate {
+  border-top: 2px solid var(--color-decision);
+}
+
+/* ─── D4 PROGRESSIVE DISCLOSURE ─── */
 
 /* ─── SPECIALIST CACHE-INPUT CITATIONS ─────────────────────────────────────
    Renders below each specialist row in SpecialistReads.tsx. Two states:
@@ -4222,4 +4299,83 @@ details.case-file__section > summary:focus-visible {
 .specialist-row__footnote-hint {
   color: var(--color-decision);
   margin-top: 2px;
+}
+
+/* ─── D5 TYPOGRAPHY HIERARCHY ─── */
+
+/* Real operator interfaces use weight + size + tracking to create an
+   instrument scale: 32px display for the headline, 11px mono for the
+   labels around it, nothing in between. We had everything at 10-14px
+   reading as one flat field. D5 introduces three explicit tiers and
+   applies them at the highest-leverage hot spots — Zone 1 verb gets
+   display tier, posture line gets instrument tier. The eye lands on
+   the verb first because it's literally the only display-tier element
+   on the surface.
+
+   Three tokens, three classes, two hot-spot applications. Does not
+   re-style any existing rules — appends NEW rules whose later position
+   in the cascade lets them win on tie. */
+
+:root {
+  --text-display-size: 32px;
+  --text-display-line: 1.05;
+  --text-display-tracking: -0.02em;
+
+  --text-instrument-size: 11px;
+  --text-instrument-line: 1.3;
+  --text-instrument-tracking: 0.18em;
+
+  --text-body-size: 13px;
+  --text-body-line: 1.45;
+  --text-body-tracking: 0.01em;
+}
+
+/* Reusable utility classes — drop on any element that needs the tier. */
+
+.text-display {
+  font-family: var(--font-serif);
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-line);
+  letter-spacing: var(--text-display-tracking);
+  font-weight: 500;
+  font-feature-settings: "ss01" 1, "kern" 1, "tnum" 1;
+}
+
+.text-instrument {
+  font-family: var(--font-mono);
+  font-size: var(--text-instrument-size);
+  line-height: var(--text-instrument-line);
+  letter-spacing: var(--text-instrument-tracking);
+  text-transform: uppercase;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-body {
+  font-family: var(--font-mono);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  letter-spacing: var(--text-body-tracking);
+}
+
+/* Hot-spot application — Zone 1 verb gets display tier. This is THE
+   load-bearing element of the operative surface. Promoting it from
+   18px to 32px Fraunces makes the eye land on it first, every time.
+   Posture line gets instrument tier — small uppercase tracked-out
+   metadata around the display value. */
+
+.zone1__verb {
+  font-family: var(--font-serif);
+  font-size: var(--text-display-size);
+  font-weight: 500;
+  letter-spacing: var(--text-display-tracking);
+  line-height: var(--text-display-line);
+  font-feature-settings: "ss01" 1, "kern" 1;
+}
+
+.zone1__posture {
+  font-family: var(--font-mono);
+  font-size: var(--text-instrument-size);
+  letter-spacing: var(--text-instrument-tracking);
+  text-transform: uppercase;
 }

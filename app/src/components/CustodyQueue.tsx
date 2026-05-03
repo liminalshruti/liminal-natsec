@@ -58,11 +58,13 @@ export function CustodyQueue({
 }: CustodyQueueProps) {
   // Tick every 30s so relative-time strings stay accurate without per-row
   // state. Operators care about "fresh / settled / stale" classifications
-  // changing over the course of a watch — 30s granularity is finer than
-  // the 5min boundary between fresh and settled.
+  // changing over the course of a watch. D2 ambient motion: tick every
+  // second so the relative-time counter ("12s" → "13s" → "14s") IS the
+  // visible heartbeat. Operator at 0200 sees time itself moving — the
+  // surface reads as alive, not paused.
   const [now, setNow] = useState(() => Date.now());
   useEffect(() => {
-    const handle = window.setInterval(() => setNow(Date.now()), 30_000);
+    const handle = window.setInterval(() => setNow(Date.now()), 1_000);
     return () => window.clearInterval(handle);
   }, []);
 
