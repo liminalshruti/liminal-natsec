@@ -4053,6 +4053,56 @@ details.case-file__section > summary:focus-visible {
   font-size: 10px;
 }
 
+/* ─── D3 VARIED DENSITY ─────────────────────────────────────────────────────
+   Real instruments have varied surfaces — some flush, some raised; some
+   chrome-heavy, some chrome-free. Our previous treatment was uniform N
+   rectangles with identical chrome (border, header, padding) on every
+   pane. Eye couldn't read it as one instrument.
+   Fix: when a pane is inactive (per data-active-pane from D1), strip
+   its border, dim its panel header, and let it read as a flush surface.
+   The active pane keeps full chrome AND gets an accent top-border —
+   the eye lands here unambiguously.
+   These rules layer on top of D1's opacity dim. D1 says "this pane is
+   secondary." D3 says "and it's a flush surface, not a raised card." */
+
+/* Inactive panes lose their border so they read as flush surfaces. */
+.app-shell[data-active-pane="working"] .panel--substrate,
+.app-shell[data-active-pane="working"] .panel--stage,
+.app-shell[data-active-pane="stage"] .panel--substrate,
+.app-shell[data-active-pane="stage"] .panel--working,
+.app-shell[data-active-pane="substrate"] .panel--stage,
+.app-shell[data-active-pane="substrate"] .panel--working {
+  border-color: transparent;
+}
+
+/* Inactive panel headers dim further — already opacity-dimmed by D1,
+   D3 reduces them to text-only register without the border-bottom
+   chrome that signals "this header is the start of a card." */
+.app-shell[data-active-pane="working"] .panel--substrate .panel__header,
+.app-shell[data-active-pane="working"] .panel--stage .panel__header,
+.app-shell[data-active-pane="stage"] .panel--substrate .panel__header,
+.app-shell[data-active-pane="stage"] .panel--working .panel__header,
+.app-shell[data-active-pane="substrate"] .panel--stage .panel__header,
+.app-shell[data-active-pane="substrate"] .panel--working .panel__header {
+  opacity: 0.6;
+  border-bottom-color: transparent;
+}
+
+/* Active pane gets an accent top border — eye lands here unambiguously.
+   Two-pixel solid in --color-decision so it reads as "this is the one
+   you're reading." Active pane keeps its panel border too. */
+.app-shell[data-active-pane="working"] .panel--working {
+  border-top: 2px solid var(--color-decision);
+}
+.app-shell[data-active-pane="stage"] .panel--stage {
+  border-top: 2px solid var(--color-decision);
+}
+.app-shell[data-active-pane="substrate"] .panel--substrate {
+  border-top: 2px solid var(--color-decision);
+}
+
+/* ─── D4 PROGRESSIVE DISCLOSURE ─── */
+
 /* ─── SPECIALIST CACHE-INPUT CITATIONS ─────────────────────────────────────
    Renders below each specialist row in SpecialistReads.tsx. Two states:
      - collapsed: caption + chip-row + count (one line)
