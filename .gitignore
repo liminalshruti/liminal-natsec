@@ -15,7 +15,6 @@ coverage/
 *.tsbuildinfo
 playwright-report/
 test-results/
-export/html/
 
 # Environment variables
 .env
