@@ -717,6 +717,63 @@ button:hover {
   align-self: center;
 }
 
+/* ── Typed alert row — substrate panel using TypedObjectChip ──────────────
+   Replaces the .alert-row__title / .alert-row__sub / .alert-row__rank
+   pattern with a typed chip + EV1/EV2 left-marker. The case ID + status +
+   severity score (as posterior badge) all live inside one chip. The
+   EV-marker is a separate visual element because it's the operator's
+   primary sort key (event 1 vs event 2 = which case in the scenario) —
+   bigger than a chip status badge would suggest.
+   ──────────────────────────────────────────────────────────────────── */
+
+.custody-queue {
+  display: flex;
+  flex-direction: column;
+}
+
+.alert-row--typed {
+  grid-template-columns: 32px 1fr;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.alert-row--typed:hover {
+  background: var(--bg-2);
+}
+
+.alert-row--typed[data-active="true"] {
+  background: var(--bg-2);
+  outline: 1px solid var(--accent);
+  outline-offset: 0;
+}
+
+.alert-row__event {
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 4px;
+  border-radius: 2px;
+  background: rgba(110, 168, 254, 0.08);
+  color: var(--accent, #6ea8fe);
+  border: 1px solid rgba(110, 168, 254, 0.3);
+}
+
+.alert-row__event--event-2 {
+  background: rgba(78, 160, 138, 0.08);
+  color: var(--ok, #4ea08a);
+  border-color: rgba(78, 160, 138, 0.3);
+}
+
+.alert-row__body {
+  min-width: 0;
+  /* let the chip ellipsis-truncate when the panel is narrow */
+}
+
+.alert-row__body > .tchip {
+  max-width: 100%;
+}
+
 .stage-placeholder {
   display: grid;
   place-items: center;

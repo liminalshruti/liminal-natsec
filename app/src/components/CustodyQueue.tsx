@@ -1,5 +1,6 @@
 import { caseIdFromAlertId, eventIdFromCaseId } from "../lib/spineGraph.ts";
 import type { AlertView } from "../lib/types.ts";
+import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
 interface CustodyQueueProps {
   alerts: AlertView[];
@@ -22,7 +23,7 @@ export function CustodyQueue({
   }
   const ranked = [...alerts].sort((a, b) => a.rank - b.rank);
   return (
-    <>
+    <div className="custody-queue">
       {ranked.map((alert) => {
         const caseId = caseIdFromAlertId(alert.id);
         const eventId = eventIdFromCaseId(caseId);
@@ -30,8 +31,9 @@ export function CustodyQueue({
         return (
           <div
             key={alert.id}
-            className="alert-row"
+            className="alert-row alert-row--typed"
             data-active={isActive}
+            data-event={eventId ?? undefined}
             role="button"
             tabIndex={0}
             onClick={() => onSelectAlert(alert.id)}
@@ -42,26 +44,27 @@ export function CustodyQueue({
               }
             }}
           >
-            <span className="alert-row__pip" />
-            <div>
-              <div className="alert-row__title">{alert.title}</div>
-              <div className="alert-row__sub" style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}>
-                {eventId && (
-                  <span
-                    className={`tag ${eventId === "event-2" ? "tag--ok" : "tag--accent"}`}
-                    style={{ fontSize: 9 }}
-                  >
-                    {eventId === "event-1" ? "EV 1" : "EV 2"}
-                  </span>
-                )}
-                <span>{alert.status}</span>
-                <span style={{ color: "var(--fg-2)" }}>· score {alert.severity.toFixed(2)}</span>
-              </div>
+            {eventId && (
+              <span
+                className={`alert-row__event alert-row__event--${eventId}`}
+                aria-label={eventId === "event-1" ? "Event 1" : "Event 2"}
+              >
+                {eventId === "event-1" ? "EV 1" : "EV 2"}
+              </span>
+            )}
+            <div className="alert-row__body">
+              <TypedObjectChip
+                kind="case"
+                id={caseId ?? alert.id}
+                label={alert.title}
+                status={alert.status?.toLowerCase()}
+                posterior={alert.severity}
+                size="sm"
+              />
             </div>
-            <div className="alert-row__rank">#{alert.rank}</div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
