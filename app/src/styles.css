@@ -82,6 +82,24 @@
   --color-ink-tertiary:   #7d8898;
   --color-ink-quaternary: #3a4252;   /* NEW — for ambient labels, far receded */
 
+  /* ─── SPACING SCALE — pane-internal consistency ──────────────────────────
+     Four-point scale for padding and gaps. Enforced at .panel__body and
+     between-section gaps. C1 audit: consistent spacing across all panes.
+
+         --s-1: 4px   · command line, tight chrome
+         --s-2: 8px   · standard gap, row spacing
+         --s-3: 12px  · default panel inner padding
+         --s-4: 16px  · section gap, moderate spacing
+         --s-5: 24px  · large gap, zone separation
+         --s-6: 32px  · extra large, heading top margin
+     ────────────────────────────────────────────────────────────────────── */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+
   /* ─── DEPRECATED ALIASES — kept for one PR cycle to absorb in-flight work ──
      New code uses semantic names. Old names below resolve to semantic ones,
      so any stale --accent / --warn / --danger / --ok references continue to
@@ -134,6 +152,21 @@ body {
   outline-offset: 2px;
 }
 
+/* AUDIT B1: Visually-hidden utility for semantic h1-h3 structure without
+   visual layout changes. Screen readers perceive full heading hierarchy;
+   sighted users see no text nodes. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -183,6 +216,18 @@ button:hover {
   background: var(--color-substrate);
 }
 
+/* B2: At ≥1600px viewport, allow stage to grow to minmax(720px, 1fr) */
+@media (min-width: 1600px) {
+  .app-shell {
+    grid-template-columns:
+      var(--substrate-pane-width)
+      8px
+      minmax(720px, 1fr)
+      8px
+      var(--working-pane-width);
+  }
+}
+
 .app-topbar {
   grid-area: topbar;
   border-bottom: 1px solid var(--color-edge);
@@ -197,6 +242,8 @@ button:hover {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 /* ── Topbar breadcrumb ──────────────────────────────────────────────────────
@@ -1391,7 +1438,7 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   margin-left: 0;
   position: relative;
   background:
-    linear-gradient(90deg, rgba(236, 117, 88, 0.08) 0%, rgba(236, 117, 88, 0.025) 58%, transparent 100%);
+    linear-gradient(90deg, rgba(236, 117, 88, 0.08) 0%, rgba(236, 117, 88, 0.024) 58%, transparent 100%);
 }
 
 .specialist-row--intent-following-integrity::before {
@@ -1413,14 +1460,16 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   gap: 8px;
   margin-top: 6px;
   padding: 9px 12px;
-  border: 1px solid rgba(236, 117, 88, 0.40);
+  border-top: 1px solid rgba(236, 117, 88, 0.4);
+  border-right: 1px solid rgba(236, 117, 88, 0.4);
+  border-bottom: 1px solid rgba(236, 117, 88, 0.4);
   border-left: 3px solid var(--color-refused);
   border-radius: 2px;
-  background: rgba(236, 117, 88, 0.10);
+  background: rgba(236, 117, 88, 0.1);
   color: var(--color-ink-primary);
   font-size: 12px;
   line-height: 1.35;
-  letter-spacing: 0;
+  letter-spacing: 0px;
 }
 
 .specialist-row__causal-label {
@@ -1882,8 +1931,8 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   padding: 8px 12px;
   border-bottom: 1px solid var(--color-edge);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-size: 14px;
   color: var(--color-ink-secondary);
   display: flex;
   justify-content: space-between;
@@ -1896,8 +1945,20 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   gap: 8px;
 }
 
+/* AUDIT B1: h2 in .panel__header — semantic structure without visual override.
+   Reset default heading margins and inherit panel__header styles. */
+.panel__header h2 {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
+}
+
 .panel__body {
-  padding: 10px 12px;
+  padding: var(--s-3);
   overflow: auto;
   flex: 1;
 }
@@ -1927,9 +1988,11 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: grid;
   grid-template-columns: 14px 1fr auto;
   gap: 8px;
-  padding: 6px 0;
+  padding: 6px 8px;
   border-bottom: 1px dashed var(--color-edge);
   cursor: pointer;
+  background: transparent;
+  color: var(--color-ink-secondary);
 }
 
 .alert-row:hover {
@@ -1938,7 +2001,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .alert-row[data-active="true"] {
   background: var(--color-elevated);
-  outline: 1px solid var(--color-decision);
+  border-left: 3px solid var(--color-decision);
+  padding-left: calc(8px - 3px);
+  color: var(--color-ink-primary);
 }
 
 .alert-row__pip {
@@ -1991,8 +2056,9 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .alert-row--typed[data-active="true"] {
   background: var(--color-elevated);
-  outline: 1px solid var(--color-decision);
-  outline-offset: 0;
+  border-left: 3px solid var(--color-decision);
+  padding-left: calc(32px - 3px);
+  color: var(--color-ink-primary);
 }
 
 .alert-row__event {
@@ -2285,6 +2351,60 @@ a.osint-signal-row__inner {
 
 .watchfloor-osint-feed__more:hover {
   text-decoration: underline;
+}
+
+/* ── AUDIT B4: Substrate pane three-register separation ──────────────────────
+   Visual stratification of operational cases / AI suggestions / raw substrate.
+   Three distinct epistemic registers, each with its own typographic + chromatic
+   treatment. Separates by hard rule + section header + background tier shift
+   + different row chrome (solid / dashed / lines).
+   ────────────────────────────────────────────────────────────────────────────*/
+
+.substrate-pane__register {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Watchfloor cases: solid rows on color-frame background */
+.substrate-pane__register--watchfloor {
+  background: var(--color-frame);
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-edge);
+}
+
+/* AI proposals: elevated tint + decision left-bar, dashed borders (provisional state) */
+.substrate-pane__register--ai-proposed {
+  background: var(--color-elevated);
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-edge);
+}
+
+/* Add decision left-bar to AI proposal cards */
+.substrate-pane__register--ai-proposed .draft-case-card {
+  border-left: 2px solid var(--color-decision);
+}
+
+/* Substrate signals: dense feed lines, reverts to color-substrate background */
+.substrate-pane__register--substrate {
+  background: var(--color-substrate);
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--color-edge);
+}
+
+.substrate-pane__section-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-edge);
+  margin: -12px 0 8px 0;
 }
 
 .stage-placeholder {
@@ -3354,19 +3474,24 @@ a.osint-signal-row__inner {
 }
 
 .evidence-card {
+  background: var(--color-glass);
+  backdrop-filter: var(--depth-blur-glass);
+  -webkit-backdrop-filter: var(--depth-blur-glass);
   border: 1px solid var(--color-edge);
-  background: var(--color-elevated);
-  border-radius: 2px;
-  padding: 6px 8px;
-  margin-bottom: 4px;
-  cursor: pointer;
-  transition: border-color 120ms ease, background 120ms ease;
+  border-radius: 6px;
+  padding: var(--space-3);
+  box-shadow: var(--depth-shadow-low);
+  transition:
+    border-color var(--motion-fast) var(--motion-ease-out),
+    box-shadow var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
 }
 
 .evidence-card:hover,
 .evidence-card:focus-visible {
-  border-color: var(--color-decision);
-  background: rgba(110, 168, 254, 0.04);
+  border-color: var(--color-edge-strong);
+  box-shadow: var(--depth-shadow-mid);
+  transform: translateY(-1px);
   outline: none;
 }
 
@@ -4358,6 +4483,39 @@ details.case-file__section > summary:focus-visible {
   letter-spacing: 0.02em;
 }
 
+/* ── Empty stencil draft action ───────────────────────────────────────────
+   Primary affordance for opening the AI-proposed draft case when no case
+   is selected. The button is visible, primary-colored, tabbable, and
+   keyboard-accessible (Enter key triggers the action). */
+.empty-stencil__draft-action {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--s-5);
+  gap: var(--s-4);
+}
+
+.empty-stencil__draft-button {
+  background: var(--color-decision);
+  color: var(--color-substrate);
+  border: none;
+  padding: var(--s-3) var(--s-4);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+}
+
+.empty-stencil__draft-button:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 6px rgba(122, 169, 255, 0.3);
+}
+
+.empty-stencil__draft-button:focus-visible {
+  outline: 2px solid var(--color-decision);
+  outline-offset: 2px;
+}
+
 /* ── Substrate alert — drift / stale state ────────────────────────────────
    Operators glance at the watchfloor and need to know "fresh / settled /
    stale" in one read. Three classifications:
@@ -4616,9 +4774,9 @@ details.case-file__section > summary:focus-visible {
 
 .map-telemetry-hud {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  z-index: 6;
+  bottom: 12px;
+  right: 12px;
+  z-index: 5;
   width: 240px;
   background: rgba(6, 9, 13, 0.72);
   border: 1px solid var(--color-edge);
@@ -4626,7 +4784,7 @@ details.case-file__section > summary:focus-visible {
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
   font-family: var(--font-mono);
-  pointer-events: none; /* doesn't block map pan/zoom */
+  pointer-events: none;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
     0 6px 24px rgba(0, 0, 0, 0.4);
@@ -4777,11 +4935,11 @@ details.case-file__section > summary:focus-visible {
 }
 
 .named-operator__header {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 10px;
-  color: var(--color-ink-tertiary);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-ink-primary);
   margin-bottom: 6px;
 }
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { forwardRef, useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { saveRule } from "../lib/reviewRulesStore.ts";
@@ -51,17 +51,21 @@ type AskResult = {
 
 type CommandResult = InlineResult | AskResult;
 
-export function CommandLine({
-  scenario,
-  mapScenarioState,
-  onMapScenarioChange: _onMapScenarioChange,
-  onReset,
-  onSelectAlert,
-  alerts,
-  uiMode,
-  onToggleUiMode,
-  scenarioContext
-}: CommandLineProps) {
+export const CommandLine = forwardRef<HTMLDivElement, CommandLineProps>(
+  function CommandLine(
+    {
+      scenario,
+      mapScenarioState,
+      onMapScenarioChange: _onMapScenarioChange,
+      onReset,
+      onSelectAlert,
+      alerts,
+      uiMode,
+      onToggleUiMode,
+      scenarioContext
+    }: CommandLineProps,
+    ref
+  ) {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<CommandResult | null>(null);
   const [showHelp, setShowHelp] = useState(false);
@@ -182,7 +186,8 @@ export function CommandLine({
   const askResult = result?.kind === "ask" ? result : null;
 
   return (
-    <footer className="command-line" role="contentinfo">
+    <footer ref={ref} className="command-line" role="contentinfo" tabIndex={-1}>
+      <h2 className="visually-hidden">Command</h2>
       {askResult && <AskPanel result={askResult} onDismiss={dismissAsk} />}
       <span className="command-line__prompt" aria-hidden>
         &gt;
@@ -227,7 +232,8 @@ export function CommandLine({
       </span>
     </footer>
   );
-}
+  }
+);
 
 interface CommandContext {
   onReset: (mode?: "soft" | "full") => void;

@@ -6,7 +6,8 @@ import {
   useState,
   type CSSProperties,
   type KeyboardEvent,
-  type PointerEvent as ReactPointerEvent
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode
 } from "react";
 
 import type { AlertView } from "../lib/types.ts";
@@ -50,7 +51,7 @@ const PANE_LIMITS = {
   substrateMin: 220,
   substrateMax: 560,
   workingMin: 360,
-  workingMax: 760,
+  workingMax: 640,
   stageMin: 420,
   resizeColumns: 16
 };
@@ -70,6 +71,10 @@ export function AppShell({
   onToggleUiMode
 }: AppShellProps) {
   const shellRef = useRef<HTMLDivElement | null>(null);
+  const substrateRef = useRef<HTMLElement | null>(null);
+  const stageRef = useRef<HTMLElement | null>(null);
+  const workingRef = useRef<HTMLElement | null>(null);
+  const commandLineRef = useRef<HTMLDivElement | null>(null);
   const [paneWidths, setPaneWidths] = useState<PaneWidths>(() => {
     const width = viewportWidth();
     return clampPaneWidths(defaultPaneWidths(width), width, "working");
@@ -123,6 +128,43 @@ export function AppShell({
     });
     return () => window.cancelAnimationFrame(raf);
   }, [paneWidths]);
+
+  // D2: Cmd+1/2/3/4 skip-to-pane keyboard shortcuts
+  // macOS: Cmd (metaKey), others: Ctrl (ctrlKey)
+  useEffect(() => {
+    function onKeyDown(event: globalThis.KeyboardEvent) {
+      const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+      const hasModifier = isMac ? event.metaKey : event.ctrlKey;
+
+      if (!hasModifier) return;
+
+      let target: HTMLElement | null = null;
+      switch (event.key) {
+        case "1":
+          target = substrateRef.current;
+          break;
+        case "2":
+          target = stageRef.current;
+          break;
+        case "3":
+          target = workingRef.current;
+          break;
+        case "4":
+          target = commandLineRef.current?.querySelector("input") as HTMLElement | null;
+          break;
+        default:
+          return;
+      }
+
+      if (target) {
+        event.preventDefault();
+        target.focus({ preventScroll: true });
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown as EventListener);
+    return () => window.removeEventListener("keydown", onKeyDown as EventListener);
+  }, []);
 
   const clampForShell = useCallback((next: PaneWidths, priority?: keyof PaneWidths) => {
     const width = shellRef.current?.getBoundingClientRect().width ?? viewportWidth();
@@ -189,6 +231,7 @@ export function AppShell({
       data-resizing-pane={resizingPane ?? undefined}
       style={shellStyle}
     >
+      <h1 className="visually-hidden">Liminal Custody Watchfloor</h1>
       {/* SHIP-5: Persistent broadcast chyron — operating context lower-
           third in archival monotype, anchored at the very top of the
           shell. Plays in the operator's peripheral vision the entire
@@ -197,7 +240,7 @@ export function AppShell({
           (Source 10 · aerockrose · Sequoia AI Ascent register). */}
       <BroadcastChyron scenario={scenario} />
       <header className="app-topbar">
-        <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
+        <span className="app-topbar__brand">Liminal · Custody</span>
         <Breadcrumb
           scenario={scenario}
           eventId={eventId}
@@ -211,6 +254,7 @@ export function AppShell({
         </div>
       </header>
       <SubstratePanel
+        ref={substrateRef}
         alerts={scenario?.state.alerts ?? []}
         scenarioState={scenario?.state ?? null}
         selectedAlertId={selectedAlertId}
@@ -224,6 +268,7 @@ export function AppShell({
         onNudge={(delta) => adjustPaneWidth("substrate", delta)}
       />
       <StageViewport
+        ref={stageRef}
         selectedAlert={selectedAlert}
         selectedCaseId={selectedCaseId}
         loading={!scenario}
@@ -240,12 +285,14 @@ export function AppShell({
         onNudge={(delta) => adjustPaneWidth("working", delta)}
       />
       <WorkingPanel
+        ref={workingRef}
         selectedAlert={selectedAlert}
         selectedAlertId={selectedAlertId}
         scenarioState={scenario?.state ?? null}
         loading={!scenario}
         uiMode={uiMode}
         replayPhase={mapScenarioState?.phase ?? 1}
+        onSelectAlert={onSelectAlert}
       />
       {/* STRETCH-1: substrate-state chyron at the bottom — system's
           continuous self-narration in plain English. Threads non-
@@ -253,6 +300,7 @@ export function AppShell({
           INSPO_TO_SURFACE_MAP.md §STRETCH-1 (Source 10 · aerockrose). */}
       <SubstrateStateChyron scenario={scenario} scenarioState={mapScenarioState} />
       <CommandLine
+        ref={commandLineRef}
         scenario={scenario}
         mapScenarioState={mapScenarioState}
         onMapScenarioChange={onMapScenarioChange}
@@ -316,7 +364,7 @@ function defaultPaneWidths(width: number): PaneWidths {
   if (width < 1024) return { substrate: 240, working: 380 };
   if (width < 1280) return { substrate: 272, working: 460 };
   if (width < 1440) return { substrate: 296, working: 520 };
-  return { substrate: 320, working: 560 };
+  return { substrate: 320, working: 480 };
 }
 
 function clampPaneWidths(

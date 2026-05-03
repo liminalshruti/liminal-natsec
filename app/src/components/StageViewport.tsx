@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { DataSourcesChips } from "./DataSourcesChips.tsx";
@@ -38,19 +39,23 @@ interface StageViewportProps {
   onClearCaseSelection?: () => void;
 }
 
-export function StageViewport({
-  selectedAlert,
-  selectedCaseId,
-  loading,
-  scenario,
-  scenarioState,
-  onScenarioStateChange,
-  resetSignal
-}: StageViewportProps) {
-  return (
-    <main className="panel panel--stage" aria-label="Stage">
+export const StageViewport = forwardRef<HTMLElement, StageViewportProps>(
+  function StageViewport(
+    {
+      selectedAlert,
+      selectedCaseId,
+      loading,
+      scenario,
+      scenarioState,
+      onScenarioStateChange,
+      resetSignal
+    }: StageViewportProps,
+    ref
+  ) {
+    return (
+      <main ref={ref} className="panel panel--stage" aria-label="Stage" tabIndex={-1}>
       <div className="panel__header">
-        <span>Stage</span>
+        <h2>Stage</h2>
         <span className="tag">map · replay</span>
       </div>
       <div className="panel__body" style={{ padding: 0, position: "relative" }}>
@@ -130,5 +135,6 @@ export function StageViewport({
         )}
       </div>
     </main>
-  );
-}
+    );
+  }
+);
