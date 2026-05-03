@@ -39,17 +39,15 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-.venv/
-venv/
-env/
-
 # Misc
 .claude/
 .codex/
 .playwright-mcp/
 .cache/
 .tmp/
+
+# Electron
+out/
+release/
+electron/dist/
+electron/node_modules/

@@ -1,62 +1,97 @@
-# SeaForge / liminal-natsec
+# SeaForge
 
-SeaForge is the demo artifact for evidence-backed maritime custody under contested signals. The build is organized around one persistent shell:
+**Evidence integrity before command.** A desktop application for contested target custody.
 
-```text
-Substrate / Signal Sources -> Stage Viewport -> Working Panel -> Command Line
+SeaForge maintains custody of contested targets by protecting the evidence chain before it becomes command action. Built for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, May 2–3 2026).
+
+> Command systems start too late. SeaForge protects the evidence before it becomes command — and refusal is structurally enforced, not requested.
+
+## What this is
+
+A persistent desktop application with one workflow:
+
+```
+Substrate / Signal Sources → Stage Viewport → Working Panel → Command Line
 ```
 
-The integration lane keeps the repo runnable while app, server, graph-spine, and fixture lanes land in parallel.
+The demo: a maritime watch officer at U.S. 5th Fleet, 0200 local, monitoring AIS disruptions near a strategic chokepoint in the Strait of Hormuz. A vessel goes dark. A different identity appears nearby. SeaForge preserves competing custody hypotheses, enforces refusal when the evidence chain is contested, and lets a human review rule change the next recommendation.
 
-## Local Commands
+## How it's different
 
-Use Bun for the demo path:
+Most command-and-control systems start *after* signals reach command. They assume the signal is already coherent enough to act on. SeaForge starts one layer earlier.
+
+- **Custody before conclusion.** The system preserves competing hypotheses instead of declaring intent.
+- **Refusal as an invariant.** Every AI specialist output passes through a server-side structural guard. Citation minimums, evidence-type requirements, and posterior thresholds enforce refusal. AI cannot overclaim.
+- **Review memory as a moat.** When an operator writes a correction, it becomes a durable rule that changes the next case. Human judgment compounds.
+
+## Submission
+
+- **Primary track:** Problem Statement 1 — Sensor Analysis & Integration
+- **Architecture narrative:** Problem Statement 3 — Mission Command & Control
+- **Digital defense layer:** Problem Statement 4 — Signal-chain integrity
+
+## Stack
+
+- **Desktop:** Electron-wrapped Vite + React + TypeScript + MapLibre GL JS
+- **Server:** Bun + Hono, hosting M1–M7 engineered modules (Kalman dark-gap predictor, Bayesian fusion, structural guard, rule DSL parser, CLIP cross-modal correlation, perturbation injection, provenance with confidence flow)
+- **Authoritative store:** Palantir Foundry Ontology + AIP Logic (developer access)
+- **Schema:** domain-neutral `graph-spine/` (portability) projected to maritime Ontology (authoritative)
+
+## Local commands
 
 ```sh
 bun install
 bun run test
-bun run dev:server
-bun run dev:app
-bun run dev
+bun run dev:server      # start the server
+bun run dev:app         # start the Vite app (browser dev)
+bun run dev:desktop     # start the Electron desktop app
+bun run dev             # server + app together
 bun run build
 ```
 
-Node is available as the fallback test runner when Bun is not installed in a shell:
+Node fallback for tests: `npm test`.
 
-```sh
-npm test
-```
+## Demo checklist
 
-The root scripts are contract-aware. App/server dev commands start the lane-owned entrypoints once they exist and fail with a clear message while those entrypoints are still absent.
+1. Start the server: `bun run dev:server`
+2. Start the desktop app: `bun run dev:desktop`
+3. Run the replay
+4. Trigger the dark gap
+5. Open the custody case
+6. Show the structurally enforced specialist refusal
+7. Save the review rule
+8. Show the second case changed by the prior rule
+9. Press `Ctrl+Shift+R` and verify reset
 
-## Demo Checklist
+## Authoritative docs
 
-1. Start the server with `bun run dev:server`.
-2. Start the app with `bun run dev:app`.
-3. Run the replay.
-4. Trigger the dark gap.
-5. Open the custody case.
-6. Show the specialist refusal.
-7. Save the review rule.
-8. Show the second case changed by the prior rule.
-9. Press `Ctrl+Shift+R` and verify reset.
+Read `docs/integration-state.md` first if you're new to this repo. It maps engineered modules to demo beats to pitch language.
 
-## Never-Cut Invariants
+- `docs/v2/` — locked build baseline (PRD, implementation plan, sequencing plan)
+- `docs/TECHNICAL_PLAN.md` — engineering canon
+- `docs/v3-positioning-patch.md` — track decision, Maven posture, schema delta
+- `docs/v4-judge-calibrated-demo.md` — operator persona, procurement path, judge-by-judge
+- `docs/round1-round2-script.md` — branched pitch scripts (Maven-invisible Round 1, Maven-augmenting Round 2)
+- `docs/q-and-a.md` — 30-second answers to predictable judge questions
+- `docs/shayaun-handoff.md` — co-founder handoff brief
 
-- Persistent shell.
-- Dark gap + two-MMSI identity churn.
-- Hypothesis board.
-- Evidence/provenance trace.
-- Specialist refusal.
-- Review rule saved.
-- Prior rule applied / second case changed.
+## Team
 
-## Smoke Coverage
+**Shruti Rajagopal** — Founder, Liminal. Pre-decisional infrastructure for unresolved context.
+**Shayaun (Sean) Nejad** — Co-founder, engineering. OffSec-certified, top 100 globally on Hack The Box. Signal-chain compromise and offensive security.
 
-`bun run test` or `npm test` runs all available smoke tests. Tests for app/server/graph-spine contracts skip while another lane has not landed the relevant files, then become real assertions automatically once those files are present.
+## Never-cut invariants
 
-Core smoke checks:
+- Persistent desktop shell
+- Dark gap + two-MMSI identity churn
+- Hypothesis board
+- Signal Integrity row
+- Specialist refusal (structurally enforced)
+- Causal line: "Intent refused because the guard fired"
+- Evidence / provenance trace
+- Review rule saved
+- Prior rule applied / second case changed
 
-- Graph trace: action -> claim -> hypothesis -> anomaly -> observation.
-- Server replay: fixture replay produces anomaly, claims, and actions.
-- App shell load: app shell exposes a fetch or fixture fallback path.
+## License
+
+See `LICENSE`.

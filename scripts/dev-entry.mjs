@@ -6,8 +6,8 @@ import { loadConfigIniIntoEnv } from "./load-config-ini.mjs";
 
 const lane = process.argv[2];
 
-if (!lane || !["app", "server"].includes(lane)) {
-  console.error("Usage: node scripts/dev-entry.mjs <app|server>");
+if (!lane || !["app", "server", "desktop"].includes(lane)) {
+  console.error("Usage: node scripts/dev-entry.mjs <app|server|desktop>");
   process.exit(1);
 }
 
@@ -58,6 +58,10 @@ function commandFor(target, bunCommand) {
 
   if (target === "app" && existsSync("app/index.html")) {
     return { cmd: bunCommand, args: ["x", "vite", "--host", "0.0.0.0"], cwd: "app" };
+  }
+
+  if (target === "desktop" && existsSync("electron/start-desktop.mjs")) {
+    return { cmd: "node", args: ["electron/start-desktop.mjs"] };
   }
 
   return null;
