@@ -1,18 +1,120 @@
-# SeaForge — Technical Plan
+# Liminal Custody — Technical Plan
 
-Engineering design for SeaForge / Watchstander. Companion to `SeaForge_PRD_v2 (1).md` (product), `SeaForge_Implementation_Plan_v2.md` (build sequencing), `SeaForge_Sequencing_Plan_v2.md` (gates), `SeaForge_PRD.pdf` (legacy), and `SeaForge_TDD.docx` (architecture). This document is the **engineering** layer — the algorithmic modules that make claims defensible, the data plane that backs them, the Ontology that exposes them, and the AI/human/deterministic split that keeps the system bounded.
+Engineering design for **Liminal Custody** (renamed from SeaForge at H8). Companion to:
+
+- `docs/v2/SeaForge_PRD_v2.md` (product, locked baseline — original SeaForge naming preserved as historical canon)
+- `docs/v2/SeaForge_Implementation_Plan_v2.md` (build sequencing)
+- `docs/v2/SeaForge_Sequencing_Plan_v2.md` (phase gates)
+- `docs/v3-positioning-patch.md` (track + Maven posture + schema delta)
+- `docs/v3-implementation-plan.md` (what changes vs v2 in code terms)
+- `docs/v3-sequencing-plan.md` (phase gates with Signal Integrity inserted)
+- `docs/v4-judge-calibrated-demo.md` (named persona, procurement path, judge-by-judge)
+- `docs/integration-state.md` (M1–M7 → demo-spine → pitch-language map)
+- `docs/liminal-custody-onepager.md` (front-of-room + OGSM)
+- `docs/maven-analysis.md` (complementary positioning rationale)
+
+This document is the **engineering** layer — the algorithmic modules that make claims defensible, the data plane that backs them, the Ontology that exposes them, and the AI/human/deterministic split that keeps the system bounded. §1–14 below are unchanged from v3.0 and remain canonical for engineering. The v3.1 patch (§0.1) captures what shipped between H8 and H22 without rewriting the engineering core.
 
 | Field | Value |
 |---|---|
-| Version | 3.0 — merged with v2 PRD pivot, Palantir + AIP first-class |
-| Status | Build-ready |
-| Last updated | 2026-05-02 |
+| Version | 3.1 — H8 build state reconciled into demo-runnable form |
+| Status | Build running, verified on stage equivalent (localhost:5173 + :8787) |
+| Last updated | 2026-05-03 (H22) |
 | Primary problem statement | PS1 — Sensor Analysis & Integration |
-| Secondary | PS3 — Mission Command and Control |
+| Secondary | PS3 — Mission Command & Control (architecture narrative) |
+| Differentiator | PS4 — Digital Defense (Shayaun's structural guard + Signal Integrity layer) |
 | Authoritative store | Palantir Foundry Ontology (developer AIP access confirmed) |
-| Engineered runtime | Bun + Hono server hosting M1–M7 |
-| Frontend | Vite + React + MapLibre, persistent shell per v2 PRD |
+| Engineered runtime | Bun + Hono server hosting M1–M7 (live on :8787) |
+| Frontend | Electron-wrapped Vite + React + MapLibre desktop application (v3.1 — Electron wrap added) |
+| Demo runtime | **Fixtures + structural guard.** AIP Logic = Q&A hot fallback only (env-flag swap) |
 | Schema portability | Domain-neutral `graph-spine/` schema projected 1:1 into Foundry Ontology |
+| Make-or-break beat | Save R-001 → second-case recommendation changes + Intent refused with structural guard layer named |
+
+---
+
+## 0.1 What changed in v3.1 (post-H8 reconciliation)
+
+v3.0 was build-ready at H8 (May 2 ~6pm). v3.1 captures what shipped between H8 and H22 — the production-runnable state, the rename, the demo-criticality calibration, and the operating norms locked tonight. **No engineering substance changes from v3.0.** v3.1 is a metadata + workflow patch.
+
+### Naming reconciliation
+
+The product is renamed from **SeaForge** to **Liminal Custody** across every public surface (README, one-pager, Q&A, demo scripts, app topbar, browser/Electron window title, fallback captions). Internal identifiers preserved: `seaforge:review-rules:v1` localStorage key, `seaforge-watchfloor` map style internal id. The v2 baseline files retain `SeaForge_*_v2.md` filenames as historical canon.
+
+### Demo runtime decision (hardened)
+
+v3.0 said *"Backend on critical path. AIP Logic is the canonical specialist runtime."* v3.1 hardens the demo-time runtime:
+
+```
+Demo critical path = fixtures + structural guard (server/src/specialists/guard.ts)
+AIP Logic         = Q&A hot fallback only, env-flag swap during Q&A
+```
+
+The structural guard's 7+ layered server-side checks (citation minimum, INTENT_INDICATOR requirement, posterior threshold, Shodan-only restriction, intent-question phrasing) run identically on cached fixture outputs and live AIP outputs. The judge cannot distinguish demo mode from Q&A mode visually. This means a network failure mid-pitch leaves the refusal moment intact — the structural-guard invariant is the demo's most important architectural claim and it must not be flaky.
+
+The Foundry/AIP NOT_CONFIGURED state at startup is intentional. Setting `FOUNDRY_BASE_URL` + `FOUNDRY_TOKEN` + `AIP_LOGIC_BASE_URL` + `AIP_LOGIC_TOKEN` enables the live AIP path for Q&A only.
+
+### Frontend wrap (Electron)
+
+v3.0 frontend was Vite + React + MapLibre (browser dev only). v3.1 adds the Electron wrap (`electron/main.cjs`, `electron/preload.cjs`, `electron/start-desktop.mjs`). `bun run dev:desktop` boots Vite + Electron together. Demo runs as a real desktop application, matching the hard requirement that this is positioned as a desktop product, not a web app. Browser path (`bun run dev:app` → http://localhost:5173) preserved for development.
+
+### Schema delta — `sourceIntegrityCheck` node + `caseIdFromAlertId` resolution
+
+The v3 positioning patch added `sourceIntegrityCheck` as an 11th node type for the Signal Integrity specialist read. v3.1 confirms it landed in `graph-spine/schema.ts`. Specialist Reads UI grew to 5 rows (Kinematics, Identity, **Signal Integrity**, Intent, Collection) — Signal Integrity sits between Identity and Intent and is causally linked to Intent's refusal via the `triggers_refusal_for` field on the read object.
+
+**Bug fix shipped (PR #6):** `caseIdFromAlertId(alertId)` was returning `null` for server-emitted anomaly ids because of an `_` vs `-` drift between server format (`anom:identity_churn:trk-caldera:...`) and fixture spine format (`anom:identity-churn:trk-caldera:...`). Three-pass resolution now: exact match → normalized (`_`→`-`) match → regex fallback on `event-1`/`event-2`. Without this fix, the entire H8 gate was empty: hypothesis board, evidence drawer, provenance trace, action options, specialist reads, and review memory all defaulted to empty when an alert was selected. With the fix, the make-or-break beat path (beats 4–8 of the SpeedRun) renders end-to-end.
+
+### Doc surface split (PR #3)
+
+Public-facing surface (`docs/*.md` excluding `docs/internal/`) is calibrated for cold readers — analytical and complementary, not adversarial. Internal-coordination context (Iran-attribution, Shayaun handoff coordination, full v3 patches with internal-strategy framing) lives in `docs/internal/*-INTERNAL.md` and is gitignored. Same insights, different framing — see `docs/maven-analysis.md` for the public version of what was originally a teardown.
+
+### Operating norms locked tonight
+
+Two rules govern the next ~14 hours:
+
+1. **H25 freeze rule for demo-critical files.** After H25 (May 3 ~6am), no commits touch:
+   - `server/src/specialists/guard.ts` (the structural guard — refusal invariant)
+   - `app/src/components/HypothesisBoard.tsx` (hypothesis preservation)
+   - `app/src/components/RefusalCard.tsx` (Intent: REFUSED hero moment)
+   - `app/src/components/ReviewMemory.tsx` (review-rule save + apply)
+   - `app/src/components/CaseHandoffBanner.tsx` (second-case-changed beat)
+   - `app/src/components/MapWatchfloor.tsx` (dark-gap visual + Track B emergence)
+
+   Polish on non-demo-critical components (typography, spacing, copy) remains allowed post-H25. The failure mode this prevents is *"found a real bug at H22 and now I'm shipping a 3am fix into the demo path"* — late-night surgery on make-or-break beats is the actual risk, not polish creep.
+
+2. **Transition rehearsal rule.** Rehearse transitions, not the script. Beat 6→7 (refusal → save rule) and Beat 7→8 (rule saved → second-case-changed) are the only beats where a 200ms UI lag breaks the pitch. 10 reps each on those two transitions; the other 8 beats can stutter.
+
+### Engineering status verified at H22
+
+| Component | State |
+|---|---|
+| Topbar reads "LIMINAL CUSTODY · WATCHFLOOR" | ✅ verified |
+| Substrate panel populated, alerts selectable | ✅ verified |
+| Working panel populates on alert click (H8 gate) | ✅ verified — PR #6 |
+| Hypothesis Board: PRIMARY 70% / ALT 18% / ALT 9% | ✅ verified |
+| Provenance Trace: action → claim → hypothesis → anomaly → observation | ✅ verified |
+| Evidence Drawer: SUPPORTS row visible | ✅ verified |
+| Map: predicted ellipse, hero track with directional ping | ✅ verified |
+| Phase pill: P6 · REVIEW MEMORY with EVENT 1 indicator | ✅ verified |
+| Scrubber: phase markers across timeline | ✅ verified |
+| Command line: slash-commands listed | ✅ verified |
+| Specialist Reads: Intent REFUSED + STRUCTURAL GUARD tag | 🟡 RefusalCard polished (PR pending merge); full visual verification pending |
+| Action Options: ranked recommendation visible | 🟡 walkthrough verification pending |
+| Review Memory: save R-001 → event-2 recommendation changes | 🟡 walkthrough verification pending |
+| Reset (Ctrl+Shift+R) | 🟡 walkthrough verification pending |
+| Tagline / brand bar | 🟡 walkthrough verification pending |
+
+### PR landing log (May 2 → May 3)
+
+| PR | Subject | Merged |
+|---|---|---|
+| #1 | Rename SeaForge → Liminal Custody; add one-pager + Maven analysis | ✅ |
+| #2 | README surgical edits (Maven contrast, architecture diagram, judge entry point) | ✅ |
+| #3 | Public/internal split + frame calibration | ✅ |
+| #4 | SPEEDRUN_CUT.md surgical rename pass | ✅ |
+| #5 | Topbar/title brand: SeaForge → Liminal Custody | ✅ |
+| #6 | Fix caseIdFromAlertId underscore→hyphen drift (H8 gate) | ✅ |
+
+Open at H22: `shruti/visual-polish-specialist-reads` (RefusalCard polish, local commit `60f5bee` not yet pushed).
 
 ---
 
