@@ -30,6 +30,7 @@ import { attachTileFailureRecovery } from "../map/fallback.ts";
 import { tryLiveKalmanEllipse } from "../map/kalmanAdapter.ts";
 import { TimelineScrubber } from "../map/TimelineScrubber.tsx";
 import { MapLabels } from "../map/MapLabels.tsx";
+import { loadShipIcons } from "../map/shipIcons.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
 
 export interface ScenarioState {
@@ -228,6 +229,22 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
           type: "geojson",
           data: { type: "FeatureCollection", features: [] }
         });
+        // Load ship-icon sprites before adding symbol layers that reference
+        // them. Failures are non-fatal — the underlying circle layer still
+        // renders the vessel position; we just lose the ship-shaped overlay.
+        loadShipIcons()
+          .then((icons) => {
+            if (cancelled || map.isMoving() === false) {
+              for (const { id, img } of icons) {
+                if (!map.hasImage(id)) {
+                  map.addImage(id, img);
+                }
+              }
+            }
+          })
+          .catch(() => {
+            /* silent — ship sprites are an enhancement, not a requirement */
+          });
         const initialPhase = effectiveState?.phase ?? 1;
         const initialLayers = buildLayers({
           phase: initialPhase,

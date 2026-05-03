@@ -3329,3 +3329,159 @@ details.case-file__section > summary:focus-visible {
   border-left: 2px solid rgba(93, 110, 128, 0.3);
   opacity: 0.85;
 }
+
+/* ─── Map telemetry HUD — Grafana/Datadog observability register ─────────────
+   Top-right overlay on the stage. Reads as live system telemetry: phase,
+   tracks observed, specialists active, source freshness. Each metric has a
+   tone-color status border (ok/warn/alert/neutral). The pulse dot signals
+   "the system is alive, not a screenshot." Workshop register: telemetry/
+   observability designer — Datadog's information-density grammar applied to
+   a defense surface.
+   --------------------------------------------------------------------------- */
+
+.map-telemetry-hud {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 240px;
+  background: rgba(6, 9, 13, 0.78);
+  border: 1px solid var(--color-edge);
+  border-radius: 4px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--font-mono);
+  pointer-events: none; /* doesn't block map pan/zoom */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 6px 24px rgba(0, 0, 0, 0.4);
+}
+
+.map-telemetry-hud__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-edge);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+}
+
+.map-telemetry-hud__diamond {
+  color: var(--color-decision);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.map-telemetry-hud__title {
+  flex: 1;
+  font-weight: 500;
+}
+
+.map-telemetry-hud__pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-resolved);
+  position: relative;
+  animation: hud-pulse 2.4s ease-in-out infinite;
+}
+
+.map-telemetry-hud__pulse::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px solid var(--color-resolved);
+  opacity: 0;
+  animation: hud-pulse-ring 2.4s ease-out infinite;
+}
+
+@keyframes hud-pulse {
+  0%, 100% { opacity: 0.65; }
+  50%      { opacity: 1; }
+}
+
+@keyframes hud-pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  70%  { transform: scale(2.4); opacity: 0; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.map-telemetry-hud__metrics {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-telemetry-hud__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  gap: 2px 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-edge);
+  border-left: 2px solid var(--color-edge);
+  transition: border-left-color 200ms ease;
+}
+
+.map-telemetry-hud__row:last-child {
+  border-bottom: 0;
+}
+
+.map-telemetry-hud__row--ok {
+  border-left-color: var(--color-resolved);
+}
+
+.map-telemetry-hud__row--warn {
+  border-left-color: var(--color-contested);
+}
+
+.map-telemetry-hud__row--alert {
+  border-left-color: var(--color-refused);
+  background: rgba(210, 96, 74, 0.04);
+}
+
+.map-telemetry-hud__row--neutral {
+  border-left-color: var(--color-ink-tertiary);
+}
+
+.map-telemetry-hud__row-label {
+  grid-column: 1;
+  grid-row: 1;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+.map-telemetry-hud__row-value {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink-primary);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.map-telemetry-hud__row-meta {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  font-size: 10px;
+  color: var(--color-ink-secondary);
+  letter-spacing: 0.04em;
+}
+
+.map-telemetry-hud__row--alert .map-telemetry-hud__row-value {
+  color: var(--color-refused);
+}
+
+.map-telemetry-hud__row--warn .map-telemetry-hud__row-value {
+  color: var(--color-contested);
+}
+
+.map-telemetry-hud__row--ok .map-telemetry-hud__row-value {
+  color: var(--color-resolved);
+}

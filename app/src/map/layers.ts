@@ -241,6 +241,32 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
         ],
         "circle-opacity": 0.95
       }
+    },
+
+    // Ship-icon sprites — workshop principle: "if it's a ship, make it a ship."
+    // Renders a schematic ship-hull icon over the latest ping per role, on top
+    // of the circle marker. Falls through silently if the icon images failed
+    // to load (the circle layer below still shows vessel position).
+    {
+      id: "layer:hero-ships",
+      type: "symbol",
+      source: SOURCES.heroPingsVisible,
+      filter: ["==", ["get", "is_latest"], true],
+      layout: {
+        // Choose the icon variant by Track A vs B. After phase 2 the system
+        // is in alert state — Track A's icon also shifts to the alert sprite
+        // to communicate "this vessel's identity chain is contested."
+        "icon-image": [
+          "case",
+          ["==", ["get", "role"], "A"],
+            (phase >= 2 ? "ship-icon-alert" : "ship-icon-normal"),
+          "ship-icon-alert"
+        ],
+        "icon-size": 1,
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true,
+        "icon-anchor": "center"
+      }
     }
   ];
 }

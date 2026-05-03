@@ -8,12 +8,21 @@ import { COLORS } from "./tokens.ts";
 //   - falls through to a pure dark-navy paint if the optional raster basemap
 //     URL is missing or fails to load.
 //
-// The dark background is a real layer (not just CSS) so canvas-mode screenshots
-// look right and so the demo never shows a white flash before tiles arrive.
+// Default raster basemap: CartoDB Voyager dark-matter (free, no token). It
+// renders at any AOI the demo replays through (Alara EEZ in fixture mode,
+// Hormuz in real-mode), unlike a fixed-bbox image-source. Tiles are fetched
+// only on map render so the cost is one-time, not on every frame.
+
+const DEFAULT_BASEMAP_TILES =
+  "https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png";
+const DEFAULT_BASEMAP_ATTRIBUTION =
+  '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · © <a href="https://carto.com/attributions">CARTO</a>';
 
 export interface BuildStyleOptions {
-  rasterTilesUrl?: string;     // e.g. https://tile.openfreemap.org/styles/dark/{z}/{x}/{y}.png
+  rasterTilesUrl?: string;     // override; if not set, defaults to CartoDB Voyager dark
   rasterAttribution?: string;
+  /** Disable the default basemap entirely (test harness flag). */
+  disableBasemap?: boolean;
 }
 
 export function buildMapStyle(opts: BuildStyleOptions = {}): StyleSpecification {
@@ -26,24 +35,31 @@ export function buildMapStyle(opts: BuildStyleOptions = {}): StyleSpecification 
     }
   ];
 
-  if (opts.rasterTilesUrl) {
+  const tilesUrl = opts.disableBasemap
+    ? undefined
+    : opts.rasterTilesUrl ?? DEFAULT_BASEMAP_TILES;
+
+  if (tilesUrl) {
     sources["basemap-raster"] = {
       type: "raster",
-      tiles: [opts.rasterTilesUrl],
+      tiles: [tilesUrl],
       tileSize: 256,
-      attribution: opts.rasterAttribution ?? ""
+      attribution: opts.rasterAttribution ?? DEFAULT_BASEMAP_ATTRIBUTION
     };
     layers.push({
       id: "basemap-raster",
       type: "raster",
       source: "basemap-raster",
-      paint: { "raster-opacity": 0.55, "raster-saturation": -0.4 }
+      // Subtle: layered at low opacity + slight saturation pull so the dark
+      // navy substrate shows through and the basemap reads as terrain context,
+      // not as the visual primary. Tracks/markers stay the focal layer.
+      paint: { "raster-opacity": 0.42, "raster-saturation": -0.3 }
     });
   }
 
   return {
     version: 8,
-    name: "seaforge-watchfloor",
+    name: "liminal-custody-watchfloor",
     center: INITIAL_VIEW.center,
     zoom: INITIAL_VIEW.zoom,
     bearing: INITIAL_VIEW.bearing,
