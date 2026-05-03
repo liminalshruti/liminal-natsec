@@ -8,6 +8,7 @@ import {
   saveRule,
   type SavedReviewRule
 } from "../lib/reviewRulesStore.ts";
+import { TypedEdge, TypedObjectChip } from "./TypedObjectChip.tsx";
 
 const SEED_RULE_ID = "rr:watchfloor:dark-gap-sar-first:v1";
 const SEED_RULE_TITLE = "Dark gap → request SAR/RF first";
@@ -54,24 +55,42 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
   }
 
   return (
-    <>
-      <div className="subhead">Review Memory</div>
+    <div className="review-memory">
       {!caseId && <div className="empty">no case selected</div>}
+
+      {/* Active rule application — when a saved rule fires on this case, the
+          action diff is rendered here as typed-graph traversal. This is the
+          textual representation of the make-or-break beat in the forensic
+          surface; Zone 1 shows it as verb crossfade. */}
       {caseId && ruleApplication && (
-        <div className="action-row" data-rule-changed={ruleApplication.changed}>
-          <div className="action-row__title">
-            <span>Prior rule applied</span>
-            <span className={ruleApplication.changed ? "tag tag--ok" : "tag"}>
-              {ruleApplication.changed ? "RECOMMENDATION CHANGED" : "no change"}
-            </span>
-          </div>
-          <div className="action-row__sub" style={{ wordBreak: "break-all" }}>
-            {ruleApplication.ruleId}
+        <div
+          className={`review-memory__application${
+            ruleApplication.changed ? " review-memory__application--changed" : ""
+          }`}
+        >
+          <div className="review-memory__application-head">
+            <TypedObjectChip
+              kind="rule"
+              id={ruleApplication.ruleId}
+              status={ruleApplication.changed ? "applied · changed" : "applied"}
+              size="sm"
+            />
           </div>
           {ruleApplication.changed && (
-            <div className="action-row__sub" style={{ marginTop: 4 }}>
-              prior <code>{shortId(ruleApplication.priorTopActionId)}</code> →
-              now <code>{shortId(ruleApplication.recommendedActionId)}</code>
+            <div className="review-memory__diff">
+              <TypedObjectChip
+                kind="action"
+                id={ruleApplication.priorTopActionId}
+                status="prior top"
+                size="sm"
+              />
+              <TypedEdge type="APPLIES_TO" arrow="right" />
+              <TypedObjectChip
+                kind="action"
+                id={ruleApplication.recommendedActionId}
+                status="recommended"
+                size="sm"
+              />
             </div>
           )}
         </div>
@@ -80,45 +99,40 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
         <div className="empty">no review rule fires on this case</div>
       )}
 
-      <div className="subhead">Saved Rules ({savedRules.length})</div>
+      {/* Saved rules — operator's contribution to durable doctrine. */}
+      <div className="review-memory__section-header">
+        <span>Saved rules</span>
+        <span className="review-memory__count">{savedRules.length}</span>
+      </div>
       {savedRules.length === 0 && <div className="empty">no rules saved yet</div>}
-      {savedRules.map((rule) => (
-        <div key={rule.id} className="action-row">
-          <div className="action-row__title">
-            <span>{rule.title}</span>
-            <span className={rule.active ? "tag tag--ok" : "tag"}>
-              {rule.active ? "ACTIVE" : "INACTIVE"}
-            </span>
+      <div className="review-memory__saved-list">
+        {savedRules.map((rule) => (
+          <div key={rule.id} className="review-memory__saved-row">
+            <TypedObjectChip
+              kind="rule"
+              id={rule.id}
+              label={rule.title}
+              status={rule.active ? "active" : "inactive"}
+              size="sm"
+            />
+            <div className="review-memory__dsl">{rule.dsl_text}</div>
+            <div className="review-memory__saved-at">saved {rule.saved_at}</div>
           </div>
-          <div
-            className="action-row__sub"
-            style={{ fontSize: 10, wordBreak: "break-word" }}
-          >
-            {rule.dsl_text}
-          </div>
-          <div
-            className="action-row__sub"
-            style={{ color: "var(--fg-2)", fontSize: 10 }}
-          >
-            saved {rule.saved_at}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
-      <div style={{ display: "flex", gap: 6, marginTop: 8, alignItems: "center" }}>
+      <div className="review-memory__actions">
         {!isSeedSaved ? (
-          <button type="button" style={{ fontSize: 11 }} onClick={handleSaveSeed}>
+          <button type="button" className="review-memory__save-btn" onClick={handleSaveSeed}>
             + save R-001 to memory
           </button>
         ) : (
-          <span className="tag tag--ok" style={{ fontSize: 10 }}>
-            R-001 in memory
-          </span>
+          <span className="review-memory__saved-badge">R-001 in memory</span>
         )}
         {savedRules.length > 0 && (
           <button
             type="button"
-            style={{ fontSize: 11, color: "var(--fg-2)" }}
+            className="review-memory__clear-btn"
             onClick={handleClear}
             title="Forget all saved rules (Phase 4 reset)"
           >
@@ -128,26 +142,10 @@ export function ReviewMemory({ ruleApplication, caseId }: ReviewMemoryProps) {
       </div>
 
       {justSavedAt && (
-        <div
-          role="status"
-          style={{
-            marginTop: 8,
-            padding: "6px 8px",
-            border: "1px solid var(--ok)",
-            color: "var(--ok)",
-            background: "rgba(78, 160, 138, 0.08)",
-            fontSize: 11,
-            borderRadius: 2
-          }}
-        >
+        <div role="status" className="review-memory__toast">
           R-001 saved · select Event 2 to see the changed recommendation.
         </div>
       )}
-    </>
+    </div>
   );
-}
-
-function shortId(id: string): string {
-  if (id.length <= 28) return id;
-  return `${id.slice(0, 12)}…${id.slice(-12)}`;
 }

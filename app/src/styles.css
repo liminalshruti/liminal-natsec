@@ -1539,3 +1539,151 @@ button:hover {
   letter-spacing: 0.04em;
   padding-left: 4px;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Review memory — typed-grammar register for the case file's review-rule
+   surface. Active rule application renders as typed graph traversal:
+       [RULE] R-001 applied · changed
+       [ACTION] prior-top → APPLIES_TO → [ACTION] recommended
+   This is the textual representation of the make-or-break beat in the
+   forensic surface; Zone 1 shows the same beat as a verb crossfade.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.review-memory {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-memory__application {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 8px 10px;
+  background: var(--bg-2);
+}
+
+.review-memory__application--changed {
+  border-left: 2px solid var(--ok, #4ea08a);
+  background: rgba(78, 160, 138, 0.04);
+}
+
+.review-memory__application-head {
+  margin-bottom: 6px;
+}
+
+.review-memory__diff {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.review-memory__section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.review-memory__count {
+  color: var(--fg-1);
+  font-weight: 500;
+}
+
+.review-memory__saved-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.review-memory__saved-row {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 6px 8px;
+  background: var(--bg-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.review-memory__dsl {
+  font-size: 10px;
+  color: var(--fg-1);
+  word-break: break-word;
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  line-height: 1.4;
+}
+
+.review-memory__saved-at {
+  font-size: 9px;
+  color: var(--fg-2);
+  letter-spacing: 0.04em;
+}
+
+.review-memory__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.review-memory__save-btn {
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  background: rgba(110, 168, 254, 0.06);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+  font-family: inherit;
+}
+
+.review-memory__save-btn:hover {
+  background: rgba(110, 168, 254, 0.12);
+  border-color: var(--fg-0);
+}
+
+.review-memory__saved-badge {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ok, #4ea08a);
+  border: 1px solid rgba(78, 160, 138, 0.4);
+  padding: 2px 8px;
+  border-radius: 2px;
+  background: rgba(78, 160, 138, 0.06);
+}
+
+.review-memory__clear-btn {
+  font-size: 11px;
+  color: var(--fg-2);
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.review-memory__clear-btn:hover {
+  color: var(--fg-1);
+  border-color: var(--fg-2);
+}
+
+.review-memory__toast {
+  margin-top: 4px;
+  padding: 6px 10px;
+  border: 1px solid var(--ok, #4ea08a);
+  color: var(--ok, #4ea08a);
+  background: rgba(78, 160, 138, 0.08);
+  font-size: 11px;
+  border-radius: 2px;
+}
