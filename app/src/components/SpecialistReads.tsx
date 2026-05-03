@@ -1,6 +1,10 @@
 import { useState } from "react";
 
 import type { SpecialistReadRecord } from "../lib/specialistReads.ts";
+import {
+  citationsForSpecialist,
+  type SpecialistInputCitation
+} from "../lib/specialistInputs.ts";
 
 interface SpecialistReadsProps {
   reads: SpecialistReadRecord[];
@@ -109,6 +113,14 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
             <span className="specialist-row__name">{read.specialist}</span>
             <span className="specialist-row__summary">{read.summary ?? "—"}</span>
             <span className="specialist-row__status">{read.status}</span>
+            {/* Cited inputs strip — names the real cached files this specialist
+                deliberates over. The strip is collapsed (chip-row) by default
+                and expands on click to show the full footnote with sha256 +
+                jq pointer. Q&A move: "click any specialist → see exactly which
+                cached source it's reading, with hash for tamper-verification."
+                Intent has no inputs (refusal is structural, not source-driven).*/}
+            <SpecialistInputsStrip specialistName={read.specialist} />
+            {/* (existing redirect + override blocks rendered below) */}
             {/* Redirect annotation: appears UNDER the intent row when intent
                 is refused AND collection is the recommended next step.
                 "next: …" reads as editorial markup, not as a dead-end tag. */}
@@ -244,6 +256,116 @@ function OverrideAffordance({
           register override
         </button>
       </div>
+    </div>
+  );
+}
+
+/**
+ * Cited-inputs strip — shows the real cached files each specialist would
+ * deliberate over. Chip-row when collapsed; full footnote when expanded.
+ * Renders after each specialist row, before the redirect/override blocks.
+ *
+ * The full footnote shape mirrors the EvidenceDrawer citation footer (Path γ)
+ * for cross-surface vocabulary consistency. A judge sees the same shape on
+ * both surfaces: 📎 chip, sha256, jq pointer, provider attribution.
+ *
+ * For Intent (intent has zero citations by design), renders a single-line
+ * "no inputs cited — refusal is structural" affordance instead. This is the
+ * point: Intent doesn't read sources to assert; the structural guard
+ * intercepts before any source read happens. The empty-citation surface
+ * teaches that invariant inline.
+ */
+function SpecialistInputsStrip({ specialistName }: { specialistName: string }) {
+  const [expanded, setExpanded] = useState(false);
+  const inputs = citationsForSpecialist(specialistName);
+  if (!inputs) return null;
+
+  // Intent: render the structural-refusal note inline, no chips.
+  if (inputs.citations.length === 0) {
+    return (
+      <div
+        className="specialist-row__inputs specialist-row__inputs--no-source"
+        aria-label="no inputs cited"
+      >
+        <span aria-hidden="true">⚐</span>
+        <span>no inputs cited — refusal is structural</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="specialist-row__inputs" data-expanded={expanded}>
+      <button
+        type="button"
+        className="specialist-row__inputs-toggle"
+        onClick={() => setExpanded((v) => !v)}
+        aria-expanded={expanded}
+      >
+        <span className="specialist-row__inputs-icon" aria-hidden="true">📎</span>
+        <span className="specialist-row__inputs-caption">{inputs.caption}</span>
+        <span className="specialist-row__inputs-count">
+          {inputs.citations.length} source{inputs.citations.length === 1 ? "" : "s"}
+        </span>
+        <span className="specialist-row__inputs-chevron" aria-hidden="true">
+          {expanded ? "▾" : "▸"}
+        </span>
+      </button>
+      <div className="specialist-row__inputs-chiprow">
+        {inputs.citations.map((c) => (
+          <span
+            key={c.source_file}
+            className="specialist-row__inputs-chip"
+            data-status={c.source_status}
+            title={c.source_file}
+          >
+            <span className="specialist-row__inputs-chip-label">{c.label}</span>
+            <span className="specialist-row__inputs-chip-status">
+              {c.source_status}
+            </span>
+          </span>
+        ))}
+      </div>
+      {expanded && (
+        <div className="specialist-row__inputs-footnotes">
+          {inputs.citations.map((c) => (
+            <SpecialistCitationFootnote key={c.source_file} citation={c} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SpecialistCitationFootnote({
+  citation
+}: {
+  citation: SpecialistInputCitation;
+}) {
+  return (
+    <div
+      className="specialist-row__footnote"
+      data-status={citation.source_status}
+    >
+      <div className="specialist-row__footnote-head">
+        <span className="specialist-row__footnote-label">{citation.label}</span>
+        <span className="specialist-row__footnote-provider">
+          {citation.source_provider}
+        </span>
+      </div>
+      <div className="specialist-row__footnote-path" title="cached source on disk">
+        {citation.source_file}
+      </div>
+      <div className="specialist-row__footnote-pointer">
+        pointer: {citation.source_pointer}
+      </div>
+      <div className="specialist-row__footnote-sha" title="sha256 of cached file">
+        sha256: {citation.source_sha256.slice(0, 16)}…{citation.source_sha256.slice(-8)}
+      </div>
+      {citation.records_hint && (
+        <div className="specialist-row__footnote-hint">
+          contains: {citation.records_hint}
+        </div>
+      )}
     </div>
   );
 }
