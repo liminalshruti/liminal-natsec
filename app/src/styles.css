@@ -58,19 +58,29 @@
          --color-ink-tertiary   captions / labels
      ────────────────────────────────────────────────────────────────────── */
 
-  --color-decision:    #6ea8fe;
-  --color-contested:   #d18b3c;
-  --color-refused:     #d2604a;
-  --color-resolved:    #4ea08a;
+  /* Frontier polish — palette warmed and depth-extended.
+     Decision shifts to a slightly desaturated steel-blue with cooler
+     midtones (Linear/Vercel register). Substrate gets warmer black so the
+     surfaces feel like darkened paper rather than pure void (Granola). The
+     elevated tier widens to a real luminance step so glass/blur surfaces
+     have somewhere to land. Status colors stay stable — they're load-bearing
+     for the refusal/contested vocabulary the demo teaches. */
+  --color-decision:    #7aa9ff;
+  --color-contested:   #e0996b;
+  --color-refused:     #ec7558;
+  --color-resolved:    #6ec3a8;
 
-  --color-substrate:   #06090d;
-  --color-frame:       #0c1218;
-  --color-elevated:    #131c25;
-  --color-edge:        #1f2c39;
+  --color-substrate:   #08090c;   /* warm black, was #06090d */
+  --color-frame:       #0d0f14;   /* a notch up, depth step ~+3% L */
+  --color-elevated:    #14171f;   /* widened gap from frame for glass */
+  --color-edge:        #1d2230;   /* recooled toward indigo */
+  --color-edge-strong: #2a3142;   /* NEW — for emphasized borders */
+  --color-glass:       rgba(20, 23, 31, 0.62);  /* NEW — for backdrop-blur surfaces */
 
-  --color-ink-primary:    #d8e2ec;
-  --color-ink-secondary:  #93a3b3;
-  --color-ink-tertiary:   #5d6e80;
+  --color-ink-primary:    #e6ecf3;   /* slightly brighter — frontier readability */
+  --color-ink-secondary:  #99a4b5;
+  --color-ink-tertiary:   #5b6577;
+  --color-ink-quaternary: #3a4252;   /* NEW — for ambient labels, far receded */
 
   /* ─── DEPRECATED ALIASES — kept for one PR cycle to absorb in-flight work ──
      New code uses semantic names. Old names below resolve to semantic ones,
@@ -4378,4 +4388,425 @@ details.case-file__section > summary:focus-visible {
   font-size: var(--text-instrument-size);
   letter-spacing: var(--text-instrument-tracking);
   text-transform: uppercase;
+}
+
+/* ─── FRONTIER POLISH ──────────────────────────────────────────────────────
+   Raycast/Arc precision + Granola warmth. Eight polish primitives, applied
+   surgically at the highest-leverage hot spots. Does NOT replace the
+   existing system — layers on top via cascade order so call sites keep
+   working. New token namespaces: --depth-*, --space-*, --motion-*,
+   --type-scale-*. Old rules remain valid; new rules win at hot spots.
+
+   Compositional rules:
+     1. Depth via shadows + blur, not borders. Where we kept borders, they're
+        thin and recolored toward indigo.
+     2. Type scale tightened to exactly five sizes. Anything between
+        is a smell.
+     3. Motion is sub-perceptual or interaction-bound. No ambient bounce.
+     4. Whitespace gets +40% breathing room at the editorial moments
+        (Zone 1 verb, panel headers, citation footnotes).
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* DEPTH — backdrop-blur + layered shadows, Raycast register */
+  --depth-shadow-low:    0 1px 2px rgba(0, 0, 0, 0.30), 0 0 0 1px rgba(255, 255, 255, 0.02);
+  --depth-shadow-mid:    0 4px 16px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(255, 255, 255, 0.03);
+  --depth-shadow-high:   0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --depth-glow-decision: 0 0 0 1px rgba(122, 169, 255, 0.18), 0 0 24px rgba(122, 169, 255, 0.08);
+  --depth-blur-glass:    saturate(1.4) blur(14px);
+
+  /* TYPE SCALE — exactly 5 sizes, monotone ramp 32 → 18 → 13 → 11 → 9.5 */
+  --type-display:    32px;
+  --type-heading:    18px;
+  --type-body:       13px;
+  --type-caption:    11px;
+  --type-micro:      9.5px;
+  --type-line-tight: 1.1;
+  --type-line-snug:  1.3;
+  --type-line-body:  1.55;
+
+  /* SPACING — base 4, multiples that feel intentional. Editorial spacing
+     uses the higher values; UI chrome uses the lower ones. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* MOTION — easing, durations, transforms */
+  --motion-ease-out:  cubic-bezier(0.22, 0.61, 0.36, 1);
+  --motion-ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-fast:      120ms;
+  --motion-mid:       240ms;
+  --motion-slow:      480ms;
+
+  /* GRADIENTS — gradient accents, used only on focal moments */
+  --gradient-decision: linear-gradient(135deg, #7aa9ff 0%, #a98dff 100%);
+  --gradient-resolved: linear-gradient(135deg, #6ec3a8 0%, #7aa9ff 100%);
+  --gradient-contested: linear-gradient(135deg, #e0996b 0%, #ec7558 100%);
+}
+
+/* Body — slightly tighter tracking, frontier-readability boost */
+body {
+  font-feature-settings: "ss01" 1, "kern" 1, "tnum" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── PANEL CHROME — depth via shadow, not border ──────────────────────── */
+
+.panel {
+  border: none;
+  background: var(--color-frame);
+  box-shadow: var(--depth-shadow-low);
+  border-radius: 4px;
+}
+
+.app-shell .panel {
+  border-radius: 0;  /* the grid itself defines the edges */
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/* Active pane gets a refined glow instead of the harsh top-border */
+.app-shell[data-active-pane="working"] .panel--working,
+.app-shell[data-active-pane="stage"] .panel--stage,
+.app-shell[data-active-pane="substrate"] .panel--substrate {
+  border-top: none;
+  box-shadow:
+    inset 0 1px 0 0 rgba(122, 169, 255, 0.4),
+    inset 0 0 0 1px rgba(122, 169, 255, 0.06),
+    0 0 32px rgba(122, 169, 255, 0.04);
+}
+
+.panel__header {
+  font-family: var(--font-mono);
+  font-size: var(--type-micro);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-edge);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.012) 0%, transparent 100%);
+}
+
+.panel__body {
+  padding: var(--space-4);
+}
+
+/* ─── TOPBAR — Granola-warmth chrome with gradient brand ──────────────── */
+
+.app-topbar {
+  background: linear-gradient(180deg, var(--color-frame) 0%, var(--color-substrate) 100%);
+  border-bottom: 1px solid var(--color-edge);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+  padding: 0 var(--space-4);
+}
+
+.app-topbar__brand {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  background: var(--gradient-decision);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ─── BUTTONS — Raycast precision + soft hover lift ───────────────────── */
+
+button {
+  font-family: var(--font-mono);
+  font-size: var(--type-caption);
+  letter-spacing: 0.04em;
+  border: 1px solid var(--color-edge);
+  background: linear-gradient(180deg, var(--color-elevated) 0%, var(--color-frame) 100%);
+  color: var(--color-ink-secondary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease-out),
+    background var(--motion-fast) var(--motion-ease-out),
+    color var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
+}
+
+button:hover {
+  border-color: var(--color-edge-strong);
+  color: var(--color-ink-primary);
+  background: linear-gradient(180deg, var(--color-elevated) 0%, var(--color-elevated) 100%);
+  transform: translateY(-0.5px);
+}
+
+button:active {
+  transform: translateY(0);
+  background: var(--color-frame);
+}
+
+button:focus-visible {
+  outline: none;
+  border-color: var(--color-decision);
+  box-shadow: var(--depth-glow-decision);
+}
+
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ─── ZONE 1 VERB — the focal moment. Display tier + editorial spacing. ── */
+
+.zone1 {
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.zone1__verb {
+  font-family: var(--font-serif);
+  font-size: var(--type-display);
+  font-weight: 500;
+  line-height: var(--type-line-tight);
+  letter-spacing: -0.02em;
+  color: var(--color-ink-primary);
+  font-feature-settings: "ss01" 1, "kern" 1;
+  /* Subtle gradient on the verb so it reads as system-state, not static text */
+  background: linear-gradient(180deg, var(--color-ink-primary) 0%, #b8c5d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: var(--space-2);
+}
+
+.zone1__posture {
+  font-family: var(--font-mono);
+  font-size: var(--type-caption);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px dashed var(--color-edge);
+}
+
+.zone1__posture-while {
+  color: var(--color-contested);
+  font-weight: 600;
+}
+
+/* ─── TYPED OBJECT CHIPS — softer, with gradient borders on status ───── */
+
+.tchip {
+  border-radius: 4px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  box-shadow: var(--depth-shadow-low);
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: var(--type-micro);
+  letter-spacing: 0.06em;
+  transition:
+    border-color var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out),
+    box-shadow var(--motion-fast) var(--motion-ease-out);
+}
+
+.tchip--clickable {
+  cursor: pointer;
+}
+
+.tchip--clickable:hover {
+  border-color: var(--color-decision);
+  box-shadow: var(--depth-glow-decision);
+  transform: translateY(-0.5px);
+}
+
+.tchip__type {
+  color: var(--color-ink-tertiary);
+  font-size: var(--type-micro);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.tchip__slug {
+  color: var(--color-ink-secondary);
+}
+
+/* ─── SUBSTRATE PANEL — flat list register, Linear-grade ─────────────── */
+
+.panel--substrate {
+  background: var(--color-substrate);
+}
+
+.panel--substrate .panel__body {
+  padding: var(--space-3) var(--space-2);
+}
+
+/* Alert chip register — kill the card border, use background subtly */
+.alert-chip,
+.custody-queue__item {
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  padding: var(--space-3);
+  margin-bottom: var(--space-1);
+  transition:
+    background var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
+}
+
+.alert-chip:hover,
+.custody-queue__item:hover {
+  background: var(--color-elevated);
+  cursor: pointer;
+}
+
+.alert-chip--selected,
+.custody-queue__item--selected {
+  background: linear-gradient(180deg, rgba(122, 169, 255, 0.08) 0%, rgba(122, 169, 255, 0.02) 100%);
+  box-shadow: inset 2px 0 0 var(--color-decision);
+}
+
+/* ─── EVIDENCE CARDS — glass surface with depth ─────────────────────── */
+
+.evidence-card {
+  background: var(--color-glass);
+  backdrop-filter: var(--depth-blur-glass);
+  -webkit-backdrop-filter: var(--depth-blur-glass);
+  border: 1px solid var(--color-edge);
+  border-radius: 6px;
+  padding: var(--space-3);
+  box-shadow: var(--depth-shadow-low);
+  transition:
+    border-color var(--motion-fast) var(--motion-ease-out),
+    box-shadow var(--motion-fast) var(--motion-ease-out),
+    transform var(--motion-fast) var(--motion-ease-out);
+}
+
+.evidence-card:hover {
+  border-color: var(--color-edge-strong);
+  box-shadow: var(--depth-shadow-mid);
+  transform: translateY(-1px);
+}
+
+.evidence-card[data-expanded="true"] {
+  background: var(--color-elevated);
+  box-shadow: var(--depth-shadow-mid);
+}
+
+/* ─── CITATION STRIP — Granola warmth ───────────────────────────────── */
+
+.evidence-card__citation {
+  border-radius: 4px;
+  padding: var(--space-2) var(--space-3);
+  background: rgba(122, 169, 255, 0.04);
+  border-left: 2px solid var(--color-decision);
+  margin-top: var(--space-2);
+}
+
+.evidence-card__citation[data-status="fixture-shape"] {
+  background: rgba(224, 153, 107, 0.04);
+  border-left-color: var(--color-contested);
+}
+
+.evidence-card__footnote {
+  background: var(--color-frame);
+  border: 1px solid var(--color-edge);
+  border-left: 3px solid var(--color-decision);
+  border-radius: 4px;
+  padding: var(--space-3);
+  box-shadow: var(--depth-shadow-low);
+}
+
+/* ─── SPECIALIST ROWS — flat surface with hover lift ─────────────────── */
+
+.specialist-row {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-edge);
+  padding: var(--space-3) var(--space-4);
+  transition: background var(--motion-fast) var(--motion-ease-out);
+}
+
+.specialist-row:hover {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.specialist-row--refused {
+  background: linear-gradient(90deg, rgba(236, 117, 88, 0.04) 0%, transparent 60%);
+}
+
+.specialist-row__name {
+  font-family: var(--font-mono);
+  font-size: var(--type-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-ink-tertiary);
+}
+
+/* ─── COMMAND LINE — terminal precision ────────────────────────────── */
+
+.command-line {
+  background: var(--color-frame);
+  border-top: 1px solid var(--color-edge);
+  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.02);
+  padding: 0 var(--space-4);
+}
+
+/* ─── REPLAY CONTROLS — Raycast button group ──────────────────────── */
+
+.replay-controls__btn {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-secondary);
+  padding: 4px 10px;
+  border-radius: 4px;
+  transition: all var(--motion-fast) var(--motion-ease-out);
+}
+
+.replay-controls__btn:hover {
+  border-color: var(--color-decision);
+  color: var(--color-ink-primary);
+  background: var(--color-elevated);
+  transform: translateY(-0.5px);
+}
+
+/* ─── SCROLLBARS — frontier subtle ──────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-edge-strong);
+  background-clip: padding-box;
+}
+
+/* ─── REDUCED MOTION ────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
