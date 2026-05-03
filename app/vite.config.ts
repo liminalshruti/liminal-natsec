@@ -17,7 +17,8 @@ const proxiedPaths = [
   "/replay",
   "/real",
   "/ingest",
-  "/health"
+  "/health",
+  "/ask"
 ];
 
 const MIME: Record<string, string> = {

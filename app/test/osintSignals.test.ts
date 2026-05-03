@@ -68,13 +68,29 @@ describe("osintSignals loader", () => {
       "GFW_PORT_VISITS",
       "PORTWATCH",
       "AISSTREAM",
+      "SENTINEL_HUB_PROCESS",
       "SENTINEL_1",
       "SENTINEL_2",
+      "DANTI",
       "SHODAN"
     ];
     for (const src of expected) {
       assert.ok(sources.has(src), `expected at least one signal from ${src}`);
     }
+  });
+
+  it("includes renderable image media for cached satellite chip signals", () => {
+    const signals = loadOsintSignals();
+    const imageSignals = signals.filter((s) => s.category === "imagery" && s.media?.type === "image");
+    assert.ok(imageSignals.length >= 2, "expected cached satellite chips to carry image media");
+    assert.ok(
+      imageSignals.some((s) => s.media?.src === "/fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.png"),
+      "expected Sentinel-1 VV chip image path"
+    );
+    assert.ok(
+      imageSignals.some((s) => s.media?.src === "/fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.png"),
+      "expected Sentinel-2 true-color chip image path"
+    );
   });
 
   it("category counts add up to the total signal count", () => {

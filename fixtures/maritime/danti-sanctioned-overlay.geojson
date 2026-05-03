@@ -1,0 +1,1227 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated_at": "2026-05-03T15:14:33.587Z",
+    "source": "liminal-natsec / scripts/danti-pull-full.mjs + GFW gaps cache",
+    "counts": {
+      "sanctioned_vessels": 21,
+      "ais_gaps": 15
+    },
+    "aoi": "Strait of Hormuz / Persian Gulf / Gulf of Oman",
+    "notes": [
+      "Sanctioned vessel positions are 2026-04-02 to 2026-04-05 (Danti SHIP corpus is bounded to that window).",
+      "GFW AIS gap events span 2024-01 to 2026-04 with most clustered Mar–Apr 2026.",
+      "Zero MMSI overlap between the two layers: the 21 IRISL/NITC ships use Iranian MID 422 and likely do not broadcast (so do not appear in GFW gap detection); the 18 GFW gap-flagged vessels are flag-of-convenience (PAN/LBR/MHL/KNA/QAT/MLT/PRT).",
+      "No-overlap is itself an OSINT signal: two distinct rings — Iranian-flagged tonnage moving openly between Iranian anchorages, and FoC tonnage executing dark periods in the Gulf of Oman approaches."
+    ]
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "sanctioned-9283019",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.281605,
+          27.04895
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "AZARGOUN",
+        "mmsi": "422039300",
+        "imo": "9283019",
+        "flag": "IR",
+        "ship_type": "79",
+        "callsign": "EPBZ7",
+        "length": "207.3",
+        "width": "29.8",
+        "draught": "115",
+        "speed": "0",
+        "course": "106",
+        "heading": "214",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "COLOMBO",
+        "destination": "IRBND",
+        "eta": "2026-03-04T12:00:00Z",
+        "datetime": "2026-04-02T14:31:34Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9420356",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.208832,
+          27.045143
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "SHAYAN 1",
+        "mmsi": "422813000",
+        "imo": "9420356",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "9BTB",
+        "length": "147.87",
+        "width": "23.25",
+        "draught": "73",
+        "speed": "1",
+        "course": "135",
+        "heading": "115",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "RAJAEI",
+        "destination": "IRBND",
+        "eta": "2026-03-17T12:00:00Z",
+        "datetime": "2026-04-02T14:44:13Z",
+        "operator": "NITC",
+        "attribution": "NITC product tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9573086",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.861183,
+          26.530304
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "JAMIL 8",
+        "mmsi": "422961000",
+        "imo": "9573086",
+        "flag": "IR",
+        "ship_type": "52",
+        "callsign": "EPAK6",
+        "length": "26",
+        "width": "8",
+        "draught": "32",
+        "speed": "2",
+        "course": null,
+        "heading": "511",
+        "status": "0",
+        "current_port": null,
+        "last_port": "LENGEH",
+        "destination": "SHANGHAI",
+        "eta": "2026-09-28T10:30:00Z",
+        "datetime": "2026-04-02T14:45:16Z",
+        "operator": "HOPAD/IRISL",
+        "attribution": "HOPAD chartered",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9270658",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.361534,
+          27.027479
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "SHAMIM",
+        "mmsi": "422026500",
+        "imo": "9270658",
+        "flag": "IR",
+        "ship_type": "79",
+        "callsign": "EPBL5",
+        "length": "187.25",
+        "width": "29.8",
+        "draught": "110",
+        "speed": "8",
+        "course": "51",
+        "heading": "165",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "NHAVA SHEVA",
+        "destination": "HIGH SEA",
+        "eta": "2026-03-14T10:00:00Z",
+        "datetime": "2026-04-02T16:43:31Z",
+        "operator": "IRISL",
+        "attribution": "IRISL fleet",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9387815",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.092999,
+          27.065413
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "OURA",
+        "mmsi": "422034900",
+        "imo": "9387815",
+        "flag": "IR",
+        "ship_type": "78",
+        "callsign": "EPBU9",
+        "length": "190",
+        "width": "32.26",
+        "draught": "128",
+        "speed": "12",
+        "course": "55",
+        "heading": "242",
+        "status": "5",
+        "current_port": "RAJAEI",
+        "last_port": "RAJAEI",
+        "destination": "CHINA",
+        "eta": "2026-05-01T12:00:00Z",
+        "datetime": "2026-04-02T16:15:16Z",
+        "operator": "IRISL",
+        "attribution": "IRISL fleet",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9405966",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.113701,
+          26.912693
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "ROSHAK",
+        "mmsi": "422039600",
+        "imo": "9405966",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "EPCA2",
+        "length": "190",
+        "width": "32.26",
+        "draught": "128",
+        "speed": "31",
+        "course": "134",
+        "heading": "63",
+        "status": "5",
+        "current_port": null,
+        "last_port": "RAJAEI",
+        "destination": "BND IR",
+        "eta": "2026-04-01T02:00:00Z",
+        "datetime": "2026-04-02T16:12:15Z",
+        "operator": "IRISL",
+        "attribution": "IRISL fleet",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9820271",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.28212,
+          27.024775
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "HAMOUNA",
+        "mmsi": "422154200",
+        "imo": "9820271",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "EPGX3",
+        "length": "366",
+        "width": "48.2",
+        "draught": "145",
+        "speed": "2",
+        "course": "268",
+        "heading": "168",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "ZHUHAI",
+        "destination": "IRBND",
+        "eta": "2026-03-11T12:00:00Z",
+        "datetime": "2026-04-02T16:06:18Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9359416",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.985188,
+          26.550053
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "ADRIAN DARYA",
+        "mmsi": "422080500",
+        "imo": "9359416",
+        "flag": "IR",
+        "ship_type": "90",
+        "callsign": "EPDT5",
+        "length": "36.8",
+        "width": "10",
+        "draught": null,
+        "speed": "6",
+        "course": "28",
+        "heading": "511",
+        "status": "15",
+        "current_port": null,
+        "last_port": "RAJAEI",
+        "destination": null,
+        "datetime": "2026-04-02T16:42:51Z",
+        "operator": "NIOC / OFAC SDN",
+        "attribution": "ex-Grace 1, 2019 UK seizure",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9165815",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.329567,
+          27.040464
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "GOLSAN",
+        "mmsi": "422032800",
+        "imo": "9165815",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "EPBS6",
+        "length": "168.46",
+        "width": "26",
+        "draught": "102",
+        "speed": "2",
+        "course": "152",
+        "heading": "204",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "MOMBASA",
+        "destination": "BNDIRAN",
+        "eta": "2026-03-24T12:00:00Z",
+        "datetime": "2026-04-02T15:07:26Z",
+        "operator": "IRISL",
+        "attribution": "IRISL fleet",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9405942",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.312561,
+          26.984549
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "BASKAR",
+        "mmsi": "422036800",
+        "imo": "9405942",
+        "flag": "IR",
+        "ship_type": "79",
+        "callsign": "EPBW9",
+        "length": "190",
+        "width": "32.26",
+        "draught": "124",
+        "speed": "2",
+        "course": "192",
+        "heading": "191",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "BANDAR IMAM KHOMEINI",
+        "destination": "B.ABBAS",
+        "eta": "2026-04-01T06:30:00Z",
+        "datetime": "2026-04-02T15:05:34Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9452191",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.781487,
+          26.977777
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "AMIR ABBAS",
+        "mmsi": "422658000",
+        "imo": "9452191",
+        "flag": "IR",
+        "ship_type": "37",
+        "callsign": "9BNQ",
+        "length": "49.95",
+        "width": "15",
+        "draught": "30",
+        "speed": "0",
+        "course": "0",
+        "heading": "511",
+        "status": "8",
+        "current_port": null,
+        "last_port": "QESHM ISLAND",
+        "destination": "DUBAI",
+        "eta": "2026-01-29T20:00:00Z",
+        "datetime": "2026-04-02T15:14:21Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9446415",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.743622,
+          26.951218
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "MATIN",
+        "mmsi": "422661000",
+        "imo": "9446415",
+        "flag": "IR",
+        "ship_type": "255",
+        "callsign": "9BNT",
+        "length": "49.95",
+        "width": "14.52",
+        "draught": "12",
+        "speed": "0",
+        "course": "328",
+        "heading": "511",
+        "status": "0",
+        "current_port": "QESHM ISLAND",
+        "last_port": "QESHM ISLAND",
+        "destination": "LENGE,DUBAI",
+        "eta": "2026-06-04T19:10:00Z",
+        "datetime": "2026-04-02T15:14:31Z",
+        "operator": "NITC",
+        "attribution": "NITC condensate carrier",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9270696",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.240841,
+          27.050663
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "KASHAN",
+        "mmsi": "422068100",
+        "imo": "9270696",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "EPDF6",
+        "length": "187.25",
+        "width": "29.8",
+        "draught": "82",
+        "speed": "3",
+        "course": "322",
+        "heading": "223",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "BENGHAZI",
+        "destination": "IRBND",
+        "eta": "2026-03-07T09:00:00Z",
+        "datetime": "2026-04-02T14:34:27Z",
+        "operator": "IRISL",
+        "attribution": "IRISL fleet",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9369710",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.446613,
+          26.999786
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "DARYABAR",
+        "mmsi": "422050100",
+        "imo": "9369710",
+        "flag": "IR",
+        "ship_type": "79",
+        "callsign": "EPCL8",
+        "length": "225",
+        "width": "32",
+        "draught": "75",
+        "speed": "1",
+        "course": "73",
+        "heading": "230",
+        "status": "1",
+        "current_port": null,
+        "last_port": "CJK",
+        "destination": "IRBND",
+        "eta": "2026-02-24T12:00:00Z",
+        "datetime": "2026-04-02T14:38:03Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9744271",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.768127,
+          26.969404
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "KAMINEH",
+        "mmsi": "422055200",
+        "imo": "9744271",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "SSD",
+        "length": "76",
+        "width": "16",
+        "draught": "35",
+        "speed": "0",
+        "course": "2",
+        "heading": "511",
+        "status": "0",
+        "current_port": null,
+        "last_port": "LENGEH",
+        "destination": "HAMRIYAH B.LENGEH",
+        "eta": "2026-08-26T14:00:00Z",
+        "datetime": "2026-04-02T15:13:50Z",
+        "operator": "NITC",
+        "attribution": "NITC product tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9226944",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.323334,
+          27.066174
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "ARTARIA",
+        "mmsi": "422040700",
+        "imo": "9226944",
+        "flag": "IR",
+        "ship_type": "79",
+        "callsign": "EPCB4",
+        "length": "224.97",
+        "width": "32.29",
+        "draught": "80",
+        "speed": "1",
+        "course": "297",
+        "heading": "181",
+        "status": "1",
+        "current_port": "BANDAR ABBAS ANCH",
+        "last_port": "RAJAEI",
+        "destination": "IRAN BND",
+        "eta": "2026-02-13T04:30:00Z",
+        "datetime": "2026-04-02T16:10:49Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9452414",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.732468,
+          26.971022
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "HOMA",
+        "mmsi": "422600000",
+        "imo": "9452414",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "SSD",
+        "length": "49.09",
+        "width": "11",
+        "draught": "35",
+        "speed": "0",
+        "course": "321",
+        "heading": "511",
+        "status": "0",
+        "current_port": null,
+        "last_port": "POHL",
+        "destination": null,
+        "datetime": "2026-04-02T16:34:56Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9419187",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.723167,
+          26.966618
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "SAVAHEL",
+        "mmsi": "422764000",
+        "imo": "9419187",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "9BRJ",
+        "length": "56.45",
+        "width": "12.1",
+        "draught": null,
+        "speed": "2",
+        "course": "269",
+        "heading": "511",
+        "status": "10",
+        "current_port": null,
+        "last_port": "SHARJAH",
+        "destination": "SHARJ#BABBAS",
+        "datetime": "2026-04-02T16:39:47Z",
+        "operator": "NITC",
+        "attribution": "NITC product fleet",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9495911",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.944775,
+          26.539282
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "ARAM 110",
+        "mmsi": "422004500",
+        "imo": "9495911",
+        "flag": "IR",
+        "ship_type": "52",
+        "callsign": "EPAL8",
+        "length": "29.2",
+        "width": "9",
+        "draught": "40",
+        "speed": "0",
+        "course": "161",
+        "heading": "511",
+        "status": "1",
+        "current_port": null,
+        "last_port": "AL JAZEERA PORT",
+        "destination": "ALJAZIREH",
+        "eta": "2026-02-19T17:00:00Z",
+        "datetime": "2026-04-02T16:43:49Z",
+        "operator": "NITC-affiliated",
+        "attribution": "operator-tied",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9506370",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.735909,
+          26.971491
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "NOUR 1",
+        "mmsi": "422405300",
+        "imo": "9506370",
+        "flag": "IR",
+        "ship_type": "70",
+        "callsign": "EPRN9",
+        "length": "49.85",
+        "width": "10",
+        "draught": null,
+        "speed": "0",
+        "course": "25",
+        "heading": "511",
+        "status": "15",
+        "current_port": null,
+        "last_port": "POHL",
+        "destination": null,
+        "datetime": "2026-04-02T15:41:18Z",
+        "operator": "NITC",
+        "attribution": "NITC product tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "sanctioned-9619751",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.772968,
+          26.976103
+        ]
+      },
+      "properties": {
+        "kind": "sanctioned_vessel",
+        "source": "DANTI/MARINETRAFFIC",
+        "ship_name": "DARYA MAHER",
+        "mmsi": "422082500",
+        "imo": "9619751",
+        "flag": "IR",
+        "ship_type": "150",
+        "callsign": "EPDV6",
+        "length": "60.95",
+        "width": "14",
+        "draught": "15",
+        "speed": "1",
+        "course": null,
+        "heading": "511",
+        "status": "15",
+        "current_port": null,
+        "last_port": "POHL",
+        "destination": "MINARASHID",
+        "eta": "2026-01-01T00:00:00Z",
+        "datetime": "2026-04-02T15:07:50Z",
+        "operator": "NITC",
+        "attribution": "NITC tanker",
+        "sanctions_basis": "public OFAC SDN / IRISL / NITC fleet listings (memory-attested; verify against opensanctions.org for audit)"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-42d57d3d7e5902f5149a16a2475c0b3d",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          58.9365,
+          24.3467
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "AL GHAF",
+        "mmsi": "466574970",
+        "flag": "QAT",
+        "ship_type": "other",
+        "gfw_vessel_id": "284a1f38d-d8fb-00f0-f5cf-318c6ef4cefe",
+        "gap_start": "2026-03-12T20:33:17.000Z",
+        "gap_end": "2026-03-13T19:36:34.000Z",
+        "gap_duration_hours": 23.05,
+        "gap_distance_km": 900.4195838566054,
+        "gap_implied_speed_knots": 21.09274100946401,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 205,
+        "start_distance_from_port_km": 215.08345300000002,
+        "eez": [
+          "8359"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-d3133a47169dc4f3d25c68cdd4dda743",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.372,
+          22.9926
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "BAO SHUN",
+        "mmsi": "352004977",
+        "flag": "PAN",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "9891bcddb-b05b-3e72-612d-6aa2bc54a922",
+        "gap_start": "2026-03-02T16:25:39.000Z",
+        "gap_end": "2026-03-09T18:15:05.000Z",
+        "gap_duration_hours": 169.81666666666666,
+        "gap_distance_km": 1003.1001760938352,
+        "gap_implied_speed_knots": 3.189502981428015,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 397,
+        "start_distance_from_port_km": 469.489531,
+        "eez": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-3ad71e50d4ce6581a833212c92a882cb",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.7195,
+          22.1038
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "HALUL 69",
+        "mmsi": "466334000",
+        "flag": "QAT",
+        "ship_type": "other",
+        "gfw_vessel_id": "c3c899bd2-2389-0a14-7d94-956109670ffe",
+        "gap_start": "2026-03-12T23:07:31.000Z",
+        "gap_end": "2026-03-13T16:50:52.000Z",
+        "gap_duration_hours": 17.716666666666665,
+        "gap_distance_km": 1611.1000447451968,
+        "gap_implied_speed_knots": 49.10203745294392,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 312,
+        "start_distance_from_port_km": 258.11904699999997,
+        "eez": [
+          "8480"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-9f5c5f0093f7715ac8d17978c3b7d828",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.8026,
+          23.8375
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "IOLCOS DIGNITY",
+        "mmsi": "229042000",
+        "flag": "MLT",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "cf4aed5dc-cf1e-1173-81af-5f04cc0ff737",
+        "gap_start": "2026-03-11T12:36:17.000Z",
+        "gap_end": "2026-03-12T02:57:05.000Z",
+        "gap_duration_hours": 14.333333333333334,
+        "gap_distance_km": 282.31241673925564,
+        "gap_implied_speed_knots": 10.635105357096878,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 135,
+        "start_distance_from_port_km": 137.72170300000002,
+        "eez": [
+          "8469"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-2d90abe687c2ebbb46bad2a7d908a798",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.9778,
+          24.0771
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "KASOS",
+        "mmsi": "636018206",
+        "flag": "LBR",
+        "ship_type": "other",
+        "gfw_vessel_id": "ac017eb75-52d6-27e4-8a84-4f45504bb75b",
+        "gap_start": "2026-04-17T08:01:41.000Z",
+        "gap_end": "2026-04-18T17:28:31.000Z",
+        "gap_duration_hours": 33.43333333333333,
+        "gap_distance_km": 674.79958698721,
+        "gap_implied_speed_knots": 10.89818428602761,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 190,
+        "start_distance_from_port_km": 200.00375,
+        "eez": [
+          "8359"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-57d8a274de8efb0e471734e6481f05d1",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          61.2844,
+          23.9261
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "MERCURY",
+        "mmsi": "354168000",
+        "flag": "PAN",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "d1bbbb8d9-95fa-ca78-242f-4ae5a5e28aea",
+        "gap_start": "2026-04-11T16:53:15.000Z",
+        "gap_end": "2026-04-14T22:04:28.000Z",
+        "gap_duration_hours": 77.18333333333334,
+        "gap_distance_km": 859.2774920727367,
+        "gap_implied_speed_knots": 6.011307206664379,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 221,
+        "start_distance_from_port_km": 217.697547,
+        "eez": [
+          "8359"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-7b41714d1c1af090997b22a35a2eef01",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.7527,
+          22.4506
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "MP DYNAMIC",
+        "mmsi": "533180148",
+        "flag": "MYS",
+        "ship_type": "other",
+        "gfw_vessel_id": "d14bf2043-34bf-a09a-7b9f-da3b6d61842f",
+        "gap_start": "2026-03-12T21:17:19.000Z",
+        "gap_end": "2026-03-13T23:46:25.000Z",
+        "gap_duration_hours": 26.483333333333334,
+        "gap_distance_km": 1216.751928982386,
+        "gap_implied_speed_knots": 24.807809270179284,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 534,
+        "start_distance_from_port_km": 535.061625,
+        "eez": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-70ec77ed5df89645badd0f1bbf1deb98",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.6451,
+          24.4849
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "OCEAN LOYALTY",
+        "mmsi": "538010945",
+        "flag": "MHL",
+        "ship_type": "other",
+        "gfw_vessel_id": "dc25cbbe0-0ed2-8c71-8373-4410e63873cf",
+        "gap_start": "2026-03-17T18:18:16.000Z",
+        "gap_end": "2026-03-18T11:33:29.000Z",
+        "gap_duration_hours": 17.25,
+        "gap_distance_km": 6.733035950217481,
+        "gap_implied_speed_knots": 0.21075643879605224,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 96,
+        "start_distance_from_port_km": 128.541352,
+        "eez": [
+          "8469"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-b54a4e3a12220fe5e4bf1e05b9295b46",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.1072,
+          23.0835
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "NPCC YAS",
+        "mmsi": "470642000",
+        "flag": "ARE",
+        "ship_type": "other",
+        "gfw_vessel_id": "b0b63637e-e7c7-d513-ea35-71e198caefe6",
+        "gap_start": "2026-03-12T20:13:34.000Z",
+        "gap_end": "2026-03-14T08:01:07.000Z",
+        "gap_duration_hours": 35.78333333333333,
+        "gap_distance_km": 1034.7671103083187,
+        "gap_implied_speed_knots": 15.614239623750233,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 413,
+        "start_distance_from_port_km": 465.655406,
+        "eez": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-6d5cb97779b30eff333e73acaa061c5c",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.7321,
+          29.2797
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "AM SHRADDHA",
+        "mmsi": "353698000",
+        "flag": "PAN",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "eafcb682f-fdd2-56a1-919f-3ea35ba1ad9b",
+        "gap_start": "2024-01-27T10:30:59.000Z",
+        "gap_end": "2026-04-03T19:25:03.000Z",
+        "gap_duration_hours": 19136.9,
+        "gap_distance_km": 9680.374364196507,
+        "gap_implied_speed_knots": 0.27313640129520866,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 1046,
+        "start_distance_from_port_km": 1091.97175,
+        "eez": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-88be57829c1c7c62a6cc92fcf73e2868",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          49.0216,
+          28.8638
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "KHALEJIA ANA 3",
+        "mmsi": "374228000",
+        "flag": "PAN",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "10cba7061-1b9f-5f41-2c99-79a9a58e1f79",
+        "gap_start": "2026-04-17T05:18:10.000Z",
+        "gap_end": "2026-04-23T17:20:34.000Z",
+        "gap_duration_hours": 156.03333333333333,
+        "gap_distance_km": 78.24687117045211,
+        "gap_implied_speed_knots": 0.27077502950828325,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 95,
+        "start_distance_from_port_km": 22.515514,
+        "eez": [
+          "8356"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-7c8af6d4c6a7f728fad8678e3fd6b5a9",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.1328,
+          24.4496
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "BAO LI",
+        "mmsi": "352003283",
+        "flag": "PAN",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "6d7f72a93-3ad2-3d0c-f49b-9d02055e85c1",
+        "gap_start": "2026-04-05T23:44:32.000Z",
+        "gap_end": "2026-04-06T20:01:18.000Z",
+        "gap_duration_hours": 20.266666666666666,
+        "gap_distance_km": 130.92379378522088,
+        "gap_implied_speed_knots": 3.4881509796988905,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 108,
+        "start_distance_from_port_km": 132.210094,
+        "eez": [
+          "8469"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-935006e9f82a1dfbb6b817526c03f962",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.8079,
+          24.0372
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "FRONT VEFSNA",
+        "mmsi": "636017083",
+        "flag": "LBR",
+        "ship_type": "other",
+        "gfw_vessel_id": "ed11c4970-04e3-cc0a-ddf1-fea9aca816a9",
+        "gap_start": "2026-04-02T06:28:39.000Z",
+        "gap_end": "2026-04-09T09:38:02.000Z",
+        "gap_duration_hours": 171.15,
+        "gap_distance_km": 3175.846633410974,
+        "gap_implied_speed_knots": 10.01939816793579,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 207,
+        "start_distance_from_port_km": 214.86059400000002,
+        "eez": [
+          "8480"
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-ed8ecb713e5ddba6c003b95eb53ce9dd",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.3774,
+          23.1647
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "SAN REMO",
+        "mmsi": "255916103",
+        "flag": "PRT",
+        "ship_type": "other",
+        "gfw_vessel_id": "4531f660f-f16a-c421-7227-b43183e54326",
+        "gap_start": "2026-03-13T22:12:02.000Z",
+        "gap_end": "2026-03-14T20:39:02.000Z",
+        "gap_duration_hours": 22.45,
+        "gap_distance_km": 860.2783077327664,
+        "gap_implied_speed_knots": 20.69100780069861,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 411,
+        "start_distance_from_port_km": 447.951312,
+        "eez": []
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "gap-61298ece164b972c02af9de9268ffddf",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.5558,
+          27.0524
+        ]
+      },
+      "properties": {
+        "kind": "ais_gap",
+        "source": "GFW",
+        "ship_name": "YARA J",
+        "mmsi": "341595001",
+        "flag": "KNA",
+        "ship_type": "cargo",
+        "gfw_vessel_id": "ad7a29102-206a-c74b-338b-dec263dd945b",
+        "gap_start": "2026-03-09T05:38:54.000Z",
+        "gap_end": "2026-03-09T21:09:40.000Z",
+        "gap_duration_hours": 15.5,
+        "gap_distance_km": 1199.5091888493437,
+        "gap_implied_speed_knots": 41.78600950495867,
+        "gap_intentional": true,
+        "start_distance_from_shore_km": 104,
+        "start_distance_from_port_km": 128.990234,
+        "eez": [
+          "8469"
+        ]
+      }
+    }
+  ]
+}

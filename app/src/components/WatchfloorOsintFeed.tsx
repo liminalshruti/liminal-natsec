@@ -121,6 +121,9 @@ function OsintSignalRow({ signal, now }: { signal: OsintSignal; now: number }) {
           </span>
         </div>
         <div className="osint-signal-row__title">{signal.title}</div>
+        {signal.media?.type === "image" && (
+          <OsintSignalImage media={signal.media} />
+        )}
         {signal.detail && <div className="osint-signal-row__detail">{signal.detail}</div>}
         {signal.badges && signal.badges.length > 0 && (
           <div className="osint-signal-row__badges">
@@ -131,5 +134,24 @@ function OsintSignalRow({ signal, now }: { signal: OsintSignal; now: number }) {
         )}
       </Tag>
     </li>
+  );
+}
+
+function OsintSignalImage({ media }: { media: Extract<OsintSignal["media"], { type: "image" }> }) {
+  const [hidden, setHidden] = useState(false);
+  if (hidden) return null;
+
+  return (
+    <figure className="osint-signal-row__media">
+      <img
+        src={media.src}
+        alt={media.alt}
+        loading="lazy"
+        decoding="async"
+        draggable={false}
+        onError={() => setHidden(true)}
+      />
+      {media.caption && <figcaption>{media.caption}</figcaption>}
+    </figure>
   );
 }

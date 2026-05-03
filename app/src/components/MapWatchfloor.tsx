@@ -32,6 +32,13 @@ import { TimelineScrubber } from "../map/TimelineScrubber.tsx";
 import { MapLabels } from "../map/MapLabels.tsx";
 import { loadShipIcons } from "../map/shipIcons.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
+import {
+  emptyDantiTrafficFeatureCollection,
+  loadDantiTraffic,
+  selectVisibleDantiTraffic,
+  type DantiTrafficArchive,
+  type VisibleDantiTraffic
+} from "../map/dantiTraffic.ts";
 
 export interface ScenarioState {
   phase: Phase;
@@ -86,6 +93,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const lastFlownCaseIdRef = useRef<string | null | undefined>(undefined);
   const lastFlownPhaseRef = useRef<Phase | null>(null);
   const lastVisiblePingSigRef = useRef<string>("");
+  const lastVisibleDantiSigRef = useRef<string>("");
   const lastEmittedStateSigRef = useRef<string>("");
   const latestControlledStateRef = useRef<ScenarioState | undefined>(props.scenarioState);
   const onScenarioStateChangeRef = useRef<MapWatchfloorProps["onScenarioStateChange"]>(
@@ -93,6 +101,9 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   );
 
   const [load, setLoad] = useState<LoadState>({ kind: "loading" });
+  const [dantiTraffic, setDantiTraffic] = useState<DantiTrafficArchive | null>(null);
+  const [visibleDantiTraffic, setVisibleDantiTraffic] =
+    useState<VisibleDantiTraffic | null>(null);
   const [mapReady, setMapReady] = useState(false);
   const [internalState, setInternalState] = useState<ScenarioState | null>(null);
 
@@ -131,6 +142,22 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       cancelled = true;
     };
   }, [props.fixtureUrl, props.resetSignal, isControlled]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setDantiTraffic(null);
+    setVisibleDantiTraffic(null);
+    loadDantiTraffic()
+      .then((archive) => {
+        if (!cancelled) setDantiTraffic(archive);
+      })
+      .catch(() => {
+        if (!cancelled) setDantiTraffic(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [props.resetSignal]);
 
   // --- Resolve effective scenario state -----------------------------------
   const effectiveState: ScenarioState | null = isControlled
@@ -289,6 +316,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
           type: "geojson",
           data: { type: "FeatureCollection", features: [] }
         });
+        map.addSource(SOURCES.dantiTrafficVisible, {
+          type: "geojson",
+          data: emptyDantiTrafficFeatureCollection()
+        });
         // Load ship-icon sprites before adding symbol layers that reference
         // them. Failures are non-fatal — the underlying circle layer still
         // renders the vessel position; we just lose the ship-shaped overlay.
@@ -333,6 +364,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       lastFlownAlertIdRef.current = undefined;
       lastFlownCaseIdRef.current = undefined;
       lastFlownPhaseRef.current = null;
+      lastVisibleDantiSigRef.current = "";
       lastEmittedStateSigRef.current = "";
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -394,6 +426,32 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     lastVisiblePingSigRef.current = sig;
     source.setData(visible);
   }, [effectiveState, effectivePhase, load, mapReady]);
+
+  // --- Push archived DANTI traffic into the live source ------------------
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady || load.kind !== "ready" || !effectiveState || !dantiTraffic) {
+      return;
+    }
+    const source = map.getSource(SOURCES.dantiTrafficVisible) as
+      | maplibregl.GeoJSONSource
+      | undefined;
+    if (!source) return;
+    const visible = selectVisibleDantiTraffic(
+      dantiTraffic,
+      load.fixture,
+      Date.parse(effectiveState.clockIso)
+    );
+    const sig =
+      `${visible.archiveClockIso ?? "none"}|` +
+      visible.featureCollection.features
+        .map((f) => `${f.id}:${f.properties.t_epoch_ms}`)
+        .join(",");
+    if (sig === lastVisibleDantiSigRef.current) return;
+    lastVisibleDantiSigRef.current = sig;
+    source.setData(visible.featureCollection);
+    setVisibleDantiTraffic(visible);
+  }, [dantiTraffic, effectiveState, load, mapReady]);
 
   // --- Phase-driven camera ------------------------------------------------
   useEffect(() => {
@@ -481,6 +539,9 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
             />
           )}
           <PhaseBadge phase={effectivePhase} />
+          {visibleDantiTraffic && (
+            <DantiTrafficBadge traffic={visibleDantiTraffic} />
+          )}
           {load.kind === "ready" && effectiveState && (
             <TimelineScrubber
               fixture={load.fixture}
@@ -510,6 +571,21 @@ function PhaseBadge({ phase }: { phase: Phase | null }): ReactNode {
     <div className="map-phase-badge">
       <span className="map-phase-num">PHASE {phase}</span>
       <span className="map-phase-name">{PHASE_LABELS[phase]}</span>
+    </div>
+  );
+}
+
+function DantiTrafficBadge({ traffic }: { traffic: VisibleDantiTraffic }): ReactNode {
+  if (!traffic.archiveClockIso) return null;
+  return (
+    <div className="map-danti-badge">
+      <span className="map-danti-badge__label">DANTI archive traffic</span>
+      <span className="map-danti-badge__clock">
+        {formatArchiveClock(traffic.archiveClockIso)}
+      </span>
+      <span className="map-danti-badge__count">
+        {traffic.visibleVessels}/{traffic.totalVessels} vessels
+      </span>
     </div>
   );
 }

@@ -4,7 +4,8 @@ import { COLORS } from "./tokens.ts";
 // Source ids — referenced by the component when calling addSource.
 export const SOURCES = {
   staticGeoJson: "tracks-static",         // monitored zone, predicted_ellipse_95, full hero_ping list
-  heroPingsVisible: "hero-pings-visible"  // time-sliced subset, refreshed by replay.ts
+  heroPingsVisible: "hero-pings-visible", // time-sliced subset, refreshed by replay.ts
+  dantiTrafficVisible: "danti-traffic-visible"
 } as const;
 
 export interface LayerInputs {
@@ -126,6 +127,61 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
         "icon-allow-overlap": true,
         "icon-ignore-placement": true,
         "icon-anchor": "center"
+      }
+    },
+
+    // Archived DANTI/MarineTraffic replay. This is not the hero dark-gap
+    // scenario clock; MapWatchfloor maps the current scrubber progress onto
+    // the April 2 archive window and feeds this source with the latest known
+    // point per vessel. Keep it visually subordinate to the hero pings.
+    {
+      id: "layer:danti-traffic-points",
+      type: "circle",
+      source: SOURCES.dantiTrafficVisible,
+      paint: {
+        "circle-radius": [
+          "case",
+          ["==", ["get", "is_iran_flag"], true], 4.8,
+          ["==", ["get", "is_tanker"], true], 3.8,
+          2.8
+        ],
+        "circle-color": [
+          "case",
+          ["==", ["get", "is_iran_flag"], true], "#e36d5a",
+          ["==", ["get", "is_tanker"], true], "#78d7b1",
+          "#6f8fa8"
+        ],
+        "circle-opacity": [
+          "case",
+          ["==", ["get", "is_underway"], true], 0.86,
+          0.55
+        ],
+        "circle-stroke-color": "rgba(6,18,31,0.92)",
+        "circle-stroke-width": 1
+      }
+    },
+    {
+      id: "layer:danti-traffic-labels",
+      type: "symbol",
+      source: SOURCES.dantiTrafficVisible,
+      filter: [
+        "any",
+        ["==", ["get", "is_iran_flag"], true],
+        ["==", ["get", "is_underway"], true]
+      ],
+      layout: {
+        "text-field": ["get", "name"],
+        "text-size": 10,
+        "text-offset": [0.8, 0],
+        "text-anchor": "left",
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
+      },
+      paint: {
+        "text-color": "#cfdbe8",
+        "text-halo-color": "rgba(6,18,31,0.86)",
+        "text-halo-width": 1.2,
+        "text-opacity": 0.78
       }
     }
   ];

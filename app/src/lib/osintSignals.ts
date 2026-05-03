@@ -16,6 +16,7 @@
  */
 
 import aisstreamSample from "../../../fixtures/maritime/live-cache/aisstream-hormuz-sample.json" with { type: "json" };
+import dantiAll from "../../../fixtures/maritime/live-cache/danti-hormuz-all-size-200.json" with { type: "json" };
 import exaOsint from "../../../fixtures/maritime/live-cache/exa-hormuz-osint.json" with { type: "json" };
 import gdeltArtlist from "../../../fixtures/maritime/live-cache/gdelt-hormuz-doc20-artlist.json" with { type: "json" };
 import gfwGaps from "../../../fixtures/maritime/live-cache/gfw-hormuz-gaps.json" with { type: "json" };
@@ -27,7 +28,9 @@ import ofacMatches from "../../../fixtures/maritime/live-cache/ofac-maritime-san
 import portwatchTransits from "../../../fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json" with { type: "json" };
 import portwatchDisruptions from "../../../fixtures/maritime/live-cache/portwatch-hormuz-disruptions.json" with { type: "json" };
 import sentinel1Stac from "../../../fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json" with { type: "json" };
+import sentinel1ProcessMetadata from "../../../fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.metadata.json" with { type: "json" };
 import sentinel2Stac from "../../../fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json" with { type: "json" };
+import sentinel2ProcessMetadata from "../../../fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.metadata.json" with { type: "json" };
 import shodanAis from "../../../fixtures/maritime/live-cache/shodan-maritime-ais.json" with { type: "json" };
 
 export type OsintCategory =
@@ -48,10 +51,18 @@ export interface OsintSignal {
   timestamp?: string;
   url?: string;
   badges?: string[];
+  media?: OsintSignalMedia;
+}
+
+export interface OsintSignalMedia {
+  type: "image";
+  src: string;
+  alt: string;
+  caption?: string;
 }
 
 const PER_SOURCE_CAP = 40;
-const MAX_SIGNALS = 220;
+const MAX_SIGNALS = 360;
 
 const warned = new Set<string>();
 function warnOnce(source: string, error: unknown): void {
@@ -560,6 +571,86 @@ function adaptSentinel(label: string, mission: string, stac: unknown): OsintSign
   return out;
 }
 
+interface SentinelProcessMetadata {
+  generated_at?: string;
+  request?: {
+    metadata?: {
+      dataType?: string;
+      aoi?: string;
+      bbox?: number[];
+      timeRange?: { from?: string; to?: string };
+    };
+  };
+  response?: {
+    ok?: boolean;
+    status?: number;
+    bytes?: number;
+  };
+  fileName?: string;
+}
+
+function fixtureAssetPath(fileName: string): string {
+  return `/fixtures/maritime/live-cache/${fileName}`;
+}
+
+function bytesLabel(bytes: unknown): string | undefined {
+  if (typeof bytes !== "number" || !Number.isFinite(bytes)) return undefined;
+  if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  if (bytes >= 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${bytes} B`;
+}
+
+function adaptSentinelProcessChip(
+  title: string,
+  sensorLabel: string,
+  metadata: unknown
+): OsintSignal[] {
+  const meta = metadata as SentinelProcessMetadata;
+  const fileName = meta.fileName;
+  if (!fileName) return [];
+  const src = fixtureAssetPath(fileName);
+  const bytes = bytesLabel(meta.response?.bytes);
+  const dataType = meta.request?.metadata?.dataType;
+  const bbox = meta.request?.metadata?.bbox;
+  const detailParts = ["cached image chip"];
+  if (dataType) detailParts.push(dataType);
+  if (bytes) detailParts.push(bytes);
+  if (bbox && bbox.length === 4) detailParts.push(`bbox ${bbox.map((n) => n.toFixed(1)).join("/")}`);
+
+  return [{
+    id: `sentinelhub-chip:${fileName}`,
+    source: "SENTINEL_HUB_PROCESS",
+    sourceLabel: "SentinelHub · image chip",
+    category: "imagery",
+    title,
+    detail: detailParts.join(" · "),
+    timestamp: safeISO(meta.generated_at) ?? safeISO(meta.request?.metadata?.timeRange?.to),
+    url: src,
+    badges: [sensorLabel],
+    media: {
+      type: "image",
+      src,
+      alt: `${title} preview`,
+      caption: sensorLabel
+    }
+  }];
+}
+
+function adaptSentinelProcessChips(): OsintSignal[] {
+  return [
+    ...adaptSentinelProcessChip(
+      "Sentinel-1 VV image chip",
+      "SAR · VV",
+      sentinel1ProcessMetadata
+    ),
+    ...adaptSentinelProcessChip(
+      "Sentinel-2 true-color image chip",
+      "EO · true color",
+      sentinel2ProcessMetadata
+    )
+  ];
+}
+
 interface ShodanMatch {
   ip_str?: string;
   hostnames?: string[];
@@ -568,6 +659,137 @@ interface ShodanMatch {
   tags?: string[];
   maritime_context_hostname?: string;
   timestamp?: string;
+}
+
+interface DantiDocument {
+  documentId?: string;
+  title?: string;
+  category?: string;
+  source?: string;
+  authoredOn?: string;
+  thumbnail?: string;
+  asset?: {
+    preview?: {
+      href?: string;
+      type?: string;
+      title?: string;
+    };
+  };
+  display?: {
+    type?: string;
+    source?: string;
+    summary?: string;
+    link?: string;
+    // SHIP-only:
+    ship_name?: string;
+    flag?: string;
+    ship_type?: string;
+    imo?: number | string;
+    mmsi?: number | string;
+    destination?: string;
+    eta?: string;
+    status?: string;
+    speed?: number;
+    // IMAGE-only:
+    platform?: string;
+    cloud_cover?: number;
+    sensor?: string;
+  };
+}
+
+interface DantiCategory {
+  category?: string;
+  total?: { value?: number };
+  documents?: DantiDocument[];
+}
+
+const DANTI_CATEGORY_MAP: Record<string, { category: OsintCategory; label: string; cap: number }> = {
+  WEB_ARTICLE: { category: "news", label: "Danti · web article", cap: 15 },
+  SOCIAL_MEDIA: { category: "news", label: "Danti · social", cap: 15 },
+  IMAGE: { category: "imagery", label: "Danti · satellite image", cap: 12 },
+  SHIP: { category: "vessel-events", label: "Danti · AIS ship", cap: 20 }
+};
+
+function dantiImagePreview(doc: DantiDocument): string | undefined {
+  const preview = doc.thumbnail ?? doc.asset?.preview?.href;
+  return typeof preview === "string" && preview.length > 0 ? preview : undefined;
+}
+
+function adaptDanti(): OsintSignal[] {
+  const cats = (dantiAll as { body?: { resultDocuments?: DantiCategory[] } }).body?.resultDocuments ?? [];
+  const out: OsintSignal[] = [];
+  for (const cat of cats) {
+    const mapping = cat.category ? DANTI_CATEGORY_MAP[cat.category] : undefined;
+    if (!mapping || !cat.documents) continue;
+    for (const doc of cat.documents.slice(0, mapping.cap)) {
+      const id = doc.documentId ?? doc.title;
+      if (!id) continue;
+
+      let title: string | undefined;
+      let detail: string | undefined;
+      let url: string | undefined;
+      const badges: string[] = [];
+
+      if (cat.category === "WEB_ARTICLE" || cat.category === "SOCIAL_MEDIA") {
+        title = doc.title?.trim() || doc.display?.summary?.slice(0, 120);
+        const summary = doc.display?.summary?.replace(/\s+/g, " ").trim();
+        detail = summary ? clip(summary, 240) : undefined;
+        url = doc.display?.link;
+        if (doc.display?.source) badges.push(doc.display.source);
+      } else if (cat.category === "SHIP") {
+        const ship = doc.display?.ship_name?.trim();
+        const imo = doc.display?.imo;
+        const mmsi = doc.display?.mmsi;
+        const headParts = [ship || "AIS ship"];
+        if (imo) headParts.push(`IMO ${imo}`);
+        else if (mmsi) headParts.push(`MMSI ${mmsi}`);
+        title = headParts.join(" · ");
+        const detailParts: string[] = [];
+        if (doc.display?.ship_type) detailParts.push(doc.display.ship_type);
+        if (doc.display?.destination) detailParts.push(`→ ${doc.display.destination}`);
+        if (doc.display?.status) detailParts.push(doc.display.status);
+        detail = detailParts.length > 0 ? detailParts.join(" · ") : undefined;
+        if (doc.display?.flag) badges.push(`flag ${doc.display.flag}`);
+        if (doc.source) badges.push(doc.source);
+      } else if (cat.category === "IMAGE") {
+        const sensor = doc.display?.sensor || doc.display?.platform || "imagery";
+        const provider = doc.display?.source ?? doc.source ?? "satellite";
+        const thumbnail = dantiImagePreview(doc);
+        title = `Satellite · ${provider} · ${sensor}`;
+        const detailParts: string[] = [];
+        if (typeof doc.display?.cloud_cover === "number") {
+          detailParts.push(`cloud cover ${doc.display.cloud_cover}%`);
+        }
+        if (doc.display?.platform) detailParts.push(`platform ${doc.display.platform}`);
+        detail = detailParts.length > 0 ? detailParts.join(" · ") : undefined;
+        url = thumbnail;
+        if (doc.source) badges.push(doc.source);
+      }
+
+      if (!title) continue;
+
+      out.push({
+        id: `danti:${cat.category}:${id}`,
+        source: "DANTI",
+        sourceLabel: mapping.label,
+        category: mapping.category,
+        title: clip(title, 160),
+        detail,
+        timestamp: safeISO(doc.authoredOn),
+        url,
+        badges: badges.length > 0 ? badges : undefined,
+        media: cat.category === "IMAGE"
+          ? dantiImagePreview(doc) ? {
+            type: "image",
+            src: dantiImagePreview(doc)!,
+            alt: `${title} preview`,
+            caption: doc.display?.platform || doc.display?.sensor || doc.source
+          } : undefined
+          : undefined
+      });
+    }
+  }
+  return out;
 }
 
 function adaptShodan(): OsintSignal[] {
@@ -614,8 +836,10 @@ export function loadOsintSignals(): OsintSignal[] {
     ...runAdapter("PORTWATCH_TRANSITS", adaptPortwatchTransits),
     ...runAdapter("PORTWATCH_DISRUPTIONS", adaptPortwatchDisruptions),
     ...runAdapter("AISSTREAM", adaptAisstream),
+    ...runAdapter("SENTINEL_HUB_PROCESS", adaptSentinelProcessChips),
     ...runAdapter("SENTINEL_1", () => adaptSentinel("SENTINEL_1", "Sentinel-1 SAR", sentinel1Stac)),
     ...runAdapter("SENTINEL_2", () => adaptSentinel("SENTINEL_2", "Sentinel-2 truecolor", sentinel2Stac)),
+    ...runAdapter("DANTI", adaptDanti),
     ...runAdapter("SHODAN", adaptShodan)
   ];
 
