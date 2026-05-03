@@ -55,7 +55,7 @@ export function ProvenanceTrace({ claimId }: ProvenanceTraceProps) {
               size="sm"
             />
             {isRoot && (
-              <span style={{ color: "var(--fg-2)", fontSize: 9, letterSpacing: "0.16em" }}>
+              <span style={{ color: "var(--color-ink-tertiary)", fontSize: 9, letterSpacing: "0.16em" }}>
                 ROOT
               </span>
             )}
