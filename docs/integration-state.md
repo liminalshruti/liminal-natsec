@@ -35,23 +35,30 @@ They're complementary. When they conflict (e.g., v3 v1 said "no backend"; TECHNI
 
 ---
 
-## 3. Demo spine → module map
+## 3. Demo spine → module map (v2 · post-PR-#54)
 
-| Beat | What judge sees | Powered by | Fallback |
-|---|---|---|---|
-| 1. Normal traffic | Map shows baseline AIS tracks | `app/src/components/MapWatchfloor.tsx` + `fixtures/maritime/tracks.geojson` | n/a |
-| 2. Vessel goes dark | MMSI-111 disappears; track break visible | `app/src/map/replay.ts` + Kalman dark-gap predictor (M1, `shared/scoring/kalman.ts`) | Static fixture |
-| 3. Second identity appears | MMSI-222 appears on plausible heading | Replay engine + `app/src/map/fixtureLoader.ts` | Static fixture |
-| 4. Custody hypotheses preserved | Hypothesis board renders 3 cards | `HypothesisBoard.tsx` + `fixtures/maritime/hypotheses.json` + Bayesian fusion (M2, `shared/scoring/bayes.ts`) | Static fixture |
-| 5. **Signal Integrity contested** | Specialist-reads row, amber/contested treatment | `SpecialistReads.tsx` + `fixtures/maritime/specialist-reads.json` (cached AIP Logic outputs) + structural guard (`server/src/specialists/guard.ts`) | n/a — fixture *is* the path |
-| 6. **Intent REFUSED — structurally** | Hero refusal moment | `guard.ts` Layer 2 (INTENT_INDICATOR check) + Layer 1 (citation minimum) | n/a — refusal is enforced |
-| 7. Collection action recommended | ActionOptions panel shows next collection | `ActionOptions.tsx` + `fixtures/maritime/actions.json` | n/a |
-| 8. Review rule saved | Operator types rule, saves to localStorage | `ReviewMemory.tsx` + `app/src/lib/reviewRulesStore.ts` + DSL parser (M4, `shared/rules/dsl.ts`) | localStorage is canonical |
-| 9. Next case recommendation changes | Second case appears with rule applied | `CustodyQueue.tsx` + `graph-spine/review-memory.ts` `applyReviewRules()` traversal | Same — review-memory traversal is deterministic |
+The arc grew from 6 to 9 beats as 25 PRs landed on 2026-05-03. New rows: 0 (broadcast chyron), 1 (AI-proposed third case), 2 (drag-and-drop signal attach), and three sub-renders inside the existing refusal beat (server-stamp, causal callout, rule-compounding edges).
+
+| # | Beat | What judge sees | Powered by | Fallback |
+|---|---|---|---|---|
+| 0 | **Cold open · operator persona** | Broadcast chyron `LIMINAL · CUSTODY · CASE alara_01_ · 5TH FLEET · 0200Z · WATCH-1` at top; substrate-state chyron `substrate :: settling · watchfloor at rest` at bottom | `BroadcastChyron.tsx` (PR #39 SHIP-5) + `SubstrateStateChyron.tsx` (PR #43 STRETCH-1) | Source-agnostic; reads scenario state |
+| 1 | **AI-proposed third case** ⟵ NEW | Discovery toast in working pane: "Hormuz Watch Box dark-vessel proposal · 11 vessels · real source window · 72%" | `AiNoticeToast.tsx` + `DraftCaseDetail.tsx` + Danti pipeline outputs (PRs #29, #32, #33) | Cached Danti queries are fixtures with `generated_at` provenance |
+| 2 | **Drag-and-drop signal attach** ⟵ NEW | Operator drags high-signal OSINT signal from draft into stage; ghost ship materializes; celebration animation in working panel | `DraftCaseDetail.tsx` + `StageViewport.tsx` + `MapOverlays.tsx` + B-3 attach-flow (PRs #30, #31, #34) | Operator-driven only beat; deterministic |
+| 3 | Open EV1 (or EV2 if R-001 saved) | Substrate three-register separation (WATCHFLOOR / AI · PROPOSED / OSINT SIGNALS); EV2 auto-selected if savedRules.length > 0 | `SubstratePanel.tsx` (PR #51 B4) + `App.tsx` A3 logic (PR #49) | localStorage is canonical |
+| 4 | Phase advances · dark gap detected | Phase chip P2; map shows MMSI-111 disappears; HUD pinned bottom-right with glass bg | `app/src/map/replay.ts` + Kalman dark-gap predictor (M1, `shared/scoring/kalman.ts`) + `MapTelemetryHud.tsx` (PR #50 B5) | Static fixture; phase-keyed activePane = stage (PR #46 STRETCH-2) |
+| 5 | Track B reappears | Phase chip P3; MMSI-222 / MV CALDERA pings inside Kalman ellipse 4.2nm from MMSI-111 | Replay engine + `app/src/map/fixtureLoader.ts` | Static fixture |
+| 6 | Specialist convergence | 6 rows in mnemonic gutters (`KIN`, `IDV`, `SIG · INT`, `INT`, `COL`, `VIS`); Signal Integrity row self-narrates the convergence beat (PR #27) | `SpecialistReads.tsx` (PR #41 SHIP-2) + `fixtures/maritime/specialist-reads.json` + structural guard (`server/src/specialists/guard.ts`) | n/a — fixture *is* the path |
+| 7 | **Make-or-break-1 · Intent refused** | Italic causal callout + server-stamped guard verdict in archival paper register inside working pane; ExecSummary in serif typography (Fraunces); EvidenceDrawer cards lift to glassmorphism | `guard.ts` Layer 2 (INTENT_INDICATOR check) + Layer 1 (citation minimum) + `GuardLayerStamp` parses `refusalReason` payload (PR #44 STRETCH-3) + ExecSummary+EvidenceDrawer typography lifts (PR #54) | n/a — refusal is enforced |
+| 8 | Operator writes review rule | ReviewMemory · DSL · M4 parser; rule saves to localStorage as R-001 ACTIVE | `ReviewMemory.tsx` + `app/src/lib/reviewRulesStore.ts` + DSL parser (M4, `shared/rules/dsl.ts`) | localStorage is canonical |
+| 9 | **Make-or-break-2 · second case re-ranked + doctrine compounds** | PRIOR REVIEW RULE banner; verb chip `PRIOR RULE APPLIED`; bounded actions reorder; rule-compounding edges fan to 4 prior cases (2 RE-RANKED, 2 UNCHANGED) | `CustodyQueue.tsx` + `graph-spine/review-memory.ts` `applyReviewRules()` + `RuleCompoundingEdges` SVG (PR #45 STRETCH-6) | Same — review-memory traversal is deterministic |
+
+**Wet/drying/dry typography (PR #42 SHIP-3)** runs underneath beats 4–7 — every evidence row's epistemic state is encoded in type, not in chrome.
+
+**Substrate-state chyron** narrates the system's continuous self-state across all beats in plain English at the bottom of the shell. The single line a non-technical judge can follow when they miss every other beat. Source-agnostic per the hard constraint below.
 
 **The make-or-break moment is unchanged from v3 patch:** *"a second event card shows a changed recommendation because of a human review rule, AND the system shows that Intent refused because the structural guard fired on Layer 2."*
 
-The v3 v2 reframe is: **refusal isn't a UX choice; it's a server-side enforcement.** That's a much stronger pitch line.
+The v3 v2 reframe is: **refusal isn't a UX choice; it's a server-side enforcement.** That's a much stronger pitch line. The 2026-05-03 PR sweep (25 PRs) wires this enforcement to multiple visible surfaces — server-stamp in archival paper register, causal callout, substrate-state chyron narration, rule-compounding edges fanning back into prior cases. **All four of those surfaces read off the same `guard.ts` payload shape; none contains hardcoded copy.**
 
 ---
 
@@ -121,6 +128,18 @@ operator question
 ```
 
 **The judge cannot distinguish demo mode from Q&A mode visually.** That's the point. Shayaun says "let me show you live AIP" → flips flag → next case runs through AIP Logic → guard catches it → demo continues seamlessly.
+
+### How the chrome stays source-agnostic (post-2026-05-03 sweep)
+
+The 2026-05-03 PR sweep added a new architectural seam between data and display: `app/src/lib/presentationText.ts` (PR `aae7b20`). Every surface that renders evidence or specialist verdict copy now goes through this helper, which:
+
+- Routes raw payload (titles, summaries, detail text, policy notes) through a single `publicText()` function
+- Strips internal-only fields (`internalNotes`, `_provenance`, debug tags) at the rendering boundary
+- Returns the same shape regardless of whether the source is a fixture or a live AIP response
+
+**This is what makes the source-agnostic guarantee structural, not aspirational.** The four surfaces that read off `guard.ts` payload (substrate-state chyron, wet/drying/dry typography, server-stamped guard verdict, causal callout) all consume `presentationText` outputs. Same shape, fixture or AIP. Same chrome, fixture or AIP.
+
+If a future surface needs to render guard-relevant text, it must use `presentationText`. Hardcoded copy that bypasses it would silently re-introduce the demo-vs-AIP distinguishability that this seam exists to prevent.
 
 ---
 
