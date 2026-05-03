@@ -1,0 +1,21 @@
+{
+  "source": "OVERPASS",
+  "generated_at": "2026-05-03T01:03:57.902Z",
+  "request": {
+    "url": "https://overpass-api.de/api/interpreter",
+    "method": "POST",
+    "metadata": {
+      "aoi": "Strait of Hormuz demo AOI",
+      "bbox": [
+        54.4,
+        24.5,
+        57.8,
+        27.2
+      ]
+    }
+  },
+  "response": {
+    "ok": false
+  },
+  "error": "fetch failed"
+}

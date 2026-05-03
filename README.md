@@ -96,11 +96,11 @@ Node fallback for tests: `npm test`.
 ## Demo checklist
 
 1. Start the server: `bun run dev:server`
-2. Start the desktop app: `bun run dev:desktop`
+2. Start the app: `bun run dev:app` or start the desktop app: `bun run dev:desktop`
 3. Run the replay
 4. Trigger the dark gap
 5. Open the custody case
-6. Show the structurally enforced specialist refusal
+6. Show the specialist refusal as structurally enforced
 7. Save the review rule
 8. Show the second case changed by the prior rule
 9. Press `Ctrl+Shift+R` and verify reset
@@ -129,13 +129,13 @@ Node fallback for tests: `npm test`.
 
 ## Never-cut invariants
 
-- Persistent desktop shell
+- Persistent shell (desktop)
 - Dark gap + two-MMSI identity churn
 - Hypothesis board
 - Signal Integrity row
 - Specialist refusal (structurally enforced)
 - Causal line: "Intent refused because the guard fired"
-- Evidence / provenance trace
+- Evidence/provenance trace
 - Review rule saved
 - Prior rule applied / second case changed
 

@@ -158,10 +158,6 @@ export function executeCamera(
   options: CameraOptions | null
 ): void {
   if (!map || !options) return;
-  // Defence-in-depth: if MapLibre throws (commonly happens when called
-  // before the container has measurable dimensions), swallow it. The next
-  // valid camera command will recover; a thrown LngLat NaN here used to
-  // tear down the whole React tree via the error boundary.
   try {
     if (options.kind === "fly") {
       map.flyTo({
@@ -173,10 +169,33 @@ export function executeCamera(
       });
       return;
     }
-    map.fitBounds(options.bounds, {
+    // Convert bounds → flyTo via cameraForBounds. Direct fitBounds in
+    // MapLibre v5 (5.24.x) corrupts the transform during initial layout —
+    // transform.zoom becomes NaN, project() returns NaN, and HTML overlays
+    // anchored via map.project lose their positions. flyTo with a
+    // pre-computed center+zoom is stable.
+    const cam = map.cameraForBounds(options.bounds, {
       padding: options.padding ?? 80,
-      duration: options.duration ?? 1200,
       maxZoom: options.maxZoom ?? 10
+    });
+    if (!cam || cam.center == null || !Number.isFinite(cam.zoom ?? NaN)) return;
+    const camCenter = cam.center as
+      | [number, number]
+      | { lng: number; lat: number }
+      | { lon: number; lat: number };
+    const center: [number, number] = Array.isArray(camCenter)
+      ? camCenter
+      : [
+          (camCenter as { lng?: number; lon?: number }).lng ??
+            (camCenter as { lon?: number }).lon!,
+          (camCenter as { lat: number }).lat
+        ];
+    map.flyTo({
+      center,
+      zoom: cam.zoom,
+      speed: 0.8,
+      curve: 1.4,
+      duration: options.duration ?? 1200
     });
   } catch (err) {
     // eslint-disable-next-line no-console

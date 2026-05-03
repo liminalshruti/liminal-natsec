@@ -44,6 +44,10 @@ export function buildMapStyle(opts: BuildStyleOptions = {}): StyleSpecification 
   return {
     version: 8,
     name: "seaforge-watchfloor",
+    center: INITIAL_VIEW.center,
+    zoom: INITIAL_VIEW.zoom,
+    bearing: INITIAL_VIEW.bearing,
+    pitch: INITIAL_VIEW.pitch,
     sources,
     layers
   } satisfies StyleSpecification;

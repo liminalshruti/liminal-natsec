@@ -84,6 +84,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const lastFlownAlertIdRef = useRef<string | null | undefined>(undefined);
   const lastFlownCaseIdRef = useRef<string | null | undefined>(undefined);
   const lastFlownPhaseRef = useRef<Phase | null>(null);
+  const lastVisiblePingSigRef = useRef<string>("");
 
   const [load, setLoad] = useState<LoadState>({ kind: "loading" });
   const [mapReady, setMapReady] = useState(false);
@@ -202,6 +203,17 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     detachFallbackRef.current = attachTileFailureRecovery(map);
     setMapReady(false);
 
+    // MapLibre v5 (5.24.x) intermittently constructs the map with
+    // transform.zoom = NaN even though both the style and constructor
+    // pass a valid zoom. That breaks map.project(), getZoom(), and any
+    // HTML overlay anchored via projection. Force a jumpTo immediately to
+    // realise a finite transform before anything else queues a camera op.
+    try {
+      map.jumpTo({ center: INITIAL_VIEW.center, zoom: INITIAL_VIEW.zoom });
+    } catch {
+      // ignore — constructor already set viable defaults if jumpTo can't fire
+    }
+
     map.on("load", () => {
       map.addSource(SOURCES.staticGeoJson, {
         type: "geojson",
@@ -271,6 +283,11 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   }, [effectivePhase, props.selectedCaseId, mapReady]);
 
   // --- Push time-sliced hero pings into the live source -------------------
+  // The rAF playback ticks at 60 Hz but hero pings are at 3-minute demo
+  // intervals (≈0.3 s wall at 600× speed). Calling setData on every render
+  // saturates MapLibre's render loop with "Attempting to run(), but is
+  // already running" errors. Compute a cheap signature of the visible set
+  // and skip the setData when it hasn't changed.
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapReady || load.kind !== "ready" || !effectiveState || effectivePhase == null) return;
@@ -282,6 +299,13 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       phase: effectivePhase,
       clockMs: Date.parse(effectiveState.clockIso)
     });
+    const sig =
+      `${effectivePhase}|` +
+      visible.features
+        .map((f) => `${f.id}:${f.properties?.is_latest ? 1 : 0}`)
+        .join(",");
+    if (sig === lastVisiblePingSigRef.current) return;
+    lastVisiblePingSigRef.current = sig;
     source.setData(visible);
   }, [effectiveState, effectivePhase, load, mapReady]);
 

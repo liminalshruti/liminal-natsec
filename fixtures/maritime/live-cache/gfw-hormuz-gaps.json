@@ -1,0 +1,487 @@
+{
+  "source": "GLOBAL_FISHING_WATCH",
+  "generated_at": "2026-05-03T01:04:07.406Z",
+  "request": {
+    "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=50&offset=0",
+    "method": "POST",
+    "metadata": {
+      "dataset": "public-global-gaps-events:latest",
+      "types": [
+        "GAP"
+      ],
+      "aoi": "Strait of Hormuz demo AOI"
+    }
+  },
+  "response": {
+    "ok": true,
+    "status": 201,
+    "statusText": "Created"
+  },
+  "body": {
+    "metadata": {
+      "datasets": [
+        "public-global-gaps-events:v4.0"
+      ],
+      "dateRange": {
+        "from": "2025-01-01",
+        "to": "2026-04-30"
+      },
+      "geometry": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    54.4,
+                    24.5
+                  ],
+                  [
+                    57.8,
+                    24.5
+                  ],
+                  [
+                    57.8,
+                    27.2
+                  ],
+                  [
+                    54.4,
+                    27.2
+                  ],
+                  [
+                    54.4,
+                    24.5
+                  ]
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "limit": 50,
+    "offset": 0,
+    "nextOffset": null,
+    "total": 6,
+    "entries": [
+      {
+        "start": "2025-05-21T14:51:36.000Z",
+        "end": "2025-05-22T03:11:10.000Z",
+        "id": "a352074901fcf5aa95e6c1fc98e83dfe",
+        "type": "gap",
+        "position": {
+          "lat": 24.9019,
+          "lon": 57.616
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8354"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.69775,
+          24.61616666666667,
+          58.53006666666667,
+          25.18205
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 93,
+          "endDistanceFromShoreKm": 35,
+          "startDistanceFromPortKm": 105.64005499999999,
+          "endDistanceFromPortKm": 11.289457
+        },
+        "vessel": {
+          "id": "759e95a83-32ce-ceb5-65df-9209928f6513",
+          "name": "DESH VISHAL",
+          "ssvid": "419778000",
+          "flag": "IND",
+          "type": "other",
+          "nextPort": null
+        },
+        "gap": {
+          "intentionalDisabling": true,
+          "distanceKm": "195.2226937952174",
+          "durationHours": 12.316666666666666,
+          "impliedSpeedKnots": "8.558469962409832",
+          "positions12HoursBeforeSat": "30",
+          "positionsPerDaySatReception": 18.478825586651155,
+          "offPosition": {
+            "lat": 24.61616666666667,
+            "lon": 58.53006666666667
+          },
+          "onPosition": {
+            "lat": "25.18205",
+            "lon": "56.69775"
+          }
+        }
+      },
+      {
+        "start": "2026-03-09T05:38:54.000Z",
+        "end": "2026-03-09T21:09:40.000Z",
+        "id": "61298ece164b972c02af9de9268ffddf",
+        "type": "gap",
+        "position": {
+          "lat": 27.0524,
+          "lon": 54.5558
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          49.09053333333333,
+          24.414665,
+          59.77966,
+          29.488316666666666
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 104,
+          "endDistanceFromShoreKm": 62,
+          "startDistanceFromPortKm": 128.990234,
+          "endDistanceFromPortKm": 13.877119
+        },
+        "vessel": {
+          "id": "ad7a29102-206a-c74b-338b-dec263dd945b",
+          "name": "YARA J",
+          "ssvid": "341595001",
+          "flag": "KNA",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "gap": {
+          "intentionalDisabling": true,
+          "distanceKm": "1199.5091888493437",
+          "durationHours": 15.5,
+          "impliedSpeedKnots": "41.78600950495867",
+          "positions12HoursBeforeSat": "17",
+          "positionsPerDaySatReception": 18.730200921422966,
+          "offPosition": {
+            "lat": 24.414665,
+            "lon": 59.77966
+          },
+          "onPosition": {
+            "lat": "29.488316666666666",
+            "lon": "49.09053333333333"
+          }
+        }
+      },
+      {
+        "start": "2025-03-12T12:49:02.000Z",
+        "end": "2025-03-14T00:06:35.000Z",
+        "id": "b54576b6bfca48e4562c7b46aa5991ca",
+        "type": "gap",
+        "position": {
+          "lat": 25.1134,
+          "lon": 57.1359
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.65356666666667,
+          24.77933,
+          57.61552666666667,
+          25.445826666666665
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 96,
+          "endDistanceFromShoreKm": 29,
+          "startDistanceFromPortKm": 92.116852,
+          "endDistanceFromPortKm": 7.491593
+        },
+        "vessel": {
+          "id": "1372ba419-96ee-630b-3ae9-27af7a42621b",
+          "name": "FORTUNE",
+          "ssvid": "352004136",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": null
+        },
+        "gap": {
+          "intentionalDisabling": true,
+          "distanceKm": "121.95502508303827",
+          "durationHours": 35.28333333333333,
+          "impliedSpeedKnots": "1.86633289114407",
+          "positions12HoursBeforeSat": "31",
+          "positionsPerDaySatReception": 18.40314772349184,
+          "offPosition": {
+            "lat": 24.77933,
+            "lon": 57.61552666666667
+          },
+          "onPosition": {
+            "lat": "25.445826666666665",
+            "lon": "56.65356666666667"
+          }
+        }
+      },
+      {
+        "start": "2025-05-23T23:54:09.000Z",
+        "end": "2025-06-02T21:21:45.000Z",
+        "id": "0ab2f23db33984373cd17e40922fdd87",
+        "type": "gap",
+        "position": {
+          "lat": 25.0667,
+          "lon": 57.6526
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8354"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          57.55482666666666,
+          24.776008333333333,
+          57.75092,
+          25.357255
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 93,
+          "endDistanceFromShoreKm": 31,
+          "startDistanceFromPortKm": 85.227633,
+          "endDistanceFromPortKm": 32.308938
+        },
+        "vessel": {
+          "id": "399d0be35-5c7a-775d-0eb2-cc77bedda838",
+          "name": "LCT  AMIR ABBAS 1",
+          "ssvid": "422658000",
+          "flag": "IRN",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "gap": {
+          "intentionalDisabling": true,
+          "distanceKm": "67.58226283663119",
+          "durationHours": 237.45,
+          "impliedSpeedKnots": "0.15368078589838666",
+          "positions12HoursBeforeSat": "22",
+          "positionsPerDaySatReception": 18.40314772349184,
+          "offPosition": {
+            "lat": 24.776008333333333,
+            "lon": 57.55482666666666
+          },
+          "onPosition": {
+            "lat": "25.357255",
+            "lon": "57.75092"
+          }
+        }
+      },
+      {
+        "start": "2025-09-28T04:46:08.000Z",
+        "end": "2025-10-21T17:59:23.000Z",
+        "id": "33766b7d08ae006c86c95da61465f478",
+        "type": "gap",
+        "position": {
+          "lat": 24.97,
+          "lon": 57.6022
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.880608333333335,
+          24.722105,
+          58.32100333333333,
+          25.214503333333333
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 94,
+          "endDistanceFromShoreKm": 52,
+          "startDistanceFromPortKm": 117.288883,
+          "endDistanceFromPortKm": 29.175129000000002
+        },
+        "vessel": {
+          "id": "568078b04-4adf-a10e-5f44-efc52a8dd3e6",
+          "name": "HANA 1",
+          "ssvid": "352003146",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": null
+        },
+        "gap": {
+          "intentionalDisabling": true,
+          "distanceKm": "155.1750782706363",
+          "durationHours": 565.2166666666667,
+          "impliedSpeedKnots": "0.14824021332056347",
+          "positions12HoursBeforeSat": "199",
+          "positionsPerDaySatReception": 18.478825586651155,
+          "offPosition": {
+            "lat": 24.722105,
+            "lon": 58.32100333333333
+          },
+          "onPosition": {
+            "lat": "25.214503333333333",
+            "lon": "56.880608333333335"
+          }
+        }
+      },
+      {
+        "start": "2026-01-15T02:44:20.000Z",
+        "end": "2026-02-10T13:27:16.000Z",
+        "id": "16d9dcfa39b85651b990c859bf40b3c8",
+        "type": "gap",
+        "position": {
+          "lat": 25.0427,
+          "lon": 57.7344
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469",
+            "8354"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          57.58069,
+          24.778766666666666,
+          57.888708333333334,
+          25.306511666666665
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 95,
+          "endDistanceFromShoreKm": 35,
+          "startDistanceFromPortKm": 88.176609,
+          "endDistanceFromPortKm": 39.678824
+        },
+        "vessel": {
+          "id": "7210e3b73-36a3-65e8-09d6-e16dd882fb05",
+          "name": "ALMAHDI 11295",
+          "ssvid": "422295500",
+          "flag": "IRN",
+          "type": "other",
+          "nextPort": null
+        },
+        "gap": {
+          "intentionalDisabling": true,
+          "distanceKm": "66.38167781138014",
+          "durationHours": 634.7,
+          "impliedSpeedKnots": "0.05647272500245872",
+          "positions12HoursBeforeSat": "44",
+          "positionsPerDaySatReception": 18.40314772349184,
+          "offPosition": {
+            "lat": 24.778766666666666,
+            "lon": 57.58069
+          },
+          "onPosition": {
+            "lat": "25.306511666666665",
+            "lon": "57.888708333333334"
+          }
+        }
+      }
+    ]
+  }
+}

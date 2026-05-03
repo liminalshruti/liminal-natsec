@@ -1,0 +1,4620 @@
+{
+  "source": "GLOBAL_FISHING_WATCH",
+  "generated_at": "2026-05-03T01:04:07.406Z",
+  "request": {
+    "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=50&offset=0",
+    "method": "POST",
+    "metadata": {
+      "dataset": "public-global-port-visits-events:latest",
+      "types": [
+        "PORT_VISIT"
+      ],
+      "aoi": "Strait of Hormuz demo AOI"
+    }
+  },
+  "response": {
+    "ok": true,
+    "status": 201,
+    "statusText": "Created"
+  },
+  "body": {
+    "metadata": {
+      "datasets": [
+        "public-global-port-visits-events:v4.0"
+      ],
+      "dateRange": {
+        "from": "2025-01-01",
+        "to": "2026-04-30"
+      },
+      "geometry": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    54.4,
+                    24.5
+                  ],
+                  [
+                    57.8,
+                    24.5
+                  ],
+                  [
+                    57.8,
+                    27.2
+                  ],
+                  [
+                    54.4,
+                    27.2
+                  ],
+                  [
+                    54.4,
+                    24.5
+                  ]
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "limit": 50,
+    "offset": 0,
+    "nextOffset": 50,
+    "total": 239646,
+    "entries": [
+      {
+        "start": "2012-01-01T10:46:04.000Z",
+        "end": "2026-03-24T06:58:55.000Z",
+        "id": "604835b73ec71994ef4e525cac4cf1a9",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.0221,
+          "lon": 55.0432
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.07374650402712,
+          25.005815690790314,
+          55.04319916331958,
+          25.022084493766865
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "d1a9a5876-6be3-3a4b-39cc-f1fbd8f56402",
+          "name": null,
+          "ssvid": "470279000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "a4158410bd87c4997b79b85ef22ffd24",
+          "confidence": "3",
+          "durationHrs": 124700.21416666667,
+          "startAnchorage": {
+            "anchorageId": "3e5f1247",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 25.005815690790314,
+            "lon": 55.07374650402712,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f1165",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 25.022084493766865,
+            "lon": 55.04319916331958,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f1165",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 25.022084493766865,
+            "lon": 55.04319916331958,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          }
+        }
+      },
+      {
+        "start": "2012-01-01T15:55:30.000Z",
+        "end": "2026-03-10T01:45:18.000Z",
+        "id": "f61ad6e1b24c69e2639fb16532ff5222",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.4706,
+          "lon": 55.5039
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.35917856133175,
+          25.17296243054493,
+          55.50393246405482,
+          25.47060450320694
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "8a9996206-682d-298f-49c1-9c3a88a7ee75",
+          "name": null,
+          "ssvid": "470533000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "bb512616c508e2bf6a8c397c90d18943",
+          "confidence": "3",
+          "durationHrs": 124353.83,
+          "startAnchorage": {
+            "anchorageId": "3ef457bf",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.17296243054493,
+            "lon": 56.35917856133175,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef5f88f",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.47060450320694,
+            "lon": 55.50393246405482,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef5f88f",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.47060450320694,
+            "lon": 55.50393246405482,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          }
+        }
+      },
+      {
+        "start": "2012-01-04T20:52:52.000Z",
+        "end": "2026-03-16T04:59:45.000Z",
+        "id": "bae74a9bcd05075f04adad09baa0c775",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.9946,
+          "lon": 55.0512
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.0512273189826,
+          24.994639688403414,
+          55.0512273189826,
+          24.994639688403414
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "77607439c-c23a-d28a-c29b-6dcbb265cc40",
+          "name": null,
+          "ssvid": "470221000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "3ed818cb0cbe9f5ec5be27397abd7e39",
+          "confidence": "3",
+          "durationHrs": 124424.11472222222,
+          "startAnchorage": {
+            "anchorageId": "3e5f1221",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.994639688403414,
+            "lon": 55.0512273189826,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f1221",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.994639688403414,
+            "lon": 55.0512273189826,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f1221",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.994639688403414,
+            "lon": 55.0512273189826,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          }
+        }
+      },
+      {
+        "start": "2012-01-08T16:18:16.000Z",
+        "end": "2026-04-10T17:59:49.000Z",
+        "id": "96988c8d185c5f1d760d853604805668",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.371,
+          "lon": 55.3825
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.32755579148282,
+          25.4199077326297,
+          55.382529852171544,
+          25.371047148365673
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 8,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "d846d241e-e87a-c737-f986-b2fbd9756cf9",
+          "name": null,
+          "ssvid": "470378000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "219f8aa640a5877f548687d59e4470b9",
+          "confidence": "3",
+          "durationHrs": 124945.6925,
+          "startAnchorage": {
+            "anchorageId": "3e5f51cd",
+            "atDock": false,
+            "distanceFromShoreKm": "8",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.4199077326297,
+            "lon": 55.32755579148282,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f5a15",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.371047148365673,
+            "lon": 55.382529852171544,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f5a15",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.371047148365673,
+            "lon": 55.382529852171544,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          }
+        }
+      },
+      {
+        "start": "2012-01-16T10:24:28.000Z",
+        "end": "2025-12-20T13:22:44.000Z",
+        "id": "c7d2e5faa3306097d656aff2f18904c6",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.5528,
+          "lon": 55.2623
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.262291918704015,
+          25.55275447904289,
+          55.189020304054665,
+          25.143758894388174
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 23,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "972b53872-28da-5f88-3be4-331ec3a22ef1",
+          "name": null,
+          "ssvid": "470266000",
+          "flag": "ARE",
+          "type": "passenger",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "2601e04dbe6b1ca0963dbb574a17d710",
+          "confidence": "3",
+          "durationHrs": 122090.97111111111,
+          "startAnchorage": {
+            "anchorageId": "3e58b31b",
+            "atDock": false,
+            "distanceFromShoreKm": "23",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.55275447904289,
+            "lon": 55.262291918704015,
+            "name": "SHARJAH",
+            "topDestination": "HAMRIYAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e58b31b",
+            "atDock": false,
+            "distanceFromShoreKm": "23",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.55275447904289,
+            "lon": 55.262291918704015,
+            "name": "SHARJAH",
+            "topDestination": "HAMRIYAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f6a5b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-ummsuqeimiii",
+            "lat": 25.143758894388174,
+            "lon": 55.189020304054665,
+            "name": "UMM SUQEIM III",
+            "topDestination": "BAHAMAS"
+          }
+        }
+      },
+      {
+        "start": "2012-01-24T23:35:08.000Z",
+        "end": "2026-03-07T05:25:09.000Z",
+        "id": "439eda0b747edeca0eb9dacc53a8527b",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.9946,
+          "lon": 55.0512
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.0512273189826,
+          24.994639688403414,
+          55.0512273189826,
+          24.994639688403414
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "9ccfd88bb-b0ff-6941-fbca-e761fba7efed",
+          "name": null,
+          "ssvid": "470327000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "5019f386a92f7ec21ded5793cfde0d57",
+          "confidence": "3",
+          "durationHrs": 123725.83361111111,
+          "startAnchorage": {
+            "anchorageId": "3e5f1221",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.994639688403414,
+            "lon": 55.0512273189826,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f1221",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.994639688403414,
+            "lon": 55.0512273189826,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f1221",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.994639688403414,
+            "lon": 55.0512273189826,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          }
+        }
+      },
+      {
+        "start": "2012-02-01T07:12:05.000Z",
+        "end": "2025-11-02T11:08:25.000Z",
+        "id": "f5ca334ca772b1a710b23eb83b8340ba",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2382,
+          "lon": 56.5197
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.519652325905945,
+          25.23815061698338,
+          56.519652325905945,
+          25.23815061698338
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 16,
+          "endDistanceFromShoreKm": 16,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "e544b3d07-7668-6b6a-8d29-033ef5c2838e",
+          "name": null,
+          "ssvid": "311042700",
+          "flag": "BHS",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "86d27c48b5eaf282731656b6c449ef14",
+          "confidence": "4",
+          "durationHrs": 120555.9388888889,
+          "startAnchorage": {
+            "anchorageId": "3ef45e57",
+            "atDock": false,
+            "distanceFromShoreKm": "16",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.23815061698338,
+            "lon": 56.519652325905945,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef45e57",
+            "atDock": false,
+            "distanceFromShoreKm": "16",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.23815061698338,
+            "lon": 56.519652325905945,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45e57",
+            "atDock": false,
+            "distanceFromShoreKm": "16",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.23815061698338,
+            "lon": 56.519652325905945,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-02-12T01:06:45.000Z",
+        "end": "2026-03-23T11:14:17.000Z",
+        "id": "70fb700431ce66dc7f3050fa2e98d0ef",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1748,
+          "lon": 56.3591
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.3591199227427,
+          25.174792993705953,
+          56.35917856133175,
+          25.17296243054493
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "df8bf3187-7ba8-edc1-fb1e-7916ee3a6a26",
+          "name": null,
+          "ssvid": "470740000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "9b6ba36ea746c938d69131be4940d3c6",
+          "confidence": "3",
+          "durationHrs": 123682.12555555555,
+          "startAnchorage": {
+            "anchorageId": "3ef457bd",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.174792993705953,
+            "lon": 56.3591199227427,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef457bd",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.174792993705953,
+            "lon": 56.3591199227427,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef457bf",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.17296243054493,
+            "lon": 56.35917856133175,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-02-17T12:53:02.000Z",
+        "end": "2026-03-09T16:49:36.000Z",
+        "id": "cb5d2fd4f178d4ec4d8fb6b22c13beae",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.173,
+          "lon": 56.3592
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.35917856133175,
+          25.17296243054493,
+          56.51413565035838,
+          25.17423014659346
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 16,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "aed3ae1c0-0984-fa16-4363-9748b73687da",
+          "name": null,
+          "ssvid": "470382000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "48e79e329d029091dfdfed7576b214f3",
+          "confidence": "4",
+          "durationHrs": 123219.94277777777,
+          "startAnchorage": {
+            "anchorageId": "3ef457bf",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.17296243054493,
+            "lon": 56.35917856133175,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef457bf",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.17296243054493,
+            "lon": 56.35917856133175,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef4f59d",
+            "atDock": false,
+            "distanceFromShoreKm": "16",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.17423014659346,
+            "lon": 56.514135650358384,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-03-08T07:30:46.000Z",
+        "end": "2025-05-07T07:25:43.000Z",
+        "id": "23c2d57925a8e8012e590bdcde004723",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.243,
+          "lon": 56.4971
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.497097063297076,
+          25.243019955183993,
+          56.49714736122904,
+          25.237709189526
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 14,
+          "endDistanceFromShoreKm": 14,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "273088545-5c80-0bb8-a30a-426e0123858a",
+          "name": null,
+          "ssvid": "538004629",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "5f43b600b93f8e62ccb842a41d62fc5e",
+          "confidence": "4",
+          "durationHrs": 115391.91583333333,
+          "startAnchorage": {
+            "anchorageId": "3ef45eeb",
+            "atDock": false,
+            "distanceFromShoreKm": "14",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.243019955183993,
+            "lon": 56.497097063297076,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef45eeb",
+            "atDock": false,
+            "distanceFromShoreKm": "14",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.243019955183993,
+            "lon": 56.497097063297076,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45ee9",
+            "atDock": false,
+            "distanceFromShoreKm": "14",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.237709189526,
+            "lon": 56.49714736122904,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-03-25T18:00:14.000Z",
+        "end": "2026-03-23T00:56:08.000Z",
+        "id": "1b8de3a7210f3d2645656f0493ae5f75",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1679,
+          "lon": 56.4478
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.447812333635774,
+          25.16787386161651,
+          56.50845284362935,
+          25.193748591867603
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 10,
+          "endDistanceFromShoreKm": 15,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "3b2ae2753-3ed5-a123-3477-ccd3fed76744",
+          "name": null,
+          "ssvid": "470977000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "88cc33828db8ec9fad28bbd938f83124",
+          "confidence": "3",
+          "durationHrs": 122646.93166666667,
+          "startAnchorage": {
+            "anchorageId": "3ef4f621",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.16787386161651,
+            "lon": 56.447812333635774,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef4f621",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.16787386161651,
+            "lon": 56.447812333635774,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45f7b",
+            "atDock": false,
+            "distanceFromShoreKm": "15",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.193748591867603,
+            "lon": 56.50845284362935,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-04-14T18:59:18.000Z",
+        "end": "2025-11-29T08:24:08.000Z",
+        "id": "9326eb08f78bc34493546ea4f6ab1f3c",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.9869,
+          "lon": 55.0724
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.07237845977977,
+          24.986878550111026,
+          55.07237845977977,
+          24.986878550111026
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "8e2498523-3ddf-b110-fe4b-37883751503a",
+          "name": null,
+          "ssvid": "305466000",
+          "flag": "ATG",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "d129ae1ff589b59f1ea6b5e0fd8c756b",
+          "confidence": "4",
+          "durationHrs": 119437.41388888888,
+          "startAnchorage": {
+            "anchorageId": "3e5f1273",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.986878550111026,
+            "lon": 55.07237845977977,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f1273",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.986878550111026,
+            "lon": 55.07237845977977,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f1273",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.986878550111026,
+            "lon": 55.07237845977977,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          }
+        }
+      },
+      {
+        "start": "2012-05-21T00:46:49.000Z",
+        "end": "2025-04-03T22:02:59.000Z",
+        "id": "cf9245fbcd26666bc966df2b6d5bfbd0",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.4691,
+          "lon": 55.5096
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.48411677214343,
+          25.47237598453914,
+          55.50956785464781,
+          25.4691492934328
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "8bff0ef41-1bf6-0ba7-bf03-9e9f04eddd74",
+          "name": null,
+          "ssvid": "677035800",
+          "flag": "TZA",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "1ce469ab5c35ca50302a2d77a83ff237",
+          "confidence": "3",
+          "durationHrs": 112821.26944444445,
+          "startAnchorage": {
+            "anchorageId": "3e5f5625",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.47237598453914,
+            "lon": 55.48411677214343,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef5f88b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.4691492934328,
+            "lon": 55.50956785464781,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef5f88b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.4691492934328,
+            "lon": 55.50956785464781,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          }
+        }
+      },
+      {
+        "start": "2012-06-04T18:15:21.000Z",
+        "end": "2026-03-23T10:44:07.000Z",
+        "id": "245c735c7fc895444bc0154014135f95",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1923,
+          "lon": 56.5028
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "IOTC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.50277124060593,
+          25.192337255308914,
+          56.48589416824771,
+          25.198307714214405
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 14,
+          "endDistanceFromShoreKm": 13,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "a75523689-95bf-5541-9240-a76f0345a91f",
+          "name": null,
+          "ssvid": "341524000",
+          "flag": "KNA",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "ac6d04e520b75710720d077dd46ba366",
+          "confidence": "3",
+          "durationHrs": 120952.47944444444,
+          "startAnchorage": {
+            "anchorageId": "3ef45f65",
+            "atDock": false,
+            "distanceFromShoreKm": "14",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.192337255308914,
+            "lon": 56.50277124060593,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef45f65",
+            "atDock": false,
+            "distanceFromShoreKm": "14",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.192337255308914,
+            "lon": 56.50277124060593,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45f47",
+            "atDock": false,
+            "distanceFromShoreKm": "13",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.198307714214405,
+            "lon": 56.48589416824771,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-06-30T02:39:34.000Z",
+        "end": "2025-05-12T01:21:08.000Z",
+        "id": "c88a741032bb6c39227c249440a194a5",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.41,
+          "lon": 55.2896
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "IWC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.289621280933716,
+          25.40998484433069,
+          55.45540924191624,
+          25.423426794479795
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 10,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "e73aed786-66b4-bd54-84c3-db4e329309c3",
+          "name": null,
+          "ssvid": "677020800",
+          "flag": "TZA",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "23fe9f2886774e7ffb385b0147a398db",
+          "confidence": "4",
+          "durationHrs": 112774.69277777777,
+          "startAnchorage": {
+            "anchorageId": "3e5f4e4b",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.40998484433069,
+            "lon": 55.289621280933716,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f4e4b",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.40998484433069,
+            "lon": 55.289621280933716,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f579b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-ajman",
+            "lat": 25.423426794479795,
+            "lon": 55.45540924191624,
+            "name": "AJMAN",
+            "topDestination": "AJMAN"
+          }
+        }
+      },
+      {
+        "start": "2012-07-11T10:22:23.000Z",
+        "end": "2025-08-28T05:06:00.000Z",
+        "id": "3fbab8dea11cfa56c8e1209e4323f371",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2674,
+          "lon": 55.2573
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.26742704265195,
+          25.450703374346638,
+          55.257327397456756,
+          25.26741578809502
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 14,
+          "endDistanceFromShoreKm": 1,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "d77d88058-804f-0925-4d82-23bb89ebaff5",
+          "name": null,
+          "ssvid": "341700000",
+          "flag": "KNA",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "774942e07091a39e0a9711230ec74960",
+          "confidence": "3",
+          "durationHrs": 115098.72694444444,
+          "startAnchorage": {
+            "anchorageId": "3e5f4c2d",
+            "atDock": false,
+            "distanceFromShoreKm": "14",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.450703374346638,
+            "lon": 55.26742704265195,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f438f",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.26741578809502,
+            "lon": 55.257327397456756,
+            "name": "DUBAI",
+            "topDestination": "DUBAI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f438f",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.26741578809502,
+            "lon": 55.257327397456756,
+            "name": "DUBAI",
+            "topDestination": "DUBAI"
+          }
+        }
+      },
+      {
+        "start": "2012-07-14T17:52:23.000Z",
+        "end": "2026-03-10T17:01:12.000Z",
+        "id": "a13c23462afeeee3c2ff694fabde6ada",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.9884,
+          "lon": 55.0251
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.0251233407579,
+          24.988359677953483,
+          55.338372170045965,
+          25.214475460959846
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "228461235-5d82-80ef-708f-21ff9e2cb9b3",
+          "name": null,
+          "ssvid": "236435000",
+          "flag": "GIB",
+          "type": "passenger",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "a6f4fa9ffdbfd1f5cdc419d8bb2ff496",
+          "confidence": "4",
+          "durationHrs": 119687.14694444444,
+          "startAnchorage": {
+            "anchorageId": "3e5f11bf",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.988359677953483,
+            "lon": 55.0251233407579,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f11bf",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-jebelali",
+            "lat": 24.988359677953483,
+            "lon": 55.0251233407579,
+            "name": "JEBEL ALI",
+            "topDestination": "JEBEL ALI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f5d61",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.214475460959846,
+            "lon": 55.338372170045965,
+            "name": "DUBAI",
+            "topDestination": "DUBAI"
+          }
+        }
+      },
+      {
+        "start": "2012-07-16T01:01:33.000Z",
+        "end": "2026-01-02T17:21:44.000Z",
+        "id": "740019f54be7b8ea8149f30d9a05f1a1",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.5027,
+          "lon": 56.6321
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8354"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8354"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.632076469411736,
+          24.502698166679664,
+          56.458177473776296,
+          25.185728190381745
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 10,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "175089fe3-3c44-1e99-0510-49a4e666ed9b",
+          "name": null,
+          "ssvid": "636013705",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "764034fe2c5bc49a4790fa93a936925f",
+          "confidence": "4",
+          "durationHrs": 118048.33638888889,
+          "startAnchorage": {
+            "anchorageId": "3e8b4b9f",
+            "atDock": false,
+            "distanceFromShoreKm": "2",
+            "flag": "OMN",
+            "id": "omn-sohar",
+            "lat": 24.502698166679664,
+            "lon": 56.632076469411736,
+            "name": "SOHAR",
+            "topDestination": "SOHAR"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e8b4b9f",
+            "atDock": false,
+            "distanceFromShoreKm": "2",
+            "flag": "OMN",
+            "id": "omn-sohar",
+            "lat": 24.502698166679664,
+            "lon": 56.632076469411736,
+            "name": "SOHAR",
+            "topDestination": "SOHAR"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef458bb",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.185728190381745,
+            "lon": 56.458177473776296,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-08-08T12:35:11.000Z",
+        "end": "2026-03-14T09:11:11.000Z",
+        "id": "570b340c13e1cf099c47144322f7c989",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.268,
+          "lon": 56.4533
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.4533442111263,
+          25.267978708647632,
+          56.361967299243084,
+          25.172713675417988
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 8,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "a229a39c4-4e1a-125f-14ef-643b27217a17",
+          "name": null,
+          "ssvid": "245810000",
+          "flag": "NLD",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "8218a1b79e03504b912171a22d2be861",
+          "confidence": "4",
+          "durationHrs": 119180.6,
+          "startAnchorage": {
+            "anchorageId": "3ef45be9",
+            "atDock": false,
+            "distanceFromShoreKm": "8",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.267978708647632,
+            "lon": 56.4533442111263,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef45be9",
+            "atDock": false,
+            "distanceFromShoreKm": "8",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.267978708647632,
+            "lon": 56.4533442111263,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45795",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.172713675417988,
+            "lon": 56.361967299243084,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-08-12T12:10:28.000Z",
+        "end": "2025-06-26T04:37:44.000Z",
+        "id": "ff3e45fb50c1d3a3827158a99ef756ba",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.0489,
+          "lon": 55.9759
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "IWC",
+            "ACAP",
+            "RECOFI",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.97590519536252,
+          27.048879691234916,
+          55.97590519536252,
+          27.048879691234916
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "eefb3e88a-aed5-507e-f8d5-5f6ac433f32f",
+          "name": null,
+          "ssvid": "373368000",
+          "flag": "PAN",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "3a6edc23c8c6b1e15ff79a3d3eb82a67",
+          "confidence": "3",
+          "durationHrs": 112816.45444444445,
+          "startAnchorage": {
+            "anchorageId": "3ef82779",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "IRN",
+            "id": "irn-isoico",
+            "lat": 27.048879691234916,
+            "lon": 55.97590519536252,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef82779",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "IRN",
+            "id": "irn-isoico",
+            "lat": 27.048879691234916,
+            "lon": 55.97590519536252,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef82779",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "IRN",
+            "id": "irn-isoico",
+            "lat": 27.048879691234916,
+            "lon": 55.97590519536252,
+            "name": null,
+            "topDestination": "B ABBAS"
+          }
+        }
+      },
+      {
+        "start": "2012-08-20T22:34:55.000Z",
+        "end": "2025-06-22T14:28:31.000Z",
+        "id": "e91893e30ccd7824cce01e80c51f867f",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.9765,
+          "lon": 56.0511
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.38290112056455,
+          25.368085256231947,
+          56.05106025236357,
+          25.976523270014393
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 1,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "6fdc5bcbc-c9a7-9dae-47aa-77438a2cf7ca",
+          "name": null,
+          "ssvid": "470256000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "3f6cadf1bea58d15137e4d7de55ebc39",
+          "confidence": "3",
+          "durationHrs": 112527.89333333333,
+          "startAnchorage": {
+            "anchorageId": "3e5f5a3f",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.368085256231947,
+            "lon": 55.38290112056455,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef665dd",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.976523270014393,
+            "lon": 56.05106025236357,
+            "name": "MINA SAQR",
+            "topDestination": "MINA SAQR"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef665dd",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.976523270014393,
+            "lon": 56.05106025236357,
+            "name": "MINA SAQR",
+            "topDestination": "MINA SAQR"
+          }
+        }
+      },
+      {
+        "start": "2012-08-25T23:46:17.000Z",
+        "end": "2025-06-24T06:23:48.000Z",
+        "id": "5036fa27607fbd805ca6108f127d18dd",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2787,
+          "lon": 56.5761
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "ACAP",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.519694072768516,
+          25.180730182376937,
+          56.57609915576793,
+          25.278664741205294
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 16,
+          "endDistanceFromShoreKm": 21,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "75ddae961-1f72-e2e0-8879-93331cd7ea47",
+          "name": null,
+          "ssvid": "538004717",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "db50db24437a1369a2266a077605b0a5",
+          "confidence": "3",
+          "durationHrs": 112446.62527777778,
+          "startAnchorage": {
+            "anchorageId": "3ef4f579",
+            "atDock": false,
+            "distanceFromShoreKm": "16",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.180730182376937,
+            "lon": 56.519694072768516,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef460b1",
+            "atDock": false,
+            "distanceFromShoreKm": "21",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.278664741205294,
+            "lon": 56.57609915576793,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef460b1",
+            "atDock": false,
+            "distanceFromShoreKm": "21",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.278664741205294,
+            "lon": 56.57609915576793,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-08-29T23:05:12.000Z",
+        "end": "2026-03-12T15:52:39.000Z",
+        "id": "413a32822cd88d71db639b6d5b02bb26",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.9914,
+          "lon": 55.9895
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IWC",
+            "RECOFI",
+            "IOTC",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.31604436463333,
+          26.244099501006694,
+          55.989477854516394,
+          25.991438099358493
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 6,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "1847cebc8-8247-508b-d544-8dc0edd05acf",
+          "name": null,
+          "ssvid": "408346000",
+          "flag": "BHR",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "32166ab15f89a07cef3cd58350ceab73",
+          "confidence": "3",
+          "durationHrs": 118624.79083333333,
+          "startAnchorage": {
+            "anchorageId": "3ef6f115",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "OMN",
+            "id": "omn-hassa",
+            "lat": 26.244099501006694,
+            "lon": 56.31604436463333,
+            "name": null,
+            "topDestination": "KHASAB OMAN"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef668e7",
+            "atDock": false,
+            "distanceFromShoreKm": "6",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.991438099358493,
+            "lon": 55.989477854516394,
+            "name": "MINA SAQR",
+            "topDestination": "MINASAQR"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef668e7",
+            "atDock": false,
+            "distanceFromShoreKm": "6",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.991438099358493,
+            "lon": 55.989477854516394,
+            "name": "MINA SAQR",
+            "topDestination": "MINASAQR"
+          }
+        }
+      },
+      {
+        "start": "2012-09-03T16:09:52.000Z",
+        "end": "2026-03-22T19:39:16.000Z",
+        "id": "66a8083e1e4b4fa18def7a69ba109ac5",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1811,
+          "lon": 56.3588
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.35884752304681,
+          25.181106315370727,
+          56.361967299243084,
+          25.172713675417988
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "57dfe5505-5f60-5025-1e7c-e632e5ad8d2f",
+          "name": null,
+          "ssvid": "470810000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "581112145dbb64115c572af8fe731a2b",
+          "confidence": "3",
+          "durationHrs": 118755.49,
+          "startAnchorage": {
+            "anchorageId": "3ef457a3",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.181106315370727,
+            "lon": 56.35884752304681,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef457a3",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.181106315370727,
+            "lon": 56.35884752304681,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45795",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.172713675417988,
+            "lon": 56.361967299243084,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-09-16T00:05:02.000Z",
+        "end": "2026-03-29T17:52:33.000Z",
+        "id": "1774957cb4d9adbc42e71c88f23c6acc",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1783,
+          "lon": 56.4692
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.46915992567602,
+          25.178301082789776,
+          56.54782112255074,
+          25.219335268824192
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 11,
+          "endDistanceFromShoreKm": 19,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "2be72262e-e3dc-2af3-a253-3258b31ce6c9",
+          "name": null,
+          "ssvid": "636013315",
+          "flag": "LBR",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "9111f35a1c952a7158802750a50a76bc",
+          "confidence": "4",
+          "durationHrs": 118625.79194444444,
+          "startAnchorage": {
+            "anchorageId": "3ef458ab",
+            "atDock": false,
+            "distanceFromShoreKm": "11",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.178301082789776,
+            "lon": 56.46915992567602,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef458ab",
+            "atDock": false,
+            "distanceFromShoreKm": "11",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.178301082789776,
+            "lon": 56.46915992567602,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45fc3",
+            "atDock": false,
+            "distanceFromShoreKm": "19",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.219335268824192,
+            "lon": 56.54782112255074,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-09-24T18:58:17.000Z",
+        "end": "2026-03-22T19:34:16.000Z",
+        "id": "b07721fcb07f9e5e5f6259be6ec7263f",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.3985,
+          "lon": 56.5971
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.597101413521905,
+          25.398533706792296,
+          56.361967299243084,
+          25.172713675417988
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 23,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "ab0b51b1a-a068-3934-9ab3-41d73ffb745b",
+          "name": null,
+          "ssvid": "470664000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "70f9354548b7cfd4a347ab988812b00b",
+          "confidence": "3",
+          "durationHrs": 118248.59972222222,
+          "startAnchorage": {
+            "anchorageId": "3ef4685d",
+            "atDock": false,
+            "distanceFromShoreKm": "23",
+            "flag": "ARE",
+            "id": "are-khorfakkan",
+            "lat": 25.398533706792296,
+            "lon": 56.597101413521905,
+            "name": "KHOR FAKKAN",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef4685d",
+            "atDock": false,
+            "distanceFromShoreKm": "23",
+            "flag": "ARE",
+            "id": "are-khorfakkan",
+            "lat": 25.398533706792296,
+            "lon": 56.597101413521905,
+            "name": "KHOR FAKKAN",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45795",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.172713675417988,
+            "lon": 56.361967299243084,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-09-28T12:56:29.000Z",
+        "end": "2026-03-13T12:26:38.000Z",
+        "id": "e275e543b81f432acb2aa6d55a24b532",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1051,
+          "lon": 55.1397
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.33412727666327,
+          25.30321774968164,
+          55.13965161319906,
+          25.105087400509305
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 1,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "d8292b27d-da22-aca6-18e2-9874f43a0b20",
+          "name": null,
+          "ssvid": "470123456",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "e21336a6c0e1cc6267f2b1a967311ec0",
+          "confidence": "3",
+          "durationHrs": 117935.5025,
+          "startAnchorage": {
+            "anchorageId": "3e5f5b5d",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-alhamriya",
+            "lat": 25.30321774968164,
+            "lon": 55.33412727666327,
+            "name": "ALHAMRIYA",
+            "topDestination": "DUBAI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f6b33",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.105087400509305,
+            "lon": 55.13965161319906,
+            "name": "DUBAI",
+            "topDestination": "PALM JUMEIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f6b33",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.105087400509305,
+            "lon": 55.13965161319906,
+            "name": "DUBAI",
+            "topDestination": "PALM JUMEIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-09-28T16:32:04.000Z",
+        "end": "2025-04-08T22:02:17.000Z",
+        "id": "9fc94218d32067ca95ce01197ff235f3",
+        "type": "port_visit",
+        "position": {
+          "lat": 26.9675,
+          "lon": 56.2724
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "NACA",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.30751272448673,
+          27.046743721371158,
+          56.27242958932787,
+          26.96750597487457
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 9,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "6359e0f03-368e-de56-1478-3a11f8545269",
+          "name": null,
+          "ssvid": "422031700",
+          "flag": "IRN",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "8f324336a46e09b360ef9e5f9cf8389e",
+          "confidence": "3",
+          "durationHrs": 109805.50361111111,
+          "startAnchorage": {
+            "anchorageId": "3ef77bf7",
+            "atDock": false,
+            "distanceFromShoreKm": "9",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.046743721371158,
+            "lon": 56.30751272448673,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef779e9",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "IRN",
+            "id": "irn-queshm",
+            "lat": 26.96750597487457,
+            "lon": 56.27242958932787,
+            "name": "QUESHM",
+            "topDestination": "MINASAQR"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef779e9",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "IRN",
+            "id": "irn-queshm",
+            "lat": 26.96750597487457,
+            "lon": 56.27242958932787,
+            "name": "QUESHM",
+            "topDestination": "MINASAQR"
+          }
+        }
+      },
+      {
+        "start": "2012-09-29T05:06:38.000Z",
+        "end": "2026-01-20T14:44:03.000Z",
+        "id": "b7aa9412dbf62ae9f64235e3b7ca24a3",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2054,
+          "lon": 56.514
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IWC",
+            "IOTC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.51396607436414,
+          25.205389097901083,
+          55.49940634812619,
+          25.470001472167862
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 15,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "dcfa2e158-80e9-1136-67ef-c6174d083887",
+          "name": null,
+          "ssvid": "470580000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "9e3400376a29f8cf216dea05c8d8b4e4",
+          "confidence": "3",
+          "durationHrs": 116673.6236111111,
+          "startAnchorage": {
+            "anchorageId": "3ef45f75",
+            "atDock": false,
+            "distanceFromShoreKm": "15",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.205389097901083,
+            "lon": 56.51396607436414,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef45f75",
+            "atDock": false,
+            "distanceFromShoreKm": "15",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.205389097901083,
+            "lon": 56.51396607436414,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef5f885",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.470001472167862,
+            "lon": 55.49940634812619,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          }
+        }
+      },
+      {
+        "start": "2012-09-30T10:25:23.000Z",
+        "end": "2026-03-07T07:47:52.000Z",
+        "id": "8c9258e8eae90e16795c756c23b89dbc",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.1822,
+          "lon": 56.4637
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IWC",
+            "IOTC"
+          ],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.46369577524486,
+          25.182161119404956,
+          56.361967299243084,
+          25.172713675417988
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 10,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "129099f28-805f-e5ff-156e-679493731a7b",
+          "name": null,
+          "ssvid": "470689000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "a25aafba3087a7264ce4aa8134a31f6a",
+          "confidence": "4",
+          "durationHrs": 117741.37472222222,
+          "startAnchorage": {
+            "anchorageId": "3ef458af",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.182161119404956,
+            "lon": 56.46369577524486,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef458af",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.182161119404956,
+            "lon": 56.46369577524486,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45795",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.172713675417988,
+            "lon": 56.361967299243084,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-09-30T18:11:42.000Z",
+        "end": "2025-11-22T10:07:05.000Z",
+        "id": "f7f1a441f0ab0b070f30b7a78e6d07a7",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.5006,
+          "lon": 55.2066
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.206624145159246,
+          25.500585026108478,
+          55.261063982308116,
+          25.272357916425094
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 22,
+          "endDistanceFromShoreKm": 1,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "e5ea53bbd-de3d-302c-8afb-f74209c61179",
+          "name": null,
+          "ssvid": "470818000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "8dd10ab4b4294518dab75053c9bd3756",
+          "confidence": "4",
+          "durationHrs": 115215.92305555556,
+          "startAnchorage": {
+            "anchorageId": "3e5f4b49",
+            "atDock": false,
+            "distanceFromShoreKm": "22",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.500585026108478,
+            "lon": 55.206624145159246,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH OPL"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f4b49",
+            "atDock": false,
+            "distanceFromShoreKm": "22",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.500585026108478,
+            "lon": 55.206624145159246,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH OPL"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f4387",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.272357916425094,
+            "lon": 55.261063982308116,
+            "name": "DUBAI",
+            "topDestination": "DUBAI"
+          }
+        }
+      },
+      {
+        "start": "2012-10-02T17:28:28.000Z",
+        "end": "2026-04-23T11:18:58.000Z",
+        "id": "1a1d1e874d7d4da7aac1ed3c128f6ef7",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.0898,
+          "lon": 56.2173
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IWC",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.21729591968609,
+          27.08981427264264,
+          56.239342091147954,
+          27.054128939605118
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 5,
+          "endDistanceFromShoreKm": 7,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "ab09e3e94-4a95-a366-c3d6-f43dffafc873",
+          "name": null,
+          "ssvid": "422027500",
+          "flag": "IRN",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "87a96c39c35f38f3e5ce4d44adddf4d7",
+          "confidence": "3",
+          "durationHrs": 118817.84166666666,
+          "startAnchorage": {
+            "anchorageId": "3ef77fed",
+            "atDock": false,
+            "distanceFromShoreKm": "5",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.08981427264264,
+            "lon": 56.21729591968609,
+            "name": "BANDAR ABBAS",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef77fed",
+            "atDock": false,
+            "distanceFromShoreKm": "5",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.08981427264264,
+            "lon": 56.21729591968609,
+            "name": "BANDAR ABBAS",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef77f19",
+            "atDock": false,
+            "distanceFromShoreKm": "7",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.054128939605118,
+            "lon": 56.239342091147954,
+            "name": null,
+            "topDestination": "B ABBAS"
+          }
+        }
+      },
+      {
+        "start": "2012-10-03T09:46:31.000Z",
+        "end": "2026-04-29T16:04:51.000Z",
+        "id": "e575982b76c03231a3d2fbb7e36335ff",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.0989,
+          "lon": 56.195
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "ACAP",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.194958258883986,
+          27.09885067945787,
+          55.7563132318533,
+          26.97241512025763
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 4,
+          "endDistanceFromShoreKm": 1,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "877443184-4dbc-01d6-62c4-5a7acb0f92d5",
+          "name": null,
+          "ssvid": "422865000",
+          "flag": "IRN",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "77b67a919e7b3af87f35da7f77a5b686",
+          "confidence": "3",
+          "durationHrs": 118950.30555555556,
+          "startAnchorage": {
+            "anchorageId": "3ef78007",
+            "atDock": false,
+            "distanceFromShoreKm": "4",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.09885067945787,
+            "lon": 56.194958258883986,
+            "name": "BANDAR ABBAS",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef78007",
+            "atDock": false,
+            "distanceFromShoreKm": "4",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.09885067945787,
+            "lon": 56.194958258883986,
+            "name": "BANDAR ABBAS",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef7f607",
+            "atDock": false,
+            "distanceFromShoreKm": "1",
+            "flag": "IRN",
+            "id": "irn-pohl",
+            "lat": 26.97241512025763,
+            "lon": 55.7563132318533,
+            "name": null,
+            "topDestination": "CHARAK"
+          }
+        }
+      },
+      {
+        "start": "2012-10-04T23:47:48.000Z",
+        "end": "2026-03-29T17:56:34.000Z",
+        "id": "99363a54f53e6daee649a5cebc637926",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.5029,
+          "lon": 54.9639
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IOTC",
+            "RECOFI",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          54.963857673955154,
+          25.502882181491263,
+          54.963857673955154,
+          25.502882181491263
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 40,
+          "endDistanceFromShoreKm": 40,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "49699b4c0-0836-0cea-f6b8-5f2a4eeb6e93",
+          "name": null,
+          "ssvid": "564829000",
+          "flag": "SGP",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "66c488d005e4c413f91c5bd717ade17e",
+          "confidence": "3",
+          "durationHrs": 118170.14611111111,
+          "startAnchorage": {
+            "anchorageId": "3e58cd8b",
+            "atDock": false,
+            "distanceFromShoreKm": "40",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.502882181491263,
+            "lon": 54.963857673955154,
+            "name": "DUBAI",
+            "topDestination": "DUBAI D ANCHORAGE"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e58cd8b",
+            "atDock": false,
+            "distanceFromShoreKm": "40",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.502882181491263,
+            "lon": 54.963857673955154,
+            "name": "DUBAI",
+            "topDestination": "DUBAI D ANCHORAGE"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e58cd8b",
+            "atDock": false,
+            "distanceFromShoreKm": "40",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.502882181491263,
+            "lon": 54.963857673955154,
+            "name": "DUBAI",
+            "topDestination": "DUBAI D ANCHORAGE"
+          }
+        }
+      },
+      {
+        "start": "2012-10-08T01:24:22.000Z",
+        "end": "2025-03-25T20:25:48.000Z",
+        "id": "3aa3178265cb73457e6d9e8dbc7d4ec8",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.5626,
+          "lon": 55.2616
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IWC",
+            "RECOFI",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.26162857315039,
+          25.56259627650885,
+          55.379826058803765,
+          25.36982290087147
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 23,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "c9da0ffb2-22ab-1a30-fb86-d9b25428c3e6",
+          "name": null,
+          "ssvid": "341197000",
+          "flag": "KNA",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "311d789d2c64b102b469cf1139fa2739",
+          "confidence": "3",
+          "durationHrs": 109243.02388888889,
+          "startAnchorage": {
+            "anchorageId": "3e58b307",
+            "atDock": false,
+            "distanceFromShoreKm": "23",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.56259627650885,
+            "lon": 55.26162857315039,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e58b307",
+            "atDock": false,
+            "distanceFromShoreKm": "23",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.56259627650885,
+            "lon": 55.26162857315039,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f5a6b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.36982290087147,
+            "lon": 55.379826058803765,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          }
+        }
+      },
+      {
+        "start": "2012-10-08T23:15:31.000Z",
+        "end": "2025-08-18T17:32:27.000Z",
+        "id": "adfadca8e84eceb4660404c383084d60",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.363,
+          "lon": 55.3778
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.37776422117303,
+          25.363042188462686,
+          55.14188558431593,
+          25.09101637714997
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "fe8cc28bc-c8bc-3d21-cf6e-a499060f277c",
+          "name": null,
+          "ssvid": "470586000",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "cd6e9714dc858e8498dace45c3e2e642",
+          "confidence": "3",
+          "durationHrs": 112722.28222222222,
+          "startAnchorage": {
+            "anchorageId": "3e5f5a47",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.363042188462686,
+            "lon": 55.37776422117303,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f5a47",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.363042188462686,
+            "lon": 55.37776422117303,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f6b4d",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-dubai",
+            "lat": 25.09101637714997,
+            "lon": 55.14188558431593,
+            "name": "DUBAI",
+            "topDestination": "DUBAI"
+          }
+        }
+      },
+      {
+        "start": "2012-10-15T03:48:40.000Z",
+        "end": "2025-11-22T13:32:43.000Z",
+        "id": "d21876100d6a80653c1070358922f728",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.4691,
+          "lon": 55.5096
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.50956785464781,
+          25.4691492934328,
+          55.50956785464781,
+          25.4691492934328
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "66859bd4b-bda4-012a-3987-3617b672214f",
+          "name": null,
+          "ssvid": "311008900",
+          "flag": "BHS",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "b1dc047f359ff24ff80e9ea81afdb779",
+          "confidence": "2",
+          "durationHrs": 114873.73416666666,
+          "startAnchorage": {
+            "anchorageId": "3ef5f88b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.4691492934328,
+            "lon": 55.50956785464781,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef5f88b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.4691492934328,
+            "lon": 55.50956785464781,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef5f88b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-hamriyahlpg",
+            "lat": 25.4691492934328,
+            "lon": 55.50956785464781,
+            "name": "HAMRIYAH LPG",
+            "topDestination": "HAMRIYAH"
+          }
+        }
+      },
+      {
+        "start": "2012-11-27T16:46:59.000Z",
+        "end": "2025-03-12T19:24:10.000Z",
+        "id": "33f1b6c742d9c2a67804bec36d7dae39",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2378,
+          "lon": 56.5588
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IOTC",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.55882061059379,
+          25.237826078354704,
+          56.55882061059379,
+          25.237826078354704
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 20,
+          "endDistanceFromShoreKm": 20,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "3f84078e4-4028-f61d-1715-fe0860e3f0b5",
+          "name": null,
+          "ssvid": "478603608",
+          "flag": "BIH",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "108319cd33071f17d99bb04c2087b7d6",
+          "confidence": "3",
+          "durationHrs": 107714.61972222223,
+          "startAnchorage": {
+            "anchorageId": "3ef45fd5",
+            "atDock": false,
+            "distanceFromShoreKm": "20",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.237826078354704,
+            "lon": 56.55882061059379,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef45fd5",
+            "atDock": false,
+            "distanceFromShoreKm": "20",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.237826078354704,
+            "lon": 56.55882061059379,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef45fd5",
+            "atDock": false,
+            "distanceFromShoreKm": "20",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.237826078354704,
+            "lon": 56.55882061059379,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2012-12-20T23:18:00.000Z",
+        "end": "2026-01-04T12:35:59.000Z",
+        "id": "df554565428cb7c95300b6c3a82a2d21",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.0493,
+          "lon": 56.2618
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "IOTC",
+            "RECOFI",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.26182995204254,
+          27.049322575255715,
+          56.26182995204254,
+          27.049322575255715
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 7,
+          "endDistanceFromShoreKm": 7,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "09ead2c3e-e832-c9d8-09f6-1aefa8857e7e",
+          "name": null,
+          "ssvid": "677046800",
+          "flag": "TZA",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "f33ac7e7ebd2f39585eea84b8084e900",
+          "confidence": "4",
+          "durationHrs": 114301.29972222222,
+          "startAnchorage": {
+            "anchorageId": "3ef77ec5",
+            "atDock": false,
+            "distanceFromShoreKm": "7",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.049322575255715,
+            "lon": 56.26182995204254,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef77ec5",
+            "atDock": false,
+            "distanceFromShoreKm": "7",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.049322575255715,
+            "lon": 56.26182995204254,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef77ec5",
+            "atDock": false,
+            "distanceFromShoreKm": "7",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.049322575255715,
+            "lon": 56.26182995204254,
+            "name": null,
+            "topDestination": "B ABBAS"
+          }
+        }
+      },
+      {
+        "start": "2012-12-23T12:56:09.000Z",
+        "end": "2025-11-25T21:47:18.000Z",
+        "id": "7748e62d4361e450180b390c9223d2ed",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.072,
+          "lon": 56.2677
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "IOTC",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.26765677378386,
+          27.072022841053727,
+          56.26765677378386,
+          27.072022841053727
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 9,
+          "endDistanceFromShoreKm": 9,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "2d6941185-5b61-07cc-bc2e-9f7050971954",
+          "name": null,
+          "ssvid": "677043900",
+          "flag": "TZA",
+          "type": "cargo",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "61a360b6cfa352c940284e499f3072b1",
+          "confidence": "4",
+          "durationHrs": 113288.8525,
+          "startAnchorage": {
+            "anchorageId": "3ef77ef3",
+            "atDock": false,
+            "distanceFromShoreKm": "9",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.072022841053727,
+            "lon": 56.26765677378386,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef77ef3",
+            "atDock": false,
+            "distanceFromShoreKm": "9",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.072022841053727,
+            "lon": 56.26765677378386,
+            "name": null,
+            "topDestination": "B ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef77ef3",
+            "atDock": false,
+            "distanceFromShoreKm": "9",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.072022841053727,
+            "lon": 56.26765677378386,
+            "name": null,
+            "topDestination": "B ABBAS"
+          }
+        }
+      },
+      {
+        "start": "2013-01-03T08:13:33.000Z",
+        "end": "2025-05-21T12:35:22.000Z",
+        "id": "d062fbe78878f3bd23dcd6eb7c1c9f91",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.5142,
+          "lon": 56.6111
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8354"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IOTC",
+            "ACAP",
+            "IWC"
+          ],
+          "fao": [
+            "51",
+            "51.3"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8354"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.60860430558742,
+          24.519497767954704,
+          56.62462354492096,
+          24.499766738071088
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 1,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "17f526600-0176-0619-91fc-e0b129cad5d0",
+          "name": null,
+          "ssvid": "461000049",
+          "flag": "OMN",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "ce5e768b4254a98379a174b13d59a63a",
+          "confidence": "2",
+          "durationHrs": 108508.36361111111,
+          "startAnchorage": {
+            "anchorageId": "3e8b4b1f",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "OMN",
+            "id": "omn-sohar",
+            "lat": 24.519497767954704,
+            "lon": 56.60860430558742,
+            "name": "SOHAR",
+            "topDestination": "SOHAR"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e8b4b1d",
+            "atDock": true,
+            "distanceFromShoreKm": "1",
+            "flag": "OMN",
+            "id": "omn-sohar",
+            "lat": 24.514226306658603,
+            "lon": 56.611081398936804,
+            "name": "SOHAR",
+            "topDestination": "SOHAR"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e8b4ba1",
+            "atDock": false,
+            "distanceFromShoreKm": "1",
+            "flag": "OMN",
+            "id": "omn-sohar",
+            "lat": 24.499766738071088,
+            "lon": 56.62462354492096,
+            "name": "SOHAR",
+            "topDestination": "SOHAR"
+          }
+        }
+      },
+      {
+        "start": "2013-01-08T11:54:27.000Z",
+        "end": "2025-02-08T19:02:09.000Z",
+        "id": "fd1293b762e5304027620a137e505931",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.3981,
+          "lon": 55.4658
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.46583254903763,
+          25.39806668694657,
+          55.38685471887435,
+          25.365697995153678
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "8a9644a3d-df33-9083-d71c-86e212d08957",
+          "name": null,
+          "ssvid": "341627000",
+          "flag": "KNA",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "c5ac8bf4a9c6f2ff04cbaac462b2fe64",
+          "confidence": "4",
+          "durationHrs": 105943.12833333333,
+          "startAnchorage": {
+            "anchorageId": "3e5f583d",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-ajman",
+            "lat": 25.39806668694657,
+            "lon": 55.46583254903763,
+            "name": "AJMAN",
+            "topDestination": "AJMAN"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f583d",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-ajman",
+            "lat": 25.39806668694657,
+            "lon": 55.46583254903763,
+            "name": "AJMAN",
+            "topDestination": "AJMAN"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f5a3b",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.365697995153678,
+            "lon": 55.38685471887435,
+            "name": "SHARJAH",
+            "topDestination": "SHARJAH"
+          }
+        }
+      },
+      {
+        "start": "2013-01-21T20:10:13.000Z",
+        "end": "2025-02-12T16:05:23.000Z",
+        "id": "a48cb3b3666307bf3aa9ab2df367230e",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.984,
+          "lon": 56.0222
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IWC",
+            "IOTC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.02216779818765,
+          25.98404515224322,
+          56.02216779818765,
+          25.98404515224322
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 3,
+          "endDistanceFromShoreKm": 3,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "d8ccd3f92-2832-679e-fd27-f8803d4493f7",
+          "name": null,
+          "ssvid": "533000556",
+          "flag": "MYS",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "736ce3ee775c473d580986044d32efe6",
+          "confidence": "3",
+          "durationHrs": 105715.91944444444,
+          "startAnchorage": {
+            "anchorageId": "3ef668a9",
+            "atDock": false,
+            "distanceFromShoreKm": "3",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.98404515224322,
+            "lon": 56.02216779818765,
+            "name": "MINA SAQR",
+            "topDestination": "MINA SAQR UAE"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef668a9",
+            "atDock": false,
+            "distanceFromShoreKm": "3",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.98404515224322,
+            "lon": 56.02216779818765,
+            "name": "MINA SAQR",
+            "topDestination": "MINA SAQR UAE"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef668a9",
+            "atDock": false,
+            "distanceFromShoreKm": "3",
+            "flag": "ARE",
+            "id": "are-minasaqr",
+            "lat": 25.98404515224322,
+            "lon": 56.02216779818765,
+            "name": "MINA SAQR",
+            "topDestination": "MINA SAQR UAE"
+          }
+        }
+      },
+      {
+        "start": "2013-01-22T16:29:54.000Z",
+        "end": "2025-09-03T11:26:13.000Z",
+        "id": "b191eba3ddae6687fc333c72ffd79198",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2612,
+          "lon": 55.2715
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "IWC",
+            "RECOFI",
+            "IOTC"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.278800533409665,
+          25.261151368240146,
+          55.27147508560342,
+          25.26119486194284
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "5b12cd6f7-7a4b-cc11-994d-aa85523ae8e7",
+          "name": null,
+          "ssvid": "470000004",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "4987d0bb714f9759111cf02fe732cd39",
+          "confidence": "3",
+          "durationHrs": 110562.93861111111,
+          "startAnchorage": {
+            "anchorageId": "3e5f4373",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-portrashid",
+            "lat": 25.261151368240146,
+            "lon": 55.278800533409665,
+            "name": "PORT RASHID",
+            "topDestination": "DUBAI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f4375",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-portrashid",
+            "lat": 25.26119486194284,
+            "lon": 55.27147508560342,
+            "name": "PORT RASHID",
+            "topDestination": "JEBEL ALI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f4375",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-portrashid",
+            "lat": 25.26119486194284,
+            "lon": 55.27147508560342,
+            "name": "PORT RASHID",
+            "topDestination": "JEBEL ALI"
+          }
+        }
+      },
+      {
+        "start": "2013-02-23T07:20:38.000Z",
+        "end": "2026-01-03T03:20:30.000Z",
+        "id": "5756b2336c6b92a06b412196e7c2a8dd",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.1501,
+          "lon": 56.2678
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "ACAP",
+            "IWC",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.2678211357477,
+          27.15006602322214,
+          56.23420406000037,
+          27.033159060345096
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 3,
+          "endDistanceFromShoreKm": 4,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "f6085c918-8cca-523f-942b-981acc1c06fc",
+          "name": null,
+          "ssvid": "422325000",
+          "flag": "IRN",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "5fc4c4287bef8fbf0955d5a524120169",
+          "confidence": "4",
+          "durationHrs": 112723.99777777778,
+          "startAnchorage": {
+            "anchorageId": "3ef9d5b9",
+            "atDock": false,
+            "distanceFromShoreKm": "3",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.15006602322214,
+            "lon": 56.2678211357477,
+            "name": "BANDAR ABBAS",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef9d5b9",
+            "atDock": false,
+            "distanceFromShoreKm": "3",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.15006602322214,
+            "lon": 56.2678211357477,
+            "name": "BANDAR ABBAS",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef77f33",
+            "atDock": false,
+            "distanceFromShoreKm": "4",
+            "flag": "IRN",
+            "id": "irn-bandarabbas",
+            "lat": 27.033159060345096,
+            "lon": 56.23420406000037,
+            "name": null,
+            "topDestination": "B ABBAS"
+          }
+        }
+      },
+      {
+        "start": "2013-04-06T14:03:03.000Z",
+        "end": "2026-01-22T14:50:18.000Z",
+        "id": "aad7de1b98375ae58dd029e706b1feaf",
+        "type": "port_visit",
+        "position": {
+          "lat": 27.1023,
+          "lon": 56.0741
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8469"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.0741070857314,
+          27.102264720242513,
+          56.0741070857314,
+          27.102264720242513
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 2,
+          "endDistanceFromShoreKm": 2,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "17c5447c9-9263-31a8-1a8a-5341a999be5f",
+          "name": null,
+          "ssvid": "422239000",
+          "flag": "IRN",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "f421f4b6c0b27a69db8f6df909e918d0",
+          "confidence": "3",
+          "durationHrs": 112176.7875,
+          "startAnchorage": {
+            "anchorageId": "3ef829ad",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "IRN",
+            "id": "irn-rajaei",
+            "lat": 27.102264720242513,
+            "lon": 56.0741070857314,
+            "name": "RAJAEI",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef829ad",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "IRN",
+            "id": "irn-rajaei",
+            "lat": 27.102264720242513,
+            "lon": 56.0741070857314,
+            "name": "RAJAEI",
+            "topDestination": "BANDAR ABBAS"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef829ad",
+            "atDock": true,
+            "distanceFromShoreKm": "2",
+            "flag": "IRN",
+            "id": "irn-rajaei",
+            "lat": 27.102264720242513,
+            "lon": 56.0741070857314,
+            "name": "RAJAEI",
+            "topDestination": "BANDAR ABBAS"
+          }
+        }
+      },
+      {
+        "start": "2013-04-12T00:10:10.000Z",
+        "end": "2025-06-05T08:12:04.000Z",
+        "id": "3a9951e8426841a8e6f09cd6bde515f0",
+        "type": "port_visit",
+        "position": {
+          "lat": 24.8103,
+          "lon": 54.6548
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "ACAP",
+            "IWC",
+            "RECOFI"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          54.654750462734384,
+          24.810313914421247,
+          54.654750462734384,
+          24.810313914421247
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 4,
+          "endDistanceFromShoreKm": 4,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "1d72c5409-9228-9bdb-0264-b62b27da20bd",
+          "name": null,
+          "ssvid": "470249004",
+          "flag": "ARE",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "b9a49541c517f500b5e04fc39beb3e33",
+          "confidence": "3",
+          "durationHrs": 106496.03166666666,
+          "startAnchorage": {
+            "anchorageId": "3e5efbb3",
+            "atDock": true,
+            "distanceFromShoreKm": "4",
+            "flag": "ARE",
+            "id": "are-khalifa",
+            "lat": 24.810313914421247,
+            "lon": 54.654750462734384,
+            "name": "KHALIFA",
+            "topDestination": "KHALIFA"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5efbb3",
+            "atDock": true,
+            "distanceFromShoreKm": "4",
+            "flag": "ARE",
+            "id": "are-khalifa",
+            "lat": 24.810313914421247,
+            "lon": 54.654750462734384,
+            "name": "KHALIFA",
+            "topDestination": "KHALIFA"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5efbb3",
+            "atDock": true,
+            "distanceFromShoreKm": "4",
+            "flag": "ARE",
+            "id": "are-khalifa",
+            "lat": 24.810313914421247,
+            "lon": 54.654750462734384,
+            "name": "KHALIFA",
+            "topDestination": "KHALIFA"
+          }
+        }
+      },
+      {
+        "start": "2013-05-10T02:34:02.000Z",
+        "end": "2025-10-17T04:30:09.000Z",
+        "id": "f6eace6535706a0e4c8443fde3a96332",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2674,
+          "lon": 55.2791
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "IOTC",
+            "IWC",
+            "RECOFI",
+            "ACAP"
+          ],
+          "fao": [
+            "51.2",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.279147345224075,
+          25.267370875069584,
+          55.279147345224075,
+          25.267370875069584
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 0,
+          "endDistanceFromShoreKm": 0,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "2af73ef47-743b-bfb4-7a99-2194ce1f4aa7",
+          "name": null,
+          "ssvid": "538011964",
+          "flag": "MHL",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "7ab31f87dd9156464e2d92fb0aea095a",
+          "confidence": "3",
+          "durationHrs": 109033.93527777778,
+          "startAnchorage": {
+            "anchorageId": "3e5f4371",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-portrashid",
+            "lat": 25.267370875069584,
+            "lon": 55.279147345224075,
+            "name": "PORT RASHID",
+            "topDestination": "DUBAI"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f4371",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-portrashid",
+            "lat": 25.267370875069584,
+            "lon": 55.279147345224075,
+            "name": "PORT RASHID",
+            "topDestination": "DUBAI"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f4371",
+            "atDock": true,
+            "distanceFromShoreKm": "0",
+            "flag": "ARE",
+            "id": "are-portrashid",
+            "lat": 25.267370875069584,
+            "lon": 55.279147345224075,
+            "name": "PORT RASHID",
+            "topDestination": "DUBAI"
+          }
+        }
+      },
+      {
+        "start": "2013-05-26T05:09:04.000Z",
+        "end": "2025-12-19T07:46:37.000Z",
+        "id": "c55241e93178a08cbd65068745fd7a66",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.2274,
+          "lon": 56.4582
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "RECOFI",
+            "IWC",
+            "ACAP",
+            "IOTC"
+          ],
+          "fao": [
+            "51.3",
+            "51"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          56.458191597323335,
+          25.227443612044137,
+          56.458191597323335,
+          25.227443612044137
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 10,
+          "endDistanceFromShoreKm": 10,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "79bad5495-507a-157b-6d20-b666176651d4",
+          "name": null,
+          "ssvid": "111111007",
+          "flag": null,
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "ff2ef06ac92542d0c5d412a799a2fd89",
+          "confidence": "3",
+          "durationHrs": 110162.62583333334,
+          "startAnchorage": {
+            "anchorageId": "3ef4593b",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.227443612044137,
+            "lon": 56.458191597323335,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3ef4593b",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.227443612044137,
+            "lon": 56.458191597323335,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          },
+          "endAnchorage": {
+            "anchorageId": "3ef4593b",
+            "atDock": false,
+            "distanceFromShoreKm": "10",
+            "flag": "ARE",
+            "id": "are-fujairah",
+            "lat": 25.227443612044137,
+            "lon": 56.458191597323335,
+            "name": "FUJAIRAH",
+            "topDestination": "FUJAIRAH"
+          }
+        }
+      },
+      {
+        "start": "2013-05-27T18:44:04.000Z",
+        "end": "2025-10-03T08:54:14.000Z",
+        "id": "78b38038bc1094f0e0ab3495a579258f",
+        "type": "port_visit",
+        "position": {
+          "lat": 25.4799,
+          "lon": 55.3946
+        },
+        "regions": {
+          "mpa": [],
+          "eez": [
+            "8360"
+          ],
+          "rfmo": [
+            "ACAP",
+            "RECOFI",
+            "IWC",
+            "IOTC"
+          ],
+          "fao": [
+            "51",
+            "51.2"
+          ],
+          "majorFao": [
+            "51"
+          ],
+          "eez12Nm": [
+            "8360"
+          ],
+          "highSeas": [],
+          "mpaNoTakePartial": [],
+          "mpaNoTake": []
+        },
+        "boundingBox": [
+          55.394573135689804,
+          25.47991440977581,
+          55.394573135689804,
+          25.47991440977581
+        ],
+        "distances": {
+          "startDistanceFromShoreKm": 8,
+          "endDistanceFromShoreKm": 8,
+          "startDistanceFromPortKm": 0,
+          "endDistanceFromPortKm": 0
+        },
+        "vessel": {
+          "id": "834b17305-530d-66b0-715d-a38e61bb08e6",
+          "name": null,
+          "ssvid": "422993400",
+          "flag": "IRN",
+          "type": "other",
+          "nextPort": null
+        },
+        "port_visit": {
+          "visitId": "793133211582ae93f3c5fdf718ff2c99",
+          "confidence": "3",
+          "durationHrs": 108278.16944444444,
+          "startAnchorage": {
+            "anchorageId": "3e5f53fd",
+            "atDock": false,
+            "distanceFromShoreKm": "8",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.47991440977581,
+            "lon": 55.394573135689804,
+            "name": "SHARJAH",
+            "topDestination": "HAMRIYAH UAE"
+          },
+          "intermediateAnchorage": {
+            "anchorageId": "3e5f53fd",
+            "atDock": false,
+            "distanceFromShoreKm": "8",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.47991440977581,
+            "lon": 55.394573135689804,
+            "name": "SHARJAH",
+            "topDestination": "HAMRIYAH UAE"
+          },
+          "endAnchorage": {
+            "anchorageId": "3e5f53fd",
+            "atDock": false,
+            "distanceFromShoreKm": "8",
+            "flag": "ARE",
+            "id": "are-sharjah",
+            "lat": 25.47991440977581,
+            "lon": 55.394573135689804,
+            "name": "SHARJAH",
+            "topDestination": "HAMRIYAH UAE"
+          }
+        }
+      }
+    ]
+  }
+}

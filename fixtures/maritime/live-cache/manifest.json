@@ -1,0 +1,88 @@
+{
+  "generated_at": "2026-05-03T01:03:57.902Z",
+  "aoi": {
+    "name": "Strait of Hormuz demo AOI",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "aisstreamBoundingBoxes": [
+      [
+        [
+          24.5,
+          54.4
+        ],
+        [
+          27.2,
+          57.8
+        ]
+      ]
+    ],
+    "polygon": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            54.4,
+            24.5
+          ],
+          [
+            57.8,
+            24.5
+          ],
+          [
+            57.8,
+            27.2
+          ],
+          [
+            54.4,
+            27.2
+          ],
+          [
+            54.4,
+            24.5
+          ]
+        ]
+      ]
+    }
+  },
+  "note": "Cached live/public Strait of Hormuz context. No API keys are stored in this directory.",
+  "results": [
+    {
+      "source": "GLOBAL_FISHING_WATCH",
+      "ok": false,
+      "detail": "0/3 event caches written.",
+      "files": [
+        "gfw-hormuz-gaps.json",
+        "gfw-hormuz-port-visits.json",
+        "gfw-hormuz-loitering.json"
+      ]
+    },
+    {
+      "source": "AISSTREAM",
+      "ok": false,
+      "detail": "0 AIS messages cached.",
+      "fileName": "aisstream-hormuz-sample.json"
+    },
+    {
+      "source": "NAVAREA_IX",
+      "ok": false,
+      "detail": "failed: fetch failed",
+      "fileName": "navarea-ix-warnings.html"
+    },
+    {
+      "source": "UKMTO",
+      "ok": false,
+      "detail": "failed: fetch failed",
+      "fileName": "ukmto-home.html"
+    },
+    {
+      "source": "OVERPASS",
+      "ok": false,
+      "detail": "overpass-hormuz-maritime.json: failed: fetch failed",
+      "fileName": "overpass-hormuz-maritime.json"
+    }
+  ]
+}
