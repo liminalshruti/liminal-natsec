@@ -7,10 +7,18 @@ import {
   type SpineNode
 } from "../lib/spineGraph.ts";
 
+import { TypedEdge, TypedObjectChip, type TypedObjectKind } from "./TypedObjectChip.tsx";
+
 interface ProvenanceTraceProps {
   claimId: string | null;
 }
 
+// v3.2 IA — provenance is rendered with typed-object grammar:
+//   [TYPE] target ←[EDGE_TYPE]── [TYPE] target ←[EDGE_TYPE]── ...
+// The graph isn't drawn — it's implied by the typed-link chain. Same
+// information density as before, much higher legibility because object
+// types and edge types are now visible-by-default rather than encoded in
+// indented prose. Matches Palantir's typed-link rendering style.
 export function ProvenanceTrace({ claimId }: ProvenanceTraceProps) {
   const trace = useMemo<ProvenanceTraceType | null>(() => {
     if (!claimId) return null;
@@ -20,87 +28,65 @@ export function ProvenanceTrace({ claimId }: ProvenanceTraceProps) {
   }, [claimId]);
 
   if (!claimId) {
-    return (
-      <>
-        <div className="subhead">Provenance Trace</div>
-        <div className="empty">no claim selected</div>
-      </>
-    );
+    return <div className="empty" style={{ fontSize: 11 }}>no claim selected</div>;
   }
   if (!trace) {
-    return (
-      <>
-        <div className="subhead">Provenance Trace</div>
-        <div className="empty">no trace for this claim</div>
-      </>
-    );
+    return <div className="empty" style={{ fontSize: 11 }}>no trace for this claim</div>;
   }
 
   return (
-    <>
-      <div className="subhead">Provenance Trace</div>
-      <div className="trace-strip">
-        {trace.steps.map((step, index) => (
-          <TraceStep
+    <div className="provenance-tree">
+      {trace.steps.map((step, index) => {
+        const indent = index;
+        const isRoot = index === trace.steps.length - 1;
+        return (
+          <div
             key={step.node.id}
-            node={step.node}
-            edgeType={step.viaEdge?.type ?? null}
-            isLast={index === trace.steps.length - 1}
-          />
-        ))}
-      </div>
-      <div className="action-row__sub" style={{ marginTop: 4, color: "var(--fg-2)" }}>
-        action → claim → hypothesis → anomaly → observation
-      </div>
-    </>
-  );
-}
-
-interface TraceStepProps {
-  node: SpineNode;
-  edgeType: string | null;
-  isLast: boolean;
-}
-
-function TraceStep({ node, edgeType, isLast }: TraceStepProps) {
-  return (
-    <div className="trace-step">
-      {edgeType && (
-        <div className="trace-step__edge" title={`via ${edgeType}`}>
-          <span className="trace-step__arrow">↓</span>
-          <span className="trace-step__edge-type">{edgeType}</span>
-        </div>
-      )}
-      <div className="trace-step__node">
-        <div className="trace-step__type">{labelForType(node.type)}</div>
-        <div className="trace-step__title">{node.title}</div>
-        <div className="trace-step__id" title={node.id}>
-          {truncId(node.id)}
-        </div>
-      </div>
-      {isLast && <div className="trace-step__terminator">root</div>}
+            className={`provenance-tree__step ${isRoot ? "provenance-tree__step--root" : ""}`}
+            style={{ paddingLeft: indent * 14 }}
+          >
+            {step.viaEdge?.type && (
+              <TypedEdge type={step.viaEdge.type} arrow="left" />
+            )}
+            <TypedObjectChip
+              kind={kindOf(step.node.type)}
+              id={step.node.id}
+              label={step.node.title}
+              size="sm"
+            />
+            {isRoot && (
+              <span style={{ color: "var(--fg-2)", fontSize: 9, letterSpacing: "0.16em" }}>
+                ROOT
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
 
-function labelForType(type: SpineNode["type"]): string {
+function kindOf(type: SpineNode["type"]): TypedObjectKind {
   switch (type) {
     case "actionOption":
-      return "ACTION";
+      return "action";
     case "claim":
-      return "CLAIM";
+      return "claim";
     case "hypothesis":
-      return "HYPOTHESIS";
+      return "hypothesis";
     case "anomaly":
-      return "ANOMALY";
+      return "anomaly";
     case "observation":
-      return "OBSERVATION";
+      return "observation";
+    case "evidence":
+      return "evidence";
+    case "track":
+      return "track";
+    case "reviewRule":
+      return "rule";
+    case "case":
+      return "case";
     default:
-      return type.toUpperCase();
+      return "entity";
   }
-}
-
-function truncId(id: string): string {
-  if (id.length <= 36) return id;
-  return `${id.slice(0, 16)}…${id.slice(-16)}`;
 }

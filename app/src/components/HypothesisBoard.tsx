@@ -6,6 +6,7 @@ import {
   type SpineNode
 } from "../lib/spineGraph.ts";
 import { ConfidenceBar } from "./ConfidenceBar.tsx";
+import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
 interface HypothesisBoardProps {
   hypotheses: SpineNode[];
@@ -80,10 +81,14 @@ export function HypothesisBoard({
             }}
           >
             <div className="action-row__title">
-              <span>{node.title}</span>
-              <span className={tagClass} style={{ fontSize: 9 }}>
-                {tagText}
-              </span>
+              <TypedObjectChip
+                kind="hypothesis"
+                id={node.id}
+                label={node.title}
+                status={tagText.toLowerCase()}
+                posterior={posterior}
+                size="sm"
+              />
             </div>
             <ConfidenceBar
               value={posterior}
