@@ -4014,6 +4014,33 @@ details.case-file__section > summary:focus-visible {
   color: var(--color-ink-tertiary);
 }
 
+/* ─── D1 FOCUS STATE ─────────────────────────────────────────────────────────
+   The operator's eye should land on ONE thing first. Active pane stays at
+   full opacity and saturation; inactive panes dim to 0.72 + slight
+   desaturate so they recede without disappearing. The active pane is
+   determined by `data-active-pane` on the .app-shell wrapper:
+     working — when a case is selected (operationally hot)
+     stage   — when no case is selected (watchstanding glance)
+     substrate — reserved for v3.3 (alert hover)
+   The dim is a unified opacity+saturate change so it reads as a single
+   "step back" rather than two separate effects. */
+
+.app-shell .panel {
+  transition: opacity 280ms ease, filter 280ms ease;
+}
+
+.app-shell[data-active-pane="working"] .panel--substrate,
+.app-shell[data-active-pane="working"] .panel--stage,
+.app-shell[data-active-pane="stage"] .panel--substrate,
+.app-shell[data-active-pane="stage"] .panel--working,
+.app-shell[data-active-pane="substrate"] .panel--stage,
+.app-shell[data-active-pane="substrate"] .panel--working {
+  opacity: 0.72;
+  filter: saturate(0.85);
+}
+
+/* ─── D2 AMBIENT MOTION ─── */
+
 .evidence-card__drill-trail-sep {
   color: var(--color-edge);
   font-size: 11px;

@@ -38,8 +38,17 @@ export function AppShell({
   const eventId = eventIdFromCaseId(selectedCaseId);
   const modeLabel = scenario?.state.mode === "real" ? "real cache" : "demo fixture";
   const timestamp = scenario?.state.lastRefreshAt ?? scenario?.state.seededAt;
+  // D1 focus state: which pane should the operator's eye land on first?
+  // When a case is selected, the working panel is operationally hot — that's
+  // the make-or-break beat surface. When no case is selected, the stage
+  // (map + replay) is the watchstanding-glance surface. Substrate becomes
+  // active only on alert-hover (deferred to v3.3 — for now substrate stays
+  // dim alongside whichever non-active pane it pairs with).
+  const activePane: "substrate" | "stage" | "working" = selectedAlert
+    ? "working"
+    : "stage";
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-active-pane={activePane}>
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
         <WorkflowStrip />
