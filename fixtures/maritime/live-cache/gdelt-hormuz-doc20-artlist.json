@@ -1,0 +1,49 @@
+{
+  "source": "GDELT",
+  "generated_at": "2026-05-03T03:58:17.674Z",
+  "fixture_mode": true,
+  "fixture_reason": "GDELT DOC 2.0 live request unavailable (gdelt-hormuz-doc20-artlist.json: failed fetch failed); synthetic rows preserve artlist JSON shape for offline demo use.",
+  "request": {
+    "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+    "method": "GET",
+    "metadata": {
+      "api": "DOC 2.0",
+      "query": "(\"Strait of Hormuz\" OR Hormuz) (shipping OR tanker OR vessel OR AIS OR GNSS OR IRGC OR \"Bandar Abbas\" OR Fujairah)",
+      "mode": "artlist",
+      "format": "json",
+      "fixture_fallback": true,
+      "token_cached": false
+    }
+  },
+  "response": {
+    "ok": true,
+    "status": 200,
+    "statusText": "Fixture Fallback",
+    "contentType": "application/json",
+    "bytes": 594
+  },
+  "body": {
+    "articles": [
+      {
+        "url": "https://example.invalid/gdelt-fixture/hormuz-ais-disruption",
+        "url_mobile": "",
+        "title": "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
+        "seendate": "20260403035817",
+        "socialimage": null,
+        "domain": "example.invalid",
+        "language": "English",
+        "sourcecountry": "United Arab Emirates"
+      },
+      {
+        "url": "https://example.invalid/gdelt-fixture/hormuz-shipping-security",
+        "url_mobile": "",
+        "title": "Fixture report on shipping security around Bandar Abbas and Fujairah",
+        "seendate": "20260403095817",
+        "socialimage": null,
+        "domain": "example.invalid",
+        "language": "English",
+        "sourcecountry": "United States"
+      }
+    ]
+  }
+}

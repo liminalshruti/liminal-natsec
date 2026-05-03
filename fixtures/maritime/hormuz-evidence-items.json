@@ -12,8 +12,8 @@
       "src:hormuz:acled-hormuz-events"
     ],
     "source_file": "fixtures/maritime/live-cache/acled-hormuz-events.json",
-    "source_sha256": "38ac38b2c2d5509e6444ad9f28b8f0bd03ad2379a7d82c59e5ff1aea8b3da4c3",
-    "created_at": "2026-05-03T02:40:57.696Z",
+    "source_sha256": "db7cc06d523ca0c660ce4744d3617d4aad0d66254b0949cd4dda66efa30d7b75",
+    "created_at": "2026-05-03T03:30:17.667Z",
     "observed_at": "2026-04-03",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -63,8 +63,8 @@
       "src:hormuz:acled-hormuz-events"
     ],
     "source_file": "fixtures/maritime/live-cache/acled-hormuz-events.json",
-    "source_sha256": "38ac38b2c2d5509e6444ad9f28b8f0bd03ad2379a7d82c59e5ff1aea8b3da4c3",
-    "created_at": "2026-05-03T02:40:57.696Z",
+    "source_sha256": "db7cc06d523ca0c660ce4744d3617d4aad0d66254b0949cd4dda66efa30d7b75",
+    "created_at": "2026-05-03T03:30:17.667Z",
     "observed_at": "2026-04-03",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -264,8 +264,8 @@
       "src:hormuz:censys-maritime-infrastructure"
     ],
     "source_file": "fixtures/maritime/live-cache/censys-maritime-infrastructure.json",
-    "source_sha256": "bb37591741793027348f3042e4e977f4159c21106c014ba75c42a00135ba1515",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "cf02ba8f203b2c39821e79c8afa52f1febbf28aaae060d7f6f8cbbd8170847fb",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.34,
@@ -310,8 +310,8 @@
       "src:hormuz:censys-maritime-infrastructure"
     ],
     "source_file": "fixtures/maritime/live-cache/censys-maritime-infrastructure.json",
-    "source_sha256": "bb37591741793027348f3042e4e977f4159c21106c014ba75c42a00135ba1515",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "cf02ba8f203b2c39821e79c8afa52f1febbf28aaae060d7f6f8cbbd8170847fb",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.34,
@@ -405,8 +405,8 @@
       "src:hormuz:copernicus-cdse-sentinel1-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
-    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "786016c6c1a6cea9a639f8a2b76e4e1f51d5b86938e57601f3b0ef345846cdbf",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-02T14:24:17.482882Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -480,8 +480,8 @@
       "src:hormuz:copernicus-cdse-sentinel1-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
-    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "786016c6c1a6cea9a639f8a2b76e4e1f51d5b86938e57601f3b0ef345846cdbf",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-01T14:32:40.288276Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -555,8 +555,8 @@
       "src:hormuz:copernicus-cdse-sentinel1-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
-    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "786016c6c1a6cea9a639f8a2b76e4e1f51d5b86938e57601f3b0ef345846cdbf",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-02T14:23:48.193448Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -630,8 +630,8 @@
       "src:hormuz:copernicus-cdse-sentinel1-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
-    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "786016c6c1a6cea9a639f8a2b76e4e1f51d5b86938e57601f3b0ef345846cdbf",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-01T14:33:05.289151Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -705,8 +705,8 @@
       "src:hormuz:copernicus-cdse-sentinel2-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
-    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "3c07589e3fe82a6413bacf9d15fc18e3af3c127193fd808d88207586768fe209",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-02T07:03:21.024000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -793,8 +793,8 @@
       "src:hormuz:copernicus-cdse-sentinel2-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
-    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "3c07589e3fe82a6413bacf9d15fc18e3af3c127193fd808d88207586768fe209",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-02T07:03:21.024000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -869,8 +869,8 @@
       "src:hormuz:copernicus-cdse-sentinel2-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
-    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "3c07589e3fe82a6413bacf9d15fc18e3af3c127193fd808d88207586768fe209",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-02T07:03:21.024000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -945,8 +945,8 @@
       "src:hormuz:copernicus-cdse-sentinel2-stac"
     ],
     "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
-    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "3c07589e3fe82a6413bacf9d15fc18e3af3c127193fd808d88207586768fe209",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-05-02T07:03:21.024000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1021,8 +1021,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-22T07:18:55Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1034,11 +1034,11 @@
       "SATELLOGIC"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "IMAGE",
       "source_document_id": "20260422_071855_SN26_QUICKVIEW_VISUAL_THUMBNAIL_20m_1_11_0",
       "source": "SATELLOGIC",
-      "score": 1.3204689,
+      "score": 1.3199165,
       "total": 14,
       "fixture_mode": false
     },
@@ -1065,8 +1065,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-26T06:17:39Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1078,11 +1078,11 @@
       "SATELLOGIC"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "IMAGE",
       "source_document_id": "20260426_061739_SN34_QUICKVIEW_VISUAL_THUMBNAIL_20m_1_11_0",
       "source": "SATELLOGIC",
-      "score": 2.8243232,
+      "score": 2.8230143,
       "total": 14,
       "fixture_mode": false
     },
@@ -1109,8 +1109,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-19T07:02:45Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1122,11 +1122,11 @@
       "SENTINEL_HUB"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "IMAGE",
       "source_document_id": "S2A_MSIL2A_20260419T065321_N0512_R020_T40RCP_20260419T121112",
       "source": "SENTINEL_HUB",
-      "score": 0.0068248725,
+      "score": 0.0068223886,
       "total": 14,
       "fixture_mode": false
     },
@@ -1141,7 +1141,7 @@
     }
   },
   {
-    "id": "ev:hormuz:danti-ship:3bef4a91d9",
+    "id": "ev:hormuz:danti-ship:5d966dc3de",
     "type": "evidence",
     "title": "Marinetraffic Ship resource from MARINETRAFFIC",
     "source": "DANTI",
@@ -1153,9 +1153,9 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
-    "observed_at": "2026-04-02T02:44:34Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
+    "observed_at": "2026-04-02T06:43:47Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.6,
@@ -1165,9 +1165,9 @@
       "MARINETRAFFIC"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "SHIP",
-      "source_document_id": "c51075ca5b30baf1c1879722697c299145a66be1135271fc051105e5d35aba9b",
+      "source_document_id": "79d1b4094f1581301dd67032cf4356fa0c78a330de159e619b7dac073e909808",
       "source": "MARINETRAFFIC",
       "score": 0,
       "total": 10000,
@@ -1186,7 +1186,7 @@
     }
   },
   {
-    "id": "ev:hormuz:danti-ship:b8861ee5b5",
+    "id": "ev:hormuz:danti-ship:8a34b102a0",
     "type": "evidence",
     "title": "Marinetraffic Ship resource from MARINETRAFFIC",
     "source": "DANTI",
@@ -1198,9 +1198,9 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
-    "observed_at": "2026-04-02T02:42:07Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
+    "observed_at": "2026-04-02T05:52:08Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.6,
@@ -1210,9 +1210,9 @@
       "MARINETRAFFIC"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "SHIP",
-      "source_document_id": "dd5c953f28c764b6b7995c5ebc52da80a5a1efd471c2df341f5ca80cd4a14b7a",
+      "source_document_id": "c42c0f805609caf36c3ee7cf29ebad6db697e3f4aa04619d53bb552865420256",
       "source": "MARINETRAFFIC",
       "score": 0,
       "total": 10000,
@@ -1231,7 +1231,7 @@
     }
   },
   {
-    "id": "ev:hormuz:danti-ship:e98f628d5b",
+    "id": "ev:hormuz:danti-ship:cb3091fd0e",
     "type": "evidence",
     "title": "Marinetraffic Ship resource from MARINETRAFFIC",
     "source": "DANTI",
@@ -1243,9 +1243,9 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
-    "observed_at": "2026-04-02T02:41:09Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
+    "observed_at": "2026-04-02T06:33:48Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.6,
@@ -1255,9 +1255,9 @@
       "MARINETRAFFIC"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "SHIP",
-      "source_document_id": "f420e95a9ca921549b33cdd56b5f03e91db2d44228ebfbae7810d7ea8b2a4088",
+      "source_document_id": "504d8cd3138b1b207de2d80ec104ffca8076bab496fe4ee598e16d8222dbd287",
       "source": "MARINETRAFFIC",
       "score": 0,
       "total": 10000,
@@ -1288,8 +1288,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-04T04:47:07Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1301,7 +1301,7 @@
       "SEERIST"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "SOCIAL_MEDIA",
       "source_document_id": "d1f2cf63-e590-4d81-b1aa-a06d9a75dc5d",
       "source": "SEERIST",
@@ -1334,8 +1334,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-19T09:59:38Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1346,7 +1346,7 @@
       "SEERIST"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "SOCIAL_MEDIA",
       "source_document_id": "2045802894880882786",
       "source": "SEERIST",
@@ -1379,8 +1379,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-27T21:54:33Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1392,7 +1392,7 @@
       "SEERIST"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "SOCIAL_MEDIA",
       "source_document_id": "9f566445-238d-400a-8b2c-9e58f0d4e7dd",
       "source": "SEERIST",
@@ -1425,8 +1425,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-28T15:17:44Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1438,7 +1438,7 @@
       "SEERIST"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "WEB_ARTICLE",
       "source_document_id": "23d855e9-dba0-4834-abe1-eea8affd1117",
       "source": "SEERIST",
@@ -1471,8 +1471,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-22T08:05:52Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1484,7 +1484,7 @@
       "SEERIST"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "WEB_ARTICLE",
       "source_document_id": "9224ac324f0dbbf8fd962bd78f45b2da",
       "source": "SEERIST",
@@ -1517,8 +1517,8 @@
       "src:hormuz:danti-hormuz-query"
     ],
     "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
-    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "4f7f051a0d12289fdc5be7131e963db9f540e0803c775aa4d440a62616adaaee",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-17T08:38:48Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -1530,7 +1530,7 @@
       "SEERIST"
     ],
     "attributes": {
-      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "query_id": "019debe0-d6da-74e1-934f-a032048c89c0",
       "source_category": "WEB_ARTICLE",
       "source_document_id": "e55c1616-f0fb-44fe-8d3b-f4449022c448",
       "source": "SEERIST",
@@ -1563,14 +1563,14 @@
       "src:hormuz:exa-hormuz-osint"
     ],
     "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
-    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "006f927dc7a2a11cb11131673e90e6014a93f8f9a0271aa34309dc97865ac4e7",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-01T20:00:34.000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.58,
     "reliability": 0.55,
-    "summary": "- The UKMTO (via Dryad Global) reports a highly volatile security environment across the Strait of Hormuz, Bab al Mandab, Arabian Gulf, Gulf of Oman, and North Arabian Sea as of 1 March 2026, driven by ongoing regional military activity. - Key risks for watchstanders at Strait of Hormuz: - Elevated threats to commercial shipping from military presence, with…",
+    "summary": "- The Strait of Hormuz remains in a highly volatile security environment (Mar 1, 2026 UKMTO Update 002 to Advisory 003-26) driven by ongoing regional military activity in the Arabian Gulf, Gulf of Oman, Bab al Mandab, and related chokepoints. - Key risks for watchstanders: increased potential for miscalculation or misidentification near military units and c…",
     "url": "https://channel16.dryadglobal.com/ukmto-update-volatile-security-environment-across-hormuz-bab-al-mandab-and-the-arabian-gulf",
     "attributes": {
       "author": "Dryad Global",
@@ -1601,14 +1601,14 @@
       "src:hormuz:exa-hormuz-osint"
     ],
     "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
-    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "006f927dc7a2a11cb11131673e90e6014a93f8f9a0271aa34309dc97865ac4e7",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-04T19:05:10.000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.58,
     "reliability": 0.55,
-    "summary": "- The Strait of Hormuz remains a highly volatile maritime security environment due to ongoing US‑Israel‑Iran tensions, with the Joint Maritime Information Center (JMIC) designating the risk to merchant shipping as “CRITICAL” (nearly certain attack). - Traffic through the strait has collapsed to near standstill, with AIS data showing single-digit transits an…",
+    "summary": "- The Strait of Hormuz is under a CRITICAL maritime threat level per the Joint Maritime Information Center (JMIC), meaning an attack is considered almost certain. - Commercial traffic has slowed to near halt: AIS data shows traffic in single-digit transits; overall volumes down >90%, though the strait has not been formally closed. - Key risk factors: missil…",
     "url": "https://gcaptain.com/",
     "attributes": {
       "author": "Mike Schuler",
@@ -1627,7 +1627,7 @@
     }
   },
   {
-    "id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:0a121739b2",
+    "id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:42f7d4c9d4",
     "type": "evidence",
     "title": "Hormuz Active Crisis 5 Ships Hit Traffic Collapses | gCaptain",
     "source": "EXA",
@@ -1639,14 +1639,14 @@
       "src:hormuz:exa-hormuz-osint"
     ],
     "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
-    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "006f927dc7a2a11cb11131673e90e6014a93f8f9a0271aa34309dc97865ac4e7",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-02T16:55:25.000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.58,
     "reliability": 0.55,
-    "summary": "- The Strait of Hormuz has entered an active crisis stage with multiple coordinated attacks on five vessels in Gulf of Oman/UAE waters, elevating the regional maritime threat level to CRITICAL per JMIC. - Key security implication for watchstanders: - Elevated risk across all merchant traffic: all vessels are deemed at risk regardless of flag or nationality;…",
+    "summary": "- The Strait of Hormuz has moved from elevated tension to an active crisis, with five commercial vessels attacked in a 24-hour period, triggering a collapse in traffic and heightened security risk for watchstanders. - JMIC elevated the regional threat level to CRITICAL, signaling near-certain attack and imminent risk to all merchant ships regardless of flag…",
     "url": "https://gcaptain.com/strait-of-hormuz-traffic-collapses-tanker-markets/",
     "attributes": {
       "author": "Mike Schuler",
@@ -1665,7 +1665,7 @@
     }
   },
   {
-    "id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:0095fd0cbc",
+    "id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:97431756b5",
     "type": "evidence",
     "title": "Dark ships and shadow fleets – what is crossing 'closed' Strait of Hormuz?",
     "source": "EXA",
@@ -1677,14 +1677,14 @@
       "src:hormuz:exa-hormuz-osint"
     ],
     "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
-    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "006f927dc7a2a11cb11131673e90e6014a93f8f9a0271aa34309dc97865ac4e7",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-10T00:00:00.000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.58,
     "reliability": 0.55,
-    "summary": "- The Strait of Hormuz, a critical chokepoint for global oil and gas transit, has seen markedly reduced traffic as Iran signals disruption, with many ships turning off tracking (“dark” vessels) or linked to “shadow fleets.” - About 13 ships were tracked through the strait between March 2–9, with several more likely crossing undetected; normal daily traffic…",
+    "summary": "- The Strait of Hormuz remains a focal point for maritime security due to Iran’s actions to shut the waterway, prompting heightened watchstanding and risk assessments by vessels transiting the area. - Key threat themes for watchstanders: - Potential for attacks or near-misses: multiple incidents and projectiles reported near ships; ongoing reconnaissance of…",
     "url": "https://uk.news.yahoo.com/dark-ships-shadow-fleets-crossing-141400121.html",
     "attributes": {
       "author": "Sky News Tue, 10 March 2026 at 3:14 pm CET 5 min read",
@@ -1715,17 +1715,97 @@
       "src:hormuz:exa-hormuz-osint"
     ],
     "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
-    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "006f927dc7a2a11cb11131673e90e6014a93f8f9a0271aa34309dc97865ac4e7",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-21T10:17:20.000Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.58,
     "reliability": 0.55,
-    "summary": "- The Strait of Hormuz and surrounding Persian Gulf waters are currently at elevated maritime security risk (critical threat level per UKMTO/JMIC) with 20+ incidents since late February 2026, including attacks on vessels, navigation interference, and offshore infrastructure threats. - Key guidance for watchstanders: - Maintain situational awareness and coor…",
+    "summary": "- The Strait of Hormuz and surrounding Persian Gulf are currently at elevated security risk due to coordinated advisories from US MARAD, UKMTO, and JMIC. Over 20 incidents involving vessels and offshore facilities have been reported since late February 2026, driving traffic volumes to near-standstill. - Key guidance for watchstanders: - Maintain safe distan…",
     "url": "https://www.maritimenews.com/maritime-risk-advisory-iran/iran-maritime-risk-escalates-hormuz-traffic-halt",
     "attributes": {
       "result_id": "https://www.maritimenews.com/maritime-risk-advisory-iran/iran-maritime-risk-escalates-hormuz-traffic-halt"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gdelt-https-example-invalid-gdelt-fixture-hormuz-ais:44c878ca2f",
+    "type": "evidence",
+    "title": "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
+    "source": "GDELT",
+    "provider": "GDELT DOC 2.0",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gdelt-hormuz-doc20-artlist",
+    "source_document_ids": [
+      "src:hormuz:gdelt-hormuz-doc20-artlist"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gdelt-hormuz-doc20-artlist.json",
+    "source_sha256": "04c6ddaec19fbf74101f37ed3577dc9b8f3bd167fc76da943725e7785c154963",
+    "created_at": "2026-05-03T03:57:19.669Z",
+    "observed_at": "2026-04-03T03:57:1Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.54,
+    "reliability": 0.52,
+    "summary": "GDELT DOC 2.0 returned regional media context from example.invalid (United Arab Emirates); not vessel behavior evidence.",
+    "url": "https://example.invalid/gdelt-fixture/hormuz-ais-disruption",
+    "attributes": {
+      "domain": "example.invalid",
+      "source_country": "United Arab Emirates",
+      "language": "English",
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gdelt-https-example-invalid-gdelt-fixture-hormuz-shi:fba7c95b2c",
+    "type": "evidence",
+    "title": "Fixture report on shipping security around Bandar Abbas and Fujairah",
+    "source": "GDELT",
+    "provider": "GDELT DOC 2.0",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gdelt-hormuz-doc20-artlist",
+    "source_document_ids": [
+      "src:hormuz:gdelt-hormuz-doc20-artlist"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gdelt-hormuz-doc20-artlist.json",
+    "source_sha256": "04c6ddaec19fbf74101f37ed3577dc9b8f3bd167fc76da943725e7785c154963",
+    "created_at": "2026-05-03T03:57:19.669Z",
+    "observed_at": "2026-04-03T09:57:1Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.54,
+    "reliability": 0.52,
+    "summary": "GDELT DOC 2.0 returned regional media context from example.invalid (United States); not vessel behavior evidence.",
+    "url": "https://example.invalid/gdelt-fixture/hormuz-shipping-security",
+    "attributes": {
+      "domain": "example.invalid",
+      "source_country": "United States",
+      "language": "English",
+      "fixture_mode": true
     },
     "policy": {
       "allowed_score_buckets": [
@@ -1957,8 +2037,8 @@
       "src:hormuz:gfw-vessel-search-irisl"
     ],
     "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
-    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "34ce74668aa5190dac588f645ba657ec0525d2935fe3920d7dca4e923bcbc913",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2012-12-21T08:29:39Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2002,8 +2082,8 @@
       "src:hormuz:gfw-vessel-search-irisl"
     ],
     "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
-    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "34ce74668aa5190dac588f645ba657ec0525d2935fe3920d7dca4e923bcbc913",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-04-29T12:07:57Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2046,8 +2126,8 @@
       "src:hormuz:gfw-vessel-search-irisl"
     ],
     "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
-    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "34ce74668aa5190dac588f645ba657ec0525d2935fe3920d7dca4e923bcbc913",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2017-03-01T16:02:43Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2089,8 +2169,8 @@
       "src:hormuz:gfw-vessel-search-irisl"
     ],
     "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
-    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "34ce74668aa5190dac588f645ba657ec0525d2935fe3920d7dca4e923bcbc913",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2026-03-31T23:25:33Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2134,8 +2214,8 @@
       "src:hormuz:gfw-vessel-search-irisl"
     ],
     "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
-    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "34ce74668aa5190dac588f645ba657ec0525d2935fe3920d7dca4e923bcbc913",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2024-01-14T07:45:19Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2178,8 +2258,8 @@
       "src:hormuz:opensanctions-hormuz-maritime-entities"
     ],
     "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
-    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "b815ca7b88d5026daed2383bd1c85c63c44bd96b87543ab88419e6c9b66fff65",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.7,
@@ -2199,10 +2279,10 @@
         "mare.shadow"
       ],
       "datasets": [
-        "us_trade_csl",
         "ua_war_sanctions",
-        "us_ofac_sdn",
-        "ext_tokyo_mou_psc"
+        "us_trade_csl",
+        "ext_tokyo_mou_psc",
+        "us_ofac_sdn"
       ]
     },
     "policy": {
@@ -2230,8 +2310,8 @@
       "src:hormuz:opensanctions-hormuz-maritime-entities"
     ],
     "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
-    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "b815ca7b88d5026daed2383bd1c85c63c44bd96b87543ab88419e6c9b66fff65",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2025-12-12",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2254,11 +2334,11 @@
         "ir"
       ],
       "datasets": [
-        "mc_fund_freezes",
-        "us_ofac_sdn",
-        "eu_fsf",
         "be_fod_sanctions",
-        "ch_seco_sanctions"
+        "eu_journal_sanctions",
+        "us_sam_exclusions",
+        "us_ofac_sdn",
+        "mc_fund_freezes"
       ]
     },
     "policy": {
@@ -2286,8 +2366,8 @@
       "src:hormuz:opensanctions-hormuz-maritime-entities"
     ],
     "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
-    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "b815ca7b88d5026daed2383bd1c85c63c44bd96b87543ab88419e6c9b66fff65",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2025-02-18",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2310,9 +2390,9 @@
         "ir"
       ],
       "datasets": [
-        "us_sam_exclusions",
         "us_trade_csl",
-        "us_ofac_sdn"
+        "us_ofac_sdn",
+        "us_sam_exclusions"
       ]
     },
     "policy": {
@@ -2340,8 +2420,8 @@
       "src:hormuz:opensanctions-hormuz-maritime-entities"
     ],
     "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
-    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
-    "created_at": "2026-05-03T02:38:01.743Z",
+    "source_sha256": "b815ca7b88d5026daed2383bd1c85c63c44bd96b87543ab88419e6c9b66fff65",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "observed_at": "2025-12-12",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
@@ -2366,11 +2446,11 @@
         "ir"
       ],
       "datasets": [
-        "gb_fcdo_sanctions",
-        "tw_shtc",
-        "ext_us_ofac_press_releases",
         "permid",
-        "ch_seco_sanctions"
+        "eu_fsf",
+        "gb_coh_disqualified",
+        "eu_journal_sanctions",
+        "tw_shtc"
       ]
     },
     "policy": {
@@ -2399,9 +2479,9 @@
       "src:hormuz:overpass-hormuz-maritime-attempts"
     ],
     "source_file": "fixtures/maritime/live-cache/overpass-hormuz-maritime.json",
-    "source_sha256": "4a9438e35f95fda35d41728120870e8e273985a51e34c0fc2b2e2100c7f125fc",
-    "created_at": "2026-05-03T02:38:01.743Z",
-    "observed_at": "2026-05-03T02:37:20Z",
+    "source_sha256": "41bf0c9426155f680ce07130ecc7319e5a56467d8bb2e396ad6eb63f5b5b7e80",
+    "created_at": "2026-05-03T03:27:22.334Z",
+    "observed_at": "2026-05-03T03:25:44Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.5,
@@ -2458,8 +2538,8 @@
     ],
     "source_file": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.png",
     "source_sha256": "4703142a30535201df9868d552d888f24e2e089a3746cf04b6b337ffb33a3367",
-    "created_at": "2026-05-03T02:38:01.743Z",
-    "observed_at": "2026-05-03T02:38:01.745Z",
+    "created_at": "2026-05-03T03:27:22.334Z",
+    "observed_at": "2026-05-03T03:27:22.335Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.68,
@@ -2476,8 +2556,8 @@
     "attributes": {
       "data_type": "sentinel-1-grd",
       "output_format": "image/png",
-      "time_from": "2026-04-03T02:38:01.745Z",
-      "time_to": "2026-05-03T02:38:01.745Z"
+      "time_from": "2026-04-03T03:27:22.335Z",
+      "time_to": "2026-05-03T03:27:22.335Z"
     },
     "policy": {
       "allowed_score_buckets": [
@@ -2504,8 +2584,8 @@
     ],
     "source_file": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.png",
     "source_sha256": "dd3b72c0d5d13ac076e49ebf1baa4c2ff7d0972ec36def34580bcc6a47beece0",
-    "created_at": "2026-05-03T02:38:01.743Z",
-    "observed_at": "2026-05-03T02:38:01.745Z",
+    "created_at": "2026-05-03T03:27:22.334Z",
+    "observed_at": "2026-05-03T03:27:22.335Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.68,
@@ -2522,8 +2602,8 @@
     "attributes": {
       "data_type": "sentinel-2-l2a",
       "output_format": "image/png",
-      "time_from": "2026-04-03T02:38:01.745Z",
-      "time_to": "2026-05-03T02:38:01.745Z"
+      "time_from": "2026-04-03T03:27:22.335Z",
+      "time_to": "2026-05-03T03:27:22.335Z"
     },
     "policy": {
       "allowed_score_buckets": [
@@ -2548,8 +2628,8 @@
       "src:hormuz:shodan-maritime-ais"
     ],
     "source_file": "fixtures/maritime/live-cache/shodan-maritime-ais.json",
-    "source_sha256": "0284dd19349f60682681f498c55f9bd0db1c01d60d7060231ac05c5a6ee09dba",
-    "created_at": "2026-05-03T02:40:57.696Z",
+    "source_sha256": "73363a7bddd7add1782e4215e20b9f2aabb7213681bbafd480925605611b162a",
+    "created_at": "2026-05-03T03:27:22.334Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.35,
@@ -2585,9 +2665,9 @@
       "src:hormuz:navarea-ix-warnings-metadata"
     ],
     "source_file": "fixtures/maritime/live-cache/navarea-ix-warnings.html",
-    "source_sha256": "109354a7f1f8577d75b6fc6906d089cf3e1e77cd28271a2a68bf0ddd8720e370",
+    "source_sha256": "e735c970c49be36f3a5920628796a2ed32cc80f711fb371498701fc58632272b",
     "created_at": "1970-01-01T00:00:00.000Z",
-    "observed_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-03T03:27:22.334Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.6,
@@ -2621,9 +2701,9 @@
       "src:hormuz:ukmto-home-metadata"
     ],
     "source_file": "fixtures/maritime/live-cache/ukmto-home.html",
-    "source_sha256": "14b261ce524d5f5a132452178ebf1c81754096b9887d1fd16dffd4eff9940a53",
+    "source_sha256": "6fcd2809e89aa07dea5b3f28fae34acd7579a744d846684cd866d7a1fc5628c8",
     "created_at": "1970-01-01T00:00:00.000Z",
-    "observed_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-03T03:27:22.334Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.6,

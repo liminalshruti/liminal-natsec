@@ -31,6 +31,7 @@ export type HormuzIntelSource =
   | "COPERNICUS_MARINE"
   | "COPERNICUS_CDSE_STAC"
   | "DANTI"
+  | "GDELT"
   | "SENTINEL_HUB_PROCESS"
   | "OPENSANCTIONS"
   | "EXA"

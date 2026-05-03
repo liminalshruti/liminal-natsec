@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-03T02:40:57.696Z",
+  "generated_at": "2026-05-03T03:57:19.669Z",
   "normalizer_version": "hormuz-intel-normalizer@0.1.0",
   "classification": "UNCLASSIFIED//OSINT_FIXTURE",
-  "source_document_count": 24,
-  "evidence_item_count": 52,
-  "available_evidence_count": 52,
+  "source_document_count": 25,
+  "evidence_item_count": 54,
+  "available_evidence_count": 54,
   "unavailable_evidence_count": 0,
   "drawer_groups": {
     "Satellite": 11,
     "Maritime Warnings": 2,
-    "OSINT": 31,
+    "OSINT": 33,
     "Entity Risk": 4,
     "Infrastructure Context": 4
   },
@@ -17,7 +17,7 @@
     "GEO_SPATIOTEMPORAL_CORROBORATION": 8,
     "CROSS_MODAL_CONTEXT": 6,
     "ENTITY_RISK_ENRICHMENT": 4,
-    "REGIONAL_SECURITY_CONTEXT": 15,
+    "REGIONAL_SECURITY_CONTEXT": 17,
     "VESSEL_IDENTITY_CORROBORATION": 15,
     "MARITIME_INFRASTRUCTURE_CONTEXT": 1,
     "INFRASTRUCTURE_CONTEXT_ONLY": 3
@@ -343,7 +343,7 @@
         "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
       },
       {
-        "evidence_id": "ev:hormuz:danti-ship:3bef4a91d9",
+        "evidence_id": "ev:hormuz:danti-ship:5d966dc3de",
         "title": "Marinetraffic Ship resource from MARINETRAFFIC",
         "source": "DANTI",
         "category": "VESSEL_IDENTITY_CORROBORATION",
@@ -361,7 +361,7 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:danti-ship:b8861ee5b5",
+        "evidence_id": "ev:hormuz:danti-ship:8a34b102a0",
         "title": "Marinetraffic Ship resource from MARINETRAFFIC",
         "source": "DANTI",
         "category": "VESSEL_IDENTITY_CORROBORATION",
@@ -379,7 +379,7 @@
         "rationale": "GFW vessel search records affect identity/source corroboration only."
       },
       {
-        "evidence_id": "ev:hormuz:danti-ship:e98f628d5b",
+        "evidence_id": "ev:hormuz:danti-ship:cb3091fd0e",
         "title": "Marinetraffic Ship resource from MARINETRAFFIC",
         "source": "DANTI",
         "category": "VESSEL_IDENTITY_CORROBORATION",
@@ -541,7 +541,7 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:0a121739b2",
+        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:42f7d4c9d4",
         "title": "Hormuz Active Crisis 5 Ships Hit Traffic Collapses | gCaptain",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
@@ -559,7 +559,7 @@
         "rationale": "Public warning and OSINT records affect regional context only."
       },
       {
-        "evidence_id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:0095fd0cbc",
+        "evidence_id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:97431756b5",
         "title": "Dark ships and shadow fleets – what is crossing 'closed' Strait of Hormuz?",
         "source": "EXA",
         "category": "REGIONAL_SECURITY_CONTEXT",
@@ -580,6 +580,42 @@
         "evidence_id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:95200913f8",
         "title": "Iran Strait of Hormuz Risk Advisory March 2026 - Maritime News",
         "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-example-invalid-gdelt-fixture-hormuz-ais:44c878ca2f",
+        "title": "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
+        "source": "GDELT",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gdelt-https-example-invalid-gdelt-fixture-hormuz-shi:fba7c95b2c",
+        "title": "Fixture report on shipping security around Bandar Abbas and Fujairah",
+        "source": "GDELT",
         "category": "REGIONAL_SECURITY_CONTEXT",
         "bucket": "regional_context",
         "delta": 0.1,
@@ -936,7 +972,7 @@
     "totals": {
       "cross_modal_context": 2.16,
       "entity_risk": 0.88,
-      "regional_context": 1.5000000000000002,
+      "regional_context": 1.7000000000000004,
       "identity_source_corroboration": 2.4,
       "infrastructure_context": 0.1
     }

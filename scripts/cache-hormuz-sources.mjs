@@ -44,6 +44,7 @@ if (cacheProfile === "all" || cacheProfile === "fast") {
   results.push(await cacheGlobalFishingWatchVesselCapability());
   results.push(await cacheAcledHormuzEvents());
   results.push(await cacheExaHormuzOsint());
+  results.push(await cacheGdeltHormuzNews());
   results.push(await cacheShodanMaritimeIntel());
   results.push(await cacheCensysMaritimeInfrastructure());
   results.push(await cacheOpenSanctionsMaritimeEntities());
@@ -61,6 +62,10 @@ if (cacheProfile === "all" || cacheProfile === "fast" || cacheProfile === "danti
 
 if (cacheProfile === "acled") {
   results.push(await cacheAcledHormuzEvents());
+}
+
+if (cacheProfile === "gdelt") {
+  results.push(await cacheGdeltHormuzNews());
 }
 
 if (cacheProfile === "fallbacks") {
@@ -1119,6 +1124,82 @@ async function writeSyntheticAcledEvents(reason) {
   };
 }
 
+async function writeSyntheticGdeltHormuzNews(reason) {
+  const articles = [
+    gdeltArticle({
+      url: "https://example.invalid/gdelt-fixture/hormuz-ais-disruption",
+      title: "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
+      seendate: gdeltSeenDate(startDate),
+      sourceCountry: "United Arab Emirates",
+      sourceLanguage: "English",
+      domain: "example.invalid",
+      socialImage: null
+    }),
+    gdeltArticle({
+      url: "https://example.invalid/gdelt-fixture/hormuz-shipping-security",
+      title: "Fixture report on shipping security around Bandar Abbas and Fujairah",
+      seendate: gdeltSeenDate(new Date(startDate.getTime() + 6 * 60 * 60 * 1000)),
+      sourceCountry: "United States",
+      sourceLanguage: "English",
+      domain: "example.invalid",
+      socialImage: null
+    })
+  ];
+
+  await writeJson("gdelt-hormuz-doc20-artlist.json", {
+    source: "GDELT",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: `GDELT DOC 2.0 live request unavailable (${reason}); synthetic rows preserve artlist JSON shape for offline demo use.`,
+    request: {
+      url: "https://api.gdeltproject.org/api/v2/doc/doc",
+      method: "GET",
+      metadata: {
+        api: "DOC 2.0",
+        query: '("Strait of Hormuz" OR Hormuz) (shipping OR tanker OR vessel OR AIS OR GNSS OR IRGC OR "Bandar Abbas" OR Fujairah)',
+        mode: "artlist",
+        format: "json",
+        fixture_fallback: true,
+        token_cached: false
+      }
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      contentType: "application/json",
+      bytes: JSON.stringify(articles).length
+    },
+    body: {
+      articles
+    }
+  });
+
+  return {
+    source: "GDELT",
+    ok: true,
+    detail: "gdelt-hormuz-doc20-artlist.json: fixture fallback with 2 articles.",
+    fileName: "gdelt-hormuz-doc20-artlist.json"
+  };
+}
+
+function gdeltSeenDate(date) {
+  return date.toISOString().replace(/\D/g, "").slice(0, 14);
+}
+
+function gdeltArticle({ url, title, seendate, sourceCountry, sourceLanguage, domain, socialImage }) {
+  return {
+    url,
+    url_mobile: "",
+    title,
+    seendate,
+    socialimage: socialImage,
+    domain,
+    language: sourceLanguage,
+    sourcecountry: sourceCountry
+  };
+}
+
 function acledEvent({ id, date, country, admin1, location, latitude, longitude, eventType, subEventType, actor1, notes, fatalities }) {
   return {
     event_id_cnty: id,
@@ -1414,6 +1495,44 @@ async function cacheExaHormuzOsint() {
     },
     timeoutMs: 20_000
   });
+}
+
+async function cacheGdeltHormuzNews() {
+  const baseUrl = envOr("GDELT_DOC_API_URL", "https://api.gdeltproject.org/api/v2/doc/doc");
+  const query = envOr(
+    "GDELT_HORMUZ_QUERY",
+    '("Strait of Hormuz" OR Hormuz) (shipping OR tanker OR vessel OR AIS OR GNSS OR IRGC OR "Bandar Abbas" OR Fujairah)'
+  );
+  const url = new URL(baseUrl);
+  url.searchParams.set("query", query);
+  url.searchParams.set("mode", "artlist");
+  url.searchParams.set("format", "json");
+  url.searchParams.set("maxrecords", envOr("GDELT_MAX_RECORDS", "50"));
+  url.searchParams.set("timespan", envOr("GDELT_TIMESPAN", "1month"));
+  url.searchParams.set("sort", envOr("GDELT_SORT", "datedesc"));
+
+  const result = await fetchJsonToFile({
+    fileName: "gdelt-hormuz-doc20-artlist.json",
+    source: "GDELT",
+    url: url.toString(),
+    requestMetadata: {
+      api: "DOC 2.0",
+      query,
+      mode: "artlist",
+      format: "json",
+      maxrecords: url.searchParams.get("maxrecords"),
+      timespan: url.searchParams.get("timespan"),
+      sort: url.searchParams.get("sort"),
+      note: "No API key required. GDELT rows are regional media context, not vessel behavior evidence."
+    },
+    timeoutMs: 20_000
+  });
+
+  if (!result.ok) {
+    return writeSyntheticGdeltHormuzNews(result.detail);
+  }
+
+  return result;
 }
 
 async function cacheShodanMaritimeIntel() {
@@ -2275,11 +2394,12 @@ function parseCacheProfile(args) {
     profile === "slow" ||
     profile === "danti" ||
     profile === "acled" ||
+    profile === "gdelt" ||
     profile === "fallbacks"
   ) {
     return profile;
   }
-  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, acled, or fallbacks.`);
+  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, acled, gdelt, or fallbacks.`);
 }
 
 function redactUrl(rawUrl, queryParams) {

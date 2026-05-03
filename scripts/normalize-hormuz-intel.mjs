@@ -24,6 +24,7 @@ export const REQUIRED_LIVE_CACHE_FILES = [
   "sentinelhub-hormuz-sentinel2-truecolor.png",
   "opensanctions-hormuz-maritime-entities.json",
   "exa-hormuz-osint.json",
+  "gdelt-hormuz-doc20-artlist.json",
   "navarea-ix-warnings.html",
   "navarea-ix-warnings.metadata.json",
   "ukmto-home.html",
@@ -135,6 +136,7 @@ export function normalizeHormuzIntel(options = {}) {
   processOpenSanctions();
   processDanti();
   processExa();
+  processGdelt();
   processAcled();
   processWarningPage(
     "NAVAREA_IX",
@@ -529,6 +531,67 @@ export function normalizeHormuzIntel(options = {}) {
           attributes: compactRecord({
             author: sanitizeText(stringValue(result.author), 100),
             result_id: sanitizeUrl(stringValue(result.id))
+          })
+        })
+      );
+    }
+  }
+
+  function processGdelt() {
+    const doc = addSourceDocument("gdelt-hormuz-doc20-artlist.json", {
+      source: "GDELT",
+      provider: "GDELT DOC 2.0",
+      title: "GDELT DOC 2.0 Hormuz article list",
+      categories: ["REGIONAL_SECURITY_CONTEXT"]
+    });
+    const articles = asArray(doc.file.json?.body?.articles).slice(0, 8);
+    if (doc.status !== "available" || articles.length === 0) {
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["gdelt-unavailable"],
+          title: "GDELT DOC 2.0 article cache unavailable",
+          source: "GDELT",
+          provider: "GDELT DOC 2.0",
+          category: "REGIONAL_SECURITY_CONTEXT",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          status: "unavailable",
+          confidence: 0,
+          reliability: 0,
+          summary: "GDELT regional media context is unavailable."
+        })
+      );
+      return;
+    }
+
+    for (const [index, article] of articles.entries()) {
+      const title = sanitizeText(stringValue(article.title) ?? `GDELT article ${index + 1}`, 150);
+      const domain = sanitizeText(stringValue(article.domain), 100);
+      const country = sanitizeText(stringValue(article.sourcecountry), 80);
+      const language = sanitizeText(stringValue(article.language), 50);
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["gdelt", stringValue(article.url) ?? title, index],
+          title,
+          source: "GDELT",
+          provider: "GDELT DOC 2.0",
+          category: "REGIONAL_SECURITY_CONTEXT",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          observedAt: gdeltSeenDate(stringValue(article.seendate)),
+          confidence: 0.54,
+          reliability: 0.52,
+          summary: `GDELT DOC 2.0 returned regional media context${
+            domain ? ` from ${domain}` : ""
+          }${country ? ` (${country})` : ""}; not vessel behavior evidence.`,
+          url: sanitizeUrl(stringValue(article.url)),
+          attributes: compactRecord({
+            domain,
+            source_country: country,
+            language,
+            social_image: sanitizeUrl(stringValue(article.socialimage)),
+            mobile_url: sanitizeUrl(stringValue(article.url_mobile)),
+            fixture_mode: Boolean(doc.file.json?.fixture_mode)
           })
         })
       );
@@ -1452,6 +1515,20 @@ function stringArray(value) {
 
 function firstString(value) {
   return stringArray(value)[0] ?? null;
+}
+
+function gdeltSeenDate(value) {
+  if (typeof value !== "string" || value.length === 0) return null;
+  const digits = value.replace(/\D/g, "");
+  if (digits.length < 8) return sanitizeText(value, 40);
+  const padded = digits.slice(0, 14).padEnd(14, "0");
+  const year = padded.slice(0, 4);
+  const month = padded.slice(4, 6);
+  const day = padded.slice(6, 8);
+  const hour = padded.slice(8, 10);
+  const minute = padded.slice(10, 12);
+  const second = padded.slice(12, 14);
+  return `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
 }
 
 function objectKeys(value) {

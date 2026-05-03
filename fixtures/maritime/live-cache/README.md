@@ -34,6 +34,12 @@ ACLED-only refresh:
 node scripts/cache-hormuz-sources.mjs --profile=acled
 ```
 
+GDELT-only refresh:
+
+```sh
+node scripts/cache-hormuz-sources.mjs --profile=gdelt
+```
+
 Fixture fallbacks for blocked/empty providers:
 
 ```sh
@@ -49,6 +55,7 @@ Expected source files:
 - `danti-auth.json` — Danti OIDC/browser-login credential check with tokens stripped.
 - `danti-hormuz-query.json` — Danti natural-language query result for Strait of Hormuz context.
 - `exa-hormuz-osint.json` — Exa web/news search results for Hormuz maritime context.
+- `gdelt-hormuz-doc20-artlist.json` — GDELT DOC 2.0 no-key article list for Hormuz regional media context.
 - `gfw-vessel-search-irisl.json` — lightweight Global Fishing Watch Vessel API key/capability check.
 - `gfw-hormuz-gaps.json` — Global Fishing Watch AIS-off/gap event query.
 - `gfw-hormuz-port-visits.json` — Global Fishing Watch port visit event query.
