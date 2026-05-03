@@ -8,6 +8,7 @@ dist/
 build/
 .next/
 out/
+app/public/fixtures/
 coverage/
 .vite/
 *.tsbuildinfo
