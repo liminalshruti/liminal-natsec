@@ -377,8 +377,13 @@ function Breadcrumb({
       </nav>
     );
   }
-  // Pull the scenario short-name out of "scenario:alara-01" → "alara-01".
-  const scenarioShort = scenario.state.scenarioRunId.replace(/^scenario:/, "");
+  // SHIP-4 filename-as-title: scenario id rendered as `alara_01_` register.
+  // "scenario:alara-01" → "alara_01_". Trailing underscore signals
+  // system-owned filename, not a human-titled label. Per
+  // INSPO_TO_SURFACE_MAP.md §SHIP-4 (Source 9 · macbethAI).
+  const scenarioShort = `${scenario.state.scenarioRunId
+    .replace(/^scenario:/, "")
+    .replace(/-/g, "_")}_`;
   // Whether non-leaf segments should be interactive. Only meaningful when a
   // case is currently selected (i.e., there's something to navigate "up" from).
   const hasSelection = Boolean(selectedAlert);
@@ -417,7 +422,8 @@ function Breadcrumb({
           <span
             className={`topbar-crumbs__seg topbar-crumbs__event topbar-crumbs__event--${eventId}`}
           >
-            {eventId === "event-1" ? "Event 1" : "Event 2"}
+            {/* SHIP-4: event id in filename-as-title register. */}
+            {eventId === "event-1" ? "event_1_" : "event_2_"}
           </span>
         </>
       )}
