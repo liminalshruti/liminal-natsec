@@ -22,6 +22,8 @@ import { SubstratePanel } from "./SubstratePanel.tsx";
 import { WorkflowStrip } from "./WorkflowStrip.tsx";
 import { WorkingPanel } from "./WorkingPanel.tsx";
 import { AiNoticeToast } from "./AiNoticeToast.tsx";
+import { BroadcastChyron } from "./BroadcastChyron.tsx";
+import { SubstrateStateChyron } from "./SubstrateStateChyron.tsx";
 
 interface AppShellProps {
   scenario: LoadedScenario | null;
@@ -81,8 +83,26 @@ export function AppShell({
   // (map + replay) is the watchstanding-glance surface. Substrate becomes
   // active only on alert-hover (deferred to v3.3 — for now substrate stays
   // dim alongside whichever non-active pane it pairs with).
+  // STRETCH-2: phase-keyed focus management (one subject per beat).
+  // Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-2 (Source 10 ·
+  // aerockrose · Sequoia AI Ascent stage register).
+  //
+  //   Beat / phase →  Active pane (the one thing the eye lands on)
+  //     P1  cold open                   stage  (watchstanding glance)
+  //     P2  dark gap detected           stage  (the gap is on the map)
+  //     P3  Track B reappears           stage  (reappearance is geographic)
+  //     P4  signal integrity contested  working (specialist convergence)
+  //     P5  intent refused              working (refusal stamp)
+  //     P6  doctrine applied            working (rule compounding edges)
+  //
+  // When no case is selected and no map phase is active, stage holds the
+  // attention. When a case is selected the working panel earns it.
+  // Substrate active is reserved for v3.3 alert-hover.
+  const replayPhase = mapScenarioState?.phase ?? 1;
   const activePane: "substrate" | "stage" | "working" = selectedAlert
-    ? "working"
+    ? replayPhase >= 4
+      ? "working"
+      : "stage"
     : "stage";
   const shellStyle = useMemo(
     () =>
@@ -170,6 +190,13 @@ export function AppShell({
       data-resizing-pane={resizingPane ?? undefined}
       style={shellStyle}
     >
+      {/* SHIP-5: Persistent broadcast chyron — operating context lower-
+          third in archival monotype, anchored at the very top of the
+          shell. Plays in the operator's peripheral vision the entire
+          demo. Names the canonical pilot context (5TH FLEET · 0200Z)
+          from frame 1. Per INSPO_TO_SURFACE_MAP.md §SHIP-5
+          (Source 10 · aerockrose · Sequoia AI Ascent register). */}
+      <BroadcastChyron scenario={scenario} />
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
         <WorkflowStrip />
@@ -222,6 +249,11 @@ export function AppShell({
         uiMode={uiMode}
         replayPhase={mapScenarioState?.phase ?? 1}
       />
+      {/* STRETCH-1: substrate-state chyron at the bottom — system's
+          continuous self-narration in plain English. Threads non-
+          technical judges through any demo beat they miss. Per
+          INSPO_TO_SURFACE_MAP.md §STRETCH-1 (Source 10 · aerockrose). */}
+      <SubstrateStateChyron scenario={scenario} scenarioState={mapScenarioState} />
       <CommandLine
         scenario={scenario}
         mapScenarioState={mapScenarioState}
@@ -378,8 +410,13 @@ function Breadcrumb({
       </nav>
     );
   }
-  // Pull the scenario short-name out of "scenario:alara-01" → "alara-01".
-  const scenarioShort = scenario.state.scenarioRunId.replace(/^scenario:/, "");
+  // SHIP-4 filename-as-title: scenario id rendered as `alara_01_` register.
+  // "scenario:alara-01" → "alara_01_". Trailing underscore signals
+  // system-owned filename, not a human-titled label. Per
+  // INSPO_TO_SURFACE_MAP.md §SHIP-4 (Source 9 · macbethAI).
+  const scenarioShort = `${scenario.state.scenarioRunId
+    .replace(/^scenario:/, "")
+    .replace(/-/g, "_")}_`;
   // Whether non-leaf segments should be interactive. Only meaningful when a
   // case is currently selected (i.e., there's something to navigate "up" from).
   const hasSelection = Boolean(selectedAlert);
@@ -418,7 +455,8 @@ function Breadcrumb({
           <span
             className={`topbar-crumbs__seg topbar-crumbs__event topbar-crumbs__event--${eventId}`}
           >
-            {eventId === "event-1" ? "Event 1" : "Event 2"}
+            {/* SHIP-4: event id in filename-as-title register. */}
+            {eventId === "event-1" ? "event_1_" : "event_2_"}
           </span>
         </>
       )}
@@ -497,14 +535,14 @@ function SourceIndicator({ scenario }: { scenario: LoadedScenario | null }) {
   }
   if (scenario.state.mode === "real") {
     return (
-      <span title={scenario.warning ?? "static real cache"}>
-        <span className="app-topbar__dot app-topbar__dot--fallback" /> static real cache
+      <span title={scenario.warning ?? "local real source set"}>
+        <span className="app-topbar__dot app-topbar__dot--fallback" /> local real sources
       </span>
     );
   }
   return (
-    <span title={scenario.warning ?? "fixture fallback"}>
-      <span className="app-topbar__dot app-topbar__dot--fallback" /> fixture fallback
+    <span title={scenario.warning ?? "local source set"}>
+      <span className="app-topbar__dot app-topbar__dot--fallback" /> local sources
     </span>
   );
 }

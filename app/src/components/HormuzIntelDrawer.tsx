@@ -112,7 +112,7 @@ function HormuzIntelGroup({ group }: { group: HormuzIntelDrawerGroup }) {
         </span>
       </summary>
       {group.rows.length === 0 ? (
-        <div className="empty">no cached rows</div>
+        <div className="empty">no rows</div>
       ) : (
         group.rows.map((row) => <HormuzIntelRow key={row.id} row={row} />)
       )}

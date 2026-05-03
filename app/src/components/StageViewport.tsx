@@ -8,10 +8,21 @@ import { DataSourcesChips } from "./DataSourcesChips.tsx";
 // The current overlay did none of those — ripped pending redesign.
 import { MapInstrumentBezels } from "./MapInstrumentBezels.tsx";
 import { MapLayers } from "./MapLayers.tsx";
-import { MapOverlays } from "./MapOverlays.tsx";
+// MapOverlays deferred — Shayaun's commit e255b60 added the canonical real-
+// data map overlays as MapLibre-native sources (dantiSanctionedOverlay).
+// SVG overlays positioned over the canvas don't follow zoom/pan reliably;
+// MapLibre-native is the right architectural layer. Removed pending
+// re-design as map-native overlays controlled by the MapLayers chip strip.
+// import { MapOverlays } from "./MapOverlays.tsx";
 import { MapTelemetryHud } from "./MapTelemetryHud.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
-import { RealShipsOverlay } from "./RealShipsOverlay.tsx";
+// RealShipsOverlay deferred — Shayaun's commit e255b60 added a parallel
+// real-ship rendering as a proper MapLibre source (dantiSanctionedOverlay,
+// 21 SDN/IRISL/NITC + 15 GFW gaps), which is the production-grade approach
+// (zoom/pan-correct, native map layer). Two ship-overlay systems were
+// competing visually. Removed mine; kept the file for snapshot tests +
+// possible future use as a richer hover-card surface.
+// import { RealShipsOverlay } from "./RealShipsOverlay.tsx";
 import { SignalDropZone } from "./SignalDropZone.tsx";
 import { SignalGhostShips } from "./SignalGhostShips.tsx";
 import { StageBackdrop } from "./StageBackdrop.tsx";
@@ -24,7 +35,6 @@ interface StageViewportProps {
   scenarioState: ScenarioState | undefined;
   onScenarioStateChange: (next: ScenarioState) => void;
   resetSignal: number;
-  onClearCaseSelection: () => void;
 }
 
 export function StageViewport({
@@ -34,8 +44,7 @@ export function StageViewport({
   scenario,
   scenarioState,
   onScenarioStateChange,
-  resetSignal,
-  onClearCaseSelection
+  resetSignal
 }: StageViewportProps) {
   return (
     <main className="panel panel--stage" aria-label="Stage">
@@ -48,6 +57,16 @@ export function StageViewport({
           <div className="stage-placeholder">
             <div className="stage-placeholder__inner">
               <div className="stage-placeholder__case">loading scenario...</div>
+            </div>
+          </div>
+        ) : scenario?.state.mode === "real" && !selectedAlert ? (
+          <div className="stage-placeholder">
+            <div className="stage-placeholder__inner">
+              <div className="stage-placeholder__case">no real case generated</div>
+              <div className="stage-placeholder__note">
+                {scenario.state.emptyReason ??
+                  "Real cached sources are available, but no custody case met the threshold."}
+              </div>
             </div>
           </div>
         ) : (
@@ -67,25 +86,18 @@ export function StageViewport({
               selectedCaseId={selectedCaseId}
               resetSignal={resetSignal}
               fixtureUrl={scenario?.state.mode === "real" ? scenario.state.tracksUrl : undefined}
-              onClearCaseSelection={onClearCaseSelection}
               style={{ position: "absolute", inset: 0 }}
             />
-            {/* MapOverlays: cache-driven translucent intel layers (GFW gaps,
-                OpenSanctions, NAVAREA, Sentinel SAR). Listens to MapLayers
-                via the `liminal:map-layers-changed` window event. Each layer
-                projects real cache geometry to the AOI bbox. The overhead-
-                projector "stack of transparent sheets" idea, made functional. */}
-            <MapOverlays selectedCaseId={selectedCaseId} />
-            {/* RealShipsOverlay: M-4. Top-50 real MarineTraffic vessels
-                from Shayaun's Danti corpus, rendered as directional flow
-                arrows whose orientation = AIS course and length = speed.
-                Anchored ships (speed=0) render as small circles. Flag-of-
-                convenience vessels get an outer ring in contested-amber.
-                Hover any ship → vessel-card popover with full property KV.
-                Visibility tied to the AIS chip in MapLayers via the same
-                window event MapOverlays uses. The "why don't we have this
-                in real life yet" moment of the demo. */}
-            <RealShipsOverlay selectedCaseId={selectedCaseId} />
+            {/* MapOverlays deferred (commit e255b60). The SVG-over-canvas
+                approach didn't follow MapLibre zoom/pan reliably. Shayaun's
+                MapLibre-native dantiSanctionedOverlay is now the canonical
+                rendering for sanctioned vessels + GFW gaps in the AOI. */}
+            {/* RealShipsOverlay deferred — Shayaun's MapLibre-native
+                dantiSanctionedOverlay (21 SDN + 15 GFW gaps as a real
+                MapLibre source) supersedes my SVG approach. His version
+                zooms and pans correctly because it's a real map layer,
+                not an SVG overlay positioned over the canvas. Reverting
+                mine ends the visual competition between the two systems. */}
             {/* MapInstrumentBezels: ASCII corner brackets + edge tick marks
                 + center crosshair + AOI coordinate readouts. Makes the stage
                 read as a radar viewport, not a generic map. Per the May-1

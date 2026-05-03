@@ -171,11 +171,11 @@ export function CommandLine({
   const sourceStatus = scenario
     ? scenario.source === "server"
       ? scenario.state.mode === "real"
-        ? `real ${scenario.state.caseGenerationStatus?.toLowerCase() ?? "cache"}`
+        ? `real ${scenario.state.caseGenerationStatus?.toLowerCase() ?? "sources"}`
         : `seeded ${scenario.state.seededAt}`
       : scenario.state.mode === "real"
-      ? "static real cache"
-      : `fallback ${scenario.warning ?? "offline"}`
+      ? "local real sources"
+      : `local sources ${scenario.warning ?? "offline"}`
     : "connecting...";
 
   const inlineResult = result?.kind === "inline" ? result : null;

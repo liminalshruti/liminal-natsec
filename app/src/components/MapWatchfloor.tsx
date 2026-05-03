@@ -7,11 +7,15 @@ import {
   type CSSProperties,
   type ReactNode
 } from "react";
-import type { FeatureCollection } from "geojson";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import "./MapWatchfloor.css";
-import { registerMap } from "../lib/mapBridge.ts";
+// mapBridge unwired here — its only consumers (RealShipsOverlay, MapOverlays)
+// were deferred to Shayaun's MapLibre-native dantiSanctionedOverlay in PR #36.
+// With no consumers, registerMap was bumping React state on every move/zoom
+// event for nobody, causing flicker during animations. The bridge module
+// stays in the codebase for future SVG-overlay use; just not invoked now.
+// import { registerMap } from "../lib/mapBridge.ts";
 
 import { buildMapStyle, INITIAL_VIEW } from "../map/style.ts";
 import { buildLayers, DANTI_SANCTIONED_OVERLAY_PATH, SOURCES } from "../map/layers.ts";
@@ -32,12 +36,6 @@ import { attachTileFailureRecovery } from "../map/fallback.ts";
 import { tryLiveKalmanEllipse } from "../map/kalmanAdapter.ts";
 import { TimelineScrubber } from "../map/TimelineScrubber.tsx";
 import { MapLabels } from "../map/MapLabels.tsx";
-import {
-  CASE_HUGE_IDENTITY,
-  caseIdsForSanctionedOverlay,
-  caseScopeLabel,
-  encodeCaseIds
-} from "../map/caseSignalScope.ts";
 import { loadShipIcons } from "../map/shipIcons.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
 import {
@@ -76,9 +74,6 @@ export interface MapWatchfloorProps {
   // Optional override for the fixture URL — useful in tests.
   fixtureUrl?: string;
 
-  // Clears the case filter and returns the stage to all mappable OSINT.
-  onClearCaseSelection?: () => void;
-
   // Optional raster basemap URL. If absent, the dark-navy paint stands alone.
   // Suggested: import.meta.env.VITE_MAP_TILES_URL.
   rasterTilesUrl?: string;
@@ -115,7 +110,6 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   const [dantiTraffic, setDantiTraffic] = useState<DantiTrafficArchive | null>(null);
   const [visibleDantiTraffic, setVisibleDantiTraffic] =
     useState<VisibleDantiTraffic | null>(null);
-  const [visibleHeroPingCount, setVisibleHeroPingCount] = useState(0);
   const [mapReady, setMapReady] = useState(false);
   const [internalState, setInternalState] = useState<ScenarioState | null>(null);
 
@@ -291,7 +285,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
 
     let cancelled = false;
     let createdMap: maplibregl.Map | null = null;
-    let bridgeUnregister: (() => void) | null = null;
+    // bridgeUnregister was used to detach the mapBridge listener; with the
+    // bridge unwired (see top-of-file comment), this is now unused. Kept
+    // commented as a marker so re-enabling the bridge is a one-line change.
+    // let bridgeUnregister: (() => void) | null = null;
 
     const rafId = requestAnimationFrame(() => {
       if (cancelled || !containerRef.current) return;
@@ -348,7 +345,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
             const source = map.getSource(SOURCES.dantiSanctionedOverlay) as
               | maplibregl.GeoJSONSource
               | undefined;
-            source?.setData(enrichSanctionedOverlayCaseIds(fc as FeatureCollection));
+            source?.setData(fc);
           })
           .catch(() => {
             /* silent — overlay is enrichment, not a demo invariant */
@@ -379,7 +376,11 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
         }
         setMapReady(true);
         props.onMapReady?.(map);
-        bridgeUnregister = registerMap(map);
+        // mapBridge intentionally unwired here. With RealShipsOverlay +
+        // MapOverlays deferred (PR #36), no consumers exist; the bridge
+        // was bumping React state on every move/zoom for nobody, which
+        // caused observable flicker during MapLibre animations.
+        // bridgeUnregister = registerMap(map);
       });
     });
 
@@ -388,8 +389,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
       cancelAnimationFrame(rafId);
       detachFallbackRef.current?.();
       detachFallbackRef.current = null;
-      bridgeUnregister?.();
-      bridgeUnregister = null;
+      // bridgeUnregister?.(); — bridge unwired; nothing to detach.
       if (createdMap) {
         try { createdMap.remove(); } catch {}
       }
@@ -451,8 +451,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     if (!source) return;
     const visible = selectVisibleHeroPings(load.fixture, {
       phase: effectivePhase,
-      clockMs: Date.parse(effectiveState.clockIso),
-      caseId: props.selectedCaseId ?? null
+      clockMs: Date.parse(effectiveState.clockIso)
     });
     const sig =
       `${effectivePhase}|` +
@@ -462,8 +461,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     if (sig === lastVisiblePingSigRef.current) return;
     lastVisiblePingSigRef.current = sig;
     source.setData(visible);
-    setVisibleHeroPingCount(visible.features.length);
-  }, [effectiveState, effectivePhase, load, mapReady, props.selectedCaseId]);
+  }, [effectiveState, effectivePhase, load, mapReady]);
 
   // --- Push archived DANTI traffic into the live source ------------------
   useEffect(() => {
@@ -478,11 +476,10 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     const visible = selectVisibleDantiTraffic(
       dantiTraffic,
       load.fixture,
-      Date.parse(effectiveState.clockIso),
-      { caseId: props.selectedCaseId ?? null }
+      Date.parse(effectiveState.clockIso)
     );
     const sig =
-      `${props.selectedCaseId ?? "all"}|${visible.archiveClockIso ?? "none"}|` +
+      `${visible.archiveClockIso ?? "none"}|` +
       visible.featureCollection.features
         .map((f) => `${f.id}:${f.properties.t_epoch_ms}`)
         .join(",");
@@ -490,7 +487,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     lastVisibleDantiSigRef.current = sig;
     source.setData(visible.featureCollection);
     setVisibleDantiTraffic(visible);
-  }, [dantiTraffic, effectiveState, load, mapReady, props.selectedCaseId]);
+  }, [dantiTraffic, effectiveState, load, mapReady]);
 
   // --- Phase-driven camera ------------------------------------------------
   useEffect(() => {
@@ -577,17 +574,6 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
               phase={effectivePhase}
             />
           )}
-          {load.kind === "ready" && effectiveState && (
-            <SignalScopeBadge
-              selectedCaseId={props.selectedCaseId ?? null}
-              replayedPoints={
-                visibleHeroPingCount +
-                (visibleDantiTraffic?.visibleVessels ?? 0) +
-                (props.selectedCaseId === CASE_HUGE_IDENTITY ? 1 : 0)
-              }
-              onClear={props.onClearCaseSelection}
-            />
-          )}
           <PhaseBadge phase={effectivePhase} />
           {visibleDantiTraffic && (
             <DantiTrafficBadge traffic={visibleDantiTraffic} />
@@ -643,41 +629,6 @@ function DantiTrafficBadge({ traffic }: { traffic: VisibleDantiTraffic }): React
   );
 }
 
-function SignalScopeBadge({
-  selectedCaseId,
-  replayedPoints,
-  onClear
-}: {
-  selectedCaseId: string | null;
-  replayedPoints: number;
-  onClear?: () => void;
-}): ReactNode {
-  const isCaseScoped = Boolean(selectedCaseId);
-  return (
-    <div className="map-scope-badge" data-scope={isCaseScoped ? "case" : "all"}>
-      <span className="map-scope-badge__mode">
-        {isCaseScoped ? "Case replay" : "Watchfloor replay"}
-      </span>
-      <span className="map-scope-badge__label">
-        {caseScopeLabel(selectedCaseId)}
-      </span>
-      <span className="map-scope-badge__count">
-        {replayedPoints} mapped signals
-      </span>
-      {isCaseScoped && onClear && (
-        <button
-          type="button"
-          className="map-scope-badge__clear"
-          onClick={onClear}
-          title="Clear case filter and show all mappable OSINT"
-        >
-          Clear case
-        </button>
-      )}
-    </div>
-  );
-}
-
 function FallbackOverlay({ error }: { error: Error }): ReactNode {
   return (
     <div className="map-fallback" role="img" aria-label="Map unavailable — showing static demo geometry">
@@ -694,34 +645,6 @@ function FallbackOverlay({ error }: { error: Error }): ReactNode {
       <div className="map-fallback-caption">map renderer offline · {truncateError(error.message)}</div>
     </div>
   );
-}
-
-function enrichSanctionedOverlayCaseIds(fc: FeatureCollection): FeatureCollection {
-  return {
-    ...fc,
-    features: fc.features.map((feature) => {
-      const props = feature.properties ?? {};
-      const caseIds = caseIdsForSanctionedOverlay({
-        kind: stringProp(props.kind),
-        shipName: stringProp(props.ship_name),
-        name: stringProp(props.name),
-        mmsi: stringProp(props.mmsi),
-        imo: stringProp(props.imo),
-        operator: stringProp(props.operator),
-      });
-      return {
-        ...feature,
-        properties: {
-          ...props,
-          case_ids: encodeCaseIds(caseIds),
-        },
-      };
-    }),
-  };
-}
-
-function stringProp(value: unknown): string | undefined {
-  return typeof value === "string" ? value : undefined;
 }
 
 function truncateError(msg: string): string {

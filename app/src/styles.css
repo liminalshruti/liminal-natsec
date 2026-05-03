@@ -142,13 +142,13 @@ button:hover {
   display: grid;
   /* Stage takes the center flex region — the map IS the watchstanding glance
      and the visual anchor for every demo beat (dark gap, second identity,
-     hypothesis fan-out). Working panel pins to the 520px right rail — wide
+     hypothesis fan-out). Working panel pins to the 560px right rail — wide
      enough for the verb + specialist reads + case file to read clearly,
      narrow enough that the map dominates the view. Substrate stays at the
      320px left rail. Left-to-right column order now matches the
      WorkflowStrip numbering: 01 SUBSTRATE → 02 STAGE → 03 WORKING.
-     Below 800px viewport height the case file section collapses to a
-     one-line affordance — see WorkingPanel.tsx. */
+     Below 800px viewport height the analysis and case file split into
+     bounded scroll regions instead of clipping. */
   --substrate-pane-width: 320px;
   --working-pane-width: 560px;
   grid-template-columns:
@@ -157,10 +157,17 @@ button:hover {
     minmax(420px, 1fr)
     8px
     var(--working-pane-width);
-  grid-template-rows: 36px 1fr 32px;
+  /* SHIP-5: 22px broadcast chyron above topbar.
+     STRETCH-1: 18px substrate-state chyron above command line.
+     Total chrome height up 40px from prior layout — pane content
+     shrinks by that, but the broadcast + substrate-state pair gives
+     full system-state legibility from frame 1 to verdict. */
+  grid-template-rows: 22px 36px 1fr 18px 32px;
   grid-template-areas:
+    "chyron chyron chyron chyron chyron"
     "topbar topbar topbar topbar topbar"
     "substrate resize-left stage resize-right working"
+    "subchyron subchyron subchyron subchyron subchyron"
     "command command command command command";
   height: 100vh;
   background: var(--color-substrate);
@@ -1990,6 +1997,40 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   padding: 0 4px;
 }
 
+/* M-5: sort-mode toggle (newest / high-signal). Tiny segmented control. */
+.watchfloor-osint-feed__sort {
+  display: inline-flex;
+  gap: 0;
+  margin-right: auto;
+  margin-left: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1px;
+}
+
+.watchfloor-osint-feed__sort-btn {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  color: var(--color-ink-tertiary);
+  padding: 2px 7px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 120ms ease-out, color 120ms ease-out;
+}
+
+.watchfloor-osint-feed__sort-btn:hover {
+  color: var(--color-ink-secondary);
+}
+
+.watchfloor-osint-feed__sort-btn[data-active="true"] {
+  background: rgba(122, 169, 255, 0.18);
+  color: var(--color-decision);
+}
+
 .watchfloor-osint-feed__chips {
   display: flex;
   flex-wrap: wrap;
@@ -2254,6 +2295,58 @@ a.osint-signal-row__inner {
 .empty {
   color: var(--color-ink-tertiary);
   font-style: italic;
+}
+
+.real-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--fg-1);
+}
+
+.real-empty__title {
+  color: var(--fg-0);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.real-empty__body {
+  color: var(--fg-1);
+  font-size: 11px;
+}
+
+.source-status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.source-status-row {
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 6px 8px;
+  background: var(--bg-2);
+}
+
+.source-status-row[data-status="excluded_fixture_fallback"] {
+  border-color: var(--warn);
+}
+
+.source-status-row__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--fg-0);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.source-status-row__detail {
+  margin-top: 4px;
+  color: var(--fg-2);
+  font-size: 10px;
 }
 
 .action-row {
@@ -6950,6 +7043,56 @@ button:disabled {
   font-weight: 700;
 }
 
+/* B-3 celebration — when a signal just attached (within last ~1.2s),
+   the row briefly flashes a resolved-tone glow + outline pulse. The
+   toggle button does a quick scale-pop to draw the eye. Subtle but
+   confirms the attach succeeded — pairs with B-2's ghost-ship
+   materialization on the map for full attach choreography. */
+.draft-case-signal--just-attached {
+  animation: draft-signal-celebrate 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes draft-signal-celebrate {
+  0% {
+    box-shadow: 0 0 0 0 rgba(110, 195, 168, 0);
+    transform: translateX(0);
+  }
+  10% {
+    box-shadow:
+      0 0 0 2px rgba(110, 195, 168, 0.6),
+      0 0 24px rgba(110, 195, 168, 0.4);
+    transform: translateX(0);
+  }
+  35% {
+    box-shadow:
+      0 0 0 1px rgba(110, 195, 168, 0.4),
+      0 0 18px rgba(110, 195, 168, 0.25);
+    transform: translateX(2px);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(110, 195, 168, 0);
+    transform: translateX(0);
+  }
+}
+
+.draft-case-signal--just-attached .draft-case-signal__toggle {
+  animation: draft-toggle-pop 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes draft-toggle-pop {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(1.2) rotate(-6deg); }
+  40%  { transform: scale(0.94) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draft-case-signal--just-attached,
+  .draft-case-signal--just-attached .draft-case-signal__toggle {
+    animation: none;
+  }
+}
+
 .draft-case-signal__toggle:disabled {
   cursor: default;
   opacity: 0.7;
@@ -7030,6 +7173,56 @@ button:disabled {
   font-size: 9px;
 }
 
+/* M-1: Real vessel-card data renders below the summary on ship-vessel
+   signals. Tabular KV strip, instrument register, dense but readable. */
+.draft-case-signal__vessel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 4px 12px;
+  margin: 6px 0 4px;
+  padding: 6px 8px;
+  background: rgba(122, 169, 255, 0.04);
+  border-left: 2px solid rgba(122, 169, 255, 0.4);
+  border-radius: 3px;
+}
+
+.draft-case-signal__vessel-kv {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.3;
+}
+
+.draft-case-signal__vessel-kv dt {
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 8.5px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.draft-case-signal__vessel-kv dd {
+  color: var(--color-ink-primary);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.draft-case-signal__vessel-dest {
+  color: var(--color-decision) !important;
+  font-style: italic;
+}
+
+/* Ship-vessel kind chip — same decision-blue as advisory but with a
+   subtle outline so it reads as "specific vessel telemetry" not just
+   "general advisory." */
+.draft-case-signal__kind[data-tone="decision"][data-kind="ship-vessel"] {
+  border: 1px solid rgba(122, 169, 255, 0.35);
+}
+
 /* PROMOTE CTA */
 
 .draft-case-detail__cta-row {
@@ -7102,6 +7295,115 @@ button:disabled {
 .draft-case-detail__promoted-confirmation > span:first-child {
   font-size: 18px;
   font-weight: 700;
+}
+
+/* Post-promote next-steps section — what happens after operator confirms.
+   Three explicit paths in instrument register: open custody review,
+   request collection (default), save as durable rule. Plus a command-
+   line affordance footer pointing at the existing /event + /help slash
+   commands so the operator knows where to go next. */
+.draft-case-detail__next-steps {
+  margin-top: 18px;
+  padding: 18px 20px 16px;
+  border-top: 1px dashed var(--color-edge);
+  background: linear-gradient(
+    180deg,
+    rgba(110, 195, 168, 0.025) 0%,
+    transparent 60%
+  );
+}
+
+.draft-case-detail__next-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-resolved);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.draft-case-detail__next-lead {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--color-ink-secondary);
+  margin: 0 0 14px;
+}
+
+.draft-case-detail__next-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: next-step;
+}
+
+.draft-case-detail__next-step {
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  border-radius: 6px;
+  transition: border-color var(--motion-fast) var(--motion-ease-out);
+}
+
+.draft-case-detail__next-step:hover {
+  border-color: rgba(110, 195, 168, 0.4);
+}
+
+.draft-case-detail__next-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(110, 195, 168, 0.10);
+  color: var(--color-resolved);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  font-weight: 600;
+  border-radius: 4px;
+}
+
+.draft-case-detail__next-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  color: var(--color-ink-primary);
+  margin-bottom: 3px;
+}
+
+.draft-case-detail__next-desc {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+  font-style: italic;
+}
+
+.draft-case-detail__next-affordance {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.04em;
+  padding-top: 12px;
+  border-top: 1px dashed var(--color-edge);
+}
+
+.draft-case-detail__next-affordance code {
+  background: rgba(122, 169, 255, 0.10);
+  color: var(--color-decision);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9.5px;
 }
 
 /* ─── B-1 DRAG-AND-DROP — signal → stage ──────────────────────────────────
@@ -7427,5 +7729,1190 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   }
   .signal-ghost--materializing {
     opacity: 0.55;
+  }
+}
+
+/* ─── M-4: REAL SHIPS OVERLAY — top-50 MarineTraffic vessels as flow arrows ─
+   Each ship: directional triangle (orientation = course, length = speed).
+   Anchored ships (speed=0) render as circles. FOC flags get an amber ring.
+   Hover → vessel-card popover with full vessel telemetry.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.real-ships-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 6; /* above MapOverlays (3), below SignalGhostShips (55) */
+  pointer-events: none; /* but child <g> elements opt back in */
+}
+
+/* Re-enable pointer-events on the ship glyphs themselves so hover works. */
+.real-ships-overlay .real-ship {
+  pointer-events: auto;
+  cursor: crosshair;
+  transition: filter 200ms cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.real-ships-overlay .real-ship--moving .real-ship__hull {
+  fill: rgba(184, 197, 212, 0.55);
+  stroke: rgba(232, 240, 252, 0.85);
+  stroke-width: 0.4;
+}
+
+.real-ships-overlay .real-ship--anchored .real-ship__hull {
+  fill: rgba(184, 197, 212, 0.32);
+  stroke: rgba(232, 240, 252, 0.55);
+  stroke-width: 0.5;
+}
+
+/* FOC ring — flags-of-convenience vessels get a subtle amber outer ring */
+.real-ship__foc-ring {
+  stroke: rgba(224, 153, 107, 0.45);
+  stroke-width: 0.7;
+  stroke-dasharray: 1.4 1.6;
+  opacity: 0.85;
+  transition: stroke 200ms ease-out, stroke-width 200ms ease-out;
+}
+
+.real-ship--hover .real-ship__foc-ring {
+  stroke: rgba(224, 153, 107, 0.95);
+  stroke-width: 1.2;
+}
+
+.real-ship--hover .real-ship__hull {
+  fill: rgba(232, 240, 252, 0.95);
+  stroke: rgba(122, 169, 255, 1);
+  stroke-width: 0.8;
+  filter: drop-shadow(0 0 6px rgba(122, 169, 255, 0.6))
+          drop-shadow(0 0 12px rgba(122, 169, 255, 0.3));
+}
+
+.real-ship--hover.real-ship--foc .real-ship__hull {
+  stroke: rgba(224, 153, 107, 1);
+  filter: drop-shadow(0 0 6px rgba(224, 153, 107, 0.7))
+          drop-shadow(0 0 14px rgba(224, 153, 107, 0.35));
+}
+
+/* SHIP HOVER CARD — popover with full vessel telemetry */
+
+.real-ship-card {
+  position: absolute;
+  z-index: 65; /* above SignalDropZone (60) so hover popover wins */
+  min-width: 240px;
+  max-width: 320px;
+  padding: 10px 12px;
+  background: rgba(8, 9, 12, 0.92);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(122, 169, 255, 0.42);
+  border-radius: 6px;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(122, 169, 255, 0.10),
+    0 0 24px rgba(122, 169, 255, 0.18);
+  font-family: var(--font-mono);
+  pointer-events: none;
+  transform: translate(14px, -50%);
+  animation: real-ship-card-in 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes real-ship-card-in {
+  0%   { opacity: 0; transform: translate(8px, -50%) scale(0.96); }
+  100% { opacity: 1; transform: translate(14px, -50%) scale(1); }
+}
+
+.real-ship-card[data-flip-x="true"] {
+  transform: translate(calc(-100% - 14px), -50%);
+}
+
+.real-ship-card[data-flip-y="true"] {
+  /* When near the bottom edge, anchor the card from above the cursor.
+     Combined with flip-x via the same data attribute. */
+  transform: translate(14px, calc(-100% + 14px));
+}
+
+.real-ship-card[data-flip-x="true"][data-flip-y="true"] {
+  transform: translate(calc(-100% - 14px), calc(-100% + 14px));
+}
+
+.real-ship-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed rgba(122, 169, 255, 0.22);
+}
+
+.real-ship-card__name {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  color: var(--color-ink-primary);
+}
+
+.real-ship-card__flag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: rgba(122, 169, 255, 0.10);
+  color: var(--color-decision);
+  white-space: nowrap;
+}
+
+.real-ship-card__flag--foc {
+  background: rgba(224, 153, 107, 0.14);
+  color: var(--color-contested);
+}
+
+.real-ship-card__kv {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3px 14px;
+}
+
+.real-ship-card__kv > div {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 10px;
+}
+
+.real-ship-card__kv dt {
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-size: 8.5px;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.real-ship-card__kv dd {
+  color: var(--color-ink-primary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.real-ship-card__dest {
+  grid-column: 1 / -1;
+}
+
+.real-ship-card__dest dd {
+  color: var(--color-decision);
+  font-style: italic;
+}
+
+.real-ship-card__footer {
+  margin-top: 6px;
+  padding-top: 5px;
+  border-top: 1px dashed rgba(122, 169, 255, 0.16);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+/* ─── SHIP-5 BROADCAST CHYRON — persistent operating-context lower-third ──
+   Per INSPO_TO_SURFACE_MAP.md SHIP-5 (Source 10 · aerockrose · Sequoia AI
+   Ascent register). Reads as broadcast/operations context, not nav chrome.
+   Archival monotype (mnemonic mono in tracked-out uppercase). One brand
+   anchor + N segment chiclets joined by hairline separators. Persistent
+   across every screen — plays in operator's peripheral vision.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.broadcast-chyron {
+  grid-area: chyron;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 9, 12, 0.96) 0%,
+    rgba(8, 9, 12, 0.88) 100%
+  );
+  border-bottom: 1px solid var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.broadcast-chyron__brand {
+  /* Anchor segment — slightly higher contrast, slab-mono register hint
+     via increased weight. Sets the broadcast ID before the operating
+     context segments. */
+  color: var(--color-ink-primary);
+  letter-spacing: 0.24em;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.broadcast-chyron__sep {
+  /* Hairline vertical separator between segments. 1px solid because
+     dashed reads decorative; the chyron should look like archival
+     printed register, where dividers are inkwork joinery. */
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background: var(--color-edge);
+  flex-shrink: 0;
+}
+
+.broadcast-chyron__seg {
+  flex-shrink: 0;
+  color: var(--color-ink-secondary);
+}
+
+.broadcast-chyron__seg code {
+  /* Filename-as-title segment for the case id — pulls SHIP-4's register
+     into the chyron. Same filename register, broadcast context. */
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.10em;
+  color: var(--color-ink-primary);
+  background: transparent;
+  padding: 0;
+  text-transform: lowercase;
+  font-weight: 500;
+}
+
+.broadcast-chyron__watch {
+  /* Watch designator on the right edge — operator-network identifier.
+     Slightly muted so it reads as the trailing context, not a CTA. */
+  color: var(--color-ink-tertiary);
+  margin-left: auto;
+}
+
+/* ─── SHIP-1 TWO-REGISTER SHELL: WARM-ARCHIVAL CASE FILE LAYER ─────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-1 (Source 3 · Pattison).
+   The shell holds two registers in tension:
+
+     Cold-instrument (existing — unchanged):
+       Map · stage · substrate panel · command line.
+       Live world. Black ground, slate ink, single decision-blue accent.
+       The system reading the world.
+
+     Warm-archival (NEW — this block):
+       Working panel · case file · evidence drawer · provenance trace ·
+       review memory.
+       Custody record. Cable-stock paper background, monotype/slab-serif
+       headers, hand-stamped numbering, wireframe joinery.
+       The system holding the record.
+
+   Why two registers: the May-1 inspo synthesis names this — Maven is the
+   spacecraft instrument panel; Liminal is the ledger the spacecraft writes
+   to. Cold is for reading the live world; warm is for the older,
+   weight-bearing custody record.
+
+   What stays cold: every screen except the working panel.
+   What goes warm: panel--working and its descendants only.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Archival palette — scoped to .panel--working.
+   Cable-stock paper warm — NOT a yellow tint. Closer to oxidized parchment
+   under low-light: slightly desaturated cream-on-coffee. The accent stays
+   single (decision blue) but in archival ink-blue rather than pure cyan. */
+.panel--working {
+  --archival-paper:        #16140f;  /* warm-paper-on-dark — coffee-stained */
+  --archival-paper-lifted: #1c1a14;  /* lifted card surface */
+  --archival-ink:          #d6cfbe;  /* coffee-paper-readable cream */
+  --archival-ink-muted:    #948e7e;  /* muted body */
+  --archival-ink-faint:    #5e5a4e;  /* labels, stamps, marginalia */
+  --archival-edge:         #2a2520;  /* hairline edges, joinery */
+  --archival-edge-strong:  #3a342c;  /* emphasized borders */
+  --archival-stamp:        #b08850;  /* hand-stamp warm — slightly oxidized */
+  --archival-ink-blue:     #6a8caa;  /* muted citation/accent ink */
+
+  background: var(--archival-paper);
+  color: var(--archival-ink);
+  /* Subtle paper-grain via CSS noise — keeps the paper from looking flat
+     without committing the bandwidth of a real texture image. Two
+     overlapping radial gradients at low alpha give a stippled register. */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(176, 136, 80, 0.018) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(214, 207, 190, 0.015) 0%, transparent 60%);
+}
+
+/* Panel header in archival register — slab-serif tone via Fraunces fallback,
+   hand-stamped numbering on the right. */
+.panel--working .panel__header {
+  background: linear-gradient(
+    180deg,
+    rgba(214, 207, 190, 0.04) 0%,
+    transparent 100%
+  );
+  border-bottom: 1px solid var(--archival-edge);
+  color: var(--archival-ink-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.panel--working .panel__header > span:first-child {
+  /* Lead segment in slab register — Fraunces serif for archival weight. */
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--archival-ink);
+}
+
+.panel--working .panel__header .tag {
+  /* Hand-stamped register — small caps, oxidized stamp color, square
+     border like an inkpad outline. */
+  background: transparent;
+  border: 1px solid var(--archival-stamp);
+  color: var(--archival-stamp);
+  border-radius: 2px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* SHIP-1+11 wireframe joinery: replace solid panel borders with outline +
+   corner ticks. Per Source 11 (macbethAI · `secrets_`). The case file is
+   *visibly assembled*, not a flat surface. The joinery says: this isn't
+   a generated panel; it's an archival container with structure exposed. */
+.panel--working {
+  position: relative;
+  border-left: 1px solid var(--archival-edge);
+  border-right: 1px solid var(--archival-edge);
+}
+
+/* Four corner ticks — small L-shaped strokes at each corner indicating
+   joinery. CSS-only via box-shadow or pseudo-elements. */
+.panel--working::before,
+.panel--working::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  /* Corner ticks rendered as two perpendicular border edges */
+  border: 1px solid var(--archival-stamp);
+  opacity: 0.55;
+}
+
+.panel--working::before {
+  /* Top-left corner */
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.panel--working::after {
+  /* Top-right corner */
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Body text in working panel inherits archival ink */
+.panel--working .panel__body,
+.panel--working .working__operative,
+.panel--working .working__forensic {
+  color: var(--archival-ink);
+}
+
+.panel--working .panel__body {
+  background: transparent;
+}
+
+/* Case-file inner section headers in slab register */
+.panel--working .subhead,
+.panel--working .case-section__title,
+.panel--working .working-section__title {
+  font-family: var(--font-serif);
+  color: var(--archival-ink);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Hairline section dividers within the case file — like inkpad rules
+   between archival entries. */
+.panel--working .case-section + .case-section,
+.panel--working .working-section + .working-section,
+.panel--working .panel__body > details + details {
+  border-top: 1px solid var(--archival-edge);
+}
+
+/* Typed-object chips in archival register — keep their semantic colors
+   but warm the surrounding chrome. Background goes from elevated to
+   archival-paper-lifted. */
+.panel--working .tchip {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink);
+}
+
+.panel--working .tchip__type {
+  color: var(--archival-ink-faint);
+}
+
+.panel--working .tchip__slug {
+  color: var(--archival-ink-muted);
+}
+
+/* Buttons in archival surfaces — outlined, low-contrast, slab-mono.
+   Replaces the cold register's gradient surface with a paper-on-paper
+   feel. Decision-blue accent shifts to ink-blue. */
+.panel--working button {
+  background: transparent;
+  border-color: var(--archival-edge);
+  color: var(--archival-ink-muted);
+  font-family: var(--font-mono);
+}
+
+.panel--working button:hover {
+  border-color: var(--archival-stamp);
+  color: var(--archival-ink);
+  background: rgba(176, 136, 80, 0.04);
+}
+
+.panel--working button:focus-visible {
+  border-color: var(--archival-ink-blue);
+  box-shadow: 0 0 0 1px rgba(106, 140, 170, 0.18);
+}
+
+/* Evidence chain + provenance trace inherit archival surface from the
+   panel — anything inside .panel--working picks up the paper register. */
+.panel--working .evidence-card,
+.panel--working .evidence-card[data-expanded="false"] {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.panel--working .evidence-card:hover {
+  border-color: var(--archival-edge-strong);
+}
+
+.panel--working .evidence-card[data-expanded="true"] {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-stamp);
+}
+
+/* Citation footer — keep semantic status colors, but the footer chrome
+   goes archival. Reads as a stamped-in footnote, not a glass card. */
+.panel--working .evidence-card__footnote {
+  background: var(--archival-paper);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink-muted);
+}
+
+.panel--working .evidence-card__footnote-label {
+  color: var(--archival-ink);
+}
+
+.panel--working .evidence-card__footnote-provider,
+.panel--working .evidence-card__footnote-sha,
+.panel--working .evidence-card__footnote-pointer {
+  color: var(--archival-ink-faint);
+}
+
+/* Specialist rows in archival register */
+.panel--working .specialist-row {
+  background: transparent;
+  border-bottom-color: var(--archival-edge);
+}
+
+.panel--working .specialist-row:hover {
+  background: rgba(176, 136, 80, 0.03);
+}
+
+.panel--working .specialist-row__name {
+  color: var(--archival-ink-faint);
+}
+
+.panel--working .specialist-row__summary {
+  color: var(--archival-ink-muted);
+}
+
+/* Action options + review memory inherit too */
+.panel--working .action-option,
+.panel--working .review-memory__rule,
+.panel--working .review-memory__draft {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink);
+}
+
+/* Zone 1 verb in archival register — preserve the display-tier scale,
+   warm the ink. The verb is the focal moment, but in custody register
+   it's archival display, not pure-white instrument. */
+.panel--working .zone1__verb {
+  color: var(--archival-ink);
+  /* Override the cold-register gradient text from the frontier polish */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+.panel--working .zone1__posture {
+  color: var(--archival-ink-faint);
+  border-top-color: var(--archival-edge);
+}
+
+.panel--working .zone1__posture-while {
+  color: var(--archival-stamp);
+}
+
+/* Hand-stamped CASE numbering — used in CaseHandoffBanner / case headers.
+   When a case-handoff banner renders inside the archival panel, it picks
+   up the stamp register. */
+.panel--working .case-handoff-banner__case-id,
+.panel--working .case-handoff-banner__id {
+  font-family: var(--font-mono);
+  letter-spacing: 0.16em;
+  color: var(--archival-stamp);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ─── SHIP-2 RELUCTANT CHROME — driven readouts on HUD + MUB gutters ───────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-2 (Source 1 · Ricky).
+   Every margin label = a measurable property the system is currently
+   reading. Mnemonic stacks; alive simulation lives in the center;
+   instrumentation lives in the gutters.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* MAP TELEMETRY HUD — re-tune toward MUB-mnemonic register.
+   Existing class .map-telemetry-hud already exists — these rules layer
+   on top to tighten the typography contract. */
+
+.map-telemetry-hud__row-label {
+  /* Mnemonic 3-letter stacks: "MMSI · CHURN", "DARK · GAP", "SIG · INT".
+     Tighter tracking, smaller size, ink-quaternary so the value reads
+     as the loud word and the label as the property name. */
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ink-quaternary, rgba(184, 197, 212, 0.32));
+}
+
+.map-telemetry-hud__row-value {
+  /* Loud value — the measurable. Slightly larger than before;
+     ink-primary so the number/state pops past the label. */
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--color-ink-primary);
+}
+
+.map-telemetry-hud__row-meta {
+  /* Secondary annotation — the meta context for the value
+     (e.g. "2 IDS · 1 TARGET", "GUARD L2 · LIVE"). Mono-tracked-out,
+     muted-secondary tone. */
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+/* Tone-driven left border accents — alert/warn/ok/neutral rows wear
+   different stamp colors so the eye picks up state without reading
+   the whole stack. Composes with existing tone-row classes. */
+.map-telemetry-hud__row--alert {
+  border-left-color: var(--color-refused);
+}
+.map-telemetry-hud__row--warn {
+  border-left-color: var(--color-contested);
+}
+.map-telemetry-hud__row--ok {
+  border-left-color: var(--color-resolved);
+}
+.map-telemetry-hud__row--neutral {
+  border-left-color: var(--color-edge);
+}
+
+/* SPECIALIST ROW MUB GUTTER — 3-letter mnemonic in a fixed-width gutter
+   on the left edge of every specialist row. Full name slides into a
+   hidden span (still in DOM for a11y; revealed on hover via title). */
+
+.specialist-row__name {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  cursor: help;
+}
+
+.specialist-row__mub {
+  /* Fixed-width gutter — same x-offset across all 6 rows so the eye
+     reads the column as a vertical mnemonic strip. */
+  display: inline-block;
+  min-width: 28px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-decision);
+  /* Subtle box-shadow inset on the right edge — creates an implied
+     vertical column rule across all 6 rows without a real border. */
+  border-right: 1px solid var(--color-edge);
+  padding-right: 8px;
+  text-align: left;
+}
+
+.specialist-row__name-full {
+  /* Full specialist name — shown next to the MUB at normal density,
+     not hidden. The MUB IS the operator's eye anchor; the full name
+     stays present for non-pilot readers. */
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-ink-secondary);
+}
+
+/* In archival register the MUB picks up the stamp color, full name muted. */
+.panel--working .specialist-row__mub {
+  color: var(--archival-stamp);
+  border-right-color: var(--archival-edge);
+}
+
+.panel--working .specialist-row__name-full {
+  color: var(--archival-ink-faint);
+}
+
+/* ─── SHIP-3: WET / DRYING / DRY EVIDENCE CARDS ────────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-3 (Source 5 · Aluan Wang ·
+   "draw with ink that's always wet"). Three epistemic states the
+   typography carries:
+
+     wet     custody-held, contested, mutable. Slow shimmer; italic;
+             warm-amber accent. The ink hasn't dried.
+     drying  specialist consensus forming. Fading saturation; medium
+             ink; ink-blue accent. In-flight commit.
+     dry     committed to archival custody. Full saturation; serif slab;
+             stamp-warm accent. Verdict reached.
+
+   Source-agnostic — derived from the EvidenceLink shape (kind +
+   confidence) which is identical in fixture-mode and AIP-mode.
+   Hard constraint per spec: judge cannot distinguish demo from Q&A.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.evidence-card__epistemic {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.evidence-card__epistemic-glyph {
+  font-size: 9px;
+  line-height: 1;
+}
+
+/* WET — ink hasn't dried. Custody-held. Slow shimmer pulse. */
+.evidence-card__epistemic--wet {
+  background: rgba(224, 153, 107, 0.10);
+  border-color: rgba(224, 153, 107, 0.28);
+  color: var(--color-contested);
+  /* Wet ink: subtle opacity oscillation. The state IS the motion. */
+  animation: epistemic-wet-shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes epistemic-wet-shimmer {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+
+.evidence-card[data-epistemic="wet"] {
+  /* The whole card breathes when the evidence is wet. Subtle. */
+  border-left-color: var(--color-contested);
+  border-left-width: 2px;
+}
+
+.evidence-card[data-epistemic="wet"] .evidence-card__head .tchip__slug {
+  /* Italic on the wet evidence id — typography carries the state. */
+  font-style: italic;
+}
+
+/* DRYING — specialist consensus forming. Steady but mid-saturation. */
+.evidence-card__epistemic--drying {
+  background: rgba(122, 169, 255, 0.08);
+  border-color: rgba(122, 169, 255, 0.22);
+  color: var(--color-decision);
+}
+
+.evidence-card[data-epistemic="drying"] {
+  border-left-color: var(--color-decision);
+  border-left-width: 2px;
+}
+
+/* DRY — committed. Full archival weight. */
+.evidence-card__epistemic--dry {
+  background: rgba(110, 195, 168, 0.10);
+  border-color: rgba(110, 195, 168, 0.28);
+  color: var(--color-resolved);
+}
+
+.evidence-card[data-epistemic="dry"] {
+  border-left-color: var(--color-resolved);
+  border-left-width: 2px;
+}
+
+/* In archival register (working panel scope): epistemic chip warms toward
+   the archival palette so it reads as part of the ledger. */
+.panel--working .evidence-card__epistemic--wet {
+  background: rgba(176, 136, 80, 0.10);
+  border-color: rgba(176, 136, 80, 0.32);
+  color: var(--archival-stamp);
+}
+
+.panel--working .evidence-card[data-epistemic="wet"] {
+  border-left-color: var(--archival-stamp);
+}
+
+.panel--working .evidence-card__epistemic--drying {
+  background: rgba(106, 140, 170, 0.12);
+  border-color: rgba(106, 140, 170, 0.32);
+  color: var(--archival-ink-blue);
+}
+
+.panel--working .evidence-card[data-epistemic="drying"] {
+  border-left-color: var(--archival-ink-blue);
+}
+
+.panel--working .evidence-card__epistemic--dry {
+  background: rgba(214, 207, 190, 0.06);
+  border-color: var(--archival-edge-strong);
+  color: var(--archival-ink);
+}
+
+.panel--working .evidence-card[data-epistemic="dry"] {
+  border-left-color: var(--archival-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evidence-card__epistemic--wet {
+    animation: none;
+  }
+}
+
+/* ─── STRETCH-1 SUBSTRATE-STATE CHYRON ─────────────────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-1 (Source 10 · aerockrose).
+   Single bottom line, mnemonic register, system's continuous self-state
+   in plain English. Threads non-technical judges through any beat they
+   miss. Composes with SHIP-3 wet/drying/dry vocabulary.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.substrate-state-chyron {
+  grid-area: subchyron;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 14px;
+  background: var(--color-frame);
+  border-top: 1px solid var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-tertiary);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.substrate-state-chyron__lead {
+  color: var(--color-ink-quaternary, rgba(184, 197, 212, 0.32));
+  letter-spacing: 0.10em;
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__stance {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__stance--holding {
+  color: var(--color-contested);
+}
+
+.substrate-state-chyron__stance--settling {
+  color: var(--color-ink-tertiary);
+}
+
+.substrate-state-chyron__stance--reviewing {
+  color: var(--color-resolved);
+}
+
+.substrate-state-chyron__sep {
+  color: var(--color-edge-strong);
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__sep--leading {
+  margin-left: auto;
+}
+
+.substrate-state-chyron__seg {
+  color: var(--color-ink-secondary);
+  flex-shrink: 0;
+}
+
+.substrate-state-chyron__seg strong {
+  color: var(--color-ink-primary);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.substrate-state-chyron__handoff {
+  /* Trailing free-text segment — names the current beat in plain English.
+     Slightly italic so it reads as system-narration, not chrome. */
+  color: var(--color-ink-secondary);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ─── STRETCH-3: SERVER-STAMPED GUARD-LAYER VERDICT ────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-3.
+   Reads as if guard.ts typed it directly into the page — teletype
+   register, not a UI label. The unforgettable Shield/IQT moment.
+
+   HARD CONSTRAINT honored: zero hardcoded copy. Stamp text comes
+   entirely from refusalReason payload (parsed by GuardLayerStamp).
+   ───────────────────────────────────────────────────────────────────────── */
+
+.guard-stamp {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: rgba(8, 9, 12, 0.6);
+  border: 1px solid var(--color-edge);
+  border-left: 3px solid var(--color-refused);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-secondary);
+  background-image:
+    radial-gradient(circle at 25% 30%, rgba(214, 207, 190, 0.020) 0%, transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(176, 136, 80, 0.018) 0%, transparent 60%);
+  /* Slight typewriter-imprint shadow — letters look slightly debossed. */
+  text-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.6);
+}
+
+.guard-stamp__rule {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  color: var(--color-refused);
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.guard-stamp__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.guard-stamp__line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.guard-stamp__seg-kind {
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-refused);
+  flex-shrink: 0;
+  min-width: 130px;
+}
+
+.guard-stamp__seg-arrow {
+  color: var(--color-ink-tertiary);
+  flex-shrink: 0;
+}
+
+.guard-stamp__seg-payload {
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-ink-primary);
+  font-weight: 500;
+}
+
+.guard-stamp__footer {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-quaternary, rgba(184, 197, 212, 0.32));
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.guard-stamp__author {
+  color: var(--color-refused);
+  font-weight: 500;
+}
+
+/* Archival-register stamp inside .panel--working — warm-paper version */
+.panel--working .guard-stamp {
+  background: var(--archival-paper);
+  border-color: var(--archival-edge);
+  border-left-color: var(--archival-stamp);
+  color: var(--archival-ink-muted);
+  background-image:
+    radial-gradient(circle at 25% 30%, rgba(176, 136, 80, 0.04) 0%, transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(214, 207, 190, 0.030) 0%, transparent 60%);
+}
+
+.panel--working .guard-stamp__rule,
+.panel--working .guard-stamp__seg-kind,
+.panel--working .guard-stamp__author {
+  color: var(--archival-stamp);
+}
+
+.panel--working .guard-stamp__seg-payload {
+  color: var(--archival-ink);
+}
+
+.panel--working .guard-stamp__footer {
+  border-top-color: var(--archival-edge);
+  color: var(--archival-ink-faint);
+}
+
+/* ─── STRETCH-6: RULE-COMPOUNDING EDGES ─────────────────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-6 (Source 4 · Nyk).
+   When R-001 fires, fan out edges to N prior cases the rule re-ranks.
+   Compounding mesh; review memory as moat.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.rule-compounding {
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-top: 1px dashed var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-ink-secondary);
+}
+
+.panel--working .rule-compounding {
+  border-top-color: var(--archival-edge);
+  color: var(--archival-ink-muted);
+}
+
+.rule-compounding__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.rule-compounding__lead {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 9px;
+  color: var(--color-resolved);
+  font-weight: 600;
+}
+
+.panel--working .rule-compounding__lead {
+  color: var(--archival-stamp);
+}
+
+.rule-compounding__count {
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-tertiary);
+}
+
+.panel--working .rule-compounding__count {
+  color: var(--archival-ink-faint);
+}
+
+.rule-compounding__svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin: 4px 0 8px;
+}
+
+.rule-compounding__source {
+  fill: var(--color-resolved);
+  filter: drop-shadow(0 0 4px rgba(110, 195, 168, 0.6));
+}
+
+.panel--working .rule-compounding__source {
+  fill: var(--archival-stamp);
+}
+
+.rule-compounding__path {
+  stroke: var(--color-edge-strong);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0.6;
+}
+
+.rule-compounding__edge--changed .rule-compounding__path {
+  stroke: var(--color-resolved);
+  stroke-width: 1.4;
+  opacity: 0.9;
+  stroke-dashoffset: 320;
+  stroke-dasharray: 320;
+  animation: rule-edge-draw 1.4s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes rule-edge-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.panel--working .rule-compounding__edge--changed .rule-compounding__path {
+  stroke: var(--archival-stamp);
+}
+
+.rule-compounding__target {
+  fill: var(--color-edge-strong);
+}
+
+.rule-compounding__target--changed {
+  fill: var(--color-resolved);
+  filter: drop-shadow(0 0 4px rgba(110, 195, 168, 0.5));
+}
+
+.panel--working .rule-compounding__target--changed {
+  fill: var(--archival-stamp);
+}
+
+.rule-compounding__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rule-compounding__item {
+  display: grid;
+  grid-template-columns: 14px auto 1fr auto;
+  gap: 8px;
+  align-items: baseline;
+  padding: 3px 0;
+  font-size: 9.5px;
+}
+
+.rule-compounding__pip {
+  color: var(--color-edge-strong);
+}
+
+.rule-compounding__item--changed .rule-compounding__pip {
+  color: var(--color-resolved);
+}
+
+.panel--working .rule-compounding__item--changed .rule-compounding__pip {
+  color: var(--archival-stamp);
+}
+
+.rule-compounding__case-id {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.04em;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+.panel--working .rule-compounding__case-id {
+  background: rgba(176, 136, 80, 0.06);
+  color: var(--archival-ink-faint);
+}
+
+.rule-compounding__case-label {
+  color: var(--color-ink-secondary);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
+.panel--working .rule-compounding__case-label {
+  color: var(--archival-ink-muted);
+}
+
+.rule-compounding__verdict {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-edge-strong);
+}
+
+.rule-compounding__item--changed .rule-compounding__verdict {
+  color: var(--color-resolved);
+  font-weight: 500;
+}
+
+.panel--working .rule-compounding__item--changed .rule-compounding__verdict {
+  color: var(--archival-stamp);
+}
+
+.rule-compounding__footer {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--color-edge);
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-ink-tertiary);
+  text-align: center;
+}
+
+.panel--working .rule-compounding__footer {
+  border-top-color: var(--archival-edge);
+  color: var(--archival-ink-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rule-compounding__edge--changed .rule-compounding__path {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }

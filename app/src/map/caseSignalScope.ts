@@ -201,11 +201,11 @@ export function caseScopeLabel(caseId: string | null | undefined): string {
   if (caseId === CASE_HORMUZ_SYNTHESIS || caseId?.endsWith("event-2")) {
     return "Hormuz synthesis";
   }
-  if (caseId === CASE_REAL_SANCTIONED_FLEET) return "cached sanctioned fleet";
-  if (caseId === CASE_REAL_LOITERING_CLUSTERS) return "cached loitering clusters";
-  if (caseId === CASE_REAL_IRAN_LAST_PORT) return "cached Iran last-port";
-  if (caseId === CASE_REAL_GREY_MARKET_ROUTING) return "cached grey-market routing";
-  if (caseId === CASE_REAL_ROSHAK_SIGNAL) return "cached ROSHAK signal";
+  if (caseId === CASE_REAL_SANCTIONED_FLEET) return "sanctioned fleet";
+  if (caseId === CASE_REAL_LOITERING_CLUSTERS) return "loitering clusters";
+  if (caseId === CASE_REAL_IRAN_LAST_PORT) return "Iran last-port";
+  if (caseId === CASE_REAL_GREY_MARKET_ROUTING) return "grey-market routing";
+  if (caseId === CASE_REAL_ROSHAK_SIGNAL) return "ROSHAK signal";
   if (caseId?.startsWith("case:draft:hormuz:")) return "single-vessel draft";
   return "all mapped OSINT";
 }

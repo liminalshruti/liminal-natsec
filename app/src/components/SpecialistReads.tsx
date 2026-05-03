@@ -40,6 +40,19 @@ const CANONICAL_ORDER = [
   "visual"
 ] as const;
 
+// SHIP-2 (Source 1 · Ricky · reluctant chrome): MUB-mnemonic gutters for
+// each specialist row. 3-letter codes the operator reads at a glance;
+// full names live on hover via the row title attribute. Density up,
+// ceremony down.
+const SPECIALIST_MUB: Record<string, string> = {
+  kinematics: "KIN",
+  identity: "IDV",
+  signal_integrity: "SIG",
+  intent: "INT",
+  collection: "COL",
+  visual: "VIS"
+};
+
 function normalize(name: string): string {
   return name.toLowerCase().replace(/\s+/g, "_");
 }
@@ -47,6 +60,10 @@ function normalize(name: string): string {
 function rank(name: string): number {
   const idx = (CANONICAL_ORDER as readonly string[]).indexOf(normalize(name));
   return idx === -1 ? CANONICAL_ORDER.length : idx;
+}
+
+function mubFor(name: string): string {
+  return SPECIALIST_MUB[normalize(name)] ?? name.slice(0, 3).toUpperCase();
 }
 
 // v3.2 IA — Specialist Reads renders as a compact strip in Zone 2, not as a
@@ -116,7 +133,15 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
             title={read.summary ?? ""}
             role="listitem"
           >
-            <span className="specialist-row__name">{read.specialist}</span>
+            <span
+              className="specialist-row__name"
+              title={read.specialist}
+            >
+              <span className="specialist-row__mub" aria-hidden="true">
+                {mubFor(read.specialist)}
+              </span>
+              <span className="specialist-row__name-full">{read.specialist}</span>
+            </span>
             <span className="specialist-row__summary">{read.summary ?? "—"}</span>
             <span className="specialist-row__status-group">
               <SpecialistFamilyChips specialistName={read.specialist} />
@@ -127,6 +152,16 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
                 </span>
               )}
             </span>
+            {/* STRETCH-3: refusal-as-held-tension with NAMED guard layer.
+                Server-stamped annotation that reads as if the guard typed
+                it. Per spec §STRETCH-3: "the guard-layer stamp comes from
+                guard.ts's response payload, not from a UI string literal."
+                Parses refusalReason like
+                  "guard:layer-2:no_intent_indicator + upstream_refusal:signal_integrity"
+                into a structured stamp. */}
+            {isIntent && isRefused && read.refusalReason && (
+              <GuardLayerStamp refusalReason={read.refusalReason} />
+            )}
             {intentFollowingIntegrity && isRefused && (
               <div
                 className="specialist-row__causal-callout"
@@ -445,4 +480,71 @@ function SpecialistFamilyChips({ specialistName }: { specialistName: string }) {
       ))}
     </span>
   );
+}
+
+/** STRETCH-3: Server-stamped guard-layer annotation.
+ *  Reads as if the guard typed it directly into the page (teletype
+ *  register), not as a UI label. Parses the refusalReason payload from
+ *  the spine graph (which carries guard's structural verdict) into a
+ *  stamp showing layer + indicator + upstream cascade.
+ *
+ *  Per spec §STRETCH-3 hard constraint: zero hardcoded copy. The stamp
+ *  text comes entirely from the data — same shape in fixture-mode and
+ *  AIP-mode.
+ */
+function GuardLayerStamp({ refusalReason }: { refusalReason: string }) {
+  const segments = parseRefusalReason(refusalReason);
+  return (
+    <div className="guard-stamp" role="region" aria-label="Structural guard verdict">
+      <div className="guard-stamp__rule" aria-hidden="true">
+        ━━━ STRUCTURAL GUARD :: VERDICT ━━━
+      </div>
+      <div className="guard-stamp__body">
+        {segments.map((seg, i) => (
+          <div key={i} className="guard-stamp__line">
+            <span className="guard-stamp__seg-kind">{seg.kind}</span>
+            <span className="guard-stamp__seg-arrow" aria-hidden="true">::</span>
+            <span className="guard-stamp__seg-payload">{seg.payload}</span>
+          </div>
+        ))}
+      </div>
+      <div className="guard-stamp__footer" aria-hidden="true">
+        <span>—— stamped by</span>
+        <span className="guard-stamp__author">guard.ts</span>
+        <span>· structurally enforced ——</span>
+      </div>
+    </div>
+  );
+}
+
+/** Parse "guard:layer-2:no_intent_indicator + upstream_refusal:signal_integrity"
+ *  into structured segments. Splits on + and parses each colon-separated
+ *  triple into kind + payload pairs.
+ *  Falls back to a single un-parsed line if format doesn't match. */
+function parseRefusalReason(raw: string): Array<{ kind: string; payload: string }> {
+  const parts = raw.split("+").map((p) => p.trim());
+  const out: Array<{ kind: string; payload: string }> = [];
+  for (const part of parts) {
+    const match = part.match(/^([a-z_]+):([a-z0-9_-]+):(.+)$/i);
+    if (match) {
+      const [, kind, sublayer, indicator] = match;
+      out.push({
+        kind: `${kind.toUpperCase()} · ${sublayer.toUpperCase()}`,
+        payload: indicator.replace(/_/g, " ").toUpperCase()
+      });
+    } else {
+      // Fallback: simple kind:payload
+      const fallback = part.match(/^([a-z_]+):(.+)$/i);
+      if (fallback) {
+        const [, kind, payload] = fallback;
+        out.push({
+          kind: kind.toUpperCase(),
+          payload: payload.replace(/_/g, " ").toUpperCase()
+        });
+      } else {
+        out.push({ kind: "GUARD", payload: part.toUpperCase() });
+      }
+    }
+  }
+  return out;
 }
