@@ -1,6 +1,6 @@
-# SeaForge — v3 Implementation Plan
+# Liminal Custody — v3 Implementation Plan
 
-**Status:** v3 patch on top of `docs/v2/SeaForge_Implementation_Plan_v2.md`. v2 remains the canonical build plan. This document captures *only what changes* in v3, plus the signal-integrity surface that becomes Shayaun's differentiator.
+**Status:** v3 patch on top of `docs/v2/Liminal Custody_Implementation_Plan_v2.md`. v2 remains the canonical build plan. This document captures *only what changes* in v3, plus the signal-integrity surface that becomes Shayaun's differentiator.
 
 ---
 
@@ -217,4 +217,4 @@ v2 said: *"A second event card shows a changed recommendation because of a human
 
 v3 amends: *"…and the system shows that Intent refused because Signal Integrity was contested — restraint as a security feature."*
 
-If the second-case-changed beat lands and the Signal-Integrity-causes-refusal beat lands, SeaForge has two differentiators that no other team will have. If only one lands, ship that one. If neither lands, fall back to v2 Win State C.
+If the second-case-changed beat lands and the Signal-Integrity-causes-refusal beat lands, Liminal Custody has two differentiators that no other team will have. If only one lands, ship that one. If neither lands, fall back to v2 Win State C.

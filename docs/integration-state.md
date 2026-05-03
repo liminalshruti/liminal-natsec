@@ -1,4 +1,4 @@
-# SeaForge — Integration State (v3 + Shayaun's scaffold)
+# Liminal Custody — Integration State (v3 + Shayaun's scaffold)
 
 **Status:** This doc maps the actual code Shayaun pushed at H8 to the v3 demo spine. Read this before building the deck or rehearsing the pitch — it's the contract between *what's running* and *what we say about it*.
 
@@ -151,6 +151,6 @@ These edits are made in the v3 patch v2 commit. See individual files for details
 
 Updated for v3 patch v2:
 
-> **"Command systems start too late. SeaForge protects the evidence before it becomes command — and refusal is structurally enforced, not requested."**
+> **"Command systems start too late. Liminal Custody protects the evidence before it becomes command — and refusal is structurally enforced, not requested."**
 
 That last clause is what Shayaun's scaffold makes true. Use it.

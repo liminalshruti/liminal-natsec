@@ -53,7 +53,7 @@
 
 > "Maintaining custody of contested targets is Sensor Analysis. Bounded action workflows are Command and Control. Protecting the evidence chain from spoofed or degraded signals is Digital Defense. We don't think it's any of those individually. We think the unsolved layer is between them.
 >
-> SeaForge is the pre-command evidence integrity layer. We turn contested observations into traceable custody, refuse unsupported inference, and turn human correction into durable operating memory. Restraint becomes a security feature."
+> Liminal Custody is the pre-command evidence integrity layer. We turn contested observations into traceable custody, refuse unsupported inference, and turn human correction into durable operating memory. Restraint becomes a security feature."
 
 **Team + ask (2:30 – 2:50) — Shruti opens, Shayaun closes:**
 
@@ -83,7 +83,7 @@
 | 0:00 – 0:30 | Hook + named persona + Maven-explicit frame | Shruti |
 | 0:30 – 1:45 | Live demo (slightly slower, more emphasis on causal refusal) | Shayaun drives, Shruti narrates |
 | 1:45 – 2:15 | Review Memory + portability beat | Shruti |
-| 2:15 – 2:45 | Architecture slide: pre-command → command → review memory | Shruti |
+| 2:15 – 2:45 | Architecture walkthrough — verbal, gesture at running app's panes (no slide; hack rules forbid presentations) | Shruti |
 | 2:45 – 3:00 | Team credibility + 90-day pilot ask | Shayaun closes |
 
 ### Word-for-word — Round 2
@@ -94,7 +94,7 @@
 >
 > Maven Smart System and CJADC2 help commanders act on a shared operational picture. They are excellent at that. But they assume something has already happened — that the signals reaching command have already been deemed commandable.
 >
-> SeaForge handles that earlier layer. We protect the evidence chain *before* something becomes commandable truth."
+> Liminal Custody handles that earlier layer. We protect the evidence chain *before* something becomes commandable truth."
 
 **Demo (0:30 – 1:45) — Shayaun drives, Shruti narrates:**
 
@@ -108,11 +108,16 @@
 
 > "The primitive isn't maritime. It's evidence custody under ambiguity. Replace the maritime substrate with intelligence reports, sensor fusion, supply-chain telemetry — the loop is the same. Custody, refusal, review, durable correction."
 
-**Architecture slide (2:15 – 2:45) — Shruti:**
+**Architecture walkthrough (2:15 – 2:45) — Shruti:**
 
-> *(slide showing: substrate → evidence custody loop → command → review memory)*
->
-> "Three layers. Substrate — raw, contested, possibly compromised. Command — Maven, CJADC2, the existing stack. The layer between them — that's us. We make it so commanders aren't acting on overclaimed or spoofed signals, and so their corrections survive into the next decision."
+(No slide. Stay on the running app. Gesture at the panes as you say each layer.)
+
+> *(point at substrate panel, left)*
+> "Substrate — raw, contested, possibly compromised."
+> *(point at working panel, right)*
+> "The layer between substrate and command — that's us. Custody hypotheses, structural guard, review memory."
+> *(point at action options + the just-saved review rule)*
+> "Command — Maven, CJADC2, the existing stack. We make sure commanders aren't acting on overclaimed or spoofed signals, and so their corrections survive into the next decision."
 
 **Team + ask (2:45 – 3:00) — Shayaun closes:**
 
@@ -122,7 +127,7 @@
 
 - **Name Maven once, by name, in the hook.** The recognition-shock is the point.
 - **Frame as augmenting, never replacing.** "Maven is excellent at command. We handle the layer before."
-- **Include the architecture slide.** This is the visual that lets the panel see the wedge.
+- **No slide — gesture at the running app's panes during the architecture beat.** Hack rules explicitly forbid presentations. Stay on the demo.
 - **Closer is Shayaun's credentials + the explicit ask.** This signals the team can sell, not just demo.
 - **Be ready for hostile Q&A.** See `docs/q-and-a.md`.
 

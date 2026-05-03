@@ -1,10 +1,10 @@
-# SeaForge
+# Liminal Custody
 
 **Evidence integrity before command.** A desktop application for contested target custody.
 
-SeaForge maintains custody of contested targets by protecting the evidence chain before it becomes command action. Built for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, May 2–3 2026).
+Liminal Custody maintains custody of contested targets by protecting the evidence chain before it becomes command action. Built for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, May 2–3 2026).
 
-> Command systems start too late. SeaForge protects the evidence before it becomes command — and refusal is structurally enforced, not requested.
+> Command systems start too late. Liminal Custody protects the evidence before it becomes command — and refusal is structurally enforced, not requested.
 
 ## What this is
 
@@ -14,11 +14,11 @@ A persistent desktop application with one workflow:
 Substrate / Signal Sources → Stage Viewport → Working Panel → Command Line
 ```
 
-The demo: a maritime watch officer at U.S. 5th Fleet, 0200 local, monitoring AIS disruptions near a strategic chokepoint in the Strait of Hormuz. A vessel goes dark. A different identity appears nearby. SeaForge preserves competing custody hypotheses, enforces refusal when the evidence chain is contested, and lets a human review rule change the next recommendation.
+The demo: a maritime watch officer at U.S. 5th Fleet, 0200 local, monitoring AIS disruptions near a strategic chokepoint in the Strait of Hormuz. A vessel goes dark. A different identity appears nearby. Liminal Custody preserves competing custody hypotheses, enforces refusal when the evidence chain is contested, and lets a human review rule change the next recommendation.
 
 ## How it's different
 
-Most command-and-control systems start *after* signals reach command. They assume the signal is already coherent enough to act on. SeaForge starts one layer earlier.
+Most command-and-control systems start *after* signals reach command. They assume the signal is already coherent enough to act on. Liminal Custody starts one layer earlier.
 
 - **Custody before conclusion.** The system preserves competing hypotheses instead of declaring intent.
 - **Refusal as an invariant.** Every AI specialist output passes through a server-side structural guard. Citation minimums, evidence-type requirements, and posterior thresholds enforce refusal. AI cannot overclaim.
@@ -65,8 +65,13 @@ Node fallback for tests: `npm test`.
 
 ## Authoritative docs
 
-Read `docs/integration-state.md` first if you're new to this repo. It maps engineered modules to demo beats to pitch language.
+**Start here if you're a judge or a follow-on conversation:**
+- `docs/liminal-custody-onepager.md` — the one-pager. OGSM-embedded. Read this first.
+- `docs/maven-teardown.md` — Maven Smart System reverse-engineering + framework upgrade rationale
+- `docs/reference/maven-onepager-annotated.pdf` — annotated Palantir/Maven booth one-pager (the artifact this product structurally answers)
 
+**If you're contributing to the build:**
+- `docs/integration-state.md` — engineered modules → demo beats → pitch language
 - `docs/v2/` — locked build baseline (PRD, implementation plan, sequencing plan)
 - `docs/TECHNICAL_PLAN.md` — engineering canon
 - `docs/v3-positioning-patch.md` — track decision, Maven posture, schema delta

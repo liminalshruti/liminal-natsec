@@ -4,16 +4,18 @@ Repo-local instructions for Claude Code agents.
 
 ## What this repo is
 
-SeaForge — the demo artifact for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, Shack15 SF, May 2–3 2026). Submission track: **Problem Statement 1 — Sensor Analysis & Integration.**
+**Liminal Custody** — the demo artifact for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, Shack15 SF, May 2–3 2026). Submission track: **Problem Statement 1 — Sensor Analysis & Integration.**
+
+Renamed from "SeaForge" at H8 to remove maritime lock-in and make the product line readable as Liminal's pre-command evidence layer (portable across domains).
 
 Canonical positioning:
 
-> **SeaForge maintains custody of contested targets by protecting the evidence chain before it becomes command action.**
+> **Liminal Custody maintains custody of contested targets by protecting the evidence chain before it becomes command action. Maven is the foundation. We are the substrate.**
 
 ## Authoritative docs (read these before acting)
 
 Build sequencing:
-- `docs/v2/SeaForge_PRD_v2.md` — product surface
+- `docs/v2/SeaForge_PRD_v2.md` — product surface (v2 baseline; historical name preserved)
 - `docs/v2/SeaForge_Implementation_Plan_v2.md` — file structure, owner lanes
 - `docs/v2/SeaForge_Sequencing_Plan_v2.md` — phase gates
 
@@ -29,6 +31,9 @@ Positioning + pitch canon:
 - `docs/round1-round2-script.md` — branched 3-min and 5-min pitch scripts
 - `docs/shayaun-handoff.md` — phone-readable summary for Shayaun
 - `docs/integration-state.md` — module → demo-spine → pitch-language map (read this first if you're new to the repo)
+- `docs/liminal-custody-onepager.md` — front-of-room one-pager + back-of-room OGSM
+- `docs/maven-teardown.md` — Maven Smart System teardown + framework-upgrade rationale
+- `docs/reference/maven-onepager-annotated.pdf` — annotated booth one-pager (the artifact this product structurally answers)
 
 ## Hard rules
 

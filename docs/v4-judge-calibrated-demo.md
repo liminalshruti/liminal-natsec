@@ -1,4 +1,4 @@
-# SeaForge — v4 Judge-Calibrated Demo Layer
+# Liminal Custody — v4 Judge-Calibrated Demo Layer
 
 **Status:** v4 patch on top of v3. Adds named operator persona, procurement path, "what we don't do" slide, and judge-by-judge framing. **Does not change build sequencing.** This is mostly Shruti's lane (deck + narrative).
 
@@ -13,7 +13,7 @@ Use this in the first sentence of every pitch — Round 1 and Round 2.
 Why this persona:
 - 5th Fleet AOR includes Hormuz / Bab al-Mandab — both have *documented* AIS spoofing incidents (Iran-attributed, since ~2019).
 - 0200 makes the cognitive-load problem visceral.
-- "Escalate vs second-source collection" is the *exact* decision SeaForge surfaces.
+- "Escalate vs second-source collection" is the *exact* decision Liminal Custody surfaces.
 - Naming a unit (not "operators in general") signals operator literacy to Shield / IQT / DCVC judges.
 
 **Compressed for the hook:**
@@ -26,10 +26,10 @@ Why this persona:
 
 A defense pitch without a procurement ask is a TED talk. The slide:
 
-### How SeaForge enters DoD procurement
+### How Liminal Custody enters DoD procurement
 
 ```
-SeaForge sits between AIS / OSINT / sensor feeds and existing C2 stacks.
+Liminal Custody sits between AIS / OSINT / sensor feeds and existing C2 stacks.
 It does not replace Maven or CJADC2. It hardens the evidence chain
 before signals become commandable.
 
@@ -58,7 +58,7 @@ Three pilot paths:
 
 This is unusual at hackathons. It scores high with this panel because it shows policy literacy and procurement maturity.
 
-### What SeaForge does not do
+### What Liminal Custody does not do
 
 ```
 We do not infer hostile intent.
@@ -103,7 +103,7 @@ The named judges in the room and what they're listening for. **One sentence in t
 ### IQT (In-Q-Tel)
 
 - Listening for: tech 18 months ahead of where the IC currently buys, novel substrate.
-- Their sentence: *"The unsolved layer between substrate and command is where SeaForge operates."*
+- Their sentence: *"The unsolved layer between substrate and command is where Liminal Custody operates."*
 
 ### DCVC
 
@@ -113,7 +113,7 @@ The named judges in the room and what they're listening for. **One sentence in t
 ### Palantir
 
 - Listening for: complementarity, not competition; AIP-friendliness; understanding of CJADC2.
-- Their sentence: *"SeaForge augments Maven one layer earlier — it could ship as an AIP module."*
+- Their sentence: *"Liminal Custody augments Maven one layer earlier — it could ship as an AIP module."*
 
 ### Stanford Gordian Knot
 
@@ -123,7 +123,7 @@ The named judges in the room and what they're listening for. **One sentence in t
 ### L3Harris
 
 - Listening for: integrability with existing comms / sensor infrastructure.
-- Their sentence: *"SeaForge sits between feeds and C2 — it ingests AIS, OSINT, and sensor inputs without prescribing the source."*
+- Their sentence: *"Liminal Custody sits between feeds and C2 — it ingests AIS, OSINT, and sensor inputs without prescribing the source."*
 
 ### Berkeley Defense Tech Society
 
@@ -132,40 +132,32 @@ The named judges in the room and what they're listening for. **One sentence in t
 
 ---
 
-## 5. Architecture slide (Round 2)
+## 5. Architecture walkthrough (Round 2) — verbal, not a slide
 
-For Round 2 only. The visual that makes the wedge legible.
+The hackathon explicitly forbids presentations during judging. The architecture *concept* still does work in Round 2 — but it's a **verbal beat with gestures at the running app**, not a slide.
 
-```
-            SUBSTRATE / X
-   raw multi-domain observations
-   messy, partial, contradictory
+### What you say
 
-                  ↓
+(For Round 2, ~30 seconds, between the Review Memory beat and the team close. Stay on the running app.)
 
-      EVIDENCE CUSTODY LOOP   ← SeaForge / Liminal
-          custody hypotheses
-          source integrity check
-          bounded refusal
-          provenance trace
-          review memory
+> *(gesture at the substrate panel, left)*
+> "Substrate. Raw, contested, possibly compromised — AIS, OSINT, RF, intelligence reports."
+>
+> *(gesture at the working panel, right — currently showing the custody case)*
+> "The layer between substrate and command — that's us. Custody hypotheses preserved, structural guard enforced, review memory durable."
+>
+> *(gesture at the action options + the just-saved review rule)*
+> "Command — Maven, CJADC2, the existing stack. They start *after* our layer."
 
-                  ↓
+### Three labels that matter (anchor in the verbal)
 
-       COMMAND / CONTROL      ← Maven, CJADC2, existing stack
-       human chooses next action
-
-                  ↓
-
-         REVIEW MEMORY / Y
-       rule saved, future case
-       changed, durable doctrine
-```
-
-Three labels matter:
 - **Substrate / X** — what exists before signals are commandable.
-- **Evidence Custody Loop** — where SeaForge operates. Liminal's primitive.
+- **Evidence Custody Loop** — where Liminal Custody operates. Liminal's primitive.
 - **Command / Control** — explicitly named to anchor against Maven / CJADC2.
+
+### Public-repo equivalent
+
+The same architecture diagram exists *as a static graphic in the README* (judges who clone the repo can see it). It does not appear in the live demo. This is the difference between a *referenced* artifact and a *presented* one — and respects the hack rule.
 
 ---
 
@@ -173,7 +165,7 @@ Three labels matter:
 
 For the final sentence on stage:
 
-> "Maven helps commanders act on a shared picture. SeaForge makes sure that picture is worth acting on. We're building the substrate the next decade of mission systems will run on top of."
+> "Maven helps commanders act on a shared picture. Liminal Custody makes sure that picture is worth acting on. We're building the substrate the next decade of mission systems will run on top of."
 
 If running long, cut the second sentence. The first lands on its own.
 
@@ -190,7 +182,7 @@ The hackathon requires a 1-min demo video. Build it as if a Shield/IQT principal
 | 0:15 – 0:30 | "**Signal Integrity contested. Intent refused.**" | Specialist reads panel, hero treatment |
 | 0:30 – 0:40 | "Operator writes a rule." | Rule input + save |
 | 0:40 – 0:50 | "Next case: recommendation has changed." | Second case card |
-| 0:50 – 1:00 | "Pre-command evidence integrity. Restraint as a security feature." + Liminal logo | Architecture slide |
+| 0:50 – 1:00 | "Pre-command evidence integrity. Restraint as a security feature." + Liminal logo | App fade to Liminal Custody wordmark over the running shell (no separate architecture slide — stay in-app) |
 
 Voice-over should match Round 1 narration for consistency — judges may watch the video *and* see Round 1.
 
@@ -200,6 +192,6 @@ Voice-over should match Round 1 narration for consistency — judges may watch t
 
 If everything else falls apart, this is the sentence both Shruti and Shayaun should be able to say without thinking:
 
-> **"Command systems start too late. SeaForge protects the evidence before it becomes command."**
+> **"Command systems start too late. Liminal Custody protects the evidence before it becomes command."**
 
 That's the pitch. Everything else is supporting evidence.

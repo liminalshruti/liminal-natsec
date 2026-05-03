@@ -1,4 +1,4 @@
-# Shayaun handoff — SeaForge v3
+# Shayaun handoff — Liminal Custody v3
 
 **Phone-readable. Self-contained. Read this once, ping back with disagreements.**
 
@@ -17,7 +17,7 @@ We will name your creds explicitly in Round 1 and Round 2. Bio fact, one sentenc
 I read the Maven Smart System / CJADC2 booth one-pager today. The reformulation is in `docs/v3-positioning-patch.md`. The short version:
 
 - **Track:** PS1 (Sensor Analysis) primary, PS3 (C2) narrative, **PS4 (Digital Defense) is your differentiator layer.**
-- **Pitch:** "Command systems start too late. SeaForge protects the evidence before it becomes command."
+- **Pitch:** "Command systems start too late. Liminal Custody protects the evidence before it becomes command."
 - **Maven:** invisible in Round 1, augmenting in Round 2 if we make finals. Never attack.
 - **Demo spine:** v2's 6 beats, with **Signal Integrity: CONTESTED** inserted between hypothesis board and Intent refusal — making the refusal *causally legible* instead of arbitrary.
 
@@ -137,7 +137,7 @@ Round 1 (groups, 3 min, ~6–8 teams seeing same judges back-to-back):
 - Open with: *"Current command-and-control systems start too late."*
 
 Round 2 (top 6, on stage, 5–6 min, panel + harder Q&A):
-- **Maven-augmenting.** *"Maven Smart System and CJADC2 help commanders act on a shared operational picture. SeaForge augments that stack one layer earlier."*
+- **Maven-augmenting.** *"Maven Smart System and CJADC2 help commanders act on a shared operational picture. Liminal Custody augments that stack one layer earlier."*
 - Never frame Maven as flawed. The frame is *layer-before*, not *layer-better*.
 
 ---
@@ -146,7 +146,7 @@ Round 2 (top 6, on stage, 5–6 min, panel + harder Q&A):
 
 I have full answers in `docs/q-and-a.md`. Quick takes:
 
-- **"How is this different from Maven?"** "We don't replace Maven. Maven helps command teams act on a shared picture. SeaForge sits one layer earlier — protects the evidence chain before something becomes commandable truth."
+- **"How is this different from Maven?"** "We don't replace Maven. Maven helps command teams act on a shared picture. Liminal Custody sits one layer earlier — protects the evidence chain before something becomes commandable truth."
 - **"Why not JPDA / MHT?"** "This isn't a production tracker. It's an evidence-custody workflow. A production version would integrate JPDA/MHT underneath."
 - **"What's your false-positive rate?"** "We're not optimizing a black-box threshold. We make uncertainty inspectable — every recommendation shows support, weakening evidence, and the rule that changed it."
 - **"Why should the Army care?"** "Bad evidence chains create bad command decisions. In contested environments, the cost is acting too confidently on spoofed or incomplete signals."

@@ -10,7 +10,7 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 ### "How is this different from Maven Smart System?"
 
-> "We don't replace Maven. Maven helps command teams act on a shared operational picture — we'd want to integrate, not compete. SeaForge sits one layer earlier: it protects the evidence chain before something becomes commandable truth. If a signal in the picture is degraded, spoofed, or single-source, SeaForge holds it in custody until the chain strengthens or a human writes a rule."
+> "We don't replace Maven. Maven helps command teams act on a shared operational picture — we'd want to integrate, not compete. Liminal Custody sits one layer earlier: it protects the evidence chain before something becomes commandable truth. If a signal in the picture is degraded, spoofed, or single-source, Liminal Custody holds it in custody until the chain strengthens or a human writes a rule."
 
 ### "Why isn't this just a feature inside Palantir AIP?"
 
@@ -26,7 +26,7 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 ### "Why not JPDA / MHT / a real tracker?"
 
-> "Because that's not the contribution. JPDA and MHT solve association under track ambiguity — they're production-grade. SeaForge solves the layer above: how do you preserve custody hypotheses when the *identity* is contested, not just the kinematic association? A production version would integrate JPDA underneath. We're demoing the workflow, not the tracker."
+> "Because that's not the contribution. JPDA and MHT solve association under track ambiguity — they're production-grade. Liminal Custody solves the layer above: how do you preserve custody hypotheses when the *identity* is contested, not just the kinematic association? A production version would integrate JPDA underneath. We're demoing the workflow, not the tracker."
 
 ### "What's your false-positive rate?"
 
@@ -83,7 +83,7 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 ### "Why your team?"
 
 > Shayaun: "I'm OffSec-certified — OSCP/OSCE-class, top 100 on Hack The Box. Signal-chain compromise and spoofing is what I do."
-> Shruti: "I'm building Liminal — infrastructure for the pre-decisional state. Two years of architecture work on evidence custody is what made SeaForge buildable in 24 hours."
+> Shruti: "I'm building Liminal — infrastructure for the pre-decisional state. Two years of architecture work on evidence custody is what made Liminal Custody buildable in 24 hours."
 
 ### "How did you build this in a weekend?"
 
@@ -91,8 +91,8 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 ### "Are you full-time on this?"
 
-> Shruti: "I'm full-time on Liminal. SeaForge is the defense instantiation."
-> Shayaun: "I'm 0.25 FT as co-founder. SeaForge is the wedge that proves the substrate works for high-stakes domains."
+> Shruti: "I'm full-time on Liminal. Liminal Custody is the defense instantiation."
+> Shayaun: "I'm 0.25 FT as co-founder. Liminal Custody is the wedge that proves the substrate works for high-stakes domains."
 
 ---
 
@@ -124,7 +124,7 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 ### "Where does Liminal come in?"
 
-> "SeaForge is the defense instantiation of a Liminal primitive — evidence custody under ambiguity. Liminal is building this for individual and organizational decision-making. The hackathon is a credibility test: if the primitive holds up in a high-stakes contested-environments demo, it holds up in the lower-stakes domains where Liminal is the product."
+> "Liminal Custody is the defense instantiation of a Liminal primitive — evidence custody under ambiguity. Liminal is building this for individual and organizational decision-making. The hackathon is a credibility test: if the primitive holds up in a high-stakes contested-environments demo, it holds up in the lower-stakes domains where Liminal is the product."
 
 ### "What would you build with $1M?"
 

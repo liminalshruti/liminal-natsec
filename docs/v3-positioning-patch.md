@@ -1,4 +1,4 @@
-# SeaForge — v3 Positioning Patch
+# Liminal Custody — v3 Positioning Patch
 
 **Status:** active patch on top of `docs/v2/`. The v2 PRD, Implementation Plan, and Sequencing Plan remain canonical for *build sequencing*. v3 changes the *positioning, track, and one schema delta* without changing owner lanes or phase gates.
 
@@ -21,15 +21,15 @@ X / substrate
 → Y / changed downstream operating state
 ```
 
-The unsolved layer is what's *between* substrate and command — the place where contested signals either become commandable or get held in custody. That layer is SeaForge.
+The unsolved layer is what's *between* substrate and command — the place where contested signals either become commandable or get held in custody. That layer is Liminal Custody.
 
 **Canonical line (locked):**
 
-> **SeaForge maintains custody of contested targets by protecting the evidence chain before it becomes command action.**
+> **Liminal Custody maintains custody of contested targets by protecting the evidence chain before it becomes command action.**
 
 Compressed:
 
-> **Command systems start too late. SeaForge protects the evidence before it becomes command.**
+> **Command systems start too late. Liminal Custody protects the evidence before it becomes command.**
 
 ---
 
@@ -52,7 +52,7 @@ Compressed:
 
 ### Why not PS3 as primary
 
-- C2 is a crowded room. Many teams will pitch dashboards. SeaForge differentiates *one layer earlier*.
+- C2 is a crowded room. Many teams will pitch dashboards. Liminal Custody differentiates *one layer earlier*.
 - Submitting as PS1 + framing as "pre-command" lets the C2 language do narrative work without forcing direct comparison to dashboard projects.
 
 ---
@@ -65,7 +65,7 @@ The Maven Smart System / CJADC2 reference is leverage. How aggressively to deplo
 
 Do **not** name Maven, Palantir, or CJADC2. Use this language:
 
-> "Current command-and-control systems start too late. They assume the signal is already coherent enough to act on. SeaForge starts one layer earlier."
+> "Current command-and-control systems start too late. They assume the signal is already coherent enough to act on. Liminal Custody starts one layer earlier."
 
 Rationale: Round 1 judging groups are unknown. Some may include Palantir engineers. Naming the elephant unnecessarily costs a Palantir judge's score for no upside in a 3-minute window.
 
@@ -73,7 +73,7 @@ Rationale: Round 1 judging groups are unknown. Some may include Palantir enginee
 
 If finals are reached, name it carefully and frame as augmenting:
 
-> "Maven Smart System and CJADC2 help commanders act on a shared operational picture. SeaForge augments that stack one layer earlier: it protects the evidence chain before something becomes commandable."
+> "Maven Smart System and CJADC2 help commanders act on a shared operational picture. Liminal Custody augments that stack one layer earlier: it protects the evidence chain before something becomes commandable."
 
 Rationale: Stage context, longer Q&A. Recognition-shock of naming Maven is high-EV with Shield/IQT/DCVC judges who reward landscape literacy. Palantir judges are already on the panel — defuse with "augment, not replace."
 
@@ -225,9 +225,9 @@ liminal-natsec/
 ├── README.md                          # public-facing positioning
 ├── docs/
 │   ├── v2/                            # locked build baseline
-│   │   ├── SeaForge_PRD_v2.md
-│   │   ├── SeaForge_Implementation_Plan_v2.md
-│   │   └── SeaForge_Sequencing_Plan_v2.md
+│   │   ├── Liminal Custody_PRD_v2.md
+│   │   ├── Liminal Custody_Implementation_Plan_v2.md
+│   │   └── Liminal Custody_Sequencing_Plan_v2.md
 │   ├── v3-positioning-patch.md        # this file
 │   ├── v4-judge-calibrated-demo.md    # named persona, procurement path, what-we-don't-do
 │   ├── q-and-a.md                     # 30-second answers to predictable judge questions
