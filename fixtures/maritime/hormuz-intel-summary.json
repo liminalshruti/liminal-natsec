@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-03T03:57:19.669Z",
+  "generated_at": "2026-05-03T04:18:24.552Z",
   "normalizer_version": "hormuz-intel-normalizer@0.1.0",
   "classification": "UNCLASSIFIED//OSINT_FIXTURE",
-  "source_document_count": 25,
-  "evidence_item_count": 54,
-  "available_evidence_count": 54,
+  "source_document_count": 27,
+  "evidence_item_count": 63,
+  "available_evidence_count": 63,
   "unavailable_evidence_count": 0,
   "drawer_groups": {
     "Satellite": 11,
     "Maritime Warnings": 2,
-    "OSINT": 33,
+    "OSINT": 42,
     "Entity Risk": 4,
     "Infrastructure Context": 4
   },
@@ -17,7 +17,7 @@
     "GEO_SPATIOTEMPORAL_CORROBORATION": 8,
     "CROSS_MODAL_CONTEXT": 6,
     "ENTITY_RISK_ENRICHMENT": 4,
-    "REGIONAL_SECURITY_CONTEXT": 17,
+    "REGIONAL_SECURITY_CONTEXT": 26,
     "VESSEL_IDENTITY_CORROBORATION": 15,
     "MARITIME_INFRASTRUCTURE_CONTEXT": 1,
     "INFRASTRUCTURE_CONTEXT_ONLY": 3
@@ -883,6 +883,168 @@
         "rationale": "Overpass records affect maritime infrastructure context only."
       },
       {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:158b82d72a",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:4fc022caa5",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:7c76cc0c95",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:955039aa3d",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:d5c5bac3d8",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:e42c28e677",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:e471fe3538",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:fbe885dab2",
+        "title": "PortWatch chokepoint transit: Strait of Hormuz",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:portwatch-portwatch-hormuz-disruptions-json:fff89e8aa3",
+        "title": "PortWatch disruption: HORMUZ-26",
+        "source": "PORTWATCH",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
         "evidence_id": "ev:hormuz:sentinelhub-chip-sentinelhub-hormuz-sentinel1-vv-png:a8ec11d6e3",
         "title": "Sentinel-1 VV image chip",
         "source": "SENTINEL_HUB_PROCESS",
@@ -972,7 +1134,7 @@
     "totals": {
       "cross_modal_context": 2.16,
       "entity_risk": 0.88,
-      "regional_context": 1.7000000000000004,
+      "regional_context": 2.600000000000001,
       "identity_source_corroboration": 2.4,
       "infrastructure_context": 0.1
     }

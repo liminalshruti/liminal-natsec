@@ -1,6 +1,6 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T02:40:57.696Z",
+  "generated_at": "2026-05-03T04:40:04.232Z",
   "fixture_mode": true,
   "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
   "request": {
@@ -37,8 +37,8 @@
       {
         "id": "fixture:gfw:gap:alara-01:001",
         "type": "GAP",
-        "start": "2026-04-03T10:40:57.697Z",
-        "end": "2026-04-03T11:22:57.697Z",
+        "start": "2026-04-03T12:40:04.234Z",
+        "end": "2026-04-03T13:22:04.234Z",
         "position": {
           "lat": 26.18,
           "lon": 56.42
@@ -55,8 +55,8 @@
       {
         "id": "fixture:gfw:gap:gulf-trader:001",
         "type": "GAP",
-        "start": "2026-04-03T16:40:57.697Z",
-        "end": "2026-04-03T17:46:57.697Z",
+        "start": "2026-04-03T18:40:04.234Z",
+        "end": "2026-04-03T19:46:04.234Z",
         "position": {
           "lat": 25.98,
           "lon": 56.71

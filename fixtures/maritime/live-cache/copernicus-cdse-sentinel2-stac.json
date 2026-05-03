@@ -1,13 +1,13 @@
 {
   "source": "COPERNICUS_CDSE_STAC",
-  "generated_at": "2026-05-03T03:27:22.334Z",
+  "generated_at": "2026-05-03T04:40:04.232Z",
   "request": {
     "url": "https://stac.dataspace.copernicus.eu/v1/search",
     "method": "POST",
     "metadata": {
       "collection": "sentinel-2-l2a",
       "aoi": "Strait of Hormuz demo AOI",
-      "datetime": "2026-04-03T03:27:22.335Z/2026-05-03T03:27:22.335Z",
+      "datetime": "2026-04-03T04:40:04.234Z/2026-05-03T04:40:04.234Z",
       "query": {
         "eo:cloud_cover": {
           "lt": 70
@@ -40,7 +40,7 @@
             57.8,
             27.2
           ],
-          "datetime": "2026-04-03T03:27:22.335Z/2026-05-03T03:27:22.335Z",
+          "datetime": "2026-04-03T04:40:04.234Z/2026-05-03T04:40:04.234Z",
           "limit": 12,
           "query": {
             "eo:cloud_cover": {

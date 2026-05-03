@@ -40,6 +40,12 @@ GDELT-only refresh:
 node scripts/cache-hormuz-sources.mjs --profile=gdelt
 ```
 
+PortWatch-only refresh:
+
+```sh
+node scripts/cache-hormuz-sources.mjs --profile=portwatch
+```
+
 Fixture fallbacks for blocked/empty providers:
 
 ```sh
@@ -56,6 +62,8 @@ Expected source files:
 - `danti-hormuz-query.json` — Danti natural-language query result for Strait of Hormuz context.
 - `exa-hormuz-osint.json` — Exa web/news search results for Hormuz maritime context.
 - `gdelt-hormuz-doc20-artlist.json` — GDELT DOC 2.0 no-key article list for Hormuz regional media context.
+- `portwatch-hormuz-chokepoint-transits.json` — IMF PortWatch no-key ArcGIS rows from `Daily_Chokepoints_Data` for Hormuz (`portid='chokepoint6'`).
+- `portwatch-hormuz-disruptions.json` — IMF PortWatch no-key disruption events for Hormuz and nearby Gulf ports/chokepoints.
 - `gfw-vessel-search-irisl.json` — lightweight Global Fishing Watch Vessel API key/capability check.
 - `gfw-hormuz-gaps.json` — Global Fishing Watch AIS-off/gap event query.
 - `gfw-hormuz-port-visits.json` — Global Fishing Watch port visit event query.

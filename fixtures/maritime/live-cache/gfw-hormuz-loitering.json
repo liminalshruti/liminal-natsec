@@ -1,6 +1,6 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T02:40:57.696Z",
+  "generated_at": "2026-05-03T04:40:04.232Z",
   "fixture_mode": true,
   "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
   "request": {
@@ -37,8 +37,8 @@
       {
         "id": "fixture:gfw:loitering:anchorage:001",
         "type": "LOITERING",
-        "start": "2026-04-03T12:40:57.697Z",
-        "end": "2026-04-03T16:10:57.697Z",
+        "start": "2026-04-03T14:40:04.234Z",
+        "end": "2026-04-03T18:10:04.234Z",
         "position": {
           "lat": 26.08,
           "lon": 56.18

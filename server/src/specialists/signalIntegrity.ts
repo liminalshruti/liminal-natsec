@@ -12,14 +12,19 @@
 // summary text below already names that convergence so the row carries both
 // the demo-density artifact and the procurement-density story in one field.
 
-import { aipAvailable, callAip } from "./aip.ts";
 import { findCached } from "./cache.ts";
+import { callLiveSpecialist } from "./live.ts";
 import type {
   Specialist,
   SpecialistCallResult,
   SpecialistInput,
   SpecialistRawOutput
 } from "./types.ts";
+
+export interface SignalIntegritySpecialistOptions {
+  callLiveSpecialistImpl?: typeof callLiveSpecialist;
+  findCachedImpl?: typeof findCached;
+}
 
 function fixtureSignalIntegrityOutput(input: SpecialistInput): SpecialistRawOutput {
   // Cite the AIS observations the system holds for this anomaly. Every
@@ -59,19 +64,22 @@ function fixtureSignalIntegrityOutput(input: SpecialistInput): SpecialistRawOutp
   };
 }
 
-export const signalIntegritySpecialist: Specialist = {
-  name: "signal_integrity",
-  async call(input: SpecialistInput): Promise<SpecialistCallResult> {
-    if (aipAvailable()) {
-      try {
-        const raw = await callAip("signal_integrity", input);
-        return { raw, source: "aip" };
-      } catch {
-        // fall through to cache → fixture
-      }
+export function createSignalIntegritySpecialist(
+  options: SignalIntegritySpecialistOptions = {}
+): Specialist {
+  const callLiveSpecialistImpl = options.callLiveSpecialistImpl ?? callLiveSpecialist;
+  const findCachedImpl = options.findCachedImpl ?? findCached;
+
+  return {
+    name: "signal_integrity",
+    async call(input: SpecialistInput): Promise<SpecialistCallResult> {
+      const live = await callLiveSpecialistImpl("signal_integrity", input);
+      if (live) return live;
+      const cached = findCachedImpl("signal_integrity", input.anomaly_id);
+      if (cached) return { raw: cached, source: "cache" };
+      return { raw: fixtureSignalIntegrityOutput(input), source: "fixture" };
     }
-    const cached = findCached("signal_integrity", input.anomaly_id);
-    if (cached) return { raw: cached, source: "cache" };
-    return { raw: fixtureSignalIntegrityOutput(input), source: "fixture" };
-  }
-};
+  };
+}
+
+export const signalIntegritySpecialist: Specialist = createSignalIntegritySpecialist();

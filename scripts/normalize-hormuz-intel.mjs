@@ -25,6 +25,8 @@ export const REQUIRED_LIVE_CACHE_FILES = [
   "opensanctions-hormuz-maritime-entities.json",
   "exa-hormuz-osint.json",
   "gdelt-hormuz-doc20-artlist.json",
+  "portwatch-hormuz-chokepoint-transits.json",
+  "portwatch-hormuz-disruptions.json",
   "navarea-ix-warnings.html",
   "navarea-ix-warnings.metadata.json",
   "ukmto-home.html",
@@ -137,6 +139,7 @@ export function normalizeHormuzIntel(options = {}) {
   processDanti();
   processExa();
   processGdelt();
+  processPortWatch();
   processAcled();
   processWarningPage(
     "NAVAREA_IX",
@@ -591,6 +594,144 @@ export function normalizeHormuzIntel(options = {}) {
             language,
             social_image: sanitizeUrl(stringValue(article.socialimage)),
             mobile_url: sanitizeUrl(stringValue(article.url_mobile)),
+            fixture_mode: Boolean(doc.file.json?.fixture_mode)
+          })
+        })
+      );
+    }
+  }
+
+  function processPortWatch() {
+    processPortWatchDataset(
+      "portwatch-hormuz-chokepoint-transits.json",
+      "IMF PortWatch Hormuz chokepoint transit estimates",
+      "PortWatch chokepoint transit",
+      "transits"
+    );
+    processPortWatchDataset(
+      "portwatch-hormuz-disruptions.json",
+      "IMF PortWatch Hormuz disruption events",
+      "PortWatch disruption",
+      "disruptions"
+    );
+  }
+
+  function processPortWatchDataset(fileName, title, itemLabel, kind) {
+    const doc = addSourceDocument(fileName, {
+      source: "PORTWATCH",
+      provider: "IMF PortWatch",
+      title,
+      categories: ["REGIONAL_SECURITY_CONTEXT"]
+    });
+    const features = asArray(doc.file.json?.body?.features ?? doc.file.json?.features).slice(0, 8);
+    if (doc.status !== "available" || features.length === 0) {
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["portwatch-unavailable", fileName],
+          title: `${title} unavailable`,
+          source: "PORTWATCH",
+          provider: "IMF PortWatch",
+          category: "REGIONAL_SECURITY_CONTEXT",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          status: "unavailable",
+          confidence: 0,
+          reliability: 0,
+          summary: "PortWatch trade-flow/disruption context is unavailable."
+        })
+      );
+      return;
+    }
+
+    for (const [index, feature] of features.entries()) {
+      const attrs = record(feature.attributes ?? feature.properties);
+      const geometry = portWatchGeometry(feature.geometry, attrs);
+      const name =
+        sanitizeText(
+          firstString([
+            attrs.portname,
+            attrs.PORT_NAME,
+            attrs.fullname,
+            attrs.eventname,
+            attrs.htmlname,
+            attrs.name,
+            attrs.NAME,
+            attrs.chokepoint,
+            attrs.CHOKEPOINT
+          ]),
+          100
+        ) ?? "Hormuz";
+      const eventType =
+        sanitizeText(
+          firstString([
+            attrs.eventtype,
+            attrs.event_type,
+            attrs.EVENT_TYPE,
+            attrs.alertlevel,
+            attrs.type,
+            attrs.TYPE,
+            attrs.portid,
+            attrs.chokepointid,
+            attrs.CHOKEPOINTID
+          ]),
+          100
+        ) ?? itemLabel;
+      const observedAt = portWatchDate(
+        attrs.date ??
+          attrs.DATE ??
+          attrs.fromdate ??
+          attrs.todate ??
+          attrs.editdate ??
+          attrs.event_date ??
+          attrs.EVENT_DATE ??
+          attrs.timestamp
+      );
+      const totalCalls = numberFromString(attrs.n_total ?? attrs.transit_calls ?? attrs.calls);
+      const tankerCalls = numberFromString(attrs.n_tanker);
+      const alertLevel = sanitizeText(stringValue(attrs.alertlevel), 40);
+      const tankerPhrase =
+        tankerCalls !== null
+          ? `, including ${tankerCalls} tanker ${tankerCalls === 1 ? "call" : "calls"}`
+          : "";
+      evidenceItems.push(
+        buildEvidence({
+          seed: [
+            "portwatch",
+            fileName,
+            attrs.ObjectId ?? attrs.OBJECTID ?? attrs.objectid ?? attrs.id ?? index
+          ],
+          title: `${itemLabel}: ${name}`,
+          source: "PORTWATCH",
+          provider: "IMF PortWatch",
+          category: "REGIONAL_SECURITY_CONTEXT",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          observedAt,
+          confidence: 0.6,
+          reliability: 0.66,
+          summary:
+            kind === "transits"
+              ? `IMF PortWatch estimates ${totalCalls ?? "unknown"} daily transit calls through ${name}${tankerPhrase}; trade-flow/regional context only.`
+              : `IMF PortWatch returned ${alertLevel ? `${alertLevel} ` : ""}${eventType} disruption context for ${name}; regional context only.`,
+          geometry,
+          attributes: compactRecord({
+            object_id: attrs.ObjectId ?? attrs.OBJECTID ?? attrs.objectid ?? attrs.id,
+            event_type: eventType,
+            event_id: stringValue(attrs.eventid),
+            alert_level: alertLevel,
+            affected_ports: sanitizeText(stringValue(attrs.affectedports), 160),
+            port_id: stringValue(attrs.portid) ?? stringValue(attrs.chokepointid),
+            port_name: sanitizeText(stringValue(attrs.portname), 100),
+            chokepoint_id: attrs.portid ?? attrs.chokepointid ?? attrs.CHOKEPOINTID,
+            transit_calls: totalCalls,
+            tanker_calls: tankerCalls,
+            cargo_calls: numberFromString(attrs.n_cargo),
+            dry_bulk_calls: numberFromString(attrs.n_dry_bulk),
+            capacity_total: numberFromString(attrs.capacity),
+            capacity_tanker: numberFromString(attrs.capacity_tanker),
+            trade_value_usd: numberFromString(
+              attrs.trade_value_usd ?? attrs.TRADE_VALUE_USD ?? attrs.trade_usd ?? attrs.TRADE_USD
+            ),
             fixture_mode: Boolean(doc.file.json?.fixture_mode)
           })
         })
@@ -1529,6 +1670,40 @@ function gdeltSeenDate(value) {
   const minute = padded.slice(10, 12);
   const second = padded.slice(12, 14);
   return `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
+}
+
+function portWatchDate(value) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return new Date(value).toISOString();
+  }
+  if (typeof value === "string" && value.trim() !== "") {
+    const numeric = Number(value);
+    if (Number.isFinite(numeric) && numeric > 10_000_000_000) {
+      return new Date(numeric).toISOString();
+    }
+    const parsed = Date.parse(value);
+    if (Number.isFinite(parsed)) return new Date(parsed).toISOString();
+  }
+  return null;
+}
+
+function portWatchGeometry(value, attrs = {}) {
+  const attributeLon =
+    numberFromString(attrs.lon) ??
+    numberFromString(attrs.long) ??
+    numberFromString(attrs.longitude);
+  const attributeLat =
+    numberFromString(attrs.lat) ??
+    numberFromString(attrs.latitude);
+  if (attributeLon !== null && attributeLat !== null) {
+    return pointGeometry(attributeLon, attributeLat);
+  }
+
+  const geometry = record(value);
+  const x = numberValue(geometry.x);
+  const y = numberValue(geometry.y);
+  if (x !== null && y !== null) return pointGeometry(x, y);
+  return geometryValue(value);
 }
 
 function objectKeys(value) {

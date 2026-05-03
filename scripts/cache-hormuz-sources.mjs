@@ -45,6 +45,7 @@ if (cacheProfile === "all" || cacheProfile === "fast") {
   results.push(await cacheAcledHormuzEvents());
   results.push(await cacheExaHormuzOsint());
   results.push(await cacheGdeltHormuzNews());
+  results.push(await cachePortWatchHormuzContext());
   results.push(await cacheShodanMaritimeIntel());
   results.push(await cacheCensysMaritimeInfrastructure());
   results.push(await cacheOpenSanctionsMaritimeEntities());
@@ -66,6 +67,10 @@ if (cacheProfile === "acled") {
 
 if (cacheProfile === "gdelt") {
   results.push(await cacheGdeltHormuzNews());
+}
+
+if (cacheProfile === "portwatch") {
+  results.push(await cachePortWatchHormuzContext());
 }
 
 if (cacheProfile === "fallbacks") {
@@ -734,6 +739,18 @@ async function cacheSyntheticMissingSourceFallbacks() {
   }));
   results.push(await writeSyntheticShodanMaritimeSearch());
   results.push(await writeSyntheticAcledEvents("fallback profile"));
+  results.push(await writeSyntheticPortWatchDataset({
+    key: "hormuz-chokepoint-transits",
+    fileName: "portwatch-hormuz-chokepoint-transits.json",
+    title: "Daily chokepoint transit calls and trade volume estimates",
+    sourceItemUrl: "https://portwatch.imf.org/datasets/6cd06d3554474ea7a9aebfcc135021c2/about"
+  }, "fallback profile"));
+  results.push(await writeSyntheticPortWatchDataset({
+    key: "hormuz-disruptions",
+    fileName: "portwatch-hormuz-disruptions.json",
+    title: "PortWatch disruptions affecting Hormuz",
+    sourceItemUrl: "https://portwatch.imf.org/datasets/d9b37bf4b2104c85aebdcc0c1d8a2ab7/about"
+  }, "fallback profile"));
 
   return {
     source: "SYNTHETIC_FALLBACKS",
@@ -1183,6 +1200,137 @@ async function writeSyntheticGdeltHormuzNews(reason) {
   };
 }
 
+async function writeSyntheticPortWatchDataset(datasetOrFileName, reason) {
+  const dataset =
+    typeof datasetOrFileName === "string"
+      ? {
+          key: datasetOrFileName.includes("disruptions")
+            ? "hormuz-disruptions"
+            : "hormuz-chokepoint-transits",
+          fileName: datasetOrFileName,
+          title: datasetOrFileName.includes("disruptions")
+            ? "PortWatch disruptions affecting Hormuz"
+            : "Daily chokepoint transit calls and trade volume estimates",
+          sourceItemUrl: datasetOrFileName.includes("disruptions")
+            ? "https://portwatch.imf.org/datasets/d9b37bf4b2104c85aebdcc0c1d8a2ab7/about"
+            : "https://portwatch.imf.org/datasets/6cd06d3554474ea7a9aebfcc135021c2/about"
+        }
+      : datasetOrFileName;
+  const isDisruptions = dataset.key === "hormuz-disruptions";
+  const features = isDisruptions
+    ? [
+        portWatchFeature({
+          eventid: 10000004,
+          eventtype: "OT",
+          eventname: "HORMUZ-26",
+          htmlname: "Trade Disruptions in the Strait of Hormuz",
+          htmldescription:
+            "Trade Disruptions in the Strait of Hormuz from: 01 Mar 2026 to: - .",
+          alertlevel: "RED",
+          country: null,
+          fromdate: Date.UTC(2026, 2, 1),
+          todate: null,
+          severitytext: "",
+          lat: 26.29685,
+          long: 56.85985,
+          editdate: Date.UTC(2026, 2, 1),
+          affectedports: "chokepoint6",
+          n_affectedports: 1,
+          ObjectId: 128
+        }, { x: 56.85985, y: 26.29685 })
+      ]
+    : [
+        portWatchFeature({
+          date: endDate.toISOString().slice(0, 10),
+          year: endDate.getUTCFullYear(),
+          month: endDate.getUTCMonth() + 1,
+          day: endDate.getUTCDate(),
+          portid: "chokepoint6",
+          portname: "Strait of Hormuz",
+          n_container: 0,
+          n_dry_bulk: 4,
+          n_general_cargo: 0,
+          n_roro: 0,
+          n_tanker: 1,
+          n_cargo: 4,
+          n_total: 5,
+          capacity_container: 0,
+          capacity_dry_bulk: 164200,
+          capacity_general_cargo: 0,
+          capacity_roro: 0,
+          capacity_tanker: 0,
+          capacity_cargo: 164200,
+          capacity: 164200,
+          ObjectId: 16288
+        }),
+        portWatchFeature({
+          date: new Date(endDate.getTime() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+          year: new Date(endDate.getTime() - 24 * 60 * 60 * 1000).getUTCFullYear(),
+          month: new Date(endDate.getTime() - 24 * 60 * 60 * 1000).getUTCMonth() + 1,
+          day: new Date(endDate.getTime() - 24 * 60 * 60 * 1000).getUTCDate(),
+          portid: "chokepoint6",
+          portname: "Strait of Hormuz",
+          n_container: 1,
+          n_dry_bulk: 5,
+          n_general_cargo: 0,
+          n_roro: 0,
+          n_tanker: 2,
+          n_cargo: 6,
+          n_total: 8,
+          capacity_container: 145000,
+          capacity_dry_bulk: 260000,
+          capacity_general_cargo: 0,
+          capacity_roro: 0,
+          capacity_tanker: 315000,
+          capacity_cargo: 405000,
+          capacity: 720000,
+          ObjectId: 16287
+        })
+      ];
+
+  await writeJson(dataset.fileName, {
+    source: "PORTWATCH",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: `IMF PortWatch live query unavailable (${reason}); synthetic rows preserve ArcGIS FeatureServer response shape for offline demo use.`,
+    request: {
+      url: dataset.sourceItemUrl,
+      method: "GET",
+      metadata: {
+        title: dataset.title,
+        source_item_url: dataset.sourceItemUrl,
+        fixture_fallback: true,
+        no_api_key_required: true
+      }
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      contentType: "application/json",
+      bytes: JSON.stringify(features).length
+    },
+    body: {
+      objectIdFieldName: "ObjectId",
+      globalIdFieldName: "",
+      geometryType: isDisruptions ? "esriGeometryPoint" : null,
+      spatialReference: { wkid: 4326 },
+      features
+    }
+  });
+
+  return {
+    source: "PORTWATCH",
+    ok: true,
+    detail: `${dataset.fileName}: fixture fallback with ${features.length} features.`,
+    fileName: dataset.fileName
+  };
+}
+
+function portWatchFeature(attributes, geometry) {
+  return geometry ? { attributes, geometry } : { attributes };
+}
+
 function gdeltSeenDate(date) {
   return date.toISOString().replace(/\D/g, "").slice(0, 14);
 }
@@ -1533,6 +1681,146 @@ async function cacheGdeltHormuzNews() {
   }
 
   return result;
+}
+
+async function cachePortWatchHormuzContext() {
+  const datasets = [
+    {
+      key: "hormuz-chokepoint-transits",
+      fileName: "portwatch-hormuz-chokepoint-transits.json",
+      title: "Daily chokepoint transit calls and trade volume estimates",
+      datasetId: "6cd06d3554474ea7a9aebfcc135021c2",
+      envUrl: "PORTWATCH_CHOKEPOINT_TRANSITS_API_URL",
+      defaultUrl:
+        "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0",
+      sourceItemUrl:
+        "https://portwatch.imf.org/datasets/6cd06d3554474ea7a9aebfcc135021c2/about",
+      whereEnv: "PORTWATCH_HORMUZ_WHERE",
+      defaultWhere: "portid='chokepoint6'",
+      orderByFields: "date DESC",
+      limitEnv: "PORTWATCH_TRANSITS_LIMIT",
+      defaultLimit: "20"
+    },
+    {
+      key: "hormuz-disruptions",
+      fileName: "portwatch-hormuz-disruptions.json",
+      title: "PortWatch disruptions affecting Hormuz",
+      datasetId: "d9b37bf4b2104c85aebdcc0c1d8a2ab7",
+      envUrl: "PORTWATCH_DISRUPTIONS_API_URL",
+      defaultUrl:
+        "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/portwatch_disruptions_database/FeatureServer/0",
+      sourceItemUrl:
+        "https://portwatch.imf.org/datasets/d9b37bf4b2104c85aebdcc0c1d8a2ab7/about",
+      whereEnv: "PORTWATCH_DISRUPTIONS_WHERE",
+      defaultWhere:
+        "UPPER(eventname) LIKE '%HORMUZ%' OR UPPER(htmlname) LIKE '%HORMUZ%' OR UPPER(affectedports) LIKE '%CHOKEPOINT6%'",
+      orderByFields: "fromdate DESC",
+      limitEnv: "PORTWATCH_DISRUPTIONS_LIMIT",
+      defaultLimit: "20"
+    }
+  ];
+
+  const finalResults = [];
+  for (const dataset of datasets) {
+    const result = await cachePortWatchDataset(dataset);
+    finalResults.push(result.ok ? result : await writeSyntheticPortWatchDataset(dataset, result.detail));
+  }
+
+  const okCount = finalResults.filter((result) => result.ok).length;
+  return {
+    source: "PORTWATCH",
+    ok: okCount > 0,
+    detail: `${okCount}/${finalResults.length} PortWatch cache files written.`,
+    files: finalResults.map((result) => result.fileName)
+  };
+}
+
+async function cachePortWatchDataset(dataset) {
+  const baseUrl = envOr(dataset.envUrl, dataset.defaultUrl);
+  const where = envOr(dataset.whereEnv, dataset.defaultWhere);
+  const limit = envOr(dataset.limitEnv, dataset.defaultLimit);
+  const url = portWatchQueryUrl(baseUrl, {
+    where,
+    outFields: "*",
+    returnGeometry: "true",
+    orderByFields: dataset.orderByFields,
+    resultRecordCount: limit
+  });
+
+  const responsePayload = await fetchJson({
+    source: "PORTWATCH",
+    url,
+    options: { headers: { Accept: "application/json" } },
+    timeoutMs: 20_000
+  });
+  const features = Array.isArray(responsePayload.body?.features)
+    ? responsePayload.body.features
+    : [];
+  const response = {
+    ...responsePayload.response,
+    ok: Boolean(responsePayload.response?.ok) && features.length > 0
+  };
+
+  await writeJson(dataset.fileName, {
+    source: "PORTWATCH",
+    generated_at: generatedAt,
+    request: {
+      url,
+      method: "GET",
+      metadata: {
+        title: dataset.title,
+        dataset_id: dataset.datasetId,
+        source_item_url: dataset.sourceItemUrl,
+        source_api_url: baseUrl,
+        where,
+        outFields: "*",
+        orderByFields: dataset.orderByFields,
+        resultRecordCount: limit,
+        aoi: HORMUZ.name,
+        no_api_key_required: true,
+        note: "IMF PortWatch ArcGIS REST query; regional chokepoint/trade context only."
+      }
+    },
+    response,
+    body: responsePayload.body,
+    error: responsePayload.error
+  });
+
+  if (!responsePayload.response?.ok) {
+    return {
+      source: "PORTWATCH",
+      ok: false,
+      detail: `${dataset.fileName}: ${responsePayload.response?.status ?? "failed"} ${responsePayload.response?.statusText ?? responsePayload.error ?? ""}`.trim(),
+      fileName: dataset.fileName
+    };
+  }
+
+  if (features.length === 0) {
+    return {
+      source: "PORTWATCH",
+      ok: false,
+      detail: `${dataset.fileName}: live query returned no features.`,
+      fileName: dataset.fileName
+    };
+  }
+
+  return {
+    source: "PORTWATCH",
+    ok: true,
+    detail: `${dataset.fileName}: ${features.length} features cached.`,
+    fileName: dataset.fileName
+  };
+}
+
+function portWatchQueryUrl(apiUrl, params) {
+  const trimmed = apiUrl.replace(/\/$/, "");
+  const base = trimmed.endsWith("/query") ? trimmed : `${trimmed}/query`;
+  const url = new URL(base);
+  url.searchParams.set("f", "json");
+  for (const [key, value] of Object.entries(params)) {
+    url.searchParams.set(key, value);
+  }
+  return url.toString();
 }
 
 async function cacheShodanMaritimeIntel() {
@@ -2158,22 +2446,26 @@ async function fetchJson({ source, url, options = {}, timeoutMs = 15_000 }) {
     const response = await fetchWithTimeout(url, options, timeoutMs);
     const text = await response.text();
     let body;
+    let parsedJson = true;
     try {
       body = JSON.parse(text);
     } catch {
+      parsedJson = false;
       body = { raw_text: truncate(text, 100_000) };
     }
 
+    const contentType = response.headers.get("content-type");
     return {
       source,
       response: {
-        ok: response.ok,
+        ok: response.ok && parsedJson,
         status: response.status,
         statusText: response.statusText,
-        contentType: response.headers.get("content-type"),
+        contentType,
         bytes: text.length
       },
-      body
+      body,
+      error: response.ok && !parsedJson ? `Expected JSON response, got ${contentType ?? "unknown content type"}` : undefined
     };
   } catch (error) {
     return {
@@ -2395,11 +2687,12 @@ function parseCacheProfile(args) {
     profile === "danti" ||
     profile === "acled" ||
     profile === "gdelt" ||
+    profile === "portwatch" ||
     profile === "fallbacks"
   ) {
     return profile;
   }
-  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, acled, gdelt, or fallbacks.`);
+  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, acled, gdelt, portwatch, or fallbacks.`);
 }
 
 function redactUrl(rawUrl, queryParams) {

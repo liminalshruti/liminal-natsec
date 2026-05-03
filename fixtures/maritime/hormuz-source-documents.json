@@ -184,9 +184,9 @@
     "source": "GDELT",
     "provider": "GDELT DOC 2.0",
     "source_file": "fixtures/maritime/live-cache/gdelt-hormuz-doc20-artlist.json",
-    "sha256": "04c6ddaec19fbf74101f37ed3577dc9b8f3bd167fc76da943725e7785c154963",
-    "captured_at": "2026-05-03T03:57:19.669Z",
-    "retrieved_at": "2026-05-03T03:57:19.669Z",
+    "sha256": "6f2372a0e5197335bfacbb33cdc4b8fdb755b6d5813fbbc4eb402a4830d3ff84",
+    "captured_at": "2026-05-03T03:58:17.674Z",
+    "retrieved_at": "2026-05-03T03:58:17.674Z",
     "url": "https://api.gdeltproject.org/api/v2/doc/doc",
     "status": "available",
     "status_detail": "200 Fixture Fallback",
@@ -396,6 +396,50 @@
       "MARITIME_INFRASTRUCTURE_CONTEXT"
     ],
     "summary": "Overpass cache artifact normalized for offline Hormuz analysis."
+  },
+  {
+    "id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "type": "sourceDocument",
+    "title": "IMF PortWatch Hormuz chokepoint transit estimates",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "captured_at": "2026-05-03T04:18:24.552Z",
+    "retrieved_at": "2026-05-03T04:18:24.552Z",
+    "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query",
+    "status": "available",
+    "status_detail": "200 OK",
+    "response_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 10979,
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "categories": [
+      "REGIONAL_SECURITY_CONTEXT"
+    ],
+    "summary": "IMF PortWatch cache artifact normalized for offline Hormuz analysis."
+  },
+  {
+    "id": "src:hormuz:portwatch-hormuz-disruptions",
+    "type": "sourceDocument",
+    "title": "IMF PortWatch Hormuz disruption events",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-disruptions.json",
+    "sha256": "024cd86d3181b3bd4ecbc00d56bf2ebcfef108727f61fdea8ab091887f31eb99",
+    "captured_at": "2026-05-03T04:18:24.552Z",
+    "retrieved_at": "2026-05-03T04:18:24.552Z",
+    "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/portwatch_disruptions_database/FeatureServer/0/query",
+    "status": "available",
+    "status_detail": "200 OK",
+    "response_status": 200,
+    "content_type": "application/json; charset=utf-8",
+    "bytes": 4039,
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "categories": [
+      "REGIONAL_SECURITY_CONTEXT"
+    ],
+    "summary": "IMF PortWatch cache artifact normalized for offline Hormuz analysis."
   },
   {
     "id": "src:hormuz:sentinelhub-hormuz-sentinel1-vv",

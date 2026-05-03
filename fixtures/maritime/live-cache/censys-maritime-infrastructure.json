@@ -1,6 +1,6 @@
 {
   "source": "CENSYS",
-  "generated_at": "2026-05-03T03:27:22.334Z",
+  "generated_at": "2026-05-03T04:40:04.232Z",
   "fixture_mode": true,
   "fixture_reason": "Live Censys Platform search unavailable (CENSYS_ORGANIZATION_ID missing; Censys free-plan Platform accounts have no organization ID and can only use Global Search through the Platform UI); synthetic rows preserve Platform global search shape for infrastructure-only demo use.",
   "request": {

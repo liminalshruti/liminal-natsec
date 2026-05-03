@@ -35,6 +35,7 @@ export type HormuzIntelSource =
   | "SENTINEL_HUB_PROCESS"
   | "OPENSANCTIONS"
   | "EXA"
+  | "PORTWATCH"
   | "NAVAREA_IX"
   | "UKMTO"
   | "GLOBAL_FISHING_WATCH"

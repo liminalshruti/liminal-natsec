@@ -34,6 +34,8 @@ fixtures/maritime/live-cache/foundry-ontologies.json
 fixtures/maritime/live-cache/danti-*.json
 fixtures/maritime/live-cache/manifest-danti.json
 fixtures/maritime/live-cache/manifest-fallbacks.json
+ontology.json
+foundry/generated/
 
 # OS
 .DS_Store

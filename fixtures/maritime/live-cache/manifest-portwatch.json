@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-05-03T04:18:24.552Z",
+  "profile": "portwatch",
+  "aoi": {
+    "name": "Strait of Hormuz demo AOI",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "aisstreamBoundingBoxes": [
+      [
+        [
+          24.5,
+          54.4
+        ],
+        [
+          27.2,
+          57.8
+        ]
+      ]
+    ],
+    "polygon": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            54.4,
+            24.5
+          ],
+          [
+            57.8,
+            24.5
+          ],
+          [
+            57.8,
+            27.2
+          ],
+          [
+            54.4,
+            27.2
+          ],
+          [
+            54.4,
+            24.5
+          ]
+        ]
+      ]
+    }
+  },
+  "note": "Cached live/public Strait of Hormuz context. No API keys are stored in this directory.",
+  "results": [
+    {
+      "source": "PORTWATCH",
+      "ok": true,
+      "detail": "2/2 PortWatch cache files written.",
+      "files": [
+        "portwatch-hormuz-chokepoint-transits.json",
+        "portwatch-hormuz-disruptions.json"
+      ]
+    }
+  ]
+}

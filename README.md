@@ -89,6 +89,13 @@ AIP Logic -> @mariozechner/pi-ai -> cache -> fixture
 
 Enable Pi-AI locally with `PI_AI_FALLBACK_ENABLED=true`. The server uses the `openai-codex` provider by default, reads Pi auth from `~/.pi/agent/auth.json`, and can use `~/.codex/auth.json` only when `CODEX_AUTH_FALLBACK_ENABLED=true`. Live model output is still parsed into the specialist JSON contract and passed through the structural guard before the app sees it.
 
+Local smoke check after enabling the fallback:
+
+```sh
+npm run dev:server
+curl -s http://localhost:8787/health | jq .aiFallback
+```
+
 ## Local commands
 
 ```sh

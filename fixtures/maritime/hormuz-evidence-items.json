@@ -1752,9 +1752,9 @@
       "src:hormuz:gdelt-hormuz-doc20-artlist"
     ],
     "source_file": "fixtures/maritime/live-cache/gdelt-hormuz-doc20-artlist.json",
-    "source_sha256": "04c6ddaec19fbf74101f37ed3577dc9b8f3bd167fc76da943725e7785c154963",
-    "created_at": "2026-05-03T03:57:19.669Z",
-    "observed_at": "2026-04-03T03:57:1Z",
+    "source_sha256": "6f2372a0e5197335bfacbb33cdc4b8fdb755b6d5813fbbc4eb402a4830d3ff84",
+    "created_at": "2026-05-03T03:58:17.674Z",
+    "observed_at": "2026-04-03T03:58:17Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.54,
@@ -1792,9 +1792,9 @@
       "src:hormuz:gdelt-hormuz-doc20-artlist"
     ],
     "source_file": "fixtures/maritime/live-cache/gdelt-hormuz-doc20-artlist.json",
-    "source_sha256": "04c6ddaec19fbf74101f37ed3577dc9b8f3bd167fc76da943725e7785c154963",
-    "created_at": "2026-05-03T03:57:19.669Z",
-    "observed_at": "2026-04-03T09:57:1Z",
+    "source_sha256": "6f2372a0e5197335bfacbb33cdc4b8fdb755b6d5813fbbc4eb402a4830d3ff84",
+    "created_at": "2026-05-03T03:58:17.674Z",
+    "observed_at": "2026-04-03T09:58:17Z",
     "status": "available",
     "classification": "UNCLASSIFIED//OSINT_FIXTURE",
     "confidence": 0.54,
@@ -2521,6 +2521,429 @@
         "intent"
       ],
       "note": "Overpass records affect maritime infrastructure context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:158b82d72a",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-20T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 7 daily transit calls through Strait of Hormuz, including 4 tanker calls; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16282,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 7,
+      "tanker_calls": 4,
+      "cargo_calls": 3,
+      "dry_bulk_calls": 0,
+      "capacity_total": 63504,
+      "capacity_tanker": 43459,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:4fc022caa5",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-24T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 8 daily transit calls through Strait of Hormuz, including 2 tanker calls; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16286,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 8,
+      "tanker_calls": 2,
+      "cargo_calls": 6,
+      "dry_bulk_calls": 1,
+      "capacity_total": 413829,
+      "capacity_tanker": 310377,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:7c76cc0c95",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-26T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 5 daily transit calls through Strait of Hormuz, including 1 tanker call; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16288,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 5,
+      "tanker_calls": 1,
+      "cargo_calls": 4,
+      "dry_bulk_calls": 4,
+      "capacity_total": 164200,
+      "capacity_tanker": 0,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:955039aa3d",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-25T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 5 daily transit calls through Strait of Hormuz, including 1 tanker call; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16287,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 5,
+      "tanker_calls": 1,
+      "cargo_calls": 4,
+      "dry_bulk_calls": 2,
+      "capacity_total": 168673,
+      "capacity_tanker": 42882,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:d5c5bac3d8",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-22T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 7 daily transit calls through Strait of Hormuz, including 2 tanker calls; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16284,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 7,
+      "tanker_calls": 2,
+      "cargo_calls": 5,
+      "dry_bulk_calls": 1,
+      "capacity_total": 121156,
+      "capacity_tanker": 0,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:e42c28e677",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-21T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 3 daily transit calls through Strait of Hormuz, including 1 tanker call; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16283,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 3,
+      "tanker_calls": 1,
+      "cargo_calls": 2,
+      "dry_bulk_calls": 1,
+      "capacity_total": 72385,
+      "capacity_tanker": 71090,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:e471fe3538",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-19T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 4 daily transit calls through Strait of Hormuz, including 2 tanker calls; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16281,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 4,
+      "tanker_calls": 2,
+      "cargo_calls": 2,
+      "dry_bulk_calls": 0,
+      "capacity_total": 15165,
+      "capacity_tanker": 9975,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-chokepoint-transits-json:fbe885dab2",
+    "type": "evidence",
+    "title": "PortWatch chokepoint transit: Strait of Hormuz",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-chokepoint-transits",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-chokepoint-transits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-chokepoint-transits.json",
+    "source_sha256": "ac0764efd617956cf6da5ed5f34ae2d9926f40ceed2291211f7023097ab3017d",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-04-23T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch estimates 2 daily transit calls through Strait of Hormuz, including 0 tanker calls; trade-flow/regional context only.",
+    "attributes": {
+      "object_id": 16285,
+      "event_type": "chokepoint6",
+      "port_id": "chokepoint6",
+      "port_name": "Strait of Hormuz",
+      "chokepoint_id": "chokepoint6",
+      "transit_calls": 2,
+      "tanker_calls": 0,
+      "cargo_calls": 2,
+      "dry_bulk_calls": 1,
+      "capacity_total": 35197,
+      "capacity_tanker": 0,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:portwatch-portwatch-hormuz-disruptions-json:fff89e8aa3",
+    "type": "evidence",
+    "title": "PortWatch disruption: HORMUZ-26",
+    "source": "PORTWATCH",
+    "provider": "IMF PortWatch",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:portwatch-hormuz-disruptions",
+    "source_document_ids": [
+      "src:hormuz:portwatch-hormuz-disruptions"
+    ],
+    "source_file": "fixtures/maritime/live-cache/portwatch-hormuz-disruptions.json",
+    "source_sha256": "024cd86d3181b3bd4ecbc00d56bf2ebcfef108727f61fdea8ab091887f31eb99",
+    "created_at": "2026-05-03T04:18:24.552Z",
+    "observed_at": "2026-03-01T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.66,
+    "summary": "IMF PortWatch returned RED OT disruption context for HORMUZ-26; regional context only.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.85985,
+        26.29685
+      ]
+    },
+    "attributes": {
+      "object_id": 128,
+      "event_type": "OT",
+      "alert_level": "RED",
+      "affected_ports": "chokepoint6",
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
     }
   },
   {

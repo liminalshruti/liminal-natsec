@@ -41,12 +41,12 @@ describe("Hormuz scoring mapper", () => {
     );
   });
 
-  it("Exa, GDELT, NAVAREA, and UKMTO affect regional context only", async () => {
+  it("Exa, GDELT, PortWatch, NAVAREA, and UKMTO affect regional context only", async () => {
     const { mapHormuzEvidenceToScoringContributions } = await import(
       "../shared/hormuz/scoring.ts"
     );
     const regional = mapHormuzEvidenceToScoringContributions(evidence).filter(
-      (item) => ["EXA", "GDELT", "NAVAREA_IX", "UKMTO"].includes(item.source)
+      (item) => ["EXA", "GDELT", "PORTWATCH", "NAVAREA_IX", "UKMTO"].includes(item.source)
     );
 
     assert.ok(regional.length > 0);

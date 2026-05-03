@@ -1,0 +1,282 @@
+{
+  "source": "PORTWATCH",
+  "generated_at": "2026-05-03T04:40:04.232Z",
+  "request": {
+    "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/portwatch_disruptions_database/FeatureServer/0/query?f=json&where=UPPER%28eventname%29+LIKE+%27%25HORMUZ%25%27+OR+UPPER%28htmlname%29+LIKE+%27%25HORMUZ%25%27+OR+UPPER%28affectedports%29+LIKE+%27%25CHOKEPOINT6%25%27&outFields=*&returnGeometry=true&orderByFields=fromdate+DESC&resultRecordCount=20",
+    "method": "GET",
+    "metadata": {
+      "title": "PortWatch disruptions affecting Hormuz",
+      "dataset_id": "d9b37bf4b2104c85aebdcc0c1d8a2ab7",
+      "source_item_url": "https://portwatch.imf.org/datasets/d9b37bf4b2104c85aebdcc0c1d8a2ab7/about",
+      "source_api_url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/portwatch_disruptions_database/FeatureServer/0",
+      "where": "UPPER(eventname) LIKE '%HORMUZ%' OR UPPER(htmlname) LIKE '%HORMUZ%' OR UPPER(affectedports) LIKE '%CHOKEPOINT6%'",
+      "outFields": "*",
+      "orderByFields": "fromdate DESC",
+      "resultRecordCount": "20",
+      "aoi": "Strait of Hormuz demo AOI",
+      "no_api_key_required": true,
+      "note": "IMF PortWatch ArcGIS REST query; regional chokepoint/trade context only."
+    }
+  },
+  "response": {
+    "ok": true,
+    "status": 200,
+    "statusText": "OK",
+    "contentType": "application/json; charset=utf-8",
+    "bytes": 4039
+  },
+  "body": {
+    "objectIdFieldName": "ObjectId",
+    "uniqueIdField": {
+      "name": "ObjectId",
+      "isSystemMaintained": true
+    },
+    "globalIdFieldName": "",
+    "geometryProperties": {
+      "shapeAreaFieldName": "Shape__Area",
+      "shapeLengthFieldName": "Shape__Length",
+      "units": "esriMeters"
+    },
+    "geometryType": "esriGeometryPolygon",
+    "spatialReference": {
+      "wkid": 102100,
+      "latestWkid": 3857
+    },
+    "fields": [
+      {
+        "name": "eventid",
+        "type": "esriFieldTypeInteger",
+        "alias": "eventid",
+        "sqlType": "sqlTypeInteger",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "eventtype",
+        "type": "esriFieldTypeString",
+        "alias": "eventtype",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "eventname",
+        "type": "esriFieldTypeString",
+        "alias": "eventname",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "htmlname",
+        "type": "esriFieldTypeString",
+        "alias": "htmlname",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "htmldescription",
+        "type": "esriFieldTypeString",
+        "alias": "htmldescription",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "alertlevel",
+        "type": "esriFieldTypeString",
+        "alias": "alertlevel",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "country",
+        "type": "esriFieldTypeString",
+        "alias": "country",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "fromdate",
+        "type": "esriFieldTypeDate",
+        "alias": "fromdate",
+        "sqlType": "sqlTypeTimestamp2",
+        "length": 8,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "year",
+        "type": "esriFieldTypeSmallInteger",
+        "alias": "year",
+        "sqlType": "sqlTypeSmallInt",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "todate",
+        "type": "esriFieldTypeDate",
+        "alias": "todate",
+        "sqlType": "sqlTypeTimestamp2",
+        "length": 8,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "severitytext",
+        "type": "esriFieldTypeString",
+        "alias": "severitytext",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "lat",
+        "type": "esriFieldTypeSingle",
+        "alias": "lat",
+        "sqlType": "sqlTypeReal",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "long",
+        "type": "esriFieldTypeSingle",
+        "alias": "long",
+        "sqlType": "sqlTypeReal",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "editdate",
+        "type": "esriFieldTypeDate",
+        "alias": "editdate",
+        "sqlType": "sqlTypeTimestamp2",
+        "length": 8,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "affectedports",
+        "type": "esriFieldTypeString",
+        "alias": "affectedports",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "n_affectedports",
+        "type": "esriFieldTypeSmallInteger",
+        "alias": "n_affectedports",
+        "sqlType": "sqlTypeSmallInt",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "affectedpopulation",
+        "type": "esriFieldTypeString",
+        "alias": "affectedpopulation",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "pageid",
+        "type": "esriFieldTypeString",
+        "alias": "pageid",
+        "sqlType": "sqlTypeNVarchar",
+        "length": 4000,
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "ObjectId",
+        "type": "esriFieldTypeOID",
+        "alias": "ObjectId",
+        "sqlType": "sqlTypeInteger",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "Shape__Area",
+        "type": "esriFieldTypeDouble",
+        "alias": "Shape__Area",
+        "sqlType": "sqlTypeFloat",
+        "domain": null,
+        "defaultValue": null
+      },
+      {
+        "name": "Shape__Length",
+        "type": "esriFieldTypeDouble",
+        "alias": "Shape__Length",
+        "sqlType": "sqlTypeFloat",
+        "domain": null,
+        "defaultValue": null
+      }
+    ],
+    "features": [
+      {
+        "attributes": {
+          "eventid": 10000004,
+          "eventtype": "OT",
+          "eventname": "HORMUZ-26",
+          "htmlname": "Trade Disruptions in the Strait of Hormuz",
+          "htmldescription": "Trade Disruptions in the Strait of Hormuz from: 01 Mar 2026  to: - .",
+          "alertlevel": "RED",
+          "country": null,
+          "fromdate": 1772323200000,
+          "year": 2019,
+          "todate": null,
+          "severitytext": "",
+          "lat": 26.29685,
+          "long": 56.85985,
+          "editdate": 1772323200000,
+          "affectedports": "chokepoint6",
+          "n_affectedports": 1,
+          "affectedpopulation": "",
+          "pageid": "cc317ba850e34c4dadbead6f7b336fb1",
+          "ObjectId": 128,
+          "Shape__Area": 17207899494.691406,
+          "Shape__Length": 591676.7546214922
+        },
+        "geometry": {
+          "rings": [
+            [
+              [
+                6272937.2411,
+                3035948.294
+              ],
+              [
+                6335447.9219,
+                3162013.404
+              ],
+              [
+                6415148.8925,
+                3006344.7057
+              ],
+              [
+                6254184.137,
+                2936925.663
+              ],
+              [
+                6272937.2411,
+                3035948.294
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}

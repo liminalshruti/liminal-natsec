@@ -284,7 +284,7 @@ describeWhen("guard parity (AIP vs cache)", aipFiles, () => {
 
 describeWhen("Pi-AI live fallback", liveFiles, () => {
   const { applyGuard } = guardModule!;
-  const { callPiAi } = piAiModule!;
+  const { callPiAi, piAiStatus } = piAiModule!;
   const { callLiveSpecialist } = liveModule!;
 
   it("callLiveSpecialist falls through from failed AIP to Pi-AI", async () => {
@@ -312,6 +312,26 @@ describeWhen("Pi-AI live fallback", liveFiles, () => {
     assert.deepEqual(result?.raw, raw);
   });
 
+  it("piAiStatus reports ok when local Codex auth fallback is enabled", () => {
+    const status = piAiStatus({
+      env: {
+        PI_AI_FALLBACK_ENABLED: "true",
+        PI_AI_AUTH_PATH: "/missing/pi-auth.json",
+        CODEX_AUTH_FALLBACK_ENABLED: "true",
+        CODEX_AUTH_PATH: "/codex/auth.json",
+        PI_AI_PROVIDER: "openai-codex",
+        PI_AI_MODEL: "gpt-5.4"
+      },
+      existsImpl: (path: string) => path === "/codex/auth.json"
+    });
+
+    assert.equal(status.status, "ok");
+    assert.equal(status.enabled, true);
+    assert.equal(status.piAuth.present, false);
+    assert.equal(status.codexAuth.present, true);
+    assert.match(status.detail, /Codex dev auth/);
+  });
+
   it("callLiveSpecialist returns null when live providers fail", async () => {
     const result = await callLiveSpecialist(
       "intent",
@@ -329,6 +349,37 @@ describeWhen("Pi-AI live fallback", liveFiles, () => {
     );
 
     assert.equal(result, null);
+  });
+
+  it("signal_integrity uses live Pi-AI fallback before cache or fixture output", async () => {
+    const { createSignalIntegritySpecialist } = await import(
+      "../src/specialists/signalIntegrity.ts"
+    );
+    const raw = {
+      verdict: "contradicted" as const,
+      summary: "Pi-AI live signal integrity read contested the source chain.",
+      cited_observation_ids: [aisGap.id, "obs:ais-gap:0002"],
+      confidence: 0.72,
+      unsupported_assertions: []
+    };
+    const specialist = createSignalIntegritySpecialist({
+      callLiveSpecialistImpl: async (name) => {
+        assert.equal(name, "signal_integrity");
+        return { raw, source: "pi-ai" };
+      },
+      findCachedImpl: () => {
+        throw new Error("cache should not be consulted after live fallback succeeds");
+      }
+    });
+
+    const result = await specialist.call(
+      inputFor("signal_integrity", {
+        evidence: [aisGap, { ...aisGap, id: "obs:ais-gap:0002" }]
+      })
+    );
+
+    assert.equal(result.source, "pi-ai");
+    assert.deepEqual(result.raw, raw);
   });
 
   it("callPiAi parses strict JSON and reports Codex source when using Codex auth fallback", async () => {

@@ -114,6 +114,12 @@ export const DEFAULT_HORMUZ_REQUIRED_SOURCES: readonly RequiredHormuzSource[] = 
     category: "REGIONAL_SECURITY_CONTEXT"
   },
   {
+    source: "PORTWATCH",
+    label: "IMF PortWatch",
+    drawerGroup: "OSINT",
+    category: "REGIONAL_SECURITY_CONTEXT"
+  },
+  {
     source: "GLOBAL_FISHING_WATCH",
     label: "GFW vessel search",
     drawerGroup: "OSINT",

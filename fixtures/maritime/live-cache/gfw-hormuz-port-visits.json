@@ -1,6 +1,6 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T02:40:57.696Z",
+  "generated_at": "2026-05-03T04:40:04.232Z",
   "fixture_mode": true,
   "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
   "request": {
@@ -37,8 +37,8 @@
       {
         "id": "fixture:gfw:port-visit:bandar-abbas:001",
         "type": "PORT_VISIT",
-        "start": "2026-04-03T05:40:57.697Z",
-        "end": "2026-04-03T23:40:57.697Z",
+        "start": "2026-04-03T07:40:04.234Z",
+        "end": "2026-04-04T01:40:04.234Z",
         "port": {
           "id": "fixture:port:bandar-abbas",
           "name": "Bandar Abbas",
