@@ -252,6 +252,124 @@ button:hover {
   border-radius: 2px;
 }
 
+/* ── DATA SOURCES chip cluster ──────────────────────────────────────────────
+   Overlay at the bottom-left of the stage. Surfaces the multi-modal evidence
+   custody story: judges see vessel tracks AND see the 14 data sources
+   converging — AIS feeds, satellite imagery (Sentinel via Copernicus),
+   sanctions (OpenSanctions), port-state (UKMTO), maritime warnings (NAVAREA),
+   fishing/loitering (GFW), AI-port scans (Shodan/Censys), conflict events
+   (ACLED), OSINT (Exa), and the ontology layer (Foundry).
+
+   Without this overlay the multi-modality is invisible — the map looks like
+   a single AIS feed. With it, the defense-in-depth narrative is visible
+   before any narration.
+
+   Default: low opacity, compact badge with count. On hover: full opacity,
+   expanded chip list. Doesn't intercept map mouse events at rest because
+   pointer-events: none on the body until hovered.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.data-sources-chips {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 8px;
+  background: rgba(6, 9, 13, 0.78);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  max-width: 100%;
+  transition: opacity 180ms ease;
+  opacity: 0.72;
+}
+
+.data-sources-chips:hover,
+.data-sources-chips--expanded {
+  opacity: 1;
+}
+
+.data-sources-chips__header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.data-sources-chips__label {
+  color: var(--color-ink-tertiary);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.data-sources-chips__count {
+  color: var(--color-resolved);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.data-sources-chips__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 480px;
+  /* Collapsed: show first row only. Expanded: show all. */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease;
+}
+
+.data-sources-chips:hover .data-sources-chips__list,
+.data-sources-chips--expanded .data-sources-chips__list {
+  max-height: 200px;
+}
+
+.data-source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px 1px 5px;
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-secondary);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.data-source-chip__pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-ink-tertiary);
+  flex-shrink: 0;
+}
+
+.data-source-chip--ok .data-source-chip__pip {
+  background: var(--color-resolved);
+  box-shadow: 0 0 6px rgba(78, 160, 138, 0.5);
+}
+
+.data-source-chip--down .data-source-chip__pip {
+  background: var(--color-contested);
+}
+
+.data-source-chip--down {
+  opacity: 0.55;
+}
+
+.data-source-chip__label {
+  font-family: var(--font-mono);
+}
+
 .app-topbar__status {
   margin-left: auto;
   color: var(--color-ink-tertiary);

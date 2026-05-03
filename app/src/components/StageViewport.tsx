@@ -1,5 +1,6 @@
 import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
+import { DataSourcesChips } from "./DataSourcesChips.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
 
 interface StageViewportProps {
@@ -45,15 +46,18 @@ export function StageViewport({
             </div>
           </div>
         ) : (
-          <MapWatchfloor
-            scenarioState={scenarioState}
-            onScenarioStateChange={onScenarioStateChange}
-            selectedAlertId={selectedAlert?.id ?? null}
-            selectedCaseId={selectedCaseId}
-            resetSignal={resetSignal}
-            fixtureUrl={scenario?.state.mode === "real" ? scenario.state.tracksUrl : undefined}
-            style={{ position: "absolute", inset: 0 }}
-          />
+          <>
+            <MapWatchfloor
+              scenarioState={scenarioState}
+              onScenarioStateChange={onScenarioStateChange}
+              selectedAlertId={selectedAlert?.id ?? null}
+              selectedCaseId={selectedCaseId}
+              resetSignal={resetSignal}
+              fixtureUrl={scenario?.state.mode === "real" ? scenario.state.tracksUrl : undefined}
+              style={{ position: "absolute", inset: 0 }}
+            />
+            <DataSourcesChips />
+          </>
         )}
       </div>
     </main>
