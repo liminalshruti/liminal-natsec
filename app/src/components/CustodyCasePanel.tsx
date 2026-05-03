@@ -199,7 +199,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </div>
           </details>
 
-          <details className="case-file__section" open>
+          <details className="case-file__section">
             <summary className="case-file__section-header">
               <span>Posterior surface</span>
               <span className="case-file__section-meta">3 hypotheses × 6 phases · isometric wireframe</span>
@@ -219,7 +219,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </div>
           </details>
 
-          <details className="case-file__section" open>
+          <details className="case-file__section">
             <summary className="case-file__section-header">
               <span>Provenance chain</span>
               <span className="case-file__section-meta">action ← claim ← hypothesis ← anomaly ← observation</span>
@@ -229,7 +229,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </div>
           </details>
 
-          <details className="case-file__section" open>
+          <details className="case-file__section">
             <summary className="case-file__section-header">
               <span>Evidence held</span>
               <span className="case-file__section-meta">supports · weakens · contradicts</span>
@@ -240,7 +240,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </div>
           </details>
 
-          <details className="case-file__section" open>
+          <details className="case-file__section">
             <summary className="case-file__section-header">
               <span>Bounded actions</span>
               <span className="case-file__section-meta">recommendations under the guard</span>
@@ -250,7 +250,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             </div>
           </details>
 
-          <details className="case-file__section" open>
+          <details className="case-file__section">
             <summary className="case-file__section-header">
               <span>Review memory</span>
               <span className="case-file__section-meta">operator doctrine</span>
