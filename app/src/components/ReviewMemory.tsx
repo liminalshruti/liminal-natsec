@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { R001_DSL } from "../../../shared/rules/builtin.ts";
 import type { ReviewRuleApplication } from "../lib/spineGraph.ts";
 import {
   clearSavedRules,
@@ -10,9 +11,7 @@ import {
 
 const SEED_RULE_ID = "rr:watchfloor:dark-gap-sar-first:v1";
 const SEED_RULE_TITLE = "Dark gap → request SAR/RF first";
-const SEED_RULE_DSL =
-  'WHEN claim_kind == "custody_hypothesis" AND trigger == "identity_churn" AND corroboration == false ' +
-  'THEN block("escalate_watch_officer"), prefer("request_eo_sar_collection")';
+const SEED_RULE_DSL = R001_DSL;
 
 interface ReviewMemoryProps {
   ruleApplication: ReviewRuleApplication | null;
