@@ -1,0 +1,23 @@
+{
+  "name": "@seaforge/tier-b-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "test": "node --experimental-strip-types --test test/*.test.ts test/*.spec.ts",
+    "test:bun": "bun test test/*.test.ts test/*.spec.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.12.16"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "bun": ">=1.1.0",
+    "node": ">=22.6"
+  }
+}

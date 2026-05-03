@@ -1,0 +1,54 @@
+import type { OperationalStore } from "../domain/ontology.ts";
+import { getScenarioState, runFixtureReplay } from "../replay/scenario.ts";
+import type { RouteApp } from "./common.ts";
+import { jsonBody, routeError } from "./common.ts";
+
+interface ScenarioControlBody {
+  command?: "play" | "pause" | "reset" | "inject_event_2";
+  scenario_run_id?: string;
+  scenarioRunId?: string;
+}
+
+export function registerScenarioRoutes(app: RouteApp, store: OperationalStore): void {
+  app.post("/scenario/control", async (context) => {
+    try {
+      const body = await jsonBody<ScenarioControlBody>(context);
+      const scenarioRunId = body.scenarioRunId ?? body.scenario_run_id;
+
+      if (body.command === "pause") {
+        return context.json(await getScenarioState(store, scenarioRunId));
+      }
+
+      const replay = await runFixtureReplay(store, {
+        scenarioRunId,
+        reset: body.command === "reset" || body.command === "play" || !body.command
+      });
+      return context.json({
+        command: body.command ?? "play",
+        state: replay.state
+      });
+    } catch (error) {
+      return routeError(context, error);
+    }
+  });
+
+  app.get("/scenario/state", async (context) => {
+    try {
+      return context.json(await getScenarioState(store));
+    } catch (error) {
+      return routeError(context, error);
+    }
+  });
+
+  app.get("/stream", async (context) => {
+    try {
+      return context.json({
+        mode: "poll",
+        capabilities: { poll: true, stream: false, replay: true },
+        state: await getScenarioState(store)
+      });
+    } catch (error) {
+      return routeError(context, error);
+    }
+  });
+}

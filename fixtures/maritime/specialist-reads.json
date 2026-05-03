@@ -1,0 +1,355 @@
+{
+  "schemaVersion": "seaforge.specialist-reads.v1",
+  "entries": [
+    {
+      "name": "intent",
+      "anomaly_id": "anom:cache-seed:supported",
+      "key": "intent::anom:cache-seed:supported",
+      "cached_at": "2026-05-02T16:00:00Z",
+      "expected_verdict": "supported",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "obs:ais-gap:0001",
+            "type": "AIS_POSITION",
+            "modality": "kinematic",
+            "observed_at": "2026-04-18T10:15:04Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.4,
+                37.7
+              ]
+            },
+            "source": "AISHUB"
+          },
+          {
+            "id": "obs:danti-osint:0001",
+            "type": "OSINT_DOCUMENT",
+            "modality": "geo",
+            "observed_at": "2026-04-18T10:20:00Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.41,
+                37.72
+              ]
+            },
+            "source": "DANTI"
+          },
+          {
+            "id": "ev:intent-indicator:0001",
+            "type": "INTENT_INDICATOR",
+            "modality": "text",
+            "observed_at": "2026-04-18T10:15:00Z",
+            "source": "EXA"
+          }
+        ],
+        "claim": {
+          "id": "claim:cache:0001",
+          "posterior": 0.7
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "AIS gap correlates with an OSINT-reported port loiter; both supporting observations are cited.",
+        "cited_observation_ids": [
+          "obs:ais-gap:0001",
+          "obs:danti-osint:0001"
+        ],
+        "confidence": 0.71,
+        "unsupported_assertions": []
+      }
+    },
+    {
+      "name": "intent",
+      "anomaly_id": "anom:cache-seed:no-indicator",
+      "key": "intent::anom:cache-seed:no-indicator",
+      "cached_at": "2026-05-02T16:00:00Z",
+      "expected_verdict": "refused",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "obs:ais-gap:0001",
+            "type": "AIS_POSITION",
+            "modality": "kinematic",
+            "observed_at": "2026-04-18T10:15:04Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.4,
+                37.7
+              ]
+            },
+            "source": "AISHUB"
+          },
+          {
+            "id": "obs:danti-osint:0001",
+            "type": "OSINT_DOCUMENT",
+            "modality": "geo",
+            "observed_at": "2026-04-18T10:20:00Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.41,
+                37.72
+              ]
+            },
+            "source": "DANTI"
+          }
+        ],
+        "claim": {
+          "id": "claim:cache:0002",
+          "posterior": 0.7
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "AIS gap correlates with a geolocated OSINT document near the predicted corridor.",
+        "cited_observation_ids": [
+          "obs:ais-gap:0001",
+          "obs:danti-osint:0001"
+        ],
+        "confidence": 0.66,
+        "unsupported_assertions": []
+      }
+    },
+    {
+      "name": "kinematics",
+      "anomaly_id": "anom:cache-seed:dark-gap",
+      "key": "kinematics::anom:cache-seed:dark-gap",
+      "cached_at": "2026-05-02T16:00:00Z",
+      "expected_verdict": "supported",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "obs:ais-pre:0001",
+            "type": "AIS_POSITION",
+            "modality": "kinematic",
+            "observed_at": "2026-04-18T10:00:00Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.39,
+                37.69
+              ]
+            },
+            "source": "AISHUB"
+          },
+          {
+            "id": "obs:ais-post:0001",
+            "type": "AIS_POSITION",
+            "modality": "kinematic",
+            "observed_at": "2026-04-18T10:50:00Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.43,
+                37.74
+              ]
+            },
+            "source": "AISHUB"
+          }
+        ],
+        "claim": {
+          "id": "claim:cache:kin-0001",
+          "posterior": 0.7
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "Track resumed within the predicted Kalman ellipse after a 49-minute dark gap; both AIS endpoints are cited.",
+        "cited_observation_ids": [
+          "obs:ais-pre:0001",
+          "obs:ais-post:0001"
+        ],
+        "confidence": 0.74,
+        "unsupported_assertions": []
+      }
+    },
+    {
+      "name": "identity",
+      "anomaly_id": "anom:cache-seed:identity-weak",
+      "key": "identity::anom:cache-seed:identity-weak",
+      "cached_at": "2026-05-02T16:00:00Z",
+      "expected_verdict": "weakened",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "obs:ais-static:0001",
+            "type": "AIS_STATIC",
+            "modality": "text",
+            "observed_at": "2026-04-18T10:00:00Z",
+            "source": "AISHUB"
+          },
+          {
+            "id": "obs:ais-static:0002",
+            "type": "AIS_STATIC",
+            "modality": "text",
+            "observed_at": "2026-04-18T10:50:00Z",
+            "source": "AISHUB"
+          }
+        ],
+        "claim": {
+          "id": "claim:cache:id-0001",
+          "posterior": 0.6
+        },
+        "identity_features": {
+          "dimensions_similarity_score": null,
+          "flag_match": false,
+          "imo_match": false
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "MMSI changed mid-gap; static fields differ.",
+        "cited_observation_ids": [
+          "obs:ais-static:0001",
+          "obs:ais-static:0002"
+        ],
+        "confidence": 0.58,
+        "unsupported_assertions": []
+      }
+    },
+    {
+      "name": "collection",
+      "anomaly_id": "anom:cache-seed:collection",
+      "key": "collection::anom:cache-seed:collection",
+      "cached_at": "2026-05-02T16:00:00Z",
+      "expected_verdict": "supported",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "obs:ais-pre:0001",
+            "type": "AIS_POSITION",
+            "modality": "kinematic",
+            "observed_at": "2026-04-18T10:00:00Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.39,
+                37.69
+              ]
+            },
+            "source": "AISHUB"
+          },
+          {
+            "id": "obs:danti-osint:0001",
+            "type": "OSINT_DOCUMENT",
+            "modality": "geo",
+            "observed_at": "2026-04-18T10:20:00Z",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                -122.41,
+                37.72
+              ]
+            },
+            "source": "DANTI"
+          }
+        ],
+        "claim": {
+          "id": "claim:cache:col-0001",
+          "posterior": 0.65
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "Recommend SAR/RF corroboration to discriminate same-vessel continuity from a receiver outage.",
+        "cited_observation_ids": [
+          "obs:ais-pre:0001",
+          "obs:danti-osint:0001"
+        ],
+        "confidence": 0.7,
+        "unsupported_assertions": []
+      }
+    },
+    {
+      "name": "visual",
+      "anomaly_id": "anom:cache-seed:visual-contradicts",
+      "key": "visual::anom:cache-seed:visual-contradicts",
+      "cached_at": "2026-05-02T16:00:00Z",
+      "expected_verdict": "contradicted",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "obs:eo-chip:0001",
+            "type": "EO_CHIP",
+            "modality": "image",
+            "observed_at": "2026-04-18T10:30:00Z",
+            "source": "DANTI"
+          }
+        ],
+        "claim": {
+          "id": "claim:cache:vis-0001",
+          "posterior": 0.78
+        },
+        "visual": {
+          "observation_id": "obs:eo-chip:0001",
+          "declared_ais_class": "cargo",
+          "visual_class_scores": {
+            "cargo": 0.05,
+            "tanker": 0.05,
+            "fishing": 0.05,
+            "naval": 0.85
+          }
+        }
+      },
+      "output": {
+        "verdict": "contradicted",
+        "summary": "Visual class (naval, score 0.85) disagrees with declared AIS class (cargo).",
+        "cited_observation_ids": [
+          "obs:eo-chip:0001"
+        ],
+        "confidence": 0.78,
+        "unsupported_assertions": []
+      }
+    }
+  ],
+  "reads": [
+    {
+      "id": "read:alara-01:event-1:kinematics",
+      "case_id": "case:alara-01:event-1",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "Track continuity likely preserved inside the predicted corridor.",
+      "citations": [
+        "obs:aishub:366700111:20260418T101504Z",
+        "obs:barentswatch:538009771:20260418T110422Z"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-1:identity",
+      "case_id": "case:alara-01:event-1",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "Metadata conflict keeps the claim contested.",
+      "citations": [
+        "ev:alara-01:event-1:metadata-conflict",
+        "claim:alara-01:event-1:custody:h1"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-1:intent",
+      "case_id": "case:alara-01:event-1",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer hostile intent.",
+      "citations": [
+        "claim:alara-01:event-1:custody:h1",
+        "ev:alara-01:event-1:no-visual-id"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-1:collection",
+      "case_id": "case:alara-01:event-1",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend SAR or RF corroboration over the predicted corridor.",
+      "citations": [
+        "act:alara-01:event-1:request-sar-rf",
+        "claim:alara-01:event-1:custody:h1"
+      ]
+    }
+  ]
+}

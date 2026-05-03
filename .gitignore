@@ -8,11 +8,18 @@ dist/
 build/
 .next/
 out/
+coverage/
+.vite/
+*.tsbuildinfo
+playwright-report/
+test-results/
 
 # Environment variables
 .env
 .env.local
 .env.*.local
+config.ini
+config.local.ini
 
 # OS
 .DS_Store
@@ -39,5 +46,7 @@ venv/
 env/
 
 # Misc
+.claude/
+.codex/
 .cache/
 .tmp/

@@ -1,0 +1,1227 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "schema_version": "seaforge.tracks.v1",
+    "aoi": {
+      "aoi_id": "aoi:alara-eez-box-01",
+      "name": "Alara EEZ Box 01",
+      "bbox": [
+        31.1,
+        34.7,
+        32.2,
+        35.2
+      ]
+    },
+    "canonical_timestamps": {
+      "event1": {
+        "track_a_first_iso": "2026-04-18T10:00:00Z",
+        "track_a_last_iso": "2026-04-18T10:15:04Z",
+        "gap_start_iso": "2026-04-18T10:15:04Z",
+        "gap_end_iso": "2026-04-18T11:04:22Z",
+        "track_b_first_iso": "2026-04-18T11:04:22Z",
+        "track_b_last_iso": "2026-04-18T11:14:22Z"
+      },
+      "event2": {
+        "track_a2_last_iso": "2026-04-18T12:20:00Z",
+        "danti_corroboration_iso": "2026-04-18T12:52:00Z",
+        "track_b2_reappear_iso": "2026-04-18T13:05:00Z"
+      }
+    },
+    "canonical_pings": {
+      "event_1": {
+        "track_a_last": {
+          "mmsi": "366700111",
+          "iso": "2026-04-18T10:15:04Z",
+          "lat": 34.88112,
+          "lon": 31.42018
+        },
+        "track_b_first": {
+          "mmsi": "538009771",
+          "iso": "2026-04-18T11:04:22Z",
+          "lat": 34.8891,
+          "lon": 31.91844
+        }
+      },
+      "event_2": {
+        "track_a2_last": {
+          "mmsi": "271990222",
+          "iso": "2026-04-18T12:20:00Z",
+          "lat": 34.902,
+          "lon": 31.507
+        },
+        "danti": {
+          "iso": "2026-04-18T12:52:00Z",
+          "lat": 34.914,
+          "lon": 31.778
+        },
+        "track_b2_first": {
+          "mmsi": "271990222",
+          "iso": "2026-04-18T13:05:00Z",
+          "lat": 34.919,
+          "lon": 31.892
+        }
+      }
+    },
+    "kalman_event_1": {
+      "gap_seconds": 2958,
+      "mahalanobis": 0.8306792561100191,
+      "likelihood": 0.7082104290573159,
+      "predicted_state": {
+        "lat": 34.913493393240174,
+        "lon": 32.23592206507819,
+        "vxMps": 25.158720827093006,
+        "vyMps": 1.2169678962121921,
+        "speedKnots": 48.96186364279979,
+        "courseDeg": 87.23066931159167
+      },
+      "track_b_inside_ellipse": true,
+      "tuning": {
+        "processAccelerationStdMps2": 0.008,
+        "measurementStdMeters": 10
+      },
+      "likelihood_formula": "exp(-0.5 * mahalanobis^2)"
+    },
+    "rebuild_with": "node --experimental-strip-types scripts/build-tracks-geojson.mjs",
+    "generated_from": "TECHNICAL_PLAN.md §14.1, §14.3, §14.9 + shared/scoring/kalman.ts"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "id": "zone:alara-eez-box-01",
+      "properties": {
+        "kind": "monitored_zone",
+        "aoi_id": "aoi:alara-eez-box-01",
+        "name": "Alara EEZ Box 01",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.1,
+              34.7
+            ],
+            [
+              32.2,
+              34.7
+            ],
+            [
+              32.2,
+              35.2
+            ],
+            [
+              31.1,
+              35.2
+            ],
+            [
+              31.1,
+              34.7
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:001",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:001",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.21,
+            34.76
+          ],
+          [
+            31.42,
+            34.77
+          ],
+          [
+            31.67,
+            34.79
+          ],
+          [
+            31.92,
+            34.81
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:002",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:002",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.32,
+            35.11
+          ],
+          [
+            31.58,
+            35.08
+          ],
+          [
+            31.89,
+            35.05
+          ],
+          [
+            32.1,
+            35.02
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:003",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:003",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.04,
+            34.94
+          ],
+          [
+            31.28,
+            34.96
+          ],
+          [
+            31.52,
+            34.97
+          ],
+          [
+            31.78,
+            34.99
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:004",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:004",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.76,
+            34.72
+          ],
+          [
+            31.91,
+            34.79
+          ],
+          [
+            32.07,
+            34.86
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:005",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:005",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.18,
+            34.83
+          ],
+          [
+            31.38,
+            34.81
+          ],
+          [
+            31.58,
+            34.78
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:006",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:006",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.05,
+            35.05
+          ],
+          [
+            31.85,
+            35.02
+          ],
+          [
+            31.62,
+            34.99
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:007",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:007",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.42,
+            35.18
+          ],
+          [
+            31.68,
+            35.14
+          ],
+          [
+            31.95,
+            35.1
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:008",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:008",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.22,
+            34.71
+          ],
+          [
+            31.45,
+            34.74
+          ],
+          [
+            31.71,
+            34.76
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:009",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:009",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            32.12,
+            34.92
+          ],
+          [
+            31.91,
+            34.94
+          ],
+          [
+            31.69,
+            34.95
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:background:bg:010",
+      "properties": {
+        "kind": "background_track",
+        "track_id": "bg:010",
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.35,
+            34.99
+          ],
+          [
+            31.5,
+            35.04
+          ],
+          [
+            31.66,
+            35.08
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:event-1:hero-A",
+      "properties": {
+        "kind": "hero_track",
+        "event_id": "event_1",
+        "role": "A",
+        "case_id": "case:alara-01:event-1",
+        "mmsi": "366700111",
+        "vessel_name": "MV CALDERA",
+        "t_start_iso": "2026-04-18T10:00:00Z",
+        "t_end_iso": "2026-04-18T10:15:04Z",
+        "t_start_ms": 1776506400000,
+        "t_end_ms": 1776507304000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.17828,
+            34.87152
+          ],
+          [
+            31.22666,
+            34.87344
+          ],
+          [
+            31.27504,
+            34.87536
+          ],
+          [
+            31.32342,
+            34.87728
+          ],
+          [
+            31.3718,
+            34.8792
+          ],
+          [
+            31.42018,
+            34.88112
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:A:2026-04-18T10:00:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "A",
+        "mmsi": "366700111",
+        "t_iso": "2026-04-18T10:00:00Z",
+        "t_epoch_ms": 1776506400000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.17828,
+          34.87152
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:A:2026-04-18T10:03:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "A",
+        "mmsi": "366700111",
+        "t_iso": "2026-04-18T10:03:00Z",
+        "t_epoch_ms": 1776506580000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.22666,
+          34.87344
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:A:2026-04-18T10:06:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "A",
+        "mmsi": "366700111",
+        "t_iso": "2026-04-18T10:06:00Z",
+        "t_epoch_ms": 1776506760000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.27504,
+          34.87536
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:A:2026-04-18T10:09:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "A",
+        "mmsi": "366700111",
+        "t_iso": "2026-04-18T10:09:00Z",
+        "t_epoch_ms": 1776506940000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.32342,
+          34.87728
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:A:2026-04-18T10:12:04Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "A",
+        "mmsi": "366700111",
+        "t_iso": "2026-04-18T10:12:04Z",
+        "t_epoch_ms": 1776507124000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3718,
+          34.8792
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:A:2026-04-18T10:15:04Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "A",
+        "mmsi": "366700111",
+        "t_iso": "2026-04-18T10:15:04Z",
+        "t_epoch_ms": 1776507304000,
+        "phase_min": 1
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.42018,
+          34.88112
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "darkgap:event-1",
+      "properties": {
+        "kind": "dark_gap",
+        "event_id": "event_1",
+        "case_id": "case:alara-01:event-1",
+        "gap_start_iso": "2026-04-18T10:15:04Z",
+        "gap_end_iso": "2026-04-18T11:04:22Z",
+        "gap_start_ms": 1776507304000,
+        "gap_end_ms": 1776510262000,
+        "gap_minutes": 49.3,
+        "phase_min": 2
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.42018,
+            34.88112
+          ],
+          [
+            31.91844,
+            34.8891
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "predicted-corridor:event-1",
+      "properties": {
+        "kind": "predicted_corridor",
+        "event_id": "event_1",
+        "source": "kalman",
+        "phase_min": 3
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.42018,
+            34.88112
+          ],
+          [
+            32.23592206507819,
+            34.913493393240174
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "predicted-ellipse-95:event-1",
+      "properties": {
+        "kind": "predicted_ellipse_95",
+        "event_id": "event_1",
+        "source": "kalman",
+        "mahalanobis": 0.8306792561100191,
+        "likelihood": 0.7082104290573159,
+        "predicted_lat": 34.913493393240174,
+        "predicted_lon": 32.23592206507819,
+        "phase_min": 3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.17549747766492,
+              34.913493393240174
+            ],
+            [
+              33.17097316524123,
+              34.989051048138336
+            ],
+            [
+              33.15744379957205,
+              35.06388104151581
+            ],
+            [
+              33.135039675844666,
+              35.137262719630144
+            ],
+            [
+              33.10397655801792,
+              35.20848937680658
+            ],
+            [
+              33.064553600897305,
+              35.27687506140007
+            ],
+            [
+              33.01715046911068,
+              35.34176118188455
+            ],
+            [
+              32.96222368073034,
+              35.4025228494494
+            ],
+            [
+              32.90030221075442,
+              35.45857489602025
+            ],
+            [
+              32.8319823967885,
+              35.50937750974748
+            ],
+            [
+              32.75792219598849,
+              35.55444143368935
+            ],
+            [
+              32.678834848573516,
+              35.593332677623856
+            ],
+            [
+              32.59548200893273,
+              35.62567669761179
+            ],
+            [
+              32.50866641047716,
+              35.651162003059625
+            ],
+            [
+              32.41922413487818,
+              35.66954315654422
+            ],
+            [
+              32.328016560143915,
+              35.68064313750936
+            ],
+            [
+              32.23592206507819,
+              35.68435504707047
+            ],
+            [
+              32.143827570012476,
+              35.68064313750936
+            ],
+            [
+              32.052619995278214,
+              35.66954315654422
+            ],
+            [
+              31.96317771967923,
+              35.651162003059625
+            ],
+            [
+              31.87636212122366,
+              35.62567669761179
+            ],
+            [
+              31.793009281582872,
+              35.593332677623856
+            ],
+            [
+              31.7139219341679,
+              35.55444143368935
+            ],
+            [
+              31.63986173336789,
+              35.50937750974748
+            ],
+            [
+              31.571541919401973,
+              35.45857489602025
+            ],
+            [
+              31.509620449426052,
+              35.4025228494494
+            ],
+            [
+              31.454693661045706,
+              35.34176118188455
+            ],
+            [
+              31.407290529259082,
+              35.27687506140007
+            ],
+            [
+              31.367867572138472,
+              35.20848937680658
+            ],
+            [
+              31.336804454311725,
+              35.137262719630144
+            ],
+            [
+              31.314400330584345,
+              35.06388104151581
+            ],
+            [
+              31.30087096491516,
+              34.989051048138336
+            ],
+            [
+              31.296346652491472,
+              34.913493393240174
+            ],
+            [
+              31.30087096491516,
+              34.83793573834201
+            ],
+            [
+              31.314400330584345,
+              34.763105744964534
+            ],
+            [
+              31.336804454311725,
+              34.689724066850204
+            ],
+            [
+              31.367867572138472,
+              34.618497409673765
+            ],
+            [
+              31.407290529259082,
+              34.550111725080285
+            ],
+            [
+              31.454693661045706,
+              34.485225604595804
+            ],
+            [
+              31.509620449426052,
+              34.42446393703096
+            ],
+            [
+              31.571541919401973,
+              34.368411890460095
+            ],
+            [
+              31.63986173336789,
+              34.31760927673287
+            ],
+            [
+              31.7139219341679,
+              34.272545352791
+            ],
+            [
+              31.793009281582872,
+              34.2336541088565
+            ],
+            [
+              31.87636212122366,
+              34.20131008886857
+            ],
+            [
+              31.96317771967923,
+              34.17582478342072
+            ],
+            [
+              32.052619995278214,
+              34.15744362993613
+            ],
+            [
+              32.143827570012476,
+              34.146343648971
+            ],
+            [
+              32.23592206507819,
+              34.14263173940988
+            ],
+            [
+              32.328016560143915,
+              34.146343648971
+            ],
+            [
+              32.41922413487818,
+              34.15744362993613
+            ],
+            [
+              32.50866641047716,
+              34.17582478342072
+            ],
+            [
+              32.59548200893273,
+              34.20131008886857
+            ],
+            [
+              32.678834848573516,
+              34.2336541088565
+            ],
+            [
+              32.75792219598849,
+              34.272545352791
+            ],
+            [
+              32.8319823967885,
+              34.31760927673287
+            ],
+            [
+              32.90030221075442,
+              34.368411890460095
+            ],
+            [
+              32.96222368073034,
+              34.42446393703096
+            ],
+            [
+              33.01715046911068,
+              34.485225604595804
+            ],
+            [
+              33.064553600897305,
+              34.550111725080285
+            ],
+            [
+              33.10397655801792,
+              34.618497409673765
+            ],
+            [
+              33.135039675844666,
+              34.689724066850204
+            ],
+            [
+              33.15744379957205,
+              34.763105744964534
+            ],
+            [
+              33.17097316524123,
+              34.83793573834201
+            ],
+            [
+              33.17549747766492,
+              34.913493393240174
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:event-1:hero-B",
+      "properties": {
+        "kind": "hero_track",
+        "event_id": "event_1",
+        "role": "B",
+        "case_id": "case:alara-01:event-1",
+        "mmsi": "538009771",
+        "vessel_name": "CALDERA M",
+        "t_start_iso": "2026-04-18T11:04:22Z",
+        "t_end_iso": "2026-04-18T11:14:22Z",
+        "t_start_ms": 1776510262000,
+        "t_end_ms": 1776510862000,
+        "phase_min": 3
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.91844,
+            34.8891
+          ],
+          [
+            31.96,
+            34.8901
+          ],
+          [
+            32.005,
+            34.891
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:B:2026-04-18T11:04:22Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "B",
+        "mmsi": "538009771",
+        "t_iso": "2026-04-18T11:04:22Z",
+        "t_epoch_ms": 1776510262000,
+        "phase_min": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.91844,
+          34.8891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:B:2026-04-18T11:09:22Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "B",
+        "mmsi": "538009771",
+        "t_iso": "2026-04-18T11:09:22Z",
+        "t_epoch_ms": 1776510562000,
+        "phase_min": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.96,
+          34.8901
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-1:B:2026-04-18T11:14:22Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_1",
+        "role": "B",
+        "mmsi": "538009771",
+        "t_iso": "2026-04-18T11:14:22Z",
+        "t_epoch_ms": 1776510862000,
+        "phase_min": 3
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.005,
+          34.891
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:event-2:hero-A",
+      "properties": {
+        "kind": "hero_track",
+        "event_id": "event_2",
+        "role": "A",
+        "case_id": "case:alara-01:event-2",
+        "mmsi": "271990222",
+        "vessel_name": "MV HARBOR KITE",
+        "t_start_iso": "2026-04-18T12:08:00Z",
+        "t_end_iso": "2026-04-18T12:20:00Z",
+        "t_start_ms": 1776514080000,
+        "t_end_ms": 1776514800000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.42,
+            34.898
+          ],
+          [
+            31.46,
+            34.9
+          ],
+          [
+            31.507,
+            34.902
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:A:2026-04-18T12:08:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "A",
+        "mmsi": "271990222",
+        "t_iso": "2026-04-18T12:08:00Z",
+        "t_epoch_ms": 1776514080000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.42,
+          34.898
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:A:2026-04-18T12:14:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "A",
+        "mmsi": "271990222",
+        "t_iso": "2026-04-18T12:14:00Z",
+        "t_epoch_ms": 1776514440000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.46,
+          34.9
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:A:2026-04-18T12:20:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "A",
+        "mmsi": "271990222",
+        "t_iso": "2026-04-18T12:20:00Z",
+        "t_epoch_ms": 1776514800000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.507,
+          34.902
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "darkgap:event-2",
+      "properties": {
+        "kind": "dark_gap",
+        "event_id": "event_2",
+        "case_id": "case:alara-01:event-2",
+        "gap_start_iso": "2026-04-18T12:20:00Z",
+        "gap_end_iso": "2026-04-18T13:05:00Z",
+        "gap_start_ms": 1776514800000,
+        "gap_end_ms": 1776517500000,
+        "gap_minutes": 45,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.507,
+            34.902
+          ],
+          [
+            31.892,
+            34.919
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:danti-corroboration",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "B",
+        "mmsi": "danti:unknown",
+        "t_iso": "2026-04-18T12:52:00Z",
+        "t_epoch_ms": 1776516720000,
+        "phase_min": 6,
+        "note": "Danti detection during dark gap"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.778,
+          34.914
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "track:event-2:hero-B",
+      "properties": {
+        "kind": "hero_track",
+        "event_id": "event_2",
+        "role": "B",
+        "case_id": "case:alara-01:event-2",
+        "mmsi": "271990222",
+        "vessel_name": "MV HARBOR KITE",
+        "t_start_iso": "2026-04-18T13:05:00Z",
+        "t_end_iso": "2026-04-18T13:17:00Z",
+        "t_start_ms": 1776517500000,
+        "t_end_ms": 1776518220000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            31.892,
+            34.919
+          ],
+          [
+            31.94,
+            34.92
+          ],
+          [
+            31.99,
+            34.921
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:B:2026-04-18T13:05:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "B",
+        "mmsi": "271990222",
+        "t_iso": "2026-04-18T13:05:00Z",
+        "t_epoch_ms": 1776517500000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.892,
+          34.919
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:B:2026-04-18T13:11:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "B",
+        "mmsi": "271990222",
+        "t_iso": "2026-04-18T13:11:00Z",
+        "t_epoch_ms": 1776517860000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.94,
+          34.92
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "ping:event-2:B:2026-04-18T13:17:00Z",
+      "properties": {
+        "kind": "hero_ping",
+        "event_id": "event_2",
+        "role": "B",
+        "mmsi": "271990222",
+        "t_iso": "2026-04-18T13:17:00Z",
+        "t_epoch_ms": 1776518220000,
+        "phase_min": 6
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.99,
+          34.921
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "nodes": [
+    {
+      "id": "case:alara-01:event-1",
+      "type": "case",
+      "title": "Alara 01 first contested custody case",
+      "created_at": "2026-05-02T14:01:00Z",
+      "status": "OPEN",
+      "data": {
+        "scenario_id": "scenario:alara-01",
+        "stage": "first_case",
+        "features": {
+          "gap_minutes": 49.3,
+          "candidate_continuity_score": 0.78,
+          "danti_geo_time_corroboration": true,
+          "aoi_id": "aoi:alara-eez-box-01"
+        }
+      }
+    },
+    {
+      "id": "case:alara-01:event-2",
+      "type": "case",
+      "title": "Alara 01 second case after review memory",
+      "created_at": "2026-05-02T14:25:00Z",
+      "status": "OPEN",
+      "data": {
+        "scenario_id": "scenario:alara-01",
+        "stage": "second_case",
+        "features": {
+          "gap_minutes": 45,
+          "candidate_continuity_score": 0.71,
+          "danti_geo_time_corroboration": true,
+          "aoi_id": "aoi:alara-eez-box-01"
+        }
+      }
+    },
+    {
+      "id": "anom:identity-churn:trk-caldera:20260418T1015:1f44",
+      "type": "anomaly",
+      "title": "Identity churn plus dark gap",
+      "created_at": "2026-05-02T14:03:00Z",
+      "case_id": "case:alara-01:event-1",
+      "status": "OPEN",
+      "data": {
+        "anomaly_type": "IDENTITY_CHURN_PLUS_DARK_GAP",
+        "window_start": "2026-04-18T10:15:04Z",
+        "window_end": "2026-04-18T11:04:22Z",
+        "gap_minutes": 49.3,
+        "candidate_old_track_id": "trk:366700111:20260418T0950:20260418T1015:aa01",
+        "candidate_new_track_id": "trk:538009771:20260418T1104:20260418T1110:bb02",
+        "score": 0.78
+      },
+      "archetype": {
+        "archetype_primary": "Sage",
+        "archetype_role": "perception"
+      }
+    },
+    {
+      "id": "anom:dark-gap:trk-271990222:20260418T1220:cc90",
+      "type": "anomaly",
+      "title": "Second case dark gap with corroboration",
+      "created_at": "2026-05-02T14:24:00Z",
+      "case_id": "case:alara-01:event-2",
+      "status": "OPEN",
+      "data": {
+        "anomaly_type": "DARK_GAP_WITH_CORROBORATION",
+        "window_start": "2026-04-18T12:20:00Z",
+        "window_end": "2026-04-18T13:05:00Z",
+        "gap_minutes": 45,
+        "candidate_track_id": "trk:271990222:20260418T1220:20260418T1305:cc90",
+        "score": 0.71
+      },
+      "archetype": {
+        "archetype_primary": "Sage",
+        "archetype_role": "perception"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:case1:derived-from:obs-last",
+      "type": "DERIVED_FROM",
+      "from": "anom:identity-churn:trk-caldera:20260418T1015:1f44",
+      "to": "obs:aishub:366700111:20260418T101504Z",
+      "provenance": {
+        "created_at": "2026-05-02T14:03:01Z",
+        "created_by": "fixture",
+        "source_node_ids": ["obs:aishub:366700111:20260418T101504Z"],
+        "confidence": 0.8,
+        "rationale": "Last observation anchors the start of the dark gap."
+      }
+    },
+    {
+      "id": "edge:case1:derived-from:obs-reappear",
+      "type": "DERIVED_FROM",
+      "from": "anom:identity-churn:trk-caldera:20260418T1015:1f44",
+      "to": "obs:barentswatch:538009771:20260418T110422Z",
+      "provenance": {
+        "created_at": "2026-05-02T14:03:02Z",
+        "created_by": "fixture",
+        "source_node_ids": ["obs:barentswatch:538009771:20260418T110422Z"],
+        "confidence": 0.8,
+        "rationale": "First reappearance observation defines the candidate continuity endpoint."
+      }
+    },
+    {
+      "id": "edge:case2:derived-from:obs-last",
+      "type": "DERIVED_FROM",
+      "from": "anom:dark-gap:trk-271990222:20260418T1220:cc90",
+      "to": "obs:aishub:271990222:20260418T122000Z",
+      "provenance": {
+        "created_at": "2026-05-02T14:24:01Z",
+        "created_by": "fixture",
+        "source_node_ids": ["obs:aishub:271990222:20260418T122000Z"],
+        "confidence": 0.76,
+        "rationale": "Second case last observation anchors the changed recommendation loop."
+      }
+    },
+    {
+      "id": "edge:case2:derived-from:danti",
+      "type": "DERIVED_FROM",
+      "from": "anom:dark-gap:trk-271990222:20260418T1220:cc90",
+      "to": "obs:danti:unknown:20260418T125200Z",
+      "provenance": {
+        "created_at": "2026-05-02T14:24:02Z",
+        "created_by": "fixture",
+        "source_node_ids": ["obs:danti:unknown:20260418T125200Z"],
+        "confidence": 0.62,
+        "rationale": "External detection falls inside the expected gap window."
+      }
+    }
+  ]
+}

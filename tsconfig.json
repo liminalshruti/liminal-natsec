@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["app/src/*"],
+      "@server/*": ["server/src/*"],
+      "@shared/*": ["shared/*"],
+      "@graph-spine/*": ["graph-spine/*"],
+      "@fixtures/*": ["fixtures/*"]
+    }
+  },
+  "include": [
+    "app/src/**/*.ts",
+    "app/src/**/*.tsx",
+    "server/src/**/*.ts",
+    "graph-spine/**/*.ts",
+    "shared/**/*.ts",
+    "tests/**/*.ts",
+    "server/test/**/*.ts",
+    "app/test/**/*.ts"
+  ]
+}

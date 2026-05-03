@@ -1,0 +1,97 @@
+{
+  "nodes": [
+    {
+      "id": "rr:watchfloor:dark-gap-sar-first:v1",
+      "type": "reviewRule",
+      "title": "R-001: collection before passive monitoring for corroborated dark gaps",
+      "created_at": "2026-05-02T14:18:00Z",
+      "status": "ACTIVE",
+      "data": {
+        "display_id": "R-001",
+        "active": true,
+        "source_case_id": "case:alara-01:event-1",
+        "rule_text": "WHEN gap_minutes >= 20 AND candidate_continuity_score >= 0.65 AND danti_geo_time_corroboration == true AND aoi_id == \"aoi:alara-eez-box-01\" THEN boost(\"REQUEST_SAR_OR_RF_CORROBORATION\", +1)",
+        "conditions": [
+          {
+            "path": "features.gap_minutes",
+            "operator": ">=",
+            "value": 20
+          },
+          {
+            "path": "features.candidate_continuity_score",
+            "operator": ">=",
+            "value": 0.65
+          },
+          {
+            "path": "features.danti_geo_time_corroboration",
+            "operator": "==",
+            "value": true
+          },
+          {
+            "path": "features.aoi_id",
+            "operator": "==",
+            "value": "aoi:alara-eez-box-01"
+          }
+        ],
+        "effects": [
+          {
+            "kind": "boost",
+            "actionType": "REQUEST_SAR_OR_RF_CORROBORATION",
+            "delta": 1
+          }
+        ]
+      },
+      "archetype": {
+        "archetype_primary": "Judge",
+        "archetype_role": "review_memory"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:rule:r001:reviewed-by:case1",
+      "type": "REVIEWED_BY",
+      "from": "case:alara-01:event-1",
+      "to": "rr:watchfloor:dark-gap-sar-first:v1",
+      "provenance": {
+        "created_at": "2026-05-02T14:18:10Z",
+        "created_by": "operator",
+        "source_node_ids": ["claim:alara-01:event-1:custody:h1"],
+        "confidence": 1,
+        "rationale": "Operator created R-001 after reviewing the first contested case."
+      }
+    },
+    {
+      "id": "edge:rule:r001:applies-to:case2",
+      "type": "APPLIES_TO",
+      "from": "rr:watchfloor:dark-gap-sar-first:v1",
+      "to": "case:alara-01:event-2",
+      "provenance": {
+        "created_at": "2026-05-02T14:28:20Z",
+        "created_by": "fixture",
+        "source_node_ids": [
+          "rr:watchfloor:dark-gap-sar-first:v1",
+          "case:alara-01:event-2"
+        ],
+        "confidence": 1,
+        "rationale": "R-001 matches the second case and changes the recommendation."
+      }
+    },
+    {
+      "id": "edge:case2:reviewed-by:r001",
+      "type": "REVIEWED_BY",
+      "from": "case:alara-01:event-2",
+      "to": "rr:watchfloor:dark-gap-sar-first:v1",
+      "provenance": {
+        "created_at": "2026-05-02T14:28:21Z",
+        "created_by": "fixture",
+        "source_node_ids": [
+          "case:alara-01:event-2",
+          "rr:watchfloor:dark-gap-sar-first:v1"
+        ],
+        "confidence": 1,
+        "rationale": "Second case records the prior review rule used for recommendation change."
+      }
+    }
+  ]
+}

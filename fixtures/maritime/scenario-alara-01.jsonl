@@ -1,0 +1,7 @@
+{"event":"observation","id":"obs:aishub:366700111:20260418T101504Z","case_id":"case:alara-01:event-1","at":"2026-04-18T10:15:04Z","summary":"Raw observation anchors the dark gap start."}
+{"event":"anomaly","id":"anom:identity-churn:trk-caldera:20260418T1015:1f44","case_id":"case:alara-01:event-1","at":"2026-05-02T14:03:00Z","summary":"Dark gap plus second identity promotes a custody anomaly."}
+{"event":"hypothesis","id":"hyp:alara-01:event-1:h1","case_id":"case:alara-01:event-1","at":"2026-05-02T14:04:00Z","summary":"Primary continuity hypothesis remains contested."}
+{"event":"claim","id":"claim:alara-01:event-1:custody:h1","case_id":"case:alara-01:event-1","at":"2026-05-02T14:05:00Z","summary":"Contested custody claim collects support and contradiction evidence."}
+{"event":"action_option","id":"act:alara-01:event-1:request-sar-rf","case_id":"case:alara-01:event-1","at":"2026-05-02T14:07:01Z","summary":"Collection action is recommended instead of an intent assertion."}
+{"event":"review_rule","id":"rr:watchfloor:dark-gap-sar-first:v1","case_id":"case:alara-01:event-1","at":"2026-05-02T14:18:00Z","summary":"Operator saves R-001 from the first case."}
+{"event":"second_case_changed","id":"case:alara-01:event-2","case_id":"case:alara-01:event-2","at":"2026-05-02T14:28:20Z","summary":"R-001 applies and changes the second case recommendation.","refs":["act:alara-01:event-2:monitor","act:alara-01:event-2:request-sar-rf"]}

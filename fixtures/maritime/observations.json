@@ -1,0 +1,110 @@
+{
+  "nodes": [
+    {
+      "id": "obs:aishub:366700111:20260418T101204Z",
+      "type": "observation",
+      "title": "AISHub fixture ping before gap",
+      "created_at": "2026-05-02T14:00:00Z",
+      "case_id": "case:alara-01:event-1",
+      "data": {
+        "source": "AISHub fixture",
+        "source_record_id": "aishub:366700111:2026-04-18T10:12:04Z",
+        "observed_at": "2026-04-18T10:12:04Z",
+        "mmsi": "366700111",
+        "name": "MV CALDERA",
+        "lat": 34.8792,
+        "lon": 31.3718,
+        "sog_knots": 12.2,
+        "cog_deg": 83.9
+      }
+    },
+    {
+      "id": "obs:aishub:366700111:20260418T101504Z",
+      "type": "observation",
+      "title": "AISHub fixture last ping before dark gap",
+      "created_at": "2026-05-02T14:00:01Z",
+      "case_id": "case:alara-01:event-1",
+      "data": {
+        "source": "AISHub fixture",
+        "source_record_id": "aishub:366700111:2026-04-18T10:15:04Z",
+        "observed_at": "2026-04-18T10:15:04Z",
+        "mmsi": "366700111",
+        "name": "MV CALDERA",
+        "lat": 34.88112,
+        "lon": 31.42018,
+        "sog_knots": 12.4,
+        "cog_deg": 84.2
+      }
+    },
+    {
+      "id": "obs:barentswatch:538009771:20260418T110422Z",
+      "type": "observation",
+      "title": "BarentsWatch-shaped fixture first ping after gap",
+      "created_at": "2026-05-02T14:00:02Z",
+      "case_id": "case:alara-01:event-1",
+      "data": {
+        "source": "BarentsWatch-like fixture",
+        "source_record_id": "barentswatch:538009771:2026-04-18T11:04:22Z",
+        "observed_at": "2026-04-18T11:04:22Z",
+        "mmsi": "538009771",
+        "name": "CALDERA M",
+        "lat": 34.8891,
+        "lon": 31.91844,
+        "sog_knots": 12,
+        "cog_deg": 86.1
+      }
+    },
+    {
+      "id": "obs:aishub:271990222:20260418T122000Z",
+      "type": "observation",
+      "title": "AISHub fixture last ping for second case",
+      "created_at": "2026-05-02T14:20:00Z",
+      "case_id": "case:alara-01:event-2",
+      "data": {
+        "source": "AISHub fixture",
+        "source_record_id": "aishub:271990222:2026-04-18T12:20:00Z",
+        "observed_at": "2026-04-18T12:20:00Z",
+        "mmsi": "271990222",
+        "name": "MV HARBOR KITE",
+        "lat": 34.902,
+        "lon": 31.507,
+        "sog_knots": 9.3,
+        "cog_deg": 77.4
+      }
+    },
+    {
+      "id": "obs:danti:unknown:20260418T125200Z",
+      "type": "observation",
+      "title": "Danti fixture detection in predicted corridor",
+      "created_at": "2026-05-02T14:20:01Z",
+      "case_id": "case:alara-01:event-2",
+      "data": {
+        "source": "Danti fixture",
+        "source_record_id": "danti:unknown:2026-04-18T12:52:00Z",
+        "observed_at": "2026-04-18T12:52:00Z",
+        "lat": 34.914,
+        "lon": 31.778,
+        "summary": "Fixture: vessel-sized detection in predicted corridor."
+      }
+    },
+    {
+      "id": "obs:aishub:271990222:20260418T130500Z",
+      "type": "observation",
+      "title": "AISHub fixture reappearance for second case",
+      "created_at": "2026-05-02T14:20:02Z",
+      "case_id": "case:alara-01:event-2",
+      "data": {
+        "source": "AISHub fixture",
+        "source_record_id": "aishub:271990222:2026-04-18T13:05:00Z",
+        "observed_at": "2026-04-18T13:05:00Z",
+        "mmsi": "271990222",
+        "name": "MV HARBOR KITE",
+        "lat": 34.919,
+        "lon": 31.892,
+        "sog_knots": 9.1,
+        "cog_deg": 78.2
+      }
+    }
+  ],
+  "edges": []
+}
