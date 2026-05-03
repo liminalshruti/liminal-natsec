@@ -77,7 +77,7 @@ export function HypothesisBoard({
             }}
             style={{
               cursor: "pointer",
-              outline: isSelected ? "1px solid var(--accent)" : undefined
+              outline: isSelected ? "1px solid var(--color-decision)" : undefined
             }}
           >
             <div className="action-row__title">
@@ -100,12 +100,12 @@ export function HypothesisBoard({
               style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap" }}
             >
               {status === "primary" && (
-                <span style={{ color: "var(--fg-2)" }}>
+                <span style={{ color: "var(--color-ink-tertiary)" }}>
                   evidence {counts.supports}+ · {counts.weakens}− · {counts.contradicts}✕
                 </span>
               )}
               {node.status && (
-                <span style={{ color: "var(--fg-2)" }}>{node.status}</span>
+                <span style={{ color: "var(--color-ink-tertiary)" }}>{node.status}</span>
               )}
             </div>
           </div>

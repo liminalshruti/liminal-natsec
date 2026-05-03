@@ -60,7 +60,7 @@ export function EvidenceDrawer({ claimId }: EvidenceDrawerProps) {
     <>
       <div className="subhead">
         Evidence Drawer
-        <span style={{ marginLeft: 8, color: "var(--fg-2)", textTransform: "none" }}>
+        <span style={{ marginLeft: 8, color: "var(--color-ink-tertiary)", textTransform: "none" }}>
           {evidence.supports.length}+ · {evidence.weakens.length}− ·{" "}
           {evidence.contradicts.length}✕
         </span>

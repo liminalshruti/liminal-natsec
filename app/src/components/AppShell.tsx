@@ -38,7 +38,7 @@ export function AppShell({
     <div className="app-shell">
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
-        <span style={{ color: "var(--fg-2)", fontSize: 12 }}>
+        <span style={{ color: "var(--color-ink-tertiary)", fontSize: 12 }}>
           {scenario ? scenario.state.scenarioRunId : "loading scenario..."}
         </span>
         <PhaseBadge state={mapScenarioState} />

@@ -101,7 +101,7 @@ export function CommandLine({
             </span>
           </>
         )}
-        <span style={{ color: "var(--fg-2)" }}>{sourceStatus}</span>
+        <span style={{ color: "var(--color-ink-tertiary)" }}>{sourceStatus}</span>
         <button
           type="button"
           onClick={() => onReset("full")}

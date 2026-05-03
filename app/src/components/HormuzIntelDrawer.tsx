@@ -13,7 +13,7 @@ export function HormuzIntelDrawer() {
     <>
       <div className="subhead">
         Hormuz Intel
-        <span style={{ marginLeft: 8, color: "var(--fg-2)", textTransform: "none" }}>
+        <span style={{ marginLeft: 8, color: "var(--color-ink-tertiary)", textTransform: "none" }}>
           {model.availableRows} available · {model.unavailableRows} unavailable
         </span>
       </div>

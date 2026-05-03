@@ -118,7 +118,7 @@ export function ExecSummary({
 
       {recommendedAction && (
         <p>
-          <strong style={{ color: "var(--fg-0)" }}>Bounded recommendation:</strong>{" "}
+          <strong style={{ color: "var(--color-ink-primary)" }}>Bounded recommendation:</strong>{" "}
           <TypedObjectChip
             kind="action"
             id={recommendedAction.id}
