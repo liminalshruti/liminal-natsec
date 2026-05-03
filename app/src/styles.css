@@ -208,6 +208,33 @@ button:hover {
   text-overflow: ellipsis;
 }
 
+/* Clickable breadcrumb segment — non-leaf segments become buttons when a
+   case is selected, so the operator can navigate up the trail. The button
+   resets to the same baseline appearance as the other segments (no border,
+   no background) so it reads as breadcrumb chrome, not as a button. Hover
+   adds an underline + decision-color accent to signal interactivity. */
+button.topbar-crumbs__seg--clickable {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+  text-decoration: underline dotted transparent;
+  text-underline-offset: 2px;
+}
+
+button.topbar-crumbs__seg--clickable:hover,
+button.topbar-crumbs__seg--clickable:focus-visible {
+  color: var(--color-decision);
+  text-decoration-color: var(--color-decision);
+  outline: none;
+}
+
 .topbar-crumbs__sep {
   color: var(--color-ink-tertiary);
   opacity: 0.5;
@@ -595,6 +622,109 @@ button:hover {
   height: 6px;
   border-radius: 50%;
   display: inline-block;
+}
+
+/* ── StageBackdrop — AI Ascent atmospheric register ───────────────────────
+   Deep-dark canvas with hand-drawn flowing organic linework + sparse
+   stippled-dot constellation accents. Reference: Sequoia AI Ascent stage
+   backdrop (Karpathy keynote). Sits behind the map at z-index 0; doesn't
+   intercept pointer events. The backdrop "breathes" via a very slow
+   ambient motion — operator-grade restraint, ~32s cycle. Workshop
+   principle: every surface should feel like it's holding something,
+   not resolving it. The breath is the surface holding atmosphere.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.stage-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--color-substrate);
+  overflow: hidden;
+}
+
+.stage-backdrop svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.stage-backdrop__lines {
+  animation: stage-backdrop-breath 32s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes stage-backdrop-breath {
+  0%, 100% {
+    opacity: 0.55;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.78;
+    transform: translateY(-3px);
+  }
+}
+
+.stage-backdrop__stipple {
+  animation: stage-backdrop-twinkle 18s ease-in-out infinite;
+}
+
+@keyframes stage-backdrop-twinkle {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-backdrop__lines,
+  .stage-backdrop__stipple {
+    animation: none;
+  }
+}
+
+/* ── HypothesisSurface — 3D isometric wireframe in case file ──────────────
+   Reference: 3D options implied-volatility surface (@iamai_omni, GPT-5.5
+   Codex). Cyan/teal wireframe mesh on deep-black, monospace axis labels,
+   data dots along ridges, vertical drops to base plane. Renders posterior
+   probabilities for 3 hypotheses across 6 phases as a topographic surface.
+   The leading hypothesis ridge IS the make-or-break beat made visible in
+   one glance.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.hyp-surface {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: rgba(6, 9, 13, 0.75);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 0 60px rgba(78, 215, 215, 0.04);
+  transition: box-shadow 800ms ease;
+}
+
+.hyp-surface:hover {
+  box-shadow: inset 0 0 80px rgba(78, 215, 215, 0.08);
+}
+
+.hyp-surface--empty {
+  display: grid;
+  place-items: center;
+  height: 120px;
+  background: transparent;
+  border: 1px dashed var(--color-edge);
+}
+
+.hyp-surface__mesh line {
+  filter: drop-shadow(0 0 2px rgba(78, 215, 215, 0.3));
+}
+
+.hyp-surface__dots circle {
+  filter: drop-shadow(0 0 3px rgba(165, 243, 235, 0.6));
+}
+
+.hyp-surface__axis-x text,
+.hyp-surface__axis-y text {
+  letter-spacing: 0.06em;
 }
 
 .app-topbar__status {
@@ -2874,4 +3004,140 @@ button:hover {
   margin-left: auto;
   text-align: right;
   font-style: italic;
+}
+
+/* ─── Case-file section fold/unfold (HTML <details>/<summary>) ───────────────
+   Sections converted from <section> + <div header> to <details> + <summary>
+   for native browser fold behavior — accessible, keyboard-friendly, zero JS.
+   Default state is open; clicking the summary toggles. The dragon-fold
+   sticky pattern stays via position: sticky on summary.
+   --------------------------------------------------------------------------- */
+
+details.case-file__section {
+  /* details element default behavior: collapses content when not [open]. */
+  margin: 0;
+}
+
+details.case-file__section > summary {
+  cursor: pointer;
+  /* Native disclosure triangle is removed — we render our own caret in CSS
+     so it matches the editorial register and respects the existing layout. */
+  list-style: none;
+  user-select: none;
+  /* Replace section-header's `display` semantics with summary-friendly. */
+  display: flex;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+details.case-file__section > summary::-webkit-details-marker {
+  display: none;
+}
+
+details.case-file__section > summary::before {
+  content: "▾"; /* fold-down caret = open */
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--color-ink-tertiary);
+  transition: transform 160ms ease, color 160ms ease;
+  font-size: 9px;
+  width: 10px;
+  text-align: center;
+}
+
+details.case-file__section:not([open]) > summary::before {
+  content: "▸"; /* fold-right caret = closed */
+}
+
+details.case-file__section > summary:hover::before,
+details.case-file__section > summary:focus-visible::before {
+  color: var(--color-decision);
+}
+
+details.case-file__section > summary:focus-visible {
+  outline: 1px solid var(--color-decision);
+  outline-offset: -1px;
+}
+
+/* ─── Provenance peek — chip click reveals node details inline ───────────────
+   Clicking a chip in the provenance trace toggles a peek panel below the
+   trace showing the node's id, title, status, and data. Click the same chip
+   again to dismiss; click a different chip to swap. v3.3 will promote to a
+   side-pane drill-down with edge traversal and full data inspector.
+   --------------------------------------------------------------------------- */
+
+.provenance-tree__step--peeked > .tchip {
+  /* Highlighted ring on the peeked chip — subtle but unmissable. */
+  box-shadow: 0 0 0 2px var(--color-decision);
+}
+
+.provenance-tree__peek {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  border-left: 2px solid var(--color-decision);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  animation: peek-open 220ms ease-out;
+}
+
+@keyframes peek-open {
+  from { opacity: 0; transform: translateY(-2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.provenance-tree__peek-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+}
+
+.provenance-tree__peek-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-decision);
+  font-weight: 600;
+}
+
+.provenance-tree__peek-id {
+  font-size: 11px;
+  color: var(--color-ink-secondary);
+  word-break: break-all;
+}
+
+.provenance-tree__peek-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--color-ink-primary);
+}
+
+.provenance-tree__peek-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink-secondary);
+}
+
+.provenance-tree__peek-status code {
+  color: var(--color-ink-primary);
+}
+
+.provenance-tree__peek-data {
+  margin: 0;
+  padding: 8px 10px;
+  background: var(--color-substrate);
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.5;
+  color: var(--color-ink-secondary);
+  overflow: auto;
+  max-height: 240px;
 }

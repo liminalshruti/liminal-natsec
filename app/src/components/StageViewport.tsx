@@ -4,6 +4,7 @@ import { DataSourcesChips } from "./DataSourcesChips.tsx";
 import { DemoPrompt } from "./DemoPrompt.tsx";
 import { MapLayers } from "./MapLayers.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
+import { StageBackdrop } from "./StageBackdrop.tsx";
 
 interface StageViewportProps {
   selectedAlert: AlertView | null;
@@ -49,6 +50,14 @@ export function StageViewport({
           </div>
         ) : (
           <>
+            {/* StageBackdrop: deep-dark canvas + flowing organic linework +
+                stippled constellation, reference: Sequoia AI Ascent stage.
+                Sits BEHIND the map at z-index 0; the map composites on top
+                via its own opaque tile layer (basemap == operator black).
+                On the public-fixture path where the basemap is partially
+                transparent, the backdrop bleeds through — that's the
+                editorial register the workshop substrate called for. */}
+            <StageBackdrop />
             <MapWatchfloor
               scenarioState={scenarioState}
               onScenarioStateChange={onScenarioStateChange}
