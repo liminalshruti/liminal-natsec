@@ -151,7 +151,7 @@ Node fallback for tests: `npm test`.
 - Hypothesis board
 - Signal Integrity row
 - Specialist refusal (structurally enforced)
-- Causal line: "Intent refused because the guard fired"
+- Causal line: "Intent refused because Signal Integrity contested"
 - Evidence/provenance trace
 - Review rule saved
 - Prior rule applied / second case changed

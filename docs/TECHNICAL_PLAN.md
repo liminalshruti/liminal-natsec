@@ -191,16 +191,17 @@ The B→C path is documented here so future-Shayaun and future-Shruti know the r
 
 ### PR landing log (May 2 → May 3)
 
-| PR | Subject | Merged |
-|---|---|---|
-| #1 | Rename SeaForge → Liminal Custody; add one-pager + Maven analysis | ✅ |
-| #2 | README surgical edits (Maven contrast, architecture diagram, judge entry point) | ✅ |
-| #3 | Public/internal split + frame calibration | ✅ |
-| #4 | SPEEDRUN_CUT.md surgical rename pass | ✅ |
-| #5 | Topbar/title brand: SeaForge → Liminal Custody | ✅ |
-| #6 | Fix caseIdFromAlertId underscore→hyphen drift (H8 gate) | ✅ |
+The May 2–3 build wave landed in three phases: rename + framing (PRs #1–6),
+v3.1/v3.2 IA + engineering (#7–11), and visual register + judge-calibrated
+polish (#12–22, #24). The structural-guard refusal invariant, the make-or-break
+beat, and the v3-sequencing-plan never-cut beats all shipped. PR #6 unblocked
+the H8 gate; #8 landed the 6th specialist (signal_integrity) and Working
+Panel zones; #20 cited real cached sources from every specialist row; #22
+landed the D1-D5 design refresh.
 
-Open at H22: `shruti/visual-polish-specialist-reads` (RefusalCard polish, local commit `60f5bee` not yet pushed).
+Use `gh pr list --state merged --limit 25` for the live landing log; this
+section is intentionally summarized rather than enumerated so it doesn't
+drift the moment another PR merges.
 
 ---
 
