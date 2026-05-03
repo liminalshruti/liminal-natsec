@@ -52,6 +52,12 @@ export interface OsintSignal {
   url?: string;
   badges?: string[];
   media?: OsintSignalMedia;
+  /** Relevance score for "high-signal-first" sort (M-5).
+   *  - Danti web/social: score × |sentiment| (sentiment from -1..+1)
+   *  - Danti SHIP: score directly (MarineTraffic relevance)
+   *  - Danti IMAGE: score directly (Satellogic relevance)
+   *  - Adapters without a score field: undefined (sort lands them at bottom). */
+  relevance?: number;
 }
 
 export interface OsintSignalMedia {
@@ -668,6 +674,8 @@ interface DantiDocument {
   source?: string;
   authoredOn?: string;
   thumbnail?: string;
+  /** Danti's relevance score for the query — used by M-5 for high-signal-first sort. */
+  score?: number;
   asset?: {
     preview?: {
       href?: string;
@@ -694,6 +702,12 @@ interface DantiDocument {
     platform?: string;
     cloud_cover?: number;
     sensor?: string;
+  };
+  /** Per-doc properties — Danti carries sentiment here on web/social. */
+  properties?: {
+    sentiment?: number;     // -1..+1
+    references?: { references?: Array<{ name?: string; url?: string }> };
+    [k: string]: unknown;
   };
 }
 
@@ -734,7 +748,10 @@ function adaptDanti(): OsintSignal[] {
         title = doc.title?.trim() || doc.display?.summary?.slice(0, 120);
         const summary = doc.display?.summary?.replace(/\s+/g, " ").trim();
         detail = summary ? clip(summary, 240) : undefined;
-        url = doc.display?.link;
+        // M-6: prefer the first Seerist-resolved reference URL when present.
+        // Falls back to display.link if absent.
+        const refUrl = doc.properties?.references?.references?.[0]?.url;
+        url = refUrl ?? doc.display?.link;
         if (doc.display?.source) badges.push(doc.display.source);
       } else if (cat.category === "SHIP") {
         const ship = doc.display?.ship_name?.trim();
@@ -768,6 +785,22 @@ function adaptDanti(): OsintSignal[] {
 
       if (!title) continue;
 
+      // M-5: high-signal-first relevance for the OSINT feed sort.
+      //   web/social: score × |sentiment|  (sentiment-loaded news lifts up)
+      //   ship/image: score directly       (Danti's own relevance)
+      let relevance: number | undefined;
+      const score = typeof doc.score === "number" ? doc.score : undefined;
+      const sentiment = typeof doc.properties?.sentiment === "number"
+        ? doc.properties.sentiment
+        : undefined;
+      if (cat.category === "WEB_ARTICLE" || cat.category === "SOCIAL_MEDIA") {
+        if (score != null) {
+          relevance = sentiment != null ? score * Math.abs(sentiment) : score;
+        }
+      } else if (score != null) {
+        relevance = score;
+      }
+
       out.push({
         id: `danti:${cat.category}:${id}`,
         source: "DANTI",
@@ -778,6 +811,7 @@ function adaptDanti(): OsintSignal[] {
         timestamp: safeISO(doc.authoredOn),
         url,
         badges: badges.length > 0 ? badges : undefined,
+        relevance,
         media: cat.category === "IMAGE"
           ? dantiImagePreview(doc) ? {
             type: "image",

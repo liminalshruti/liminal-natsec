@@ -41,13 +41,14 @@
 //        evidence nodes via server route
 
 import marad from "../../../fixtures/maritime/live-cache/dark-vessel-marad-2026-004-overlap.json" with { type: "json" };
+import dantiShips from "../../../fixtures/maritime/live-cache/danti-hormuz-ship-best-size-200.json" with { type: "json" };
 
 export interface DraftCandidateSignal {
   id: string;
   /** Human-readable label for the signal — appears as the chip text. */
   label: string;
   /** What kind of signal is this — drives the icon + color. */
-  kind: "ais-gap" | "sanctions" | "advisory" | "imagery" | "osint";
+  kind: "ais-gap" | "sanctions" | "advisory" | "imagery" | "osint" | "ship-vessel";
   /** One-line summary the operator reads to decide whether to attach. */
   summary: string;
   /** Source citation — same Path γ shape used everywhere else. */
@@ -56,6 +57,29 @@ export interface DraftCandidateSignal {
   source_provider: string;
   /** Whether the signal is currently attached to the draft case. */
   attached: boolean;
+  /** Optional vessel-card data — when present, the signal renders as a
+   *  richer card with MMSI, IMO, flag, port-of-origin, destination, length.
+   *  Only set on `kind: "ship-vessel"` signals (real Danti MarineTraffic
+   *  records). M-1 fast-follow on the AI-draft case. */
+  vessel?: {
+    name: string;
+    mmsi?: string;
+    imo?: string;
+    flag?: string;
+    length_m?: number;
+    speed_kn?: number;
+    course_deg?: number;
+    last_port?: string;
+    current_port?: string;
+    destination?: string;
+    eta?: string;
+    /** lat/lon of the most recent AIS ping. */
+    lat?: number;
+    lon?: number;
+    /** Why this vessel is interesting — derived heuristic, NOT an
+     *  AI-asserted claim. Just shows the operator the AI's reasoning. */
+    flag_note?: string;
+  };
 }
 
 export interface DraftCase {
@@ -134,15 +158,105 @@ const sanctionsSignal: DraftCandidateSignal = {
   attached: false
 };
 
+// M-1: Real ship-vessel candidate signals from Shayaun's just-shipped Danti
+// SHIP corpus (commit 6918a50, ~10,000 MarineTraffic records over the AOI).
+// We pre-pick 6 vessels with diverse flags-of-convenience (PA / MT / LR /
+// KN / CK / CY) — exactly the kind of FOC pattern a sanctions-evasion case
+// would surface. The AI's "rationale" for selecting these is the FOC flag,
+// the vessel size class, and the corridor activity. Each carries full
+// vessel-card data so the operator sees real ship name, MMSI, IMO, ports,
+// destination on the chip — not just a placeholder.
+
+interface DantiShipDoc {
+  documentId?: string;
+  geometry?: { coordinates?: number[] };
+  properties?: Record<string, string | undefined>;
+}
+
+interface DantiCategoryShape {
+  category?: string;
+  documents?: DantiShipDoc[];
+}
+
+interface DantiCacheShape {
+  body?: { resultDocuments?: DantiCategoryShape[] };
+}
+
+// Hand-picked MMSIs + reasons. MMSIs match real entries in the cache;
+// looked up by Python preview at PR-time to avoid expensive runtime
+// filtering on every render. Order mirrors the score-sorted Danti results.
+const FEATURED_VESSEL_MMSIS: Array<{ mmsi: string; flag_note: string }> = [
+  { mmsi: "352005822", flag_note: "Panama-flagged tanker · 224.8m · transiting Hormuz–UAE" },
+  { mmsi: "229706000", flag_note: "Malta flag · Saudi-loaded · KFK→Jeddah corridor" },
+  { mmsi: "636023725", flag_note: "Liberia flag · destination 'CHINA SHIP0WNER' (sic)" },
+  { mmsi: "341317000", flag_note: "Saint Kitts flag · KFK anchorage · sub-100m" },
+  { mmsi: "518998467", flag_note: "Cook Islands flag · last port Khor al-Zubair (Iraq)" },
+  { mmsi: "212851000", flag_note: "Cyprus flag · Umm Al Quwain dry-docked · 121m" }
+];
+
+function buildVesselSignals(): DraftCandidateSignal[] {
+  const cache = dantiShips as DantiCacheShape;
+  const shipCat = cache.body?.resultDocuments?.find((c) => c.category === "SHIP");
+  const docs: DantiShipDoc[] = shipCat?.documents ?? [];
+
+  // Index docs by MMSI for fast pick.
+  const byMmsi = new Map<string, DantiShipDoc>();
+  for (const doc of docs) {
+    const mmsi = doc.properties?.mmsi;
+    if (mmsi) byMmsi.set(mmsi, doc);
+  }
+
+  const signals: DraftCandidateSignal[] = [];
+  FEATURED_VESSEL_MMSIS.forEach((featured, i) => {
+    const doc = byMmsi.get(featured.mmsi);
+    if (!doc) return;
+    const p = doc.properties ?? {};
+    const coords = doc.geometry?.coordinates ?? [];
+    const lon = typeof coords[0] === "number" ? coords[0] : undefined;
+    const lat = typeof coords[1] === "number" ? coords[1] : undefined;
+    const name = p.ship_name ?? "UNKNOWN";
+    const flag = p.flag ?? "??";
+    signals.push({
+      id: `sig:vessel:${featured.mmsi}`,
+      label: `${name} · MMSI ${featured.mmsi} · ${flag}`,
+      kind: "ship-vessel",
+      summary: featured.flag_note,
+      source_file: "fixtures/maritime/live-cache/danti-hormuz-ship-best-size-200.json",
+      source_pointer: `$.body.resultDocuments[?(@.category=='SHIP')].documents[?(@.properties.mmsi=='${featured.mmsi}')]`,
+      source_provider: "Danti · MarineTraffic AIS",
+      attached: false,
+      vessel: {
+        name,
+        mmsi: featured.mmsi,
+        imo: p.imo,
+        flag,
+        length_m: p.length ? Number(p.length) : undefined,
+        speed_kn: p.speed ? Number(p.speed) : undefined,
+        course_deg: p.course ? Number(p.course) : undefined,
+        last_port: p.last_port,
+        current_port: p.current_port,
+        destination: p.destination,
+        eta: p.eta,
+        lat,
+        lon,
+        flag_note: featured.flag_note
+      }
+    });
+  });
+  return signals;
+}
+
+const vesselSignals: DraftCandidateSignal[] = buildVesselSignals();
+
 export const DRAFT_CASE: DraftCase = {
   id: "case:draft:marad-2026-004-cluster",
   title: "Iran-corridor dark-vessel cluster",
-  tagline: `${data.summary?.intentional_disabling_count ?? rows.length} vessels · MARAD 2026-004 overlap`,
+  tagline: `${(data.summary?.intentional_disabling_count ?? rows.length) + vesselSignals.length} vessels · MARAD 2026-004 overlap`,
   rationale:
-    "Liminal Agents flagged a cluster of intentional-broadcast-gap events overlapping the active MARAD MSCI 2026-004 advisory corridor. Vessels exhibit threat indicators consistent with sanctions evasion in the Strait of Hormuz / Gulf of Oman.",
+    "Liminal Agents flagged a cluster of intentional-broadcast-gap events overlapping the active MARAD MSCI 2026-004 advisory corridor. Vessels exhibit threat indicators consistent with sanctions evasion in the Strait of Hormuz / Gulf of Oman. Cross-cited against the live Danti MarineTraffic feed: 6 vessels under flags-of-convenience match the corridor profile.",
   confidence: 0.72,
   status: "draft",
-  candidateSignals: [advisorySignal, ...candidatesFromRows, sanctionsSignal]
+  candidateSignals: [advisorySignal, ...candidatesFromRows, ...vesselSignals, sanctionsSignal]
 };
 
 /** Threshold of attached signals that activates the promote-to-case action. */
