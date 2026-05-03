@@ -21,6 +21,7 @@ test-results/
 .env.*.local
 config.ini
 config.local.ini
+details.md
 
 # OS
 .DS_Store
