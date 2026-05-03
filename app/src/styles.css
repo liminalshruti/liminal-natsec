@@ -7106,3 +7106,149 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
     animation-duration: 200ms;
   }
 }
+
+/* ─── B-2 GHOST SHIPS — attached signals materialize on the map ──────────
+   For each signal attached via drop, SignalGhostShips renders a small
+   instrument-glyph marker at the drop coordinates. Two phases per ghost:
+   materialize (halo expands, glyph fades in + scales 0.4 → 1.0), then
+   settled (low-opacity hold with subtle pulse). Detach fades out 360ms.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.signal-ghosts {
+  position: absolute;
+  inset: 0;
+  z-index: 55; /* below the drop zone (60), above the map (1) */
+  pointer-events: none;
+}
+
+.signal-ghost {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: rgba(8, 9, 12, 0.7);
+  backdrop-filter: blur(8px) saturate(1.4);
+  -webkit-backdrop-filter: blur(8px) saturate(1.4);
+  border: 1px solid rgba(122, 169, 255, 0.4);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-secondary);
+  transform: translate(-50%, -50%);
+  opacity: 0.55;
+  transition: opacity 360ms ease-out;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35),
+              0 0 12px rgba(122, 169, 255, 0.18);
+}
+
+/* Tone variants by signal kind. */
+.signal-ghost[data-tone="contested"] {
+  border-color: rgba(224, 153, 107, 0.55);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35),
+              0 0 14px rgba(224, 153, 107, 0.22);
+}
+
+.signal-ghost[data-tone="refused"] {
+  border-color: rgba(236, 117, 88, 0.6);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35),
+              0 0 14px rgba(236, 117, 88, 0.25);
+}
+
+.signal-ghost[data-tone="decision"] {
+  border-color: rgba(122, 169, 255, 0.55);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35),
+              0 0 14px rgba(122, 169, 255, 0.22);
+}
+
+.signal-ghost--materializing {
+  animation: ghost-materialize 600ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes ghost-materialize {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  60% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.signal-ghost--settled {
+  animation: ghost-pulse 3.6s ease-in-out infinite;
+}
+
+@keyframes ghost-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35),
+                0 0 12px rgba(122, 169, 255, 0.18);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35),
+                0 0 18px rgba(122, 169, 255, 0.28);
+  }
+}
+
+.signal-ghost__halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 2px solid rgba(122, 169, 255, 0.6);
+  animation: ghost-halo 600ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes ghost-halo {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.signal-ghost__icon {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-decision);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.signal-ghost[data-tone="contested"] .signal-ghost__icon {
+  color: var(--color-contested);
+}
+
+.signal-ghost[data-tone="refused"] .signal-ghost__icon {
+  color: var(--color-refused);
+}
+
+.signal-ghost__label {
+  white-space: nowrap;
+  font-size: 9px;
+  color: var(--color-ink-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signal-ghost--materializing,
+  .signal-ghost--settled,
+  .signal-ghost__halo {
+    animation: none;
+  }
+  .signal-ghost--materializing {
+    opacity: 0.55;
+  }
+}

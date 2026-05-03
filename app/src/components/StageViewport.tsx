@@ -1,13 +1,18 @@
 import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { DataSourcesChips } from "./DataSourcesChips.tsx";
-import { DemoPrompt } from "./DemoPrompt.tsx";
+// DemoPrompt removed pending annotation-system rework. The phase-triggered
+// handwritten stage overlay was the existing in-app annotation system. User
+// feedback: annotations should sit next-to specific UI elements (not block),
+// extend beyond the stage to other panels, and survive a no-narration video.
+// The current overlay did none of those — ripped pending redesign.
 import { MapInstrumentBezels } from "./MapInstrumentBezels.tsx";
 import { MapLayers } from "./MapLayers.tsx";
 import { MapOverlays } from "./MapOverlays.tsx";
 import { MapTelemetryHud } from "./MapTelemetryHud.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
 import { SignalDropZone } from "./SignalDropZone.tsx";
+import { SignalGhostShips } from "./SignalGhostShips.tsx";
 import { StageBackdrop } from "./StageBackdrop.tsx";
 
 interface StageViewportProps {
@@ -94,18 +99,26 @@ export function StageViewport({
                 Datadog/Grafana register applied to a defense surface — makes
                 the stage read as operational instrument, not abstract viz. */}
             <MapTelemetryHud scenario={scenario} scenarioState={scenarioState} />
-            {/* DemoPrompt overlays editorial annotations on each phase change.
-                Hand-lettered (Liminal Hand → Caveat fallback). ESC dismisses.
-                Auto-fades after 8s so the operator can dwell on the moment
-                without prompt residue, but the prompt stays at low opacity for
-                glance-recovery. */}
-            <DemoPrompt phase={scenarioState?.phase ?? null} />
+            {/* DemoPrompt deliberately removed — the phase-triggered handwritten
+                overlay was the only in-app annotation surface. User feedback:
+                annotations should be tied to specific UI elements (next-to,
+                not blocking), extend across panels (not just stage), and
+                survive a no-narration recording. Pending full annotation
+                system redesign — see docs/annotation-rework-brief.md. */}
             {/* SignalDropZone: B-1 fast-follow. Invisible-by-default
                 overlay that lights up when a Liminal signal is being
                 dragged from the DraftCaseDetail signal list. On drop,
                 fires toggleAttach + emits SIGNAL_ATTACHED_EVENT for
                 B-2's ghost-ship renderer to pick up. */}
             <SignalDropZone />
+            {/* SignalGhostShips: B-2 fast-follow. Renders a ghost-ship
+                marker at the drop coordinates for each attached signal.
+                Listens to SIGNAL_ATTACHED_EVENT (fired by SignalDropZone).
+                Two phases per ghost: materializing (halo expands, ship
+                fades in over 600ms), then settled (low-opacity hold with
+                subtle pulse). Detaches via toggleAttach OR case promotion
+                fade out over 360ms. */}
+            <SignalGhostShips />
           </>
         )}
       </div>
