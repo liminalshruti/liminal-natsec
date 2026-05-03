@@ -2,9 +2,21 @@
 
 **Evidence integrity before command.** A desktop application for contested target custody.
 
-Liminal Custody maintains custody of contested targets by protecting the evidence chain before it becomes command action. Built for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, May 2–3 2026).
+> **Maven is the foundation. We are the substrate.**
+>
+> Liminal Custody maintains custody of contested targets by protecting the evidence chain before it becomes command action. Every recommendation traces back to evidence; every refusal is structurally enforced; every operator correction becomes durable doctrine.
+
+Built for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, May 2–3 2026).
 
 > Command systems start too late. Liminal Custody protects the evidence before it becomes command — and refusal is structurally enforced, not requested.
+
+---
+
+**Judge or investor reading this for the first time?** → [`docs/liminal-custody-onepager.md`](docs/liminal-custody-onepager.md) — the one-pager. OGSM-embedded.
+
+**Looking at how we got here?** → [`docs/maven-teardown.md`](docs/maven-teardown.md) — the Maven Smart System reverse-engineering and framework-upgrade rationale.
+
+---
 
 ## What this is
 
@@ -23,6 +35,36 @@ Most command-and-control systems start *after* signals reach command. They assum
 - **Custody before conclusion.** The system preserves competing hypotheses instead of declaring intent.
 - **Refusal as an invariant.** Every AI specialist output passes through a server-side structural guard. Citation minimums, evidence-type requirements, and posterior thresholds enforce refusal. AI cannot overclaim.
 - **Review memory as a moat.** When an operator writes a correction, it becomes a durable rule that changes the next case. Human judgment compounds.
+
+## Architecture
+
+```
+                        SUBSTRATE / X
+              raw multi-domain observations
+              messy, partial, contradictory
+
+                              ↓
+
+                   EVIDENCE CUSTODY LOOP   ← Liminal Custody
+                       custody hypotheses
+                       source integrity check
+                       structural refusal (server-side guard)
+                       provenance trace
+                       review memory
+
+                              ↓
+
+                       COMMAND / CONTROL   ← Maven, CJADC2, existing stack
+                       human chooses next action
+
+                              ↓
+
+                       REVIEW MEMORY / Y
+                       rule saved, future case changed,
+                       durable operating doctrine
+```
+
+We slot between substrate and command. We do not replace Maven. We protect the layer beneath it.
 
 ## Submission
 
