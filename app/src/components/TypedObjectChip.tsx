@@ -82,8 +82,18 @@ const KIND_LABEL: Record<TypedObjectKind, string> = {
 function structureSlug(kind: TypedObjectKind, id: string): string {
   const prefix = `${kind}:`;
   const remainder = id.startsWith(prefix) ? id.slice(prefix.length) : id;
-  // Render foo:bar:baz as foo / bar / baz to make the structure legible.
-  return remainder.split(":").join(" / ");
+  // SHIP-4: filename-as-title register. Per INSPO_TO_SURFACE_MAP.md §SHIP-4
+  // (Source 9 · macbethAI), every operator-facing identifier wears
+  // `snake_case_` form with trailing underscore — signals "the system's
+  // own log of itself" rather than human-titled label. Hyphens, colons,
+  // and slashes collapse to single underscores; trailing underscore is
+  // appended as a register cue.
+  const snake = remainder
+    .toLowerCase()
+    .replace(/[:/\-\s]+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_|_$/g, "");
+  return snake ? `${snake}_` : "";
 }
 
 function statusClass(status: TypedObjectStatus | null | undefined): string {
