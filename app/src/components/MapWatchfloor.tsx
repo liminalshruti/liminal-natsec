@@ -179,72 +179,81 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
   }, [isControlled, load, internalState?.isPlaying]);
 
   // --- Construct the MapLibre instance ------------------------------------
+  // React 18 StrictMode in dev runs effects twice (mount → cleanup → mount).
+  // For imperative APIs like MapLibre that touch a single DOM container, the
+  // double-mount can leave the second instance in a half-initialised state
+  // — observable here as `transform.zoom = NaN`, broken `project()`, and
+  // missing layer renders. Defer construction past the cleanup with rAF so
+  // only the surviving second mount actually constructs a map.
   useEffect(() => {
     if (load.kind !== "ready") return;
     if (!containerRef.current) return;
 
-    let map: maplibregl.Map;
-    try {
-      map = new maplibregl.Map({
-        container: containerRef.current,
-        style: buildMapStyle({ rasterTilesUrl: props.rasterTilesUrl }),
-        center: INITIAL_VIEW.center,
-        zoom: INITIAL_VIEW.zoom,
-        bearing: INITIAL_VIEW.bearing,
-        pitch: INITIAL_VIEW.pitch,
-        attributionControl: { compact: true }
-      });
-    } catch (err) {
-      setLoad({ kind: "error", error: err as Error });
-      return;
-    }
+    let cancelled = false;
+    let createdMap: maplibregl.Map | null = null;
 
-    mapRef.current = map;
-    detachFallbackRef.current = attachTileFailureRecovery(map);
-    setMapReady(false);
+    const rafId = requestAnimationFrame(() => {
+      if (cancelled || !containerRef.current) return;
 
-    // MapLibre v5 (5.24.x) intermittently constructs the map with
-    // transform.zoom = NaN even though both the style and constructor
-    // pass a valid zoom. That breaks map.project(), getZoom(), and any
-    // HTML overlay anchored via projection. Force a jumpTo immediately to
-    // realise a finite transform before anything else queues a camera op.
-    try {
-      map.jumpTo({ center: INITIAL_VIEW.center, zoom: INITIAL_VIEW.zoom });
-    } catch {
-      // ignore — constructor already set viable defaults if jumpTo can't fire
-    }
-
-    map.on("load", () => {
-      map.addSource(SOURCES.staticGeoJson, {
-        type: "geojson",
-        data: load.fixture
-      });
-      map.addSource(SOURCES.heroPingsVisible, {
-        type: "geojson",
-        data: { type: "FeatureCollection", features: [] }
-      });
-      const initialPhase = effectiveState?.phase ?? 1;
-      const initialLayers = buildLayers({
-        phase: initialPhase,
-        selectedCaseId: props.selectedCaseId ?? null
-      });
-      for (const layer of initialLayers) {
-        map.addLayer(layer);
+      let map: maplibregl.Map;
+      try {
+        map = new maplibregl.Map({
+          container: containerRef.current,
+          style: buildMapStyle({ rasterTilesUrl: props.rasterTilesUrl }),
+          center: INITIAL_VIEW.center,
+          zoom: INITIAL_VIEW.zoom,
+          bearing: INITIAL_VIEW.bearing,
+          pitch: INITIAL_VIEW.pitch,
+          attributionControl: { compact: true }
+        });
+      } catch (err) {
+        setLoad({ kind: "error", error: err as Error });
+        return;
       }
-      setMapReady(true);
-      props.onMapReady?.(map);
+
+      createdMap = map;
+      mapRef.current = map;
+      detachFallbackRef.current = attachTileFailureRecovery(map);
+
+      // Belt-and-braces against MapLibre v5's occasional NaN transform on
+      // first construction.
+      try { map.jumpTo({ center: INITIAL_VIEW.center, zoom: INITIAL_VIEW.zoom }); } catch {}
+
+      map.on("load", () => {
+        if (cancelled) return;
+        map.addSource(SOURCES.staticGeoJson, {
+          type: "geojson",
+          data: load.fixture
+        });
+        map.addSource(SOURCES.heroPingsVisible, {
+          type: "geojson",
+          data: { type: "FeatureCollection", features: [] }
+        });
+        const initialPhase = effectiveState?.phase ?? 1;
+        const initialLayers = buildLayers({
+          phase: initialPhase,
+          selectedCaseId: props.selectedCaseId ?? null
+        });
+        for (const layer of initialLayers) {
+          map.addLayer(layer);
+        }
+        setMapReady(true);
+        props.onMapReady?.(map);
+      });
     });
 
     return () => {
+      cancelled = true;
+      cancelAnimationFrame(rafId);
       detachFallbackRef.current?.();
       detachFallbackRef.current = null;
-      try {
-        map.remove();
-      } catch {
-        // ignore — already torn down
+      if (createdMap) {
+        try { createdMap.remove(); } catch {}
       }
-      mapRef.current = null;
-      setMapReady(false);
+      if (mapRef.current === createdMap) {
+        mapRef.current = null;
+        setMapReady(false);
+      }
       lastFlownAlertIdRef.current = undefined;
       lastFlownCaseIdRef.current = undefined;
       lastFlownPhaseRef.current = null;
