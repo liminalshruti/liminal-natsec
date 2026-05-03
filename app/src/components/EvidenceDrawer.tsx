@@ -118,6 +118,29 @@ interface Citation {
   asset_bytes?: number;
 }
 
+/** SHIP-3: epistemic-state contract.
+ *  Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-3 (Source 5 · Aluan Wang ·
+ *  "draw with ink that's always wet"). Three states the typography carries:
+ *
+ *    wet     → mutable, custody-held, contested. The ink hasn't dried.
+ *              Status: WEAKENS or CONTRADICTS (the case is still being held).
+ *    drying  → specialist consensus forming, confidence in flux.
+ *              Status: SUPPORTS but confidence < 0.85 (in-flight commit).
+ *    dry     → committed, locked into archival custody.
+ *              Status: SUPPORTS and confidence >= 0.85 (verdict reached).
+ *
+ *  HARD CONSTRAINT (per spec §judge-cannot-distinguish-modes): this
+ *  derivation reads only from the evidence-link shape that's identical
+ *  across fixture-mode and AIP-mode. Source-data agnostic. */
+type EpistemicState = "wet" | "drying" | "dry";
+
+function epistemicStateFor(kind: EvidenceKind, confidence: number | undefined): EpistemicState {
+  if (kind === "weakens" || kind === "contradicts") return "wet";
+  // supports
+  if (confidence != null && confidence >= 0.85) return "dry";
+  return "drying";
+}
+
 function EvidenceCard({ link, kind }: EvidenceCardProps) {
   const [expanded, setExpanded] = useState(false);
   const data = (link.node.data ?? {}) as Record<string, unknown>;
@@ -126,6 +149,7 @@ function EvidenceCard({ link, kind }: EvidenceCardProps) {
   const confidence = link.edge.provenance?.confidence;
   const citation = data.citation as Citation | undefined;
   const citationSecondary = data.citation_secondary as Citation | undefined;
+  const epistemicState = epistemicStateFor(kind, confidence);
   return (
     <div
       className="evidence-card"
@@ -140,6 +164,7 @@ function EvidenceCard({ link, kind }: EvidenceCardProps) {
       }}
       data-expanded={expanded}
       data-kind={kind}
+      data-epistemic={epistemicState}
     >
       <div className="evidence-card__head">
         <TypedObjectChip
@@ -148,6 +173,21 @@ function EvidenceCard({ link, kind }: EvidenceCardProps) {
           label={link.node.title}
           size="sm"
         />
+        <span
+          className={`evidence-card__epistemic evidence-card__epistemic--${epistemicState}`}
+          title={
+            epistemicState === "wet"
+              ? "Wet · custody-held, contested. The ink hasn't dried."
+              : epistemicState === "drying"
+              ? "Drying · specialist consensus forming. Confidence in flux."
+              : "Dry · committed to archival custody. Verdict reached."
+          }
+        >
+          <span className="evidence-card__epistemic-glyph" aria-hidden="true">
+            {epistemicState === "wet" ? "○" : epistemicState === "drying" ? "◐" : "●"}
+          </span>
+          <span className="evidence-card__epistemic-label">{epistemicState}</span>
+        </span>
       </div>
       {(confidence != null || source) && (
         <div className="evidence-card__meta">
