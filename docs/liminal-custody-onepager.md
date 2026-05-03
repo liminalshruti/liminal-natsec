@@ -28,7 +28,7 @@ This framework is *not* features × categories. It is **operator decision × evi
 
 > A maritime watch officer at U.S. 5th Fleet, 0200 local, monitoring AIS disruptions near a strategic chokepoint in the Strait of Hormuz, deciding whether a dark-gap reappearance under a new identity deserves immediate escalation or second-source collection.
 
-The 5th Fleet AOR includes Hormuz and Bab al-Mandab — both have *documented* AIS spoofing incidents (Iran-attributed, since ~2019). Naming the unit, the time of day, and the specific decision is the integrity test of a defense pitch. Maven's one-pager doesn't name a single operator. Ours leads with one.
+The 5th Fleet AOR includes Hormuz and Bab al-Mandab — both with documented AIS spoofing across multiple state and non-state actors (2019 onward). Naming the unit, the time of day, and the specific decision is the integrity test of a defense pitch. Specificity, not abstraction.
 
 ---
 
@@ -95,9 +95,9 @@ Refusal is not a brake. It is a server-side invariant that compounds with every 
 
 **Shruti Rajagopal** — Founder, Liminal. Pre-decisional infrastructure for unresolved context. Seven years PM at Asana, Cloudflare, Robinhood, Ancestry. UC Berkeley Cognitive Science & CS.
 
-**Shayaun (Sean) Nejad** — Co-founder, engineering. **OffSec-certified, top 100 globally on Hack The Box.** Signal-chain compromise, intrusion, and offensive security is his domain. The structural guard is his architecture.
+**Shayaun (Sean) Nejad** — Co-founder, engineering. **OffSec-certified offensive-security professional, top 100 globally on Hack The Box.** The structural guard is his architecture.
 
-This is the team that can claim *"we treat the evidence chain like an attack surface, because we know what it looks like to attack one."*
+This is the team that can claim: *we treat the evidence chain as a defensible attack surface — Shayaun's offensive-security background is the integrity layer most defense AI products lack.*
 
 ---
 
@@ -179,7 +179,7 @@ It **is not** a slide. The hackathon explicitly forbids presentations during jud
 
 ## Provenance
 
-- **Maven teardown rationale:** `docs/maven-teardown.md`
+- **Maven analysis and complementary positioning:** `docs/maven-analysis.md`
 - **Engineering canon:** `docs/TECHNICAL_PLAN.md` (Shayaun's 1441-line spec)
 - **Build sequencing:** `docs/v3-implementation-plan.md`, `docs/v3-sequencing-plan.md`
 - **Pitch scripts:** `docs/round1-round2-script.md`

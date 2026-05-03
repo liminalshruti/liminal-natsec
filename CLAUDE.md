@@ -29,10 +29,9 @@ Positioning + pitch canon:
 - `docs/v4-judge-calibrated-demo.md` — operator persona, procurement, judge-by-judge framing
 - `docs/q-and-a.md` — 30-second answers to predictable judge questions
 - `docs/round1-round2-script.md` — branched 3-min and 5-min pitch scripts
-- `docs/shayaun-handoff.md` — phone-readable summary for Shayaun
 - `docs/integration-state.md` — module → demo-spine → pitch-language map (read this first if you're new to the repo)
 - `docs/liminal-custody-onepager.md` — front-of-room one-pager + back-of-room OGSM
-- `docs/maven-teardown.md` — Maven Smart System teardown + framework-upgrade rationale
+- `docs/maven-analysis.md` — Maven Smart System analysis and complementary positioning
 - `docs/reference/maven-onepager-annotated.pdf` — annotated booth one-pager (the artifact this product structurally answers)
 
 ## Hard rules

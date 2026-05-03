@@ -14,7 +14,7 @@ Built for the 3rd Annual NatSec Hackathon (Cerebral Valley × Army xTech, May 2�
 
 **Judge or investor reading this for the first time?** → [`docs/liminal-custody-onepager.md`](docs/liminal-custody-onepager.md) — the one-pager. OGSM-embedded.
 
-**Looking at how we got here?** → [`docs/maven-teardown.md`](docs/maven-teardown.md) — the Maven Smart System reverse-engineering and framework-upgrade rationale.
+**Looking at the analytical foundation?** → [`docs/maven-analysis.md`](docs/maven-analysis.md) — Maven Smart System analysis and complementary positioning.
 
 ---
 
@@ -109,7 +109,7 @@ Node fallback for tests: `npm test`.
 
 **Start here if you're a judge or a follow-on conversation:**
 - `docs/liminal-custody-onepager.md` — the one-pager. OGSM-embedded. Read this first.
-- `docs/maven-teardown.md` — Maven Smart System reverse-engineering + framework upgrade rationale
+- `docs/maven-analysis.md` — Maven Smart System analysis and complementary positioning
 - `docs/reference/maven-onepager-annotated.pdf` — annotated Palantir/Maven booth one-pager (the artifact this product structurally answers)
 
 **If you're contributing to the build:**
@@ -120,12 +120,11 @@ Node fallback for tests: `npm test`.
 - `docs/v4-judge-calibrated-demo.md` — operator persona, procurement path, judge-by-judge
 - `docs/round1-round2-script.md` — branched pitch scripts (Maven-invisible Round 1, Maven-augmenting Round 2)
 - `docs/q-and-a.md` — 30-second answers to predictable judge questions
-- `docs/shayaun-handoff.md` — co-founder handoff brief
 
 ## Team
 
 **Shruti Rajagopal** — Founder, Liminal. Pre-decisional infrastructure for unresolved context.
-**Shayaun (Sean) Nejad** — Co-founder, engineering. OffSec-certified, top 100 globally on Hack The Box. Signal-chain compromise and offensive security.
+**Shayaun (Sean) Nejad** — Co-founder, engineering. OffSec-certified offensive-security professional, top 100 globally on Hack The Box.
 
 ## Never-cut invariants
 

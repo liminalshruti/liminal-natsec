@@ -51,3 +51,6 @@ out/
 release/
 electron/dist/
 electron/node_modules/
+
+# Internal-only docs (full / pre-sanitization versions; stay local, never push)
+docs/internal/
