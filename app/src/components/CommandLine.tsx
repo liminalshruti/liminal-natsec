@@ -187,6 +187,7 @@ export const CommandLine = forwardRef<HTMLDivElement, CommandLineProps>(
 
   return (
     <footer ref={ref} className="command-line" role="contentinfo" tabIndex={-1}>
+      <h2 className="visually-hidden">Command</h2>
       {askResult && <AskPanel result={askResult} onDismiss={dismissAsk} />}
       <span className="command-line__prompt" aria-hidden>
         &gt;

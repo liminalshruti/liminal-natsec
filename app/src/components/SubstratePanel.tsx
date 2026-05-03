@@ -43,7 +43,9 @@ export const SubstratePanel = forwardRef<HTMLElement, SubstratePanelProps>(
               an operator-grade label ("on the floor / watching"), not as an
               inventory chip. The count below clarifies what's currently being
               watched. */}
-          <span>On the watchfloor</span>
+          <h2>
+            On the watchfloor
+          </h2>
           <span className="tag">
             {alerts.length === 0
               ? "watching"

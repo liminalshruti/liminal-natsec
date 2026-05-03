@@ -53,7 +53,7 @@ export const WorkingPanel = forwardRef<HTMLElement, WorkingPanelProps>(
         style={{ display: "flex", flexDirection: "column", minHeight: 0 }}
       >
       <div className="panel__header">
-        <span>Working Panel</span>
+        <h2>Working</h2>
         <span className="tag">case</span>
       </div>
       <div className="working__content">
