@@ -41,4 +41,14 @@ if (maybeBun && process.argv[1] && import.meta.url.endsWith(process.argv[1])) {
     fetch: app.fetch
   });
   console.log(`SeaForge Tier B server listening on http://localhost:${port}`);
+  const watchfloorMode =
+    process.env.WATCHFLOOR_MODE === "demo" || process.env.WATCHFLOOR_MODE === "fixture"
+      ? "demo"
+      : "real";
+  console.log(
+    `[liminal-custody] default scenario mode = "${watchfloorMode}" ` +
+      (watchfloorMode === "real"
+        ? "(OSINT-derived Hormuz dataset — pitched demo view)"
+        : "(synthetic alara-01 fixture — override; not the pitched view)")
+  );
 }

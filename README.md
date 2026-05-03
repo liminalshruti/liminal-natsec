@@ -88,6 +88,24 @@ Node-only fallback for tests (no Bun required): `npm test` and `npm run build`.
 
 Local configuration goes in `config.ini` (gitignored). Copy `config.example.ini` to `config.ini` and fill in real values locally. Every credential field is empty in the template; the demo runs without any of them.
 
+### Scenario mode (read this if your view looks different from the pitched demo)
+
+The watchfloor has two scenario datasets, controlled by one flag.
+
+| Mode | Default? | Source | What you'll see |
+|---|---|---|---|
+| `real` | **yes** | `fixtures/maritime/real/*.json` (OSINT-derived) | Hormuz dataset — HUGE identity case (OFAC vs GFW MMSI mismatch), sanctioned fleet overlay, loitering clusters, Iran last-port laundering, ROSHAK signal, grey-market routing. **This is the pitched view that judges and video viewers should see.** |
+| `demo` | no — explicit override only | `fixtures/maritime/*.json` (synthetic alara-01) | Single dark-gap case (MMSI-111 → MMSI-222) — historical narrative scaffolding, kept for regression and onboarding only. |
+
+Both client and server default to `real`. The flag is honored in this priority order:
+
+1. URL query: `?mode=real|demo` on `/scenario/state`
+2. Server env: `WATCHFLOOR_MODE=real|demo` (`bun run dev:server`)
+3. Vite env: `VITE_WATCHFLOOR_MODE=real|demo` (`bun run dev:app`) — typically lives in `app/.env.local`
+4. Hardcoded default: `real`
+
+If your view doesn't match Shayaun's screen recording, check the **SOURCE** pill on the topbar HUD (`MapTelemetryHud`). It reads `REAL` for the pitched dataset and `FIXTURE` for the synthetic override. Both `dev:app` and `dev:server` print the active mode on startup; if you see `mode = "demo"`, search your env for an override and remove it.
+
 ---
 
 ## Architecture

@@ -37,13 +37,25 @@ interface FixtureNode {
   data?: Record<string, unknown>;
 }
 
-// Default to the real-cache path. If the local real server is empty, project
-// the bundled cached cases so the watchfloor never boots into a dead demo.
+// Default to the real-cache path. The pitched demo runs against the OSINT-
+// derived Hormuz dataset (HUGE identity case + sanctioned fleet + loitering
+// clusters + Iran last-port). The synthetic alara-01 fixture is reachable
+// only by explicit override (VITE_WATCHFLOOR_MODE=demo) and is NOT what
+// judges or video-submission viewers should land on.
 const WATCHFLOOR_MODE =
   ((import.meta as unknown as { env?: Record<string, string> }).env
     ?.VITE_WATCHFLOOR_MODE) ?? "real";
 const SERVER_PATH = `/scenario/state?mode=${WATCHFLOOR_MODE}`;
 const FETCH_TIMEOUT_MS = 1500;
+
+if (typeof console !== "undefined") {
+  console.info(
+    `[liminal-custody] watchfloor mode = "${WATCHFLOOR_MODE}" ` +
+      (WATCHFLOOR_MODE === "real"
+        ? "(OSINT-derived Hormuz dataset — pitched demo view)"
+        : "(synthetic alara-01 fixture — override; not the pitched view)")
+  );
+}
 
 export interface LoadedScenario {
   source: "server" | "fallback";
