@@ -2,7 +2,10 @@ import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { DataSourcesChips } from "./DataSourcesChips.tsx";
 import { DemoPrompt } from "./DemoPrompt.tsx";
+import { MapInkBase } from "./MapInkBase.tsx";
+import { MapInstrumentBezels } from "./MapInstrumentBezels.tsx";
 import { MapLayers } from "./MapLayers.tsx";
+import { MapOverlays } from "./MapOverlays.tsx";
 import { MapTelemetryHud } from "./MapTelemetryHud.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
 import { StageBackdrop } from "./StageBackdrop.tsx";
@@ -68,6 +71,24 @@ export function StageViewport({
               fixtureUrl={scenario?.state.mode === "real" ? scenario.state.tracksUrl : undefined}
               style={{ position: "absolute", inset: 0 }}
             />
+            {/* MapInkBase: ink-drawn Hormuz coastline at low opacity over the
+                MapLibre raster basemap. Implements the May-1 transcript's
+                "ink-drawn map of the strait of Hormuz, my Liminal aesthetic"
+                + the overhead-projector idea (translucent layer on top of the
+                geographic substrate). Pure SVG, doesn't touch MapLibre. */}
+            <MapInkBase />
+            {/* MapOverlays: cache-driven translucent intel layers (GFW gaps,
+                OpenSanctions, NAVAREA, Sentinel SAR). Listens to MapLayers
+                via the `liminal:map-layers-changed` window event. Each layer
+                projects real cache geometry to the AOI bbox. The overhead-
+                projector "stack of transparent sheets" idea, made functional. */}
+            <MapOverlays />
+            {/* MapInstrumentBezels: ASCII corner brackets + edge tick marks
+                + center crosshair + AOI coordinate readouts. Makes the stage
+                read as a radar viewport, not a generic map. Per the May-1
+                transcript: "ASCII rendered map / radar-style chart... has
+                this nostalgic codebreaker thing." */}
+            <MapInstrumentBezels />
             <DataSourcesChips />
             {/* MapLayers: layer-toggle control strip — multi-modal overhead-
                 projector-transparency idea from the workshop substrate.
