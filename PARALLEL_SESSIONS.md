@@ -5,6 +5,26 @@ file is the single source of truth for who's doing what. **Update your
 session's row before claiming work.** Other sessions read this file
 before deciding what to touch.
 
+## ⚠️ PARTITION VIOLATION DISCOVERED — read before committing
+
+All 5 sessions share the SAME working directory. When Sx runs `git add`
+without explicitly listing files, OR uses `git add .` / `git add -A` /
+`git commit -a`, it picks up OTHER sessions' uncommitted WIP files.
+
+This happened with S1+S2: S2's full output (ReplayControls.tsx,
+CommandLine.tsx, styles.css S2 region) ended up bundled into S1's
+commit (`8000f89`). User accepted as-is for this round.
+
+**To prevent recurrence (S3/S4/S5):**
+
+1. **NEVER `git add .` or `git add -A` or `git commit -a`.** Always
+   list YOUR specific files: `git add app/src/components/MyComponent.tsx ...`
+2. **Run `git status` before staging.** If you see files you don't own,
+   you're sharing the tree with another session. Stage only your owned set.
+3. **If you accidentally pull another session's WIP into your `git add`,
+   `git restore --staged <their-file>` to unstage** before commit.
+4. The file partition table below is the source of truth for who owns what.
+
 ## Hard rules — DO NOT VIOLATE
 
 1. **`git pull --ff-only`** before EVERY commit. If pull fails (commits
@@ -52,7 +72,7 @@ not touch hooks, do not touch any other section of the file.
 | Session | Status | Started | Committed | Notes |
 |---|---|---|---|---|
 | S1 | shipped | 2026-05-02T00:00Z | 2026-05-02T00:00Z | Named-operator card + Workflow strip |
-| S2 | claimed | 2026-05-03T04:55Z | — | replay controls (prev/play-pause/next) |
+| S2 | shipped | 2026-05-03T04:55Z | bundled into 8000f89 | replay controls (prev/play-pause/next). Work landed inside S1's commit due to shared working tree — files: ReplayControls.tsx, CommandLine.tsx, AppShell.tsx prop wire, S2 CSS region. |
 | S3 | not started | — | — | — |
 | S4 | not started | — | — | — |
 | S5 | not started | — | — | — |
