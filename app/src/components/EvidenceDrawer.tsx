@@ -168,6 +168,23 @@ function EvidenceCard({ link, kind }: EvidenceCardProps) {
       )}
       {expanded && (
         <div className="evidence-card__expanded">
+          {/* Drill trail — teaches the structure of where the operator just
+              landed. Reads as "from case → through evidence → into the cited
+              source on disk." Same spine as a Palantir Workshop breadcrumb.
+              Renders only when expanded so the chip itself stays clean. */}
+          <div className="evidence-card__drill-trail" aria-label="drill path">
+            <span>case</span>
+            <span className="evidence-card__drill-trail-sep" aria-hidden="true">›</span>
+            <span>evidence</span>
+            {citation && (
+              <>
+                <span className="evidence-card__drill-trail-sep" aria-hidden="true">›</span>
+                <span className="evidence-card__drill-trail-leaf">
+                  {citation.source_provider}
+                </span>
+              </>
+            )}
+          </div>
           {(summary || link.edge.provenance?.rationale) && (
             <div className="evidence-card__rationale">
               {summary ?? link.edge.provenance?.rationale}
