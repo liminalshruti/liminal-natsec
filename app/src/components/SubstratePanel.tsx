@@ -20,8 +20,19 @@ export function SubstratePanel({
   return (
     <aside className="panel panel--substrate" aria-label="Substrate">
       <div className="panel__header">
-        <span>Substrate</span>
-        <span className="tag">{alerts.length} signals</span>
+        {/* Watch-floor framing: workshop principle — substrate is the
+            operator's posture, not a list of signals. The header reads as
+            an operator-grade label ("on the floor / watching"), not as an
+            inventory chip. The count below clarifies what's currently being
+            watched. */}
+        <span>On the watchfloor</span>
+        <span className="tag">
+          {alerts.length === 0
+            ? "watching"
+            : alerts.length === 1
+            ? "1 case open"
+            : `${alerts.length} cases open`}
+        </span>
       </div>
       <div className="panel__body">
         <CustodyQueue

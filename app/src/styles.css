@@ -1,9 +1,9 @@
 /* ─── Type system — editorial-handwriting register ─────────────────────────
    Editor's Hand (commercial, by Jen Wagner Co.) installed locally on the demo
    machine renders the Liminal/Jen-Wagner brand register exactly. Public-repo
-   viewers fall through to Caveat (free, OFL-licensed) shipped in /fonts/, then
-   to system cursive. The local() declaration keeps the commercial font on the
-   demo machine and never publishes it.
+   viewers fall through to Caveat (free, OFL-licensed) loaded from Google
+   Fonts CDN, then to system cursive. The local() declarations keep the
+   commercial font on the demo machine and never publish it.
    --------------------------------------------------------------------------- */
 
 @font-face {
@@ -15,11 +15,25 @@
     local("Editor's Hand"),
     local("EditorsHand"),
     local("Editors Hand"),
-    url("/fonts/Caveat-Variable.ttf") format("truetype-variations"),
     local("Caveat");
 }
 
 :root {
+  /* ─── TYPE STACK ────────────────────────────────────────────────────────
+     Three families, three reading registers. The operator surface stays
+     mono-first (Geist Mono); editorial-density artifacts (case file
+     section titles, exec summary, document-shaped surfaces) lift to
+     serif (Fraunces). Sans (Geist) is reserved for ambient UI chrome.
+     Hand (Liminal Hand → Caveat) is for editorial annotations only.
+
+         --font-mono   data, IDs, operator surface, default body
+         --font-sans   ambient UI chrome (rare; use sparingly)
+         --font-serif  editorial-density · case file headers + exec summary
+         --font-hand   handwriting overlay · DemoPrompt + marginalia
+     ────────────────────────────────────────────────────────────────────── */
+  --font-mono: "Geist Mono", ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: "Fraunces", "Newsreader", Georgia, "Iowan Old Style", serif;
   --font-hand: "Liminal Hand", "Editor's Hand", "Caveat", "Patrick Hand", cursive;
 
   /* ─── SEMANTIC COLOR TOKENS ─────────────────────────────────────────────
@@ -77,7 +91,7 @@
   --err:    var(--color-refused); /* err and danger were duplicates → both refuse */
   --ok:     var(--color-resolved);
 
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   color-scheme: dark;
 }
 
@@ -145,6 +159,442 @@ button:hover {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+/* ── Topbar breadcrumb ──────────────────────────────────────────────────────
+   Navigation path from watchfloor → scenario → event → selected case.
+   Replaces the old flat strip of scenario-id + phase-pill + event-chip.
+   Reading direction is left-to-right, root → leaf. The phase pill sits as
+   a small right-aligned chip because phase is a *state of the timeline*,
+   not a navigation level — it tells the operator which beat of the
+   replay they're in, separate from the case-selection breadcrumb.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.topbar-crumbs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--color-ink-secondary);
+  letter-spacing: 0.02em;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.topbar-crumbs__seg {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-crumbs__seg--root {
+  color: var(--color-ink-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.10em;
+  font-size: 10px;
+}
+
+.topbar-crumbs__seg--muted {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.topbar-crumbs__seg--current {
+  color: var(--color-ink-primary);
+  font-weight: 500;
+  max-width: 380px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.topbar-crumbs__sep {
+  color: var(--color-ink-tertiary);
+  opacity: 0.5;
+  user-select: none;
+  font-size: 11px;
+}
+
+.topbar-crumbs__event {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 7px;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid;
+}
+
+.topbar-crumbs__event--event-1 {
+  color: var(--color-decision);
+  background: rgba(110, 168, 254, 0.06);
+  border-color: rgba(110, 168, 254, 0.30);
+}
+
+.topbar-crumbs__event--event-2 {
+  color: var(--color-resolved);
+  background: rgba(78, 160, 138, 0.06);
+  border-color: rgba(78, 160, 138, 0.30);
+}
+
+.topbar-crumbs__phase {
+  margin-left: auto;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-decision);
+  border: 1px solid rgba(110, 168, 254, 0.30);
+  background: rgba(110, 168, 254, 0.06);
+  padding: 1px 7px;
+  border-radius: 2px;
+}
+
+/* ── DATA SOURCES chip cluster ──────────────────────────────────────────────
+   Overlay at the bottom-left of the stage. Surfaces the multi-modal evidence
+   custody story: judges see vessel tracks AND see the 14 data sources
+   converging — AIS feeds, satellite imagery (Sentinel via Copernicus),
+   sanctions (OpenSanctions), port-state (UKMTO), maritime warnings (NAVAREA),
+   fishing/loitering (GFW), AI-port scans (Shodan/Censys), conflict events
+   (ACLED), OSINT (Exa), and the ontology layer (Foundry).
+
+   Without this overlay the multi-modality is invisible — the map looks like
+   a single AIS feed. With it, the defense-in-depth narrative is visible
+   before any narration.
+
+   Default: low opacity, compact badge with count. On hover: full opacity,
+   expanded chip list. Doesn't intercept map mouse events at rest because
+   pointer-events: none on the body until hovered.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.data-sources-chips {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 8px;
+  background: rgba(6, 9, 13, 0.78);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  max-width: 100%;
+  transition: opacity 180ms ease;
+  opacity: 0.72;
+}
+
+.data-sources-chips:hover,
+.data-sources-chips--expanded {
+  opacity: 1;
+}
+
+.data-sources-chips__header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.data-sources-chips__label {
+  color: var(--color-ink-tertiary);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.data-sources-chips__count {
+  color: var(--color-resolved);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.data-sources-chips__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 480px;
+  /* Collapsed: show first row only. Expanded: show all. */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 200ms ease;
+}
+
+.data-sources-chips:hover .data-sources-chips__list,
+.data-sources-chips--expanded .data-sources-chips__list {
+  max-height: 200px;
+}
+
+.data-source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px 1px 5px;
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-secondary);
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.data-source-chip__pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-ink-tertiary);
+  flex-shrink: 0;
+}
+
+.data-source-chip--ok .data-source-chip__pip {
+  background: var(--color-resolved);
+  box-shadow: 0 0 6px rgba(78, 160, 138, 0.5);
+}
+
+.data-source-chip--down .data-source-chip__pip {
+  background: var(--color-contested);
+}
+
+.data-source-chip--down {
+  opacity: 0.55;
+}
+
+.data-source-chip__label {
+  font-family: var(--font-mono);
+}
+
+/* ── MapLayers — multi-modal sensor layer toggles ──────────────────────────
+   Top-right of stage. Horizontal strip of chips, one per modality. Click a
+   chip → toggle visibility AND open a summary panel showing what that
+   layer is contributing to the current scenario. The "overhead projector
+   transparencies" idea from the workshop substrate.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.map-layers {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+  font-family: var(--font-mono);
+  pointer-events: auto;
+}
+
+.map-layers__strip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 8px;
+  background: rgba(6, 9, 13, 0.78);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.map-layers__strip-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+  margin-right: 4px;
+}
+
+.map-layer-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px 2px 6px;
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--color-ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.map-layer-chip:hover {
+  border-color: var(--color-decision);
+  color: var(--color-ink-primary);
+}
+
+.map-layer-chip--on {
+  border-color: rgba(110, 168, 254, 0.4);
+  background: rgba(110, 168, 254, 0.08);
+  color: var(--color-decision);
+}
+
+.map-layer-chip--expanded {
+  background: rgba(110, 168, 254, 0.16);
+  border-color: var(--color-decision);
+  box-shadow: 0 0 0 1px rgba(110, 168, 254, 0.2);
+}
+
+.map-layer-chip__pip {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-ink-tertiary);
+  flex-shrink: 0;
+  transition: background 120ms ease;
+}
+
+.map-layer-chip--on .map-layer-chip__pip {
+  background: var(--color-decision);
+  box-shadow: 0 0 6px rgba(110, 168, 254, 0.5);
+}
+
+.map-layer-chip__label {
+  font-weight: 500;
+}
+
+.map-layer-chip__count {
+  font-size: 9px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.map-layer-chip--on .map-layer-chip__count {
+  color: var(--color-decision);
+}
+
+.map-layers__panel {
+  background: rgba(6, 9, 13, 0.92);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  padding: 8px 10px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 320px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  animation: map-layers-panel-in 180ms ease-out;
+}
+
+@keyframes map-layers-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.map-layers__panel-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.map-layers__panel-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-ink-primary);
+  letter-spacing: 0.04em;
+}
+
+.map-layers__panel-modality {
+  font-size: 9px;
+  color: var(--color-ink-tertiary);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.map-layers__panel-count {
+  margin-left: auto;
+  font-size: 9px;
+  color: var(--color-resolved);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.map-layers__panel-body {
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-mono);
+}
+
+/* ── KnowledgeGraphViz — force-directed graph in Case File section ─────────
+   Demo-grade SVG-based force layout. Workshop substrate: "even a static
+   rendered graph that updates on rule-write is sufficient." This is that.
+   Lives in the case file scroll region as a section between Exec Summary
+   and Provenance. Hover a node → its label surfaces; connected edges lift.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.kg-viz {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: rgba(6, 9, 13, 0.6);
+  border: 1px solid var(--color-edge);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.kg-viz--empty {
+  display: grid;
+  place-items: center;
+  height: 120px;
+  background: transparent;
+  border: 1px dashed var(--color-edge);
+}
+
+.kg-viz--fullscreen {
+  position: fixed;
+  inset: 24px;
+  width: auto;
+  height: auto;
+  z-index: 100;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  background: rgba(6, 9, 13, 0.96);
+}
+
+.kg-viz__legend {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: flex;
+  gap: 10px;
+  padding: 5px 8px;
+  background: rgba(6, 9, 13, 0.7);
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  color: var(--color-ink-tertiary);
+}
+
+.kg-viz__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.kg-viz__legend-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .app-topbar__status {
@@ -461,6 +911,88 @@ button:hover {
   opacity: 0.6;
 }
 
+/* Redirect annotation: when intent is refused, the row visually routes the
+   operator's attention to the next-step specialist (Collection). The
+   workshop's Crazy 8s Round 2 hero — "specialist card grays out and routes
+   arrow to Collection Planner." Refusal is intelligence-that-moves-people-
+   forward, not a dead end.
+   ----------------------------------------------------------------------- */
+
+.specialist-row--intent-redirecting {
+  position: relative;
+  /* Slight dim on the refused intent row to signal "the system is moving past
+     this specialist for now" without graying out the row entirely (which
+     would lose the structural-guard moment). The dim is operative-grade —
+     visible only as a posture shift, not a strikethrough. */
+}
+
+.specialist-row--intent-redirecting .specialist-row__name,
+.specialist-row--intent-redirecting .specialist-row__summary {
+  opacity: 0.85;
+}
+
+.specialist-row__redirect {
+  /* Lives below the row's three-column grid as a full-width annotation. */
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding-left: 14px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-ink-secondary, #93a3b3);
+  /* Editorial-markup register: this annotation is the system editorializing
+     on its own refusal. Same instinct as Editor's Hand without committing to
+     handwriting (since handwriting was scoped out for video-prep mode). */
+  font-style: italic;
+}
+
+.specialist-row__redirect-arrow {
+  color: var(--color-resolved, #4ea08a);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  margin-right: 2px;
+}
+
+.specialist-row__redirect-label {
+  color: var(--color-ink-tertiary, #5d6e80);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-style: normal;
+}
+
+.specialist-row__redirect-target {
+  color: var(--color-resolved, #4ea08a);
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.specialist-row__redirect-caption {
+  color: var(--color-ink-secondary, #93a3b3);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-style: italic;
+}
+
+/* Collection row when it's the redirect target: subtle highlight to mirror
+   the redirect arrow above it. Same posture-shift register as the dimmed
+   intent row, but in the opposite direction (lifted, not dimmed). */
+.specialist-row--collection-redirect-target {
+  background: rgba(78, 160, 138, 0.06); /* --color-resolved at 6% alpha */
+  border-left: 2px solid var(--color-resolved, #4ea08a);
+}
+
+.specialist-row--collection-redirect-target .specialist-row__name {
+  color: var(--color-resolved, #4ea08a);
+  font-weight: 500;
+}
+
 /* Zone 3 — Case File with dragon-fold sticky section headers */
 
 .case-file {
@@ -474,20 +1006,37 @@ button:hover {
 
 .case-file__section-header {
   /* Sticky header. Stays at top of scroll region while body scrolls. Headers
-     do NOT compound — only the most recent header is sticky at any moment. */
+     do NOT compound — only the most recent header is sticky at any moment.
+     Serif treatment (Fraunces) signals editorial-density register: the case
+     file is a *brief*, not a panel. Mono surfaces upstream stay mono. */
   position: sticky;
   top: 0;
   z-index: 2;
-  padding: 8px 12px;
+  padding: 10px 12px 8px;
   background: var(--color-frame);
   border-bottom: 1px solid var(--color-edge);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-ink-secondary);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-feature-settings: "ss01" 1, "ss02" 1;
+  color: var(--color-ink-primary);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+}
+
+/* Optional Roman-numeral prefix slot. Components can render
+   <span class="case-file__section-numeral">I</span> Executive Summary
+   to land the document register more emphatically. */
+.case-file__section-numeral {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-ink-tertiary);
+  margin-right: 8px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
 }
 
 .case-file__section-body {
@@ -583,7 +1132,7 @@ button:hover {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-right: 6px;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono);
 }
 
 /* Below 800px viewport height, the case file collapses to a one-line affordance
@@ -611,7 +1160,7 @@ button:hover {
   align-items: center;
   gap: 6px;
   padding: 1px 6px 1px 0;
-  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.6;
   color: var(--color-ink-secondary);
@@ -713,7 +1262,7 @@ button:hover {
   align-items: center;
   gap: 4px;
   padding: 0 6px;
-  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.10em;
   color: var(--color-ink-tertiary);
@@ -742,7 +1291,7 @@ button:hover {
 /* Provenance trace as typed-grammar tree */
 
 .provenance-tree {
-  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.7;
   color: var(--color-ink-secondary);
@@ -1525,7 +2074,7 @@ button:hover {
   gap: 6px;
   padding: 2px 7px 2px 0;
   border-radius: 3px;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.4;
   letter-spacing: 0.02em;
@@ -1672,7 +2221,7 @@ button:hover {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1709,16 +2258,23 @@ button:hover {
 
 /* ──────────────────────────────────────────────────────────────────────────
    Exec summary — Case File section I. Real prose using typed grammar inline.
+   Editorial-density register: serif body type (Fraunces) signals "this is a
+   brief, not a panel." Inline chips stay mono so the data identity is still
+   readable as data — the prose flows around them like footnoted typography.
    ────────────────────────────────────────────────────────────────────────── */
 
 .exec-summary {
-  font-size: 12px;
-  line-height: 1.55;
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  line-height: 1.62;
   color: var(--color-ink-primary);
+  font-feature-settings: "ss01" 1, "kern" 1, "onum" 1;
+  /* Fraunces optical-size axis: tune for body reading at 14px ish */
+  font-variation-settings: "opsz" 16, "SOFT" 50;
 }
 
 .exec-summary p {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .exec-summary p:last-child {
@@ -1727,9 +2283,11 @@ button:hover {
 
 .exec-summary__lead {
   color: var(--color-ink-secondary);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
+  font-family: var(--font-mono); /* the brief's "filed under" line stays mono */
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .exec-summary .tchip {
@@ -1955,7 +2513,7 @@ button:hover {
   font-size: 10px;
   color: var(--color-ink-secondary);
   word-break: break-word;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   line-height: 1.4;
 }
 
@@ -2024,4 +2582,296 @@ button:hover {
   background: rgba(78, 160, 138, 0.08);
   font-size: 11px;
   border-radius: 2px;
+}
+
+/* ─── Rule-writing surface — workshop principle: feels like writing, not
+   clicking. The closed state is a quiet "write a rule…" prompt that reads as
+   editorial markup. The open state is an auto-resizing textarea styled like
+   a draft note in the operator's voice. v3.3 may add diff-from-DSL preview
+   and rule-history versioning.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.review-memory__writing {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-edge);
+}
+
+.review-memory__write-prompt {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: transparent;
+  border: 1px dashed var(--color-edge);
+  border-radius: 2px;
+  padding: 8px 12px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.005em;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.review-memory__write-prompt:hover,
+.review-memory__write-prompt:focus-visible {
+  border-color: var(--color-decision);
+  color: var(--color-ink-primary);
+  background: rgba(110, 168, 254, 0.04);
+  outline: none;
+}
+
+.review-memory__write-prompt-pen {
+  font-size: 16px;
+  color: var(--color-ink-tertiary);
+  font-style: normal;
+  line-height: 1;
+}
+
+.review-memory__write-prompt:hover .review-memory__write-prompt-pen,
+.review-memory__write-prompt:focus-visible .review-memory__write-prompt-pen {
+  color: var(--color-decision);
+}
+
+.review-memory__write-prompt-text {
+  flex: 1;
+}
+
+.review-memory__draft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--color-decision);
+  border-radius: 2px;
+  background: rgba(110, 168, 254, 0.04);
+  padding: 10px 12px;
+  animation: review-draft-open 220ms ease-out;
+}
+
+@keyframes review-draft-open {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.review-memory__draft-text {
+  width: 100%;
+  min-height: 40px;
+  resize: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  font-style: italic;
+  caret-color: var(--color-decision);
+}
+
+.review-memory__draft-text::placeholder {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.review-memory__draft-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 6px;
+  border-top: 1px dashed var(--color-edge);
+}
+
+.review-memory__draft-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary);
+  margin-right: auto;
+}
+
+.review-memory__draft-cancel,
+.review-memory__draft-save {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+
+.review-memory__draft-cancel {
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-tertiary);
+}
+
+.review-memory__draft-cancel:hover {
+  border-color: var(--color-ink-secondary);
+  color: var(--color-ink-secondary);
+}
+
+.review-memory__draft-save {
+  border: 1px solid var(--color-decision);
+  color: var(--color-decision);
+  background: rgba(110, 168, 254, 0.06);
+}
+
+.review-memory__draft-save:hover:not(:disabled) {
+  background: rgba(110, 168, 254, 0.16);
+  color: var(--color-ink-primary);
+}
+
+.review-memory__draft-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ─── Correction stream — workshop's "correction stream as data is the moat"
+   principle made visible. Saved rules render as a chronological ledger, not a
+   flat list. Each entry is a numbered act of human judgment that accumulates
+   into watchfloor doctrine. The vertical rail signals "this is a stream, not
+   a collection." v3.3 will add ledger-level filtering and rule-versioning.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.review-memory__stream-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+}
+
+.review-memory__stream-empty {
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-ink-tertiary);
+  padding: 8px 0 4px 28px;
+  border-left: 1px dashed var(--color-edge);
+  margin-left: 12px;
+}
+
+.review-memory__stream {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.review-memory__stream-entry {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  position: relative;
+}
+
+.review-memory__stream-entry + .review-memory__stream-entry {
+  /* Subtle dashed separator between entries — reads as ledger, not a list */
+  border-top: 1px dashed var(--color-edge);
+}
+
+.review-memory__stream-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-height: 100%;
+}
+
+.review-memory__stream-index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary);
+  background: var(--color-frame);
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  padding: 2px 4px;
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+}
+
+.review-memory__stream-rail {
+  /* Vertical line connecting entries — "this is a stream" affordance.
+     Renders below the index chip; visually present but visually quiet. */
+  flex: 1;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--color-edge) 0%,
+    var(--color-edge) 60%,
+    transparent 100%
+  );
+  margin-top: 4px;
+  min-height: 12px;
+}
+
+.review-memory__stream-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 4px;
+}
+
+.review-memory__stream-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.review-memory__stream-time {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-tertiary);
+  margin-left: auto;
+}
+
+.review-memory__stream-dsl {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--color-ink-secondary);
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
+  border-radius: 2px;
+  padding: 6px 8px;
+  /* DSL renders as a code-block-like inset so the rule text reads as a
+     machine-evaluable artifact, distinct from the operator's narrative. */
+}
+
+/* Vault-framing meta on case-file section headers — workshop principle:
+   "every UI surface should feel like it's holding something." Each section
+   header now has a subtle right-aligned meta line that names what's being
+   held in custody (the brief, the chain, the evidence held, etc). Reads
+   as marginalia on the section verb, not as a competing label. */
+.case-file__section-header > span:first-child {
+  /* Section verb stays primary — same letter-spacing/case as before. */
+  flex: 0 0 auto;
+}
+
+.case-file__section-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary);
+  text-transform: none;
+  font-weight: 400;
+  margin-left: auto;
+  text-align: right;
+  font-style: italic;
 }
