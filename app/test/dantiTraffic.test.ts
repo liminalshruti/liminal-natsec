@@ -225,6 +225,7 @@ describe("DANTI archived traffic replay", () => {
     assert.equal(huge.properties.kind, "third_party_ais_last_known");
     assert.equal(huge.properties.imo, "9357183");
     assert.equal(huge.properties.mmsi, "422206900");
+    assert.equal(huge.properties.case_ids, "|case:alara-01:event-1|");
     assert.match(huge.properties.evidence_use, /not evidence of current Hormuz vessel behavior/);
   });
 });

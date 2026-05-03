@@ -46,6 +46,7 @@
         "destination": "FOR ORDER",
         "datetime": "2026-03-19T16:31:00Z",
         "operator": "NITC / OFAC SDN",
+        "case_ids": "|case:alara-01:event-1|",
         "attribution": "OFAC-listed tanker identity backfill",
         "sanctions_basis": "OFAC SDN row 15054 lists IMO 9357183; GFW identity history resolves current MMSI 422206900",
         "position_basis": "MyShipTracking reports coordinates 2.14800 N / 102.02867 E at 2026-03-19 16:31 UTC; newer open pages corroborate Indonesia/Bali Sea region but do not expose exact coordinates.",

@@ -62,7 +62,9 @@ const PHRASE_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\bfixture-mode fallback\b/g, "local source"],
   [/\bfixture mode\b/g, "local sample mode"],
   [/\bfixture\b/g, "local source"],
-  [/\bfallback\b/g, "local source"]
+  [/\bfallback\b/g, "local source"],
+  [/\bclusters is supported\b/g, "clusters are supported"],
+  [/\bindicators is supported\b/g, "indicators are supported"]
 ];
 
 export function publicText(value: string): string {

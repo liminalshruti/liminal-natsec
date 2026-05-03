@@ -1172,6 +1172,48 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   overflow-wrap: anywhere;
 }
 
+.case-lead__online {
+  display: grid;
+  gap: 5px;
+  padding-top: 2px;
+}
+
+.case-lead__online-row {
+  display: grid;
+  grid-template-columns: minmax(96px, 0.34fr) minmax(0, 1fr);
+  gap: 7px;
+  align-items: start;
+  padding: 5px 6px;
+  border: 1px solid rgba(99, 179, 151, 0.22);
+  border-radius: 4px;
+  color: inherit;
+  text-decoration: none;
+  background: rgba(99, 179, 151, 0.055);
+}
+
+.case-lead__online-row:hover {
+  border-color: rgba(99, 179, 151, 0.38);
+  background: rgba(99, 179, 151, 0.085);
+}
+
+.case-lead__online-label {
+  min-width: 0;
+  color: var(--color-ok, #63b397);
+  font-size: 9.5px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.case-lead__online-summary {
+  min-width: 0;
+  color: var(--color-ink-secondary);
+  font-size: 10.5px;
+  line-height: 1.32;
+  overflow-wrap: anywhere;
+}
+
 .case-lead__summary {
   color: var(--color-ink-primary);
   font-size: 12px;
@@ -6655,6 +6697,10 @@ button:disabled {
   .case-lead__sources {
     flex-basis: 100%;
     text-align: left;
+  }
+
+  .case-lead__online-row {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .osint-intake__chips {
