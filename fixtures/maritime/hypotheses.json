@@ -47,6 +47,30 @@
         "posterior": 0.76,
         "summary": "Sanctions, traffic-density, warning, and identity signals converge on a collection tasking need, not an intent claim."
       }
+    },
+    {
+      "id": "hyp:alara-01:event-2:h2",
+      "type": "hypothesis",
+      "title": "Regional congestion explains the density signal",
+      "created_at": "2026-05-02T14:26:01Z",
+      "case_id": "case:alara-01:event-2",
+      "data": {
+        "hypothesis_kind": "REGIONAL_CONGESTION_OR_PORT_CYCLE",
+        "posterior": 0.16,
+        "summary": "IEA/EIA context makes Hormuz density operationally important, but congestion and port-cycle staging remain a plausible non-adversarial explanation."
+      }
+    },
+    {
+      "id": "hyp:alara-01:event-2:h3",
+      "type": "hypothesis",
+      "title": "Source-chain degradation rather than vessel behavior",
+      "created_at": "2026-05-02T14:26:02Z",
+      "case_id": "case:alara-01:event-2",
+      "data": {
+        "hypothesis_kind": "SOURCE_CHAIN_DEGRADATION",
+        "posterior": 0.08,
+        "summary": "MARAD's GNSS/AIS warnings keep a source-integrity alternative alive until SAR or RF corroborates the cached OSINT pattern."
+      }
     }
   ],
   "edges": [
@@ -138,6 +162,36 @@
         ],
         "confidence": 0.66,
         "rationale": "The second case hypothesis supports a collection-first claim."
+      }
+    },
+    {
+      "id": "edge:hyp-event2-h2:derived-from:anom2",
+      "type": "DERIVED_FROM",
+      "from": "hyp:alara-01:event-2:h2",
+      "to": "anom:dark-gap:trk-271990222:20260418T1220:cc90",
+      "provenance": {
+        "created_at": "2026-05-02T14:26:03Z",
+        "created_by": "fixture",
+        "source_node_ids": [
+          "anom:dark-gap:trk-271990222:20260418T1220:cc90"
+        ],
+        "confidence": 0.16,
+        "rationale": "A non-adversarial congestion explanation remains preserved."
+      }
+    },
+    {
+      "id": "edge:hyp-event2-h3:derived-from:anom2",
+      "type": "DERIVED_FROM",
+      "from": "hyp:alara-01:event-2:h3",
+      "to": "anom:dark-gap:trk-271990222:20260418T1220:cc90",
+      "provenance": {
+        "created_at": "2026-05-02T14:26:04Z",
+        "created_by": "fixture",
+        "source_node_ids": [
+          "anom:dark-gap:trk-271990222:20260418T1220:cc90"
+        ],
+        "confidence": 0.08,
+        "rationale": "AIS/GNSS degradation remains a source-chain alternative."
       }
     }
   ]

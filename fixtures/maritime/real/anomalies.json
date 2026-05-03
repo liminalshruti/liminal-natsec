@@ -45,7 +45,26 @@
         "source_mix": [
           "DANTI/MarineTraffic",
           "OFAC/OpenSanctions",
-          "cached normalized OSINT"
+          "Treasury",
+          "MARAD"
+        ],
+        "online_backfill": [
+          {
+            "label": "OFAC maritime baseline",
+            "summary": "OFAC's Sanctions List Service is the authoritative source for SDN maritime vessels and aircraft; this supports sanctions-list custody without implying behavior.",
+            "source": "OFAC Sanctions List Service",
+            "url": "https://ofac.treasury.gov/sanctions-list-service",
+            "captured_at": "2026-05-03",
+            "relevance": "entity-risk enrichment"
+          },
+          {
+            "label": "Iran-linked tanker precedent",
+            "summary": "Treasury's Adrian Darya 1 action describes Iranian oil tankers as sanctions-relevant when used to mask and sell oil illicitly, so coordinate hits should trigger corroboration rather than intent assertion.",
+            "source": "U.S. Treasury press release sm765",
+            "url": "https://home.treasury.gov/news/press-releases/sm765",
+            "captured_at": "2026-05-03",
+            "relevance": "sanctioned-fleet review posture"
+          }
         ]
       }
     },
@@ -932,7 +951,28 @@
           "The alert rows are cluster-level because the leverage is the density pattern, not a single hull."
         ],
         "source_mix": [
-          "DANTI/MarineTraffic"
+          "DANTI/MarineTraffic",
+          "IEA",
+          "EIA",
+          "MARAD"
+        ],
+        "online_backfill": [
+          {
+            "label": "Chokepoint geometry",
+            "summary": "IEA identifies Hormuz as a 29-nautical-mile chokepoint with two 2-mile navigable channels, so anchorage density near the lanes materially affects custody and collection planning.",
+            "source": "IEA Strait of Hormuz factsheet",
+            "url": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+            "captured_at": "2026-05-03",
+            "relevance": "traffic-density interpretation"
+          },
+          {
+            "label": "High-risk operating environment",
+            "summary": "MARAD advisory 2026-004 says commercial vessels in the Persian Gulf, Strait of Hormuz, and Gulf of Oman face high attack risk and degraded positional integrity.",
+            "source": "MARAD MSCI 2026-004",
+            "url": "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+            "captured_at": "2026-05-03",
+            "relevance": "collection priority"
+          }
         ]
       }
     },
@@ -1310,7 +1350,27 @@
           "The case treats flag/last-port mismatch as a laundering indicator, not proof of cargo origin or intent."
         ],
         "source_mix": [
-          "DANTI/MarineTraffic"
+          "DANTI/MarineTraffic",
+          "OFAC",
+          "MARAD"
+        ],
+        "online_backfill": [
+          {
+            "label": "Deceptive shipping practice context",
+            "summary": "The 2020 OFAC/State/Coast Guard maritime advisory frames Iran-focused shipping deception as a sanctions-evasion risk class, making last-port and flag inconsistencies useful but bounded indicators.",
+            "source": "OFAC maritime sanctions-evasion guidance",
+            "url": "https://ofac.treasury.gov/recent-actions/20200514",
+            "captured_at": "2026-05-03",
+            "relevance": "routing/source-risk interpretation"
+          },
+          {
+            "label": "Regional misidentification risk",
+            "summary": "MARAD's Hormuz advisory emphasizes identifying and differentiating threats; this supports a review posture instead of treating a last-port mismatch as proof of cargo origin.",
+            "source": "MARAD MSCI 2026-004",
+            "url": "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+            "captured_at": "2026-05-03",
+            "relevance": "guardrail against overclaiming"
+          }
         ]
       }
     },
@@ -1599,7 +1659,27 @@
         ],
         "source_mix": [
           "DANTI/MarineTraffic",
-          "cached normalized OSINT"
+          "EIA",
+          "IEA",
+          "OFAC"
+        ],
+        "online_backfill": [
+          {
+            "label": "Asia-bound flow context",
+            "summary": "EIA estimates that 84% of Hormuz crude/condensate and 83% of LNG moved to Asian markets in 2024, which makes China-routing strings operationally relevant but not dispositive.",
+            "source": "EIA Today in Energy, June 16 2025",
+            "url": "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+            "captured_at": "2026-05-03",
+            "relevance": "routing baseline"
+          },
+          {
+            "label": "Sanctions-evasion guardrail",
+            "summary": "OFAC's maritime advisory treats deceptive shipping as a risk pattern; destination strings are therefore indicators for review, not evidence of ownership or intent.",
+            "source": "OFAC maritime sanctions-evasion guidance",
+            "url": "https://ofac.treasury.gov/recent-actions/20200514",
+            "captured_at": "2026-05-03",
+            "relevance": "grey-market interpretation"
+          }
         ]
       }
     },
@@ -4326,7 +4406,27 @@
         ],
         "source_mix": [
           "DANTI/MarineTraffic",
-          "cached normalized OSINT"
+          "MARAD",
+          "IMO",
+          "GFW"
+        ],
+        "online_backfill": [
+          {
+            "label": "AIS spoofing caveat",
+            "summary": "MARAD advisory 2023-005 says AIS is open, unencrypted, and unprotected, so fake or missing AIS data is a known maritime signal-integrity problem.",
+            "source": "MARAD MSCI 2023-005",
+            "url": "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing",
+            "captured_at": "2026-05-03",
+            "relevance": "signal-integrity refusal"
+          },
+          {
+            "label": "AIS carriage baseline",
+            "summary": "IMO states ships fitted with AIS should keep it operating except where rules protect navigational information, making implausible AIS reports reviewable but not automatically hostile.",
+            "source": "IMO AIS transponders",
+            "url": "https://www.imo.org/en/ourwork/safety/pages/ais.aspx",
+            "captured_at": "2026-05-03",
+            "relevance": "AIS-data-quality baseline"
+          }
         ]
       }
     },

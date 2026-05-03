@@ -160,6 +160,33 @@ describe("DANTI archived traffic replay", () => {
     );
   });
 
+  it("filters archived DANTI traffic to AI-proposed draft vessel scopes", (t) => {
+    if (skipIfMissing(t, [dantiPath, tracksPath], "DANTI ship cache + tracks fixture")) {
+      return;
+    }
+
+    const archive = buildDantiTrafficArchive(readJson(dantiPath));
+    assert.ok(archive, "expected DANTI archive to build");
+    const tracks = readJson<any>(tracksPath);
+    const bounds = timelineBounds(tracks);
+
+    const wafraDraft = selectVisibleDantiTraffic(archive, tracks, bounds.endMs, {
+      caseId: "case:draft:hormuz:352005822",
+    });
+
+    assert.equal(wafraDraft.visibleVessels, 1);
+    assert.deepEqual(
+      wafraDraft.featureCollection.features.map((feature) => feature.properties.name),
+      ["WAFRA"]
+    );
+    assert.ok(
+      wafraDraft.featureCollection.features.every((feature) =>
+        matchesCaseScope(feature.properties.case_ids, "case:draft:hormuz:352005822")
+      ),
+      "every scoped DANTI feature should carry the draft case id"
+    );
+  });
+
   it("filters hero replay pings to the selected case event", () => {
     const tracks = readJson<any>(tracksPath);
     const bounds = timelineBounds(tracks);

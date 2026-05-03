@@ -3,6 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { AppShell } from "./components/AppShell.tsx";
 import type { ScenarioState as MapScenarioState } from "./components/MapWatchfloor.tsx";
 import { caseIdFromAlertId } from "./lib/spineGraph.ts";
+import { isDraftCaseId } from "./lib/draftCase.ts";
 import { loadScenario, refreshRealScenario, type LoadedScenario } from "./lib/fixtures.ts";
 import { timelineAnchorForCase } from "./map/caseSignalScope.ts";
 import { clearSavedRules } from "./lib/reviewRulesStore.ts";
@@ -81,7 +82,7 @@ export function App() {
           });
         }
         clearSavedRules();
-        setResetToast("Refreshing real cache · saved rules cleared");
+        setResetToast("Refreshing real sources · saved rules cleared");
         refreshRealScenario()
           .catch(() => undefined)
           .finally(fetchScenario);
@@ -132,6 +133,7 @@ export function App() {
 
   const selectedCaseId = useMemo(() => {
     if (!selectedAlertId) return null;
+    if (isDraftCaseId(selectedAlertId)) return selectedAlertId;
     return selectedAlert?.caseId ?? caseIdFromAlertId(selectedAlertId);
   }, [selectedAlert, selectedAlertId]);
 
@@ -144,7 +146,7 @@ export function App() {
       setSelectedAlertId(id);
       if (!id) return;
       const alert = scenario?.state.alerts.find((candidate) => candidate.id === id);
-      const caseId = alert?.caseId ?? caseIdFromAlertId(id);
+      const caseId = isDraftCaseId(id) ? id : alert?.caseId ?? caseIdFromAlertId(id);
       const anchor = timelineAnchorForCase(caseId);
       if (!anchor) return;
       setMapScenarioState((current) => ({

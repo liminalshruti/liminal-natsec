@@ -5,6 +5,7 @@ import {
   type HormuzIntelDrawerGroup,
   type HormuzIntelDrawerRow
 } from "../lib/hormuzIntel.ts";
+import { publicSourcePath } from "../lib/presentationText.ts";
 
 const SOURCE_COVERAGE = [
   { id: "portwatch", label: "PortWatch", sources: ["PORTWATCH"] },
@@ -157,7 +158,7 @@ function HormuzIntelRow({ row }: { row: HormuzIntelDrawerRow }) {
       )}
       <div className="hormuz-intel__policy">{row.policyNote}</div>
       <div className="action-row__sub hormuz-intel__source">
-        {row.sourceFile ?? row.sourceDocumentId ?? row.source}
+        {row.sourceFile ? publicSourcePath(row.sourceFile) : row.sourceDocumentId ?? row.source}
         {row.confidence != null && (
           <span>
             {" "}

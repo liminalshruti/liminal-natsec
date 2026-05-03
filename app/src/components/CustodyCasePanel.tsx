@@ -318,6 +318,9 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
   const sourceMix = Array.isArray(data.source_mix)
     ? data.source_mix.filter((item): item is string => typeof item === "string")
     : [];
+  const onlineBackfill = Array.isArray(data.online_backfill)
+    ? data.online_backfill.filter(isRecord).map(toOnlineBackfill).filter(isOnlineBackfill)
+    : [];
   const contextItems = [
     stringValue(context.watch_box_name) ?? stringValue(features.aoi_name),
     stringValue(context.primary_real_signal),
@@ -362,12 +365,51 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
           ))}
         </div>
       )}
+      {onlineBackfill.length > 0 && (
+        <div className="case-lead__online">
+          {onlineBackfill.slice(0, 2).map((item) => (
+            <a
+              key={`${item.label}:${item.url}`}
+              className="case-lead__online-row"
+              href={item.url}
+              target="_blank"
+              rel="noreferrer"
+              title={`${item.source} · ${item.relevance}`}
+            >
+              <span className="case-lead__online-label">{item.label}</span>
+              <span className="case-lead__online-summary">{item.summary}</span>
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+interface OnlineBackfill {
+  label: string;
+  summary: string;
+  source: string;
+  url: string;
+  relevance: string;
+}
+
+function toOnlineBackfill(value: Record<string, unknown>): Partial<OnlineBackfill> {
+  return {
+    label: stringValue(value.label) ?? undefined,
+    summary: stringValue(value.summary) ?? undefined,
+    source: stringValue(value.source) ?? undefined,
+    url: stringValue(value.url) ?? undefined,
+    relevance: stringValue(value.relevance) ?? undefined
+  };
+}
+
+function isOnlineBackfill(value: Partial<OnlineBackfill>): value is OnlineBackfill {
+  return Boolean(value.label && value.summary && value.source && value.url && value.relevance);
 }
 
 function stringValue(value: unknown): string | null {

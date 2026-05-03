@@ -153,11 +153,29 @@ interface CachedOsintCase {
   leadSummary: string;
   keyFindings: string[];
   sourceMix: string[];
+  onlineBackfill?: OnlineBackfill[];
+  hypotheses?: CachedHypothesis[];
   features: Record<string, unknown>;
   caseKind: string;
   primarySignal: string;
   score: number;
   signals: CachedOsintSignal[];
+}
+
+interface OnlineBackfill {
+  label: string;
+  summary: string;
+  source: string;
+  url: string;
+  captured_at: string;
+  relevance: string;
+}
+
+interface CachedHypothesis {
+  title: string;
+  hypothesisKind: string;
+  posterior: number;
+  summary: string;
 }
 
 interface CachedOsintSignal {
@@ -756,7 +774,7 @@ function appendCachedOsintCases(input: {
         "This case is generated only from cached OSINT files in the repository. No live refresh or fixture-mode provider fallback is used."
     };
     const claimId = `claim:${cachedCase.id.replace(/^case:/, "")}:custody:h1`;
-    const hypothesisId = `hyp:${cachedCase.id.replace(/^case:/, "")}:h1`;
+    const hypothesisRows = cachedCase.hypotheses ?? defaultCachedHypotheses(cachedCase);
 
     input.anomalies.nodes.push({
       id: cachedCase.id,
@@ -786,23 +804,37 @@ function appendCachedOsintCases(input: {
         case_context: caseContext,
         lead_summary: cachedCase.leadSummary,
         key_findings: cachedCase.keyFindings,
-        source_mix: cachedCase.sourceMix
+        source_mix: cachedCase.sourceMix,
+        online_backfill: cachedCase.onlineBackfill ?? []
       }
     });
 
-    input.hypotheses.nodes.push({
-      id: hypothesisId,
-      type: "hypothesis",
-      title: `${cachedCase.title} requires collection-first review`,
-      created_at: input.generatedAt,
-      case_id: cachedCase.id,
-      status: "UNRESOLVED",
-      data: {
-        hypothesis_kind: "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
-        posterior: cachedCase.score,
-        summary:
-          "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
-      }
+    hypothesisRows.forEach((hypothesis, index) => {
+      const hypothesisId = `hyp:${cachedCase.id.replace(/^case:/, "")}:h${index + 1}`;
+      input.hypotheses.nodes.push({
+        id: hypothesisId,
+        type: "hypothesis",
+        title: hypothesis.title,
+        created_at: input.generatedAt,
+        case_id: cachedCase.id,
+        status: "UNRESOLVED",
+        data: {
+          hypothesis_kind: hypothesis.hypothesisKind,
+          posterior: hypothesis.posterior,
+          summary: hypothesis.summary
+        }
+      });
+      input.hypotheses.edges.push(
+        edge(
+          `edge:${hypothesisId}:derived:${cachedCase.signals[0].id}`,
+          "DERIVED_FROM",
+          hypothesisId,
+          cachedCase.signals[0].id,
+          input.generatedAt,
+          cachedCase.signals.map((signal) => signal.id).slice(0, 12),
+          Math.max(0.1, Math.min(0.95, hypothesis.posterior))
+        )
+      );
     });
 
     input.claims.nodes.push({
@@ -822,11 +854,12 @@ function appendCachedOsintCases(input: {
           "The cached source rows are sufficient to open a custody case and task corroboration, not to assert hostile intent."
       }
     });
+    const primaryHypothesisId = `hyp:${cachedCase.id.replace(/^case:/, "")}:h1`;
     input.hypotheses.edges.push(
       edge(
-        `edge:${hypothesisId}:supports:${claimId}`,
+        `edge:${primaryHypothesisId}:supports:${claimId}`,
         "SUPPORTS",
-        hypothesisId,
+        primaryHypothesisId,
         claimId,
         input.generatedAt,
         cachedCase.signals.map((signal) => signal.id).slice(0, 12),
@@ -1075,7 +1108,50 @@ function buildCachedOsintCases(
         "The case preserves identity/source custody and recommends corroboration before any behavior or intent assertion.",
         "Named examples include ADRIAN DARYA, HAMOUNA, AZARGOUN, KASHAN, SHAYAN 1, MATIN, KAMINEH, and DARYABAR."
       ],
-      sourceMix: ["DANTI/MarineTraffic", "OFAC/OpenSanctions", "cached normalized OSINT"],
+      sourceMix: ["DANTI/MarineTraffic", "OFAC/OpenSanctions", "Treasury", "MARAD"],
+      onlineBackfill: [
+        {
+          label: "OFAC maritime baseline",
+          summary:
+            "OFAC's Sanctions List Service is the authoritative source for SDN maritime vessels and aircraft; this supports sanctions-list custody without implying behavior.",
+          source: "OFAC Sanctions List Service",
+          url: "https://ofac.treasury.gov/sanctions-list-service",
+          captured_at: "2026-05-03",
+          relevance: "entity-risk enrichment"
+        },
+        {
+          label: "Iran-linked tanker precedent",
+          summary:
+            "Treasury's Adrian Darya 1 action describes Iranian oil tankers as sanctions-relevant when used to mask and sell oil illicitly, so coordinate hits should trigger corroboration rather than intent assertion.",
+          source: "U.S. Treasury press release sm765",
+          url: "https://home.treasury.gov/news/press-releases/sm765",
+          captured_at: "2026-05-03",
+          relevance: "sanctioned-fleet review posture"
+        }
+      ],
+      hypotheses: [
+        {
+          title: "Sanctioned fleet presence requires collection-first review",
+          hypothesisKind: "SANCTIONED_FLEET_COORDINATE_REVIEW",
+          posterior: 0.88,
+          summary:
+            "Cached DANTI rows place named Iranian-linked watchlist vessels in the Hormuz source window; the result supports a custody case and collection tasking."
+        },
+        {
+          title: "Stale coordinate cache or stale sanctions join",
+          hypothesisKind: "STALE_SOURCE_JOIN",
+          posterior: 0.08,
+          summary:
+            "The rows could reflect stale DANTI coordinates or a stale watchlist join, so the system preserves the source-quality alternative."
+        },
+        {
+          title: "Name collision without positive hull custody",
+          hypothesisKind: "NAME_COLLISION_OR_HULL_AMBIGUITY",
+          posterior: 0.04,
+          summary:
+            "A name-only collision remains possible where IMO/MMSI corroboration is missing; this is why SAR/RF is recommended."
+        }
+      ],
       features: {
         cached_sanctioned_coordinate_alerts: sanctionedSignals.length,
         normalized_synthesis_evidence_id: sdnSummary?.id ?? null
@@ -1125,7 +1201,50 @@ function buildCachedOsintCases(
         `${bandarDocs.length} unique vessels reference Bandar Abbas anchorage or adjacent anchorage routing in the cached pull.`,
         "The alert rows are cluster-level because the leverage is the density pattern, not a single hull."
       ],
-      sourceMix: ["DANTI/MarineTraffic"],
+      sourceMix: ["DANTI/MarineTraffic", "IEA", "EIA", "MARAD"],
+      onlineBackfill: [
+        {
+          label: "Chokepoint geometry",
+          summary:
+            "IEA identifies Hormuz as a 29-nautical-mile chokepoint with two 2-mile navigable channels, so anchorage density near the lanes materially affects custody and collection planning.",
+          source: "IEA Strait of Hormuz factsheet",
+          url: "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+          captured_at: "2026-05-03",
+          relevance: "traffic-density interpretation"
+        },
+        {
+          label: "High-risk operating environment",
+          summary:
+            "MARAD advisory 2026-004 says commercial vessels in the Persian Gulf, Strait of Hormuz, and Gulf of Oman face high attack risk and degraded positional integrity.",
+          source: "MARAD MSCI 2026-004",
+          url: "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+          captured_at: "2026-05-03",
+          relevance: "collection priority"
+        }
+      ],
+      hypotheses: [
+        {
+          title: "Anchorage-density pattern requires collection review",
+          hypothesisKind: "ANCHORAGE_DENSITY_COLLECTION_REVIEW",
+          posterior: 0.84,
+          summary:
+            "Qeshm and Bandar Abbas clusters create a custody-prioritization problem because density makes AIS-only association fragile."
+        },
+        {
+          title: "Normal congestion or port-cycle staging",
+          hypothesisKind: "NORMAL_PORT_CONGESTION",
+          posterior: 0.11,
+          summary:
+            "The same density can arise from normal anchorage behavior; the case should not infer evasion without independent corroboration."
+        },
+        {
+          title: "AIS reception artifact near dense shipping lanes",
+          hypothesisKind: "AIS_RECEPTION_ARTIFACT",
+          posterior: 0.05,
+          summary:
+            "High vessel density can create signal interference, so source integrity remains a live alternative until SAR/RF collection resolves it."
+        }
+      ],
       features: {
         qeshm_stationary_vessels: qeshmDocs.length,
         bandar_abbas_anchorage_vessels: bandarDocs.length
@@ -1159,7 +1278,50 @@ function buildCachedOsintCases(
         `${foreignSignals.length} named vessels are mapped as individual alerts: ${foreignSignals.map((signal) => signal.danti?.name).filter(Boolean).join(", ")}.`,
         "The case treats flag/last-port mismatch as a laundering indicator, not proof of cargo origin or intent."
       ],
-      sourceMix: ["DANTI/MarineTraffic"],
+      sourceMix: ["DANTI/MarineTraffic", "OFAC", "MARAD"],
+      onlineBackfill: [
+        {
+          label: "Deceptive shipping practice context",
+          summary:
+            "The 2020 OFAC/State/Coast Guard maritime advisory frames Iran-focused shipping deception as a sanctions-evasion risk class, making last-port and flag inconsistencies useful but bounded indicators.",
+          source: "OFAC maritime sanctions-evasion guidance",
+          url: "https://ofac.treasury.gov/recent-actions/20200514",
+          captured_at: "2026-05-03",
+          relevance: "routing/source-risk interpretation"
+        },
+        {
+          label: "Regional misidentification risk",
+          summary:
+            "MARAD's Hormuz advisory emphasizes identifying and differentiating threats; this supports a review posture instead of treating a last-port mismatch as proof of cargo origin.",
+          source: "MARAD MSCI 2026-004",
+          url: "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+          captured_at: "2026-05-03",
+          relevance: "guardrail against overclaiming"
+        }
+      ],
+      hypotheses: [
+        {
+          title: "Foreign-flag Iranian last-port pattern is laundering-relevant",
+          hypothesisKind: "FOREIGN_FLAG_IRAN_LAST_PORT_REVIEW",
+          posterior: 0.81,
+          summary:
+            "Foreign flags paired with Iranian last-port values create a sanctions-laundering review signal that merits collection and registry cross-checks."
+        },
+        {
+          title: "Benign bunkering or port-call sequence",
+          hypothesisKind: "BENIGN_PORT_CALL_SEQUENCE",
+          posterior: 0.13,
+          summary:
+            "A foreign flag with an Iranian last port can be legitimate bunkering, repair, or passage; cargo origin is not established."
+        },
+        {
+          title: "Stale DANTI port metadata",
+          hypothesisKind: "STALE_PORT_METADATA",
+          posterior: 0.06,
+          summary:
+            "Cached last-port fields can lag real vessel movement, so the source-state alternative remains preserved."
+        }
+      ],
       features: {
         foreign_flag_iran_last_port_alerts: foreignSignals.length
       },
@@ -1208,7 +1370,50 @@ function buildCachedOsintCases(
         "HAMOUNA and DARYABAR are retained as separate China-routing alerts because their cached last_port values are ZHUHAI and CJK.",
         "Routing strings are treated as grey-market indicators requiring review, not cargo or ownership proof."
       ],
-      sourceMix: ["DANTI/MarineTraffic", "cached normalized OSINT"],
+      sourceMix: ["DANTI/MarineTraffic", "EIA", "IEA", "OFAC"],
+      onlineBackfill: [
+        {
+          label: "Asia-bound flow context",
+          summary:
+            "EIA estimates that 84% of Hormuz crude/condensate and 83% of LNG moved to Asian markets in 2024, which makes China-routing strings operationally relevant but not dispositive.",
+          source: "EIA Today in Energy, June 16 2025",
+          url: "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+          captured_at: "2026-05-03",
+          relevance: "routing baseline"
+        },
+        {
+          label: "Sanctions-evasion guardrail",
+          summary:
+            "OFAC's maritime advisory treats deceptive shipping as a risk pattern; destination strings are therefore indicators for review, not evidence of ownership or intent.",
+          source: "OFAC maritime sanctions-evasion guidance",
+          url: "https://ofac.treasury.gov/recent-actions/20200514",
+          captured_at: "2026-05-03",
+          relevance: "grey-market interpretation"
+        }
+      ],
+      hypotheses: [
+        {
+          title: "Order and China-routing strings indicate grey-market review",
+          hypothesisKind: "GREY_MARKET_ROUTING_REVIEW",
+          posterior: 0.78,
+          summary:
+            "Repeated FOR ORDER / TO ORDER / China-routing strings across cached rows support a routing-risk case and collection-first posture."
+        },
+        {
+          title: "Normal commercial destination ambiguity",
+          hypothesisKind: "NORMAL_COMMERCIAL_ORDER_DESTINATION",
+          posterior: 0.16,
+          summary:
+            "FOR ORDER is also a normal tanker-market placeholder, so the pattern cannot establish sanctioned cargo by itself."
+        },
+        {
+          title: "Duplicated destination rows inflate apparent volume",
+          hypothesisKind: "DUPLICATED_CACHED_ROWS",
+          posterior: 0.06,
+          summary:
+            "Repeated cached rows may overstate the number of distinct operational signals; vessel-level de-duplication remains required."
+        }
+      ],
       features: {
         grey_market_destination_alerts: orderSignals.length,
         china_routing_alerts: chinaSignals.length,
@@ -1244,7 +1449,50 @@ function buildCachedOsintCases(
         `Cached speed is ${snapshot.speedKn ?? "unknown"} kt for ${snapshot.name}, above the configured plausibility threshold.`,
         "The finding is treated as spoofing/data-quality evidence, not a movement or intent claim."
       ],
-      sourceMix: ["DANTI/MarineTraffic", "cached normalized OSINT"],
+      sourceMix: ["DANTI/MarineTraffic", "MARAD", "IMO", "GFW"],
+      onlineBackfill: [
+        {
+          label: "AIS spoofing caveat",
+          summary:
+            "MARAD advisory 2023-005 says AIS is open, unencrypted, and unprotected, so fake or missing AIS data is a known maritime signal-integrity problem.",
+          source: "MARAD MSCI 2023-005",
+          url: "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing",
+          captured_at: "2026-05-03",
+          relevance: "signal-integrity refusal"
+        },
+        {
+          label: "AIS carriage baseline",
+          summary:
+            "IMO states ships fitted with AIS should keep it operating except where rules protect navigational information, making implausible AIS reports reviewable but not automatically hostile.",
+          source: "IMO AIS transponders",
+          url: "https://www.imo.org/en/ourwork/safety/pages/ais.aspx",
+          captured_at: "2026-05-03",
+          relevance: "AIS-data-quality baseline"
+        }
+      ],
+      hypotheses: [
+        {
+          title: "ROSHAK AIS row is a signal-integrity anomaly",
+          hypothesisKind: "AIS_SIGNAL_INTEGRITY_ANOMALY",
+          posterior: 0.86,
+          summary:
+            "A 31 kt cached speed is implausible enough to open an AIS integrity review and route to collection."
+        },
+        {
+          title: "Parser or unit-conversion artifact",
+          hypothesisKind: "PARSER_OR_UNIT_ARTIFACT",
+          posterior: 0.09,
+          summary:
+            "The speed could be a source parser, units, or stale-field artifact; corroboration must precede any movement claim."
+        },
+        {
+          title: "High-speed tow or emergency maneuver",
+          hypothesisKind: "RARE_OPERATIONAL_EXCEPTION",
+          posterior: 0.05,
+          summary:
+            "A rare operational exception remains possible, but it is weak without independent position and class corroboration."
+        }
+      ],
       features: {
         implausible_speed_kn: snapshot.speedKn,
         normalized_synthesis_evidence_id: roshakSummary?.id ?? null
@@ -1254,6 +1502,32 @@ function buildCachedOsintCases(
   }
 
   return cases;
+}
+
+function defaultCachedHypotheses(cachedCase: CachedOsintCase): CachedHypothesis[] {
+  return [
+    {
+      title: `${cachedCase.title} requires collection-first review`,
+      hypothesisKind: "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+      posterior: cachedCase.score,
+      summary:
+        "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+    },
+    {
+      title: "Cached source staleness explains the pattern",
+      hypothesisKind: "CACHED_SOURCE_STALENESS",
+      posterior: 0.1,
+      summary:
+        "The source rows may be stale or duplicated, so the system preserves the non-operational explanation."
+    },
+    {
+      title: "False-positive source join",
+      hypothesisKind: "FALSE_POSITIVE_SOURCE_JOIN",
+      posterior: 0.05,
+      summary:
+        "A name, port, or identifier join may be wrong until an independent source confirms the signal."
+    }
+  ];
 }
 
 function loadDantiDocuments(liveCacheDir: URL): {

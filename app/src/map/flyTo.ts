@@ -176,7 +176,8 @@ export function executeCamera(
       padding: options.padding ?? 80,
       maxZoom: options.maxZoom ?? 10
     });
-    if (!cam || cam.center == null || !Number.isFinite(cam.zoom ?? NaN)) return;
+    const zoom = cam?.zoom;
+    if (!cam || cam.center == null || typeof zoom !== "number" || !Number.isFinite(zoom)) return;
     const camCenter = cam.center as
       | [number, number]
       | { lng: number; lat: number }
@@ -189,11 +190,11 @@ export function executeCamera(
           (camCenter as { lat: number }).lat
         ];
     if (!Number.isFinite(center[0]) || !Number.isFinite(center[1])) return;
-    if (isCameraAtTarget(map, center, cam.zoom)) return;
+    if (isCameraAtTarget(map, center, zoom)) return;
     stopCurrentCamera(map);
     map.easeTo({
       center,
-      zoom: cam.zoom,
+      zoom,
       duration: options.duration ?? 700
     });
   } catch (err) {

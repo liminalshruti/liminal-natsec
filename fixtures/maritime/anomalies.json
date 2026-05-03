@@ -40,7 +40,26 @@
         "source_mix": [
           "OFAC SDN",
           "Global Fishing Watch vessel identity",
-          "OpenSanctions"
+          "OpenSanctions",
+          "VesselFinder"
+        ],
+        "online_backfill": [
+          {
+            "label": "OFAC current SDN row",
+            "summary": "OFAC Sanctions List Search lists HUGE as an Iran-program SDN vessel linked to NITC, with IMO 9357183, listed MMSI 212256000, former flags Cyprus/Tuvalu/Tanzania, and former names HATEF, GLORY, and MAJESTIC.",
+            "source": "OFAC Sanctions List Search",
+            "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx?id=15054",
+            "captured_at": "2026-05-03",
+            "relevance": "entity identity custody"
+          },
+          {
+            "label": "Current AIS mismatch",
+            "summary": "VesselFinder reports HUGE as IMO 9357183 / MMSI 422206900, Iranian flag, crude oil tanker, and marks U.S. OFAC sanctions; this sharpens the demo's OFAC-MMSI mismatch.",
+            "source": "VesselFinder HUGE",
+            "url": "https://www.vesselfinder.com/vessels/details/9357183",
+            "captured_at": "2026-05-03",
+            "relevance": "current AIS identity enrichment"
+          }
         ]
       }
     },
@@ -88,7 +107,27 @@
           "OFAC",
           "GFW",
           "MARAD MSCI",
-          "NAVAREA IX"
+          "NAVAREA IX",
+          "IEA",
+          "EIA"
+        ],
+        "online_backfill": [
+          {
+            "label": "Hormuz criticality",
+            "summary": "IEA's February 2026 factsheet puts Hormuz at 20 mb/d in 2025, about 25% of world seaborne oil trade, with only limited bypass capacity.",
+            "source": "IEA Strait of Hormuz factsheet",
+            "url": "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+            "captured_at": "2026-05-03",
+            "relevance": "operational priority baseline"
+          },
+          {
+            "label": "Active threat advisory",
+            "summary": "MARAD advisory 2026-004 describes high commercial-shipping risk in the Persian Gulf, Strait of Hormuz, and Gulf of Oman, plus significant GNSS interference, spoofing, and jamming.",
+            "source": "MARAD MSCI 2026-004",
+            "url": "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels",
+            "captured_at": "2026-05-03",
+            "relevance": "collection posture"
+          }
         ]
       }
     },

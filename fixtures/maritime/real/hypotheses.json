@@ -3,70 +3,275 @@
     {
       "id": "hyp:real:hormuz:sdn-live-fleet:h1",
       "type": "hypothesis",
-      "title": "Cached sanctioned-fleet coordinate watch requires collection-first review",
+      "title": "Sanctioned fleet presence requires collection-first review",
       "created_at": "2026-05-03T14:11:46.371Z",
       "case_id": "case:real:hormuz:sdn-live-fleet",
       "status": "UNRESOLVED",
       "data": {
-        "hypothesis_kind": "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+        "hypothesis_kind": "SANCTIONED_FLEET_COORDINATE_REVIEW",
         "posterior": 0.88,
-        "summary": "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+        "summary": "Cached DANTI rows place named Iranian-linked watchlist vessels in the Hormuz source window; the result supports a custody case and collection tasking."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:sdn-live-fleet:h2",
+      "type": "hypothesis",
+      "title": "Stale coordinate cache or stale sanctions join",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "STALE_SOURCE_JOIN",
+        "posterior": 0.08,
+        "summary": "The rows could reflect stale DANTI coordinates or a stale watchlist join, so the system preserves the source-quality alternative."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:sdn-live-fleet:h3",
+      "type": "hypothesis",
+      "title": "Name collision without positive hull custody",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "NAME_COLLISION_OR_HULL_AMBIGUITY",
+        "posterior": 0.04,
+        "summary": "A name-only collision remains possible where IMO/MMSI corroboration is missing; this is why SAR/RF is recommended."
       }
     },
     {
       "id": "hyp:real:hormuz:loitering-clusters:h1",
       "type": "hypothesis",
-      "title": "Cached Qeshm and Bandar Abbas loitering clusters requires collection-first review",
+      "title": "Anchorage-density pattern requires collection review",
       "created_at": "2026-05-03T14:11:46.371Z",
       "case_id": "case:real:hormuz:loitering-clusters",
       "status": "UNRESOLVED",
       "data": {
-        "hypothesis_kind": "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+        "hypothesis_kind": "ANCHORAGE_DENSITY_COLLECTION_REVIEW",
         "posterior": 0.84,
-        "summary": "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+        "summary": "Qeshm and Bandar Abbas clusters create a custody-prioritization problem because density makes AIS-only association fragile."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:loitering-clusters:h2",
+      "type": "hypothesis",
+      "title": "Normal congestion or port-cycle staging",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "NORMAL_PORT_CONGESTION",
+        "posterior": 0.11,
+        "summary": "The same density can arise from normal anchorage behavior; the case should not infer evasion without independent corroboration."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:loitering-clusters:h3",
+      "type": "hypothesis",
+      "title": "AIS reception artifact near dense shipping lanes",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "AIS_RECEPTION_ARTIFACT",
+        "posterior": 0.05,
+        "summary": "High vessel density can create signal interference, so source integrity remains a live alternative until SAR/RF collection resolves it."
       }
     },
     {
       "id": "hyp:real:hormuz:iran-last-port-laundering:h1",
       "type": "hypothesis",
-      "title": "Cached foreign-flag Iranian last-port pattern requires collection-first review",
+      "title": "Foreign-flag Iranian last-port pattern is laundering-relevant",
       "created_at": "2026-05-03T14:11:46.371Z",
       "case_id": "case:real:hormuz:iran-last-port-laundering",
       "status": "UNRESOLVED",
       "data": {
-        "hypothesis_kind": "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+        "hypothesis_kind": "FOREIGN_FLAG_IRAN_LAST_PORT_REVIEW",
         "posterior": 0.81,
-        "summary": "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+        "summary": "Foreign flags paired with Iranian last-port values create a sanctions-laundering review signal that merits collection and registry cross-checks."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:iran-last-port-laundering:h2",
+      "type": "hypothesis",
+      "title": "Benign bunkering or port-call sequence",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "BENIGN_PORT_CALL_SEQUENCE",
+        "posterior": 0.13,
+        "summary": "A foreign flag with an Iranian last port can be legitimate bunkering, repair, or passage; cargo origin is not established."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:iran-last-port-laundering:h3",
+      "type": "hypothesis",
+      "title": "Stale DANTI port metadata",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "STALE_PORT_METADATA",
+        "posterior": 0.06,
+        "summary": "Cached last-port fields can lag real vessel movement, so the source-state alternative remains preserved."
       }
     },
     {
       "id": "hyp:real:hormuz:grey-market-china-routing:h1",
       "type": "hypothesis",
-      "title": "Cached grey-market and China-routing indicators requires collection-first review",
+      "title": "Order and China-routing strings indicate grey-market review",
       "created_at": "2026-05-03T14:11:46.371Z",
       "case_id": "case:real:hormuz:grey-market-china-routing",
       "status": "UNRESOLVED",
       "data": {
-        "hypothesis_kind": "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+        "hypothesis_kind": "GREY_MARKET_ROUTING_REVIEW",
         "posterior": 0.78,
-        "summary": "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+        "summary": "Repeated FOR ORDER / TO ORDER / China-routing strings across cached rows support a routing-risk case and collection-first posture."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:grey-market-china-routing:h2",
+      "type": "hypothesis",
+      "title": "Normal commercial destination ambiguity",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "NORMAL_COMMERCIAL_ORDER_DESTINATION",
+        "posterior": 0.16,
+        "summary": "FOR ORDER is also a normal tanker-market placeholder, so the pattern cannot establish sanctioned cargo by itself."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:grey-market-china-routing:h3",
+      "type": "hypothesis",
+      "title": "Duplicated destination rows inflate apparent volume",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "DUPLICATED_CACHED_ROWS",
+        "posterior": 0.06,
+        "summary": "Repeated cached rows may overstate the number of distinct operational signals; vessel-level de-duplication remains required."
       }
     },
     {
       "id": "hyp:real:hormuz:roshak-signal-integrity:h1",
       "type": "hypothesis",
-      "title": "Cached ROSHAK signal-integrity review requires collection-first review",
+      "title": "ROSHAK AIS row is a signal-integrity anomaly",
       "created_at": "2026-05-03T14:11:46.371Z",
       "case_id": "case:real:hormuz:roshak-signal-integrity",
       "status": "UNRESOLVED",
       "data": {
-        "hypothesis_kind": "CACHED_OSINT_REQUIRES_COLLECTION_REVIEW",
+        "hypothesis_kind": "AIS_SIGNAL_INTEGRITY_ANOMALY",
         "posterior": 0.86,
-        "summary": "Cached OSINT rows support a review case, but behavior and intent remain bounded by source provenance."
+        "summary": "A 31 kt cached speed is implausible enough to open an AIS integrity review and route to collection."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:roshak-signal-integrity:h2",
+      "type": "hypothesis",
+      "title": "Parser or unit-conversion artifact",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "PARSER_OR_UNIT_ARTIFACT",
+        "posterior": 0.09,
+        "summary": "The speed could be a source parser, units, or stale-field artifact; corroboration must precede any movement claim."
+      }
+    },
+    {
+      "id": "hyp:real:hormuz:roshak-signal-integrity:h3",
+      "type": "hypothesis",
+      "title": "High-speed tow or emergency maneuver",
+      "created_at": "2026-05-03T14:11:46.371Z",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "status": "UNRESOLVED",
+      "data": {
+        "hypothesis_kind": "RARE_OPERATIONAL_EXCEPTION",
+        "posterior": 0.05,
+        "summary": "A rare operational exception remains possible, but it is weak without independent position and class corroboration."
       }
     }
   ],
   "edges": [
+    {
+      "id": "edge:hyp:real:hormuz:sdn-live-fleet:h1:derived:anom:real:hormuz:sdn-live-fleet:9359416",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:sdn-live-fleet:h1",
+      "to": "anom:real:hormuz:sdn-live-fleet:9359416",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9359416",
+          "anom:real:hormuz:sdn-live-fleet:9820271",
+          "anom:real:hormuz:sdn-live-fleet:9283019",
+          "anom:real:hormuz:sdn-live-fleet:9270696",
+          "anom:real:hormuz:sdn-live-fleet:9420356",
+          "anom:real:hormuz:sdn-live-fleet:9452191",
+          "anom:real:hormuz:sdn-live-fleet:9446415",
+          "anom:real:hormuz:sdn-live-fleet:9744271",
+          "anom:real:hormuz:sdn-live-fleet:9369710",
+          "anom:real:hormuz:sdn-live-fleet:9506370",
+          "anom:real:hormuz:sdn-live-fleet:9405942",
+          "anom:real:hormuz:sdn-live-fleet:9226944"
+        ],
+        "confidence": 0.88
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:sdn-live-fleet:h2:derived:anom:real:hormuz:sdn-live-fleet:9359416",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:sdn-live-fleet:h2",
+      "to": "anom:real:hormuz:sdn-live-fleet:9359416",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9359416",
+          "anom:real:hormuz:sdn-live-fleet:9820271",
+          "anom:real:hormuz:sdn-live-fleet:9283019",
+          "anom:real:hormuz:sdn-live-fleet:9270696",
+          "anom:real:hormuz:sdn-live-fleet:9420356",
+          "anom:real:hormuz:sdn-live-fleet:9452191",
+          "anom:real:hormuz:sdn-live-fleet:9446415",
+          "anom:real:hormuz:sdn-live-fleet:9744271",
+          "anom:real:hormuz:sdn-live-fleet:9369710",
+          "anom:real:hormuz:sdn-live-fleet:9506370",
+          "anom:real:hormuz:sdn-live-fleet:9405942",
+          "anom:real:hormuz:sdn-live-fleet:9226944"
+        ],
+        "confidence": 0.1
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:sdn-live-fleet:h3:derived:anom:real:hormuz:sdn-live-fleet:9359416",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:sdn-live-fleet:h3",
+      "to": "anom:real:hormuz:sdn-live-fleet:9359416",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:sdn-live-fleet:9359416",
+          "anom:real:hormuz:sdn-live-fleet:9820271",
+          "anom:real:hormuz:sdn-live-fleet:9283019",
+          "anom:real:hormuz:sdn-live-fleet:9270696",
+          "anom:real:hormuz:sdn-live-fleet:9420356",
+          "anom:real:hormuz:sdn-live-fleet:9452191",
+          "anom:real:hormuz:sdn-live-fleet:9446415",
+          "anom:real:hormuz:sdn-live-fleet:9744271",
+          "anom:real:hormuz:sdn-live-fleet:9369710",
+          "anom:real:hormuz:sdn-live-fleet:9506370",
+          "anom:real:hormuz:sdn-live-fleet:9405942",
+          "anom:real:hormuz:sdn-live-fleet:9226944"
+        ],
+        "confidence": 0.1
+      }
+    },
     {
       "id": "edge:hyp:real:hormuz:sdn-live-fleet:h1:supports:claim:real:hormuz:sdn-live-fleet:custody:h1",
       "type": "SUPPORTS",
@@ -93,6 +298,51 @@
       }
     },
     {
+      "id": "edge:hyp:real:hormuz:loitering-clusters:h1:derived:anom:real:hormuz:loitering:qeshm",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:loitering-clusters:h1",
+      "to": "anom:real:hormuz:loitering:qeshm",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:loitering:qeshm",
+          "anom:real:hormuz:loitering:bandar-abbas"
+        ],
+        "confidence": 0.84
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:loitering-clusters:h2:derived:anom:real:hormuz:loitering:qeshm",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:loitering-clusters:h2",
+      "to": "anom:real:hormuz:loitering:qeshm",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:loitering:qeshm",
+          "anom:real:hormuz:loitering:bandar-abbas"
+        ],
+        "confidence": 0.11
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:loitering-clusters:h3:derived:anom:real:hormuz:loitering:qeshm",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:loitering-clusters:h3",
+      "to": "anom:real:hormuz:loitering:qeshm",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:loitering:qeshm",
+          "anom:real:hormuz:loitering:bandar-abbas"
+        ],
+        "confidence": 0.1
+      }
+    },
+    {
       "id": "edge:hyp:real:hormuz:loitering-clusters:h1:supports:claim:real:hormuz:loitering-clusters:custody:h1",
       "type": "SUPPORTS",
       "from": "hyp:real:hormuz:loitering-clusters:h1",
@@ -105,6 +355,63 @@
           "anom:real:hormuz:loitering:bandar-abbas"
         ],
         "confidence": 0.84
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:iran-last-port-laundering:h1:derived:anom:real:hormuz:iran-last-port:1085564",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:iran-last-port-laundering:h1",
+      "to": "anom:real:hormuz:iran-last-port:1085564",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:1085564",
+          "anom:real:hormuz:iran-last-port:8535386",
+          "anom:real:hormuz:iran-last-port:9464156",
+          "anom:real:hormuz:iran-last-port:9212400",
+          "anom:real:hormuz:iran-last-port:9159476",
+          "anom:real:hormuz:iran-last-port:9358577"
+        ],
+        "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:iran-last-port-laundering:h2:derived:anom:real:hormuz:iran-last-port:1085564",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:iran-last-port-laundering:h2",
+      "to": "anom:real:hormuz:iran-last-port:1085564",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:1085564",
+          "anom:real:hormuz:iran-last-port:8535386",
+          "anom:real:hormuz:iran-last-port:9464156",
+          "anom:real:hormuz:iran-last-port:9212400",
+          "anom:real:hormuz:iran-last-port:9159476",
+          "anom:real:hormuz:iran-last-port:9358577"
+        ],
+        "confidence": 0.13
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:iran-last-port-laundering:h3:derived:anom:real:hormuz:iran-last-port:1085564",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:iran-last-port-laundering:h3",
+      "to": "anom:real:hormuz:iran-last-port:1085564",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:iran-last-port:1085564",
+          "anom:real:hormuz:iran-last-port:8535386",
+          "anom:real:hormuz:iran-last-port:9464156",
+          "anom:real:hormuz:iran-last-port:9212400",
+          "anom:real:hormuz:iran-last-port:9159476",
+          "anom:real:hormuz:iran-last-port:9358577"
+        ],
+        "confidence": 0.1
       }
     },
     {
@@ -124,6 +431,81 @@
           "anom:real:hormuz:iran-last-port:9358577"
         ],
         "confidence": 0.81
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:grey-market-china-routing:h1:derived:anom:real:hormuz:grey-market-order:7904e6188b50",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:grey-market-china-routing:h1",
+      "to": "anom:real:hormuz:grey-market-order:7904e6188b50",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7904e6188b50",
+          "anom:real:hormuz:grey-market-order:1ffe38f52d10",
+          "anom:real:hormuz:grey-market-order:19d0d6b1ffed",
+          "anom:real:hormuz:grey-market-order:5544585c02fc",
+          "anom:real:hormuz:grey-market-order:820fe0eedb0b",
+          "anom:real:hormuz:grey-market-order:fed24efb9e24",
+          "anom:real:hormuz:grey-market-order:bebaa7a1ac17",
+          "anom:real:hormuz:grey-market-order:6e38dc62a536",
+          "anom:real:hormuz:grey-market-order:03f5c8da1f29",
+          "anom:real:hormuz:grey-market-order:62a2f89afeeb",
+          "anom:real:hormuz:grey-market-order:c180c9b8d482",
+          "anom:real:hormuz:grey-market-order:20692a386f9d"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:grey-market-china-routing:h2:derived:anom:real:hormuz:grey-market-order:7904e6188b50",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:grey-market-china-routing:h2",
+      "to": "anom:real:hormuz:grey-market-order:7904e6188b50",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7904e6188b50",
+          "anom:real:hormuz:grey-market-order:1ffe38f52d10",
+          "anom:real:hormuz:grey-market-order:19d0d6b1ffed",
+          "anom:real:hormuz:grey-market-order:5544585c02fc",
+          "anom:real:hormuz:grey-market-order:820fe0eedb0b",
+          "anom:real:hormuz:grey-market-order:fed24efb9e24",
+          "anom:real:hormuz:grey-market-order:bebaa7a1ac17",
+          "anom:real:hormuz:grey-market-order:6e38dc62a536",
+          "anom:real:hormuz:grey-market-order:03f5c8da1f29",
+          "anom:real:hormuz:grey-market-order:62a2f89afeeb",
+          "anom:real:hormuz:grey-market-order:c180c9b8d482",
+          "anom:real:hormuz:grey-market-order:20692a386f9d"
+        ],
+        "confidence": 0.16
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:grey-market-china-routing:h3:derived:anom:real:hormuz:grey-market-order:7904e6188b50",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:grey-market-china-routing:h3",
+      "to": "anom:real:hormuz:grey-market-order:7904e6188b50",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:grey-market-order:7904e6188b50",
+          "anom:real:hormuz:grey-market-order:1ffe38f52d10",
+          "anom:real:hormuz:grey-market-order:19d0d6b1ffed",
+          "anom:real:hormuz:grey-market-order:5544585c02fc",
+          "anom:real:hormuz:grey-market-order:820fe0eedb0b",
+          "anom:real:hormuz:grey-market-order:fed24efb9e24",
+          "anom:real:hormuz:grey-market-order:bebaa7a1ac17",
+          "anom:real:hormuz:grey-market-order:6e38dc62a536",
+          "anom:real:hormuz:grey-market-order:03f5c8da1f29",
+          "anom:real:hormuz:grey-market-order:62a2f89afeeb",
+          "anom:real:hormuz:grey-market-order:c180c9b8d482",
+          "anom:real:hormuz:grey-market-order:20692a386f9d"
+        ],
+        "confidence": 0.1
       }
     },
     {
@@ -149,6 +531,48 @@
           "anom:real:hormuz:grey-market-order:20692a386f9d"
         ],
         "confidence": 0.78
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:roshak-signal-integrity:h1:derived:anom:real:hormuz:signal-integrity:9405966",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:roshak-signal-integrity:h1",
+      "to": "anom:real:hormuz:signal-integrity:9405966",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:signal-integrity:9405966"
+        ],
+        "confidence": 0.86
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:roshak-signal-integrity:h2:derived:anom:real:hormuz:signal-integrity:9405966",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:roshak-signal-integrity:h2",
+      "to": "anom:real:hormuz:signal-integrity:9405966",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:signal-integrity:9405966"
+        ],
+        "confidence": 0.1
+      }
+    },
+    {
+      "id": "edge:hyp:real:hormuz:roshak-signal-integrity:h3:derived:anom:real:hormuz:signal-integrity:9405966",
+      "type": "DERIVED_FROM",
+      "from": "hyp:real:hormuz:roshak-signal-integrity:h3",
+      "to": "anom:real:hormuz:signal-integrity:9405966",
+      "provenance": {
+        "created_at": "2026-05-03T14:11:46.371Z",
+        "created_by": "system",
+        "source_node_ids": [
+          "anom:real:hormuz:signal-integrity:9405966"
+        ],
+        "confidence": 0.1
       }
     },
     {

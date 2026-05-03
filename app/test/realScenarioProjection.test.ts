@@ -8,7 +8,7 @@ const fallback: ScenarioStateView = {
   scenarioRunId: "fallback:demo",
   seededAt: "1970-01-01T00:00:00.000Z",
   mode: "demo",
-  tracksUrl: "/fixtures/maritime/tracks.geojson",
+  tracksUrl: "/fixtures/maritime/real/tracks.geojson",
   caseGenerationStatus: "READY",
   sourceStatuses: [
     {
@@ -59,7 +59,7 @@ describe("real scenario projection", () => {
     assert.equal(projected.mode, "real");
     assert.equal(projected.caseGenerationStatus, "READY");
     assert.equal(projected.emptyReason, null);
-    assert.equal(projected.tracksUrl, "/fixtures/maritime/tracks.geojson");
+    assert.equal(projected.tracksUrl, "/fixtures/maritime/real/tracks.geojson");
     assert.equal(projected.alerts[0]?.caseId, "case:alara-01:event-1");
     assert.match(projected.alerts[0]?.title ?? "", /HUGE/);
     assert.equal(projected.sourceStatuses?.[0]?.source, "HORMUZ_NORMALIZED_EVIDENCE");
@@ -90,5 +90,6 @@ describe("real scenario projection", () => {
 
     assert.equal(projected.alerts[0]?.id, "anom:real:hormuz:dark-gap:abc123");
     assert.equal(projected.alerts[0]?.caseId, "case:real:hormuz:abc123");
+    assert.equal(projected.tracksUrl, "/fixtures/maritime/real/tracks.geojson");
   });
 });

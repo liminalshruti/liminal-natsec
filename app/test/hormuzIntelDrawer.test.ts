@@ -66,7 +66,7 @@ describe("Hormuz intel drawer model", () => {
         (row) =>
           row.source === "GDELT" &&
           row.status === "unavailable" &&
-          row.summary.includes("fixture fallback articles are excluded from real OSINT signals")
+          row.summary.includes("unverified local articles are excluded from real OSINT signals")
       )
     );
   });

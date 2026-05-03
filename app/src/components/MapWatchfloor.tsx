@@ -455,17 +455,18 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     if (!source) return;
     const visible = selectVisibleHeroPings(load.fixture, {
       phase: effectivePhase,
-      clockMs: Date.parse(effectiveState.clockIso)
+      clockMs: Date.parse(effectiveState.clockIso),
+      caseId: props.selectedCaseId ?? null
     });
     const sig =
-      `${effectivePhase}|` +
+      `${effectivePhase}|${props.selectedCaseId ?? "all"}|` +
       visible.features
         .map((f) => `${f.id}:${f.properties?.is_latest ? 1 : 0}`)
         .join(",");
     if (sig === lastVisiblePingSigRef.current) return;
     lastVisiblePingSigRef.current = sig;
     source.setData(visible);
-  }, [effectiveState, effectivePhase, load, mapReady]);
+  }, [effectiveState, effectivePhase, load, mapReady, props.selectedCaseId]);
 
   // --- Push archived DANTI traffic into the live source ------------------
   useEffect(() => {
@@ -480,10 +481,11 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     const visible = selectVisibleDantiTraffic(
       dantiTraffic,
       load.fixture,
-      Date.parse(effectiveState.clockIso)
+      Date.parse(effectiveState.clockIso),
+      { caseId: props.selectedCaseId ?? null }
     );
     const sig =
-      `${visible.archiveClockIso ?? "none"}|` +
+      `${visible.archiveClockIso ?? "none"}|${props.selectedCaseId ?? "all"}|` +
       visible.featureCollection.features
         .map((f) => `${f.id}:${f.properties.t_epoch_ms}`)
         .join(",");
@@ -491,7 +493,7 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
     lastVisibleDantiSigRef.current = sig;
     source.setData(visible.featureCollection);
     setVisibleDantiTraffic(visible);
-  }, [dantiTraffic, effectiveState, load, mapReady]);
+  }, [dantiTraffic, effectiveState, load, mapReady, props.selectedCaseId]);
 
   // --- Phase-driven camera ------------------------------------------------
   useEffect(() => {

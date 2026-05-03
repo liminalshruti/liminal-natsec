@@ -773,6 +773,573 @@
         ],
         "confidence": 0.82
       }
+    },
+    {
+      "id": "read:real:hormuz:sdn-live-fleet:kinematics",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "21 cached DANTI coordinate hits are inside the Hormuz source window, but they are point observations, not continuous tracks. IEA's Hormuz geometry (29 nm wide, two 2-mile lanes) makes coordinate density operationally meaningful while preserving the stale-cache alternative.",
+      "citations": [
+        "case:real:hormuz:sdn-live-fleet",
+        "ev:real:hormuz:sdn-live-fleet:9359416"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "read:real:hormuz:sdn-live-fleet:identity",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "OFAC's Sanctions List Service is the authoritative SDN source for blocked maritime vessels; Treasury's Adrian Darya 1 action provides the Iran-linked tanker precedent. The read supports entity-risk enrichment, not behavior attribution.",
+      "citations": [
+        "claim:real:hormuz:sdn-live-fleet:custody:h1",
+        "case:real:hormuz:sdn-live-fleet"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://ofac.treasury.gov/sanctions-list-service",
+          "https://home.treasury.gov/news/press-releases/sm765"
+        ],
+        "confidence": 0.86
+      }
+    },
+    {
+      "id": "read:real:hormuz:sdn-live-fleet:signal_integrity",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "specialist": "Signal Integrity",
+      "status": "OK",
+      "summary": "Source chain is usable but bounded: DANTI coordinates, OFAC/OpenSanctions joins, and cached normalized OSINT agree at the entity-risk layer. No kinematic continuity or intent indicator is promoted from these rows.",
+      "citations": [
+        "case:real:hormuz:sdn-live-fleet",
+        "claim:real:hormuz:sdn-live-fleet:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://ofac.treasury.gov/recent-actions/20200514"
+        ],
+        "confidence": 0.74
+      }
+    },
+    {
+      "id": "read:real:hormuz:sdn-live-fleet:intent",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer hostile intent. Sanctions presence and cached coordinates create a review case, but no independent INTENT_INDICATOR is present. Guard Layer 2 routes to collection.",
+      "refusal_reason": "guard:layer-2:no_intent_indicator + source_bound:cached_coordinate_rows",
+      "causal_target": "collection",
+      "citations": [
+        "claim:real:hormuz:sdn-live-fleet:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels"
+        ],
+        "confidence": 0,
+        "structural_refusal": true
+      }
+    },
+    {
+      "id": "read:real:hormuz:sdn-live-fleet:collection",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend SAR/RF corroboration on the top watchlist hulls. MARAD 2026-004 describes high regional risk and degraded positional integrity, so the next useful act is independent position confirmation rather than passive monitoring.",
+      "citations": [
+        "act:real:hormuz:sdn-live-fleet:request",
+        "claim:real:hormuz:sdn-live-fleet:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels"
+        ],
+        "confidence": 0.82
+      }
+    },
+    {
+      "id": "read:real:hormuz:sdn-live-fleet:visual",
+      "case_id": "case:real:hormuz:sdn-live-fleet",
+      "specialist": "Visual",
+      "status": "OK",
+      "summary": "No direct visual ID is asserted from the cached rows. Visual contributes tasking geometry: confirm high-priority hull presence with SAR or EO before any behavior claim is made.",
+      "citations": [
+        "case:real:hormuz:sdn-live-fleet"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation"
+        ],
+        "confidence": 0.64
+      }
+    },
+    {
+      "id": "read:real:hormuz:loitering-clusters:kinematics",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "Qeshm and Bandar Abbas clusters are density signals, not track continuity. IEA and EIA chokepoint baselines make density useful for prioritization, while the normal-congestion hypothesis stays preserved.",
+      "citations": [
+        "ev:real:hormuz:loitering:qeshm",
+        "ev:real:hormuz:loitering:bandar-abbas"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz",
+          "https://www.eia.gov/todayinenergy/detail.php?id=65504"
+        ],
+        "confidence": 0.8
+      }
+    },
+    {
+      "id": "read:real:hormuz:loitering-clusters:identity",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "Identity remains cluster-level. The case names vessels inside the cluster only as source rows; it does not collapse them into a single coordinated actor or infer cargo ownership.",
+      "citations": [
+        "case:real:hormuz:loitering-clusters"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation"
+        ],
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "read:real:hormuz:loitering-clusters:signal_integrity",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "specialist": "Signal Integrity",
+      "status": "OK",
+      "summary": "AIS density near anchorages can be distorted by reception and duplicate rows. GFW's AIS-gap caveats and MARAD GNSS warnings keep source quality explicit, but the cluster evidence is still useful for collection prioritization.",
+      "citations": [
+        "claim:real:hormuz:loitering-clusters:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation",
+          "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing"
+        ],
+        "confidence": 0.73
+      }
+    },
+    {
+      "id": "read:real:hormuz:loitering-clusters:intent",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer intent. Loitering or anchorage density can be normal port staging in a critical chokepoint; without an independent intent indicator, the guard refuses escalation language.",
+      "refusal_reason": "guard:layer-2:no_intent_indicator + alternative:normal_congestion",
+      "causal_target": "collection",
+      "citations": [
+        "claim:real:hormuz:loitering-clusters:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.iea.org/about/oil-security-and-emergency-response/strait-of-hormuz"
+        ],
+        "confidence": 0,
+        "structural_refusal": true
+      }
+    },
+    {
+      "id": "read:real:hormuz:loitering-clusters:collection",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend SAR revisit over the two cluster centers and RF sampling for active transmitters. The useful next question is whether the same hulls persist across independent sensors.",
+      "citations": [
+        "act:real:hormuz:loitering-clusters:request"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels"
+        ],
+        "confidence": 0.83
+      }
+    },
+    {
+      "id": "read:real:hormuz:loitering-clusters:visual",
+      "case_id": "case:real:hormuz:loitering-clusters",
+      "specialist": "Visual",
+      "status": "OK",
+      "summary": "Visual read is collection-oriented: SAR can count hulls and test cluster persistence, but the cached row alone cannot identify individual vessel behavior.",
+      "citations": [
+        "case:real:hormuz:loitering-clusters"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation"
+        ],
+        "confidence": 0.66
+      }
+    },
+    {
+      "id": "read:real:hormuz:iran-last-port-laundering:kinematics",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "The signal is routing metadata, not motion. Six cached rows with Iranian last-port values open a review case, but the kinematic specialist refuses to infer cargo flow without a track segment or port-event chain.",
+      "citations": [
+        "case:real:hormuz:iran-last-port-laundering"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://ofac.treasury.gov/recent-actions/20200514"
+        ],
+        "confidence": 0.67
+      }
+    },
+    {
+      "id": "read:real:hormuz:iran-last-port-laundering:identity",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "Foreign flag plus Iranian last_port is sanctions-laundering relevant under the OFAC maritime-evasion advisory, but it remains an identity/routing cue. Cargo origin and beneficial ownership are not asserted.",
+      "citations": [
+        "claim:real:hormuz:iran-last-port-laundering:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://ofac.treasury.gov/recent-actions/20200514"
+        ],
+        "confidence": 0.82
+      }
+    },
+    {
+      "id": "read:real:hormuz:iran-last-port-laundering:signal_integrity",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "specialist": "Signal Integrity",
+      "status": "OK",
+      "summary": "The source chain is adequate for a review signal but still cached-only. Last-port fields can lag reality, so stale metadata remains an explicit alternative hypothesis.",
+      "citations": [
+        "case:real:hormuz:iran-last-port-laundering"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation"
+        ],
+        "confidence": 0.72
+      }
+    },
+    {
+      "id": "read:real:hormuz:iran-last-port-laundering:intent",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer sanctions-evasion intent. OFAC context makes the pattern relevant, but the case lacks cargo documents, STS evidence, or an independent intent indicator.",
+      "refusal_reason": "guard:layer-2:no_intent_indicator + missing:cargo_or_sts_evidence",
+      "causal_target": "collection",
+      "citations": [
+        "claim:real:hormuz:iran-last-port-laundering:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://ofac.treasury.gov/recent-actions/20200514"
+        ],
+        "confidence": 0,
+        "structural_refusal": true
+      }
+    },
+    {
+      "id": "read:real:hormuz:iran-last-port-laundering:collection",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend registry, port-call, and SAR/RF corroboration on the six named vessels. The collection question is whether last-port metadata matches independent port events and hull movement.",
+      "citations": [
+        "act:real:hormuz:iran-last-port-laundering:request"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels"
+        ],
+        "confidence": 0.79
+      }
+    },
+    {
+      "id": "read:real:hormuz:iran-last-port-laundering:visual",
+      "case_id": "case:real:hormuz:iran-last-port-laundering",
+      "specialist": "Visual",
+      "status": "OK",
+      "summary": "Visual tasking can verify hull presence near declared port-call windows, but it cannot prove cargo origin. This read stays at the identity/routing layer.",
+      "citations": [
+        "case:real:hormuz:iran-last-port-laundering"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.imo.org/en/ourwork/safety/pages/ais.aspx"
+        ],
+        "confidence": 0.63
+      }
+    },
+    {
+      "id": "read:real:hormuz:grey-market-china-routing:kinematics",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "Destination strings are routing metadata, not movement. EIA's Asia-flow baseline makes China-routing operationally relevant, but FOR ORDER / TO ORDER strings require track and port-event corroboration.",
+      "citations": [
+        "case:real:hormuz:grey-market-china-routing"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.eia.gov/todayinenergy/detail.php?id=65504"
+        ],
+        "confidence": 0.7
+      }
+    },
+    {
+      "id": "read:real:hormuz:grey-market-china-routing:identity",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "The identity read treats repeated destination strings as a vessel-selection cue, not a sanctions hit. Vessel-level de-duplication and registry joins are still required before ownership claims.",
+      "citations": [
+        "claim:real:hormuz:grey-market-china-routing:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://ofac.treasury.gov/recent-actions/20200514"
+        ],
+        "confidence": 0.74
+      }
+    },
+    {
+      "id": "read:real:hormuz:grey-market-china-routing:signal_integrity",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "specialist": "Signal Integrity",
+      "status": "OK",
+      "summary": "Signal integrity is bounded by duplicate cached rows and free-text destinations. The pattern is useful as a triage layer but cannot resolve cargo, owner, or intent without independent evidence.",
+      "citations": [
+        "case:real:hormuz:grey-market-china-routing"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "read:real:hormuz:grey-market-china-routing:intent",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer evasion intent. EIA's Asia-flow data and OFAC's sanctions-evasion advisory make the pattern relevant, but destination strings are not an intent indicator.",
+      "refusal_reason": "guard:layer-2:no_intent_indicator + source_bound:destination_string",
+      "causal_target": "collection",
+      "citations": [
+        "claim:real:hormuz:grey-market-china-routing:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.eia.gov/todayinenergy/detail.php?id=65504",
+          "https://ofac.treasury.gov/recent-actions/20200514"
+        ],
+        "confidence": 0,
+        "structural_refusal": true
+      }
+    },
+    {
+      "id": "read:real:hormuz:grey-market-china-routing:collection",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend de-duplicated vessel list, port-event reconstruction, and SAR/RF on HAMOUNA and DARYABAR. The aim is to turn free-text routing hints into independent custody evidence.",
+      "citations": [
+        "act:real:hormuz:grey-market-china-routing:request"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2026-004-persian-gulf-strait-hormuz-and-gulf-oman-iranian-attacks-commercial-vessels"
+        ],
+        "confidence": 0.78
+      }
+    },
+    {
+      "id": "read:real:hormuz:grey-market-china-routing:visual",
+      "case_id": "case:real:hormuz:grey-market-china-routing",
+      "specialist": "Visual",
+      "status": "OK",
+      "summary": "Visual contributes only after the routing list is de-duplicated. EO/SAR can verify hull presence near claimed route points but cannot read a destination string as cargo proof.",
+      "citations": [
+        "case:real:hormuz:grey-market-china-routing"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.imo.org/en/ourwork/safety/pages/ais.aspx"
+        ],
+        "confidence": 0.62
+      }
+    },
+    {
+      "id": "read:real:hormuz:roshak-signal-integrity:kinematics",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "A cached 31 kt speed is physically suspect for this vessel class, but the kinematic read cannot choose between spoofing, parser artifact, or a rare operational exception without adjacent positions.",
+      "citations": [
+        "ev:real:hormuz:signal-integrity:9405966"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing"
+        ],
+        "confidence": 0.76
+      }
+    },
+    {
+      "id": "read:real:hormuz:roshak-signal-integrity:identity",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "Identity is held but not resolved. The signal is about the quality of the AIS row, not whether ROSHAK is the same hull across a dark gap.",
+      "citations": [
+        "case:real:hormuz:roshak-signal-integrity"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://globalfishingwatch.org/our-apis/documentation"
+        ],
+        "confidence": 0.68
+      }
+    },
+    {
+      "id": "read:real:hormuz:roshak-signal-integrity:signal_integrity",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "specialist": "Signal Integrity",
+      "status": "REFUSED",
+      "summary": "Source chain contested. MARAD states AIS is open, unencrypted, and spoofable; IMO says AIS-equipped ships should keep AIS operating except for protected navigation. A single implausible AIS row is enough to refuse downstream movement or intent claims.",
+      "refusal_reason": "marad:ais_spoofable + implausible_speed:31kt",
+      "causal_target": "intent",
+      "citations": [
+        "ev:real:hormuz:signal-integrity:9405966"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing",
+          "https://www.imo.org/en/ourwork/safety/pages/ais.aspx"
+        ],
+        "confidence": 0.86
+      }
+    },
+    {
+      "id": "read:real:hormuz:roshak-signal-integrity:intent",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer intent. The upstream Signal Integrity refusal blocks intent inference; the only supported conclusion is AIS/data-quality review.",
+      "refusal_reason": "guard:layer-2:no_intent_indicator + upstream_refusal:signal_integrity",
+      "causal_target": "collection",
+      "citations": [
+        "claim:real:hormuz:roshak-signal-integrity:custody:h1"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing"
+        ],
+        "confidence": 0,
+        "structural_refusal": true
+      }
+    },
+    {
+      "id": "read:real:hormuz:roshak-signal-integrity:collection",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend AIS integrity review, adjacent-position reconstruction, and RF/SAR corroboration. Collection should determine whether the 31 kt value is spoofing, parser error, or a transient maneuver.",
+      "citations": [
+        "act:real:hormuz:roshak-signal-integrity:request"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.maritime.dot.gov/msci/2023-005-various-gps-interference-ais-spoofing"
+        ],
+        "confidence": 0.86
+      }
+    },
+    {
+      "id": "read:real:hormuz:roshak-signal-integrity:visual",
+      "case_id": "case:real:hormuz:roshak-signal-integrity",
+      "specialist": "Visual",
+      "status": "OK",
+      "summary": "Visual is a corroboration target only. SAR/EO can test whether a hull exists near the asserted position, but the cached AIS row alone remains contested.",
+      "citations": [
+        "case:real:hormuz:roshak-signal-integrity"
+      ],
+      "analysis_provenance": {
+        "analyst": "online-backfill-pass",
+        "performed_at": "2026-05-03T18:20:00.000Z",
+        "online_sources": [
+          "https://www.imo.org/en/ourwork/safety/pages/ais.aspx"
+        ],
+        "confidence": 0.65
+      }
     }
   ]
 }

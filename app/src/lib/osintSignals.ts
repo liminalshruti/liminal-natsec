@@ -32,6 +32,7 @@ import sentinel1ProcessMetadata from "../../../fixtures/maritime/live-cache/sent
 import sentinel2Stac from "../../../fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json" with { type: "json" };
 import sentinel2ProcessMetadata from "../../../fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.metadata.json" with { type: "json" };
 import shodanAis from "../../../fixtures/maritime/live-cache/shodan-maritime-ais.json" with { type: "json" };
+import { publicText } from "./presentationText.ts";
 
 export type OsintCategory =
   | "news"
@@ -618,7 +619,7 @@ function adaptSentinelProcessChip(
   const bytes = bytesLabel(meta.response?.bytes);
   const dataType = meta.request?.metadata?.dataType;
   const bbox = meta.request?.metadata?.bbox;
-  const detailParts = ["cached image chip"];
+  const detailParts = ["image chip"];
   if (dataType) detailParts.push(dataType);
   if (bytes) detailParts.push(bytes);
   if (bbox && bbox.length === 4) detailParts.push(`bbox ${bbox.map((n) => n.toFixed(1)).join("/")}`);
@@ -892,7 +893,12 @@ export function loadOsintSignals(): OsintSignal[] {
     return a.source.localeCompare(b.source);
   });
 
-  memo = deduped.slice(0, MAX_SIGNALS);
+  memo = deduped.slice(0, MAX_SIGNALS).map((signal) => ({
+    ...signal,
+    title: publicText(signal.title),
+    detail: signal.detail ? publicText(signal.detail) : undefined,
+    badges: signal.badges?.map(publicText)
+  }));
   return memo;
 }
 

@@ -191,6 +191,9 @@ export function timelineAnchorForCase(caseId: string | null | undefined): Timeli
   if (caseId?.startsWith("case:real:hormuz:")) {
     return { clockIso: "2026-04-18T12:08:00.000Z", phase: 6 };
   }
+  if (caseId?.startsWith("case:draft:hormuz:")) {
+    return { clockIso: "2026-04-18T12:08:00.000Z", phase: 6 };
+  }
   return null;
 }
 

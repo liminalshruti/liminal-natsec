@@ -140,9 +140,7 @@ export function projectServerState(
       ? null
       : typeof raw.emptyReason === "string" ? raw.emptyReason : null,
     sourceStatuses: useFallbackRows ? fallback.sourceStatuses : sourceStatuses,
-    tracksUrl: useFallbackRows
-      ? fallback.tracksUrl
-      : typeof raw.tracksUrl === "string" ? raw.tracksUrl : undefined,
+    tracksUrl: typeof raw.tracksUrl === "string" ? raw.tracksUrl : fallback.tracksUrl,
     alerts: serverHasRows ? anomalies.map(toAlertView) : useFallbackRows ? fallback.alerts : [],
     hypotheses: hypotheses.length > 0
       ? hypotheses.map(toHypothesisView)
@@ -253,7 +251,7 @@ function buildRealFallbackState(): ScenarioStateView {
     typeof summary.generated_at === "string" ? summary.generated_at : new Date(0).toISOString();
 
   return {
-    scenarioRunId: "real:hormuz:static-cache",
+    scenarioRunId: "real:hormuz:source-set",
     seededAt: generatedAt,
     mode: "real",
     strictReal: true,
