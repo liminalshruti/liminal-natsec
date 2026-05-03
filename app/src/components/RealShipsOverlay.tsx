@@ -31,6 +31,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import dantiShips from "../../../fixtures/maritime/live-cache/danti-hormuz-ship-best-size-200.json" with { type: "json" };
+import { useLiveMap } from "../lib/mapBridge.ts";
 
 const AOI_BBOX = { lon_min: 54.4, lat_min: 24.5, lon_max: 57.8, lat_max: 27.2 };
 
@@ -123,29 +124,26 @@ function loadShips(): ShipRecord[] {
   return out;
 }
 
-function projectLon(lon: number, width: number): number {
-  return ((lon - AOI_BBOX.lon_min) / (AOI_BBOX.lon_max - AOI_BBOX.lon_min)) * width;
-}
-
-function projectLat(lat: number, height: number): number {
-  return ((AOI_BBOX.lat_max - lat) / (AOI_BBOX.lat_max - AOI_BBOX.lat_min)) * height;
-}
-
-/** Speed → glyph length in SVG units. Bucket-encoded so the operator
+/** Speed → glyph length in pixel units. Bucket-encoded so the operator
  *  reads 4-5 distinct flow speeds, not a continuous noise of slightly-
- *  different sizes. */
+ *  different sizes. Larger absolute sizes since we're now in screen-pixel
+ *  space (was 4-16 on a 1000-unit viewBox; scaling factor ~1). */
 function speedGlyph(speedKn: number): number {
-  if (speedKn === 0) return 4.5; // anchored — a small dot
-  if (speedKn < 5) return 7; // slow
-  if (speedKn < 10) return 10; // cruise
-  if (speedKn < 15) return 13; // fast
-  return 16; // very fast
+  if (speedKn === 0) return 6; // anchored — a small dot
+  if (speedKn < 5) return 9; // slow
+  if (speedKn < 10) return 12; // cruise
+  if (speedKn < 15) return 16; // fast
+  return 20; // very fast
 }
 
 export function RealShipsOverlay() {
   const ships = useMemo(loadShips, []);
   const [active, setActive] = useState(true); // AIS layer is default-on
   const [hoverId, setHoverId] = useState<string | null>(null);
+
+  // useLiveMap subscribes us to map move/zoom — re-render fires every time
+  // the operator pans or zooms, so map.project below reflects current view.
+  const { map } = useLiveMap();
 
   // Listen to MapLayers chip toggles. AIS is the controlling layer.
   useEffect(() => {
@@ -158,27 +156,37 @@ export function RealShipsOverlay() {
     return () => window.removeEventListener("liminal:map-layers-changed", handler);
   }, []);
 
-  if (!active) return null;
+  if (!active || !map) return null;
 
-  const W = 1000;
-  const H = 1000;
   const hovered = hoverId ? ships.find((s) => s.id === hoverId) : null;
+  // Pre-compute screen coords once per render. map.project converts
+  // [lon, lat] → {x, y} pixels in the map container. Ships outside the
+  // current viewport are filtered out so we don't render glyphs that
+  // would float beyond the stage.
+  const container = map.getContainer();
+  const W = container.clientWidth;
+  const H = container.clientHeight;
+  type Projected = { ship: typeof ships[number]; x: number; y: number };
+  const projected: Projected[] = [];
+  for (const ship of ships) {
+    const p = map.project([ship.lon, ship.lat]);
+    if (p.x < -40 || p.x > W + 40 || p.y < -40 || p.y > H + 40) continue;
+    projected.push({ ship, x: p.x, y: p.y });
+  }
 
   return (
     <>
       <svg
         className="real-ships-overlay"
-        viewBox={`0 0 ${W} ${H}`}
-        preserveAspectRatio="none"
+        width={W}
+        height={H}
       >
         <defs>
           <filter id="ship-glow">
             <feGaussianBlur stdDeviation="0.7" />
           </filter>
         </defs>
-        {ships.map((ship) => {
-          const cx = projectLon(ship.lon, W);
-          const cy = projectLat(ship.lat, H);
+        {projected.map(({ ship, x, y }) => {
           const len = speedGlyph(ship.speed_kn);
           const isHovered = hoverId === ship.id;
           // Anchored ships render as small circles; moving ships as
@@ -190,7 +198,7 @@ export function RealShipsOverlay() {
                 className={`real-ship real-ship--anchored${ship.isFoc ? " real-ship--foc" : ""}${
                   isHovered ? " real-ship--hover" : ""
                 }`}
-                transform={`translate(${cx} ${cy})`}
+                transform={`translate(${x} ${y})`}
                 onMouseEnter={() => setHoverId(ship.id)}
                 onMouseLeave={() => setHoverId(null)}
               >
@@ -218,7 +226,7 @@ export function RealShipsOverlay() {
               className={`real-ship real-ship--moving${ship.isFoc ? " real-ship--foc" : ""}${
                 isHovered ? " real-ship--hover" : ""
               }`}
-              transform={`translate(${cx} ${cy}) rotate(${ship.course_deg})`}
+              transform={`translate(${x} ${y}) rotate(${ship.course_deg})`}
               onMouseEnter={() => setHoverId(ship.id)}
               onMouseLeave={() => setHoverId(null)}
             >
@@ -245,31 +253,43 @@ export function RealShipsOverlay() {
 
       {/* Hover popover — rendered outside the SVG so it can use HTML
           typography. Position is computed from the hovered ship's
-          projected coords. */}
+          live projected coords (re-projected on every map move). */}
       {hovered && (
-        <ShipHoverCard ship={hovered} />
+        <ShipHoverCard
+          ship={hovered}
+          projected={projected.find((p) => p.ship.id === hovered.id)}
+          containerW={W}
+          containerH={H}
+        />
       )}
     </>
   );
 }
 
-function ShipHoverCard({ ship }: { ship: ShipRecord }) {
-  // Position the card via percentage to make it scale with the stage.
-  const W = 1000;
-  const H = 1000;
-  const xPct = (projectLon(ship.lon, W) / W) * 100;
-  const yPct = (projectLat(ship.lat, H) / H) * 100;
-  // Flip horizontally if too close to the right edge.
-  const flipX = xPct > 65;
-  const flipY = yPct > 70;
+function ShipHoverCard({
+  ship,
+  projected,
+  containerW,
+  containerH
+}: {
+  ship: ShipRecord;
+  projected?: { x: number; y: number };
+  containerW: number;
+  containerH: number;
+}) {
+  // Use the live-projected pixel coords from the parent's map.project()
+  // call. Card auto-flips when near edges so it stays on-screen.
+  if (!projected) return null;
+  const flipX = projected.x > containerW * 0.65;
+  const flipY = projected.y > containerH * 0.7;
   return (
     <div
       className="real-ship-card"
       data-flip-x={flipX}
       data-flip-y={flipY}
       style={{
-        left: `${xPct}%`,
-        top: `${yPct}%`
+        left: `${projected.x}px`,
+        top: `${projected.y}px`
       }}
       role="tooltip"
     >
