@@ -3141,3 +3141,114 @@ details.case-file__section > summary:focus-visible {
   overflow: auto;
   max-height: 240px;
 }
+
+/* ── Empty-state stencil — the four-layer framework as teaching moment ────
+   When no case is selected, the working panel renders the SUBSTRATE →
+   CUSTODY → REFUSAL → REVIEW MEMORY stencil. This is the highest-
+   leverage teaching surface in the entire interface — operator cold-
+   start sees the architecture; procurement reader sees the IP on a
+   screenshot without needing the demo to play.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.empty-stencil {
+  padding: 18px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-family: var(--font-mono);
+  color: var(--color-ink-secondary);
+}
+
+.empty-stencil__lead {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary);
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--color-edge);
+}
+
+.empty-stencil__prompt {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--color-ink-primary);
+  margin: 0;
+  font-feature-settings: "ss01" 1, "kern" 1;
+}
+
+.empty-stencil__layers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-stencil__layer {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-edge);
+  border-left: 2px solid var(--color-edge);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.015);
+  /* Each layer subtly tinted by its semantic register — substrate is
+     ink-tertiary (raw); custody is decision-blue (belief); refusal is
+     refused-amber (the invariant); review memory is resolved-green
+     (durable doctrine). The stencil teaches the color grammar too. */
+}
+
+.empty-stencil__layer:nth-child(1) {
+  border-left-color: var(--color-ink-tertiary);
+}
+.empty-stencil__layer:nth-child(2) {
+  border-left-color: var(--color-decision);
+  background: rgba(110, 168, 254, 0.025);
+}
+.empty-stencil__layer:nth-child(3) {
+  border-left-color: var(--color-refused);
+  background: rgba(210, 96, 74, 0.025);
+}
+.empty-stencil__layer:nth-child(4) {
+  border-left-color: var(--color-resolved);
+  background: rgba(78, 160, 138, 0.025);
+}
+
+.empty-stencil__layer-num {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--color-ink-tertiary);
+  text-align: center;
+  letter-spacing: 0.04em;
+  padding-top: 1px;
+}
+
+.empty-stencil__layer-name {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--color-ink-primary);
+  text-transform: uppercase;
+}
+
+.empty-stencil__layer-desc {
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--color-ink-secondary);
+  margin-top: 2px;
+}
+
+.empty-stencil__footnote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--color-ink-tertiary);
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-edge);
+  letter-spacing: 0.02em;
+}
