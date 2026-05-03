@@ -43,20 +43,20 @@ const T = {
 // observations.json; earlier ones extrapolated backward at constant velocity
 // for kalman.predict() to have enough data to estimate a stable initial state.
 const trackA_pings = [
-  { iso: "2026-04-18T10:00:00Z", lat: 34.87152, lon: 31.17828 },
-  { iso: "2026-04-18T10:03:00Z", lat: 34.87344, lon: 31.22666 },
-  { iso: "2026-04-18T10:06:00Z", lat: 34.87536, lon: 31.27504 },
-  { iso: "2026-04-18T10:09:00Z", lat: 34.87728, lon: 31.32342 },
-  { iso: "2026-04-18T10:12:04Z", lat: 34.8792,  lon: 31.3718,  sogKnots: 12.2, cogDeg: 83.9 },
-  { iso: "2026-04-18T10:15:04Z", lat: 34.88112, lon: 31.42018, sogKnots: 12.4, cogDeg: 84.2 }
+  { iso: "2026-04-18T10:00:00Z", lat: 25.80152, lon: 55.62828 },
+  { iso: "2026-04-18T10:03:00Z", lat: 25.80344, lon: 55.67666 },
+  { iso: "2026-04-18T10:06:00Z", lat: 25.80536, lon: 55.72504 },
+  { iso: "2026-04-18T10:09:00Z", lat: 25.80728, lon: 55.77342 },
+  { iso: "2026-04-18T10:12:04Z", lat: 25.8092,  lon: 55.8218,  sogKnots: 12.2, cogDeg: 83.9 },
+  { iso: "2026-04-18T10:15:04Z", lat: 25.81112, lon: 55.87018, sogKnots: 12.4, cogDeg: 84.2 }
 ];
 
 // Track B post-gap: first ping anchored on observations.json; subsequent
 // pings extend along the AIS-reported course/speed.
 const trackB_pings = [
-  { iso: "2026-04-18T11:04:22Z", lat: 34.8891, lon: 31.91844, sogKnots: 12.0, cogDeg: 86.1 },
-  { iso: "2026-04-18T11:09:22Z", lat: 34.8901, lon: 31.96    },
-  { iso: "2026-04-18T11:14:22Z", lat: 34.8910, lon: 32.005   }
+  { iso: "2026-04-18T11:04:22Z", lat: 25.8191, lon: 56.36844, sogKnots: 12.0, cogDeg: 86.1 },
+  { iso: "2026-04-18T11:09:22Z", lat: 25.8201, lon: 56.41    },
+  { iso: "2026-04-18T11:14:22Z", lat: 25.821, lon: 56.455   }
 ];
 
 const gapSeconds = (ms(T.event1.gap_end_iso) - ms(T.event1.gap_start_iso)) / 1000;
@@ -109,34 +109,34 @@ console.log(`Kalman result: mahalanobis=${prediction.mahalanobis.toFixed(3)} ` +
 // "B inside ellipse" visual; it only needs to demonstrate the rule re-ranking.
 
 const trackA2_pings = [
-  { iso: "2026-04-18T12:08:00Z", lat: 34.898, lon: 31.42 },
-  { iso: "2026-04-18T12:14:00Z", lat: 34.900, lon: 31.46 },
-  { iso: "2026-04-18T12:20:00Z", lat: 34.902, lon: 31.507, sogKnots: 9.3, cogDeg: 77.4 }
+  { iso: "2026-04-18T12:08:00Z", lat: 25.828, lon: 55.87 },
+  { iso: "2026-04-18T12:14:00Z", lat: 25.83, lon: 55.91 },
+  { iso: "2026-04-18T12:20:00Z", lat: 25.832, lon: 55.957, sogKnots: 9.3, cogDeg: 77.4 }
 ];
 const dantiPing = {
   iso: T.event2.danti_corroboration_iso,
-  lat: 34.914,
-  lon: 31.778
+  lat: 25.844,
+  lon: 56.228
 };
 const trackB2_pings = [
-  { iso: "2026-04-18T13:05:00Z", lat: 34.919, lon: 31.892, sogKnots: 9.1, cogDeg: 78.2 },
-  { iso: "2026-04-18T13:11:00Z", lat: 34.920, lon: 31.94 },
-  { iso: "2026-04-18T13:17:00Z", lat: 34.921, lon: 31.99 }
+  { iso: "2026-04-18T13:05:00Z", lat: 25.849, lon: 56.342, sogKnots: 9.1, cogDeg: 78.2 },
+  { iso: "2026-04-18T13:11:00Z", lat: 25.85, lon: 56.39 },
+  { iso: "2026-04-18T13:17:00Z", lat: 25.851, lon: 56.44 }
 ];
 
 // --- Background traffic — 10 faint tracks scattered around the AOI ---------
 
 const backgroundTracks = [
-  { id: "bg:001", coords: [[31.21, 34.76], [31.42, 34.77], [31.67, 34.79], [31.92, 34.81]] },
-  { id: "bg:002", coords: [[31.32, 35.11], [31.58, 35.08], [31.89, 35.05], [32.10, 35.02]] },
-  { id: "bg:003", coords: [[31.04, 34.94], [31.28, 34.96], [31.52, 34.97], [31.78, 34.99]] },
-  { id: "bg:004", coords: [[31.76, 34.72], [31.91, 34.79], [32.07, 34.86]] },
-  { id: "bg:005", coords: [[31.18, 34.83], [31.38, 34.81], [31.58, 34.78]] },
-  { id: "bg:006", coords: [[32.05, 35.05], [31.85, 35.02], [31.62, 34.99]] },
-  { id: "bg:007", coords: [[31.42, 35.18], [31.68, 35.14], [31.95, 35.10]] },
-  { id: "bg:008", coords: [[31.22, 34.71], [31.45, 34.74], [31.71, 34.76]] },
-  { id: "bg:009", coords: [[32.12, 34.92], [31.91, 34.94], [31.69, 34.95]] },
-  { id: "bg:010", coords: [[31.35, 34.99], [31.50, 35.04], [31.66, 35.08]] }
+  { id: "bg:001", coords: [[55.66, 25.69], [55.87, 25.7], [56.12, 25.72], [56.37, 25.74]] },
+  { id: "bg:002", coords: [[55.77, 26.04], [56.03, 26.01], [56.34, 25.98], [56.55, 25.95]] },
+  { id: "bg:003", coords: [[55.49, 25.87], [55.73, 25.89], [55.97, 25.9], [56.23, 25.92]] },
+  { id: "bg:004", coords: [[56.21, 25.65], [56.36, 25.72], [56.52, 25.79]] },
+  { id: "bg:005", coords: [[55.63, 25.76], [55.83, 25.74], [56.03, 25.71]] },
+  { id: "bg:006", coords: [[56.5, 25.98], [56.3, 25.95], [56.07, 25.92]] },
+  { id: "bg:007", coords: [[55.87, 26.11], [56.13, 26.07], [56.4, 26.03]] },
+  { id: "bg:008", coords: [[55.67, 25.64], [55.9, 25.67], [56.16, 25.69]] },
+  { id: "bg:009", coords: [[56.57, 25.85], [56.36, 25.87], [56.14, 25.88]] },
+  { id: "bg:010", coords: [[55.8, 25.92], [55.95, 25.97], [56.11, 26.01]] }
 ];
 
 // --- Build the FeatureCollection -------------------------------------------
@@ -156,11 +156,11 @@ features.push({
   geometry: {
     type: "Polygon",
     coordinates: [[
-      [31.10, 34.70],
-      [32.20, 34.70],
-      [32.20, 35.20],
-      [31.10, 35.20],
-      [31.10, 34.70]
+      [55.55, 25.63],
+      [56.65, 25.63],
+      [56.65, 26.13],
+      [55.55, 26.13],
+      [55.55, 25.63]
     ]]
   }
 });
@@ -443,23 +443,23 @@ const fc = {
     aoi: {
       aoi_id: "aoi:alara-eez-box-01",
       name: "Alara EEZ Box 01",
-      bbox: [31.10, 34.70, 32.20, 35.20]
+      bbox: [55.55, 25.63, 56.65, 26.13]
     },
     canonical_timestamps: T,
     canonical_pings: {
       event_1: {
         track_a_last:  { mmsi: "366700111", iso: T.event1.track_a_last_iso,
-                         lat: 34.88112, lon: 31.42018 },
+                         lat: 25.81112, lon: 55.87018 },
         track_b_first: { mmsi: "538009771", iso: T.event1.track_b_first_iso,
-                         lat: 34.88910, lon: 31.91844 }
+                         lat: 25.8191, lon: 56.36844 }
       },
       event_2: {
         track_a2_last:  { mmsi: "271990222", iso: T.event2.track_a2_last_iso,
-                          lat: 34.902, lon: 31.507 },
+                          lat: 25.832, lon: 55.957 },
         danti:          { iso: T.event2.danti_corroboration_iso,
-                          lat: 34.914, lon: 31.778 },
+                          lat: 25.844, lon: 56.228 },
         track_b2_first: { mmsi: "271990222", iso: T.event2.track_b2_reappear_iso,
-                          lat: 34.919, lon: 31.892 }
+                          lat: 25.849, lon: 56.342 }
       }
     },
     kalman_event_1: {
