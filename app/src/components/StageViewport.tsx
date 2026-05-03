@@ -2,6 +2,7 @@ import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { DataSourcesChips } from "./DataSourcesChips.tsx";
 import { DemoPrompt } from "./DemoPrompt.tsx";
+import { MapLayers } from "./MapLayers.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
 
 interface StageViewportProps {
@@ -58,6 +59,11 @@ export function StageViewport({
               style={{ position: "absolute", inset: 0 }}
             />
             <DataSourcesChips />
+            {/* MapLayers: layer-toggle control strip — multi-modal overhead-
+                projector-transparency idea from the workshop substrate.
+                AIS / GFW / Sentinel / OpenSanctions / NAVAREA chips, each
+                with status pip + count + summary panel on click. */}
+            <MapLayers />
             {/* DemoPrompt overlays editorial annotations on each phase change.
                 Hand-lettered (Liminal Hand → Caveat fallback). ESC dismisses.
                 Auto-fades after 8s so the operator can dwell on the moment
