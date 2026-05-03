@@ -52,6 +52,10 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 > "Server-side middleware that wraps every specialist output. Layer 1: refuses if a 'supported' verdict has fewer than 2 cited observations. Layer 2: refuses Intent if no INTENT_INDICATOR evidence is present. Layer 4: refuses if posterior is below the confidence floor. Layer 6: refuses kinematic or intent claims that cite only Shodan. Layer 7: refuses when a question contains 'hostile/threat/intent' phrasing but no indicator evidence exists. The guard is deterministic and runs after the LLM call."
 
+### "What does Signal Integrity actually do? Is it just one specialist?"
+
+> "Signal Integrity is the verdict layer; underneath it are three independent specialists looking at three different modalities. Identity inspects AIS metadata for discontinuity. Visual runs a CLIP-based cross-modal check — declared AIS class versus visual classifier output. Kinematics evaluates continuity within plausible spoofing envelopes. When they converge on source-chain compromise, the Signal Integrity row reads CONTESTED. That's defense in depth — an attacker has to spoof three independent reads, not one. The structural guard validates each before any verdict can persist."
+
 ### "How do you prevent prompt injection / model spoofing?"
 
 > "Two ways. One: the structural guard runs *server-side after AIP output* — there's no prompt that can change citation count or evidence type. The guard's layered checks are code, not text in a system prompt. Two: every observation has a source-integrity check before it influences a claim. A spoofed input would have to forge an INTENT_INDICATOR evidence record, which is provenance-tracked back to a source-document hash. The Signal Integrity specialist flags the chain before the Intent specialist gets to refuse."

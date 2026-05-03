@@ -4,6 +4,7 @@ import { applyGuard } from "./guard.ts";
 import { identitySpecialist } from "./identity.ts";
 import { intentSpecialist } from "./intent.ts";
 import { kinematicsSpecialist } from "./kinematics.ts";
+import { signalIntegritySpecialist } from "./signalIntegrity.ts";
 import {
   type GuardedSpecialistOutput,
   type Specialist,
@@ -16,6 +17,7 @@ import { visualSpecialist } from "./visual.ts";
 const REGISTRY: Record<SpecialistName, Specialist> = {
   kinematics: kinematicsSpecialist,
   identity: identitySpecialist,
+  signal_integrity: signalIntegritySpecialist,
   intent: intentSpecialist,
   collection: collectionSpecialist,
   visual: visualSpecialist

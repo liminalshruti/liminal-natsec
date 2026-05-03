@@ -111,7 +111,7 @@ Shayaun:
 
 Shruti:
 
-- Build `SpecialistReads.tsx` with **5 rows** (Kinematics / Identity / **Signal Integrity** / Intent / Collection).
+- Build `SpecialistReads.tsx` with **6 rows** (Kinematics / Identity / **Signal Integrity** / Intent / Collection / Visual).
 - Make Intent REFUSED the hero UI moment.
 - **v3:** wire the causal line — *"Intent refused because Signal Integrity is contested"* — using the `triggers_refusal_for` field.
 - Build action options.

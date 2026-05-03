@@ -330,6 +330,20 @@
       ]
     },
     {
+      "id": "read:alara-01:event-1:signal_integrity",
+      "case_id": "case:alara-01:event-1",
+      "specialist": "Signal Integrity",
+      "status": "REFUSED",
+      "summary": "Source chain contested. Identity flags MMSI metadata mismatch. Visual flags AIS-class mismatch. Kinematic continuity within plausible spoofing envelope. Three independent specialists converge on source-chain compromise.",
+      "refusal_reason": "convergence: identity discontinuity + visual class mismatch + spoofing-envelope kinematics",
+      "causal_target": "intent",
+      "citations": [
+        "ev:alara-01:event-1:metadata-conflict",
+        "ev:alara-01:event-1:visual-class-mismatch",
+        "obs:aishub:366700111:20260418T101504Z"
+      ]
+    },
+    {
       "id": "read:alara-01:event-1:intent",
       "case_id": "case:alara-01:event-1",
       "specialist": "Intent",
@@ -349,6 +363,82 @@
       "citations": [
         "act:alara-01:event-1:request-sar-rf",
         "claim:alara-01:event-1:custody:h1"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-1:visual",
+      "case_id": "case:alara-01:event-1",
+      "specialist": "Visual",
+      "status": "REFUSED",
+      "summary": "Cross-modal mismatch. AIS declares cargo class; CLIP visual classifier returns tanker (0.71). Single-source contradiction; no second-source imagery yet.",
+      "refusal_reason": "ais_class_mismatch: declared=cargo, visual=tanker(0.71)",
+      "citations": [
+        "ev:alara-01:event-1:visual-class-mismatch",
+        "obs:aishub:366700111:20260418T101504Z"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-2:kinematics",
+      "case_id": "case:alara-01:event-2",
+      "specialist": "Kinematics",
+      "status": "OK",
+      "summary": "Track continuity within nominal corridor; no dark-gap anomaly.",
+      "citations": [
+        "obs:aishub:271990222:20260418T122005Z"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-2:identity",
+      "case_id": "case:alara-01:event-2",
+      "specialist": "Identity",
+      "status": "OK",
+      "summary": "Identity features consistent across feeds; no metadata churn.",
+      "citations": [
+        "obs:aishub:271990222:20260418T122005Z"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-2:signal_integrity",
+      "case_id": "case:alara-01:event-2",
+      "specialist": "Signal Integrity",
+      "status": "OK",
+      "summary": "Source chain consistent. Identity, Visual, and Kinematics agree. Prior rule R-001 governs collection posture for this anomaly class.",
+      "causal_target": "intent",
+      "citations": [
+        "obs:aishub:271990222:20260418T122005Z",
+        "rule:alara-01:R-001"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-2:intent",
+      "case_id": "case:alara-01:event-2",
+      "specialist": "Intent",
+      "status": "REFUSED",
+      "summary": "Insufficient evidence to infer hostile intent (rule R-001 enforces collection-first posture).",
+      "citations": [
+        "claim:alara-01:event-2:custody:h1",
+        "rule:alara-01:R-001"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-2:collection",
+      "case_id": "case:alara-01:event-2",
+      "specialist": "Collection",
+      "status": "OK",
+      "summary": "Recommend SAR or RF corroboration (per prior rule R-001).",
+      "citations": [
+        "act:alara-01:event-2:request-sar-rf",
+        "rule:alara-01:R-001"
+      ]
+    },
+    {
+      "id": "read:alara-01:event-2:visual",
+      "case_id": "case:alara-01:event-2",
+      "specialist": "Visual",
+      "status": "OK",
+      "summary": "Cross-modal verification consistent; AIS class matches visual classifier.",
+      "citations": [
+        "obs:aishub:271990222:20260418T122005Z"
       ]
     }
   ]
