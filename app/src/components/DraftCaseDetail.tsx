@@ -233,6 +233,60 @@ export function DraftCaseDetail() {
           </span>
         </footer>
       )}
+
+      {isPromoted && (
+        <section className="draft-case-detail__next-steps" aria-label="Next steps">
+          <div className="draft-case-detail__next-eyebrow">NEXT STEPS</div>
+          <p className="draft-case-detail__next-lead">
+            The custody case is now in the operator queue. The structural
+            guard runs the same six-specialist review on these signals as it
+            does on the Caldera case. Three operator paths from here:
+          </p>
+          <ol className="draft-case-detail__next-list">
+            <li className="draft-case-detail__next-step">
+              <span className="draft-case-detail__next-num">01</span>
+              <div>
+                <div className="draft-case-detail__next-name">Open custody review</div>
+                <div className="draft-case-detail__next-desc">
+                  Review specialist reads + the system's posture verb. The
+                  structural guard runs the same six-specialist review here
+                  as on Caldera; expect contested signal_integrity given
+                  how many of these vessels are FOC-flagged.
+                </div>
+              </div>
+            </li>
+            <li className="draft-case-detail__next-step">
+              <span className="draft-case-detail__next-num">02</span>
+              <div>
+                <div className="draft-case-detail__next-name">Request collection (default action)</div>
+                <div className="draft-case-detail__next-desc">
+                  Sentinel-1 SAR re-tasking on each attached vessel's last
+                  AIS position; OFAC SDN deep-check on the IMO numbers.
+                  Refusal-as-redirect: Intent gets gated until collection
+                  returns.
+                </div>
+              </div>
+            </li>
+            <li className="draft-case-detail__next-step">
+              <span className="draft-case-detail__next-num">03</span>
+              <div>
+                <div className="draft-case-detail__next-name">Save as durable rule</div>
+                <div className="draft-case-detail__next-desc">
+                  This pattern (FOC-flag + Iran-corridor + intentional-
+                  disabling) becomes a Review Memory rule. Future similar
+                  clusters auto-promote without operator review.
+                </div>
+              </div>
+            </li>
+          </ol>
+          <div className="draft-case-detail__next-affordance">
+            <span aria-hidden="true">↳</span>
+            Use the command line below ·{" "}
+            <code>/event 1</code> to switch to Caldera ·{" "}
+            <code>/help</code> for navigation
+          </div>
+        </section>
+      )}
     </section>
   );
 }

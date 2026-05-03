@@ -13,13 +13,15 @@ import { specialistReadsForCase } from "./lib/specialistReads.ts";
 import type { AlertView } from "./lib/types.ts";
 
 import { ActionOptions } from "./components/ActionOptions.tsx";
+import { AiNoticeToast } from "./components/AiNoticeToast.tsx";
 import { CaseHandoffBanner } from "./components/CaseHandoffBanner.tsx";
 import { CommandLine } from "./components/CommandLine.tsx";
 import { ConfidenceBar } from "./components/ConfidenceBar.tsx";
 import { CustodyCasePanel } from "./components/CustodyCasePanel.tsx";
 import { CustodyQueue } from "./components/CustodyQueue.tsx";
 import { DataSourcesChips } from "./components/DataSourcesChips.tsx";
-import { DemoPrompt } from "./components/DemoPrompt.tsx";
+import { DraftCaseCard } from "./components/DraftCaseCard.tsx";
+import { DraftCaseDetail } from "./components/DraftCaseDetail.tsx";
 import { EvidenceChain } from "./components/EvidenceChain.tsx";
 import { EvidenceDrawer } from "./components/EvidenceDrawer.tsx";
 import { ExecSummary } from "./components/ExecSummary.tsx";
@@ -29,13 +31,17 @@ import { HypothesisSurface } from "./components/HypothesisSurface.tsx";
 import { MapTelemetryHud } from "./components/MapTelemetryHud.tsx";
 import { NamedOperatorCard } from "./components/NamedOperatorCard.tsx";
 import { ProvenanceTrace } from "./components/ProvenanceTrace.tsx";
-import { ReplayControls } from "./components/ReplayControls.tsx";
 import { ReviewMemory } from "./components/ReviewMemory.tsx";
 import { SpecialistReads } from "./components/SpecialistReads.tsx";
 import { SubstratePanel } from "./components/SubstratePanel.tsx";
 import { TypedObjectChip } from "./components/TypedObjectChip.tsx";
 import { WorkflowStrip } from "./components/WorkflowStrip.tsx";
 import { WorkingPanel } from "./components/WorkingPanel.tsx";
+
+// DemoPrompt + ReplayControls intentionally NOT imported — both deferred
+// (annotation rework brief, replay-controls user-removal) but their files
+// remain in the codebase for future re-instatement. Don't surface in
+// the export until they're either revived or fully deleted.
 
 import "./styles.css";
 
@@ -184,12 +190,8 @@ const registry: Record<string, { label: string; render: Renderer; wide?: boolean
       </div>
     )
   },
-  DemoPromptP1: { label: "Demo prompt — phase 1", render: () => <DemoPrompt phase={1} /> },
-  DemoPromptP2: { label: "Demo prompt — phase 2", render: () => <DemoPrompt phase={2} /> },
-  DemoPromptP3: { label: "Demo prompt — phase 3", render: () => <DemoPrompt phase={3} /> },
-  DemoPromptP4: { label: "Demo prompt — phase 4", render: () => <DemoPrompt phase={4} /> },
-  DemoPromptP5: { label: "Demo prompt — phase 5", render: () => <DemoPrompt phase={5} /> },
-  DemoPromptP6: { label: "Demo prompt — phase 6", render: () => <DemoPrompt phase={6} /> },
+  // DemoPromptP1-P6 removed — annotation overlay deferred pending element-
+  // bound annotation system rework. See docs/annotation-rework-brief.md.
   MapTelemetryHud: {
     label: "Map telemetry HUD",
     render: ({ scenario }) => (
@@ -199,16 +201,34 @@ const registry: Record<string, { label: string; render: Renderer; wide?: boolean
       />
     )
   },
-  ReplayControls: {
-    label: "Replay controls",
+  // ReplayControls removed per Shayaun + Shruti agreement: hiding-data-
+  // until-click was the wrong frame. The demo's beat structure is the
+  // demo itself running its replay clock, not a UI affordance to seek.
+  WorkflowStrip: { label: "Workflow strip (topbar)", render: () => <WorkflowStrip /> },
+  AiNoticeToast: {
+    label: "AI notice toast (banner mode)",
     render: () => (
-      <ReplayControls
-        scenarioState={{ phase: 3, clockIso: "2026-04-18T11:10:00Z", isPlaying: false }}
-        onScenarioStateChange={() => undefined}
-      />
+      <div style={{ position: "relative", height: 220, padding: 24, background: "#0c1116" }}>
+        <AiNoticeToast onClickDraft={() => undefined} />
+      </div>
     )
   },
-  WorkflowStrip: { label: "Workflow strip (topbar)", render: () => <WorkflowStrip /> },
+  DraftCaseCard: {
+    label: "Draft case card (substrate panel chip)",
+    render: () => (
+      <div style={{ padding: 12, maxWidth: 320 }}>
+        <DraftCaseCard
+          selectedAlertId={null}
+          onSelect={() => undefined}
+        />
+      </div>
+    )
+  },
+  DraftCaseDetail: {
+    label: "Draft case detail (working panel)",
+    wide: true,
+    render: () => <DraftCaseDetail />
+  },
   SubstratePanel: {
     label: "Substrate panel",
     render: ({ scenario, alert }) => (
