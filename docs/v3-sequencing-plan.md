@@ -1,6 +1,6 @@
-# SeaForge — v3 Sequencing Plan
+# Liminal Custody — v3 Sequencing Plan
 
-**Status:** v3 patch on top of `docs/v2/SeaForge_Sequencing_Plan_v2.md`. v2 phase gates are unchanged. v3 inserts Signal Integrity tasks and adds judge-calibration windows at the front and back.
+**Status:** v3 patch on top of `docs/v2/Liminal Custody_Sequencing_Plan_v2.md`. v2 phase gates are unchanged. v3 inserts Signal Integrity tasks and adds judge-calibration windows at the front and back.
 
 ---
 
@@ -196,7 +196,7 @@ The v3 make-or-break moment:
 > **A second event card shows a changed recommendation because of a human review rule —
 > and the system visibly shows that Intent refused because Signal Integrity was contested.**
 
-If both land, SeaForge has two differentiators no other team will have:
+If both land, Liminal Custody has two differentiators no other team will have:
 - Review Memory (the moat).
 - Restraint-as-security-feature (the PS4 differentiator made causal).
 
