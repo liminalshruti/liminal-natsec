@@ -6,20 +6,21 @@ export const DANTI_TRAFFIC_PATH =
   "/fixtures/maritime/live-cache/danti-hormuz-ship-paginated.json";
 
 export interface DantiTrafficPointProps {
-  kind: "danti_ship_position";
-  source: "DANTI_MARINETRAFFIC";
+  kind: "danti_traffic";
+  source: "DANTI/MARINETRAFFIC";
+  document_id: string;
   name: string;
-  mmsi: string | null;
-  imo: string | null;
-  flag: string | null;
-  ship_type: string | null;
-  status: string | null;
-  destination: string | null;
-  current_port: string | null;
-  speed_raw: number | null;
-  course: number | null;
+  mmsi: string;
+  imo: string;
+  flag: string;
+  ship_type: string;
+  status: string;
+  destination: string;
+  current_port: string;
   observed_at: string;
   t_epoch_ms: number;
+  speed: number | null;
+  course: number | null;
   is_tanker: boolean;
   is_iran_flag: boolean;
   is_underway: boolean;
@@ -27,98 +28,159 @@ export interface DantiTrafficPointProps {
 }
 
 export interface DantiTrafficArchive {
-  source: "DANTI_MARINETRAFFIC";
-  generatedAt: string | null;
-  points: Array<Feature<Point, DantiTrafficPointProps>>;
   startMs: number;
   endMs: number;
-  totalRecords: number;
-  uniqueVessels: number;
+  totalDocuments: number;
+  totalVessels: number;
+  features: Array<Feature<Point, DantiTrafficPointProps>>;
 }
 
 export interface VisibleDantiTraffic {
   featureCollection: FeatureCollection<Point, DantiTrafficPointProps>;
   archiveClockIso: string | null;
+  archiveStartIso: string | null;
+  archiveEndIso: string | null;
   visibleVessels: number;
   totalVessels: number;
+}
+
+interface DantiPayload {
+  documents?: DantiDocument[];
 }
 
 interface DantiDocument {
   documentId?: string;
   authoredOn?: string;
-  geometry?: { type?: string; coordinates?: unknown };
+  geometry?: {
+    type?: string;
+    coordinates?: unknown;
+  };
   properties?: Record<string, unknown>;
   display?: Record<string, unknown>;
-}
-
-interface DantiShipPayload {
-  generated_at?: string;
-  documents?: DantiDocument[];
+  source?: string;
 }
 
 export async function loadDantiTraffic(
   url: string = DANTI_TRAFFIC_PATH
 ): Promise<DantiTrafficArchive | null> {
   const response = await fetch(url);
-  if (!response.ok) {
-    if (response.status === 404) return null;
-    throw new Error(`fetch ${url} -> HTTP ${response.status}`);
-  }
-  return buildDantiTrafficArchive((await response.json()) as DantiShipPayload);
+  if (!response.ok) return null;
+  const payload = (await response.json()) as DantiPayload;
+  return buildDantiTrafficArchive(payload);
 }
 
 export function buildDantiTrafficArchive(
-  payload: DantiShipPayload
+  payload: DantiPayload
 ): DantiTrafficArchive | null {
-  const docs = Array.isArray(payload.documents) ? payload.documents : [];
-  const points = docs.flatMap((doc, index) => {
-    const point = dantiDocumentToPoint(doc, index);
-    return point ? [point] : [];
-  });
-  if (points.length === 0) return null;
+  const documents = Array.isArray(payload.documents) ? payload.documents : [];
+  const features: Array<Feature<Point, DantiTrafficPointProps>> = [];
 
-  points.sort((left, right) => left.properties.t_epoch_ms - right.properties.t_epoch_ms);
-  const startMs = points[0].properties.t_epoch_ms;
-  const endMs = points[points.length - 1].properties.t_epoch_ms;
-  const uniqueVessels = new Set(points.map(vesselKey)).size;
+  for (const doc of documents) {
+    const props = doc.properties ?? {};
+    const display = doc.display ?? {};
+    const coords = pointCoordinates(doc, props);
+    if (!coords) continue;
 
+    const observedAt = stringValue(doc.authoredOn) || stringValue(props.datetime);
+    const tEpochMs = Date.parse(observedAt);
+    if (!Number.isFinite(tEpochMs)) continue;
+
+    const name =
+      stringValue(props.ship_name) ||
+      stringValue(display.ship_name) ||
+      "Unknown vessel";
+    const mmsi = stringValue(props.mmsi) || stringValue(display.mmsi);
+    const imo = stringValue(props.imo) || stringValue(display.imo);
+    const flag = stringValue(props.flag) || stringValue(display.flag);
+    const shipType =
+      stringValue(props.type_name) ||
+      stringValue(display.ship_type) ||
+      stringValue(props.ship_type);
+    const status = stringValue(display.status) || stringValue(props.status);
+    const speed = numberValue(props.speed ?? display.speed);
+
+    const feature: Feature<Point, DantiTrafficPointProps> = {
+      type: "Feature",
+      id: doc.documentId ?? `${mmsi || name}:${tEpochMs}`,
+      properties: {
+        kind: "danti_traffic",
+        source: "DANTI/MARINETRAFFIC",
+        document_id: doc.documentId ?? "",
+        name,
+        mmsi,
+        imo,
+        flag,
+        ship_type: shipType,
+        status,
+        destination: stringValue(props.destination) || stringValue(display.destination),
+        current_port: stringValue(props.current_port),
+        observed_at: observedAt,
+        t_epoch_ms: tEpochMs,
+        speed,
+        course: numberValue(props.course),
+        is_tanker: isTanker(shipType, props.raw_vessel_data),
+        is_iran_flag: isIranFlag(flag, props.raw_vessel_data),
+        is_underway: isUnderway(status, props.status, speed),
+        is_anchor_or_moored: isAnchorOrMoored(status, props.status, speed),
+      },
+      geometry: {
+        type: "Point",
+        coordinates: coords,
+      },
+    };
+    features.push(feature);
+  }
+
+  if (features.length === 0) return null;
+
+  features.sort(
+    (a, b) =>
+      a.properties.t_epoch_ms - b.properties.t_epoch_ms ||
+      vesselKey(a).localeCompare(vesselKey(b))
+  );
+
+  const vesselKeys = new Set(features.map(vesselKey));
   return {
-    source: "DANTI_MARINETRAFFIC",
-    generatedAt: stringValue(payload.generated_at),
-    points,
-    startMs,
-    endMs,
-    totalRecords: points.length,
-    uniqueVessels
+    startMs: features[0].properties.t_epoch_ms,
+    endMs: features[features.length - 1].properties.t_epoch_ms,
+    totalDocuments: features.length,
+    totalVessels: vesselKeys.size,
+    features,
   };
 }
 
 export function selectVisibleDantiTraffic(
-  archive: DantiTrafficArchive,
+  archive: DantiTrafficArchive | null,
   fixture: TracksFixture,
   clockMs: number
 ): VisibleDantiTraffic {
+  if (!archive) {
+    return {
+      featureCollection: emptyDantiTrafficFeatureCollection(),
+      archiveClockIso: null,
+      archiveStartIso: null,
+      archiveEndIso: null,
+      visibleVessels: 0,
+      totalVessels: 0,
+    };
+  }
+
   const archiveClockMs = archiveTimeForScenarioClock(archive, fixture, clockMs);
-  if (!Number.isFinite(archiveClockMs)) {
-    return emptyVisibleDantiTraffic(archive);
-  }
-
   const latestByVessel = new Map<string, Feature<Point, DantiTrafficPointProps>>();
-  for (const point of archive.points) {
-    if (point.properties.t_epoch_ms > archiveClockMs) break;
-    latestByVessel.set(vesselKey(point), point);
+
+  for (const feature of archive.features) {
+    if (feature.properties.t_epoch_ms > archiveClockMs) break;
+    latestByVessel.set(vesselKey(feature), feature);
   }
 
-  const features = [...latestByVessel.values()].sort((left, right) =>
-    vesselPriority(right) - vesselPriority(left) ||
-    left.properties.name.localeCompare(right.properties.name)
-  );
-
+  const visible = Array.from(latestByVessel.values()).sort(compareVisibleVessels);
   return {
-    featureCollection: { type: "FeatureCollection", features },
+    featureCollection: { type: "FeatureCollection", features: visible },
     archiveClockIso: new Date(archiveClockMs).toISOString(),
-    visibleVessels: features.length,
-    totalVessels: archive.uniqueVessels
+    archiveStartIso: new Date(archive.startMs).toISOString(),
+    archiveEndIso: new Date(archive.endMs).toISOString(),
+    visibleVessels: visible.length,
+    totalVessels: archive.totalVessels,
   };
 }
 
@@ -133,103 +195,109 @@ export function archiveTimeForScenarioClock(
   return archive.startMs + progress * Math.max(1, archive.endMs - archive.startMs);
 }
 
-export function emptyDantiTrafficFeatureCollection():
-  FeatureCollection<Point, DantiTrafficPointProps> {
+export function emptyDantiTrafficFeatureCollection(): FeatureCollection<Point, DantiTrafficPointProps> {
   return { type: "FeatureCollection", features: [] };
 }
 
-function emptyVisibleDantiTraffic(archive: DantiTrafficArchive): VisibleDantiTraffic {
-  return {
-    featureCollection: emptyDantiTrafficFeatureCollection(),
-    archiveClockIso: null,
-    visibleVessels: 0,
-    totalVessels: archive.uniqueVessels
-  };
-}
-
-function dantiDocumentToPoint(
+function pointCoordinates(
   doc: DantiDocument,
-  index: number
-): Feature<Point, DantiTrafficPointProps> | null {
-  const props = doc.properties ?? {};
-  const display = doc.display ?? {};
-  const coords = Array.isArray(doc.geometry?.coordinates)
-    ? doc.geometry.coordinates
-    : [];
-  const lon = numberValue(coords[0]) ?? numberValue(props.longitude);
-  const lat = numberValue(coords[1]) ?? numberValue(props.latitude);
-  const observedAt = stringValue(doc.authoredOn) ?? stringValue(props.datetime);
-  const tEpochMs = observedAt ? Date.parse(observedAt) : Number.NaN;
-  if (!Number.isFinite(lon) || !Number.isFinite(lat) || !Number.isFinite(tEpochMs)) {
-    return null;
+  props: Record<string, unknown>
+): [number, number] | null {
+  const coords = doc.geometry?.coordinates;
+  if (Array.isArray(coords) && coords.length >= 2) {
+    const lon = numberValue(coords[0]);
+    const lat = numberValue(coords[1]);
+    if (lon !== null && lat !== null && validLonLat(lon, lat)) return [lon, lat];
   }
 
-  const shipType = stringValue(props.type_name) ?? stringValue(display.ship_type);
-  const status = stringValue(display.status) ?? stringValue(props.status);
-  const flag = stringValue(props.flag) ?? stringValue(display.flag);
+  const lon = numberValue(props.longitude);
+  const lat = numberValue(props.latitude);
+  if (lon !== null && lat !== null && validLonLat(lon, lat)) return [lon, lat];
+  return null;
+}
 
-  return {
-    type: "Feature",
-    id: doc.documentId ?? `danti-ship-${index}`,
-    geometry: { type: "Point", coordinates: [lon, lat] },
-    properties: {
-      kind: "danti_ship_position",
-      source: "DANTI_MARINETRAFFIC",
-      name:
-        stringValue(props.ship_name) ??
-        stringValue(display.ship_name) ??
-        `Vessel ${index + 1}`,
-      mmsi: stringValue(props.mmsi) ?? stringValue(display.mmsi),
-      imo: stringValue(props.imo) ?? stringValue(display.imo),
-      flag,
-      ship_type: shipType,
-      status,
-      destination: stringValue(props.destination),
-      current_port: stringValue(props.current_port),
-      speed_raw: numberValue(props.speed) ?? numberValue(display.speed),
-      course: numberValue(props.course),
-      observed_at: observedAt ?? new Date(tEpochMs).toISOString(),
-      t_epoch_ms: tEpochMs,
-      is_tanker: /tanker/i.test(shipType ?? ""),
-      is_iran_flag: flag === "IR",
-      is_underway: /under way/i.test(status ?? ""),
-      is_anchor_or_moored: /anchor|moored/i.test(status ?? "")
-    }
-  };
+function validLonLat(lon: number, lat: number): boolean {
+  return lon >= -180 && lon <= 180 && lat >= -90 && lat <= 90;
 }
 
 function vesselKey(feature: Feature<Point, DantiTrafficPointProps>): string {
-  return (
-    feature.properties.mmsi ??
-    feature.properties.imo ??
-    feature.properties.name
-  );
+  const p = feature.properties;
+  return p.mmsi || p.imo || p.name || p.document_id;
 }
 
-function vesselPriority(feature: Feature<Point, DantiTrafficPointProps>): number {
-  const props = feature.properties;
+function compareVisibleVessels(
+  a: Feature<Point, DantiTrafficPointProps>,
+  b: Feature<Point, DantiTrafficPointProps>
+): number {
+  const ap = priority(a.properties);
+  const bp = priority(b.properties);
+  if (ap !== bp) return bp - ap;
+  return a.properties.name.localeCompare(b.properties.name);
+}
+
+function priority(props: DantiTrafficPointProps): number {
   return (
     (props.is_iran_flag ? 100 : 0) +
-    (props.is_tanker ? 40 : 0) +
-    (props.is_underway ? 20 : 0) +
-    (props.is_anchor_or_moored ? 5 : 0)
+    (props.is_tanker ? 25 : 0) +
+    (props.is_underway ? 10 : 0)
   );
 }
 
-function stringValue(value: unknown): string | null {
-  if (typeof value === "string" && value.length > 0) return value;
+function stringValue(value: unknown): string {
+  if (typeof value === "string") return value.trim();
   if (typeof value === "number" && Number.isFinite(value)) return String(value);
-  return null;
+  return "";
 }
 
 function numberValue(value: unknown): number | null {
   if (typeof value === "number" && Number.isFinite(value)) return value;
-  if (typeof value !== "string" || value.trim() === "") return null;
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
+  if (typeof value === "string") {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : null;
+  }
+  return null;
 }
 
-function clamp01(value: number): number {
-  if (!Number.isFinite(value)) return 0;
-  return Math.min(1, Math.max(0, value));
+function isTanker(shipType: string, rawVesselData: unknown): boolean {
+  const text = [
+    shipType,
+    typeof rawVesselData === "object" && rawVesselData
+      ? Object.values(rawVesselData as Record<string, unknown>).map(stringValue).join(" ")
+      : "",
+  ]
+    .join(" ")
+    .toLowerCase();
+  return /\b(tanker|crude|oil|lng|lpg|chemical|product)\b/.test(text);
+}
+
+function isIranFlag(flag: string, rawVesselData: unknown): boolean {
+  const text = [
+    flag,
+    typeof rawVesselData === "object" && rawVesselData
+      ? stringValue((rawVesselData as Record<string, unknown>).SHIP_COUNTRY)
+      : "",
+  ]
+    .join(" ")
+    .toUpperCase();
+  return /\b(IR|IRAN|IRANIAN|ISLAMIC REPUBLIC OF IRAN)\b/.test(text);
+}
+
+function isUnderway(status: string, statusCode: unknown, speed: number | null): boolean {
+  const text = status.toLowerCase();
+  if (text.includes("underway") || text.includes("under way")) return true;
+  if (stringValue(statusCode) === "0") return true;
+  return speed !== null && speed > 0.5;
+}
+
+function isAnchorOrMoored(status: string, statusCode: unknown, speed: number | null): boolean {
+  const text = status.toLowerCase();
+  const code = stringValue(statusCode);
+  if (text.includes("anchor") || text.includes("moored")) return true;
+  if (code === "1" || code === "5") return true;
+  return speed !== null && speed <= 0.5;
+}
+
+function clamp01(n: number): number {
+  if (!Number.isFinite(n)) return 0;
+  return Math.min(1, Math.max(0, n));
 }

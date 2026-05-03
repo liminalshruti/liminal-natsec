@@ -12,7 +12,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import "./MapWatchfloor.css";
 
 import { buildMapStyle, INITIAL_VIEW } from "../map/style.ts";
-import { buildLayers, SOURCES } from "../map/layers.ts";
+import { buildLayers, DANTI_SANCTIONED_OVERLAY_PATH, SOURCES } from "../map/layers.ts";
 import { loadTracks, type TracksFixture } from "../map/fixtureLoader.ts";
 import {
   inferPhase,
@@ -320,6 +320,26 @@ export function MapWatchfloor(props: MapWatchfloorProps) {
           type: "geojson",
           data: emptyDantiTrafficFeatureCollection()
         });
+        // Sanctioned-vessel + AIS-gap overlay. Time-independent canonical
+        // OFAC/IRISL/NITC + GFW dark-period context. Add the source with an
+        // empty FC first (so layers can attach without error) and refresh once
+        // the GeoJSON resolves. 404 is acceptable — the layers stay empty.
+        map.addSource(SOURCES.dantiSanctionedOverlay, {
+          type: "geojson",
+          data: { type: "FeatureCollection", features: [] }
+        });
+        fetch(DANTI_SANCTIONED_OVERLAY_PATH)
+          .then((response) => (response.ok ? response.json() : null))
+          .then((fc) => {
+            if (cancelled || !fc) return;
+            const source = map.getSource(SOURCES.dantiSanctionedOverlay) as
+              | maplibregl.GeoJSONSource
+              | undefined;
+            source?.setData(fc);
+          })
+          .catch(() => {
+            /* silent — overlay is enrichment, not a demo invariant */
+          });
         // Load ship-icon sprites before adding symbol layers that reference
         // them. Failures are non-fatal — the underlying circle layer still
         // renders the vessel position; we just lose the ship-shaped overlay.
@@ -610,4 +630,19 @@ function FallbackOverlay({ error }: { error: Error }): ReactNode {
 
 function truncateError(msg: string): string {
   return msg.length <= 80 ? msg : `${msg.slice(0, 77)}…`;
+}
+
+function formatArchiveClock(iso: string): string {
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  const yyyy = d.getUTCFullYear();
+  const mm = pad2(d.getUTCMonth() + 1);
+  const dd = pad2(d.getUTCDate());
+  const HH = pad2(d.getUTCHours());
+  const MM = pad2(d.getUTCMinutes());
+  return `${yyyy}-${mm}-${dd} ${HH}:${MM}Z`;
+}
+
+function pad2(n: number): string {
+  return n < 10 ? `0${n}` : String(n);
 }

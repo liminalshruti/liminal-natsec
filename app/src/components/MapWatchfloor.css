@@ -142,6 +142,44 @@
   pointer-events: none;
 }
 
+/* --- Archived traffic replay badge -------------------------------------- */
+
+.map-danti-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 88px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100% - 32px);
+  padding: 7px 10px;
+  background: rgba(6, 18, 31, 0.82);
+  border: 1px solid rgba(120, 215, 177, 0.32);
+  border-radius: 3px;
+  color: #cfdbe8;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+}
+.map-danti-badge__label {
+  color: #78d7b1;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.map-danti-badge__clock {
+  color: #cfdbe8;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.map-danti-badge__count {
+  color: #7d92a6;
+  white-space: nowrap;
+}
+
 /* --- Monitored zone pulse (anchored to AOI centroid by MapLabels) ------- */
 
 .map-zone-pulse {

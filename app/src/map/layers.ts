@@ -5,8 +5,12 @@ import { COLORS } from "./tokens.ts";
 export const SOURCES = {
   staticGeoJson: "tracks-static",         // monitored zone, predicted_ellipse_95, full hero_ping list
   heroPingsVisible: "hero-pings-visible", // time-sliced subset, refreshed by replay.ts
-  dantiTrafficVisible: "danti-traffic-visible"
+  dantiTrafficVisible: "danti-traffic-visible",
+  dantiSanctionedOverlay: "danti-sanctioned-overlay" // 21 SDN/IRISL/NITC + 15 GFW AIS gaps
 } as const;
+
+export const DANTI_SANCTIONED_OVERLAY_PATH =
+  "/fixtures/maritime/danti-sanctioned-overlay.geojson";
 
 export interface LayerInputs {
   phase: number;
@@ -182,6 +186,110 @@ export function buildLayers(inputs: LayerInputs): LayerSpecification[] {
         "text-halo-color": "rgba(6,18,31,0.86)",
         "text-halo-width": 1.2,
         "text-opacity": 0.78
+      }
+    },
+
+    // Sanctioned overlay — 21 IRISL/NITC/OFAC SDN vessels (red, with operator
+    // label) + 15 GFW intentional AIS gap events (orange ring sized by gap
+    // duration). Time-independent: this is canonical OFAC/sanctions context,
+    // visible at every phase of the demo. Drawn last so it sits on top of the
+    // archived danti-traffic dot field.
+    {
+      id: "layer:gfw-gap-ring",
+      type: "circle",
+      source: SOURCES.dantiSanctionedOverlay,
+      filter: ["==", ["get", "kind"], "ais_gap"],
+      paint: {
+        // Visual encoding: ring radius scales with how long the vessel was
+        // dark. Caps at ~24px so a multi-day gap doesn't swallow the map.
+        "circle-radius": [
+          "interpolate", ["linear"], ["get", "gap_duration_hours"],
+          0, 6,
+          24, 10,
+          72, 16,
+          168, 22,
+          720, 28
+        ],
+        "circle-color": "rgba(255, 138, 64, 0.10)",
+        "circle-stroke-color": "#ff8a40",
+        "circle-stroke-width": 1.6,
+        "circle-stroke-opacity": 0.85
+      }
+    },
+    {
+      id: "layer:gfw-gap-labels",
+      type: "symbol",
+      source: SOURCES.dantiSanctionedOverlay,
+      filter: ["==", ["get", "kind"], "ais_gap"],
+      layout: {
+        "text-field": [
+          "format",
+          ["get", "ship_name"], { "font-scale": 1.0 },
+          "\n", {},
+          ["concat",
+            ["to-string", ["round", ["get", "gap_duration_hours"]]],
+            "h dark"
+          ],
+          { "font-scale": 0.78, "text-color": "#ffb380" }
+        ],
+        "text-size": 10,
+        "text-offset": [0, 1.6],
+        "text-anchor": "top",
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
+      },
+      paint: {
+        "text-color": "#ffd6b0",
+        "text-halo-color": "rgba(6,18,31,0.92)",
+        "text-halo-width": 1.4
+      }
+    },
+    {
+      id: "layer:sanctioned-halo",
+      type: "circle",
+      source: SOURCES.dantiSanctionedOverlay,
+      filter: ["==", ["get", "kind"], "sanctioned_vessel"],
+      paint: {
+        "circle-radius": 11,
+        "circle-color": "rgba(227, 109, 90, 0.18)",
+        "circle-stroke-color": "rgba(227, 109, 90, 0.55)",
+        "circle-stroke-width": 1
+      }
+    },
+    {
+      id: "layer:sanctioned-dot",
+      type: "circle",
+      source: SOURCES.dantiSanctionedOverlay,
+      filter: ["==", ["get", "kind"], "sanctioned_vessel"],
+      paint: {
+        "circle-radius": 4.5,
+        "circle-color": "#e36d5a",
+        "circle-stroke-color": "rgba(6,18,31,0.95)",
+        "circle-stroke-width": 1.4
+      }
+    },
+    {
+      id: "layer:sanctioned-labels",
+      type: "symbol",
+      source: SOURCES.dantiSanctionedOverlay,
+      filter: ["==", ["get", "kind"], "sanctioned_vessel"],
+      layout: {
+        "text-field": [
+          "format",
+          ["get", "ship_name"], { "font-scale": 1.0 },
+          "\n", {},
+          ["get", "operator"], { "font-scale": 0.78 }
+        ],
+        "text-size": 10,
+        "text-offset": [0.95, 0],
+        "text-anchor": "left",
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
+      },
+      paint: {
+        "text-color": "#ffd1c4",
+        "text-halo-color": "rgba(6,18,31,0.92)",
+        "text-halo-width": 1.4
       }
     }
   ];
