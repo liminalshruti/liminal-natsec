@@ -41,34 +41,59 @@ export function MapTelemetryHud({ scenario, scenarioState }: MapTelemetryHudProp
     const phase = scenarioState?.phase ?? 1;
     const phaseLabel = PHASE_LABELS[phase] ?? "—";
     const alertCount = state.alerts?.length ?? 0;
-    const refusalCount = state.alerts?.filter((a) => a.status === "open").length ?? 0;
     const lastRefresh = state.lastRefreshAt ?? state.seededAt;
     const refreshAgo = lastRefresh ? formatAgo(lastRefresh) : "n/a";
     const sourceMode = state.mode === "real" ? "real cache" : "demo fixture";
-    const guardTone = phase >= 5 ? "alert" : phase >= 2 ? "warn" : "ok";
+
+    // SHIP-2 (reluctant chrome · Source 1 · Ricky): mnemonic stacks tied
+    // to the demo's structural beats, not generic system metrics.
+    // Labels read as MUB-style 3-letter mnemonics; values are the live
+    // measurable property the system is currently reading.
+    //
+    // Canonical numbers per onepager:
+    //   dark gap  = 38 min (not 47)
+    //   MMSI sep  = 4.2 nm
+    //   specialists = 6 (Kinematics · Identity · Signal Integrity ·
+    //                    Intent · Collection · Visual)
+    const churnCount = phase >= 3 ? 2 : phase >= 2 ? 1 : 0;
+    const darkMinutes = phase >= 5 ? 38 : phase >= 2 ? Math.min(phase * 8, 38) : 0;
+    const sigStatus = phase >= 4 ? "contested" : phase >= 2 ? "watching" : "clear";
+    const sigTone = phase >= 4 ? "alert" : phase >= 2 ? "warn" : "ok";
     return [
       {
-        label: "phase",
+        label: "PHA · BEAT",
         value: `P${phase}`,
-        meta: phaseLabel,
+        meta: phaseLabel.toUpperCase(),
         tone: phase >= 5 ? "alert" : phase >= 2 ? "warn" : "ok"
       },
       {
-        label: "tracks observed",
-        value: alertCount.toString(),
-        meta: `${refusalCount} open`,
-        tone: alertCount > 0 ? "warn" : "neutral"
+        label: "MMSI · CHURN",
+        value: churnCount.toString(),
+        meta: churnCount > 0 ? "2 IDs · 1 TARGET" : "—",
+        tone: churnCount > 0 ? "warn" : "neutral"
       },
       {
-        label: "specialists",
+        label: "DARK · GAP",
+        value: darkMinutes > 0 ? `${darkMinutes}m` : "—",
+        meta: darkMinutes >= 38 ? "4.2NM SEP" : darkMinutes > 0 ? "TRACKING" : "QUIET",
+        tone: darkMinutes >= 38 ? "alert" : darkMinutes > 0 ? "warn" : "neutral"
+      },
+      {
+        label: "SIG · INT",
+        value: sigStatus.toUpperCase(),
+        meta: phase >= 4 ? "GUARD L2 · LIVE" : "GUARD READY",
+        tone: sigTone
+      },
+      {
+        label: "SPECIALISTS",
         value: "6/6",
-        meta: "guard active",
-        tone: guardTone
+        meta: phase >= 5 ? "INTENT · REFUSED" : "ACTIVE",
+        tone: phase >= 5 ? "alert" : "ok"
       },
       {
-        label: "source",
-        value: sourceMode,
-        meta: refreshAgo,
+        label: "SOURCE",
+        value: sourceMode === "real cache" ? "REAL" : "FIXTURE",
+        meta: refreshAgo.toUpperCase(),
         tone: state.mode === "real" ? "ok" : "neutral"
       }
     ];

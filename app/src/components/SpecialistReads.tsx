@@ -40,6 +40,19 @@ const CANONICAL_ORDER = [
   "visual"
 ] as const;
 
+// SHIP-2 (Source 1 · Ricky · reluctant chrome): MUB-mnemonic gutters for
+// each specialist row. 3-letter codes the operator reads at a glance;
+// full names live on hover via the row title attribute. Density up,
+// ceremony down.
+const SPECIALIST_MUB: Record<string, string> = {
+  kinematics: "KIN",
+  identity: "IDV",
+  signal_integrity: "SIG",
+  intent: "INT",
+  collection: "COL",
+  visual: "VIS"
+};
+
 function normalize(name: string): string {
   return name.toLowerCase().replace(/\s+/g, "_");
 }
@@ -47,6 +60,10 @@ function normalize(name: string): string {
 function rank(name: string): number {
   const idx = (CANONICAL_ORDER as readonly string[]).indexOf(normalize(name));
   return idx === -1 ? CANONICAL_ORDER.length : idx;
+}
+
+function mubFor(name: string): string {
+  return SPECIALIST_MUB[normalize(name)] ?? name.slice(0, 3).toUpperCase();
 }
 
 // v3.2 IA — Specialist Reads renders as a compact strip in Zone 2, not as a
@@ -116,7 +133,15 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
             title={read.summary ?? ""}
             role="listitem"
           >
-            <span className="specialist-row__name">{read.specialist}</span>
+            <span
+              className="specialist-row__name"
+              title={read.specialist}
+            >
+              <span className="specialist-row__mub" aria-hidden="true">
+                {mubFor(read.specialist)}
+              </span>
+              <span className="specialist-row__name-full">{read.specialist}</span>
+            </span>
             <span className="specialist-row__summary">{read.summary ?? "—"}</span>
             <span className="specialist-row__status-group">
               <SpecialistFamilyChips specialistName={read.specialist} />
