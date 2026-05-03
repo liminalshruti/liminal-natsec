@@ -14,11 +14,13 @@ import { ActionOptions } from "./ActionOptions.tsx";
 import { CaseHandoffBanner } from "./CaseHandoffBanner.tsx";
 import { ConfidenceBar } from "./ConfidenceBar.tsx";
 import { EvidenceDrawer } from "./EvidenceDrawer.tsx";
+import { ExecSummary } from "./ExecSummary.tsx";
 import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
 import { HypothesisBoard } from "./HypothesisBoard.tsx";
 import { ProvenanceTrace } from "./ProvenanceTrace.tsx";
 import { ReviewMemory } from "./ReviewMemory.tsx";
 import { SpecialistReads } from "./SpecialistReads.tsx";
+import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
 interface CustodyCasePanelProps {
   selectedAlert: AlertView;
@@ -124,22 +126,24 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
 
         <div className="kv" style={{ marginBottom: 10 }}>
           <div className="kv__k">case</div>
-          <div className="kv__v">{caseId ?? selectedAlert.title}</div>
+          <div className="kv__v">
+            {caseId ? (
+              <TypedObjectChip kind="case" id={caseId} status={selectedAlert.status} />
+            ) : (
+              selectedAlert.title
+            )}
+          </div>
           <div className="kv__k">claim</div>
-          <div className="kv__v" style={{ wordBreak: "break-all" }}>
-            {primaryClaimId ?? "—"}
-            {claimStatus && (
-              <span
-                className={
-                  claimStatus.toLowerCase().includes("contested") ||
-                  claimStatus.toLowerCase().includes("review")
-                    ? "tag tag--warn"
-                    : "tag"
-                }
-                style={{ marginLeft: 6, fontSize: 9 }}
-              >
-                {claimStatus}
-              </span>
+          <div className="kv__v">
+            {primaryClaimId ? (
+              <TypedObjectChip
+                kind="claim"
+                id={primaryClaimId}
+                status={claimStatus ?? undefined}
+                posterior={claimPosterior}
+              />
+            ) : (
+              "—"
             )}
           </div>
           <div className="kv__k">posterior</div>
@@ -174,11 +178,16 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
           <section className="case-file__section">
             <div className="case-file__section-header">Executive summary</div>
             <div className="case-file__section-body">
-              <span className="case-file__placeholder">
-                Source-chain integrity for {caseId ?? "this case"} is{" "}
-                {claimStatus ?? "unevaluated"}. v3.3 will render a formatted
-                intelligence-product summary here for procurement readers.
-              </span>
+              <ExecSummary
+                caseId={caseId}
+                claimId={primaryClaimId}
+                claimStatus={claimStatus ?? undefined}
+                claimPosterior={claimPosterior}
+                hypothesisCount={hypotheses.length}
+                reads={reads}
+                actions={actions}
+                ruleApplication={ruleApplication}
+              />
             </div>
           </section>
 

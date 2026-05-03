@@ -375,6 +375,191 @@ button:hover {
   }
 }
 
+/* ─── Typed-object grammar ─────────────────────────────────────────────────
+   Liminal Custody's visual atom for typed-object identity. Used wherever the
+   panel surfaces a node id (case, claim, hypothesis, evidence, anomaly,
+   observation, action, rule, track, entity). [TYPE] type-chip + structured
+   slug + optional status badge + optional posterior %. The grammar is the
+   thing that scales across domains — see docs/TECHNICAL_PLAN.md §0.2.
+   --------------------------------------------------------------------------*/
+
+.tchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 1px 6px 1px 0;
+  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--fg-1);
+  background: var(--bg-2);
+  border-radius: 2px;
+  border: 1px solid var(--line);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tchip--sm {
+  font-size: 10px;
+  gap: 4px;
+}
+
+.tchip--clickable {
+  cursor: pointer;
+}
+
+.tchip--clickable:hover {
+  border-color: var(--accent);
+}
+
+.tchip__type {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--bg-0);
+  background: var(--fg-1);
+  border-radius: 2px 0 0 2px;
+}
+
+.tchip__slug {
+  color: var(--fg-1);
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+}
+
+.tchip__status {
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 4px;
+  border-radius: 2px;
+  background: var(--bg-1);
+  color: var(--fg-2);
+}
+
+.tchip__status--ok {
+  color: var(--ok);
+  background: rgba(78, 160, 138, 0.12);
+}
+
+.tchip__status--warn {
+  color: var(--warn);
+  background: rgba(209, 139, 60, 0.14);
+}
+
+.tchip__status--err {
+  color: #d35a5a;
+  background: rgba(211, 90, 90, 0.14);
+}
+
+.tchip__posterior {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--fg-0);
+  font-variant-numeric: tabular-nums;
+  padding-left: 4px;
+  border-left: 1px solid var(--line);
+}
+
+/* Type-specific accent — colors the type-chip background. Distinct hues by
+   node type so the eye learns the taxonomy (Palantir-Ontology grammar). */
+.tchip--case .tchip__type        { background: #4a6e9c; color: #fff; }
+.tchip--claim .tchip__type       { background: #6ea8fe; color: #06090d; }
+.tchip--hypothesis .tchip__type  { background: #9b7dd4; color: #fff; }
+.tchip--evidence .tchip__type    { background: #d18b3c; color: #06090d; }
+.tchip--anomaly .tchip__type     { background: #d35a5a; color: #fff; }
+.tchip--observation .tchip__type { background: #5d6e80; color: #fff; }
+.tchip--action .tchip__type      { background: #4ea08a; color: #06090d; }
+.tchip--rule .tchip__type        { background: #4eb0c0; color: #06090d; }
+.tchip--track .tchip__type       { background: #c08e4e; color: #06090d; }
+.tchip--entity .tchip__type      { background: #93a3b3; color: #06090d; }
+
+/* ─── Typed edge ─────────────────────────────────────────────────────────
+   The graph isn't drawn — it's implied by typed-link grammar. ←[SUPPORTS]──
+   target. Matches Palantir's typed-link rendering in plain CSS.
+   ------------------------------------------------------------------------*/
+
+.tedge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 6px;
+  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  color: var(--fg-2);
+  font-weight: 500;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.tedge__arrow {
+  color: var(--fg-2);
+  font-size: 11px;
+}
+
+.tedge__type {
+  padding: 1px 5px;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: 9px;
+}
+
+.tedge--ok .tedge__type   { color: var(--ok);   border-color: rgba(78, 160, 138, 0.4); }
+.tedge--warn .tedge__type { color: var(--warn); border-color: rgba(209, 139, 60, 0.4); }
+.tedge--err .tedge__type  { color: #d35a5a;     border-color: rgba(211, 90, 90, 0.4); }
+
+/* Provenance trace as typed-grammar tree */
+
+.provenance-tree {
+  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--fg-1);
+}
+
+.provenance-tree__step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.provenance-tree__indent {
+  display: inline-block;
+  width: 14px;
+  border-left: 1px solid var(--line);
+  margin-right: 6px;
+  align-self: stretch;
+}
+
+.provenance-tree__step--root {
+  font-weight: 600;
+}
+
+/* Exec summary — typed-grammar prose */
+
+.exec-summary {
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--fg-1);
+}
+
+.exec-summary p {
+  margin: 0 0 8px;
+}
+
+.exec-summary .tchip {
+  vertical-align: middle;
+}
+
 
 .panel__header {
   padding: 8px 12px;
@@ -988,4 +1173,236 @@ button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   z-index: 50;
   pointer-events: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Typed-object grammar — Palantir-Ontology-style chips for graph nodes.
+   Used in: case header, hypothesis board, evidence drawer, provenance trace,
+   exec summary. The visual atom that makes the surface read as Ontology-grade.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.tchip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 7px 2px 0;
+  border-radius: 3px;
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line);
+  white-space: nowrap;
+  vertical-align: baseline;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tchip--sm {
+  font-size: 10px;
+  padding: 1px 5px 1px 0;
+  gap: 5px;
+}
+
+.tchip--clickable {
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+.tchip--clickable:hover {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* Type chip — the [TYPE] prefix. Uppercase, tracked-out, color-coded by
+   epistemic register (belief / evidence / action / invariant / anchor). */
+.tchip__type {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--bg-0);
+  background: var(--fg-1);
+  border-radius: 2px 0 0 2px;
+  /* Sit flush with the chip's left edge. */
+  margin: -1px 0 -1px -1px;
+}
+
+.tchip--sm .tchip__type {
+  font-size: 8px;
+  padding: 1px 5px;
+}
+
+/* The structured slug — `seg / seg / seg`. Reads as breadcrumb. */
+.tchip__slug {
+  color: var(--fg-0);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Status badge — small uppercase suffix. */
+.tchip__status {
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  margin-left: 2px;
+}
+.tchip__status--ok {
+  color: var(--ok, #5ad88a);
+  border-color: rgba(90, 216, 138, 0.3);
+}
+.tchip__status--warn {
+  color: var(--warn, #d8a35a);
+  border-color: rgba(216, 163, 90, 0.3);
+}
+.tchip__status--err {
+  color: var(--err, #d35a5a);
+  border-color: rgba(211, 90, 90, 0.3);
+}
+
+/* Posterior badge — numeric percentage. Always renders monospace, slim. */
+.tchip__posterior {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent);
+  padding: 1px 5px;
+  background: rgba(110, 168, 254, 0.08);
+  border-radius: 2px;
+  letter-spacing: 0.04em;
+}
+
+/* ─── Type-specific accent colors ──────────────────────────────────────
+   Five epistemic registers, mapped to ten node types. Each register
+   gets a single accent color used on the [TYPE] chip background.
+
+   belief    (claim, hypothesis)        cool steel-blue · the system's
+                                        current assertions
+   evidence  (evidence, observation)    amber/warn · the world's reads
+                                        feeding belief
+   action    (action)                   green · what the system recommends
+                                        the operator do
+   invariant (rule)                     cyan/teal · doctrine carried forward
+   anchor    (case, anomaly, track,     muted slate · the structural
+              entity)                   carriers, not load-bearing for
+                                        decisions but always referenced
+   ────────────────────────────────────────────────────────────────── */
+
+.tchip--claim .tchip__type,
+.tchip--hypothesis .tchip__type {
+  background: var(--accent, #6ea8fe);
+  color: #061018;
+}
+
+.tchip--evidence .tchip__type,
+.tchip--observation .tchip__type {
+  background: var(--warn, #d8a35a);
+  color: #1a1206;
+}
+
+.tchip--action .tchip__type {
+  background: var(--ok, #5ad88a);
+  color: #061a0e;
+}
+
+.tchip--rule .tchip__type {
+  background: #5ad8c4;
+  color: #061a17;
+}
+
+.tchip--case .tchip__type,
+.tchip--anomaly .tchip__type,
+.tchip--track .tchip__type,
+.tchip--entity .tchip__type {
+  background: var(--fg-1, #c9c5bd);
+  color: var(--bg-0, #06090d);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Typed-edge grammar — for provenance traces and any link surface.
+   Renders as ←[EDGE_TYPE]── target, the canonical Palantir typed-link
+   pattern in plain CSS. Used inside .trace-step__edge.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.tedge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+.tedge__arrow {
+  color: var(--fg-2);
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.tedge__type {
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--fg-1);
+}
+
+.tedge--ok .tedge__type {
+  color: var(--ok, #5ad88a);
+  border-color: rgba(90, 216, 138, 0.3);
+}
+.tedge--warn .tedge__type {
+  color: var(--warn, #d8a35a);
+  border-color: rgba(216, 163, 90, 0.3);
+}
+.tedge--err .tedge__type {
+  color: var(--err, #d35a5a);
+  border-color: rgba(211, 90, 90, 0.3);
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Exec summary — Case File section I. Real prose using typed grammar inline.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.exec-summary {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--fg-0);
+}
+
+.exec-summary p {
+  margin: 0 0 8px;
+}
+
+.exec-summary p:last-child {
+  margin-bottom: 0;
+}
+
+.exec-summary__lead {
+  color: var(--fg-1);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.exec-summary .tchip {
+  /* Inline chips inside paragraph prose — sit on baseline, no breaking. */
+  margin: 0 1px;
+  vertical-align: baseline;
+}
+
+.exec-summary__action-line {
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+  color: var(--fg-1);
 }
