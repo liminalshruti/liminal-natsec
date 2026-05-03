@@ -7,7 +7,13 @@ import { R001_DSL } from "../../../shared/rules/builtin.ts";
 import type { AlertView } from "../lib/types.ts";
 import { askAi, AskError } from "../lib/askClient.ts";
 import type { ScenarioState } from "./MapWatchfloor.tsx";
-import { ReplayControls } from "./ReplayControls.tsx";
+// ReplayControls removed per Shayaun + Shruti feedback (2026-05-03):
+// hiding-data-until-click is the wrong frame; the prev/play/next chrome
+// adds cognitive load without clear value, and the demo's beat structure
+// should be the demo itself, not a UI affordance to seek between beats.
+// Manual phase advance during pitch can use the existing CommandLine
+// slash commands (`/event 1`, `/event 2`) if needed.
+// import { ReplayControls } from "./ReplayControls.tsx";
 
 interface CommandLineProps {
   scenario: LoadedScenario | null;
@@ -48,7 +54,7 @@ type CommandResult = InlineResult | AskResult;
 export function CommandLine({
   scenario,
   mapScenarioState,
-  onMapScenarioChange,
+  onMapScenarioChange: _onMapScenarioChange,
   onReset,
   onSelectAlert,
   alerts,
@@ -209,10 +215,6 @@ export function CommandLine({
         {mapScenarioState && (
           <span title="Map replay clock">{formatClock(mapScenarioState.clockIso)}</span>
         )}
-        <ReplayControls
-          scenarioState={mapScenarioState}
-          onScenarioStateChange={onMapScenarioChange}
-        />
         <span style={{ color: "var(--color-ink-tertiary)" }}>{sourceStatus}</span>
         <button
           type="button"

@@ -11,6 +11,7 @@ import { MapLayers } from "./MapLayers.tsx";
 import { MapOverlays } from "./MapOverlays.tsx";
 import { MapTelemetryHud } from "./MapTelemetryHud.tsx";
 import { MapWatchfloor, type ScenarioState } from "./MapWatchfloor.tsx";
+import { RealShipsOverlay } from "./RealShipsOverlay.tsx";
 import { SignalDropZone } from "./SignalDropZone.tsx";
 import { SignalGhostShips } from "./SignalGhostShips.tsx";
 import { StageBackdrop } from "./StageBackdrop.tsx";
@@ -82,6 +83,16 @@ export function StageViewport({
                 projects real cache geometry to the AOI bbox. The overhead-
                 projector "stack of transparent sheets" idea, made functional. */}
             <MapOverlays />
+            {/* RealShipsOverlay: M-4. Top-50 real MarineTraffic vessels
+                from Shayaun's Danti corpus, rendered as directional flow
+                arrows whose orientation = AIS course and length = speed.
+                Anchored ships (speed=0) render as small circles. Flag-of-
+                convenience vessels get an outer ring in contested-amber.
+                Hover any ship → vessel-card popover with full property KV.
+                Visibility tied to the AIS chip in MapLayers via the same
+                window event MapOverlays uses. The "why don't we have this
+                in real life yet" moment of the demo. */}
+            <RealShipsOverlay />
             {/* MapInstrumentBezels: ASCII corner brackets + edge tick marks
                 + center crosshair + AOI coordinate readouts. Makes the stage
                 read as a radar viewport, not a generic map. Per the May-1
