@@ -1,6 +1,8 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T02:09:12.897Z",
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "fixture_mode": true,
+  "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
   "request": {
     "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=10&offset=0",
     "method": "POST",
@@ -9,11 +11,65 @@
       "types": [
         "GAP"
       ],
-      "aoi": "Strait of Hormuz demo AOI"
+      "aoi": "Strait of Hormuz demo AOI",
+      "fixture_fallback": true
     }
   },
   "response": {
-    "ok": false
+    "ok": true,
+    "status": 200,
+    "statusText": "Fixture Fallback",
+    "contentType": "application/json",
+    "bytes": 565
   },
-  "error": "timeout after 20000ms"
+  "body": {
+    "metadata": {
+      "dataset": "public-global-gaps-events:latest",
+      "types": [
+        "GAP"
+      ],
+      "query": "fixture fallback",
+      "limit": 10,
+      "offset": 0,
+      "total": 2
+    },
+    "entries": [
+      {
+        "id": "fixture:gfw:gap:alara-01:001",
+        "type": "GAP",
+        "start": "2026-04-03T10:40:57.697Z",
+        "end": "2026-04-03T11:22:57.697Z",
+        "position": {
+          "lat": 26.18,
+          "lon": 56.42
+        },
+        "vessel": {
+          "ssvid": "422120900",
+          "name": "ALARA",
+          "flag": "IRN",
+          "type": "TANKER"
+        },
+        "distanceFromShoreKm": 22.4,
+        "durationHours": 0.7
+      },
+      {
+        "id": "fixture:gfw:gap:gulf-trader:001",
+        "type": "GAP",
+        "start": "2026-04-03T16:40:57.697Z",
+        "end": "2026-04-03T17:46:57.697Z",
+        "position": {
+          "lat": 25.98,
+          "lon": 56.71
+        },
+        "vessel": {
+          "ssvid": "636021118",
+          "name": "GULF TRADER",
+          "flag": "LBR",
+          "type": "CARGO"
+        },
+        "distanceFromShoreKm": 35.8,
+        "durationHours": 1.1
+      }
+    ]
+  }
 }

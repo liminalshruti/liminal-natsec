@@ -285,6 +285,77 @@ button:hover {
   margin-top: 2px;
 }
 
+.hormuz-intel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hormuz-intel__group {
+  border: 1px solid var(--line);
+  background: var(--bg-1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.hormuz-intel__summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  color: var(--fg-1);
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hormuz-intel__count {
+  color: var(--fg-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.hormuz-intel__row {
+  margin: 0 6px 6px;
+}
+
+.hormuz-intel__row[data-status="unavailable"] {
+  border-style: dashed;
+}
+
+.hormuz-intel__chip {
+  display: block;
+  width: 100%;
+  max-height: 112px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  margin: 6px 0;
+  background: var(--bg-0);
+}
+
+.hormuz-intel__text {
+  color: var(--fg-1);
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.hormuz-intel__unavailable {
+  color: var(--warn);
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.hormuz-intel__policy {
+  color: var(--fg-2);
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+.hormuz-intel__source {
+  word-break: break-all;
+}
+
 .tag {
   display: inline-block;
   padding: 1px 6px;

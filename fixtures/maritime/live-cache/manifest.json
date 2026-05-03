@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T02:08:37.671Z",
+  "generated_at": "2026-05-03T02:38:01.743Z",
   "profile": "fast",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
@@ -64,6 +64,12 @@
       "fileName": "gfw-vessel-search-irisl.json"
     },
     {
+      "source": "ACLED",
+      "ok": true,
+      "detail": "acled-hormuz-events.json: fixture fallback with 2 events.",
+      "fileName": "acled-hormuz-events.json"
+    },
+    {
       "source": "EXA",
       "ok": true,
       "detail": "exa-hormuz-osint.json: 200 OK",
@@ -72,11 +78,17 @@
     {
       "source": "SHODAN",
       "ok": true,
-      "detail": "api-info ok; AIS search blocked/failed.",
+      "detail": "api-info ok; AIS search fixture fallback.",
       "files": [
         "shodan-api-info.json",
         "shodan-maritime-ais.json"
       ]
+    },
+    {
+      "source": "CENSYS",
+      "ok": true,
+      "detail": "censys-maritime-infrastructure.json: fixture fallback with 2 infrastructure matches.",
+      "fileName": "censys-maritime-infrastructure.json"
     },
     {
       "source": "OPENSANCTIONS",
@@ -126,6 +138,15 @@
       "ok": true,
       "detail": "overpass-hormuz-maritime.json: 200 OK",
       "fileName": "overpass-hormuz-maritime.json"
+    },
+    {
+      "source": "DANTI",
+      "ok": true,
+      "detail": "auth 200; query 200 OK",
+      "files": [
+        "danti-auth.json",
+        "danti-hormuz-query.json"
+      ]
     }
   ]
 }

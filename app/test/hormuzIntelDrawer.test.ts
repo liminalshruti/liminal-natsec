@@ -1,0 +1,72 @@
+import assert from "node:assert/strict";
+import { describe, it } from "node:test";
+
+import { HORMUZ_DRAWER_GROUPS } from "../../shared/hormuz/types.ts";
+import {
+  buildHormuzIntelDrawerModel,
+  DEFAULT_HORMUZ_REQUIRED_SOURCES,
+  hormuzEvidenceItems,
+  hormuzSourceDocuments
+} from "../src/lib/hormuzIntel.ts";
+
+describe("Hormuz intel drawer model", () => {
+  it("groups records into the five required drawer sections", () => {
+    const model = buildHormuzIntelDrawerModel();
+
+    assert.deepEqual(
+      model.groups.map((group) => group.label),
+      [...HORMUZ_DRAWER_GROUPS]
+    );
+    assert.ok(model.groups.every((group) => group.rows.length > 0));
+    assert.equal(
+      model.groups.reduce((total, group) => total + group.rows.length, 0),
+      model.totalRows
+    );
+  });
+
+  it("promotes fallback-backed blocked providers into usable drawer rows", () => {
+    const model = buildHormuzIntelDrawerModel();
+    const rows = model.groups.flatMap((group) => group.rows);
+
+    assert.equal(model.unavailableRows, 0);
+    assert.ok(
+      rows.some(
+        (row) =>
+          row.source === "SHODAN" &&
+          row.status === "available" &&
+          row.summary.includes("Infrastructure-only; not vessel behavior evidence.")
+      )
+    );
+    assert.ok(
+      rows.some(
+        (row) =>
+          row.source === "GLOBAL_FISHING_WATCH" &&
+          row.status === "available" &&
+          row.summary.includes("identity/source corroboration only")
+      )
+    );
+  });
+
+  it("produces concise unavailable states for missing providers", () => {
+    const requiredSources = DEFAULT_HORMUZ_REQUIRED_SOURCES.filter(
+      (source) => source.source === "UKMTO"
+    );
+    const model = buildHormuzIntelDrawerModel([], [], { requiredSources });
+    const rows = model.groups.flatMap((group) => group.rows);
+
+    assert.equal(rows.length, 1);
+    assert.equal(rows[0].source, "UKMTO");
+    assert.equal(rows[0].status, "unavailable");
+    assert.match(rows[0].summary, /source document missing/);
+  });
+
+  it("shows Sentinel Hub chip assets when present", () => {
+    const model = buildHormuzIntelDrawerModel(hormuzEvidenceItems, hormuzSourceDocuments);
+    const chipRows = model.groups
+      .flatMap((group) => group.rows)
+      .filter((row) => row.source === "SENTINEL_HUB_PROCESS");
+
+    assert.ok(chipRows.length > 0);
+    assert.ok(chipRows.every((row) => row.imageSrc?.endsWith(".png")));
+  });
+});

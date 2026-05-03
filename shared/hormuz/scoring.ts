@@ -55,7 +55,7 @@ const CATEGORY_RATIONALE: Record<HormuzIntelCategory, string> = {
   MARITIME_INFRASTRUCTURE_CONTEXT:
     "Overpass records affect maritime infrastructure context only.",
   INFRASTRUCTURE_CONTEXT_ONLY:
-    "Shodan records affect infrastructure context only and do not support vessel behavior."
+    "Internet-exposure records affect infrastructure context only and do not support vessel behavior."
 };
 
 export function mapHormuzEvidenceToScoringContributions(

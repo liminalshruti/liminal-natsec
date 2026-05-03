@@ -41,8 +41,10 @@ const results = [];
 if (cacheProfile === "all" || cacheProfile === "fast") {
   results.push(await cacheFoundryConnection());
   results.push(await cacheGlobalFishingWatchVesselCapability());
+  results.push(await cacheAcledHormuzEvents());
   results.push(await cacheExaHormuzOsint());
   results.push(await cacheShodanMaritimeIntel());
+  results.push(await cacheCensysMaritimeInfrastructure());
   results.push(await cacheOpenSanctionsMaritimeEntities());
   results.push(await cacheCopernicusCdseAuth());
   results.push(await cacheCopernicusStacSearches());
@@ -54,6 +56,10 @@ if (cacheProfile === "all" || cacheProfile === "fast") {
 
 if (cacheProfile === "all" || cacheProfile === "fast" || cacheProfile === "danti") {
   results.push(await cacheDantiHormuzSearch());
+}
+
+if (cacheProfile === "fallbacks") {
+  results.push(await cacheSyntheticMissingSourceFallbacks());
 }
 
 if (cacheProfile === "all" || cacheProfile === "slow") {
@@ -133,7 +139,7 @@ async function cacheGlobalFishingWatchEvents() {
       offset: 0
     };
 
-    sourceResults.push(await fetchJsonToFile({
+    const result = await fetchJsonToFile({
       fileName,
       source: "GLOBAL_FISHING_WATCH",
       url: `${baseUrl}/v3/events?limit=10&offset=0`,
@@ -147,7 +153,11 @@ async function cacheGlobalFishingWatchEvents() {
       },
       requestMetadata: { dataset, types, aoi: HORMUZ.name },
       timeoutMs: 20_000
-    }));
+    });
+
+    sourceResults.push(
+      result.ok ? result : await writeSyntheticGfwEventFeed(fileName, dataset, types)
+    );
   }
 
   const okCount = sourceResults.filter((result) => result.ok).length;
@@ -298,6 +308,58 @@ async function cacheDantiHormuzSearch() {
     ok: Boolean(response.response?.ok),
     detail: `auth ${auth.response?.status ?? "ok"}; query ${response.response?.status ?? "failed"} ${response.response?.statusText ?? response.error ?? ""}`.trim(),
     files: ["danti-auth.json", "danti-hormuz-query.json"]
+  };
+}
+
+async function cacheAcledHormuzEvents() {
+  const token = envOr("ACLED_ACCESS_TOKEN");
+  const baseUrl = envOr("ACLED_READ_URL", "https://acleddata.com/api/acled/read");
+  const url = new URL(baseUrl);
+  url.searchParams.set("limit", envOr("ACLED_QUERY_LIMIT", "10"));
+  url.searchParams.set("country", envOr("ACLED_COUNTRY", "Iran"));
+
+  if (!token) {
+    return writeSyntheticAcledEvents("ACLED_ACCESS_TOKEN missing");
+  }
+
+  const response = await fetchJson({
+    source: "ACLED",
+    url: url.toString(),
+    options: {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json"
+      }
+    },
+    timeoutMs: 20_000
+  });
+
+  await writeJson("acled-hormuz-events.json", {
+    source: "ACLED",
+    generated_at: generatedAt,
+    request: {
+      url: url.toString(),
+      method: "GET",
+      metadata: {
+        country: url.searchParams.get("country"),
+        limit: url.searchParams.get("limit"),
+        token_cached: false
+      }
+    },
+    response: response.response,
+    body: response.body,
+    error: response.error
+  });
+
+  if (!response.response?.ok) {
+    return writeSyntheticAcledEvents(`live request ${response.response?.status ?? "failed"}`);
+  }
+
+  return {
+    source: "ACLED",
+    ok: true,
+    detail: `acled-hormuz-events.json: ${response.response.status} ${response.response.statusText ?? "OK"}`,
+    fileName: "acled-hormuz-events.json"
   };
 }
 
@@ -506,6 +568,446 @@ function base64Url(buffer) {
   return Buffer.from(buffer).toString("base64url");
 }
 
+async function cacheSyntheticMissingSourceFallbacks() {
+  const results = [];
+  results.push(await writeSyntheticGfwEventFeed("gfw-hormuz-gaps.json", "public-global-gaps-events:latest", ["GAP"]));
+  results.push(await writeSyntheticGfwEventFeed("gfw-hormuz-loitering.json", "public-global-loitering-events:latest", ["LOITERING"]));
+  results.push(await writeSyntheticGfwEventFeed("gfw-hormuz-port-visits.json", "public-global-port-visits-events:latest", ["PORT_VISIT"]));
+  await writeJson("aisstream-hormuz-sample.json", syntheticAisstreamSample());
+  results.push({ source: "AISSTREAM", ok: true, detail: "AISstream fixture fallback written.", fileName: "aisstream-hormuz-sample.json" });
+  results.push(await writeSyntheticCopernicusMarineCurrents({
+    metadataFileName: "copernicus-marine-hormuz-currents.metadata.json",
+    start: startDate.toISOString(),
+    end: endDate.toISOString()
+  }));
+  results.push(await writeSyntheticShodanMaritimeSearch());
+  results.push(await writeSyntheticAcledEvents("fallback profile"));
+
+  return {
+    source: "SYNTHETIC_FALLBACKS",
+    ok: results.every((result) => result.ok),
+    detail: `${results.filter((result) => result.ok).length}/${results.length} fallback cache files written.`,
+    files: results.map((result) => result.fileName).filter(Boolean)
+  };
+}
+
+async function writeSyntheticGfwEventFeed(fileName, dataset, types) {
+  const type = types[0] ?? "EVENT";
+  const entriesByType = {
+    GAP: [
+      {
+        id: "fixture:gfw:gap:alara-01:001",
+        type: "GAP",
+        start: new Date(startDate.getTime() + 8 * 60 * 60 * 1000).toISOString(),
+        end: new Date(startDate.getTime() + 8.7 * 60 * 60 * 1000).toISOString(),
+        position: { lat: 26.18, lon: 56.42 },
+        vessel: { ssvid: "422120900", name: "ALARA", flag: "IRN", type: "TANKER" },
+        distanceFromShoreKm: 22.4,
+        durationHours: 0.7
+      },
+      {
+        id: "fixture:gfw:gap:gulf-trader:001",
+        type: "GAP",
+        start: new Date(startDate.getTime() + 14 * 60 * 60 * 1000).toISOString(),
+        end: new Date(startDate.getTime() + 15.1 * 60 * 60 * 1000).toISOString(),
+        position: { lat: 25.98, lon: 56.71 },
+        vessel: { ssvid: "636021118", name: "GULF TRADER", flag: "LBR", type: "CARGO" },
+        distanceFromShoreKm: 35.8,
+        durationHours: 1.1
+      }
+    ],
+    LOITERING: [
+      {
+        id: "fixture:gfw:loitering:anchorage:001",
+        type: "LOITERING",
+        start: new Date(startDate.getTime() + 10 * 60 * 60 * 1000).toISOString(),
+        end: new Date(startDate.getTime() + 13.5 * 60 * 60 * 1000).toISOString(),
+        position: { lat: 26.08, lon: 56.18 },
+        vessel: { ssvid: "538009876", name: "BANDAR SUPPLY", flag: "MHL", type: "SUPPORT" },
+        totalDistanceKm: 6.2,
+        durationHours: 3.5
+      }
+    ],
+    PORT_VISIT: [
+      {
+        id: "fixture:gfw:port-visit:bandar-abbas:001",
+        type: "PORT_VISIT",
+        start: new Date(startDate.getTime() + 3 * 60 * 60 * 1000).toISOString(),
+        end: new Date(startDate.getTime() + 21 * 60 * 60 * 1000).toISOString(),
+        port: { id: "fixture:port:bandar-abbas", name: "Bandar Abbas", country: "IRN" },
+        position: { lat: 27.14, lon: 56.22 },
+        vessel: { ssvid: "422120900", name: "ALARA", flag: "IRN", type: "TANKER" },
+        durationHours: 18
+      }
+    ]
+  };
+  const entries = entriesByType[type] ?? [];
+
+  await writeJson(fileName, {
+    source: "GLOBAL_FISHING_WATCH",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
+    request: {
+      url: "https://gateway.api.globalfishingwatch.org/v3/events?limit=10&offset=0",
+      method: "POST",
+      metadata: { dataset, types, aoi: HORMUZ.name, fixture_fallback: true }
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      contentType: "application/json",
+      bytes: JSON.stringify(entries).length
+    },
+    body: {
+      metadata: {
+        dataset,
+        types,
+        query: "fixture fallback",
+        limit: 10,
+        offset: 0,
+        total: entries.length
+      },
+      entries
+    }
+  });
+
+  return {
+    source: "GLOBAL_FISHING_WATCH_EVENTS",
+    ok: true,
+    detail: `${fileName}: fixture fallback with ${entries.length} ${type} entries.`,
+    fileName
+  };
+}
+
+async function writeSyntheticShodanMaritimeSearch() {
+  const matches = [
+    {
+      ip_str: "203.0.113.44",
+      port: 80,
+      hostnames: ["ais-gateway.fixture.invalid"],
+      org: "Fixture Maritime Network",
+      isp: "Fixture ISP",
+      transport: "tcp",
+      timestamp: new Date(startDate.getTime() + 6 * 60 * 60 * 1000).toISOString(),
+      location: {
+        country_name: "Oman",
+        country_code: "OM",
+        city: "Muscat",
+        latitude: 23.588,
+        longitude: 58.3829
+      },
+      product: "AIS receiver web status",
+      data: "HTTP/1.1 200 OK\\nServer: ais-receiver-fixture\\nService banner references NMEA/AIS TCP forwarding."
+    },
+    {
+      ip_str: "198.51.100.72",
+      port: 8080,
+      hostnames: ["vts-dashboard.fixture.invalid"],
+      org: "Fixture Port Services",
+      isp: "Fixture ISP",
+      transport: "tcp",
+      timestamp: new Date(startDate.getTime() + 7 * 60 * 60 * 1000).toISOString(),
+      location: {
+        country_name: "United Arab Emirates",
+        country_code: "AE",
+        city: "Fujairah",
+        latitude: 25.1288,
+        longitude: 56.3265
+      },
+      product: "VTS dashboard",
+      data: "HTTP/1.1 401 Unauthorized\\nTitle: Vessel Traffic Service Console"
+    }
+  ];
+
+  await writeJson("shodan-maritime-ais.json", {
+    source: "SHODAN",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: "Live Shodan AIS search returned 403; synthetic response preserves host-search shape for infrastructure-only demo use.",
+    request: {
+      url: "https://api.shodan.io/shodan/host/search?query=AIS&facets=country%3A20%2Cport%3A20%2Corg%3A20&minify=true",
+      method: "GET",
+      metadata: {
+        query: "AIS",
+        note: "Fixture fallback; no API key cached.",
+        fixture_fallback: true
+      }
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      contentType: "application/json",
+      bytes: JSON.stringify(matches).length
+    },
+    body: {
+      total: matches.length,
+      matches,
+      facets: {
+        country: [
+          { value: "OM", count: 1 },
+          { value: "AE", count: 1 }
+        ],
+        port: [
+          { value: 80, count: 1 },
+          { value: 8080, count: 1 }
+        ]
+      }
+    }
+  });
+
+  return {
+    source: "SHODAN",
+    ok: true,
+    detail: "shodan-maritime-ais.json: fixture fallback with 2 infrastructure matches.",
+    fileName: "shodan-maritime-ais.json"
+  };
+}
+
+async function writeSyntheticCensysMaritimeInfrastructure(reason) {
+  const hits = [
+    {
+      host: {
+        ip: "203.0.113.104",
+        location: {
+          country: "Oman",
+          city: "Muscat"
+        },
+        autonomous_system: {
+          name: "Fixture Maritime Network"
+        },
+        services: [
+          {
+            port: 10110,
+            protocol: "TCP",
+            transport_protocol: "TCP",
+            banner: "Fixture NMEA/AIS TCP forwarding endpoint. Infrastructure-only demo record."
+          }
+        ]
+      },
+      matched_services: [
+        {
+          port: 10110,
+          protocol: "TCP",
+          transport_protocol: "TCP"
+        }
+      ]
+    },
+    {
+      host: {
+        ip: "198.51.100.118",
+        location: {
+          country: "United Arab Emirates",
+          city: "Fujairah"
+        },
+        autonomous_system: {
+          name: "Fixture Port Services"
+        },
+        services: [
+          {
+            port: 4001,
+            protocol: "TCP",
+            transport_protocol: "TCP",
+            banner: "Fixture vessel traffic service status endpoint. Infrastructure-only demo record."
+          }
+        ]
+      },
+      matched_services: [
+        {
+          port: 4001,
+          protocol: "TCP",
+          transport_protocol: "TCP"
+        }
+      ]
+    }
+  ];
+
+  await writeJson("censys-maritime-infrastructure.json", {
+    source: "CENSYS",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: `Live Censys Platform search unavailable (${reason}); synthetic rows preserve Platform global search shape for infrastructure-only demo use.`,
+    request: {
+      url: "https://api.platform.censys.io/v3/global/search/query",
+      method: "POST",
+      metadata: {
+        query: "host.services.port=10110 or host.services.port=10111 or host.services.port=4001 or host.services.port=4002 or banner: AIS or banner: NMEA",
+        evidence_type: "INFRASTRUCTURE_CONTEXT_ONLY",
+        token_cached: false,
+        fixture_fallback: true
+      }
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      contentType: "application/json",
+      bytes: JSON.stringify(hits).length
+    },
+    body: {
+      result: {
+        total: hits.length,
+        hits
+      }
+    }
+  });
+
+  return {
+    source: "CENSYS",
+    ok: true,
+    detail: "censys-maritime-infrastructure.json: fixture fallback with 2 infrastructure matches.",
+    fileName: "censys-maritime-infrastructure.json"
+  };
+}
+
+async function writeSyntheticCopernicusMarineCurrents({ metadataFileName, start, end, result }) {
+  const samples = [
+    { latitude: 26.0, longitude: 56.0, depth_m: 0.5, uo_mps: 0.21, vo_mps: -0.08 },
+    { latitude: 26.1, longitude: 56.1, depth_m: 0.5, uo_mps: 0.18, vo_mps: -0.05 },
+    { latitude: 26.2, longitude: 56.2, depth_m: 0.5, uo_mps: 0.16, vo_mps: -0.03 }
+  ];
+  await writeJson(metadataFileName, {
+    source: "COPERNICUS_MARINE",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: "Copernicus Marine credentials were valid but subset output was unavailable; synthetic current vectors preserve the requested metadata/sample shape.",
+    request: {
+      command: `${copernicusMarineCommand()} subset`,
+      dataset_id: "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
+      variables: ["uo", "vo"],
+      bbox: [56.0, 26.0, 56.2, 26.2],
+      depth_range_m: [0, 1],
+      time_range: [start, end],
+      credentials_cached: false,
+      fixture_fallback: true
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      fileName: null,
+      bytes: JSON.stringify(samples).length,
+      original_exitCode: result?.exitCode,
+      original_signal: result?.signal
+    },
+    body: {
+      dataset_id: "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
+      units: { uo: "m s-1", vo: "m s-1" },
+      samples
+    }
+  });
+
+  return {
+    source: "COPERNICUS_MARINE",
+    ok: true,
+    detail: `${metadataFileName}: fixture fallback with ${samples.length} current vectors.`,
+    fileName: metadataFileName
+  };
+}
+
+async function writeSyntheticAcledEvents(reason) {
+  const events = [
+    acledEvent({
+      id: "IRN-FIXTURE-20260502-001",
+      date: new Date(startDate.getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10),
+      country: "Iran",
+      admin1: "Hormozgan",
+      location: "Bandar Abbas",
+      latitude: 27.1832,
+      longitude: 56.2666,
+      eventType: "Strategic developments",
+      subEventType: "Disrupted weapons use",
+      actor1: "Military Forces of Iran (2024-)",
+      notes: "Fixture event representing a coastal security disruption near the Strait of Hormuz; not a live ACLED assertion.",
+      fatalities: 0
+    }),
+    acledEvent({
+      id: "YEM-FIXTURE-20260502-001",
+      date: new Date(startDate.getTime() + 18 * 60 * 60 * 1000).toISOString().slice(0, 10),
+      country: "Yemen",
+      admin1: "Al Hudaydah",
+      location: "Red Sea coast",
+      latitude: 14.7978,
+      longitude: 42.9545,
+      eventType: "Explosions/Remote violence",
+      subEventType: "Shelling/artillery/missile attack",
+      actor1: "Unidentified Armed Group (Yemen)",
+      notes: "Fixture event representing regional maritime-threat context connected to Gulf shipping risk; not a live ACLED assertion.",
+      fatalities: 0
+    })
+  ];
+
+  await writeJson("acled-hormuz-events.json", {
+    source: "ACLED",
+    generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: `ACLED live read unavailable (${reason}); synthetic rows preserve ACLED read response shape for offline demo use.`,
+    request: {
+      url: "https://acleddata.com/api/acled/read?limit=10&country=Iran",
+      method: "GET",
+      metadata: { token_cached: false, fixture_fallback: true }
+    },
+    response: {
+      ok: true,
+      status: 200,
+      statusText: "Fixture Fallback",
+      contentType: "application/json",
+      bytes: JSON.stringify(events).length
+    },
+    body: {
+      status: 200,
+      success: true,
+      count: events.length,
+      data: events
+    }
+  });
+
+  return {
+    source: "ACLED",
+    ok: true,
+    detail: `acled-hormuz-events.json: fixture fallback with ${events.length} events.`,
+    fileName: "acled-hormuz-events.json"
+  };
+}
+
+function acledEvent({ id, date, country, admin1, location, latitude, longitude, eventType, subEventType, actor1, notes, fatalities }) {
+  return {
+    event_id_cnty: id,
+    event_date: date,
+    year: String(new Date(date).getUTCFullYear()),
+    time_precision: "1",
+    disorder_type: eventType === "Strategic developments" ? "Strategic developments" : "Political violence",
+    event_type: eventType,
+    sub_event_type: subEventType,
+    actor1,
+    assoc_actor_1: "",
+    inter1: "1",
+    actor2: "",
+    assoc_actor_2: "",
+    inter2: "0",
+    interaction: "10",
+    civilian_targeting: "",
+    iso: country === "Iran" ? "364" : "887",
+    region: "Middle East",
+    country,
+    admin1,
+    admin2: "",
+    admin3: "",
+    location,
+    latitude: String(latitude),
+    longitude: String(longitude),
+    geo_precision: "1",
+    source: "Fixture",
+    source_scale: "Other",
+    notes,
+    fatalities: String(fatalities),
+    tags: "fixture;offline-demo",
+    timestamp: String(Math.floor(Date.parse(generatedAt) / 1000))
+  };
+}
+
 async function cacheAisstreamSample() {
   const apiKey = envOr("AISSTREAM_API_KEY");
   if (!apiKey) {
@@ -541,22 +1043,106 @@ async function cacheAisstreamSample() {
     }));
   }
 
-  await writeJson("aisstream-hormuz-sample.json", {
+  const payload = messages.length > 0
+    ? {
+        source: "AISSTREAM",
+        generated_at: generatedAt,
+        aoi: HORMUZ,
+        fallback_aoi: REGIONAL_AIS_FALLBACK,
+        message_count: messages.length,
+        attempts,
+        errors,
+        messages
+      }
+    : syntheticAisstreamSample({ attempts, errors });
+
+  await writeJson("aisstream-hormuz-sample.json", payload);
+
+  return {
+    source: "AISSTREAM",
+    ok: payload.message_count > 0,
+    detail: `${payload.message_count} AIS messages cached${payload.fixture_mode ? " (fixture fallback)" : ""}.`,
+    fileName: "aisstream-hormuz-sample.json"
+  };
+}
+
+function syntheticAisstreamSample({ attempts = [], errors = [] } = {}) {
+  const messages = [
+    aisstreamPosition({
+      mmsi: 422120900,
+      shipName: "ALARA",
+      lat: 26.1841,
+      lon: 56.2484,
+      speed: 11.8,
+      course: 91.4,
+      heading: 92,
+      timestamp: startDate.toISOString()
+    }),
+    aisstreamPosition({
+      mmsi: 422120900,
+      shipName: "ALARA",
+      lat: 26.1818,
+      lon: 56.3912,
+      speed: 11.1,
+      course: 94.2,
+      heading: 94,
+      timestamp: new Date(startDate.getTime() + 12 * 60 * 1000).toISOString()
+    }),
+    aisstreamPosition({
+      mmsi: 636021118,
+      shipName: "GULF TRADER",
+      lat: 25.9344,
+      lon: 56.683,
+      speed: 8.4,
+      course: 286.8,
+      heading: 287,
+      timestamp: new Date(startDate.getTime() + 18 * 60 * 1000).toISOString()
+    })
+  ];
+
+  return {
     source: "AISSTREAM",
     generated_at: generatedAt,
+    fixture_mode: true,
+    fixture_reason: "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
     aoi: HORMUZ,
     fallback_aoi: REGIONAL_AIS_FALLBACK,
     message_count: messages.length,
     attempts,
     errors,
     messages
-  });
+  };
+}
 
+function aisstreamPosition({ mmsi, shipName, lat, lon, speed, course, heading, timestamp }) {
   return {
-    source: "AISSTREAM",
-    ok: messages.length > 0,
-    detail: `${messages.length} AIS messages cached.`,
-    fileName: "aisstream-hormuz-sample.json"
+    MessageType: "PositionReport",
+    MetaData: {
+      MMSI: mmsi,
+      MMSI_String: String(mmsi),
+      ShipName: shipName,
+      latitude: lat,
+      longitude: lon,
+      time_utc: timestamp
+    },
+    Message: {
+      PositionReport: {
+        MessageID: 1,
+        UserID: mmsi,
+        NavigationalStatus: 0,
+        RateOfTurn: 0,
+        Sog: speed,
+        PositionAccuracy: true,
+        Longitude: lon,
+        Latitude: lat,
+        Cog: course,
+        TrueHeading: heading,
+        Timestamp: Math.floor(Date.parse(timestamp) / 1000) % 60,
+        ManeuverIndicator: 0,
+        Raim: false,
+        CommunicationState: 0
+      }
+    }
   };
 }
 
@@ -722,12 +1308,77 @@ async function cacheShodanMaritimeIntel() {
     timeoutMs: 20_000
   });
 
+  const searchResult = search.ok ? search : await writeSyntheticShodanMaritimeSearch();
+
   return {
     source: "SHODAN",
-    ok: apiInfo.ok || search.ok,
-    detail: `api-info ${apiInfo.ok ? "ok" : "failed"}; AIS search ${search.ok ? "ok" : "blocked/failed"}.`,
+    ok: apiInfo.ok || searchResult.ok,
+    detail: `api-info ${apiInfo.ok ? "ok" : "failed"}; AIS search ${search.ok ? "ok" : "fixture fallback"}.`,
     files: ["shodan-api-info.json", "shodan-maritime-ais.json"]
   };
+}
+
+async function cacheCensysMaritimeInfrastructure() {
+  const token = envOr("CENSYS_API_TOKEN");
+  const baseUrl = envOr("CENSYS_BASE_URL", "https://api.platform.censys.io/v3").replace(/\/$/, "");
+  const organizationId = envOr("CENSYS_ORGANIZATION_ID");
+  if (!token) {
+    return { source: "CENSYS", ok: false, detail: "CENSYS_API_TOKEN missing; skipped." };
+  }
+
+  const url = new URL(`${baseUrl}/global/search/query`);
+  if (organizationId) {
+    url.searchParams.set("organization_id", organizationId);
+  }
+
+  const query = [
+    "host.services.port=10110",
+    "host.services.port=10111",
+    "host.services.port=4001",
+    "host.services.port=4002",
+    'banner: "AIS"',
+    'banner: "NMEA"'
+  ].join(" or ");
+
+  const search = await fetchJsonToFile({
+    fileName: "censys-maritime-infrastructure.json",
+    source: "CENSYS",
+    url: url.toString(),
+    options: {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({
+        query,
+        page_size: 10,
+        fields: [
+          "host.ip",
+          "host.location.country",
+          "host.location.city",
+          "host.autonomous_system.name",
+          "host.services.port",
+          "host.services.protocol",
+          "host.services.transport_protocol",
+          "host.services.banner"
+        ]
+      })
+    },
+    requestMetadata: {
+      query,
+      evidence_type: "INFRASTRUCTURE_CONTEXT_ONLY",
+      note: "Censys Platform PAT is sent as a Bearer token and is not cached. Results must not support vessel behavior, intent, or kinematics claims."
+    },
+    timeoutMs: 20_000
+  });
+
+  if (!search.ok) {
+    return writeSyntheticCensysMaritimeInfrastructure(search.detail);
+  }
+
+  return search;
 }
 
 async function cacheOpenSanctionsMaritimeEntities() {
@@ -1086,11 +1737,18 @@ async function cacheCopernicusMarineCurrentsSample({ command, env, redact }) {
     error: result.error
   });
 
+  if (!(result.ok && fileSize > 0)) {
+    await writeSyntheticCopernicusMarineCurrents({ metadataFileName, start, end, result });
+    return {
+      ok: true,
+      fileName: metadataFileName,
+      detail: "currents sample cached as fixture fallback."
+    };
+  }
+
   return {
-    ok: result.ok && fileSize > 0,
-    detail: fileSize > 0
-      ? `currents sample cached (${fileSize} bytes).`
-      : `currents sample not cached: ${result.error || result.stderr || `exit ${result.exitCode ?? "unknown"}`}`,
+    ok: true,
+    detail: `currents sample cached (${fileSize} bytes).`,
     fileName: metadataFileName
   };
 }
@@ -1461,10 +2119,16 @@ function copernicusMarineCommand() {
 function parseCacheProfile(args) {
   const profileArg = args.find((arg) => arg.startsWith("--profile="));
   const profile = profileArg?.split("=")[1] || envOr("SEAFORGE_CACHE_PROFILE", "all");
-  if (profile === "all" || profile === "fast" || profile === "slow" || profile === "danti") {
+  if (
+    profile === "all" ||
+    profile === "fast" ||
+    profile === "slow" ||
+    profile === "danti" ||
+    profile === "fallbacks"
+  ) {
     return profile;
   }
-  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, or danti.`);
+  throw new Error(`Unsupported cache profile '${profile}'. Use all, fast, slow, danti, or fallbacks.`);
 }
 
 function redactUrl(rawUrl, queryParams) {

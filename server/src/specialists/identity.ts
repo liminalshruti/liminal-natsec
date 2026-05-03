@@ -1,5 +1,5 @@
-import { aipAvailable, callAip } from "./aip.ts";
 import { findCached } from "./cache.ts";
+import { callLiveSpecialist } from "./live.ts";
 import type {
   Specialist,
   SpecialistCallResult,
@@ -33,14 +33,8 @@ function fixtureIdentityOutput(input: SpecialistInput): SpecialistRawOutput {
 export const identitySpecialist: Specialist = {
   name: "identity",
   async call(input: SpecialistInput): Promise<SpecialistCallResult> {
-    if (aipAvailable()) {
-      try {
-        const raw = await callAip("identity", input);
-        return { raw, source: "aip" };
-      } catch {
-        // fall through
-      }
-    }
+    const live = await callLiveSpecialist("identity", input);
+    if (live) return live;
     const cached = findCached("identity", input.anomaly_id);
     if (cached) return { raw: cached, source: "cache" };
     return { raw: fixtureIdentityOutput(input), source: "fixture" };

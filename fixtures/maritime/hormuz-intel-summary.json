@@ -1,0 +1,944 @@
+{
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "normalizer_version": "hormuz-intel-normalizer@0.1.0",
+  "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+  "source_document_count": 24,
+  "evidence_item_count": 52,
+  "available_evidence_count": 52,
+  "unavailable_evidence_count": 0,
+  "drawer_groups": {
+    "Satellite": 11,
+    "Maritime Warnings": 2,
+    "OSINT": 31,
+    "Entity Risk": 4,
+    "Infrastructure Context": 4
+  },
+  "categories": {
+    "GEO_SPATIOTEMPORAL_CORROBORATION": 8,
+    "CROSS_MODAL_CONTEXT": 6,
+    "ENTITY_RISK_ENRICHMENT": 4,
+    "REGIONAL_SECURITY_CONTEXT": 15,
+    "VESSEL_IDENTITY_CORROBORATION": 15,
+    "MARITIME_INFRASTRUCTURE_CONTEXT": 1,
+    "INFRASTRUCTURE_CONTEXT_ONLY": 3
+  },
+  "scoring": {
+    "contributions": [
+      {
+        "evidence_id": "ev:hormuz:acled-irn-fixture-20260502-001:7918f8d868",
+        "title": "Strategic developments near Bandar Abbas",
+        "source": "ACLED",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:acled-yem-fixture-20260502-001:65d9cdeb27",
+        "title": "Explosions/Remote violence near Red Sea coast",
+        "source": "ACLED",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:aisstream-422120900:af7781d02e",
+        "title": "ALARA AIS position sample",
+        "source": "AISSTREAM",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:aisstream-422120900:c87b10c3ad",
+        "title": "ALARA AIS position sample",
+        "source": "AISSTREAM",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:aisstream-636021118:f24a10c119",
+        "title": "GULF TRADER AIS position sample",
+        "source": "AISSTREAM",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:censys-198-51-100-118:2ac122723b",
+        "title": "198.51.100.118 maritime-service exposure context",
+        "source": "CENSYS",
+        "category": "INFRASTRUCTURE_CONTEXT_ONLY",
+        "bucket": "infrastructure_context",
+        "delta": 0.02,
+        "available": true,
+        "allowed_claim_classes": [
+          "infrastructure_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Shodan records affect infrastructure context only and do not support vessel behavior."
+      },
+      {
+        "evidence_id": "ev:hormuz:censys-203-0-113-104:c69e39314f",
+        "title": "203.0.113.104 maritime-service exposure context",
+        "source": "CENSYS",
+        "category": "INFRASTRUCTURE_CONTEXT_ONLY",
+        "bucket": "infrastructure_context",
+        "delta": 0.02,
+        "available": true,
+        "allowed_claim_classes": [
+          "infrastructure_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Shodan records affect infrastructure context only and do not support vessel behavior."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-marine-surface-currents:00dad944f7",
+        "title": "Hormuz surface-current context",
+        "source": "COPERNICUS_MARINE",
+        "category": "CROSS_MODAL_CONTEXT",
+        "bucket": "cross_modal_context",
+        "delta": 0.12,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:4b68f636ec",
+        "title": "Sentinel-1 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:57f1c3ada5",
+        "title": "Sentinel-1 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:6228f20e8a",
+        "title": "Sentinel-1 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:ddfe9d978d",
+        "title": "Sentinel-1 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:10174f6e15",
+        "title": "Sentinel-2 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:62ffc88ec0",
+        "title": "Sentinel-2 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:b1794387c0",
+        "title": "Sentinel-2 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:f7f65222e4",
+        "title": "Sentinel-2 acquisition over Hormuz",
+        "source": "COPERNICUS_CDSE_STAC",
+        "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+        "bucket": "cross_modal_context",
+        "delta": 0.18,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite metadata can corroborate time and area context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-image:06029fa3ce",
+        "title": "Satellogic Image resource from SATELLOGIC",
+        "source": "DANTI",
+        "category": "CROSS_MODAL_CONTEXT",
+        "bucket": "cross_modal_context",
+        "delta": 0.12,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-image:345d508b37",
+        "title": "Satellogic Image resource from SATELLOGIC",
+        "source": "DANTI",
+        "category": "CROSS_MODAL_CONTEXT",
+        "bucket": "cross_modal_context",
+        "delta": 0.12,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-image:8bcf8970c2",
+        "title": "Esa Sentinel Image resource from SENTINEL_HUB",
+        "source": "DANTI",
+        "category": "CROSS_MODAL_CONTEXT",
+        "bucket": "cross_modal_context",
+        "delta": 0.12,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-ship:3bef4a91d9",
+        "title": "Marinetraffic Ship resource from MARINETRAFFIC",
+        "source": "DANTI",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-ship:b8861ee5b5",
+        "title": "Marinetraffic Ship resource from MARINETRAFFIC",
+        "source": "DANTI",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-ship:e98f628d5b",
+        "title": "Marinetraffic Ship resource from MARINETRAFFIC",
+        "source": "DANTI",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-social-media:1d0877e65d",
+        "title": "China Urges Protection for Ships in Strait of Hormuz Amid Tensions",
+        "source": "DANTI",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-social-media:51620a8732",
+        "title": "@McPaiges @SaudiNews50 Confirmed. Recent maritime tracking data reported by CNN shows shipping traffic in the Strait of",
+        "source": "DANTI",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-social-media:b99582be01",
+        "title": "GLOBAL MARITIME: \"𝗙𝗿𝗲𝗲𝗱𝗼𝗺 𝗼𝗳 𝗻𝗮𝘃𝗶𝗴𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗻𝗼𝘁 𝗻𝗲𝗴𝗼𝘁𝗶𝗮𝗯𝗹𝗲\": 𝗜𝗠𝗢 𝗮𝗱𝗱𝗿𝗲𝘀𝘀𝗲𝘀...",
+        "source": "DANTI",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-web-article:32c39af3f4",
+        "title": "Russian Oligarch's Yacht Transits Strait of Hormuz Amid Restrictions",
+        "source": "DANTI",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-web-article:bd67a353da",
+        "title": "Strait of Hormuz Blockade Step by Step: What Do We Know?",
+        "source": "DANTI",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:danti-web-article:e4dc3013a0",
+        "title": "Hong Kong-flagged tanker transits Strait of Hormuz amid U.S. restrictions",
+        "source": "DANTI",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:exa-https-channel16-dryadglobal-com-ukmto-update-vol:f8e47027a2",
+        "title": "UKMTO Update: Volatile Security Environment Across Hormuz, Bab al Mandab and the Arabian Gulf",
+        "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-p-246166:340b28a031",
+        "title": "Strait of Hormuz Traffic Grinds to Near Halt as Security Threat Remains ‘Critical,’ Advisory Warns",
+        "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:0a121739b2",
+        "title": "Hormuz Active Crisis 5 Ships Hit Traffic Collapses | gCaptain",
+        "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:0095fd0cbc",
+        "title": "Dark ships and shadow fleets – what is crossing 'closed' Strait of Hormuz?",
+        "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:95200913f8",
+        "title": "Iran Strait of Hormuz Risk Advisory March 2026 - Maritime News",
+        "source": "EXA",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:0a71898e70",
+        "title": "GAP for GULF TRADER",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:a9c1c1d7a7",
+        "title": "GAP for ALARA",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:33dcd4279b",
+        "title": "LOITERING for BANDAR SUPPLY",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:17de2821e9",
+        "title": "PORT_VISIT for ALARA",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-vessel-search-249949000:01832061d1",
+        "title": "IRIS1 identity candidate",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-vessel-search-264163508:7a447d58e3",
+        "title": "IRIS 5 identity candidate",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-vessel-search-338211594:64a20d2f39",
+        "title": "IRISH identity candidate",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-vessel-search-367610650:c66cce3aa3",
+        "title": "IRISH identity candidate",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:gfw-vessel-search-408900859:9b797a961c",
+        "title": "IRISH identity candidate",
+        "source": "GLOBAL_FISHING_WATCH",
+        "category": "VESSEL_IDENTITY_CORROBORATION",
+        "bucket": "identity_source_corroboration",
+        "delta": 0.16,
+        "available": true,
+        "allowed_claim_classes": [
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "GFW vessel search records affect identity/source corroboration only."
+      },
+      {
+        "evidence_id": "ev:hormuz:opensanctions-iranian-oil-tanker:462ea81f38",
+        "title": "M K A entity-risk context",
+        "source": "OPENSANCTIONS",
+        "category": "ENTITY_RISK_ENRICHMENT",
+        "bucket": "entity_risk",
+        "delta": 0.22,
+        "available": true,
+        "allowed_claim_classes": [
+          "entity_risk"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "OpenSanctions records affect entity-risk enrichment only."
+      },
+      {
+        "evidence_id": "ev:hormuz:opensanctions-irisl:2d894b8c44",
+        "title": "IRISL Maritime Training Institute entity-risk context",
+        "source": "OPENSANCTIONS",
+        "category": "ENTITY_RISK_ENRICHMENT",
+        "bucket": "entity_risk",
+        "delta": 0.22,
+        "available": true,
+        "allowed_claim_classes": [
+          "entity_risk"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "OpenSanctions records affect entity-risk enrichment only."
+      },
+      {
+        "evidence_id": "ev:hormuz:opensanctions-islamic-republic-of-iran-shipping-line:b2e9a384ec",
+        "title": "islamic republic of iran shipping lines investment entity-risk context",
+        "source": "OPENSANCTIONS",
+        "category": "ENTITY_RISK_ENRICHMENT",
+        "bucket": "entity_risk",
+        "delta": 0.22,
+        "available": true,
+        "allowed_claim_classes": [
+          "entity_risk"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "OpenSanctions records affect entity-risk enrichment only."
+      },
+      {
+        "evidence_id": "ev:hormuz:opensanctions-national-iranian-tanker-company:65a38e7f7a",
+        "title": "National Iranian Tanker Company entity-risk context",
+        "source": "OPENSANCTIONS",
+        "category": "ENTITY_RISK_ENRICHMENT",
+        "bucket": "entity_risk",
+        "delta": 0.22,
+        "available": true,
+        "allowed_claim_classes": [
+          "entity_risk"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "OpenSanctions records affect entity-risk enrichment only."
+      },
+      {
+        "evidence_id": "ev:hormuz:overpass-maritime-infrastructure:704686e1f9",
+        "title": "Hormuz maritime infrastructure context",
+        "source": "OVERPASS",
+        "category": "MARITIME_INFRASTRUCTURE_CONTEXT",
+        "bucket": "infrastructure_context",
+        "delta": 0.04,
+        "available": true,
+        "allowed_claim_classes": [
+          "infrastructure_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Overpass records affect maritime infrastructure context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:sentinelhub-chip-sentinelhub-hormuz-sentinel1-vv-png:a8ec11d6e3",
+        "title": "Sentinel-1 VV image chip",
+        "source": "SENTINEL_HUB_PROCESS",
+        "category": "CROSS_MODAL_CONTEXT",
+        "bucket": "cross_modal_context",
+        "delta": 0.12,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
+      },
+      {
+        "evidence_id": "ev:hormuz:sentinelhub-chip-sentinelhub-hormuz-sentinel2-trueco:96c23dc5bc",
+        "title": "Sentinel-2 true-color image chip",
+        "source": "SENTINEL_HUB_PROCESS",
+        "category": "CROSS_MODAL_CONTEXT",
+        "bucket": "cross_modal_context",
+        "delta": 0.12,
+        "available": true,
+        "allowed_claim_classes": [
+          "cross_modal_context"
+        ],
+        "excluded_claim_classes": [
+          "intent"
+        ],
+        "rationale": "Satellite image chips provide cross-modal context without identity or intent claims."
+      },
+      {
+        "evidence_id": "ev:hormuz:shodan-maritime-ais:7ee695bbc5",
+        "title": "AIS-related infrastructure context",
+        "source": "SHODAN",
+        "category": "INFRASTRUCTURE_CONTEXT_ONLY",
+        "bucket": "infrastructure_context",
+        "delta": 0.02,
+        "available": true,
+        "allowed_claim_classes": [
+          "infrastructure_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Shodan records affect infrastructure context only and do not support vessel behavior."
+      },
+      {
+        "evidence_id": "ev:hormuz:warning-page-navarea-ix:35612304bf",
+        "title": "NAVAREA IX regional warning context",
+        "source": "NAVAREA_IX",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      },
+      {
+        "evidence_id": "ev:hormuz:warning-page-ukmto:783f8b7d1e",
+        "title": "UKMTO regional warning context",
+        "source": "UKMTO",
+        "category": "REGIONAL_SECURITY_CONTEXT",
+        "bucket": "regional_context",
+        "delta": 0.1,
+        "available": true,
+        "allowed_claim_classes": [
+          "regional_context"
+        ],
+        "excluded_claim_classes": [
+          "kinematics",
+          "vessel_behavior",
+          "intent"
+        ],
+        "rationale": "Public warning and OSINT records affect regional context only."
+      }
+    ],
+    "totals": {
+      "cross_modal_context": 2.16,
+      "entity_risk": 0.88,
+      "regional_context": 1.5000000000000002,
+      "identity_source_corroboration": 2.4,
+      "infrastructure_context": 0.1
+    }
+  }
+}

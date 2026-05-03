@@ -1,6 +1,8 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T02:09:12.897Z",
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "fixture_mode": true,
+  "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
   "request": {
     "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=10&offset=0",
     "method": "POST",
@@ -9,11 +11,47 @@
       "types": [
         "LOITERING"
       ],
-      "aoi": "Strait of Hormuz demo AOI"
+      "aoi": "Strait of Hormuz demo AOI",
+      "fixture_fallback": true
     }
   },
   "response": {
-    "ok": false
+    "ok": true,
+    "status": 200,
+    "statusText": "Fixture Fallback",
+    "contentType": "application/json",
+    "bytes": 296
   },
-  "error": "timeout after 20000ms"
+  "body": {
+    "metadata": {
+      "dataset": "public-global-loitering-events:latest",
+      "types": [
+        "LOITERING"
+      ],
+      "query": "fixture fallback",
+      "limit": 10,
+      "offset": 0,
+      "total": 1
+    },
+    "entries": [
+      {
+        "id": "fixture:gfw:loitering:anchorage:001",
+        "type": "LOITERING",
+        "start": "2026-04-03T12:40:57.697Z",
+        "end": "2026-04-03T16:10:57.697Z",
+        "position": {
+          "lat": 26.08,
+          "lon": 56.18
+        },
+        "vessel": {
+          "ssvid": "538009876",
+          "name": "BANDAR SUPPLY",
+          "flag": "MHL",
+          "type": "SUPPORT"
+        },
+        "totalDistanceKm": 6.2,
+        "durationHours": 3.5
+      }
+    ]
+  }
 }

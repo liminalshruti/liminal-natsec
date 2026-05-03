@@ -1,5 +1,5 @@
-import { aipAvailable, callAip } from "./aip.ts";
 import { findCached } from "./cache.ts";
+import { callLiveSpecialist } from "./live.ts";
 import {
   DEFAULT_VISUAL_THRESHOLD,
   type Specialist,
@@ -80,14 +80,8 @@ function fixtureVisualOutput(input: SpecialistInput): SpecialistRawOutput {
 export const visualSpecialist: Specialist = {
   name: "visual",
   async call(input: SpecialistInput): Promise<SpecialistCallResult> {
-    if (aipAvailable()) {
-      try {
-        const raw = await callAip("visual", input);
-        return { raw, source: "aip" };
-      } catch {
-        // fall through to cache
-      }
-    }
+    const live = await callLiveSpecialist("visual", input);
+    if (live) return live;
 
     const cached = findCached("visual", input.anomaly_id);
     if (cached) return { raw: cached, source: "cache" };

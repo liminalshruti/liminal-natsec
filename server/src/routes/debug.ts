@@ -2,6 +2,7 @@ import { existsSync, readdirSync } from "node:fs";
 
 import type { LocalOperationalStore, OperationalStore } from "../domain/ontology.ts";
 import { validateCacheFile, type CacheValidationReport } from "../specialists/cache.ts";
+import { piAiStatus } from "../specialists/pi-ai.ts";
 import { aipStatus, foundryStatus, palantirConfigFromEnv } from "../stores/palantir.ts";
 import type { RouteApp } from "./common.ts";
 import { routeError } from "./common.ts";
@@ -22,6 +23,7 @@ export interface HealthSnapshot {
   specialistCache: CacheValidationReport;
   foundry: ReturnType<typeof foundryStatus>;
   aip: ReturnType<typeof aipStatus>;
+  aiFallback: ReturnType<typeof piAiStatus>;
 }
 
 export async function buildHealthSnapshot(store: OperationalStore): Promise<HealthSnapshot> {
@@ -48,7 +50,8 @@ export async function buildHealthSnapshot(store: OperationalStore): Promise<Heal
     },
     specialistCache,
     foundry: foundryStatus(),
-    aip: aipStatus()
+    aip: aipStatus(),
+    aiFallback: piAiStatus()
   };
 }
 
@@ -98,6 +101,7 @@ export function registerDebugRoutes(app: RouteApp, store: OperationalStore): voi
           aipLogicToken: Boolean(config.aipLogicToken ?? config.foundryToken),
           aipLogicFunctionRid: Boolean(config.aipLogicFunctionRid)
         },
+        aiFallback: piAiStatus(),
         actionEnvelopes: {
           queueDepth,
           sample: queuedActions

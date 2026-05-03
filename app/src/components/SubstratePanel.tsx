@@ -1,5 +1,6 @@
 import type { AlertView } from "../lib/types.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
+import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
 
 interface SubstratePanelProps {
   alerts: AlertView[];
@@ -27,6 +28,7 @@ export function SubstratePanel({
           onSelectAlert={onSelectAlert}
           loading={loading}
         />
+        <HormuzIntelDrawer />
       </div>
     </aside>
   );

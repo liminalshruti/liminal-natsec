@@ -1,6 +1,8 @@
 {
   "source": "GLOBAL_FISHING_WATCH",
-  "generated_at": "2026-05-03T02:09:12.897Z",
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "fixture_mode": true,
+  "fixture_reason": "Live GFW event feed was unavailable or empty; synthetic entries preserve v3 event-cache shape for offline demo use.",
   "request": {
     "url": "https://gateway.api.globalfishingwatch.org/v3/events?limit=10&offset=0",
     "method": "POST",
@@ -9,11 +11,51 @@
       "types": [
         "PORT_VISIT"
       ],
-      "aoi": "Strait of Hormuz demo AOI"
+      "aoi": "Strait of Hormuz demo AOI",
+      "fixture_fallback": true
     }
   },
   "response": {
-    "ok": false
+    "ok": true,
+    "status": 200,
+    "statusText": "Fixture Fallback",
+    "contentType": "application/json",
+    "bytes": 349
   },
-  "error": "timeout after 20000ms"
+  "body": {
+    "metadata": {
+      "dataset": "public-global-port-visits-events:latest",
+      "types": [
+        "PORT_VISIT"
+      ],
+      "query": "fixture fallback",
+      "limit": 10,
+      "offset": 0,
+      "total": 1
+    },
+    "entries": [
+      {
+        "id": "fixture:gfw:port-visit:bandar-abbas:001",
+        "type": "PORT_VISIT",
+        "start": "2026-04-03T05:40:57.697Z",
+        "end": "2026-04-03T23:40:57.697Z",
+        "port": {
+          "id": "fixture:port:bandar-abbas",
+          "name": "Bandar Abbas",
+          "country": "IRN"
+        },
+        "position": {
+          "lat": 27.14,
+          "lon": 56.22
+        },
+        "vessel": {
+          "ssvid": "422120900",
+          "name": "ALARA",
+          "flag": "IRN",
+          "type": "TANKER"
+        },
+        "durationHours": 18
+      }
+    ]
+  }
 }

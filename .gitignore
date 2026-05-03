@@ -23,6 +23,8 @@ test-results/
 config.ini
 config.local.ini
 details.md
+auth.json
+pi-auth.json
 
 # Live-source credential/capability checks; generated from local API credentials.
 fixtures/maritime/live-cache/*auth*.json
@@ -31,6 +33,7 @@ fixtures/maritime/live-cache/*api-info.json
 fixtures/maritime/live-cache/foundry-ontologies.json
 fixtures/maritime/live-cache/danti-*.json
 fixtures/maritime/live-cache/manifest-danti.json
+fixtures/maritime/live-cache/manifest-fallbacks.json
 
 # OS
 .DS_Store

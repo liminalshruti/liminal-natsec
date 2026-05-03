@@ -1,0 +1,2646 @@
+[
+  {
+    "id": "ev:hormuz:acled-irn-fixture-20260502-001:7918f8d868",
+    "type": "evidence",
+    "title": "Strategic developments near Bandar Abbas",
+    "source": "ACLED",
+    "provider": "ACLED",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:acled-hormuz-events",
+    "source_document_ids": [
+      "src:hormuz:acled-hormuz-events"
+    ],
+    "source_file": "fixtures/maritime/live-cache/acled-hormuz-events.json",
+    "source_sha256": "38ac38b2c2d5509e6444ad9f28b8f0bd03ad2379a7d82c59e5ff1aea8b3da4c3",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.56,
+    "reliability": 0.58,
+    "summary": "ACLED-shaped event context: Strategic developments in Iran near Bandar Abbas.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.2666,
+        27.1832
+      ]
+    },
+    "entities": [
+      "Military Forces of Iran (2024-)"
+    ],
+    "attributes": {
+      "event_id": "IRN-FIXTURE-20260502-001",
+      "country": "Iran",
+      "admin1": "Hormozgan",
+      "sub_event_type": "Disrupted weapons use",
+      "fatalities": 0,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:acled-yem-fixture-20260502-001:65d9cdeb27",
+    "type": "evidence",
+    "title": "Explosions/Remote violence near Red Sea coast",
+    "source": "ACLED",
+    "provider": "ACLED",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:acled-hormuz-events",
+    "source_document_ids": [
+      "src:hormuz:acled-hormuz-events"
+    ],
+    "source_file": "fixtures/maritime/live-cache/acled-hormuz-events.json",
+    "source_sha256": "38ac38b2c2d5509e6444ad9f28b8f0bd03ad2379a7d82c59e5ff1aea8b3da4c3",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.56,
+    "reliability": 0.58,
+    "summary": "ACLED-shaped event context: Explosions/Remote violence in Yemen near Red Sea coast.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        42.9545,
+        14.7978
+      ]
+    },
+    "entities": [
+      "Unidentified Armed Group (Yemen)"
+    ],
+    "attributes": {
+      "event_id": "YEM-FIXTURE-20260502-001",
+      "country": "Yemen",
+      "admin1": "Al Hudaydah",
+      "sub_event_type": "Shelling/artillery/missile attack",
+      "fatalities": 0,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:aisstream-422120900:af7781d02e",
+    "type": "evidence",
+    "title": "ALARA AIS position sample",
+    "source": "AISSTREAM",
+    "provider": "AISstream",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:aisstream-hormuz-sample",
+    "source_document_ids": [
+      "src:hormuz:aisstream-hormuz-sample"
+    ],
+    "source_file": "fixtures/maritime/live-cache/aisstream-hormuz-sample.json",
+    "source_sha256": "e9c3fd7439dbdac6187463fd25e67ee762e6ffb71eb94036f2284f7512c35eaa",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T02:40:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.62,
+    "reliability": 0.64,
+    "summary": "AISstream sample places ALARA (422120900) inside the Hormuz regional feed.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.2484,
+        26.1841
+      ]
+    },
+    "entities": [
+      "ALARA"
+    ],
+    "attributes": {
+      "mmsi": "422120900",
+      "speed_over_ground": 11.8,
+      "course_over_ground": 91.4,
+      "heading": 92,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:aisstream-422120900:c87b10c3ad",
+    "type": "evidence",
+    "title": "ALARA AIS position sample",
+    "source": "AISSTREAM",
+    "provider": "AISstream",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:aisstream-hormuz-sample",
+    "source_document_ids": [
+      "src:hormuz:aisstream-hormuz-sample"
+    ],
+    "source_file": "fixtures/maritime/live-cache/aisstream-hormuz-sample.json",
+    "source_sha256": "e9c3fd7439dbdac6187463fd25e67ee762e6ffb71eb94036f2284f7512c35eaa",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T02:52:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.62,
+    "reliability": 0.64,
+    "summary": "AISstream sample places ALARA (422120900) inside the Hormuz regional feed.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.3912,
+        26.1818
+      ]
+    },
+    "entities": [
+      "ALARA"
+    ],
+    "attributes": {
+      "mmsi": "422120900",
+      "speed_over_ground": 11.1,
+      "course_over_ground": 94.2,
+      "heading": 94,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:aisstream-636021118:f24a10c119",
+    "type": "evidence",
+    "title": "GULF TRADER AIS position sample",
+    "source": "AISSTREAM",
+    "provider": "AISstream",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:aisstream-hormuz-sample",
+    "source_document_ids": [
+      "src:hormuz:aisstream-hormuz-sample"
+    ],
+    "source_file": "fixtures/maritime/live-cache/aisstream-hormuz-sample.json",
+    "source_sha256": "e9c3fd7439dbdac6187463fd25e67ee762e6ffb71eb94036f2284f7512c35eaa",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T02:58:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.62,
+    "reliability": 0.64,
+    "summary": "AISstream sample places GULF TRADER (636021118) inside the Hormuz regional feed.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.683,
+        25.9344
+      ]
+    },
+    "entities": [
+      "GULF TRADER"
+    ],
+    "attributes": {
+      "mmsi": "636021118",
+      "speed_over_ground": 8.4,
+      "course_over_ground": 286.8,
+      "heading": 287,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:censys-198-51-100-118:2ac122723b",
+    "type": "evidence",
+    "title": "198.51.100.118 maritime-service exposure context",
+    "source": "CENSYS",
+    "provider": "Censys",
+    "category": "INFRASTRUCTURE_CONTEXT_ONLY",
+    "drawer_group": "Infrastructure Context",
+    "source_document_id": "src:hormuz:censys-maritime-infrastructure",
+    "source_document_ids": [
+      "src:hormuz:censys-maritime-infrastructure"
+    ],
+    "source_file": "fixtures/maritime/live-cache/censys-maritime-infrastructure.json",
+    "source_sha256": "bb37591741793027348f3042e4e977f4159c21106c014ba75c42a00135ba1515",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.34,
+    "reliability": 0.44,
+    "summary": "Infrastructure-only; not vessel behavior evidence. Censys returned maritime/AIS/NMEA service exposure context.",
+    "entities": [
+      "198.51.100.118"
+    ],
+    "attributes": {
+      "ip": "198.51.100.118",
+      "city": "Fujairah",
+      "country": "United Arab Emirates",
+      "autonomous_system": "Fixture Port Services",
+      "port": 4001,
+      "protocol": "TCP",
+      "transport_protocol": "TCP",
+      "matched_service_count": 1,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "infrastructure_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Infrastructure-only; not vessel behavior evidence."
+    }
+  },
+  {
+    "id": "ev:hormuz:censys-203-0-113-104:c69e39314f",
+    "type": "evidence",
+    "title": "203.0.113.104 maritime-service exposure context",
+    "source": "CENSYS",
+    "provider": "Censys",
+    "category": "INFRASTRUCTURE_CONTEXT_ONLY",
+    "drawer_group": "Infrastructure Context",
+    "source_document_id": "src:hormuz:censys-maritime-infrastructure",
+    "source_document_ids": [
+      "src:hormuz:censys-maritime-infrastructure"
+    ],
+    "source_file": "fixtures/maritime/live-cache/censys-maritime-infrastructure.json",
+    "source_sha256": "bb37591741793027348f3042e4e977f4159c21106c014ba75c42a00135ba1515",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.34,
+    "reliability": 0.44,
+    "summary": "Infrastructure-only; not vessel behavior evidence. Censys returned maritime/AIS/NMEA service exposure context.",
+    "entities": [
+      "203.0.113.104"
+    ],
+    "attributes": {
+      "ip": "203.0.113.104",
+      "city": "Muscat",
+      "country": "Oman",
+      "autonomous_system": "Fixture Maritime Network",
+      "port": 10110,
+      "protocol": "TCP",
+      "transport_protocol": "TCP",
+      "matched_service_count": 1,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "infrastructure_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Infrastructure-only; not vessel behavior evidence."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-marine-surface-currents:00dad944f7",
+    "type": "evidence",
+    "title": "Hormuz surface-current context",
+    "source": "COPERNICUS_MARINE",
+    "provider": "Copernicus Marine",
+    "category": "CROSS_MODAL_CONTEXT",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-marine-hormuz-currents-metadata",
+    "source_document_ids": [
+      "src:hormuz:copernicus-marine-hormuz-currents-metadata"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-marine-hormuz-currents.metadata.json",
+    "source_sha256": "e1b4030bc3ba944daeef79a16926e7b1766b338683b817a716fa72d1f30170f0",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T02:40:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.52,
+    "reliability": 0.58,
+    "summary": "Copernicus Marine current vectors are cached near Hormuz; mean surface current is 0.19 m/s.",
+    "bbox": [
+      56,
+      26,
+      56.2,
+      26.2
+    ],
+    "attributes": {
+      "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
+      "variables": [
+        "uo",
+        "vo"
+      ],
+      "sample_count": 3,
+      "fixture_mode": true,
+      "mean_uo_mps": 0.18333333333333335,
+      "mean_vo_mps": -0.05333333333333334,
+      "mean_speed_mps": 0.1909333798882625
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite image chips provide cross-modal context without identity or intent claims."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:4b68f636ec",
+    "type": "evidence",
+    "title": "Sentinel-1 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel1-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel1-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
+    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-02T14:24:17.482882Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-1 metadata places sentinel-1c coverage over the Hormuz area at 2026-05-02T14:24:17.482882Z.",
+    "bbox": [
+      53.408607,
+      25.592861,
+      56.222107,
+      27.700832
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            53.408607,
+            27.292402
+          ],
+          [
+            53.751091,
+            25.592861
+          ],
+          [
+            56.222107,
+            26.005104
+          ],
+          [
+            55.915974,
+            27.700832
+          ],
+          [
+            53.408607,
+            27.292402
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S1C_IW_GRDH_1SDV_20260502T142417_20260502T142445_007476_00F2C9_695A_COG",
+      "platform": "sentinel-1c",
+      "constellation": "sentinel-1",
+      "instruments": [
+        "sar"
+      ],
+      "product_type": "IW_GRDH_1S",
+      "orbit_state": "ascending",
+      "asset_count": 11
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:57f1c3ada5",
+    "type": "evidence",
+    "title": "Sentinel-1 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel1-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel1-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
+    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-01T14:32:40.288276Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-1 metadata places sentinel-1a coverage over the Hormuz area at 2026-05-01T14:32:40.288276Z.",
+    "bbox": [
+      51.98077,
+      22.717365,
+      54.777287,
+      24.651073
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            51.98077,
+            24.226553
+          ],
+          [
+            52.303486,
+            22.717365
+          ],
+          [
+            54.777287,
+            23.145023
+          ],
+          [
+            54.483784,
+            24.651073
+          ],
+          [
+            51.98077,
+            24.226553
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S1A_IW_GRDH_1SDV_20260501T143240_20260501T143305_064325_08195E_3228_COG",
+      "platform": "sentinel-1a",
+      "constellation": "sentinel-1",
+      "instruments": [
+        "sar"
+      ],
+      "product_type": "IW_GRDH_1S",
+      "orbit_state": "ascending",
+      "asset_count": 11
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:6228f20e8a",
+    "type": "evidence",
+    "title": "Sentinel-1 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel1-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel1-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
+    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-02T14:23:48.193448Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-1 metadata places sentinel-1c coverage over the Hormuz area at 2026-05-02T14:23:48.193448Z.",
+    "bbox": [
+      53.75111,
+      23.825079,
+      56.566013,
+      26.004906
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            53.75111,
+            25.592772
+          ],
+          [
+            54.131329,
+            23.825079
+          ],
+          [
+            56.566013,
+            24.240664
+          ],
+          [
+            56.221436,
+            26.004906
+          ],
+          [
+            53.75111,
+            25.592772
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S1C_IW_GRDH_1SDV_20260502T142348_20260502T142417_007476_00F2C9_9D3B_COG",
+      "platform": "sentinel-1c",
+      "constellation": "sentinel-1",
+      "instruments": [
+        "sar"
+      ],
+      "product_type": "IW_GRDH_1S",
+      "orbit_state": "ascending",
+      "asset_count": 11
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel1-stac-json:ddfe9d978d",
+    "type": "evidence",
+    "title": "Sentinel-1 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel1-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel1-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel1-stac.json",
+    "source_sha256": "c9f55d94805d029df495650c612e70313bada96921999a23a40f1a6051db9e23",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-01T14:33:05.289151Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-1 metadata places sentinel-1a coverage over the Hormuz area at 2026-05-01T14:33:05.289151Z.",
+    "bbox": [
+      51.65638,
+      24.226643,
+      54.484352,
+      26.157028
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            51.65638,
+            25.735455
+          ],
+          [
+            51.980751,
+            24.226643
+          ],
+          [
+            54.484352,
+            24.651257
+          ],
+          [
+            54.191593,
+            26.157028
+          ],
+          [
+            51.65638,
+            25.735455
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S1A_IW_GRDH_1SDV_20260501T143305_20260501T143330_064325_08195E_B5E1_COG",
+      "platform": "sentinel-1a",
+      "constellation": "sentinel-1",
+      "instruments": [
+        "sar"
+      ],
+      "product_type": "IW_GRDH_1S",
+      "orbit_state": "ascending",
+      "asset_count": 11
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:10174f6e15",
+    "type": "evidence",
+    "title": "Sentinel-2 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel2-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel2-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
+    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-02T07:03:21.024000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-2 metadata places sentinel-2a coverage over the Hormuz area at 2026-05-02T07:03:21.024000Z.",
+    "bbox": [
+      54.998297911189916,
+      25.59427140390743,
+      55.17366387613697,
+      26.207766386686682
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            55.17366387613697,
+            26.207766386686682
+          ],
+          [
+            54.998297911189916,
+            26.2059949249499
+          ],
+          [
+            55.00849430248051,
+            25.59427140390743
+          ],
+          [
+            55.0407879489428,
+            25.71449244220988
+          ],
+          [
+            55.08048956430744,
+            25.862151655860657
+          ],
+          [
+            55.120225305959565,
+            26.00974954721868
+          ],
+          [
+            55.16002833722235,
+            26.157331349688658
+          ],
+          [
+            55.17366387613697,
+            26.207766386686682
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S2A_MSIL2A_20260502T070321_N0512_R063_T40RCP_20260502T121609",
+      "platform": "sentinel-2a",
+      "constellation": "sentinel-2",
+      "instruments": [
+        "msi"
+      ],
+      "product_type": "S2MSI2A",
+      "orbit_state": "descending",
+      "cloud_cover": 62.83,
+      "asset_count": 47
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:62ffc88ec0",
+    "type": "evidence",
+    "title": "Sentinel-2 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel2-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel2-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
+    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-02T07:03:21.024000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-2 metadata places sentinel-2a coverage over the Hormuz area at 2026-05-02T07:03:21.024000Z.",
+    "bbox": [
+      54.982494344802724,
+      26.117197498081712,
+      55.41893585087436,
+      27.11252814773879
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            55.418935850874355,
+            27.112528147738786
+          ],
+          [
+            54.98249434480272,
+            27.10797952397071
+          ],
+          [
+            54.99981364848483,
+            26.117197498081712
+          ],
+          [
+            55.149611004063345,
+            26.11870592956966
+          ],
+          [
+            55.418935850874355,
+            27.112528147738786
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S2A_MSIL2A_20260502T070321_N0512_R063_T40RCQ_20260502T121609",
+      "platform": "sentinel-2a",
+      "constellation": "sentinel-2",
+      "instruments": [
+        "msi"
+      ],
+      "product_type": "S2MSI2A",
+      "orbit_state": "descending",
+      "cloud_cover": 33.98,
+      "asset_count": 47
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:b1794387c0",
+    "type": "evidence",
+    "title": "Sentinel-2 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel2-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel2-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
+    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-02T07:03:21.024000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-2 metadata places sentinel-2a coverage over the Hormuz area at 2026-05-02T07:03:21.024000Z.",
+    "bbox": [
+      54.97003985676965,
+      27.019735585570864,
+      55.5628502754028,
+      27.785712366967616
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            54.97003985676965,
+            27.785712366967616
+          ],
+          [
+            54.98407353867857,
+            27.019735585570864
+          ],
+          [
+            55.39409584539985,
+            27.023996056051384
+          ],
+          [
+            55.5628502754028,
+            27.633730164744428
+          ],
+          [
+            54.97003985676965,
+            27.785712366967616
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S2A_MSIL2A_20260502T070321_N0512_R063_T40RCR_20260502T121609",
+      "platform": "sentinel-2a",
+      "constellation": "sentinel-2",
+      "instruments": [
+        "msi"
+      ],
+      "product_type": "S2MSI2A",
+      "orbit_state": "descending",
+      "cloud_cover": 0.05,
+      "asset_count": 47
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:copernicus-stac-copernicus-cdse-sentinel2-stac-json:f7f65222e4",
+    "type": "evidence",
+    "title": "Sentinel-2 acquisition over Hormuz",
+    "source": "COPERNICUS_CDSE_STAC",
+    "provider": "Copernicus Data Space STAC",
+    "category": "GEO_SPATIOTEMPORAL_CORROBORATION",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:copernicus-cdse-sentinel2-stac",
+    "source_document_ids": [
+      "src:hormuz:copernicus-cdse-sentinel2-stac"
+    ],
+    "source_file": "fixtures/maritime/live-cache/copernicus-cdse-sentinel2-stac.json",
+    "source_sha256": "bfb8065b53a39acfdfef5441a3acd903f5fe68356bbd6141c9fa6c6fda6d7e6d",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-02T07:03:21.024000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.72,
+    "reliability": 0.78,
+    "summary": "Sentinel-2 metadata places sentinel-2a coverage over the Hormuz area at 2026-05-02T07:03:21.024000Z.",
+    "bbox": [
+      53.94966291515033,
+      27.001706217086564,
+      55.08260664643534,
+      27.99325331951937
+    ],
+    "geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            55.06970622372131,
+            27.761403527685516
+          ],
+          [
+            53.94966291515033,
+            27.991577831689415
+          ],
+          [
+            53.9768526405984,
+            27.001706217086564
+          ],
+          [
+            55.08260664643533,
+            27.02111225850134
+          ],
+          [
+            55.06970622372131,
+            27.761403527685516
+          ]
+        ]
+      ]
+    },
+    "attributes": {
+      "source_feature_id": "S2A_MSIL2A_20260502T070321_N0512_R063_T40RBR_20260502T121609",
+      "platform": "sentinel-2a",
+      "constellation": "sentinel-2",
+      "instruments": [
+        "msi"
+      ],
+      "product_type": "S2MSI2A",
+      "orbit_state": "descending",
+      "cloud_cover": 0.01,
+      "asset_count": 47
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite metadata can corroborate time and area context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-image:06029fa3ce",
+    "type": "evidence",
+    "title": "Satellogic Image resource from SATELLOGIC",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "CROSS_MODAL_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-22T07:18:55Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned IMAGE context for the Hormuz query (14 total).",
+    "url": "https://api.prod.danti.ai/provider/satellogic/20260422_071855_SN26_QUICKVIEW_VISUAL_THUMBNAIL_20m_1_11_0_preview.png",
+    "entities": [
+      "SATELLOGIC"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "IMAGE",
+      "source_document_id": "20260422_071855_SN26_QUICKVIEW_VISUAL_THUMBNAIL_20m_1_11_0",
+      "source": "SATELLOGIC",
+      "score": 1.3204689,
+      "total": 14,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite image chips provide cross-modal context without identity or intent claims."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-image:345d508b37",
+    "type": "evidence",
+    "title": "Satellogic Image resource from SATELLOGIC",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "CROSS_MODAL_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-26T06:17:39Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned IMAGE context for the Hormuz query (14 total).",
+    "url": "https://api.prod.danti.ai/provider/satellogic/20260426_061739_SN34_QUICKVIEW_VISUAL_THUMBNAIL_20m_1_11_0_preview.png",
+    "entities": [
+      "SATELLOGIC"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "IMAGE",
+      "source_document_id": "20260426_061739_SN34_QUICKVIEW_VISUAL_THUMBNAIL_20m_1_11_0",
+      "source": "SATELLOGIC",
+      "score": 2.8243232,
+      "total": 14,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite image chips provide cross-modal context without identity or intent claims."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-image:8bcf8970c2",
+    "type": "evidence",
+    "title": "Esa Sentinel Image resource from SENTINEL_HUB",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "CROSS_MODAL_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-19T07:02:45Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned IMAGE context for the Hormuz query (14 total).",
+    "url": "https://api.prod.danti.ai/provider/sentinelhub",
+    "entities": [
+      "SENTINEL_HUB"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "IMAGE",
+      "source_document_id": "S2A_MSIL2A_20260419T065321_N0512_R020_T40RCP_20260419T121112",
+      "source": "SENTINEL_HUB",
+      "score": 0.0068248725,
+      "total": 14,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite image chips provide cross-modal context without identity or intent claims."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-ship:3bef4a91d9",
+    "type": "evidence",
+    "title": "Marinetraffic Ship resource from MARINETRAFFIC",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-02T02:44:34Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned SHIP context for the Hormuz query (10000 total).",
+    "entities": [
+      "MARINETRAFFIC"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "SHIP",
+      "source_document_id": "c51075ca5b30baf1c1879722697c299145a66be1135271fc051105e5d35aba9b",
+      "source": "MARINETRAFFIC",
+      "score": 0,
+      "total": 10000,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-ship:b8861ee5b5",
+    "type": "evidence",
+    "title": "Marinetraffic Ship resource from MARINETRAFFIC",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-02T02:42:07Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned SHIP context for the Hormuz query (10000 total).",
+    "entities": [
+      "MARINETRAFFIC"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "SHIP",
+      "source_document_id": "dd5c953f28c764b6b7995c5ebc52da80a5a1efd471c2df341f5ca80cd4a14b7a",
+      "source": "MARINETRAFFIC",
+      "score": 0,
+      "total": 10000,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-ship:e98f628d5b",
+    "type": "evidence",
+    "title": "Marinetraffic Ship resource from MARINETRAFFIC",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-02T02:41:09Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned SHIP context for the Hormuz query (10000 total).",
+    "entities": [
+      "MARINETRAFFIC"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "SHIP",
+      "source_document_id": "f420e95a9ca921549b33cdd56b5f03e91db2d44228ebfbae7810d7ea8b2a4088",
+      "source": "MARINETRAFFIC",
+      "score": 0,
+      "total": 10000,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-social-media:1d0877e65d",
+    "type": "evidence",
+    "title": "China Urges Protection for Ships in Strait of Hormuz Amid Tensions",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-04T04:47:07Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned SOCIAL_MEDIA context for the Hormuz query (162 total).",
+    "url": "https://api.prod.danti.ai/provider/v0/social/2026/03/04/04d1f2cf63-e590-4d81-b1aa-a06d9a75dc5d.jpg",
+    "entities": [
+      "SEERIST"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "SOCIAL_MEDIA",
+      "source_document_id": "d1f2cf63-e590-4d81-b1aa-a06d9a75dc5d",
+      "source": "SEERIST",
+      "score": 29.295086,
+      "total": 162,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-social-media:51620a8732",
+    "type": "evidence",
+    "title": "@McPaiges @SaudiNews50 Confirmed. Recent maritime tracking data reported by CNN shows shipping traffic in the Strait of",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-19T09:59:38Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned SOCIAL_MEDIA context for the Hormuz query (162 total).",
+    "entities": [
+      "SEERIST"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "SOCIAL_MEDIA",
+      "source_document_id": "2045802894880882786",
+      "source": "SEERIST",
+      "score": 29.395721,
+      "total": 162,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-social-media:b99582be01",
+    "type": "evidence",
+    "title": "GLOBAL MARITIME: \"𝗙𝗿𝗲𝗲𝗱𝗼𝗺 𝗼𝗳 𝗻𝗮𝘃𝗶𝗴𝗮𝘁𝗶𝗼𝗻 𝗶𝘀 𝗻𝗼𝘁 𝗻𝗲𝗴𝗼𝘁𝗶𝗮𝗯𝗹𝗲\": 𝗜𝗠𝗢 𝗮𝗱𝗱𝗿𝗲𝘀𝘀𝗲𝘀...",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-27T21:54:33Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned SOCIAL_MEDIA context for the Hormuz query (162 total).",
+    "url": "https://api.prod.danti.ai/provider/v0/social/2026/04/27/219f566445-238d-400a-8b2c-9e58f0d4e7dd.jpg",
+    "entities": [
+      "SEERIST"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "SOCIAL_MEDIA",
+      "source_document_id": "9f566445-238d-400a-8b2c-9e58f0d4e7dd",
+      "source": "SEERIST",
+      "score": 32.18844,
+      "total": 162,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-web-article:32c39af3f4",
+    "type": "evidence",
+    "title": "Russian Oligarch's Yacht Transits Strait of Hormuz Amid Restrictions",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-28T15:17:44Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned WEB_ARTICLE context for the Hormuz query (281 total).",
+    "url": "https://api.prod.danti.ai/provider/v0/news/2026/04/28/1523d855e9-dba0-4834-abe1-eea8affd1117.jpg",
+    "entities": [
+      "SEERIST"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "WEB_ARTICLE",
+      "source_document_id": "23d855e9-dba0-4834-abe1-eea8affd1117",
+      "source": "SEERIST",
+      "score": 28.004656,
+      "total": 281,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-web-article:bd67a353da",
+    "type": "evidence",
+    "title": "Strait of Hormuz Blockade Step by Step: What Do We Know?",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-22T08:05:52Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned WEB_ARTICLE context for the Hormuz query (281 total).",
+    "url": "https://api.prod.danti.ai/provider/v0/news/2026/04/22/089224ac324f0dbbf8fd962bd78f45b2da.png",
+    "entities": [
+      "SEERIST"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "WEB_ARTICLE",
+      "source_document_id": "9224ac324f0dbbf8fd962bd78f45b2da",
+      "source": "SEERIST",
+      "score": 27.68655,
+      "total": 281,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:danti-web-article:e4dc3013a0",
+    "type": "evidence",
+    "title": "Hong Kong-flagged tanker transits Strait of Hormuz amid U.S. restrictions",
+    "source": "DANTI",
+    "provider": "Danti",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:danti-hormuz-query",
+    "source_document_ids": [
+      "src:hormuz:danti-hormuz-query"
+    ],
+    "source_file": "fixtures/maritime/live-cache/danti-hormuz-query.json",
+    "source_sha256": "2c5640a1b300b143ed793014db5cec17f8458d2490ced6f6fe9a51c3b912167b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-17T08:38:48Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.62,
+    "summary": "Danti returned WEB_ARTICLE context for the Hormuz query (281 total).",
+    "url": "https://api.prod.danti.ai/provider/v0/news/2026/04/17/08e55c1616-f0fb-44fe-8d3b-f4449022c448.png",
+    "entities": [
+      "SEERIST"
+    ],
+    "attributes": {
+      "query_id": "019debb3-8add-7962-9cf4-a411cb094710",
+      "source_category": "WEB_ARTICLE",
+      "source_document_id": "e55c1616-f0fb-44fe-8d3b-f4449022c448",
+      "source": "SEERIST",
+      "score": 28.344648,
+      "total": 281,
+      "fixture_mode": false
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:exa-https-channel16-dryadglobal-com-ukmto-update-vol:f8e47027a2",
+    "type": "evidence",
+    "title": "UKMTO Update: Volatile Security Environment Across Hormuz, Bab al Mandab and the Arabian Gulf",
+    "source": "EXA",
+    "provider": "Exa",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:exa-hormuz-osint",
+    "source_document_ids": [
+      "src:hormuz:exa-hormuz-osint"
+    ],
+    "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-01T20:00:34.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.55,
+    "summary": "- The UKMTO (via Dryad Global) reports a highly volatile security environment across the Strait of Hormuz, Bab al Mandab, Arabian Gulf, Gulf of Oman, and North Arabian Sea as of 1 March 2026, driven by ongoing regional military activity. - Key risks for watchstanders at Strait of Hormuz: - Elevated threats to commercial shipping from military presence, with…",
+    "url": "https://channel16.dryadglobal.com/ukmto-update-volatile-security-environment-across-hormuz-bab-al-mandab-and-the-arabian-gulf",
+    "attributes": {
+      "author": "Dryad Global",
+      "result_id": "https://channel16.dryadglobal.com/ukmto-update-volatile-security-environment-across-hormuz-bab-al-mandab-and-the-arabian-gulf"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:exa-https-gcaptain-com-p-246166:340b28a031",
+    "type": "evidence",
+    "title": "Strait of Hormuz Traffic Grinds to Near Halt as Security Threat Remains ‘Critical,’ Advisory Warns",
+    "source": "EXA",
+    "provider": "Exa",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:exa-hormuz-osint",
+    "source_document_ids": [
+      "src:hormuz:exa-hormuz-osint"
+    ],
+    "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-04T19:05:10.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.55,
+    "summary": "- The Strait of Hormuz remains a highly volatile maritime security environment due to ongoing US‑Israel‑Iran tensions, with the Joint Maritime Information Center (JMIC) designating the risk to merchant shipping as “CRITICAL” (nearly certain attack). - Traffic through the strait has collapsed to near standstill, with AIS data showing single-digit transits an…",
+    "url": "https://gcaptain.com/",
+    "attributes": {
+      "author": "Mike Schuler",
+      "result_id": "https://gcaptain.com/"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:exa-https-gcaptain-com-strait-of-hormuz-traffic-coll:0a121739b2",
+    "type": "evidence",
+    "title": "Hormuz Active Crisis 5 Ships Hit Traffic Collapses | gCaptain",
+    "source": "EXA",
+    "provider": "Exa",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:exa-hormuz-osint",
+    "source_document_ids": [
+      "src:hormuz:exa-hormuz-osint"
+    ],
+    "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-02T16:55:25.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.55,
+    "summary": "- The Strait of Hormuz has entered an active crisis stage with multiple coordinated attacks on five vessels in Gulf of Oman/UAE waters, elevating the regional maritime threat level to CRITICAL per JMIC. - Key security implication for watchstanders: - Elevated risk across all merchant traffic: all vessels are deemed at risk regardless of flag or nationality;…",
+    "url": "https://gcaptain.com/strait-of-hormuz-traffic-collapses-tanker-markets/",
+    "attributes": {
+      "author": "Mike Schuler",
+      "result_id": "https://gcaptain.com/strait-of-hormuz-traffic-collapses-tanker-markets/"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:exa-https-uk-news-yahoo-com-dark-ships-shadow-fleets:0095fd0cbc",
+    "type": "evidence",
+    "title": "Dark ships and shadow fleets – what is crossing 'closed' Strait of Hormuz?",
+    "source": "EXA",
+    "provider": "Exa",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:exa-hormuz-osint",
+    "source_document_ids": [
+      "src:hormuz:exa-hormuz-osint"
+    ],
+    "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-10T00:00:00.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.55,
+    "summary": "- The Strait of Hormuz, a critical chokepoint for global oil and gas transit, has seen markedly reduced traffic as Iran signals disruption, with many ships turning off tracking (“dark” vessels) or linked to “shadow fleets.” - About 13 ships were tracked through the strait between March 2–9, with several more likely crossing undetected; normal daily traffic…",
+    "url": "https://uk.news.yahoo.com/dark-ships-shadow-fleets-crossing-141400121.html",
+    "attributes": {
+      "author": "Sky News Tue, 10 March 2026 at 3:14 pm CET 5 min read",
+      "result_id": "https://uk.news.yahoo.com/dark-ships-shadow-fleets-crossing-141400121.html"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:exa-https-www-maritimenews-com-maritime-risk-advisor:95200913f8",
+    "type": "evidence",
+    "title": "Iran Strait of Hormuz Risk Advisory March 2026 - Maritime News",
+    "source": "EXA",
+    "provider": "Exa",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:exa-hormuz-osint",
+    "source_document_ids": [
+      "src:hormuz:exa-hormuz-osint"
+    ],
+    "source_file": "fixtures/maritime/live-cache/exa-hormuz-osint.json",
+    "source_sha256": "66f0e65db9858db5db033d93762b4daf80cbbd1f6f28a1a6fef613d128965ae3",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-21T10:17:20.000Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.55,
+    "summary": "- The Strait of Hormuz and surrounding Persian Gulf waters are currently at elevated maritime security risk (critical threat level per UKMTO/JMIC) with 20+ incidents since late February 2026, including attacks on vessels, navigation interference, and offshore infrastructure threats. - Key guidance for watchstanders: - Maintain situational awareness and coor…",
+    "url": "https://www.maritimenews.com/maritime-risk-advisory-iran/iran-maritime-risk-escalates-hormuz-traffic-halt",
+    "attributes": {
+      "result_id": "https://www.maritimenews.com/maritime-risk-advisory-iran/iran-maritime-risk-escalates-hormuz-traffic-halt"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:0a71898e70",
+    "type": "evidence",
+    "title": "GAP for GULF TRADER",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-hormuz-gaps",
+    "source_document_ids": [
+      "src:hormuz:gfw-hormuz-gaps"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-hormuz-gaps.json",
+    "source_sha256": "461e83474ea97c3126de1e1c2355373ec6f0879b4a7096b46227fe100525d4b4",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T16:40:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.6,
+    "summary": "GFW GAP event context for GULF TRADER; identity/source corroboration only.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.71,
+        25.98
+      ]
+    },
+    "entities": [
+      "GULF TRADER"
+    ],
+    "attributes": {
+      "event_id": "fixture:gfw:gap:gulf-trader:001",
+      "event_type": "GAP",
+      "ssvid": "636021118",
+      "flag": "LBR",
+      "duration_hours": 1.1,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-event-gfw-hormuz-gaps-json:a9c1c1d7a7",
+    "type": "evidence",
+    "title": "GAP for ALARA",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-hormuz-gaps",
+    "source_document_ids": [
+      "src:hormuz:gfw-hormuz-gaps"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-hormuz-gaps.json",
+    "source_sha256": "461e83474ea97c3126de1e1c2355373ec6f0879b4a7096b46227fe100525d4b4",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T10:40:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.6,
+    "summary": "GFW GAP event context for ALARA; identity/source corroboration only.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.42,
+        26.18
+      ]
+    },
+    "entities": [
+      "ALARA"
+    ],
+    "attributes": {
+      "event_id": "fixture:gfw:gap:alara-01:001",
+      "event_type": "GAP",
+      "ssvid": "422120900",
+      "flag": "IRN",
+      "duration_hours": 0.7,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-event-gfw-hormuz-loitering-json:33dcd4279b",
+    "type": "evidence",
+    "title": "LOITERING for BANDAR SUPPLY",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-hormuz-loitering",
+    "source_document_ids": [
+      "src:hormuz:gfw-hormuz-loitering"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-hormuz-loitering.json",
+    "source_sha256": "a573df3b83058fad1c1e4a5a78aff99bd50cc4a267759fb667419cd1905f54aa",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T12:40:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.6,
+    "summary": "GFW LOITERING event context for BANDAR SUPPLY; identity/source corroboration only.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.18,
+        26.08
+      ]
+    },
+    "entities": [
+      "BANDAR SUPPLY"
+    ],
+    "attributes": {
+      "event_id": "fixture:gfw:loitering:anchorage:001",
+      "event_type": "LOITERING",
+      "ssvid": "538009876",
+      "flag": "MHL",
+      "duration_hours": 3.5,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-event-gfw-hormuz-port-visits-json:17de2821e9",
+    "type": "evidence",
+    "title": "PORT_VISIT for ALARA",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-hormuz-port-visits",
+    "source_document_ids": [
+      "src:hormuz:gfw-hormuz-port-visits"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-hormuz-port-visits.json",
+    "source_sha256": "9887940080c9605cbdc8eac42aec581c8cb5aa8b8452784c8301677a89d7ad16",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "observed_at": "2026-04-03T05:40:57.697Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.58,
+    "reliability": 0.6,
+    "summary": "GFW PORT_VISIT event context for ALARA near Bandar Abbas; identity/source corroboration only.",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        56.22,
+        27.14
+      ]
+    },
+    "entities": [
+      "ALARA"
+    ],
+    "attributes": {
+      "event_id": "fixture:gfw:port-visit:bandar-abbas:001",
+      "event_type": "PORT_VISIT",
+      "ssvid": "422120900",
+      "flag": "IRN",
+      "port": "Bandar Abbas",
+      "duration_hours": 18,
+      "fixture_mode": true
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-vessel-search-249949000:01832061d1",
+    "type": "evidence",
+    "title": "IRIS1 identity candidate",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-vessel-search-irisl",
+    "source_document_ids": [
+      "src:hormuz:gfw-vessel-search-irisl"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2012-12-21T08:29:39Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.64,
+    "reliability": 0.66,
+    "summary": "GFW vessel search returned IRIS1 with MMSI 249949000 and IMO 7910838; identity corroboration only.",
+    "entities": [
+      "IRIS1"
+    ],
+    "attributes": {
+      "query": "IRISL",
+      "ssvid": "249949000",
+      "imo": "7910838",
+      "flag": "MLT",
+      "callsign": "9H5807",
+      "registry_records": 1,
+      "match_fields": "SEVERAL_FIELDS"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-vessel-search-264163508:7a447d58e3",
+    "type": "evidence",
+    "title": "IRIS 5 identity candidate",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-vessel-search-irisl",
+    "source_document_ids": [
+      "src:hormuz:gfw-vessel-search-irisl"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-04-29T12:07:57Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.64,
+    "reliability": 0.66,
+    "summary": "GFW vessel search returned IRIS 5 with MMSI 264163508; identity corroboration only.",
+    "entities": [
+      "IRIS 5"
+    ],
+    "attributes": {
+      "query": "IRISL",
+      "ssvid": "264163508",
+      "flag": "ROU",
+      "callsign": "YP3508",
+      "registry_records": 0,
+      "match_fields": "NO_MATCH"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-vessel-search-338211594:64a20d2f39",
+    "type": "evidence",
+    "title": "IRISH identity candidate",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-vessel-search-irisl",
+    "source_document_ids": [
+      "src:hormuz:gfw-vessel-search-irisl"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2017-03-01T16:02:43Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.64,
+    "reliability": 0.66,
+    "summary": "GFW vessel search returned IRISH with MMSI 338211594; identity corroboration only.",
+    "entities": [
+      "IRISH"
+    ],
+    "attributes": {
+      "query": "IRISL",
+      "ssvid": "338211594",
+      "flag": "USA",
+      "registry_records": 0,
+      "match_fields": "NO_MATCH"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-vessel-search-367610650:c66cce3aa3",
+    "type": "evidence",
+    "title": "IRISH identity candidate",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-vessel-search-irisl",
+    "source_document_ids": [
+      "src:hormuz:gfw-vessel-search-irisl"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-03-31T23:25:33Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.64,
+    "reliability": 0.66,
+    "summary": "GFW vessel search returned IRISH with MMSI 367610650 and IMO 9721841; identity corroboration only.",
+    "entities": [
+      "IRISH"
+    ],
+    "attributes": {
+      "query": "IRISL",
+      "ssvid": "367610650",
+      "imo": "9721841",
+      "flag": "USA",
+      "callsign": "WDH3763",
+      "registry_records": 1,
+      "match_fields": "SEVERAL_FIELDS"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:gfw-vessel-search-408900859:9b797a961c",
+    "type": "evidence",
+    "title": "IRISH identity candidate",
+    "source": "GLOBAL_FISHING_WATCH",
+    "provider": "Global Fishing Watch",
+    "category": "VESSEL_IDENTITY_CORROBORATION",
+    "drawer_group": "OSINT",
+    "source_document_id": "src:hormuz:gfw-vessel-search-irisl",
+    "source_document_ids": [
+      "src:hormuz:gfw-vessel-search-irisl"
+    ],
+    "source_file": "fixtures/maritime/live-cache/gfw-vessel-search-irisl.json",
+    "source_sha256": "1a8a7cb5ae9a33e511011cd8ddd5194a1807ce2309d3738696a2227e19f0ff50",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2024-01-14T07:45:19Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.64,
+    "reliability": 0.66,
+    "summary": "GFW vessel search returned IRISH with MMSI 408900859; identity corroboration only.",
+    "entities": [
+      "IRISH"
+    ],
+    "attributes": {
+      "query": "IRISL",
+      "ssvid": "408900859",
+      "flag": "BHR",
+      "callsign": "BH11223",
+      "registry_records": 0,
+      "match_fields": "NO_MATCH"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "identity_source_corroboration"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "GFW vessel search records affect identity/source corroboration only."
+    }
+  },
+  {
+    "id": "ev:hormuz:opensanctions-iranian-oil-tanker:462ea81f38",
+    "type": "evidence",
+    "title": "M K A entity-risk context",
+    "source": "OPENSANCTIONS",
+    "provider": "OpenSanctions",
+    "category": "ENTITY_RISK_ENRICHMENT",
+    "drawer_group": "Entity Risk",
+    "source_document_id": "src:hormuz:opensanctions-hormuz-maritime-entities",
+    "source_document_ids": [
+      "src:hormuz:opensanctions-hormuz-maritime-entities"
+    ],
+    "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
+    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.7,
+    "reliability": 0.76,
+    "summary": "M K A appears in OpenSanctions as Vessel with topics sanction, poi, mare.shadow.",
+    "url": "https://war-sanctions.gur.gov.ua/transport/ships/1415",
+    "entities": [
+      "M K A"
+    ],
+    "attributes": {
+      "query": "Iranian oil tanker",
+      "source_entity_id": "NK-fMo9UcJE5BeW5NFzwwNoUd",
+      "schema": "Vessel",
+      "topics": [
+        "sanction",
+        "poi",
+        "mare.shadow"
+      ],
+      "datasets": [
+        "us_trade_csl",
+        "ua_war_sanctions",
+        "us_ofac_sdn",
+        "ext_tokyo_mou_psc"
+      ]
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "entity_risk"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "OpenSanctions records affect entity-risk enrichment only."
+    }
+  },
+  {
+    "id": "ev:hormuz:opensanctions-irisl:2d894b8c44",
+    "type": "evidence",
+    "title": "IRISL Maritime Training Institute entity-risk context",
+    "source": "OPENSANCTIONS",
+    "provider": "OpenSanctions",
+    "category": "ENTITY_RISK_ENRICHMENT",
+    "drawer_group": "Entity Risk",
+    "source_document_id": "src:hormuz:opensanctions-hormuz-maritime-entities",
+    "source_document_ids": [
+      "src:hormuz:opensanctions-hormuz-maritime-entities"
+    ],
+    "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
+    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2025-12-12",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.7,
+    "reliability": 0.76,
+    "summary": "IRISL Maritime Training Institute appears in OpenSanctions as Organization with topics sanction, debarment.",
+    "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx",
+    "entities": [
+      "IRISL Maritime Training Institute"
+    ],
+    "attributes": {
+      "query": "IRISL",
+      "source_entity_id": "NK-nZfFihDZw3F9wsq4e44qVq",
+      "schema": "Organization",
+      "topics": [
+        "sanction",
+        "debarment"
+      ],
+      "countries": [
+        "ir"
+      ],
+      "datasets": [
+        "mc_fund_freezes",
+        "us_ofac_sdn",
+        "eu_fsf",
+        "be_fod_sanctions",
+        "ch_seco_sanctions"
+      ]
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "entity_risk"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "OpenSanctions records affect entity-risk enrichment only."
+    }
+  },
+  {
+    "id": "ev:hormuz:opensanctions-islamic-republic-of-iran-shipping-line:b2e9a384ec",
+    "type": "evidence",
+    "title": "islamic republic of iran shipping lines investment entity-risk context",
+    "source": "OPENSANCTIONS",
+    "provider": "OpenSanctions",
+    "category": "ENTITY_RISK_ENRICHMENT",
+    "drawer_group": "Entity Risk",
+    "source_document_id": "src:hormuz:opensanctions-hormuz-maritime-entities",
+    "source_document_ids": [
+      "src:hormuz:opensanctions-hormuz-maritime-entities"
+    ],
+    "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
+    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2025-02-18",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.7,
+    "reliability": 0.76,
+    "summary": "islamic republic of iran shipping lines investment appears in OpenSanctions as Organization with topics sanction, debarment.",
+    "url": "https://sanctionssearch.ofac.treas.gov/Details.aspx",
+    "entities": [
+      "islamic republic of iran shipping lines investment"
+    ],
+    "attributes": {
+      "query": "Islamic Republic of Iran Shipping Lines",
+      "source_entity_id": "NK-XTbRpxWhDU87eGANhkTdrQ",
+      "schema": "Organization",
+      "topics": [
+        "sanction",
+        "debarment"
+      ],
+      "countries": [
+        "ir"
+      ],
+      "datasets": [
+        "us_sam_exclusions",
+        "us_trade_csl",
+        "us_ofac_sdn"
+      ]
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "entity_risk"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "OpenSanctions records affect entity-risk enrichment only."
+    }
+  },
+  {
+    "id": "ev:hormuz:opensanctions-national-iranian-tanker-company:65a38e7f7a",
+    "type": "evidence",
+    "title": "National Iranian Tanker Company entity-risk context",
+    "source": "OPENSANCTIONS",
+    "provider": "OpenSanctions",
+    "category": "ENTITY_RISK_ENRICHMENT",
+    "drawer_group": "Entity Risk",
+    "source_document_id": "src:hormuz:opensanctions-hormuz-maritime-entities",
+    "source_document_ids": [
+      "src:hormuz:opensanctions-hormuz-maritime-entities"
+    ],
+    "source_file": "fixtures/maritime/live-cache/opensanctions-hormuz-maritime-entities.json",
+    "source_sha256": "8771b455d9c11633e12a75a1c4443f88ebc2a76c04304a51a7e51a7446f3185b",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2025-12-12",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.7,
+    "reliability": 0.76,
+    "summary": "National Iranian Tanker Company appears in OpenSanctions as Company with topics sanction, corp.disqual, debarment, export.control.",
+    "url": "https://home.treasury.gov/news/press-releases/sm1165",
+    "entities": [
+      "National Iranian Tanker Company"
+    ],
+    "attributes": {
+      "query": "National Iranian Tanker Company",
+      "source_entity_id": "NK-eRmwUfk3rVngHaYVPbUWUW",
+      "schema": "Company",
+      "topics": [
+        "sanction",
+        "corp.disqual",
+        "debarment",
+        "export.control"
+      ],
+      "countries": [
+        "ir"
+      ],
+      "datasets": [
+        "gb_fcdo_sanctions",
+        "tw_shtc",
+        "ext_us_ofac_press_releases",
+        "permid",
+        "ch_seco_sanctions"
+      ]
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "entity_risk"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "OpenSanctions records affect entity-risk enrichment only."
+    }
+  },
+  {
+    "id": "ev:hormuz:overpass-maritime-infrastructure:704686e1f9",
+    "type": "evidence",
+    "title": "Hormuz maritime infrastructure context",
+    "source": "OVERPASS",
+    "provider": "Overpass",
+    "category": "MARITIME_INFRASTRUCTURE_CONTEXT",
+    "drawer_group": "Infrastructure Context",
+    "source_document_id": "src:hormuz:overpass-hormuz-maritime",
+    "source_document_ids": [
+      "src:hormuz:overpass-hormuz-maritime",
+      "src:hormuz:overpass-hormuz-maritime-attempts"
+    ],
+    "source_file": "fixtures/maritime/live-cache/overpass-hormuz-maritime.json",
+    "source_sha256": "4a9438e35f95fda35d41728120870e8e273985a51e34c0fc2b2e2100c7f125fc",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-03T02:37:20Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.5,
+    "reliability": 0.62,
+    "summary": "Overpass cached 200 maritime infrastructure elements in the Hormuz area.",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "attributes": {
+      "element_count": 200,
+      "counts": {
+        "total": 200,
+        "ferry_terminal": 27,
+        "seamark": 170,
+        "light": 65,
+        "anchorage": 0,
+        "pier": 0
+      },
+      "sample_names": [
+        "Dubai Old Souk - Abra dock",
+        "Al Sabkha Abra terminal (North)",
+        "Eskeleye Bandare Laft, Gheshm (Qeshm)",
+        "Didamar.",
+        "Khowr-e Minab"
+      ]
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "infrastructure_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Overpass records affect maritime infrastructure context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:sentinelhub-chip-sentinelhub-hormuz-sentinel1-vv-png:a8ec11d6e3",
+    "type": "evidence",
+    "title": "Sentinel-1 VV image chip",
+    "source": "SENTINEL_HUB_PROCESS",
+    "provider": "Sentinel Hub Process API",
+    "category": "CROSS_MODAL_CONTEXT",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:sentinelhub-hormuz-sentinel1-vv-metadata",
+    "source_document_ids": [
+      "src:hormuz:sentinelhub-hormuz-sentinel1-vv-metadata",
+      "src:hormuz:sentinelhub-hormuz-sentinel1-vv"
+    ],
+    "source_file": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.png",
+    "source_sha256": "4703142a30535201df9868d552d888f24e2e089a3746cf04b6b337ffb33a3367",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-03T02:38:01.745Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.68,
+    "reliability": 0.72,
+    "summary": "Sentinel-1 VV image chip is cached as a visual chip for cross-modal context over the Hormuz AOI.",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "image_asset": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.png",
+    "browser_asset_path": "/fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel1-vv.png",
+    "attributes": {
+      "data_type": "sentinel-1-grd",
+      "output_format": "image/png",
+      "time_from": "2026-04-03T02:38:01.745Z",
+      "time_to": "2026-05-03T02:38:01.745Z"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite image chips provide cross-modal context without identity or intent claims."
+    }
+  },
+  {
+    "id": "ev:hormuz:sentinelhub-chip-sentinelhub-hormuz-sentinel2-trueco:96c23dc5bc",
+    "type": "evidence",
+    "title": "Sentinel-2 true-color image chip",
+    "source": "SENTINEL_HUB_PROCESS",
+    "provider": "Sentinel Hub Process API",
+    "category": "CROSS_MODAL_CONTEXT",
+    "drawer_group": "Satellite",
+    "source_document_id": "src:hormuz:sentinelhub-hormuz-sentinel2-truecolor-metadata",
+    "source_document_ids": [
+      "src:hormuz:sentinelhub-hormuz-sentinel2-truecolor-metadata",
+      "src:hormuz:sentinelhub-hormuz-sentinel2-truecolor"
+    ],
+    "source_file": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.png",
+    "source_sha256": "dd3b72c0d5d13ac076e49ebf1baa4c2ff7d0972ec36def34580bcc6a47beece0",
+    "created_at": "2026-05-03T02:38:01.743Z",
+    "observed_at": "2026-05-03T02:38:01.745Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.68,
+    "reliability": 0.72,
+    "summary": "Sentinel-2 true-color image chip is cached as a visual chip for cross-modal context over the Hormuz AOI.",
+    "bbox": [
+      54.4,
+      24.5,
+      57.8,
+      27.2
+    ],
+    "image_asset": "fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.png",
+    "browser_asset_path": "/fixtures/maritime/live-cache/sentinelhub-hormuz-sentinel2-truecolor.png",
+    "attributes": {
+      "data_type": "sentinel-2-l2a",
+      "output_format": "image/png",
+      "time_from": "2026-04-03T02:38:01.745Z",
+      "time_to": "2026-05-03T02:38:01.745Z"
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "cross_modal_context"
+      ],
+      "excluded_claim_classes": [
+        "intent"
+      ],
+      "note": "Satellite image chips provide cross-modal context without identity or intent claims."
+    }
+  },
+  {
+    "id": "ev:hormuz:shodan-maritime-ais:7ee695bbc5",
+    "type": "evidence",
+    "title": "AIS-related infrastructure context",
+    "source": "SHODAN",
+    "provider": "Shodan",
+    "category": "INFRASTRUCTURE_CONTEXT_ONLY",
+    "drawer_group": "Infrastructure Context",
+    "source_document_id": "src:hormuz:shodan-maritime-ais",
+    "source_document_ids": [
+      "src:hormuz:shodan-maritime-ais"
+    ],
+    "source_file": "fixtures/maritime/live-cache/shodan-maritime-ais.json",
+    "source_sha256": "0284dd19349f60682681f498c55f9bd0db1c01d60d7060231ac05c5a6ee09dba",
+    "created_at": "2026-05-03T02:40:57.696Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.35,
+    "reliability": 0.45,
+    "summary": "Infrastructure-only; not vessel behavior evidence. Shodan data is restricted to exposed-service context.",
+    "detail": "200 Fixture Fallback",
+    "attributes": {
+      "response_status": 200
+    },
+    "policy": {
+      "allowed_score_buckets": [
+        "infrastructure_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Infrastructure-only; not vessel behavior evidence."
+    }
+  },
+  {
+    "id": "ev:hormuz:warning-page-navarea-ix:35612304bf",
+    "type": "evidence",
+    "title": "NAVAREA IX regional warning context",
+    "source": "NAVAREA_IX",
+    "provider": "NAVAREA IX",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "Maritime Warnings",
+    "source_document_id": "src:hormuz:navarea-ix-warnings",
+    "source_document_ids": [
+      "src:hormuz:navarea-ix-warnings",
+      "src:hormuz:navarea-ix-warnings-metadata"
+    ],
+    "source_file": "fixtures/maritime/live-cache/navarea-ix-warnings.html",
+    "source_sha256": "109354a7f1f8577d75b6fc6906d089cf3e1e77cd28271a2a68bf0ddd8720e370",
+    "created_at": "1970-01-01T00:00:00.000Z",
+    "observed_at": "2026-05-03T02:38:01.743Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.7,
+    "summary": "NAVAREA IX public warning content is cached for regional maritime security context.",
+    "detail": "NAVAREA IX WARNINGS - National Hydrographic Office Pakistan Have any questions? +92 -21 – 99201623 [email protected] HOME MESSAGE OF HoP MISSION ORGANIZATION HISTORY ACHIEVEMENTS EX HYDROGRAPHERS FIELD ASSETS SV BEHR PAIMA PNS BEHR MASAH FIELD SURVEY SETUP NAUTICAL PRODUCTS CHAR…",
+    "url": "https://hydrography.paknavy.gov.pk/navarea-ix-warnings/",
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  },
+  {
+    "id": "ev:hormuz:warning-page-ukmto:783f8b7d1e",
+    "type": "evidence",
+    "title": "UKMTO regional warning context",
+    "source": "UKMTO",
+    "provider": "UKMTO",
+    "category": "REGIONAL_SECURITY_CONTEXT",
+    "drawer_group": "Maritime Warnings",
+    "source_document_id": "src:hormuz:ukmto-home",
+    "source_document_ids": [
+      "src:hormuz:ukmto-home",
+      "src:hormuz:ukmto-home-metadata"
+    ],
+    "source_file": "fixtures/maritime/live-cache/ukmto-home.html",
+    "source_sha256": "14b261ce524d5f5a132452178ebf1c81754096b9887d1fd16dffd4eff9940a53",
+    "created_at": "1970-01-01T00:00:00.000Z",
+    "observed_at": "2026-05-03T02:38:01.743Z",
+    "status": "available",
+    "classification": "UNCLASSIFIED//OSINT_FIXTURE",
+    "confidence": 0.6,
+    "reliability": 0.7,
+    "summary": "UKMTO public warning content is cached for regional maritime security context.",
+    "detail": "UKMTO UKMTO Operations centre Who We Are? About us Trusted. Connected. Ready. For more than 25 years, the United Kingdom Maritime Trade Operations (UKMTO) Centre has been a trusted authority in the maritime security sector, helping protect crucial trade routes by providing marin…",
+    "url": "https://www.ukmto.org/",
+    "policy": {
+      "allowed_score_buckets": [
+        "regional_context"
+      ],
+      "excluded_claim_classes": [
+        "kinematics",
+        "vessel_behavior",
+        "intent"
+      ],
+      "note": "Public warning and OSINT records affect regional context only."
+    }
+  }
+]

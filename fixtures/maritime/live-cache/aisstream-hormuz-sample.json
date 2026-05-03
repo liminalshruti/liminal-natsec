@@ -1,6 +1,8 @@
 {
   "source": "AISSTREAM",
-  "generated_at": "2026-05-03T02:09:12.897Z",
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "fixture_mode": true,
+  "fixture_reason": "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
     "bbox": [
@@ -64,35 +66,96 @@
       ]
     ]
   },
-  "message_count": 0,
-  "attempts": [
+  "message_count": 3,
+  "attempts": [],
+  "errors": [],
+  "messages": [
     {
-      "label": "Strait of Hormuz demo AOI",
-      "duration_ms": 30000,
-      "max_messages": 100,
-      "opened": true,
-      "subscription_sent": true,
-      "started_at": "2026-05-03T02:10:12.951Z",
-      "messages_before": 0,
-      "messages_after": 0,
-      "finished_at": "2026-05-03T02:10:42.973Z",
-      "messages_received": 0,
-      "close_code": 1006,
-      "close_reason": ""
+      "MessageType": "PositionReport",
+      "MetaData": {
+        "MMSI": 422120900,
+        "MMSI_String": "422120900",
+        "ShipName": "ALARA",
+        "latitude": 26.1841,
+        "longitude": 56.2484,
+        "time_utc": "2026-04-03T02:40:57.697Z"
+      },
+      "Message": {
+        "PositionReport": {
+          "MessageID": 1,
+          "UserID": 422120900,
+          "NavigationalStatus": 0,
+          "RateOfTurn": 0,
+          "Sog": 11.8,
+          "PositionAccuracy": true,
+          "Longitude": 56.2484,
+          "Latitude": 26.1841,
+          "Cog": 91.4,
+          "TrueHeading": 92,
+          "Timestamp": 57,
+          "ManeuverIndicator": 0,
+          "Raim": false,
+          "CommunicationState": 0
+        }
+      }
     },
     {
-      "label": "Arabian Gulf and Gulf of Oman AIS fallback AOI",
-      "duration_ms": 30000,
-      "max_messages": 100,
-      "opened": true,
-      "subscription_sent": true,
-      "started_at": "2026-05-03T02:10:42.973Z",
-      "messages_before": 0,
-      "messages_after": 0,
-      "finished_at": "2026-05-03T02:11:12.985Z",
-      "messages_received": 0
+      "MessageType": "PositionReport",
+      "MetaData": {
+        "MMSI": 422120900,
+        "MMSI_String": "422120900",
+        "ShipName": "ALARA",
+        "latitude": 26.1818,
+        "longitude": 56.3912,
+        "time_utc": "2026-04-03T02:52:57.697Z"
+      },
+      "Message": {
+        "PositionReport": {
+          "MessageID": 1,
+          "UserID": 422120900,
+          "NavigationalStatus": 0,
+          "RateOfTurn": 0,
+          "Sog": 11.1,
+          "PositionAccuracy": true,
+          "Longitude": 56.3912,
+          "Latitude": 26.1818,
+          "Cog": 94.2,
+          "TrueHeading": 94,
+          "Timestamp": 57,
+          "ManeuverIndicator": 0,
+          "Raim": false,
+          "CommunicationState": 0
+        }
+      }
+    },
+    {
+      "MessageType": "PositionReport",
+      "MetaData": {
+        "MMSI": 636021118,
+        "MMSI_String": "636021118",
+        "ShipName": "GULF TRADER",
+        "latitude": 25.9344,
+        "longitude": 56.683,
+        "time_utc": "2026-04-03T02:58:57.697Z"
+      },
+      "Message": {
+        "PositionReport": {
+          "MessageID": 1,
+          "UserID": 636021118,
+          "NavigationalStatus": 0,
+          "RateOfTurn": 0,
+          "Sog": 8.4,
+          "PositionAccuracy": true,
+          "Longitude": 56.683,
+          "Latitude": 25.9344,
+          "Cog": 286.8,
+          "TrueHeading": 287,
+          "Timestamp": 57,
+          "ManeuverIndicator": 0,
+          "Raim": false,
+          "CommunicationState": 0
+        }
+      }
     }
-  ],
-  "errors": [],
-  "messages": []
+  ]
 }

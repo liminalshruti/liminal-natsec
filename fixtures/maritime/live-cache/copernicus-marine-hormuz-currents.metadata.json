@@ -1,6 +1,8 @@
 {
   "source": "COPERNICUS_MARINE",
-  "generated_at": "2026-05-03T02:09:12.897Z",
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "fixture_mode": true,
+  "fixture_reason": "Copernicus Marine credentials were valid but subset output was unavailable; synthetic current vectors preserve the requested metadata/sample shape.",
   "request": {
     "command": "/Users/Shayaun.Nejad/Hackathon/NatSec/liminal-natsec/.venv-copernicus/bin/copernicusmarine subset",
     "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
@@ -19,18 +21,47 @@
       1
     ],
     "time_range": [
-      "2026-05-02T02:09:12.898Z",
-      "2026-05-03T02:09:12.898Z"
+      "2026-04-03T02:40:57.697Z",
+      "2026-05-03T02:40:57.697Z"
     ],
-    "credentials_cached": false
+    "credentials_cached": false,
+    "fixture_fallback": true
   },
   "response": {
-    "ok": false,
-    "exitCode": 1,
-    "signal": null,
+    "ok": true,
+    "status": 200,
+    "statusText": "Fixture Fallback",
     "fileName": null,
-    "bytes": 0
+    "bytes": 231
   },
-  "stdout": "",
-  "stderr": ""
+  "body": {
+    "dataset_id": "cmems_mod_glo_phy-cur_anfc_0.083deg_PT6H-i",
+    "units": {
+      "uo": "m s-1",
+      "vo": "m s-1"
+    },
+    "samples": [
+      {
+        "latitude": 26,
+        "longitude": 56,
+        "depth_m": 0.5,
+        "uo_mps": 0.21,
+        "vo_mps": -0.08
+      },
+      {
+        "latitude": 26.1,
+        "longitude": 56.1,
+        "depth_m": 0.5,
+        "uo_mps": 0.18,
+        "vo_mps": -0.05
+      },
+      {
+        "latitude": 26.2,
+        "longitude": 56.2,
+        "depth_m": 0.5,
+        "uo_mps": 0.16,
+        "vo_mps": -0.03
+      }
+    ]
+  }
 }

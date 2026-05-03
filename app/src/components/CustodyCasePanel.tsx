@@ -14,6 +14,7 @@ import { ActionOptions } from "./ActionOptions.tsx";
 import { CaseHandoffBanner } from "./CaseHandoffBanner.tsx";
 import { ConfidenceBar } from "./ConfidenceBar.tsx";
 import { EvidenceDrawer } from "./EvidenceDrawer.tsx";
+import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
 import { HypothesisBoard } from "./HypothesisBoard.tsx";
 import { ProvenanceTrace } from "./ProvenanceTrace.tsx";
 import { ReviewMemory } from "./ReviewMemory.tsx";
@@ -117,6 +118,7 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
       />
       <ProvenanceTrace claimId={primaryClaimId} />
       <EvidenceDrawer claimId={primaryClaimId} />
+      <HormuzIntelDrawer />
       <ActionOptions actions={actions} ruleApplication={ruleApplication} />
       <SpecialistReads reads={reads} />
       <ReviewMemory ruleApplication={ruleApplication} caseId={caseId} />

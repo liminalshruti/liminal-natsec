@@ -1,6 +1,6 @@
 {
   "source": "SENTINEL_HUB_PROCESS",
-  "generated_at": "2026-05-03T02:08:37.671Z",
+  "generated_at": "2026-05-03T02:38:01.743Z",
   "request": {
     "url": "https://sh.dataspace.copernicus.eu/api/v1/process",
     "method": "POST",
@@ -14,8 +14,8 @@
         27.2
       ],
       "timeRange": {
-        "from": "2026-04-03T02:08:37.676Z",
-        "to": "2026-05-03T02:08:37.676Z"
+        "from": "2026-04-03T02:38:01.745Z",
+        "to": "2026-05-03T02:38:01.745Z"
       },
       "outputFormat": "image/png",
       "token_cached": false

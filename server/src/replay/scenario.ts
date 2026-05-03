@@ -1,7 +1,8 @@
 import { stableId } from "../domain/ids.ts";
-import { ApiError, type LocalOperationalStore, type OntologyObject, type OperationalStore } from "../domain/ontology.ts";
+import { ApiError, type LinkWrite, type LocalOperationalStore, type OntologyObject, type OperationalStore } from "../domain/ontology.ts";
 import { createFixtureAdapter } from "../adapters/fixture.ts";
 import { reloadCacheFile } from "../specialists/cache.ts";
+import { buildHormuzReplayState, loadHormuzReplayIntel } from "./hormuz.ts";
 import {
   DEFAULT_SCENARIO_RUN_ID,
   FIXTURE_INGESTED_AT,
@@ -34,6 +35,7 @@ export interface ScenarioState {
   actions: Array<Record<string, unknown>>;
   ranking: Array<Record<string, unknown>>;
   perturbations: Array<Record<string, unknown>>;
+  hormuzIntel: ReturnType<typeof buildHormuzReplayState>;
 }
 
 export interface ReplayResult {
@@ -69,6 +71,19 @@ export async function runFixtureReplay(
     "curated_observation",
     envelopes.map((envelope) => envelope.normalized)
   );
+  const hormuzIntel = loadHormuzReplayIntel();
+  await store.writeCuratedRows(
+    "curated_hormuz_source_document",
+    hormuzIntel.sourceDocuments
+  );
+  await store.writeCuratedRows(
+    "curated_hormuz_evidence_item",
+    hormuzIntel.evidenceItems
+  );
+  await store.writeCuratedRows(
+    "curated_hormuz_scoring_contribution",
+    hormuzIntel.scoring.contributions
+  );
 
   for (const object of fixtureObjects) {
     await store.upsertObject(object.type, object.id, {
@@ -76,7 +91,33 @@ export async function runFixtureReplay(
       scenario_run_id: scenarioRunId
     });
   }
+  for (const doc of hormuzIntel.sourceDocuments) {
+    await store.upsertObject("SourceDocument", doc.id, {
+      object_id: doc.id,
+      ...doc,
+      scenario_run_id: scenarioRunId,
+      updated_at: doc.captured_at ?? FIXTURE_INGESTED_AT
+    });
+  }
+  for (const item of hormuzIntel.evidenceItems) {
+    await store.upsertObject("EvidenceItem", item.id, {
+      object_id: item.id,
+      ...item,
+      scenario_run_id: scenarioRunId,
+      updated_at: item.created_at
+    });
+  }
+  for (const contribution of hormuzIntel.scoring.contributions) {
+    const id = `score:hormuz:${contribution.evidence_id}:${contribution.bucket}`;
+    await store.upsertObject("ScoringContribution", id, {
+      object_id: id,
+      ...contribution,
+      scenario_run_id: scenarioRunId,
+      updated_at: FIXTURE_INGESTED_AT
+    });
+  }
   await store.upsertLinks(fixtureLinks);
+  await store.upsertLinks(hormuzSourceLinks(hormuzIntel.evidenceItems));
 
   return {
     scenarioRunId,
@@ -132,7 +173,8 @@ export async function getScenarioState(
     claims,
     actions,
     ranking,
-    perturbations: (await listPerturbations(store)).map((object) => object.properties)
+    perturbations: (await listPerturbations(store)).map((object) => object.properties),
+    hormuzIntel: buildHormuzReplayState()
   };
 }
 
@@ -341,4 +383,17 @@ async function sortedProps(
 function numericRank(object: OntologyObject): number {
   const rank = object.properties.rank;
   return typeof rank === "number" ? rank : Number.MAX_SAFE_INTEGER;
+}
+
+function hormuzSourceLinks(
+  evidenceItems: Array<{ id: string; source_document_ids: string[] }>
+): LinkWrite[] {
+  return evidenceItems.flatMap((item) =>
+    item.source_document_ids.map((sourceDocumentId) => ({
+      linkType: "SOURCE_DOCUMENT_CONTAINS_EVIDENCE",
+      from: { objectType: "SourceDocument", objectId: sourceDocumentId },
+      to: { objectType: "EvidenceItem", objectId: item.id },
+      properties: { updated_at: FIXTURE_INGESTED_AT }
+    }))
+  );
 }

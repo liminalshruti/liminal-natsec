@@ -88,7 +88,7 @@ export type SpecialistName =
 
 export type Verdict = "supported" | "weakened" | "contradicted" | "refused";
 
-export type SpecialistSource = "aip" | "anthropic" | "codex" | "cache" | "fixture";
+export type SpecialistSource = "aip" | "pi-ai" | "anthropic" | "codex" | "cache" | "fixture";
 
 export type EvidenceModality = "text" | "geo" | "kinematic" | "image";
 

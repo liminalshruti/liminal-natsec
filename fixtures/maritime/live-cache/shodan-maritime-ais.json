@@ -1,22 +1,89 @@
 {
   "source": "SHODAN",
-  "generated_at": "2026-05-03T02:08:37.671Z",
+  "generated_at": "2026-05-03T02:40:57.696Z",
+  "fixture_mode": true,
+  "fixture_reason": "Live Shodan AIS search returned 403; synthetic response preserves host-search shape for infrastructure-only demo use.",
   "request": {
-    "url": "https://api.shodan.io/shodan/host/search?key=%3Credacted%3E&query=AIS&facets=country%3A20%2Cport%3A20%2Corg%3A20&minify=true",
+    "url": "https://api.shodan.io/shodan/host/search?query=AIS&facets=country%3A20%2Cport%3A20%2Corg%3A20&minify=true",
     "method": "GET",
     "metadata": {
       "query": "AIS",
-      "note": "Global AIS-related infrastructure search; API key query parameter is redacted from cached metadata."
+      "note": "Fixture fallback; no API key cached.",
+      "fixture_fallback": true
     }
   },
   "response": {
-    "ok": false,
-    "status": 403,
-    "statusText": "Forbidden",
+    "ok": true,
+    "status": 200,
+    "statusText": "Fixture Fallback",
     "contentType": "application/json",
-    "bytes": 52
+    "bytes": 866
   },
   "body": {
-    "error": "Requires membership or higher to access"
+    "total": 2,
+    "matches": [
+      {
+        "ip_str": "203.0.113.44",
+        "port": 80,
+        "hostnames": [
+          "ais-gateway.fixture.invalid"
+        ],
+        "org": "Fixture Maritime Network",
+        "isp": "Fixture ISP",
+        "transport": "tcp",
+        "timestamp": "2026-04-03T08:40:57.697Z",
+        "location": {
+          "country_name": "Oman",
+          "country_code": "OM",
+          "city": "Muscat",
+          "latitude": 23.588,
+          "longitude": 58.3829
+        },
+        "product": "AIS receiver web status",
+        "data": "HTTP/1.1 200 OK\\nServer: ais-receiver-fixture\\nService banner references NMEA/AIS TCP forwarding."
+      },
+      {
+        "ip_str": "198.51.100.72",
+        "port": 8080,
+        "hostnames": [
+          "vts-dashboard.fixture.invalid"
+        ],
+        "org": "Fixture Port Services",
+        "isp": "Fixture ISP",
+        "transport": "tcp",
+        "timestamp": "2026-04-03T09:40:57.697Z",
+        "location": {
+          "country_name": "United Arab Emirates",
+          "country_code": "AE",
+          "city": "Fujairah",
+          "latitude": 25.1288,
+          "longitude": 56.3265
+        },
+        "product": "VTS dashboard",
+        "data": "HTTP/1.1 401 Unauthorized\\nTitle: Vessel Traffic Service Console"
+      }
+    ],
+    "facets": {
+      "country": [
+        {
+          "value": "OM",
+          "count": 1
+        },
+        {
+          "value": "AE",
+          "count": 1
+        }
+      ],
+      "port": [
+        {
+          "value": 80,
+          "count": 1
+        },
+        {
+          "value": 8080,
+          "count": 1
+        }
+      ]
+    }
   }
 }

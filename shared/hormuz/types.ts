@@ -25,7 +25,12 @@ export type HormuzIntelCategory = (typeof HORMUZ_INTEL_CATEGORIES)[number];
 export type HormuzIntelStatus = "available" | "unavailable";
 
 export type HormuzIntelSource =
+  | "ACLED"
+  | "AISSTREAM"
+  | "CENSYS"
+  | "COPERNICUS_MARINE"
   | "COPERNICUS_CDSE_STAC"
+  | "DANTI"
   | "SENTINEL_HUB_PROCESS"
   | "OPENSANCTIONS"
   | "EXA"

@@ -1,9 +1,9 @@
 import type {
   SpecialistInput,
   SpecialistName,
-  SpecialistRawOutput,
-  Verdict
+  SpecialistRawOutput
 } from "./types.ts";
+import { validateCitedObservationIds, validateRawOutput } from "./output.ts";
 
 export interface AipCallOptions {
   baseUrl?: string;
@@ -11,13 +11,6 @@ export interface AipCallOptions {
   fetchImpl?: typeof fetch;
   signal?: AbortSignal;
 }
-
-const VALID_VERDICTS: readonly Verdict[] = [
-  "supported",
-  "weakened",
-  "contradicted",
-  "refused"
-];
 
 function envBaseUrl(): string | undefined {
   return process.env.AIP_LOGIC_BASE_URL?.trim() || process.env.FOUNDRY_BASE_URL?.trim() || undefined;
@@ -31,41 +24,6 @@ export function aipAvailable(opts: AipCallOptions = {}): boolean {
   const baseUrl = opts.baseUrl ?? envBaseUrl();
   const token = opts.token ?? envToken();
   return Boolean(baseUrl && token);
-}
-
-function validateRawOutput(value: unknown): SpecialistRawOutput {
-  if (!value || typeof value !== "object") {
-    throw new Error("AIP response: output is not an object");
-  }
-  const v = value as Record<string, unknown>;
-  if (!VALID_VERDICTS.includes(v.verdict as Verdict)) {
-    throw new Error(`AIP response: invalid verdict ${String(v.verdict)}`);
-  }
-  if (typeof v.summary !== "string") {
-    throw new Error("AIP response: summary must be string");
-  }
-  if (
-    !Array.isArray(v.cited_observation_ids) ||
-    !v.cited_observation_ids.every((x) => typeof x === "string")
-  ) {
-    throw new Error("AIP response: cited_observation_ids must be string[]");
-  }
-  if (typeof v.confidence !== "number") {
-    throw new Error("AIP response: confidence must be number");
-  }
-  if (
-    !Array.isArray(v.unsupported_assertions) ||
-    !v.unsupported_assertions.every((x) => typeof x === "string")
-  ) {
-    throw new Error("AIP response: unsupported_assertions must be string[]");
-  }
-  return {
-    verdict: v.verdict as Verdict,
-    summary: v.summary,
-    cited_observation_ids: v.cited_observation_ids as string[],
-    confidence: v.confidence,
-    unsupported_assertions: v.unsupported_assertions as string[]
-  };
 }
 
 export async function callAip(
@@ -99,5 +57,7 @@ export async function callAip(
   if (!json || typeof json !== "object" || !("output" in json)) {
     throw new Error("AIP response: missing 'output' field");
   }
-  return validateRawOutput(json.output);
+  const raw = validateRawOutput(json.output, "AIP");
+  validateCitedObservationIds(input, raw, "AIP");
+  return raw;
 }
