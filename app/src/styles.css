@@ -7989,6 +7989,301 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   color: var(--color-ink-tertiary);
   margin-left: auto;
 }
+
+/* ─── SHIP-1 TWO-REGISTER SHELL: WARM-ARCHIVAL CASE FILE LAYER ─────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-1 (Source 3 · Pattison).
+   The shell holds two registers in tension:
+
+     Cold-instrument (existing — unchanged):
+       Map · stage · substrate panel · command line.
+       Live world. Black ground, slate ink, single decision-blue accent.
+       The system reading the world.
+
+     Warm-archival (NEW — this block):
+       Working panel · case file · evidence drawer · provenance trace ·
+       review memory.
+       Custody record. Cable-stock paper background, monotype/slab-serif
+       headers, hand-stamped numbering, wireframe joinery.
+       The system holding the record.
+
+   Why two registers: the May-1 inspo synthesis names this — Maven is the
+   spacecraft instrument panel; Liminal is the ledger the spacecraft writes
+   to. Cold is for reading the live world; warm is for the older,
+   weight-bearing custody record.
+
+   What stays cold: every screen except the working panel.
+   What goes warm: panel--working and its descendants only.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Archival palette — scoped to .panel--working.
+   Cable-stock paper warm — NOT a yellow tint. Closer to oxidized parchment
+   under low-light: slightly desaturated cream-on-coffee. The accent stays
+   single (decision blue) but in archival ink-blue rather than pure cyan. */
+.panel--working {
+  --archival-paper:        #16140f;  /* warm-paper-on-dark — coffee-stained */
+  --archival-paper-lifted: #1c1a14;  /* lifted card surface */
+  --archival-ink:          #d6cfbe;  /* coffee-paper-readable cream */
+  --archival-ink-muted:    #948e7e;  /* muted body */
+  --archival-ink-faint:    #5e5a4e;  /* labels, stamps, marginalia */
+  --archival-edge:         #2a2520;  /* hairline edges, joinery */
+  --archival-edge-strong:  #3a342c;  /* emphasized borders */
+  --archival-stamp:        #b08850;  /* hand-stamp warm — slightly oxidized */
+  --archival-ink-blue:     #6a8caa;  /* muted citation/accent ink */
+
+  background: var(--archival-paper);
+  color: var(--archival-ink);
+  /* Subtle paper-grain via CSS noise — keeps the paper from looking flat
+     without committing the bandwidth of a real texture image. Two
+     overlapping radial gradients at low alpha give a stippled register. */
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(176, 136, 80, 0.018) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(214, 207, 190, 0.015) 0%, transparent 60%);
+}
+
+/* Panel header in archival register — slab-serif tone via Fraunces fallback,
+   hand-stamped numbering on the right. */
+.panel--working .panel__header {
+  background: linear-gradient(
+    180deg,
+    rgba(214, 207, 190, 0.04) 0%,
+    transparent 100%
+  );
+  border-bottom: 1px solid var(--archival-edge);
+  color: var(--archival-ink-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.18em;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.panel--working .panel__header > span:first-child {
+  /* Lead segment in slab register — Fraunces serif for archival weight. */
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--archival-ink);
+}
+
+.panel--working .panel__header .tag {
+  /* Hand-stamped register — small caps, oxidized stamp color, square
+     border like an inkpad outline. */
+  background: transparent;
+  border: 1px solid var(--archival-stamp);
+  color: var(--archival-stamp);
+  border-radius: 2px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* SHIP-1+11 wireframe joinery: replace solid panel borders with outline +
+   corner ticks. Per Source 11 (macbethAI · `secrets_`). The case file is
+   *visibly assembled*, not a flat surface. The joinery says: this isn't
+   a generated panel; it's an archival container with structure exposed. */
+.panel--working {
+  position: relative;
+  border-left: 1px solid var(--archival-edge);
+  border-right: 1px solid var(--archival-edge);
+}
+
+/* Four corner ticks — small L-shaped strokes at each corner indicating
+   joinery. CSS-only via box-shadow or pseudo-elements. */
+.panel--working::before,
+.panel--working::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  /* Corner ticks rendered as two perpendicular border edges */
+  border: 1px solid var(--archival-stamp);
+  opacity: 0.55;
+}
+
+.panel--working::before {
+  /* Top-left corner */
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.panel--working::after {
+  /* Top-right corner */
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+}
+
+/* Body text in working panel inherits archival ink */
+.panel--working .panel__body,
+.panel--working .working__operative,
+.panel--working .working__forensic {
+  color: var(--archival-ink);
+}
+
+.panel--working .panel__body {
+  background: transparent;
+}
+
+/* Case-file inner section headers in slab register */
+.panel--working .subhead,
+.panel--working .case-section__title,
+.panel--working .working-section__title {
+  font-family: var(--font-serif);
+  color: var(--archival-ink);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Hairline section dividers within the case file — like inkpad rules
+   between archival entries. */
+.panel--working .case-section + .case-section,
+.panel--working .working-section + .working-section,
+.panel--working .panel__body > details + details {
+  border-top: 1px solid var(--archival-edge);
+}
+
+/* Typed-object chips in archival register — keep their semantic colors
+   but warm the surrounding chrome. Background goes from elevated to
+   archival-paper-lifted. */
+.panel--working .tchip {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink);
+}
+
+.panel--working .tchip__type {
+  color: var(--archival-ink-faint);
+}
+
+.panel--working .tchip__slug {
+  color: var(--archival-ink-muted);
+}
+
+/* Buttons in archival surfaces — outlined, low-contrast, slab-mono.
+   Replaces the cold register's gradient surface with a paper-on-paper
+   feel. Decision-blue accent shifts to ink-blue. */
+.panel--working button {
+  background: transparent;
+  border-color: var(--archival-edge);
+  color: var(--archival-ink-muted);
+  font-family: var(--font-mono);
+}
+
+.panel--working button:hover {
+  border-color: var(--archival-stamp);
+  color: var(--archival-ink);
+  background: rgba(176, 136, 80, 0.04);
+}
+
+.panel--working button:focus-visible {
+  border-color: var(--archival-ink-blue);
+  box-shadow: 0 0 0 1px rgba(106, 140, 170, 0.18);
+}
+
+/* Evidence chain + provenance trace inherit archival surface from the
+   panel — anything inside .panel--working picks up the paper register. */
+.panel--working .evidence-card,
+.panel--working .evidence-card[data-expanded="false"] {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink);
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.panel--working .evidence-card:hover {
+  border-color: var(--archival-edge-strong);
+}
+
+.panel--working .evidence-card[data-expanded="true"] {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-stamp);
+}
+
+/* Citation footer — keep semantic status colors, but the footer chrome
+   goes archival. Reads as a stamped-in footnote, not a glass card. */
+.panel--working .evidence-card__footnote {
+  background: var(--archival-paper);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink-muted);
+}
+
+.panel--working .evidence-card__footnote-label {
+  color: var(--archival-ink);
+}
+
+.panel--working .evidence-card__footnote-provider,
+.panel--working .evidence-card__footnote-sha,
+.panel--working .evidence-card__footnote-pointer {
+  color: var(--archival-ink-faint);
+}
+
+/* Specialist rows in archival register */
+.panel--working .specialist-row {
+  background: transparent;
+  border-bottom-color: var(--archival-edge);
+}
+
+.panel--working .specialist-row:hover {
+  background: rgba(176, 136, 80, 0.03);
+}
+
+.panel--working .specialist-row__name {
+  color: var(--archival-ink-faint);
+}
+
+.panel--working .specialist-row__summary {
+  color: var(--archival-ink-muted);
+}
+
+/* Action options + review memory inherit too */
+.panel--working .action-option,
+.panel--working .review-memory__rule,
+.panel--working .review-memory__draft {
+  background: var(--archival-paper-lifted);
+  border-color: var(--archival-edge);
+  color: var(--archival-ink);
+}
+
+/* Zone 1 verb in archival register — preserve the display-tier scale,
+   warm the ink. The verb is the focal moment, but in custody register
+   it's archival display, not pure-white instrument. */
+.panel--working .zone1__verb {
+  color: var(--archival-ink);
+  /* Override the cold-register gradient text from the frontier polish */
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+.panel--working .zone1__posture {
+  color: var(--archival-ink-faint);
+  border-top-color: var(--archival-edge);
+}
+
+.panel--working .zone1__posture-while {
+  color: var(--archival-stamp);
+}
+
+/* Hand-stamped CASE numbering — used in CaseHandoffBanner / case headers.
+   When a case-handoff banner renders inside the archival panel, it picks
+   up the stamp register. */
+.panel--working .case-handoff-banner__case-id,
+.panel--working .case-handoff-banner__id {
+  font-family: var(--font-mono);
+  letter-spacing: 0.16em;
+  color: var(--archival-stamp);
+  text-transform: uppercase;
+  font-weight: 500;
+}
     animation: none;
   }
 }
