@@ -13,7 +13,8 @@ interface AppShellProps {
   selectedAlertId: string | null;
   selectedAlert: AlertView | null;
   selectedCaseId: string | null;
-  onSelectAlert: (id: string) => void;
+  /** Pass an alert id to select it, or null to clear the current selection. */
+  onSelectAlert: (id: string | null) => void;
   mapScenarioState: MapScenarioState | undefined;
   onMapScenarioChange: (next: MapScenarioState) => void;
   resetSignal: number;
@@ -45,6 +46,7 @@ export function AppShell({
           eventId={eventId}
           selectedAlert={selectedAlert}
           mapScenarioState={mapScenarioState}
+          onClearSelection={() => onSelectAlert(null)}
         />
         <div className="app-topbar__status">
           <SourceIndicator scenario={scenario} />
@@ -105,10 +107,9 @@ function PhaseBadge({ state }: { state: MapScenarioState | undefined }) {
 
 /**
  * Topbar breadcrumb — a structured navigation trail from watchfloor → scenario
- * → event → currently-selected case. Replaces the previous flat strip of
- * scenario-id + phase-pill + event-chip with a breadcrumb that reads as a
- * single navigation path. Each segment is clickable in v3.3; for now, the
- * trail is read-only and signals where in the workflow the operator is.
+ * → event → currently-selected case. Each non-leaf segment is clickable to
+ * navigate up the trail (Watchfloor and scenario segments both clear the
+ * current case selection; the case itself stays as the leaf).
  *
  * The phase pill stays as the rightmost segment because phase is a *state of
  * the scenario timeline*, not a navigation level. It tells the operator which
@@ -118,12 +119,14 @@ function Breadcrumb({
   scenario,
   eventId,
   selectedAlert,
-  mapScenarioState
+  mapScenarioState,
+  onClearSelection
 }: {
   scenario: LoadedScenario | null;
   eventId: string | null;
   selectedAlert: AlertView | null;
   mapScenarioState: MapScenarioState | undefined;
+  onClearSelection: () => void;
 }) {
   if (!scenario) {
     return (
@@ -136,13 +139,38 @@ function Breadcrumb({
   }
   // Pull the scenario short-name out of "scenario:alara-01" → "alara-01".
   const scenarioShort = scenario.state.scenarioRunId.replace(/^scenario:/, "");
+  // Whether non-leaf segments should be interactive. Only meaningful when a
+  // case is currently selected (i.e., there's something to navigate "up" from).
+  const hasSelection = Boolean(selectedAlert);
   return (
     <nav className="topbar-crumbs" aria-label="Watchfloor breadcrumb">
-      <span className="topbar-crumbs__seg topbar-crumbs__seg--root">Watchfloor</span>
+      {hasSelection ? (
+        <button
+          type="button"
+          className="topbar-crumbs__seg topbar-crumbs__seg--root topbar-crumbs__seg--clickable"
+          onClick={onClearSelection}
+          title="Return to watchfloor — clear case selection"
+        >
+          Watchfloor
+        </button>
+      ) : (
+        <span className="topbar-crumbs__seg topbar-crumbs__seg--root">Watchfloor</span>
+      )}
       <span className="topbar-crumbs__sep" aria-hidden>/</span>
-      <span className="topbar-crumbs__seg" title={scenario.state.scenarioRunId}>
-        {scenarioShort}
-      </span>
+      {hasSelection ? (
+        <button
+          type="button"
+          className="topbar-crumbs__seg topbar-crumbs__seg--clickable"
+          onClick={onClearSelection}
+          title={`Return to scenario root — ${scenario.state.scenarioRunId}`}
+        >
+          {scenarioShort}
+        </button>
+      ) : (
+        <span className="topbar-crumbs__seg" title={scenario.state.scenarioRunId}>
+          {scenarioShort}
+        </span>
+      )}
       {eventId && (
         <>
           <span className="topbar-crumbs__sep" aria-hidden>/</span>

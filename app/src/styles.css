@@ -208,6 +208,33 @@ button:hover {
   text-overflow: ellipsis;
 }
 
+/* Clickable breadcrumb segment — non-leaf segments become buttons when a
+   case is selected, so the operator can navigate up the trail. The button
+   resets to the same baseline appearance as the other segments (no border,
+   no background) so it reads as breadcrumb chrome, not as a button. Hover
+   adds an underline + decision-color accent to signal interactivity. */
+button.topbar-crumbs__seg--clickable {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+  transition: color 120ms ease, text-decoration-color 120ms ease;
+  text-decoration: underline dotted transparent;
+  text-underline-offset: 2px;
+}
+
+button.topbar-crumbs__seg--clickable:hover,
+button.topbar-crumbs__seg--clickable:focus-visible {
+  color: var(--color-decision);
+  text-decoration-color: var(--color-decision);
+  outline: none;
+}
+
 .topbar-crumbs__sep {
   color: var(--color-ink-tertiary);
   opacity: 0.5;
