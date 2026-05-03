@@ -3330,6 +3330,176 @@ details.case-file__section > summary:focus-visible {
   opacity: 0.85;
 }
 
+/* ── Override affordance — commander override of structural-guard refusal ─
+   Per onepager: "Refusal is a recommendation, not a block. Commanders
+   override; overrides become durable rules." Three states: trigger,
+   open (form), registered (confirmation). Renders below the refused
+   Intent specialist row, inline so the refusal stays visible.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.override-affordance__trigger {
+  margin-top: 8px;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px dashed var(--color-refused);
+  color: var(--color-refused);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 120ms ease, border-style 120ms ease;
+}
+
+.override-affordance__trigger:hover {
+  background: rgba(210, 96, 74, 0.08);
+  border-style: solid;
+}
+
+.override-affordance--open {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--color-refused);
+  background: rgba(210, 96, 74, 0.04);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.override-affordance__head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.override-affordance__title {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-refused);
+}
+
+.override-affordance__hint {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--color-ink-secondary);
+  line-height: 1.4;
+}
+
+.override-affordance__textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px 10px;
+  background: var(--color-substrate);
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  border-radius: 2px;
+  resize: vertical;
+  letter-spacing: 0.02em;
+}
+
+.override-affordance__textarea:focus {
+  outline: none;
+  border-color: var(--color-refused);
+  box-shadow: 0 0 0 1px rgba(210, 96, 74, 0.3);
+}
+
+.override-affordance__textarea::placeholder {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.override-affordance__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.override-affordance__cancel {
+  background: transparent;
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-tertiary);
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.override-affordance__cancel:hover {
+  color: var(--color-ink-secondary);
+  border-color: var(--color-ink-tertiary);
+}
+
+.override-affordance__submit {
+  background: rgba(210, 96, 74, 0.16);
+  border: 1px solid var(--color-refused);
+  color: var(--color-refused);
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+.override-affordance__submit:hover:not(:disabled) {
+  background: rgba(210, 96, 74, 0.28);
+}
+
+.override-affordance__submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.override-affordance--registered {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--color-resolved);
+  background: rgba(78, 160, 138, 0.06);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.override-affordance__icon {
+  color: var(--color-resolved);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.override-affordance__label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-resolved);
+}
+
+.override-affordance__sub {
+  font-size: 10px;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
+
 /* ─── Map telemetry HUD — Grafana/Datadog observability register ─────────────
    Top-right overlay on the stage. Reads as live system telemetry: phase,
    tracks observed, specialists active, source freshness. Each metric has a
