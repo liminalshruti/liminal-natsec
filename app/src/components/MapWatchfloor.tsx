@@ -441,7 +441,7 @@ function FallbackOverlay({ error }: { error: Error }): ReactNode {
         className="map-fallback-svg"
       >
         <div className="map-fallback-text">
-          SeaForge · Watchfloor (offline geometry)
+          Liminal Custody · Watchfloor (offline geometry)
         </div>
       </object>
       <div className="map-fallback-caption">map renderer offline · {truncateError(error.message)}</div>
