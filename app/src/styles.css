@@ -8393,6 +8393,130 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
 .panel--working .specialist-row__name-full {
   color: var(--archival-ink-faint);
 }
+
+/* ─── SHIP-3: WET / DRYING / DRY EVIDENCE CARDS ────────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md SHIP-3 (Source 5 · Aluan Wang ·
+   "draw with ink that's always wet"). Three epistemic states the
+   typography carries:
+
+     wet     custody-held, contested, mutable. Slow shimmer; italic;
+             warm-amber accent. The ink hasn't dried.
+     drying  specialist consensus forming. Fading saturation; medium
+             ink; ink-blue accent. In-flight commit.
+     dry     committed to archival custody. Full saturation; serif slab;
+             stamp-warm accent. Verdict reached.
+
+   Source-agnostic — derived from the EvidenceLink shape (kind +
+   confidence) which is identical in fixture-mode and AIP-mode.
+   Hard constraint per spec: judge cannot distinguish demo from Q&A.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.evidence-card__epistemic {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+
+.evidence-card__epistemic-glyph {
+  font-size: 9px;
+  line-height: 1;
+}
+
+/* WET — ink hasn't dried. Custody-held. Slow shimmer pulse. */
+.evidence-card__epistemic--wet {
+  background: rgba(224, 153, 107, 0.10);
+  border-color: rgba(224, 153, 107, 0.28);
+  color: var(--color-contested);
+  /* Wet ink: subtle opacity oscillation. The state IS the motion. */
+  animation: epistemic-wet-shimmer 2.8s ease-in-out infinite;
+}
+
+@keyframes epistemic-wet-shimmer {
+  0%, 100% { opacity: 0.85; }
+  50%      { opacity: 1; }
+}
+
+.evidence-card[data-epistemic="wet"] {
+  /* The whole card breathes when the evidence is wet. Subtle. */
+  border-left-color: var(--color-contested);
+  border-left-width: 2px;
+}
+
+.evidence-card[data-epistemic="wet"] .evidence-card__head .tchip__slug {
+  /* Italic on the wet evidence id — typography carries the state. */
+  font-style: italic;
+}
+
+/* DRYING — specialist consensus forming. Steady but mid-saturation. */
+.evidence-card__epistemic--drying {
+  background: rgba(122, 169, 255, 0.08);
+  border-color: rgba(122, 169, 255, 0.22);
+  color: var(--color-decision);
+}
+
+.evidence-card[data-epistemic="drying"] {
+  border-left-color: var(--color-decision);
+  border-left-width: 2px;
+}
+
+/* DRY — committed. Full archival weight. */
+.evidence-card__epistemic--dry {
+  background: rgba(110, 195, 168, 0.10);
+  border-color: rgba(110, 195, 168, 0.28);
+  color: var(--color-resolved);
+}
+
+.evidence-card[data-epistemic="dry"] {
+  border-left-color: var(--color-resolved);
+  border-left-width: 2px;
+}
+
+/* In archival register (working panel scope): epistemic chip warms toward
+   the archival palette so it reads as part of the ledger. */
+.panel--working .evidence-card__epistemic--wet {
+  background: rgba(176, 136, 80, 0.10);
+  border-color: rgba(176, 136, 80, 0.32);
+  color: var(--archival-stamp);
+}
+
+.panel--working .evidence-card[data-epistemic="wet"] {
+  border-left-color: var(--archival-stamp);
+}
+
+.panel--working .evidence-card__epistemic--drying {
+  background: rgba(106, 140, 170, 0.12);
+  border-color: rgba(106, 140, 170, 0.32);
+  color: var(--archival-ink-blue);
+}
+
+.panel--working .evidence-card[data-epistemic="drying"] {
+  border-left-color: var(--archival-ink-blue);
+}
+
+.panel--working .evidence-card__epistemic--dry {
+  background: rgba(214, 207, 190, 0.06);
+  border-color: var(--archival-edge-strong);
+  color: var(--archival-ink);
+}
+
+.panel--working .evidence-card[data-epistemic="dry"] {
+  border-left-color: var(--archival-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evidence-card__epistemic--wet {
+    animation: none;
+  }
+}
     animation: none;
   }
 }
