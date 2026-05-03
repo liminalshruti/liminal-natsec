@@ -1840,6 +1840,12 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* AUDIT A0: explicit gap so the lead label and trailing tchip never
+     visually concatenate ("Working Panelcase") when justify-content
+     compresses or when text-transform: uppercase + tight letter-
+     spacing eats inter-word boundaries. Per audit
+     §A0 (string-template concatenation bug). */
+  gap: 8px;
 }
 
 .panel__body {
@@ -3662,6 +3668,11 @@ a.osint-signal-row__inner {
   color: var(--color-ink-tertiary);
   padding-bottom: 4px;
   border-bottom: 1px dashed var(--color-edge);
+  /* AUDIT A0: explicit gap so the heading and trailing count don't
+     visually concatenate ("Watchfloor doctrineno entries") when
+     justify-content compresses or letter-spacing eats the inter-word
+     boundary. Per audit §A0 (string-template concatenation bug). */
+  gap: 8px;
 }
 
 .review-memory__count {
@@ -5650,6 +5661,13 @@ button:disabled {
 /* ─── TYPED OBJECT CHIPS — softer, with gradient borders on status ───── */
 
 .tchip {
+  /* AUDIT A0: re-declare inline-flex + gap so the cascade can't strip them
+     when this third .tchip rule overrides earlier blocks. Without these,
+     the type chip and slug rendered as "HYPOTHESISSame IMO, current MMSI..."
+     in some flex-parent contexts. Per audit §A0. */
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   border-radius: 4px;
   background: var(--color-elevated);
   border: 1px solid var(--color-edge);
