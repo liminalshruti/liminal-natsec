@@ -2356,3 +2356,153 @@ button:hover {
   font-size: 11px;
   border-radius: 2px;
 }
+
+/* ─── Rule-writing surface — workshop principle: feels like writing, not
+   clicking. The closed state is a quiet "write a rule…" prompt that reads as
+   editorial markup. The open state is an auto-resizing textarea styled like
+   a draft note in the operator's voice. v3.3 may add diff-from-DSL preview
+   and rule-history versioning.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.review-memory__writing {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-edge);
+}
+
+.review-memory__write-prompt {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: transparent;
+  border: 1px dashed var(--color-edge);
+  border-radius: 2px;
+  padding: 8px 12px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-ink-secondary);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 0.005em;
+  transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+}
+
+.review-memory__write-prompt:hover,
+.review-memory__write-prompt:focus-visible {
+  border-color: var(--color-decision);
+  color: var(--color-ink-primary);
+  background: rgba(110, 168, 254, 0.04);
+  outline: none;
+}
+
+.review-memory__write-prompt-pen {
+  font-size: 16px;
+  color: var(--color-ink-tertiary);
+  font-style: normal;
+  line-height: 1;
+}
+
+.review-memory__write-prompt:hover .review-memory__write-prompt-pen,
+.review-memory__write-prompt:focus-visible .review-memory__write-prompt-pen {
+  color: var(--color-decision);
+}
+
+.review-memory__write-prompt-text {
+  flex: 1;
+}
+
+.review-memory__draft {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--color-decision);
+  border-radius: 2px;
+  background: rgba(110, 168, 254, 0.04);
+  padding: 10px 12px;
+  animation: review-draft-open 220ms ease-out;
+}
+
+@keyframes review-draft-open {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.review-memory__draft-text {
+  width: 100%;
+  min-height: 40px;
+  resize: none;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-serif, Georgia, serif);
+  font-size: 14px;
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  font-style: italic;
+  caret-color: var(--color-decision);
+}
+
+.review-memory__draft-text::placeholder {
+  color: var(--color-ink-tertiary);
+  font-style: italic;
+}
+
+.review-memory__draft-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end;
+  padding-top: 6px;
+  border-top: 1px dashed var(--color-edge);
+}
+
+.review-memory__draft-hint {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--color-ink-tertiary);
+  margin-right: auto;
+}
+
+.review-memory__draft-cancel,
+.review-memory__draft-save {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 120ms ease, color 120ms ease, background 120ms ease;
+}
+
+.review-memory__draft-cancel {
+  border: 1px solid var(--color-edge);
+  color: var(--color-ink-tertiary);
+}
+
+.review-memory__draft-cancel:hover {
+  border-color: var(--color-ink-secondary);
+  color: var(--color-ink-secondary);
+}
+
+.review-memory__draft-save {
+  border: 1px solid var(--color-decision);
+  color: var(--color-decision);
+  background: rgba(110, 168, 254, 0.06);
+}
+
+.review-memory__draft-save:hover:not(:disabled) {
+  background: rgba(110, 168, 254, 0.16);
+  color: var(--color-ink-primary);
+}
+
+.review-memory__draft-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
