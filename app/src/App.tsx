@@ -86,7 +86,7 @@ export function App() {
   if (error) {
     return (
       <div className="app-shell" style={{ display: "grid", placeItems: "center" }}>
-        <div style={{ color: "var(--danger)" }}>Failed to initialize watchfloor: {error}</div>
+        <div style={{ color: "var(--color-refused)" }}>Failed to initialize watchfloor: {error}</div>
       </div>
     );
   }

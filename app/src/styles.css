@@ -1,15 +1,82 @@
+/* ─── Type system — editorial-handwriting register ─────────────────────────
+   Editor's Hand (commercial, by Jen Wagner Co.) installed locally on the demo
+   machine renders the Liminal/Jen-Wagner brand register exactly. Public-repo
+   viewers fall through to Caveat (free, OFL-licensed) shipped in /fonts/, then
+   to system cursive. The local() declaration keeps the commercial font on the
+   demo machine and never publishes it.
+   --------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Liminal Hand";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src:
+    local("Editor's Hand"),
+    local("EditorsHand"),
+    local("Editors Hand"),
+    url("/fonts/Caveat-Variable.ttf") format("truetype-variations"),
+    local("Caveat");
+}
+
 :root {
-  --bg-0: #06090d;
-  --bg-1: #0c1218;
-  --bg-2: #131c25;
-  --line: #1f2c39;
-  --fg-0: #d8e2ec;
-  --fg-1: #93a3b3;
-  --fg-2: #5d6e80;
-  --accent: #6ea8fe;
-  --warn: #d18b3c;
-  --danger: #d2604a;
-  --ok: #4ea08a;
+  --font-hand: "Liminal Hand", "Editor's Hand", "Caveat", "Patrick Hand", cursive;
+
+  /* ─── SEMANTIC COLOR TOKENS ─────────────────────────────────────────────
+     Tokens are named for product meaning, not visual register. The visual
+     value (steel blue, amber, coral, sage) can shift with brand evolution
+     without invalidating the call sites. The semantic name is the contract:
+     a contributor reading --color-refused knows exactly when to apply it
+     (structural-guard refusal moments, ONLY) and not before.
+
+         --color-decision    the verb register · the system's recommendation
+         --color-contested   refusable / weakened / hedge state
+         --color-refused     structural refusal · the differentiator color
+         --color-resolved    supported / applied / ok / clean state
+         --color-substrate   page background · the deepest dark
+         --color-frame       panel chrome · lifted surface
+         --color-elevated    card / hover / lifted-within-frame
+         --color-edge        borders / dividers / 1px lines
+
+     Forground tiers stay numeric — they're a hierarchy, not semantics:
+         --color-ink-primary    body text on dark
+         --color-ink-secondary  muted body
+         --color-ink-tertiary   captions / labels
+     ────────────────────────────────────────────────────────────────────── */
+
+  --color-decision:    #6ea8fe;
+  --color-contested:   #d18b3c;
+  --color-refused:     #d2604a;
+  --color-resolved:    #4ea08a;
+
+  --color-substrate:   #06090d;
+  --color-frame:       #0c1218;
+  --color-elevated:    #131c25;
+  --color-edge:        #1f2c39;
+
+  --color-ink-primary:    #d8e2ec;
+  --color-ink-secondary:  #93a3b3;
+  --color-ink-tertiary:   #5d6e80;
+
+  /* ─── DEPRECATED ALIASES — kept for one PR cycle to absorb in-flight work ──
+     New code uses semantic names. Old names below resolve to semantic ones,
+     so any stale --accent / --warn / --danger / --ok references continue to
+     render correctly until a follow-up sweep (or grep-and-replace catches
+     them in code review). When zero call sites remain, delete this block.
+     -------------------------------------------------------------------- */
+  --bg-0:   var(--color-substrate);
+  --bg-1:   var(--color-frame);
+  --bg-2:   var(--color-elevated);
+  --line:   var(--color-edge);
+  --fg-0:   var(--color-ink-primary);
+  --fg-1:   var(--color-ink-secondary);
+  --fg-2:   var(--color-ink-tertiary);
+  --accent: var(--color-decision);
+  --warn:   var(--color-contested);
+  --danger: var(--color-refused);
+  --err:    var(--color-refused); /* err and danger were duplicates → both refuse */
+  --ok:     var(--color-resolved);
+
   font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
   color-scheme: dark;
 }
@@ -23,8 +90,8 @@ body,
 #root {
   margin: 0;
   height: 100%;
-  background: var(--bg-0);
-  color: var(--fg-0);
+  background: var(--color-substrate);
+  color: var(--color-ink-primary);
 }
 
 body {
@@ -37,14 +104,14 @@ button {
   font: inherit;
   color: inherit;
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   padding: 4px 10px;
   cursor: pointer;
   border-radius: 2px;
 }
 
 button:hover {
-  border-color: var(--accent);
+  border-color: var(--color-decision);
 }
 
 .app-shell {
@@ -61,17 +128,17 @@ button:hover {
     "substrate stage working"
     "command command command";
   height: 100vh;
-  background: var(--bg-0);
+  background: var(--color-substrate);
 }
 
 .app-topbar {
   grid-area: topbar;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--color-edge);
   display: flex;
   align-items: center;
   padding: 0 14px;
   gap: 18px;
-  background: var(--bg-1);
+  background: var(--color-frame);
 }
 
 .app-topbar__brand {
@@ -82,7 +149,7 @@ button:hover {
 
 .app-topbar__status {
   margin-left: auto;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   display: flex;
   gap: 14px;
   align-items: center;
@@ -93,21 +160,21 @@ button:hover {
   height: 8px;
   border-radius: 50%;
   display: inline-block;
-  background: var(--fg-2);
+  background: var(--color-ink-tertiary);
 }
 
 .app-topbar__dot--ok {
-  background: var(--ok);
+  background: var(--color-resolved);
 }
 
 .app-topbar__dot--fallback {
-  background: var(--warn);
+  background: var(--color-contested);
 }
 
 .panel {
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-bottom: 0;
-  background: var(--bg-1);
+  background: var(--color-frame);
   display: flex;
   flex-direction: column;
   min-height: 0;
@@ -121,7 +188,7 @@ button:hover {
 
 .panel--stage {
   grid-area: stage;
-  background: var(--bg-0);
+  background: var(--color-substrate);
   border-left: 0;
   border-right: 0;
 }
@@ -141,9 +208,9 @@ button:hover {
 .working__operative {
   /* Pinned. Native height ≈ 360px (no banner) → 420px (banner active). */
   flex: 0 0 auto;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--color-edge);
   padding: 10px 12px 12px;
-  background: var(--bg-1);
+  background: var(--color-frame);
 }
 
 .working__forensic {
@@ -152,7 +219,7 @@ button:hover {
   flex: 1 1 auto;
   overflow-y: auto;
   position: relative;
-  background: var(--bg-0);
+  background: var(--color-substrate);
   min-height: 0; /* allow flex child to shrink so overflow works in Chromium */
 }
 
@@ -172,12 +239,12 @@ button:hover {
   align-items: center;
   gap: 8px;
   padding: 6px 10px;
-  background: var(--accent-bg, rgba(96, 168, 255, 0.12));
-  border-left: 2px solid var(--accent, #60a8ff);
+  background: rgba(110, 168, 254, 0.12); /* --color-decision @ 12% alpha */
+  border-left: 2px solid var(--color-decision, #60a8ff);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent, #60a8ff);
+  color: var(--color-decision, #60a8ff);
   animation: zone1-banner-in 280ms ease-out;
 }
 
@@ -190,7 +257,7 @@ button:hover {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   /* Fork 6 staged crossfade: when the verb label changes (e.g., RECOMMEND
      monitor → RECOMMEND collection on rule fire), the React key swap +
      animation produces a 200ms crossfade. Offset 100ms after the posture
@@ -208,7 +275,7 @@ button:hover {
      present, restrained, doesn't undermine the verb. v3.3 may promote to
      posture-forward register for Round 2 (iii-b). */
   font-size: 12px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   letter-spacing: 0.02em;
   animation: zone1-posture-in 200ms ease both;
 }
@@ -219,7 +286,7 @@ button:hover {
 }
 
 .zone1__posture-while {
-  color: var(--warn, #d8a35a);
+  color: var(--color-contested, #d8a35a);
   font-weight: 500;
   margin-right: 4px;
 }
@@ -235,7 +302,7 @@ button:hover {
   margin-top: 6px;
   margin-bottom: 12px;
   padding-top: 6px;
-  border-top: 1px dashed var(--line);
+  border-top: 1px dashed var(--color-edge);
   opacity: 0.92;
 }
 
@@ -260,7 +327,7 @@ button:hover {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   margin-bottom: 4px;
 }
 
@@ -291,7 +358,7 @@ button:hover {
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   display: flex;
   align-items: baseline;
   gap: 8px;
@@ -301,14 +368,14 @@ button:hover {
   content: "";
   flex: 1;
   height: 1px;
-  background: var(--line);
+  background: var(--color-edge);
   margin-left: 4px;
 }
 
 .zone2__causal-arrow {
   align-self: center;
   font-size: 10px;
-  color: var(--accent, #6ea8fe);
+  color: var(--color-decision, #6ea8fe);
   letter-spacing: 0;
   margin: 2px 0;
   opacity: 0.6;
@@ -342,12 +409,12 @@ button:hover {
 }
 
 .specialist-row__name {
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   letter-spacing: 0.04em;
 }
 
 .specialist-row__summary {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -360,16 +427,16 @@ button:hover {
 }
 
 .specialist-row--refused .specialist-row__status {
-  color: var(--err, #d35a5a);
+  color: var(--color-refused, #d35a5a);
 }
 
 .specialist-row--ok .specialist-row__status {
-  color: var(--ok, #5ad88a);
+  color: var(--color-resolved, #5ad88a);
 }
 
 .specialist-row--integrity {
   background: rgba(216, 163, 90, 0.06);
-  border-left: 2px solid var(--warn, #d8a35a);
+  border-left: 2px solid var(--color-contested, #d8a35a);
 }
 
 /* Connector line: signal_integrity → intent. Renders as a left-edge bracket
@@ -378,7 +445,7 @@ button:hover {
    subordination pattern (multi-specialist convergence). */
 
 .specialist-row--intent-following-integrity {
-  border-left: 2px dashed var(--err, #d35a5a);
+  border-left: 2px dashed var(--color-refused, #d35a5a);
   margin-left: 0;
   position: relative;
 }
@@ -390,7 +457,7 @@ button:hover {
   top: -8px;
   height: 8px;
   width: 2px;
-  background: var(--err, #d35a5a);
+  background: var(--color-refused, #d35a5a);
   opacity: 0.6;
 }
 
@@ -402,7 +469,7 @@ button:hover {
 }
 
 .case-file__section {
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--color-edge);
 }
 
 .case-file__section-header {
@@ -412,12 +479,12 @@ button:hover {
   top: 0;
   z-index: 2;
   padding: 8px 12px;
-  background: var(--bg-1);
-  border-bottom: 1px solid var(--line);
+  background: var(--color-frame);
+  border-bottom: 1px solid var(--color-edge);
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -426,7 +493,7 @@ button:hover {
 .case-file__section-body {
   padding: 10px 12px 14px;
   font-size: 12px;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   line-height: 1.55;
 }
 
@@ -434,8 +501,89 @@ button:hover {
   /* Used when a section's full content is v3.3-roadmapped — gives the
      procurement reader (P2) the architectural concept without overpromising. */
   font-style: italic;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 11px;
+}
+
+/* ─── DemoPrompt overlay ─────────────────────────────────────────────────────
+   Phase-triggered editorial annotation on the stage. Three audiences served
+   simultaneously: Shruti+Shayaun (cognitive offload), judges in the room
+   (narrative scaffolding), future-Shruti rewatching (artifact legibility).
+   Renders in Liminal Hand (Editor's Hand local → Caveat fallback).
+   --------------------------------------------------------------------------- */
+
+.demo-prompt {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  pointer-events: none;
+  z-index: 10;
+  font-family: var(--font-hand);
+  color: var(--color-ink-primary);
+  text-shadow:
+    0 0 12px rgba(6, 9, 13, 0.95),
+    0 0 4px rgba(6, 9, 13, 0.8);
+  /* Slight tilt + jitter so the annotation reads as written, not rendered.
+     Editor's Hand carries this naturally; Caveat fallback benefits from the
+     css affordance. */
+  transform: rotate(-0.5deg);
+  transition: opacity 600ms ease-out;
+  opacity: 1;
+}
+
+.demo-prompt--fading {
+  opacity: 0.18; /* fades back, doesn't disappear — judges and operators can
+                    still glance at the line if they need to recover. */
+}
+
+.demo-prompt__phase {
+  font-family: var(--font-hand);
+  font-size: 14px;
+  color: var(--color-contested);
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+
+.demo-prompt__headline {
+  font-family: var(--font-hand);
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-primary);
+  /* Subtle pen-stroke entrance. */
+  animation: demo-prompt-write-in 700ms ease-out;
+}
+
+@keyframes demo-prompt-write-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) rotate(-0.8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.demo-prompt__next {
+  font-family: var(--font-hand);
+  font-size: 18px;
+  margin-top: 6px;
+  color: var(--color-ink-secondary);
+  opacity: 0.65;
+  letter-spacing: 0.02em;
+}
+
+.demo-prompt__next-label {
+  color: var(--color-ink-tertiary);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-right: 6px;
+  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
 }
 
 /* Below 800px viewport height, the case file collapses to a one-line affordance
@@ -466,10 +614,10 @@ button:hover {
   font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
   font-size: 11px;
   line-height: 1.6;
-  color: var(--fg-1);
-  background: var(--bg-2);
+  color: var(--color-ink-secondary);
+  background: var(--color-elevated);
   border-radius: 2px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   white-space: nowrap;
   max-width: 100%;
   overflow: hidden;
@@ -486,7 +634,7 @@ button:hover {
 }
 
 .tchip--clickable:hover {
-  border-color: var(--accent);
+  border-color: var(--color-decision);
 }
 
 .tchip__type {
@@ -495,13 +643,13 @@ button:hover {
   font-size: 9px;
   letter-spacing: 0.12em;
   font-weight: 600;
-  color: var(--bg-0);
-  background: var(--fg-1);
+  color: var(--color-substrate);
+  background: var(--color-ink-secondary);
   border-radius: 2px 0 0 2px;
 }
 
 .tchip__slug {
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-size: 11px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -514,17 +662,17 @@ button:hover {
   text-transform: uppercase;
   padding: 0 4px;
   border-radius: 2px;
-  background: var(--bg-1);
-  color: var(--fg-2);
+  background: var(--color-frame);
+  color: var(--color-ink-tertiary);
 }
 
 .tchip__status--ok {
-  color: var(--ok);
+  color: var(--color-resolved);
   background: rgba(78, 160, 138, 0.12);
 }
 
 .tchip__status--warn {
-  color: var(--warn);
+  color: var(--color-contested);
   background: rgba(209, 139, 60, 0.14);
 }
 
@@ -536,10 +684,10 @@ button:hover {
 .tchip__posterior {
   font-size: 10px;
   font-weight: 600;
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   font-variant-numeric: tabular-nums;
   padding-left: 4px;
-  border-left: 1px solid var(--line);
+  border-left: 1px solid var(--color-edge);
 }
 
 /* Type-specific accent — colors the type-chip background. Distinct hues by
@@ -568,27 +716,27 @@ button:hover {
   font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
   font-size: 10px;
   letter-spacing: 0.10em;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-weight: 500;
   text-transform: uppercase;
   vertical-align: middle;
 }
 
 .tedge__arrow {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 11px;
 }
 
 .tedge__type {
   padding: 1px 5px;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
+  background: var(--color-elevated);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   font-size: 9px;
 }
 
-.tedge--ok .tedge__type   { color: var(--ok);   border-color: rgba(78, 160, 138, 0.4); }
-.tedge--warn .tedge__type { color: var(--warn); border-color: rgba(209, 139, 60, 0.4); }
+.tedge--ok .tedge__type   { color: var(--color-resolved);   border-color: rgba(78, 160, 138, 0.4); }
+.tedge--warn .tedge__type { color: var(--color-contested); border-color: rgba(209, 139, 60, 0.4); }
 .tedge--err .tedge__type  { color: #d35a5a;     border-color: rgba(211, 90, 90, 0.4); }
 
 /* Provenance trace as typed-grammar tree */
@@ -597,7 +745,7 @@ button:hover {
   font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
   font-size: 11px;
   line-height: 1.7;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
 }
 
 .provenance-tree__step {
@@ -610,7 +758,7 @@ button:hover {
 .provenance-tree__indent {
   display: inline-block;
   width: 14px;
-  border-left: 1px solid var(--line);
+  border-left: 1px solid var(--color-edge);
   margin-right: 6px;
   align-self: stretch;
 }
@@ -624,7 +772,7 @@ button:hover {
 .exec-summary {
   font-size: 12px;
   line-height: 1.65;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
 }
 
 .exec-summary p {
@@ -638,11 +786,11 @@ button:hover {
 
 .panel__header {
   padding: 8px 12px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid var(--color-edge);
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 11px;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -656,23 +804,23 @@ button:hover {
 
 .command-line {
   grid-area: command;
-  background: var(--bg-1);
-  border-top: 1px solid var(--line);
+  background: var(--color-frame);
+  border-top: 1px solid var(--color-edge);
   display: flex;
   align-items: center;
   padding: 0 14px;
   gap: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 12px;
 }
 
 .command-line__prompt {
-  color: var(--accent);
+  color: var(--color-decision);
 }
 
 .command-line__hint {
   margin-left: auto;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
 }
 
 .alert-row {
@@ -680,17 +828,17 @@ button:hover {
   grid-template-columns: 14px 1fr auto;
   gap: 8px;
   padding: 6px 0;
-  border-bottom: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--color-edge);
   cursor: pointer;
 }
 
 .alert-row:hover {
-  background: var(--bg-2);
+  background: var(--color-elevated);
 }
 
 .alert-row[data-active="true"] {
-  background: var(--bg-2);
-  outline: 1px solid var(--accent);
+  background: var(--color-elevated);
+  outline: 1px solid var(--color-decision);
 }
 
 .alert-row__pip {
@@ -698,21 +846,21 @@ button:hover {
   height: 8px;
   border-radius: 50%;
   margin-top: 5px;
-  background: var(--warn);
+  background: var(--color-contested);
 }
 
 .alert-row__title {
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   font-size: 12px;
 }
 
 .alert-row__sub {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 11px;
 }
 
 .alert-row__rank {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 11px;
   align-self: center;
 }
@@ -738,12 +886,12 @@ button:hover {
 }
 
 .alert-row--typed:hover {
-  background: var(--bg-2);
+  background: var(--color-elevated);
 }
 
 .alert-row--typed[data-active="true"] {
-  background: var(--bg-2);
-  outline: 1px solid var(--accent);
+  background: var(--color-elevated);
+  outline: 1px solid var(--color-decision);
   outline-offset: 0;
 }
 
@@ -755,13 +903,13 @@ button:hover {
   padding: 2px 4px;
   border-radius: 2px;
   background: rgba(110, 168, 254, 0.08);
-  color: var(--accent, #6ea8fe);
+  color: var(--color-decision, #6ea8fe);
   border: 1px solid rgba(110, 168, 254, 0.3);
 }
 
 .alert-row__event--event-2 {
   background: rgba(78, 160, 138, 0.08);
-  color: var(--ok, #4ea08a);
+  color: var(--color-resolved, #4ea08a);
   border-color: rgba(78, 160, 138, 0.3);
 }
 
@@ -778,7 +926,7 @@ button:hover {
   display: grid;
   place-items: center;
   height: 100%;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   background:
     radial-gradient(ellipse at center, rgba(110, 168, 254, 0.06), transparent 60%),
     repeating-linear-gradient(0deg, rgba(31, 44, 57, 0.4) 0 1px, transparent 1px 40px),
@@ -793,7 +941,7 @@ button:hover {
 }
 
 .stage-placeholder__case {
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -808,7 +956,7 @@ button:hover {
 }
 
 .kv__k {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-size: 10px;
@@ -816,28 +964,28 @@ button:hover {
 }
 
 .kv__v {
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
 }
 
 .subhead {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-size: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   margin: 14px 0 6px;
 }
 
 .empty {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-style: italic;
 }
 
 .action-row {
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   padding: 6px 8px;
   margin-bottom: 6px;
   border-radius: 2px;
-  background: var(--bg-2);
+  background: var(--color-elevated);
 }
 
 .action-row__title {
@@ -847,7 +995,7 @@ button:hover {
 }
 
 .action-row__sub {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 11px;
   margin-top: 2px;
 }
@@ -859,8 +1007,8 @@ button:hover {
 }
 
 .hormuz-intel__group {
-  border: 1px solid var(--line);
-  background: var(--bg-1);
+  border: 1px solid var(--color-edge);
+  background: var(--color-frame);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -870,7 +1018,7 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   padding: 5px 8px;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   cursor: pointer;
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -878,7 +1026,7 @@ button:hover {
 }
 
 .hormuz-intel__count {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-variant-numeric: tabular-nums;
 }
 
@@ -895,26 +1043,26 @@ button:hover {
   width: 100%;
   max-height: 112px;
   object-fit: cover;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   margin: 6px 0;
-  background: var(--bg-0);
+  background: var(--color-substrate);
 }
 
 .hormuz-intel__text {
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-size: 11px;
   margin-top: 5px;
 }
 
 .hormuz-intel__unavailable {
-  color: var(--warn);
+  color: var(--color-contested);
   font-size: 10px;
   margin-top: 5px;
 }
 
 .hormuz-intel__policy {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 10px;
   margin-top: 5px;
 }
@@ -926,27 +1074,27 @@ button:hover {
 .tag {
   display: inline-block;
   padding: 1px 6px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
 }
 
 .tag--accent {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--color-decision);
+  color: var(--color-decision);
 }
 
 .tag--warn {
-  border-color: var(--warn);
-  color: var(--warn);
+  border-color: var(--color-contested);
+  color: var(--color-contested);
 }
 
 .tag--ok {
-  border-color: var(--ok);
-  color: var(--ok);
+  border-color: var(--color-resolved);
+  color: var(--color-resolved);
 }
 
 .trace-strip {
@@ -967,26 +1115,26 @@ button:hover {
   align-items: center;
   gap: 6px;
   padding: 2px 0 2px 12px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .trace-step__arrow {
-  color: var(--accent);
+  color: var(--color-decision);
   font-weight: 600;
 }
 
 .trace-step__edge-type {
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   padding: 1px 6px;
   border-radius: 2px;
 }
 
 .trace-step__node {
-  border: 1px solid var(--line);
-  background: var(--bg-2);
+  border: 1px solid var(--color-edge);
+  background: var(--color-elevated);
   padding: 6px 8px;
   border-radius: 2px;
 }
@@ -994,19 +1142,19 @@ button:hover {
 .trace-step__type {
   font-size: 9px;
   letter-spacing: 0.14em;
-  color: var(--accent);
+  color: var(--color-decision);
   margin-bottom: 2px;
 }
 
 .trace-step__title {
   font-size: 12px;
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   margin-bottom: 2px;
 }
 
 .trace-step__id {
   font-size: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   word-break: break-all;
 }
 
@@ -1014,16 +1162,16 @@ button:hover {
   align-self: flex-start;
   margin: 4px 0 0 12px;
   padding: 1px 6px;
-  border: 1px dashed var(--line);
+  border: 1px dashed var(--color-edge);
   border-radius: 2px;
   font-size: 9px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
 }
 
 .refusal-card {
-  border: 1px solid var(--warn);
+  border: 1px solid var(--color-contested);
   background: linear-gradient(180deg, rgba(209, 139, 60, 0.08), rgba(209, 139, 60, 0.02));
   border-radius: 3px;
   padding: 0;
@@ -1042,19 +1190,19 @@ button:hover {
 
 .refusal-card__icon {
   font-size: 22px;
-  color: var(--warn);
+  color: var(--color-contested);
   line-height: 1;
 }
 
 .refusal-card__specialist {
   font-size: 13px;
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   letter-spacing: 0.04em;
 }
 
 .refusal-card__status {
   font-size: 10px;
-  color: var(--warn);
+  color: var(--color-contested);
   letter-spacing: 0.18em;
 }
 
@@ -1081,7 +1229,7 @@ button:hover {
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--warn);
+  color: var(--color-contested);
   border: 1px solid rgba(209, 139, 60, 0.45);
   padding: 1px 6px;
   border-radius: 2px;
@@ -1090,7 +1238,7 @@ button:hover {
 
 .refusal-card__causal-step--terminal {
   background: rgba(209, 139, 60, 0.18);
-  border-color: var(--warn);
+  border-color: var(--color-contested);
   color: #f1c898;
 }
 
@@ -1104,12 +1252,12 @@ button:hover {
   font-size: 9px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   margin-bottom: 2px;
 }
 
 .refusal-card__text {
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   font-size: 12px;
 }
 
@@ -1117,7 +1265,7 @@ button:hover {
   margin: 2px 0 0;
   padding: 0 0 0 14px;
   list-style: square;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-size: 10px;
   word-break: break-all;
 }
@@ -1126,13 +1274,13 @@ button:hover {
   margin-top: 8px;
   padding-top: 6px;
   border-top: 1px dashed rgba(209, 139, 60, 0.3);
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-size: 10px;
   font-style: italic;
 }
 
 .handoff-banner {
-  border: 1px solid var(--ok);
+  border: 1px solid var(--color-resolved);
   background: linear-gradient(180deg, rgba(78, 160, 138, 0.1), rgba(78, 160, 138, 0.02));
   border-radius: 3px;
   padding: 10px 12px;
@@ -1143,7 +1291,7 @@ button:hover {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: var(--ok);
+  color: var(--color-resolved);
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1154,18 +1302,18 @@ button:hover {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--ok);
+  background: var(--color-resolved);
   box-shadow: 0 0 0 3px rgba(78, 160, 138, 0.2);
 }
 
 .handoff-banner__body {
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-size: 11px;
   margin-bottom: 6px;
 }
 
 .handoff-banner__cond {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-family: ui-monospace, monospace;
   font-size: 10px;
 }
@@ -1181,23 +1329,23 @@ button:hover {
 }
 
 .handoff-banner__before {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   text-decoration: line-through;
 }
 
 .handoff-banner__arrow {
-  color: var(--ok);
+  color: var(--color-resolved);
   font-weight: 600;
 }
 
 .handoff-banner__after {
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
 }
 
 .handoff-banner__hint {
   margin-top: 6px;
   font-size: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
 }
 
 .confidence-bar {
@@ -1210,29 +1358,29 @@ button:hover {
 .confidence-bar__track {
   flex: 1;
   height: 4px;
-  background: var(--bg-0);
-  border: 1px solid var(--line);
+  background: var(--color-substrate);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   overflow: hidden;
 }
 
 .confidence-bar__fill {
   height: 100%;
-  background: var(--accent);
+  background: var(--color-decision);
   transition: width 200ms ease-out;
 }
 
 .confidence-bar[data-variant="primary"] .confidence-bar__fill {
-  background: var(--ok);
+  background: var(--color-resolved);
 }
 
 .confidence-bar[data-variant="muted"] .confidence-bar__fill {
-  background: var(--fg-2);
+  background: var(--color-ink-tertiary);
 }
 
 .confidence-bar__value {
   font-size: 10px;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-variant-numeric: tabular-nums;
   min-width: 28px;
   text-align: right;
@@ -1243,7 +1391,7 @@ button:hover {
   background: transparent;
   border: 0;
   border-bottom: 1px dashed transparent;
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   font: inherit;
   font-size: 12px;
   padding: 4px 0;
@@ -1251,7 +1399,7 @@ button:hover {
 }
 
 .command-line__input:focus {
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--color-decision);
 }
 
 .command-line__result {
@@ -1262,30 +1410,30 @@ button:hover {
 }
 
 .command-line__result--ok {
-  color: var(--ok);
-  border: 1px solid var(--ok);
+  color: var(--color-resolved);
+  border: 1px solid var(--color-resolved);
 }
 
 .command-line__result--info {
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  color: var(--color-decision);
+  border: 1px solid var(--color-decision);
 }
 
 .command-line__result--error {
-  color: var(--danger);
-  border: 1px solid var(--danger);
+  color: var(--color-refused);
+  border: 1px solid var(--color-refused);
 }
 
 .command-line__help {
   display: flex;
   gap: 10px;
   font-size: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   margin-left: 8px;
 }
 
 .command-line__help > span {
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   padding: 1px 5px;
   border-radius: 2px;
 }
@@ -1296,9 +1444,9 @@ button:hover {
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 14px;
-  background: var(--bg-2);
-  border: 1px solid var(--ok);
-  color: var(--ok);
+  background: var(--color-elevated);
+  border: 1px solid var(--color-resolved);
+  color: var(--color-resolved);
   border-radius: 3px;
   font-size: 12px;
   letter-spacing: 0.04em;
@@ -1324,7 +1472,7 @@ button:hover {
   line-height: 1.4;
   letter-spacing: 0.02em;
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   white-space: nowrap;
   vertical-align: baseline;
   max-width: 100%;
@@ -1343,7 +1491,7 @@ button:hover {
   transition: border-color 120ms ease, background 120ms ease;
 }
 .tchip--clickable:hover {
-  border-color: var(--accent);
+  border-color: var(--color-decision);
   background: rgba(255, 255, 255, 0.04);
 }
 
@@ -1356,8 +1504,8 @@ button:hover {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--bg-0);
-  background: var(--fg-1);
+  color: var(--color-substrate);
+  background: var(--color-ink-secondary);
   border-radius: 2px 0 0 2px;
   /* Sit flush with the chip's left edge. */
   margin: -1px 0 -1px -1px;
@@ -1370,7 +1518,7 @@ button:hover {
 
 /* The structured slug — `seg / seg / seg`. Reads as breadcrumb. */
 .tchip__slug {
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -1380,22 +1528,22 @@ button:hover {
   font-size: 9px;
   letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   padding: 1px 5px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   margin-left: 2px;
 }
 .tchip__status--ok {
-  color: var(--ok, #5ad88a);
+  color: var(--color-resolved, #5ad88a);
   border-color: rgba(90, 216, 138, 0.3);
 }
 .tchip__status--warn {
-  color: var(--warn, #d8a35a);
+  color: var(--color-contested, #d8a35a);
   border-color: rgba(216, 163, 90, 0.3);
 }
 .tchip__status--err {
-  color: var(--err, #d35a5a);
+  color: var(--color-refused, #d35a5a);
   border-color: rgba(211, 90, 90, 0.3);
 }
 
@@ -1403,7 +1551,7 @@ button:hover {
 .tchip__posterior {
   font-size: 10px;
   font-weight: 500;
-  color: var(--accent);
+  color: var(--color-decision);
   padding: 1px 5px;
   background: rgba(110, 168, 254, 0.08);
   border-radius: 2px;
@@ -1428,18 +1576,18 @@ button:hover {
 
 .tchip--claim .tchip__type,
 .tchip--hypothesis .tchip__type {
-  background: var(--accent, #6ea8fe);
+  background: var(--color-decision, #6ea8fe);
   color: #061018;
 }
 
 .tchip--evidence .tchip__type,
 .tchip--observation .tchip__type {
-  background: var(--warn, #d8a35a);
+  background: var(--color-contested, #d8a35a);
   color: #1a1206;
 }
 
 .tchip--action .tchip__type {
-  background: var(--ok, #5ad88a);
+  background: var(--color-resolved, #5ad88a);
   color: #061a0e;
 }
 
@@ -1452,8 +1600,8 @@ button:hover {
 .tchip--anomaly .tchip__type,
 .tchip--track .tchip__type,
 .tchip--entity .tchip__type {
-  background: var(--fg-1, #c9c5bd);
-  color: var(--bg-0, #06090d);
+  background: var(--color-ink-secondary, #c9c5bd);
+  color: var(--color-substrate, #06090d);
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -1470,11 +1618,11 @@ button:hover {
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
 }
 
 .tedge__arrow {
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   font-weight: 600;
   font-size: 11px;
   line-height: 1;
@@ -1482,22 +1630,22 @@ button:hover {
 
 .tedge__type {
   padding: 1px 5px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   background: rgba(255, 255, 255, 0.02);
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
 }
 
 .tedge--ok .tedge__type {
-  color: var(--ok, #5ad88a);
+  color: var(--color-resolved, #5ad88a);
   border-color: rgba(90, 216, 138, 0.3);
 }
 .tedge--warn .tedge__type {
-  color: var(--warn, #d8a35a);
+  color: var(--color-contested, #d8a35a);
   border-color: rgba(216, 163, 90, 0.3);
 }
 .tedge--err .tedge__type {
-  color: var(--err, #d35a5a);
+  color: var(--color-refused, #d35a5a);
   border-color: rgba(211, 90, 90, 0.3);
 }
 
@@ -1508,7 +1656,7 @@ button:hover {
 .exec-summary {
   font-size: 12px;
   line-height: 1.55;
-  color: var(--fg-0);
+  color: var(--color-ink-primary);
 }
 
 .exec-summary p {
@@ -1520,7 +1668,7 @@ button:hover {
 }
 
 .exec-summary__lead {
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-size: 11px;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
@@ -1535,8 +1683,8 @@ button:hover {
 .exec-summary__action-line {
   margin-top: 8px;
   padding-top: 6px;
-  border-top: 1px dashed var(--line);
-  color: var(--fg-1);
+  border-top: 1px dashed var(--color-edge);
+  color: var(--color-ink-secondary);
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -1552,18 +1700,18 @@ button:hover {
   gap: 8px;
   margin: 10px 0 4px;
   padding-bottom: 4px;
-  border-bottom: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--color-edge);
 }
 
 .evidence-section__count {
   font-size: 9px;
   letter-spacing: 0.16em;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
 }
 
 .evidence-card {
-  border: 1px solid var(--line);
-  background: var(--bg-2);
+  border: 1px solid var(--color-edge);
+  background: var(--color-elevated);
   border-radius: 2px;
   padding: 6px 8px;
   margin-bottom: 4px;
@@ -1573,7 +1721,7 @@ button:hover {
 
 .evidence-card:hover,
 .evidence-card:focus-visible {
-  border-color: var(--accent);
+  border-color: var(--color-decision);
   background: rgba(110, 168, 254, 0.04);
   outline: none;
 }
@@ -1601,7 +1749,7 @@ button:hover {
   display: flex;
   gap: 12px;
   font-size: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
 }
 
 .evidence-card__confidence {
@@ -1615,10 +1763,10 @@ button:hover {
 .evidence-card__rationale {
   margin-top: 6px;
   padding: 6px 8px;
-  background: var(--bg-0);
-  border: 1px solid var(--line);
+  background: var(--color-substrate);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-size: 11px;
   line-height: 1.5;
 }
@@ -1643,18 +1791,18 @@ button:hover {
   flex-direction: column;
   gap: 4px;
   padding: 6px 8px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
-  background: var(--bg-2);
+  background: var(--color-elevated);
 }
 
 .action-list__row--recommended {
-  border-left: 2px solid var(--ok, #4ea08a);
+  border-left: 2px solid var(--color-resolved, #4ea08a);
   background: rgba(78, 160, 138, 0.04);
 }
 
 .action-list__row--prior {
-  border-left: 2px solid var(--warn, #d18b3c);
+  border-left: 2px solid var(--color-contested, #d18b3c);
   background: rgba(209, 139, 60, 0.04);
   opacity: 0.85;
 }
@@ -1667,7 +1815,7 @@ button:hover {
 
 .action-list__kind {
   font-size: 10px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   letter-spacing: 0.04em;
   padding-left: 4px;
 }
@@ -1688,14 +1836,14 @@ button:hover {
 }
 
 .review-memory__application {
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   padding: 8px 10px;
-  background: var(--bg-2);
+  background: var(--color-elevated);
 }
 
 .review-memory__application--changed {
-  border-left: 2px solid var(--ok, #4ea08a);
+  border-left: 2px solid var(--color-resolved, #4ea08a);
   background: rgba(78, 160, 138, 0.04);
 }
 
@@ -1709,7 +1857,7 @@ button:hover {
   flex-wrap: wrap;
   gap: 8px;
   padding-top: 6px;
-  border-top: 1px dashed var(--line);
+  border-top: 1px dashed var(--color-edge);
 }
 
 .review-memory__section-header {
@@ -1719,13 +1867,13 @@ button:hover {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   padding-bottom: 4px;
-  border-bottom: 1px dashed var(--line);
+  border-bottom: 1px dashed var(--color-edge);
 }
 
 .review-memory__count {
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   font-weight: 500;
 }
 
@@ -1736,10 +1884,10 @@ button:hover {
 }
 
 .review-memory__saved-row {
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   border-radius: 2px;
   padding: 6px 8px;
-  background: var(--bg-2);
+  background: var(--color-elevated);
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -1747,7 +1895,7 @@ button:hover {
 
 .review-memory__dsl {
   font-size: 10px;
-  color: var(--fg-1);
+  color: var(--color-ink-secondary);
   word-break: break-word;
   font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
   line-height: 1.4;
@@ -1755,7 +1903,7 @@ button:hover {
 
 .review-memory__saved-at {
   font-size: 9px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   letter-spacing: 0.04em;
 }
 
@@ -1769,8 +1917,8 @@ button:hover {
 .review-memory__save-btn {
   font-size: 11px;
   padding: 4px 10px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
+  border: 1px solid var(--color-decision);
+  color: var(--color-decision);
   background: rgba(110, 168, 254, 0.06);
   border-radius: 2px;
   cursor: pointer;
@@ -1780,14 +1928,14 @@ button:hover {
 
 .review-memory__save-btn:hover {
   background: rgba(110, 168, 254, 0.12);
-  border-color: var(--fg-0);
+  border-color: var(--color-ink-primary);
 }
 
 .review-memory__saved-badge {
   font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ok, #4ea08a);
+  color: var(--color-resolved, #4ea08a);
   border: 1px solid rgba(78, 160, 138, 0.4);
   padding: 2px 8px;
   border-radius: 2px;
@@ -1796,9 +1944,9 @@ button:hover {
 
 .review-memory__clear-btn {
   font-size: 11px;
-  color: var(--fg-2);
+  color: var(--color-ink-tertiary);
   background: transparent;
-  border: 1px solid var(--line);
+  border: 1px solid var(--color-edge);
   padding: 4px 10px;
   border-radius: 2px;
   cursor: pointer;
@@ -1806,15 +1954,15 @@ button:hover {
 }
 
 .review-memory__clear-btn:hover {
-  color: var(--fg-1);
-  border-color: var(--fg-2);
+  color: var(--color-ink-secondary);
+  border-color: var(--color-ink-tertiary);
 }
 
 .review-memory__toast {
   margin-top: 4px;
   padding: 6px 10px;
-  border: 1px solid var(--ok, #4ea08a);
-  color: var(--ok, #4ea08a);
+  border: 1px solid var(--color-resolved, #4ea08a);
+  color: var(--color-resolved, #4ea08a);
   background: rgba(78, 160, 138, 0.08);
   font-size: 11px;
   border-radius: 2px;
