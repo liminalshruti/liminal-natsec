@@ -20,6 +20,21 @@
 }
 
 :root {
+  /* ─── TYPE STACK ────────────────────────────────────────────────────────
+     Three families, three reading registers. The operator surface stays
+     mono-first (Geist Mono); editorial-density artifacts (case file
+     section titles, exec summary, document-shaped surfaces) lift to
+     serif (Fraunces). Sans (Geist) is reserved for ambient UI chrome.
+     Hand (Liminal Hand → Caveat) is for editorial annotations only.
+
+         --font-mono   data, IDs, operator surface, default body
+         --font-sans   ambient UI chrome (rare; use sparingly)
+         --font-serif  editorial-density · case file headers + exec summary
+         --font-hand   handwriting overlay · DemoPrompt + marginalia
+     ────────────────────────────────────────────────────────────────────── */
+  --font-mono: "Geist Mono", ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-serif: "Fraunces", "Newsreader", Georgia, "Iowan Old Style", serif;
   --font-hand: "Liminal Hand", "Editor's Hand", "Caveat", "Patrick Hand", cursive;
 
   /* ─── SEMANTIC COLOR TOKENS ─────────────────────────────────────────────
@@ -77,7 +92,7 @@
   --err:    var(--color-refused); /* err and danger were duplicates → both refuse */
   --ok:     var(--color-resolved);
 
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   color-scheme: dark;
 }
 
@@ -474,20 +489,37 @@ button:hover {
 
 .case-file__section-header {
   /* Sticky header. Stays at top of scroll region while body scrolls. Headers
-     do NOT compound — only the most recent header is sticky at any moment. */
+     do NOT compound — only the most recent header is sticky at any moment.
+     Serif treatment (Fraunces) signals editorial-density register: the case
+     file is a *brief*, not a panel. Mono surfaces upstream stay mono. */
   position: sticky;
   top: 0;
   z-index: 2;
-  padding: 8px 12px;
+  padding: 10px 12px 8px;
   background: var(--color-frame);
   border-bottom: 1px solid var(--color-edge);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-ink-secondary);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-feature-settings: "ss01" 1, "ss02" 1;
+  color: var(--color-ink-primary);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+}
+
+/* Optional Roman-numeral prefix slot. Components can render
+   <span class="case-file__section-numeral">I</span> Executive Summary
+   to land the document register more emphatically. */
+.case-file__section-numeral {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--color-ink-tertiary);
+  margin-right: 8px;
+  font-size: 11px;
+  letter-spacing: 0.06em;
 }
 
 .case-file__section-body {
@@ -583,7 +615,7 @@ button:hover {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-right: 6px;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono);
 }
 
 /* Below 800px viewport height, the case file collapses to a one-line affordance
@@ -611,7 +643,7 @@ button:hover {
   align-items: center;
   gap: 6px;
   padding: 1px 6px 1px 0;
-  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.6;
   color: var(--color-ink-secondary);
@@ -713,7 +745,7 @@ button:hover {
   align-items: center;
   gap: 4px;
   padding: 0 6px;
-  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.10em;
   color: var(--color-ink-tertiary);
@@ -742,7 +774,7 @@ button:hover {
 /* Provenance trace as typed-grammar tree */
 
 .provenance-tree {
-  font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.7;
   color: var(--color-ink-secondary);
@@ -1525,7 +1557,7 @@ button:hover {
   gap: 6px;
   padding: 2px 7px 2px 0;
   border-radius: 3px;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 11px;
   line-height: 1.4;
   letter-spacing: 0.02em;
@@ -1672,7 +1704,7 @@ button:hover {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, monospace;
+  font-family: var(--font-mono);
   font-size: 9px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1709,16 +1741,23 @@ button:hover {
 
 /* ──────────────────────────────────────────────────────────────────────────
    Exec summary — Case File section I. Real prose using typed grammar inline.
+   Editorial-density register: serif body type (Fraunces) signals "this is a
+   brief, not a panel." Inline chips stay mono so the data identity is still
+   readable as data — the prose flows around them like footnoted typography.
    ────────────────────────────────────────────────────────────────────────── */
 
 .exec-summary {
-  font-size: 12px;
-  line-height: 1.55;
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  line-height: 1.62;
   color: var(--color-ink-primary);
+  font-feature-settings: "ss01" 1, "kern" 1, "onum" 1;
+  /* Fraunces optical-size axis: tune for body reading at 14px ish */
+  font-variation-settings: "opsz" 16, "SOFT" 50;
 }
 
 .exec-summary p {
-  margin: 0 0 8px;
+  margin: 0 0 10px;
 }
 
 .exec-summary p:last-child {
@@ -1727,9 +1766,11 @@ button:hover {
 
 .exec-summary__lead {
   color: var(--color-ink-secondary);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  margin-bottom: 6px;
+  font-family: var(--font-mono); /* the brief's "filed under" line stays mono */
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
 .exec-summary .tchip {
@@ -1955,7 +1996,7 @@ button:hover {
   font-size: 10px;
   color: var(--color-ink-secondary);
   word-break: break-word;
-  font-family: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: var(--font-mono);
   line-height: 1.4;
 }
 
