@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-05-03T14:42:09.268Z",
+  "scope_note": "Recent (2026-04-01 onward) AIS gap events labeled `intentionalDisabling: true` by GFW, classified by overlap with MARAD MSCI 2026-004 (Persian Gulf / Strait of Hormuz / Gulf of Oman) corridor.",
+  "marad_advisory": {
+    "id": "2026-004",
+    "title": "Persian Gulf, Strait of Hormuz, and Gulf of Oman - Iranian Attacks on Commercial Vessels",
+    "effective": "03/13/2026 - 09/09/2026",
+    "aoi_bbox_used": {
+      "minLat": 24,
+      "maxLat": 30.5,
+      "minLon": 48,
+      "maxLon": 60
+    },
+    "threat_indicators": [
+      "missile",
+      "UAV",
+      "USV",
+      "GNSS jamming",
+      "GPS spoofing"
+    ]
+  },
+  "rows": [
+    {
+      "name": "KASOS",
+      "mmsi": "636018206",
+      "flag": "LBR",
+      "type": "other",
+      "start": "2026-04-17T08:01:41.000Z",
+      "end": "2026-04-18T17:28:31.000Z",
+      "durationHours": 33.43333333333333,
+      "distanceKm": "674.79958698721",
+      "impliedSpeedKnots": "10.89818428602761",
+      "intentionalDisabling": true,
+      "positions12HoursBeforeSat": "19",
+      "positionsPerDaySatReception": 23.13625584231486,
+      "offPosition": {
+        "lat": 23.496273333333335,
+        "lon": 63.23258666666667
+      },
+      "onPosition": {
+        "lat": "24.588556666666666",
+        "lon": "56.695251666666664"
+      },
+      "marad_classification": "ONE_END_INSIDE",
+      "cross_advisory_note": null,
+      "ofac_match": false
+    },
+    {
+      "name": "MERCURY",
+      "mmsi": "354168000",
+      "flag": "PAN",
+      "type": "cargo",
+      "start": "2026-04-11T16:53:15.000Z",
+      "end": "2026-04-14T22:04:28.000Z",
+      "durationHours": 77.18333333333334,
+      "distanceKm": "859.2774920727367",
+      "impliedSpeedKnots": "6.011307206664379",
+      "intentionalDisabling": true,
+      "positions12HoursBeforeSat": "38",
+      "positionsPerDaySatReception": 23.51092036102647,
+      "offPosition": {
+        "lat": 23.178975,
+        "lon": 65.42001333333333
+      },
+      "onPosition": {
+        "lat": "24.561333333333334",
+        "lon": "57.10433333333334"
+      },
+      "marad_classification": "ONE_END_INSIDE",
+      "cross_advisory_note": null,
+      "ofac_match": false
+    },
+    {
+      "name": "KHALEJIA ANA 3",
+      "mmsi": "374228000",
+      "flag": "PAN",
+      "type": "cargo",
+      "start": "2026-04-17T05:18:10.000Z",
+      "end": "2026-04-23T17:20:34.000Z",
+      "durationHours": 156.03333333333333,
+      "distanceKm": "78.24687117045211",
+      "impliedSpeedKnots": "0.27077502950828325",
+      "intentionalDisabling": true,
+      "positions12HoursBeforeSat": "28",
+      "positionsPerDaySatReception": 11.776336939107045,
+      "offPosition": {
+        "lat": 28.845428333333334,
+        "lon": 49.42281333333333
+      },
+      "onPosition": {
+        "lat": "28.881061666666668",
+        "lon": "48.62033666666667"
+      },
+      "marad_classification": "BOTH_INSIDE",
+      "cross_advisory_note": null,
+      "ofac_match": false
+    },
+    {
+      "name": "BAO LI",
+      "mmsi": "352003283",
+      "flag": "PAN",
+      "type": "cargo",
+      "start": "2026-04-05T23:44:32.000Z",
+      "end": "2026-04-06T20:01:18.000Z",
+      "durationHours": 20.266666666666666,
+      "distanceKm": "130.92379378522088",
+      "impliedSpeedKnots": "3.4881509796988905",
+      "intentionalDisabling": true,
+      "positions12HoursBeforeSat": "33",
+      "positionsPerDaySatReception": 18.730200921422966,
+      "offPosition": {
+        "lat": 24.379793333333332,
+        "lon": 59.774773333333336
+      },
+      "onPosition": {
+        "lat": "24.516708333333334",
+        "lon": "58.49014666666667"
+      },
+      "marad_classification": "BOTH_INSIDE",
+      "cross_advisory_note": null,
+      "ofac_match": false
+    },
+    {
+      "name": "FRONT VEFSNA",
+      "mmsi": "636017083",
+      "flag": "LBR",
+      "type": "other",
+      "start": "2026-04-02T06:28:39.000Z",
+      "end": "2026-04-09T09:38:02.000Z",
+      "durationHours": 171.15,
+      "distanceKm": "3175.846633410974",
+      "impliedSpeedKnots": "10.01939816793579",
+      "intentionalDisabling": true,
+      "positions12HoursBeforeSat": "46",
+      "positionsPerDaySatReception": 27.883589255505104,
+      "offPosition": {
+        "lat": 21.589778333333335,
+        "lon": 67.07974166666666
+      },
+      "onPosition": {
+        "lat": "24.931121666666666",
+        "lon": "36.13839"
+      },
+      "marad_classification": "OUTSIDE",
+      "cross_advisory_note": "On-position is in Egyptian Red Sea / MARAD 2026-006 zone",
+      "ofac_match": false
+    }
+  ],
+  "summary": {
+    "total_intentional_gaps_recent": 5,
+    "inside_corridor_both_ends": 2,
+    "inside_corridor_one_end": 2,
+    "outside_corridor": 1,
+    "ofac_listed": 0,
+    "flag_distribution": {
+      "LBR": 2,
+      "PAN": 3
+    }
+  }
+}

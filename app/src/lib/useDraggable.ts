@@ -1,8 +1,8 @@
-// useDraggable — minimal pointer-event drag for stage widgets.
+// useDraggable — minimal pointer-event drag for panes and stage widgets.
 //
-// The HUD, layer strip, and data-sources chips on the stage all sit in
-// fixed corners and sometimes occlude map content the operator wants to
-// see. This hook lets each widget be repositioned by dragging its header.
+// The main panes and smaller stage widgets can occlude map or case content
+// during a demo. This hook lets each surface be repositioned by dragging
+// its header.
 // Position is held in component state — session-only, resets on reload —
 // because persisting widget positions across reloads would risk a
 // stuck-off-screen widget on demo day.
@@ -34,6 +34,8 @@ interface DragStart {
 export interface UseDraggableResult {
   /** Spread onto the widget root. Applies a translate3d transform. */
   style: CSSProperties;
+  /** True while a pointer drag is active. Useful for z-index/cursor styling. */
+  isDragging: boolean;
   /** Spread onto the drag-handle element (typically a header bar). */
   handleProps: {
     onPointerDown: (event: ReactPointerEvent<HTMLElement>) => void;
@@ -43,6 +45,7 @@ export interface UseDraggableResult {
 
 export function useDraggable(): UseDraggableResult {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
   const startRef = useRef<DragStart | null>(null);
 
   const onPointerDown = useCallback(
@@ -58,6 +61,7 @@ export function useDraggable(): UseDraggableResult {
         originX: offset.x,
         originY: offset.y
       };
+      setIsDragging(true);
 
       function onMove(ev: PointerEvent) {
         const start = startRef.current;
@@ -70,12 +74,15 @@ export function useDraggable(): UseDraggableResult {
 
       function onUp() {
         startRef.current = null;
+        setIsDragging(false);
         window.removeEventListener("pointermove", onMove);
         window.removeEventListener("pointerup", onUp);
+        window.removeEventListener("pointercancel", onUp);
       }
 
       window.addEventListener("pointermove", onMove);
       window.addEventListener("pointerup", onUp);
+      window.addEventListener("pointercancel", onUp);
     },
     [offset.x, offset.y]
   );
@@ -84,6 +91,7 @@ export function useDraggable(): UseDraggableResult {
     style: {
       transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`
     },
+    isDragging,
     handleProps: {
       onPointerDown,
       style: { cursor: "grab", touchAction: "none" }

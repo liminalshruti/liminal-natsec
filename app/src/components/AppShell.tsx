@@ -1,5 +1,17 @@
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type PointerEvent as ReactPointerEvent
+} from "react";
+
 import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
+import { buildAskContext } from "../lib/askContext.ts";
 import { eventIdFromCaseId } from "../lib/spineGraph.ts";
 import { PHASE_LABELS } from "../map/tokens.ts";
 import type { UiMode } from "../lib/uiModeStore.ts";
@@ -27,6 +39,20 @@ interface AppShellProps {
   onToggleUiMode: (next?: UiMode) => void;
 }
 
+interface PaneWidths {
+  substrate: number;
+  working: number;
+}
+
+const PANE_LIMITS = {
+  substrateMin: 220,
+  substrateMax: 560,
+  workingMin: 360,
+  workingMax: 760,
+  stageMin: 420,
+  resizeColumns: 16
+};
+
 export function AppShell({
   scenario,
   selectedAlertId,
@@ -41,6 +67,11 @@ export function AppShell({
   uiMode,
   onToggleUiMode
 }: AppShellProps) {
+  const shellRef = useRef<HTMLDivElement | null>(null);
+  const [paneWidths, setPaneWidths] = useState<PaneWidths>(() =>
+    defaultPaneWidths(viewportWidth())
+  );
+  const [resizingPane, setResizingPane] = useState<"substrate" | "working" | null>(null);
   const eventId = eventIdFromCaseId(selectedCaseId);
   // D1 focus state: which pane should the operator's eye land on first?
   // When a case is selected, the working panel is operationally hot — that's
@@ -51,8 +82,92 @@ export function AppShell({
   const activePane: "substrate" | "stage" | "working" = selectedAlert
     ? "working"
     : "stage";
+  const shellStyle = useMemo(
+    () =>
+      ({
+        "--substrate-pane-width": `${paneWidths.substrate}px`,
+        "--working-pane-width": `${paneWidths.working}px`
+      }) as CSSProperties,
+    [paneWidths]
+  );
+
+  const scenarioContext = useMemo(
+    () => buildAskContext(scenario, selectedAlertId),
+    [scenario, selectedAlertId]
+  );
+
+  useEffect(() => {
+    const raf = window.requestAnimationFrame(() => {
+      window.dispatchEvent(new Event("resize"));
+    });
+    return () => window.cancelAnimationFrame(raf);
+  }, [paneWidths]);
+
+  const clampForShell = useCallback((next: PaneWidths, priority?: keyof PaneWidths) => {
+    const width = shellRef.current?.getBoundingClientRect().width ?? viewportWidth();
+    return clampPaneWidths(next, width, priority);
+  }, []);
+
+  const setClampedWidths = useCallback(
+    (next: PaneWidths | ((prev: PaneWidths) => PaneWidths), priority?: keyof PaneWidths) => {
+      setPaneWidths((prev) => {
+        const resolved = typeof next === "function" ? next(prev) : next;
+        return clampForShell(resolved, priority);
+      });
+    },
+    [clampForShell]
+  );
+
+  const beginPaneResize = useCallback(
+    (pane: "substrate" | "working") => (event: ReactPointerEvent<HTMLElement>) => {
+      const shell = shellRef.current;
+      if (!shell) return;
+      event.preventDefault();
+      setResizingPane(pane);
+
+      const rect = shell.getBoundingClientRect();
+      const onMove = (moveEvent: PointerEvent) => {
+        setPaneWidths((prev) => {
+          const next =
+            pane === "substrate"
+              ? { ...prev, substrate: moveEvent.clientX - rect.left }
+              : { ...prev, working: rect.right - moveEvent.clientX };
+          return clampPaneWidths(next, rect.width, pane);
+        });
+      };
+      const onUp = () => {
+        setResizingPane(null);
+        window.removeEventListener("pointermove", onMove);
+        window.removeEventListener("pointerup", onUp);
+        window.removeEventListener("pointercancel", onUp);
+      };
+
+      window.addEventListener("pointermove", onMove);
+      window.addEventListener("pointerup", onUp);
+      window.addEventListener("pointercancel", onUp);
+    },
+    []
+  );
+
+  function adjustPaneWidth(pane: "substrate" | "working", delta: number) {
+    setClampedWidths(
+      (prev) =>
+        pane === "substrate"
+          ? { ...prev, substrate: prev.substrate + delta }
+          : { ...prev, working: prev.working + delta },
+      pane
+    );
+  }
+
   return (
-    <div className="app-shell" data-active-pane={activePane} data-ui-mode={uiMode}>
+    <div
+      ref={shellRef}
+      className="app-shell"
+      data-active-pane={activePane}
+      data-ui-mode={uiMode}
+      data-resizing-pane={resizingPane ?? undefined}
+      style={shellStyle}
+    >
       <header className="app-topbar">
         <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
         <WorkflowStrip />
@@ -75,6 +190,12 @@ export function AppShell({
         onSelectAlert={onSelectAlert}
         loading={!scenario}
       />
+      <PaneResizeHandle
+        pane="substrate"
+        label="Resize watchfloor pane"
+        onPointerDown={beginPaneResize("substrate")}
+        onNudge={(delta) => adjustPaneWidth("substrate", delta)}
+      />
       <StageViewport
         selectedAlert={selectedAlert}
         selectedCaseId={selectedCaseId}
@@ -83,6 +204,12 @@ export function AppShell({
         scenarioState={mapScenarioState}
         onScenarioStateChange={onMapScenarioChange}
         resetSignal={resetSignal}
+      />
+      <PaneResizeHandle
+        pane="working"
+        label="Resize working pane"
+        onPointerDown={beginPaneResize("working")}
+        onNudge={(delta) => adjustPaneWidth("working", delta)}
       />
       <WorkingPanel
         selectedAlert={selectedAlert}
@@ -99,6 +226,7 @@ export function AppShell({
         alerts={scenario?.state.alerts ?? []}
         uiMode={uiMode}
         onToggleUiMode={onToggleUiMode}
+        scenarioContext={scenarioContext}
       />
       {resetToast && (
         <div className="reset-toast" role="status" aria-live="polite">
@@ -107,6 +235,76 @@ export function AppShell({
       )}
     </div>
   );
+}
+
+function PaneResizeHandle({
+  pane,
+  label,
+  onPointerDown,
+  onNudge
+}: {
+  pane: "substrate" | "working";
+  label: string;
+  onPointerDown: (event: ReactPointerEvent<HTMLElement>) => void;
+  onNudge: (delta: number) => void;
+}) {
+  function onKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    const step = event.shiftKey ? 48 : 24;
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    const direction = event.key === "ArrowRight" ? 1 : -1;
+    onNudge(pane === "substrate" ? direction * step : -direction * step);
+  }
+  return (
+    <div
+      className={`pane-resizer pane-resizer--${pane}`}
+      role="separator"
+      aria-label={label}
+      aria-orientation="vertical"
+      tabIndex={0}
+      onPointerDown={onPointerDown}
+      onKeyDown={onKeyDown}
+    />
+  );
+}
+
+function viewportWidth(): number {
+  return typeof window === "undefined" ? 1440 : window.innerWidth;
+}
+
+function defaultPaneWidths(width: number): PaneWidths {
+  if (width < 1024) return { substrate: 240, working: 380 };
+  if (width < 1280) return { substrate: 272, working: 432 };
+  if (width < 1440) return { substrate: 296, working: 480 };
+  return { substrate: 320, working: 520 };
+}
+
+function clampPaneWidths(
+  next: PaneWidths,
+  viewport: number,
+  priority: keyof PaneWidths = "substrate"
+): PaneWidths {
+  let substrate = clamp(next.substrate, PANE_LIMITS.substrateMin, PANE_LIMITS.substrateMax);
+  let working = clamp(next.working, PANE_LIMITS.workingMin, PANE_LIMITS.workingMax);
+  const maxSideTotal = Math.max(
+    PANE_LIMITS.substrateMin + PANE_LIMITS.workingMin,
+    viewport - PANE_LIMITS.stageMin - PANE_LIMITS.resizeColumns
+  );
+
+  if (substrate + working > maxSideTotal) {
+    const overflow = substrate + working - maxSideTotal;
+    if (priority === "substrate") {
+      working = Math.max(PANE_LIMITS.workingMin, working - overflow);
+    } else {
+      substrate = Math.max(PANE_LIMITS.substrateMin, substrate - overflow);
+    }
+  }
+
+  return { substrate: Math.round(substrate), working: Math.round(working) };
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
 }
 
 function PhaseBadge({ state }: { state: MapScenarioState | undefined }) {
@@ -285,4 +483,3 @@ function SourceIndicator({ scenario }: { scenario: LoadedScenario | null }) {
     </span>
   );
 }
-

@@ -19,10 +19,14 @@
     "dev:desktop": "node scripts/dev-entry.mjs desktop",
     "dev": "node scripts/dev-all.mjs",
     "build": "node scripts/build-available.mjs",
+    "export:html": "node scripts/export-html/run.mjs",
     "postinstall:electron": "cd electron && bun install"
   },
   "engines": {
     "bun": ">=1.1",
     "node": ">=22.6"
+  },
+  "devDependencies": {
+    "playwright": "^1.59.1"
   }
 }

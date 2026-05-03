@@ -1,0 +1,1509 @@
+{
+  "source": "GFW_NAMED_VESSEL_SEARCH",
+  "generated_at": "2026-05-03T14:28:31.149Z",
+  "request": {
+    "dataset": "public-global-vessel-identity:latest",
+    "note": "Named vessel identity lookup for candidates surfaced by 72-hour open web / warning OSINT. Identity only; not behavior evidence."
+  },
+  "response": {
+    "ok": true,
+    "searches_ok": 12,
+    "searches_requested": 12
+  },
+  "records": [
+    {
+      "query": "SARV SHAKTI",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 1,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "PROVIDENCE",
+          "ssvid": "538005632",
+          "imo": "9350599",
+          "flag": "MHL",
+          "callsign": "V7FO9",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2014-05-27T09:52:15Z",
+          "transmission_date_to": "2022-05-16T08:36:43Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        }
+      ]
+    },
+    {
+      "query": "HUGE",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SVSGILBERT",
+          "ssvid": "677036700",
+          "imo": "8981858",
+          "flag": "TZA",
+          "callsign": "5IM467",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2012-01-01T02:46:45Z",
+          "transmission_date_to": "2013-04-28T01:51:21Z",
+          "shiptypes": [
+            "NA",
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "HUGE",
+          "ssvid": "422206900",
+          "imo": "9357183",
+          "flag": "IRN",
+          "callsign": "EPJE5",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2019-03-05T04:09:18Z",
+          "transmission_date_to": "2026-03-19T20:43:56Z",
+          "shiptypes": [
+            "NA",
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "HUGH E",
+          "ssvid": "338334813",
+          "imo": null,
+          "flag": "USA",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2021-05-11T21:52:48Z",
+          "transmission_date_to": "2026-03-29T18:29:30Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "HUGO",
+          "ssvid": "244011269",
+          "imo": null,
+          "flag": "NLD",
+          "callsign": "PD3462",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2021-01-14T14:37:39Z",
+          "transmission_date_to": "2026-05-01T23:59:38Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "HUGO",
+          "ssvid": "636014338",
+          "imo": "9398096",
+          "flag": "LBR",
+          "callsign": "A8TD2",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2025-11-22T06:26:41Z",
+          "transmission_date_to": "2026-03-31T23:06:40Z",
+          "shiptypes": [
+            "CARGO"
+          ],
+          "registry_info_total_records": 1
+        }
+      ]
+    },
+    {
+      "query": "VIGOR",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "VIGOR",
+          "ssvid": "244130881",
+          "imo": null,
+          "flag": "NLD",
+          "callsign": "PI7740",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2022-04-14T09:47:55Z",
+          "transmission_date_to": "2026-04-15T12:40:41Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "VIGOR",
+          "ssvid": "629009438",
+          "imo": "9262156",
+          "flag": "GMB",
+          "callsign": "C5J450",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2025-01-22T14:09:32Z",
+          "transmission_date_to": "2026-01-07T09:13:30Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "VIGOR",
+          "ssvid": "244140491",
+          "imo": null,
+          "flag": "NLD",
+          "callsign": "PA5720",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2023-05-18T08:27:51Z",
+          "transmission_date_to": "2026-03-01T17:19:54Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "VIGOR",
+          "ssvid": "533132618",
+          "imo": null,
+          "flag": "MYS",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2023-04-29T00:57:25Z",
+          "transmission_date_to": "2024-01-25T05:11:40Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "VIGOR",
+          "ssvid": "511138000",
+          "imo": "9707247",
+          "flag": "PLW",
+          "callsign": "T8A2097",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2015-02-26T03:50:08Z",
+          "transmission_date_to": "2024-01-15T13:06:55Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        }
+      ]
+    },
+    {
+      "query": "ELLY",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "KASPER HAARUP",
+          "ssvid": "219031463",
+          "imo": null,
+          "flag": "DNK",
+          "callsign": "ELLY",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2024-05-03T17:53:27Z",
+          "transmission_date_to": "2025-12-15T12:21:49Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ELLY",
+          "ssvid": "219019229",
+          "imo": null,
+          "flag": "DNK",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2015-08-05T08:26:55Z",
+          "transmission_date_to": "2021-07-12T08:26:12Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ELLY",
+          "ssvid": "211868730",
+          "imo": null,
+          "flag": "DEU",
+          "callsign": "DB9700",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2023-05-12T18:56:37Z",
+          "transmission_date_to": "2025-10-12T11:02:38Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ELLY",
+          "ssvid": "219019229",
+          "imo": null,
+          "flag": "DNK",
+          "callsign": "XPE5880",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2014-08-16T08:17:34Z",
+          "transmission_date_to": "2026-05-01T09:26:57Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ELLY",
+          "ssvid": "533110242",
+          "imo": null,
+          "flag": "MYS",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2017-11-02T23:58:34Z",
+          "transmission_date_to": "2024-03-21T05:34:47Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        }
+      ]
+    },
+    {
+      "query": "OCEANJET",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 2,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "OCEANJET",
+          "ssvid": "629009694",
+          "imo": "9546722",
+          "flag": "GMB",
+          "callsign": "C5J796",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2025-09-15T08:24:00Z",
+          "transmission_date_to": "2026-01-21T08:21:07Z",
+          "shiptypes": [
+            "CARGO"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "OCEANJET",
+          "ssvid": "632001077",
+          "imo": "9546722",
+          "flag": "GIN",
+          "callsign": "PJI9",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2024-05-24T19:19:17Z",
+          "transmission_date_to": "2025-09-15T08:21:07Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        }
+      ]
+    },
+    {
+      "query": "SEAWAY",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SEA WAY",
+          "ssvid": "639569800",
+          "imo": null,
+          "flag": null,
+          "callsign": "EXL3036",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2025-12-08T15:17:16Z",
+          "transmission_date_to": "2025-12-17T13:06:06Z",
+          "shiptypes": [
+            "CARGO"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SEAWAY",
+          "ssvid": "265526450",
+          "imo": null,
+          "flag": "SWE",
+          "callsign": "SB9894",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2013-07-09T12:10:55Z",
+          "transmission_date_to": "2015-10-03T10:56:50Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SEAWAY",
+          "ssvid": "227611670",
+          "imo": null,
+          "flag": "FRA",
+          "callsign": "FGD9762",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2015-08-02T15:05:57Z",
+          "transmission_date_to": "2026-03-21T16:55:44Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SEAWAY",
+          "ssvid": "212472000",
+          "imo": "8410184",
+          "flag": "CYP",
+          "callsign": "5BFG2",
+          "source_codes": [
+            "IMO",
+            "RESEARCH-PAPER"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2012-01-01T07:26:46Z",
+          "transmission_date_to": "2019-04-01T09:55:06Z",
+          "shiptypes": [
+            "OTHER",
+            "NA"
+          ],
+          "registry_info_total_records": 1
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SEA WAY",
+          "ssvid": "316049149",
+          "imo": null,
+          "flag": "CAN",
+          "callsign": "VEN3148",
+          "source_codes": [
+            "CAN"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2022-06-09T14:36:10Z",
+          "transmission_date_to": "2024-11-18T09:52:03Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 1
+        }
+      ]
+    },
+    {
+      "query": "ABYAN",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ABYAN",
+          "ssvid": "422031600",
+          "imo": "9349667",
+          "flag": "IRN",
+          "callsign": "EPBR3",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2012-09-14T19:41:59Z",
+          "transmission_date_to": "2026-03-27T17:16:59Z",
+          "shiptypes": [
+            "OTHER",
+            "CARGO"
+          ],
+          "registry_info_total_records": 1
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ABYAN",
+          "ssvid": "408900818",
+          "imo": null,
+          "flag": "BHR",
+          "callsign": "BH6959",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2020-10-14T00:53:04Z",
+          "transmission_date_to": "2024-10-14T03:38:13Z",
+          "shiptypes": [
+            "NA",
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ALYAN",
+          "ssvid": "366978410",
+          "imo": null,
+          "flag": "USA",
+          "callsign": "WCO8621",
+          "source_codes": [
+            "USA"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2022-08-24T19:48:38Z",
+          "transmission_date_to": "2025-10-27T17:36:03Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 1
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "ARYAN",
+          "ssvid": "422279660",
+          "imo": null,
+          "flag": "IRN",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2022-01-08T21:59:02.62Z",
+          "transmission_date_to": "2022-10-22T07:01:41Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "AIYAN",
+          "ssvid": "422172380",
+          "imo": null,
+          "flag": "IRN",
+          "callsign": "1234567",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2023-10-27T10:15:40Z",
+          "transmission_date_to": "2023-11-01T17:44:03Z",
+          "shiptypes": [
+            "FISHING"
+          ],
+          "registry_info_total_records": 0
+        }
+      ]
+    },
+    {
+      "query": "BITU",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "BITU",
+          "ssvid": "352004730",
+          "imo": "9531765",
+          "flag": "PAN",
+          "callsign": "3E6982",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2024-10-30T07:26:25Z",
+          "transmission_date_to": "2026-05-01T07:48:37Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "MV TITU",
+          "ssvid": "650900551",
+          "imo": "9005510",
+          "flag": "MOZ",
+          "callsign": "P2NY",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2020-10-04T04:03:01Z",
+          "transmission_date_to": "2020-10-04T05:20:00Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "BITT",
+          "ssvid": "232055399",
+          "imo": null,
+          "flag": "GBR",
+          "callsign": "MPIJ6",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2024-05-14T09:39:55Z",
+          "transmission_date_to": "2025-04-22T00:52:57Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "BILU",
+          "ssvid": "211826670",
+          "imo": null,
+          "flag": "DEU",
+          "callsign": "DH5398",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2025-05-13T08:34:12Z",
+          "transmission_date_to": "2025-09-25T12:22:06Z",
+          "shiptypes": [
+            "PASSENGER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "PITU",
+          "ssvid": "338422286",
+          "imo": null,
+          "flag": "USA",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2021-08-17T16:33:16Z",
+          "transmission_date_to": "2024-08-21T19:13:21Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        }
+      ]
+    },
+    {
+      "query": "SAFEEN PRESTIGE",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 2,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SAFEEN PRESTIGE",
+          "ssvid": "622122222",
+          "imo": "9593517",
+          "flag": "EGY",
+          "callsign": "6BKE",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2024-08-08T12:24:41Z",
+          "transmission_date_to": "2026-02-13T13:29:44Z",
+          "shiptypes": [
+            "CARGO"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "BINDIIPSA",
+          "ssvid": "538005242",
+          "imo": "9593517",
+          "flag": "MHL",
+          "callsign": "V7CC7",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2013-08-30T03:22:27Z",
+          "transmission_date_to": "2022-05-01T06:22:51Z",
+          "shiptypes": [
+            "CARGO",
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        }
+      ]
+    },
+    {
+      "query": "MUBARAZ",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 5,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "MUBARAZ",
+          "ssvid": "636010373",
+          "imo": "9074626",
+          "flag": "LBR",
+          "callsign": "ELSN2",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2012-01-12T20:02:23Z",
+          "transmission_date_to": "2026-03-31T23:54:43Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "MUBARAK",
+          "ssvid": "466575310",
+          "imo": null,
+          "flag": "QAT",
+          "callsign": "100%",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2020-10-03T22:20:59Z",
+          "transmission_date_to": "2024-05-30T07:43:19Z",
+          "shiptypes": [
+            "NA",
+            "FISHING"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "MUBARAK",
+          "ssvid": "419957593",
+          "imo": null,
+          "flag": "IND",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2025-11-24T03:04:45Z",
+          "transmission_date_to": "2025-12-14T05:03:57Z",
+          "shiptypes": [
+            "FISHING"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "MUBARAK",
+          "ssvid": "466575310",
+          "imo": null,
+          "flag": "QAT",
+          "callsign": "A7E2227",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2019-07-18T10:48:10Z",
+          "transmission_date_to": "2020-06-20T21:40:29Z",
+          "shiptypes": [
+            "FISHING"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "KM MUBARAK",
+          "ssvid": "525201626",
+          "imo": null,
+          "flag": "IDN",
+          "callsign": null,
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2021-03-22T04:50:13Z",
+          "transmission_date_to": "2023-10-16T22:57:37Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        }
+      ]
+    },
+    {
+      "query": "DESH GARIMA",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 2,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "DESH GARIMA",
+          "ssvid": "444959824",
+          "imo": "9467756",
+          "flag": null,
+          "callsign": "AVBC",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2020-04-11T00:32:32Z",
+          "transmission_date_to": "2020-04-11T07:56:11Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        },
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "DESHGARIMA",
+          "ssvid": "419794000",
+          "imo": "9467756",
+          "flag": "IND",
+          "callsign": "AVBC",
+          "source_codes": [
+            "IMO"
+          ],
+          "latest_vessel_info": true,
+          "transmission_date_from": "2012-01-08T17:43:26Z",
+          "transmission_date_to": "2026-03-31T23:37:18Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 1
+        }
+      ]
+    },
+    {
+      "query": "SANMAR HERALD",
+      "ok": true,
+      "status": 200,
+      "detail": "OK",
+      "result_count": 1,
+      "entries": [
+        {
+          "dataset": "public-global-vessel-identity:v4.0",
+          "shipname": "SANMAR HERALD",
+          "ssvid": "419002042",
+          "imo": "9330563",
+          "flag": "IND",
+          "callsign": "ATEJ2",
+          "source_codes": [
+            "AIS"
+          ],
+          "latest_vessel_info": null,
+          "transmission_date_from": "2025-07-15T09:22:42Z",
+          "transmission_date_to": "2026-05-01T23:57:23Z",
+          "shiptypes": [
+            "OTHER"
+          ],
+          "registry_info_total_records": 0
+        }
+      ]
+    }
+  ],
+  "analysis": {
+    "matched_queries": [
+      {
+        "query": "SARV SHAKTI",
+        "result_count": 1,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "PROVIDENCE",
+            "ssvid": "538005632",
+            "imo": "9350599",
+            "flag": "MHL",
+            "callsign": "V7FO9",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2014-05-27T09:52:15Z",
+            "transmission_date_to": "2022-05-16T08:36:43Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 1
+          }
+        ]
+      },
+      {
+        "query": "HUGE",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "SVSGILBERT",
+            "ssvid": "677036700",
+            "imo": "8981858",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2012-01-01T02:46:45Z",
+            "transmission_date_to": "2013-04-28T01:51:21Z",
+            "shiptypes": [
+              "NA",
+              "OTHER"
+            ],
+            "registry_info_total_records": 1
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "HUGE",
+            "ssvid": "422206900",
+            "imo": "9357183",
+            "flag": "IRN",
+            "callsign": "EPJE5",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2019-03-05T04:09:18Z",
+            "transmission_date_to": "2026-03-19T20:43:56Z",
+            "shiptypes": [
+              "NA",
+              "OTHER"
+            ],
+            "registry_info_total_records": 1
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "HUGH E",
+            "ssvid": "338334813",
+            "imo": null,
+            "flag": "USA",
+            "callsign": null,
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2021-05-11T21:52:48Z",
+            "transmission_date_to": "2026-03-29T18:29:30Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "VIGOR",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "VIGOR",
+            "ssvid": "244130881",
+            "imo": null,
+            "flag": "NLD",
+            "callsign": "PI7740",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2022-04-14T09:47:55Z",
+            "transmission_date_to": "2026-04-15T12:40:41Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "VIGOR",
+            "ssvid": "629009438",
+            "imo": "9262156",
+            "flag": "GMB",
+            "callsign": "C5J450",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2025-01-22T14:09:32Z",
+            "transmission_date_to": "2026-01-07T09:13:30Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "VIGOR",
+            "ssvid": "244140491",
+            "imo": null,
+            "flag": "NLD",
+            "callsign": "PA5720",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2023-05-18T08:27:51Z",
+            "transmission_date_to": "2026-03-01T17:19:54Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "ELLY",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "KASPER HAARUP",
+            "ssvid": "219031463",
+            "imo": null,
+            "flag": "DNK",
+            "callsign": "ELLY",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2024-05-03T17:53:27Z",
+            "transmission_date_to": "2025-12-15T12:21:49Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "ELLY",
+            "ssvid": "219019229",
+            "imo": null,
+            "flag": "DNK",
+            "callsign": null,
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2015-08-05T08:26:55Z",
+            "transmission_date_to": "2021-07-12T08:26:12Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "ELLY",
+            "ssvid": "211868730",
+            "imo": null,
+            "flag": "DEU",
+            "callsign": "DB9700",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2023-05-12T18:56:37Z",
+            "transmission_date_to": "2025-10-12T11:02:38Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "OCEANJET",
+        "result_count": 2,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "OCEANJET",
+            "ssvid": "629009694",
+            "imo": "9546722",
+            "flag": "GMB",
+            "callsign": "C5J796",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2025-09-15T08:24:00Z",
+            "transmission_date_to": "2026-01-21T08:21:07Z",
+            "shiptypes": [
+              "CARGO"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "OCEANJET",
+            "ssvid": "632001077",
+            "imo": "9546722",
+            "flag": "GIN",
+            "callsign": "PJI9",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2024-05-24T19:19:17Z",
+            "transmission_date_to": "2025-09-15T08:21:07Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "SEAWAY",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "SEA WAY",
+            "ssvid": "639569800",
+            "imo": null,
+            "flag": null,
+            "callsign": "EXL3036",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2025-12-08T15:17:16Z",
+            "transmission_date_to": "2025-12-17T13:06:06Z",
+            "shiptypes": [
+              "CARGO"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "SEAWAY",
+            "ssvid": "265526450",
+            "imo": null,
+            "flag": "SWE",
+            "callsign": "SB9894",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2013-07-09T12:10:55Z",
+            "transmission_date_to": "2015-10-03T10:56:50Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "SEAWAY",
+            "ssvid": "227611670",
+            "imo": null,
+            "flag": "FRA",
+            "callsign": "FGD9762",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2015-08-02T15:05:57Z",
+            "transmission_date_to": "2026-03-21T16:55:44Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "ABYAN",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "ABYAN",
+            "ssvid": "422031600",
+            "imo": "9349667",
+            "flag": "IRN",
+            "callsign": "EPBR3",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2012-09-14T19:41:59Z",
+            "transmission_date_to": "2026-03-27T17:16:59Z",
+            "shiptypes": [
+              "OTHER",
+              "CARGO"
+            ],
+            "registry_info_total_records": 1
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "ABYAN",
+            "ssvid": "408900818",
+            "imo": null,
+            "flag": "BHR",
+            "callsign": "BH6959",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2020-10-14T00:53:04Z",
+            "transmission_date_to": "2024-10-14T03:38:13Z",
+            "shiptypes": [
+              "NA",
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "ALYAN",
+            "ssvid": "366978410",
+            "imo": null,
+            "flag": "USA",
+            "callsign": "WCO8621",
+            "source_codes": [
+              "USA"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2022-08-24T19:48:38Z",
+            "transmission_date_to": "2025-10-27T17:36:03Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 1
+          }
+        ]
+      },
+      {
+        "query": "BITU",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "BITU",
+            "ssvid": "352004730",
+            "imo": "9531765",
+            "flag": "PAN",
+            "callsign": "3E6982",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2024-10-30T07:26:25Z",
+            "transmission_date_to": "2026-05-01T07:48:37Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "MV TITU",
+            "ssvid": "650900551",
+            "imo": "9005510",
+            "flag": "MOZ",
+            "callsign": "P2NY",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2020-10-04T04:03:01Z",
+            "transmission_date_to": "2020-10-04T05:20:00Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "BITT",
+            "ssvid": "232055399",
+            "imo": null,
+            "flag": "GBR",
+            "callsign": "MPIJ6",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2024-05-14T09:39:55Z",
+            "transmission_date_to": "2025-04-22T00:52:57Z",
+            "shiptypes": [
+              "PASSENGER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "SAFEEN PRESTIGE",
+        "result_count": 2,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "SAFEEN PRESTIGE",
+            "ssvid": "622122222",
+            "imo": "9593517",
+            "flag": "EGY",
+            "callsign": "6BKE",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2024-08-08T12:24:41Z",
+            "transmission_date_to": "2026-02-13T13:29:44Z",
+            "shiptypes": [
+              "CARGO"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "BINDIIPSA",
+            "ssvid": "538005242",
+            "imo": "9593517",
+            "flag": "MHL",
+            "callsign": "V7CC7",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2013-08-30T03:22:27Z",
+            "transmission_date_to": "2022-05-01T06:22:51Z",
+            "shiptypes": [
+              "CARGO",
+              "OTHER"
+            ],
+            "registry_info_total_records": 1
+          }
+        ]
+      },
+      {
+        "query": "MUBARAZ",
+        "result_count": 5,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "MUBARAZ",
+            "ssvid": "636010373",
+            "imo": "9074626",
+            "flag": "LBR",
+            "callsign": "ELSN2",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2012-01-12T20:02:23Z",
+            "transmission_date_to": "2026-03-31T23:54:43Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 1
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "MUBARAK",
+            "ssvid": "466575310",
+            "imo": null,
+            "flag": "QAT",
+            "callsign": "100%",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2020-10-03T22:20:59Z",
+            "transmission_date_to": "2024-05-30T07:43:19Z",
+            "shiptypes": [
+              "NA",
+              "FISHING"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "MUBARAK",
+            "ssvid": "419957593",
+            "imo": null,
+            "flag": "IND",
+            "callsign": null,
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2025-11-24T03:04:45Z",
+            "transmission_date_to": "2025-12-14T05:03:57Z",
+            "shiptypes": [
+              "FISHING"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      },
+      {
+        "query": "DESH GARIMA",
+        "result_count": 2,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "DESH GARIMA",
+            "ssvid": "444959824",
+            "imo": "9467756",
+            "flag": null,
+            "callsign": "AVBC",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2020-04-11T00:32:32Z",
+            "transmission_date_to": "2020-04-11T07:56:11Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          },
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "DESHGARIMA",
+            "ssvid": "419794000",
+            "imo": "9467756",
+            "flag": "IND",
+            "callsign": "AVBC",
+            "source_codes": [
+              "IMO"
+            ],
+            "latest_vessel_info": true,
+            "transmission_date_from": "2012-01-08T17:43:26Z",
+            "transmission_date_to": "2026-03-31T23:37:18Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 1
+          }
+        ]
+      },
+      {
+        "query": "SANMAR HERALD",
+        "result_count": 1,
+        "top_results": [
+          {
+            "dataset": "public-global-vessel-identity:v4.0",
+            "shipname": "SANMAR HERALD",
+            "ssvid": "419002042",
+            "imo": "9330563",
+            "flag": "IND",
+            "callsign": "ATEJ2",
+            "source_codes": [
+              "AIS"
+            ],
+            "latest_vessel_info": null,
+            "transmission_date_from": "2025-07-15T09:22:42Z",
+            "transmission_date_to": "2026-05-01T23:57:23Z",
+            "shiptypes": [
+              "OTHER"
+            ],
+            "registry_info_total_records": 0
+          }
+        ]
+      }
+    ]
+  }
+}

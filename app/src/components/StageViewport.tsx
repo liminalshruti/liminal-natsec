@@ -2,7 +2,6 @@ import type { AlertView } from "../lib/types.ts";
 import type { LoadedScenario } from "../lib/fixtures.ts";
 import { DataSourcesChips } from "./DataSourcesChips.tsx";
 import { DemoPrompt } from "./DemoPrompt.tsx";
-import { MapInkBase } from "./MapInkBase.tsx";
 import { MapInstrumentBezels } from "./MapInstrumentBezels.tsx";
 import { MapLayers } from "./MapLayers.tsx";
 import { MapOverlays } from "./MapOverlays.tsx";
@@ -71,12 +70,6 @@ export function StageViewport({
               fixtureUrl={scenario?.state.mode === "real" ? scenario.state.tracksUrl : undefined}
               style={{ position: "absolute", inset: 0 }}
             />
-            {/* MapInkBase: ink-drawn Hormuz coastline at low opacity over the
-                MapLibre raster basemap. Implements the May-1 transcript's
-                "ink-drawn map of the strait of Hormuz, my Liminal aesthetic"
-                + the overhead-projector idea (translucent layer on top of the
-                geographic substrate). Pure SVG, doesn't touch MapLibre. */}
-            <MapInkBase />
             {/* MapOverlays: cache-driven translucent intel layers (GFW gaps,
                 OpenSanctions, NAVAREA, Sentinel SAR). Listens to MapLayers
                 via the `liminal:map-layers-changed` window event. Each layer

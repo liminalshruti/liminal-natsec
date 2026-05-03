@@ -18,6 +18,7 @@ import { HormuzIntelDrawer } from "./HormuzIntelDrawer.tsx";
 import { HypothesisBoard } from "./HypothesisBoard.tsx";
 import { HypothesisSurface } from "./HypothesisSurface.tsx";
 import { KnowledgeGraphViz } from "./KnowledgeGraphViz.tsx";
+import { OsintIntakeBand } from "./OsintIntakeBand.tsx";
 import { ProvenanceTrace } from "./ProvenanceTrace.tsx";
 import { ReviewMemory } from "./ReviewMemory.tsx";
 import { SpecialistReads } from "./SpecialistReads.tsx";
@@ -25,12 +26,14 @@ import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
 interface CustodyCasePanelProps {
   selectedAlert: AlertView;
+  /** Current replay phase (1..6). Drives the OSINT intake band's phase-keyed reveal. */
+  replayPhase?: number;
 }
 
 // v3.2 IA — see WorkingPanel.tsx and docs/TECHNICAL_PLAN.md §0.2.
 // Operative surface (Zones 1+2) is pinned; forensic surface (Zone 3 case file)
 // scrolls with dragon-fold sticky section headers.
-export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
+export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCasePanelProps) {
   const caseId = useMemo(
     () => selectedAlert.caseId ?? caseIdFromAlertId(selectedAlert.id),
     [selectedAlert.caseId, selectedAlert.id]
@@ -148,6 +151,12 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
             />
           )}
         </div>
+
+        {/* Intake band — OSINT signals feeding the analysis below. Phase-keyed
+            reveal so chips "arrive" as the replay clock advances. The same
+            family colors reappear on the Specialist Reads rows so the eye
+            traces Signals → Analysis → Verdict without hover. */}
+        <OsintIntakeBand phase={replayPhase} />
 
         {/* Zone 2 — causal flow, top to bottom: SUBSTRATE → VERDICT.
             Specialist reads feed the Bayesian fusion that produces the

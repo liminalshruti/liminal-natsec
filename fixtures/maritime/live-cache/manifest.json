@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T13:58:30.561Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "profile": "all",
   "aoi": {
     "name": "Strait of Hormuz demo AOI",
@@ -132,8 +132,8 @@
     },
     {
       "source": "NAVAREA_IX",
-      "ok": true,
-      "detail": "200; 245368 bytes cached.",
+      "ok": false,
+      "detail": "failed: timeout after 15000ms",
       "fileName": "navarea-ix-warnings.html"
     },
     {

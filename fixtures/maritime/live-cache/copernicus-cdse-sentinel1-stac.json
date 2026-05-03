@@ -1,13 +1,13 @@
 {
   "source": "COPERNICUS_CDSE_STAC",
-  "generated_at": "2026-05-03T13:58:30.561Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "request": {
     "url": "https://stac.dataspace.copernicus.eu/v1/search",
     "method": "POST",
     "metadata": {
       "collection": "sentinel-1-grd",
       "aoi": "Strait of Hormuz demo AOI",
-      "datetime": "2026-04-03T13:58:30.563Z/2026-05-03T13:58:30.563Z",
+      "datetime": "2026-04-03T14:11:46.377Z/2026-05-03T14:11:46.377Z",
       "query": {
         "sar:instrument_mode": {
           "eq": "IW"
@@ -40,7 +40,7 @@
             57.8,
             27.2
           ],
-          "datetime": "2026-04-03T13:58:30.563Z/2026-05-03T13:58:30.563Z",
+          "datetime": "2026-04-03T14:11:46.377Z/2026-05-03T14:11:46.377Z",
           "limit": 12,
           "query": {
             "sar:instrument_mode": {

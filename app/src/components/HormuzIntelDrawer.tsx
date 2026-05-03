@@ -10,7 +10,7 @@ const SOURCE_COVERAGE = [
   { id: "portwatch", label: "PortWatch", sources: ["PORTWATCH"] },
   { id: "gdelt", label: "GDELT", sources: ["GDELT"] },
   { id: "exa", label: "Exa", sources: ["EXA"] },
-  { id: "opensanctions", label: "OpenSanctions", sources: ["OPENSANCTIONS"] },
+  { id: "sanctions", label: "Sanctions", sources: ["OPENSANCTIONS", "OFAC"] },
   { id: "gfw", label: "GFW", sources: ["GLOBAL_FISHING_WATCH"] },
   { id: "navarea-ukmto", label: "NAVAREA/UKMTO", sources: ["NAVAREA_IX", "UKMTO"] },
   {

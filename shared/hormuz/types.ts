@@ -33,6 +33,7 @@ export type HormuzIntelSource =
   | "GDELT"
   | "SENTINEL_HUB_PROCESS"
   | "OPENSANCTIONS"
+  | "OFAC"
   | "EXA"
   | "PORTWATCH"
   | "NAVAREA_IX"

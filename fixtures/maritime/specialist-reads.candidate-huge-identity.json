@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "seaforge.specialist-reads.v1",
+  "generated_at": "2026-05-03T14:41:35.135Z",
+  "note": "Real-data evidence pack for the demo Identity row. Built from refreshed OFAC SDN + GFW vessel-identity history. NOT YET INTEGRATED into specialist-reads.json (Shruti owns that file).",
+  "candidate_entries": [
+    {
+      "name": "vessel_identity",
+      "anomaly_id": "anom:hormuz-real:huge-mmsi-churn",
+      "key": "vessel_identity::anom:hormuz-real:huge-mmsi-churn",
+      "cached_at": "2026-05-03T14:41:35.136Z",
+      "expected_verdict": "supported",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "ev:ofac-sdn:15054",
+            "type": "SANCTIONS_RECORD",
+            "modality": "registry",
+            "observed_at": "2026-05-03T14:40:05.995Z",
+            "source": "OFAC_SDN",
+            "provenance": {
+              "url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+              "sha256": "19358a11db50caab5523a55bee948e714587dd0ade98677756a9afe35a57eb72",
+              "row_id": 15054,
+              "program_tags": [
+                "IRAN"
+              ],
+              "linked_to": "NATIONAL IRANIAN TANKER COMPANY"
+            },
+            "payload": {
+              "sdn_name": "HUGE",
+              "type": "vessel",
+              "vessel_class": "Crude Oil Tanker",
+              "gross_tonnage": "317,367",
+              "net_tonnage": "163,660",
+              "country": "Iran",
+              "imo": "9357183",
+              "mmsi_listed": "212256000",
+              "former_names": [
+                "HATEF",
+                "GLORY"
+              ],
+              "former_flags": [
+                "Cyprus",
+                "Tuvalu",
+                "Tanzania",
+                "Panama"
+              ]
+            }
+          },
+          {
+            "id": "ev:gfw-vessel-identity:9357183",
+            "type": "VESSEL_IDENTITY_RECORD",
+            "modality": "registry",
+            "observed_at": "2026-05-03T14:40:05.995Z",
+            "source": "GLOBAL_FISHING_WATCH",
+            "provenance": {
+              "url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=9357183&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+              "dataset": "public-global-vessel-identity:latest",
+              "query_imo": "9357183"
+            },
+            "payload": {
+              "imo": "9357183",
+              "broadcast_history": [
+                {
+                  "name": "SVS GILBERT",
+                  "ssvid": "677036700",
+                  "imo": "8981858",
+                  "flag": "TZA",
+                  "callsign": "5IM467",
+                  "transmissionDateFrom": "2012-01-01T00:50:23Z",
+                  "transmissionDateTo": "2013-04-28T16:20:45Z",
+                  "messagesCounter": 11078,
+                  "positionsCounter": 8821
+                },
+                {
+                  "name": "HATEF",
+                  "ssvid": "212256000",
+                  "imo": "9357183",
+                  "flag": "CYP",
+                  "callsign": "5BAZ2",
+                  "transmissionDateFrom": "2012-02-22T06:36:08Z",
+                  "transmissionDateTo": "2012-03-19T06:39:35Z",
+                  "messagesCounter": 172,
+                  "positionsCounter": 165
+                },
+                {
+                  "name": "GLORY",
+                  "ssvid": "572465210",
+                  "imo": "9357183",
+                  "flag": "TUV",
+                  "callsign": "T2EG4",
+                  "transmissionDateFrom": "2012-07-24T18:00:14Z",
+                  "transmissionDateTo": "2012-10-04T02:44:23Z",
+                  "messagesCounter": 2391,
+                  "positionsCounter": 1136
+                },
+                {
+                  "name": "HUGE",
+                  "ssvid": "677036700",
+                  "imo": "9357183",
+                  "flag": "TZA",
+                  "callsign": "5IM467",
+                  "transmissionDateFrom": "2012-10-04T02:56:25Z",
+                  "transmissionDateTo": "2017-06-08T16:50:53Z",
+                  "messagesCounter": 86738,
+                  "positionsCounter": 39430
+                },
+                {
+                  "name": null,
+                  "ssvid": "677036700",
+                  "imo": null,
+                  "flag": "TZA",
+                  "callsign": "5IM467",
+                  "transmissionDateFrom": "2015-11-24T04:17:07Z",
+                  "transmissionDateTo": "2015-12-15T01:26:50Z",
+                  "messagesCounter": 2560,
+                  "positionsCounter": 999
+                },
+                {
+                  "name": "HUGE",
+                  "ssvid": "353549000",
+                  "imo": "9357183",
+                  "flag": "PAN",
+                  "callsign": "3FAA8",
+                  "transmissionDateFrom": "2016-06-28T07:21:06Z",
+                  "transmissionDateTo": "2019-01-04T01:28:13Z",
+                  "messagesCounter": 227094,
+                  "positionsCounter": 112388
+                },
+                {
+                  "name": "HUGE",
+                  "ssvid": "422206900",
+                  "imo": "9357183",
+                  "flag": "IRN",
+                  "callsign": "EPJE5",
+                  "transmissionDateFrom": "2019-03-05T02:54:43Z",
+                  "transmissionDateTo": "2026-03-20T02:09:30Z",
+                  "messagesCounter": 845988,
+                  "positionsCounter": 157582
+                }
+              ]
+            }
+          }
+        ],
+        "claim": {
+          "id": "claim:hormuz-real:huge-mmsi-churn",
+          "text": "OFAC-listed Iranian crude oil tanker HUGE (IMO 9357183) has reflagged and re-MMSI-d at least 5 times; its currently broadcasting MMSI is not the OFAC-listed MMSI.",
+          "posterior": 0.92,
+          "class": "vessel_identity"
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "OFAC SDN row 15054 lists HUGE (IMO 9357183, NITC, Iran program) at MMSI 212256000. GFW vessel-identity history shows the same IMO has broadcast under 7 distinct (MMSI, flag, callsign, name) tuples between 2012-01-01 and 2026-03-20. Current AIS identity is MMSI 422206900 / IRN flag / callsign EPJE5, last received 2026-03-20. The OFAC-listed MMSI 212256000 was the 2012 Cyprus broadcast under the prior name HATEF.",
+        "cited_observation_ids": [
+          "ev:ofac-sdn:15054",
+          "ev:gfw-vessel-identity:9357183"
+        ],
+        "confidence": 0.92,
+        "identity_chain": [
+          {
+            "name": "SVS GILBERT",
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "window": [
+              "2012-01-01",
+              "2013-04-28"
+            ],
+            "messages": 11078
+          },
+          {
+            "name": "HATEF",
+            "ssvid": "212256000",
+            "flag": "CYP",
+            "callsign": "5BAZ2",
+            "window": [
+              "2012-02-22",
+              "2012-03-19"
+            ],
+            "messages": 172
+          },
+          {
+            "name": "GLORY",
+            "ssvid": "572465210",
+            "flag": "TUV",
+            "callsign": "T2EG4",
+            "window": [
+              "2012-07-24",
+              "2012-10-04"
+            ],
+            "messages": 2391
+          },
+          {
+            "name": "HUGE",
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "window": [
+              "2012-10-04",
+              "2017-06-08"
+            ],
+            "messages": 86738
+          },
+          {
+            "name": "<unnamed>",
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "window": [
+              "2015-11-24",
+              "2015-12-15"
+            ],
+            "messages": 2560
+          },
+          {
+            "name": "HUGE",
+            "ssvid": "353549000",
+            "flag": "PAN",
+            "callsign": "3FAA8",
+            "window": [
+              "2016-06-28",
+              "2019-01-04"
+            ],
+            "messages": 227094
+          },
+          {
+            "name": "HUGE",
+            "ssvid": "422206900",
+            "flag": "IRN",
+            "callsign": "EPJE5",
+            "window": [
+              "2019-03-05",
+              "2026-03-20"
+            ],
+            "messages": 845988
+          }
+        ],
+        "unsupported_assertions": [],
+        "allowed_claim_classes": [
+          "vessel_identity",
+          "identity_source_corroboration"
+        ],
+        "excluded_claim_classes": [
+          "intent",
+          "kinematics"
+        ]
+      }
+    }
+  ]
+}

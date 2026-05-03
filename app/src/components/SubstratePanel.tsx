@@ -1,6 +1,7 @@
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
 import { NamedOperatorCard } from "./NamedOperatorCard.tsx";
+import { WatchfloorOsintFeed } from "./WatchfloorOsintFeed.tsx";
 
 interface SubstratePanelProps {
   alerts: AlertView[];
@@ -43,6 +44,7 @@ export function SubstratePanel({
           onSelectAlert={onSelectAlert}
           loading={loading}
         />
+        <WatchfloorOsintFeed />
       </div>
     </aside>
   );

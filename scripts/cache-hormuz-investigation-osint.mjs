@@ -1,5 +1,8 @@
 import { createHash } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { loadConfigIniIntoEnv } from "./load-config-ini.mjs";
+
+loadConfigIniIntoEnv();
 
 const outputDir = new URL("../fixtures/maritime/live-cache/", import.meta.url);
 const generatedAt = new Date().toISOString();
@@ -47,6 +50,7 @@ results.push(await cacheUkmtoProductPages());
 results.push(await cacheMaradAdvisories());
 results.push(await cacheOfacMaritimeMatches());
 results.push(await cacheStanfordRfiProbe());
+results.push(await cacheGfwNamedVesselSearches());
 results.push(await cachePaidManualSourcePlan());
 
 await writeJson("manifest-investigation-osint.json", {
@@ -469,7 +473,94 @@ async function cachePaidManualSourcePlan() {
   };
 }
 
+async function cacheGfwNamedVesselSearches() {
+  const token = envOr("GLOBAL_FISHING_WATCH_API_KEY");
+  const baseUrl = envOr("GLOBAL_FISHING_WATCH_BASE_URL", "https://gateway.api.globalfishingwatch.org").replace(/\/$/, "");
+  const queries = [
+    "SARV SHAKTI",
+    "HUGE",
+    "VIGOR",
+    "ELLY",
+    "OCEANJET",
+    "SEAWAY",
+    "ABYAN",
+    "BITU",
+    "SAFEEN PRESTIGE",
+    "MUBARAZ",
+    "DESH GARIMA",
+    "SANMAR HERALD"
+  ];
+
+  if (!token) {
+    return writeFailure("gfw-hormuz-named-vessel-searches.json", "GFW_NAMED_VESSEL_SEARCH", "GLOBAL_FISHING_WATCH_API_KEY missing; skipped.");
+  }
+
+  const records = [];
+  for (const query of queries) {
+    const url = new URL(`${baseUrl}/v3/vessels/search`);
+    url.searchParams.set("query", query);
+    url.searchParams.set("datasets[0]", "public-global-vessel-identity:latest");
+    url.searchParams.set("limit", "5");
+    const response = await fetchJson(url.toString(), {
+      timeoutMs: 30_000,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: "application/json"
+      }
+    });
+    const entries = Array.isArray(response.json?.entries) ? response.json.entries : [];
+    records.push({
+      query,
+      ok: response.ok,
+      status: response.status,
+      detail: response.detail,
+      result_count: entries.length,
+      entries: entries.map(projectGfwVesselEntry)
+    });
+  }
+
+  const payload = {
+    source: "GFW_NAMED_VESSEL_SEARCH",
+    generated_at: generatedAt,
+    request: {
+      dataset: "public-global-vessel-identity:latest",
+      note: "Named vessel identity lookup for candidates surfaced by 72-hour open web / warning OSINT. Identity only; not behavior evidence."
+    },
+    response: {
+      ok: records.some((record) => record.ok),
+      searches_ok: records.filter((record) => record.ok).length,
+      searches_requested: records.length
+    },
+    records,
+    analysis: {
+      matched_queries: records
+        .filter((record) => record.result_count > 0)
+        .map((record) => ({
+          query: record.query,
+          result_count: record.result_count,
+          top_results: record.entries.slice(0, 3)
+        }))
+    }
+  };
+  await writeJson("gfw-hormuz-named-vessel-searches.json", payload);
+  return {
+    source: "GFW_NAMED_VESSEL_SEARCH",
+    ok: payload.response.ok,
+    detail: `${payload.response.searches_ok}/${records.length} named vessel searches completed; ${payload.analysis.matched_queries.length} queries returned results.`,
+    fileName: "gfw-hormuz-named-vessel-searches.json"
+  };
+}
+
 async function writeFailure(fileName, source, detail) {
+  const existing = await readExistingJson(fileName);
+  if (existing?.response?.ok === true) {
+    return {
+      source,
+      ok: true,
+      detail: `${detail}; kept previous successful cache from ${existing.generated_at ?? "unknown time"}.`,
+      fileName
+    };
+  }
   await writeJson(fileName, {
     source,
     generated_at: generatedAt,
@@ -479,6 +570,14 @@ async function writeFailure(fileName, source, detail) {
     }
   });
   return { source, ok: false, detail, fileName };
+}
+
+async function readExistingJson(fileName) {
+  try {
+    return JSON.parse(await readFile(new URL(fileName, outputDir), "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 async function fetchText(url, options = {}) {
@@ -491,7 +590,8 @@ async function fetchText(url, options = {}) {
       signal: controller.signal,
       headers: {
         "User-Agent": "liminal-natsec-osint-cache/0.1",
-        Accept: "text/html,application/json,text/plain,*/*"
+        Accept: "text/html,application/json,text/plain,*/*",
+        ...(options.headers ?? {})
       }
     });
     const text = await response.text();
@@ -515,6 +615,14 @@ async function fetchText(url, options = {}) {
   } finally {
     clearTimeout(timeout);
   }
+}
+
+async function fetchJson(url, options = {}) {
+  const response = await fetchText(url, options);
+  return {
+    ...response,
+    json: response.ok ? parseJsonSafe(response.text) : null
+  };
 }
 
 async function writeJson(fileName, value) {
@@ -683,4 +791,31 @@ function recentDates(days) {
     out.push({ yyyy, mm, dd, iso: `${yyyy}-${mm}-${dd}` });
   }
   return out;
+}
+
+function envOr(name, fallback = "") {
+  const value = process.env[name];
+  return value == null || value === "" ? fallback : value;
+}
+
+function projectGfwVesselEntry(entry) {
+  const registry = Array.isArray(entry.registryInfo) ? entry.registryInfo[0] : null;
+  const selfReported = Array.isArray(entry.selfReportedInfo) ? entry.selfReportedInfo[0] : null;
+  const info = registry ?? selfReported ?? {};
+  return {
+    dataset: entry.dataset,
+    shipname: info.shipname ?? info.nShipname ?? null,
+    ssvid: info.ssvid ?? null,
+    imo: info.imo ?? null,
+    flag: info.flag ?? null,
+    callsign: info.callsign ?? null,
+    source_codes: info.sourceCode ?? [],
+    latest_vessel_info: info.latestVesselInfo ?? null,
+    transmission_date_from: info.transmissionDateFrom ?? null,
+    transmission_date_to: info.transmissionDateTo ?? null,
+    shiptypes: Array.isArray(entry.combinedSourcesInfo)
+      ? unique(entry.combinedSourcesInfo.flatMap((item) => (item.shiptypes ?? []).map((shiptype) => shiptype.name)).filter(Boolean))
+      : [],
+    registry_info_total_records: entry.registryInfoTotalRecords ?? null
+  };
 }

@@ -1,6 +1,6 @@
 {
   "source": "GDELT",
-  "generated_at": "2026-05-03T13:58:30.561Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "fixture_mode": true,
   "fixture_reason": "GDELT DOC 2.0 live request unavailable (gdelt-hormuz-doc20-artlist.json: 429 Too Many Requests); synthetic rows preserve artlist JSON shape for offline demo use.",
   "request": {
@@ -28,7 +28,7 @@
         "url": "https://example.invalid/gdelt-fixture/hormuz-ais-disruption",
         "url_mobile": "",
         "title": "Fixture report on AIS and GNSS disruption near the Strait of Hormuz",
-        "seendate": "20260403135830",
+        "seendate": "20260403141146",
         "socialimage": null,
         "domain": "example.invalid",
         "language": "English",
@@ -38,7 +38,7 @@
         "url": "https://example.invalid/gdelt-fixture/hormuz-shipping-security",
         "url_mobile": "",
         "title": "Fixture report on shipping security around Bandar Abbas and Fujairah",
-        "seendate": "20260403195830",
+        "seendate": "20260403201146",
         "socialimage": null,
         "domain": "example.invalid",
         "language": "English",

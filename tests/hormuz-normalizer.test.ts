@@ -118,7 +118,7 @@ describe("Hormuz live-cache normalizer", () => {
     assert.equal(aisRows[0].status, "unavailable");
     assert.match(
       String(aisRows[0].summary),
-      /must not be used as Hormuz vessel behavior evidence/
+      /must not be used as Hormuz vessel behavior evidence|excluded from real vessel behavior evidence/
     );
     assert.doesNotMatch(JSON.stringify(aisRows), /inside the Hormuz regional feed/i);
   });

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-03T14:07:24.325Z",
+  "generated_at": "2026-05-03T14:28:31.149Z",
   "aoi": {
     "name": "Strait of Hormuz investigation AOI",
     "bbox": [
@@ -19,8 +19,8 @@
   "results": [
     {
       "source": "NAVAREA_IX_FULL_TEXT",
-      "ok": true,
-      "detail": "30/30 warning TXT documents cached.",
+      "ok": false,
+      "detail": "timeout after 30000ms",
       "fileName": "navarea-ix-warning-documents.json"
     },
     {
@@ -46,6 +46,12 @@
       "ok": false,
       "detail": "0 Stanford RFI JSON files cached; 0 regional hits.",
       "fileName": "stanford-rfi-hormuz-probe.json"
+    },
+    {
+      "source": "GFW_NAMED_VESSEL_SEARCH",
+      "ok": true,
+      "detail": "12/12 named vessel searches completed; 12 queries returned results.",
+      "fileName": "gfw-hormuz-named-vessel-searches.json"
     },
     {
       "source": "PAID_MANUAL_OSINT_PLAN",

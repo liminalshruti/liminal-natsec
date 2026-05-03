@@ -1,45 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { classifyStaleness, formatRelative } from "../lib/relativeTime.ts";
 import { caseIdFromAlertId, eventIdFromCaseId } from "../lib/spineGraph.ts";
 import type { AlertView, ScenarioStateView, SourceStatusView } from "../lib/types.ts";
 import { TypedObjectChip } from "./TypedObjectChip.tsx";
-
-/**
- * Relative-time formatter for substrate alerts. Operators glancing at the
- * watchfloor want to know "is this case fresh or stale" in one read. The
- * formatter renders monotonic-decreasing relative strings: "now", "30s",
- * "2m", "12m", "1h 04m", "6h ago", "2d". Past 7d falls through to ISO date.
- *
- * Reference frame is the now-tick (updated every 30s) so the strings stay
- * accurate without per-row React state.
- */
-function formatRelative(iso: string | undefined, now: number): string {
-  if (!iso) return "—";
-  const t = Date.parse(iso);
-  if (!Number.isFinite(t)) return iso;
-  const diffSec = Math.max(0, Math.floor((now - t) / 1000));
-  if (diffSec < 10) return "now";
-  if (diffSec < 60) return `${diffSec}s`;
-  const diffMin = Math.floor(diffSec / 60);
-  if (diffMin < 60) return `${diffMin}m`;
-  const diffH = Math.floor(diffMin / 60);
-  const remM = diffMin - diffH * 60;
-  if (diffH < 24) return remM > 0 ? `${diffH}h ${String(remM).padStart(2, "0")}m` : `${diffH}h`;
-  const diffD = Math.floor(diffH / 24);
-  if (diffD < 7) return `${diffD}d`;
-  return iso.slice(0, 10);
-}
-
-/** Stale-state classification: fresh (<5min) → settled (5-30min) → stale (>30min). */
-function classifyStaleness(iso: string | undefined, now: number): "fresh" | "settled" | "stale" | "unknown" {
-  if (!iso) return "unknown";
-  const t = Date.parse(iso);
-  if (!Number.isFinite(t)) return "unknown";
-  const diffMin = Math.floor((now - t) / 60_000);
-  if (diffMin < 5) return "fresh";
-  if (diffMin < 30) return "settled";
-  return "stale";
-}
 
 interface CustodyQueueProps {
   alerts: AlertView[];

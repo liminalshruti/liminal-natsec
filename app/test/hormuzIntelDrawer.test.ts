@@ -28,7 +28,7 @@ describe("Hormuz intel drawer model", () => {
     const model = buildHormuzIntelDrawerModel();
     const rows = model.groups.flatMap((group) => group.rows);
 
-    assert.equal(model.unavailableRows, 2);
+    assert.equal(model.unavailableRows, 3);
     assert.ok(
       rows.some(
         (row) =>
@@ -58,7 +58,15 @@ describe("Hormuz intel drawer model", () => {
         (row) =>
           row.source === "AISSTREAM" &&
           row.status === "unavailable" &&
-          row.summary.includes("must not be used as Hormuz vessel behavior evidence")
+          /must not be used as Hormuz vessel behavior evidence|excluded from real vessel behavior evidence/.test(row.summary)
+      )
+    );
+    assert.ok(
+      rows.some(
+        (row) =>
+          row.source === "GDELT" &&
+          row.status === "unavailable" &&
+          row.summary.includes("fixture fallback articles are excluded from real OSINT signals")
       )
     );
   });

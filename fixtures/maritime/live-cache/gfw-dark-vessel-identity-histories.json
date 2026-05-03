@@ -1,0 +1,277 @@
+{
+  "source": "GFW_DARK_VESSEL_IDENTITY_HISTORY",
+  "generated_at": "2026-05-03T14:45:02.356Z",
+  "records": [
+    {
+      "query_mmsi": "636017083",
+      "expected_name": "FRONT VEFSNA",
+      "status": 200,
+      "ok": true,
+      "request_url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=636017083&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+      "entries": 3,
+      "broadcast_history": [
+        {
+          "id": "71d5e2ef7-7fd6-8e91-284e-3686ca9d1d4b",
+          "ssvid": "636017083",
+          "shipname": null,
+          "nShipname": null,
+          "flag": "LBR",
+          "callsign": null,
+          "imo": null,
+          "messagesCounter": 1585,
+          "positionsCounter": 1585,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2016-04-04T06:43:39Z",
+          "transmissionDateTo": "2025-06-02T09:52:02Z"
+        },
+        {
+          "id": "ed11c4970-04e3-cc0a-ddf1-fea9aca816a9",
+          "ssvid": "636017083",
+          "shipname": "FRONT VEFSNA",
+          "nShipname": "FRONTVEFSNA",
+          "flag": "LBR",
+          "callsign": "D5JF4",
+          "imo": "9730098",
+          "messagesCounter": 6627381,
+          "positionsCounter": 2288676,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "SEVERAL_FIELDS",
+          "transmissionDateFrom": "2017-10-04T01:24:08Z",
+          "transmissionDateTo": "2026-05-01T23:59:14Z"
+        },
+        {
+          "id": "5e65b2630-0ddd-4d13-6241-aa95c684ca96",
+          "ssvid": "636017083",
+          "shipname": "HATTERAS",
+          "nShipname": "HATTERAS",
+          "flag": "LBR",
+          "callsign": "D5JF4",
+          "imo": null,
+          "messagesCounter": 907855,
+          "positionsCounter": 419443,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2020-08-12T23:21:28Z",
+          "transmissionDateTo": "2022-04-16T02:30:39Z"
+        }
+      ]
+    },
+    {
+      "query_mmsi": "374228000",
+      "expected_name": "KHALEJIA ANA 3",
+      "status": 200,
+      "ok": true,
+      "request_url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=374228000&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+      "entries": 2,
+      "broadcast_history": [
+        {
+          "id": "2d0a3d3f0-0ca9-6409-4684-eca2a84e5384",
+          "ssvid": "232134000",
+          "shipname": "ANTWERP MAX",
+          "nShipname": "ANTWERPMAX",
+          "flag": "GBR",
+          "callsign": "MGPX8",
+          "imo": "9164627",
+          "messagesCounter": 136620,
+          "positionsCounter": 64948,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "SEVERAL_FIELDS",
+          "transmissionDateFrom": "2012-01-03T05:35:42Z",
+          "transmissionDateTo": "2015-10-02T15:22:11Z"
+        },
+        {
+          "id": "b763232b8-80ea-1383-57a1-93ca2bf76355",
+          "ssvid": "37422800",
+          "shipname": "NAVALIS",
+          "nShipname": "NAVALIS",
+          "flag": null,
+          "callsign": "3FLA6",
+          "imo": "9164627",
+          "messagesCounter": 757,
+          "positionsCounter": 416,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "SEVERAL_FIELDS",
+          "transmissionDateFrom": "2015-09-24T03:49:06Z",
+          "transmissionDateTo": "2015-09-30T03:17:57Z"
+        },
+        {
+          "id": "23dae845b-b791-8e3a-bbbe-cc7598699984",
+          "ssvid": "374228000",
+          "shipname": null,
+          "nShipname": null,
+          "flag": "PAN",
+          "callsign": null,
+          "imo": null,
+          "messagesCounter": 352,
+          "positionsCounter": 352,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2015-10-04T09:39:40Z",
+          "transmissionDateTo": "2026-03-07T21:22:16Z"
+        },
+        {
+          "id": "10cba7061-1b9f-5f41-2c99-79a9a58e1f79",
+          "ssvid": "374228000",
+          "shipname": "KHALEJIA ANA 3",
+          "nShipname": "KHALEJIAANA3",
+          "flag": "PAN",
+          "callsign": "3FLA6",
+          "imo": "9164627",
+          "messagesCounter": 5645996,
+          "positionsCounter": 1614073,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "SEVERAL_FIELDS",
+          "transmissionDateFrom": "2015-10-05T20:26:31Z",
+          "transmissionDateTo": "2026-04-28T11:32:34Z"
+        }
+      ]
+    },
+    {
+      "query_mmsi": "354168000",
+      "expected_name": "MERCURY",
+      "status": 200,
+      "ok": true,
+      "request_url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=354168000&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+      "entries": 3,
+      "broadcast_history": [
+        {
+          "id": "da5e82b17-7e44-1ea7-b3b6-6e8c14177a87",
+          "ssvid": "354168000",
+          "shipname": null,
+          "nShipname": null,
+          "flag": "PAN",
+          "callsign": null,
+          "imo": null,
+          "messagesCounter": 1568,
+          "positionsCounter": 1568,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2012-01-01T01:12:05Z",
+          "transmissionDateTo": "2026-04-08T14:09:57Z"
+        },
+        {
+          "id": "d1bbbb8d9-95fa-ca78-242f-4ae5a5e28aea",
+          "ssvid": "354168000",
+          "shipname": "MERCURY",
+          "nShipname": "MERCURY",
+          "flag": "PAN",
+          "callsign": "3FOU4",
+          "imo": "9084231",
+          "messagesCounter": 2290616,
+          "positionsCounter": 967212,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "SEVERAL_FIELDS",
+          "transmissionDateFrom": "2012-01-02T15:46:28Z",
+          "transmissionDateTo": "2026-04-11T16:53:15Z"
+        },
+        {
+          "id": "6bff63431-1fae-51fb-f05c-bd82a5f04d15",
+          "ssvid": "354168000",
+          "shipname": "MERCURY",
+          "nShipname": "MERCURY",
+          "flag": "PAN",
+          "callsign": "3FOU4",
+          "imo": null,
+          "messagesCounter": 951434,
+          "positionsCounter": 313206,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2024-09-30T05:58:53Z",
+          "transmissionDateTo": "2026-04-28T14:01:41Z"
+        }
+      ]
+    },
+    {
+      "query_mmsi": "352003283",
+      "expected_name": "BAO LI",
+      "status": 200,
+      "ok": true,
+      "request_url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=352003283&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+      "entries": 1,
+      "broadcast_history": [
+        {
+          "id": "6d7f72a93-3ad2-3d0c-f49b-9d02055e85c1",
+          "ssvid": "352003283",
+          "shipname": "BAO LI",
+          "nShipname": "BAOLI",
+          "flag": "PAN",
+          "callsign": "3E7454",
+          "imo": "9187370",
+          "messagesCounter": 2555082,
+          "positionsCounter": 674948,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2023-11-22T04:01:55Z",
+          "transmissionDateTo": "2026-05-01T23:38:04Z"
+        }
+      ]
+    },
+    {
+      "query_mmsi": "636018206",
+      "expected_name": "KASOS",
+      "status": 200,
+      "ok": true,
+      "request_url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=636018206&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+      "entries": 2,
+      "broadcast_history": [
+        {
+          "id": "c78b28371-16a7-6b8d-6597-96c709b2bde0",
+          "ssvid": "636018206",
+          "shipname": null,
+          "nShipname": null,
+          "flag": "LBR",
+          "callsign": null,
+          "imo": null,
+          "messagesCounter": 900,
+          "positionsCounter": 900,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "NO_MATCH",
+          "transmissionDateFrom": "2014-10-13T17:14:29Z",
+          "transmissionDateTo": "2026-04-16T00:20:59Z"
+        },
+        {
+          "id": "ac017eb75-52d6-27e4-8a84-4f45504bb75b",
+          "ssvid": "636018206",
+          "shipname": "KASOS",
+          "nShipname": "KASOS",
+          "flag": "LBR",
+          "callsign": "D5OQ5",
+          "imo": "9800257",
+          "messagesCounter": 6628930,
+          "positionsCounter": 1998739,
+          "sourceCode": [
+            "AIS"
+          ],
+          "matchFields": "SEVERAL_FIELDS",
+          "transmissionDateFrom": "2018-01-09T01:48:23Z",
+          "transmissionDateTo": "2026-05-01T23:52:02Z"
+        }
+      ]
+    }
+  ]
+}

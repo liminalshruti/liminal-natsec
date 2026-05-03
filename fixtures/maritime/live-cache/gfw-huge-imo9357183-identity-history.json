@@ -1,0 +1,473 @@
+{
+  "source": "GFW_VESSEL_IDENTITY_HISTORY",
+  "generated_at": "2026-05-03T14:40:05.995Z",
+  "request": {
+    "url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=9357183&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+    "query_imo": "9357183",
+    "note": "OFAC SDN row 15054 HUGE; verifies the listed MMSI 212256000 vs current AIS MMSI 422206900"
+  },
+  "response": {
+    "ok": true,
+    "status": 200
+  },
+  "body": {
+    "limit": 10,
+    "since": null,
+    "total": 3,
+    "entries": [
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 1,
+        "registryInfo": [
+          {
+            "id": "462a4a45d4ae7120c714f7b8a015259a",
+            "sourceCode": [
+              "IMO"
+            ],
+            "ssvid": "677036700",
+            "flag": "TZA",
+            "shipname": "SVSGILBERT",
+            "nShipname": "SVSGILBERT",
+            "callsign": "5IM467",
+            "imo": "8981858",
+            "latestVesselInfo": true,
+            "transmissionDateFrom": "2012-01-01T02:46:45Z",
+            "transmissionDateTo": "2013-04-28T01:51:21Z",
+            "geartypes": [
+              "SUPPLY_VESSEL"
+            ],
+            "lengthM": null,
+            "tonnageGt": 84,
+            "vesselInfoReference": "2f22dffffcde3a2eeb590e1093d35693",
+            "extraFields": []
+          }
+        ],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "0fcb46816-6edf-89ee-2c92-d7e25ac67313",
+            "geartypes": [
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2017
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2016
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2017
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2016
+              }
+            ]
+          },
+          {
+            "vesselId": "ee1c1b2f5-55a7-e95c-4978-a3d15d76d108",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2013
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2013
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "0fcb46816-6edf-89ee-2c92-d7e25ac67313",
+            "ssvid": "677036700",
+            "shipname": "HUGE",
+            "nShipname": "HUGE",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "imo": "9357183",
+            "messagesCounter": 86738,
+            "positionsCounter": 39430,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2012-10-04T02:56:25Z",
+            "transmissionDateTo": "2017-06-08T16:50:53Z"
+          },
+          {
+            "id": "ee1c1b2f5-55a7-e95c-4978-a3d15d76d108",
+            "ssvid": "677036700",
+            "shipname": "SVS GILBERT",
+            "nShipname": "SVSGILBERT",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "imo": "8981858",
+            "messagesCounter": 11078,
+            "positionsCounter": 8821,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2012-01-01T00:50:23Z",
+            "transmissionDateTo": "2013-04-28T16:20:45Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 1,
+        "registryInfo": [
+          {
+            "id": "ed7bc391fdbfff0a437827178940ba9a",
+            "sourceCode": [
+              "IMO"
+            ],
+            "ssvid": "422206900",
+            "flag": "IRN",
+            "shipname": "HUGE",
+            "nShipname": "HUGE",
+            "callsign": "EPJE5",
+            "imo": "9357183",
+            "latestVesselInfo": true,
+            "transmissionDateFrom": "2019-03-05T04:09:18Z",
+            "transmissionDateTo": "2026-03-19T20:43:56Z",
+            "geartypes": [
+              "TANKER"
+            ],
+            "lengthM": null,
+            "tonnageGt": 163660,
+            "vesselInfoReference": "ef1b063a3637aaa25ef15f201a3f179c",
+            "extraFields": []
+          }
+        ],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "0fcb46816-6edf-89ee-2c92-d7e25ac67313",
+            "geartypes": [
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2017
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2016
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2017,
+                "yearTo": 2017
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2016
+              }
+            ]
+          },
+          {
+            "vesselId": "0b64ba9e2-2b8b-9a01-881b-08345af5087b",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2012
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2012
+              }
+            ]
+          },
+          {
+            "vesselId": "0da529ec7-7c1d-dcf0-b265-31de4bb22b6b",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2026
+              },
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2021,
+                "yearTo": 2021
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2019,
+                "yearTo": 2020
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "NA",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2021,
+                "yearTo": 2021
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2022,
+                "yearTo": 2026
+              },
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2019,
+                "yearTo": 2020
+              }
+            ]
+          },
+          {
+            "vesselId": "5f2e024a9-917d-9e3c-f27a-218034015471",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2015,
+                "yearTo": 2015
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2015,
+                "yearTo": 2015
+              }
+            ]
+          },
+          {
+            "vesselId": "ee1c1b2f5-55a7-e95c-4978-a3d15d76d108",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2013
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2013
+              }
+            ]
+          },
+          {
+            "vesselId": "7d3a8c3ac-ce29-cd4e-1f10-9fdbc9afc9f9",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2016,
+                "yearTo": 2019
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2016,
+                "yearTo": 2019
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "0da529ec7-7c1d-dcf0-b265-31de4bb22b6b",
+            "ssvid": "422206900",
+            "shipname": "HUGE",
+            "nShipname": "HUGE",
+            "flag": "IRN",
+            "callsign": "EPJE5",
+            "imo": "9357183",
+            "messagesCounter": 845988,
+            "positionsCounter": 157582,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2019-03-05T02:54:43Z",
+            "transmissionDateTo": "2026-03-20T02:09:30Z"
+          },
+          {
+            "id": "7d3a8c3ac-ce29-cd4e-1f10-9fdbc9afc9f9",
+            "ssvid": "353549000",
+            "shipname": "HUGE",
+            "nShipname": "HUGE",
+            "flag": "PAN",
+            "callsign": "3FAA8",
+            "imo": "9357183",
+            "messagesCounter": 227094,
+            "positionsCounter": 112388,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2016-06-28T07:21:06Z",
+            "transmissionDateTo": "2019-01-04T01:28:13Z"
+          },
+          {
+            "id": "0fcb46816-6edf-89ee-2c92-d7e25ac67313",
+            "ssvid": "677036700",
+            "shipname": "HUGE",
+            "nShipname": "HUGE",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "imo": "9357183",
+            "messagesCounter": 86738,
+            "positionsCounter": 39430,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2012-10-04T02:56:25Z",
+            "transmissionDateTo": "2017-06-08T16:50:53Z"
+          },
+          {
+            "id": "5f2e024a9-917d-9e3c-f27a-218034015471",
+            "ssvid": "677036700",
+            "shipname": null,
+            "nShipname": null,
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "imo": null,
+            "messagesCounter": 2560,
+            "positionsCounter": 999,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2015-11-24T04:17:07Z",
+            "transmissionDateTo": "2015-12-15T01:26:50Z"
+          },
+          {
+            "id": "ee1c1b2f5-55a7-e95c-4978-a3d15d76d108",
+            "ssvid": "677036700",
+            "shipname": "SVS GILBERT",
+            "nShipname": "SVSGILBERT",
+            "flag": "TZA",
+            "callsign": "5IM467",
+            "imo": "8981858",
+            "messagesCounter": 11078,
+            "positionsCounter": 8821,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2012-01-01T00:50:23Z",
+            "transmissionDateTo": "2013-04-28T16:20:45Z"
+          },
+          {
+            "id": "0b64ba9e2-2b8b-9a01-881b-08345af5087b",
+            "ssvid": "572465210",
+            "shipname": "GLORY",
+            "nShipname": "GLORY",
+            "flag": "TUV",
+            "callsign": "T2EG4",
+            "imo": "9357183",
+            "messagesCounter": 2391,
+            "positionsCounter": 1136,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "SEVERAL_FIELDS",
+            "transmissionDateFrom": "2012-07-24T18:00:14Z",
+            "transmissionDateTo": "2012-10-04T02:44:23Z"
+          }
+        ]
+      },
+      {
+        "dataset": "public-global-vessel-identity:v4.0",
+        "registryInfoTotalRecords": 0,
+        "registryInfo": [],
+        "registryOwners": [],
+        "combinedSourcesInfo": [
+          {
+            "vesselId": "6f3b1cba3-3375-79de-11fd-6b792eefa97d",
+            "geartypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2012
+              }
+            ],
+            "shiptypes": [
+              {
+                "name": "OTHER",
+                "source": "COMBINATION_OF_REGISTRY_AND_AIS_INFERRED_NN_INFO",
+                "yearFrom": 2012,
+                "yearTo": 2012
+              }
+            ]
+          }
+        ],
+        "selfReportedInfo": [
+          {
+            "id": "6f3b1cba3-3375-79de-11fd-6b792eefa97d",
+            "ssvid": "212256000",
+            "shipname": "HATEF",
+            "nShipname": "HATEF",
+            "flag": "CYP",
+            "callsign": "5BAZ2",
+            "imo": "9357183",
+            "messagesCounter": 172,
+            "positionsCounter": 165,
+            "sourceCode": [
+              "AIS"
+            ],
+            "matchFields": "NO_MATCH",
+            "transmissionDateFrom": "2012-02-22T06:36:08Z",
+            "transmissionDateTo": "2012-03-19T06:39:35Z"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "query": "9357183",
+      "normalizedQuery": "9357183",
+      "didYouMean": {}
+    }
+  }
+}

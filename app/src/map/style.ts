@@ -4,17 +4,17 @@ import { COLORS } from "./tokens.ts";
 // Build a MapLibre style spec that:
 //   - never requires a token,
 //   - never depends on a glyph PBF pack (no text rendered by MapLibre — we
-//     overlay HTML labels via React for token-freedom),
+//     overlay scenario labels via React for token-freedom),
 //   - falls through to a pure dark-navy paint if the optional raster basemap
 //     URL is missing or fails to load.
 //
-// Default raster basemap: CartoDB Voyager dark-matter (free, no token). It
-// renders at any AOI the demo replays through (Alara EEZ in fixture mode,
-// Hormuz in real-mode), unlike a fixed-bbox image-source. Tiles are fetched
-// only on map render so the cost is one-time, not on every frame.
+// Default raster basemap: CartoDB dark no-labels (free, no token). It renders
+// at any AOI the demo replays through without place-name text competing with
+// the operational overlays. Tiles are fetched only on map render so the cost
+// is one-time, not on every frame.
 
 const DEFAULT_BASEMAP_TILES =
-  "https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png";
+  "https://basemaps.cartocdn.com/rastertiles/dark_nolabels/{z}/{x}/{y}.png";
 const DEFAULT_BASEMAP_ATTRIBUTION =
   '© <a href="https://www.openstreetmap.org/copyright">OSM</a> · © <a href="https://carto.com/attributions">CARTO</a>';
 

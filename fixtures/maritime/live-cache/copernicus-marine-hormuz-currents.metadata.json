@@ -1,6 +1,6 @@
 {
   "source": "COPERNICUS_MARINE",
-  "generated_at": "2026-05-03T13:58:30.561Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "data_provider": "OPEN_METEO_MARINE",
   "request": {
     "url": "https://marine-api.open-meteo.com/v1/marine",
@@ -11,8 +11,8 @@
       "cli_attempt_exit_code": 1,
       "cli_attempt_signal": null,
       "time_range": [
-        "2026-05-02T13:58:30.563Z",
-        "2026-05-03T13:58:30.563Z"
+        "2026-05-02T14:11:46.377Z",
+        "2026-05-03T14:11:46.377Z"
       ]
     }
   },
@@ -73,7 +73,7 @@
         "url": "https://marine-api.open-meteo.com/v1/marine?latitude=26&longitude=56&hourly=ocean_current_velocity%2Cocean_current_direction&forecast_days=1",
         "ok": true,
         "status": 200,
-        "bytes": 969
+        "bytes": 968
       },
       {
         "point": {

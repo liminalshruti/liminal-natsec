@@ -2,6 +2,7 @@ import { Hono } from "hono";
 
 import { registerActionRoutes } from "./routes/actions.ts";
 import { registerAnomalyRoutes } from "./routes/anomalies.ts";
+import { registerAskRoutes } from "./routes/ask.ts";
 import { registerDebugRoutes } from "./routes/debug.ts";
 import { registerIngestRoutes } from "./routes/ingest.ts";
 import { registerProvenanceRoutes } from "./routes/provenance.ts";
@@ -24,6 +25,7 @@ export function createApp(store: OperationalStore = createLocalStore()) {
   registerProvenanceRoutes(app, store);
   registerActionRoutes(app, store);
   registerSpecialistRoutes(app, store);
+  registerAskRoutes(app);
 
   return app;
 }

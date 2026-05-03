@@ -7,6 +7,9 @@ interface WorkingPanelProps {
   scenarioState?: ScenarioStateView | null;
   loading: boolean;
   uiMode?: UiMode;
+  /** Current replay phase (1..6) from the map's scenario state. Used to drive
+   *  the OSINT intake band's phase-keyed reveal inside CustodyCasePanel. */
+  replayPhase?: number;
 }
 
 // v3.2 IA — Working Panel splits into two regions vertically:
@@ -17,7 +20,12 @@ interface WorkingPanelProps {
 // Operative state is now; forensic state is history. The interaction matches
 // the reader: P1 reads operative in 5s without scrolling; P2 reads forensic
 // at length, with scrolling. See docs/TECHNICAL_PLAN.md §0.2.
-export function WorkingPanel({ selectedAlert, loading, uiMode = "demo" }: WorkingPanelProps) {
+export function WorkingPanel({
+  selectedAlert,
+  loading,
+  uiMode = "demo",
+  replayPhase = 1
+}: WorkingPanelProps) {
   return (
     <section
       className="panel panel--working"
@@ -30,7 +38,9 @@ export function WorkingPanel({ selectedAlert, loading, uiMode = "demo" }: Workin
       </div>
       {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
       {!loading && !selectedAlert && <EmptyStencil uiMode={uiMode} />}
-      {!loading && selectedAlert && <CustodyCasePanel selectedAlert={selectedAlert} />}
+      {!loading && selectedAlert && (
+        <CustodyCasePanel selectedAlert={selectedAlert} replayPhase={replayPhase} />
+      )}
     </section>
   );
 }

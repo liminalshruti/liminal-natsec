@@ -94,7 +94,7 @@ export function MapInstrumentBezels() {
       {/* Instrument-register label band at the top — like a sextant's
           aperture annotation. Names the projection + AOI. */}
       <div className="map-bezel__label-top">
-        AOI · STRAIT OF HORMUZ · WGS84 · 54.4–57.8°E / 24.5–27.2°N
+        AOI · HORMUZ WATCH BOX 01 · WGS84 · 54.4–57.8°E / 24.5–27.2°N
       </div>
     </div>
   );

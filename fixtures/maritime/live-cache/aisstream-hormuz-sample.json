@@ -1,6 +1,6 @@
 {
   "source": "AISSTREAM",
-  "generated_at": "2026-05-03T13:58:30.561Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "fixture_mode": true,
   "fixture_reason": "Live AISstream WebSocket returned zero messages during bounded collection; synthetic messages preserve AISstream message shape for offline demo use.",
   "aoi": {
@@ -74,10 +74,10 @@
       "max_messages": 100,
       "opened": true,
       "subscription_sent": true,
-      "started_at": "2026-05-03T14:04:24.523Z",
+      "started_at": "2026-05-03T14:14:29.553Z",
       "messages_before": 0,
       "messages_after": 0,
-      "finished_at": "2026-05-03T14:07:24.531Z",
+      "finished_at": "2026-05-03T14:17:29.561Z",
       "messages_received": 0,
       "close_code": 1006,
       "close_reason": ""
@@ -88,10 +88,10 @@
       "max_messages": 100,
       "opened": true,
       "subscription_sent": true,
-      "started_at": "2026-05-03T14:07:24.534Z",
+      "started_at": "2026-05-03T14:17:29.561Z",
       "messages_before": 0,
       "messages_after": 0,
-      "finished_at": "2026-05-03T14:10:24.546Z",
+      "finished_at": "2026-05-03T14:20:29.581Z",
       "messages_received": 0
     }
   ],
@@ -105,7 +105,7 @@
         "ShipName": "ALARA",
         "latitude": 26.1841,
         "longitude": 56.2484,
-        "time_utc": "2026-04-03T13:58:30.563Z"
+        "time_utc": "2026-04-03T14:11:46.377Z"
       },
       "Message": {
         "PositionReport": {
@@ -119,7 +119,7 @@
           "Latitude": 26.1841,
           "Cog": 91.4,
           "TrueHeading": 92,
-          "Timestamp": 30,
+          "Timestamp": 46,
           "ManeuverIndicator": 0,
           "Raim": false,
           "CommunicationState": 0
@@ -134,7 +134,7 @@
         "ShipName": "ALARA",
         "latitude": 26.1818,
         "longitude": 56.3912,
-        "time_utc": "2026-04-03T14:10:30.563Z"
+        "time_utc": "2026-04-03T14:23:46.377Z"
       },
       "Message": {
         "PositionReport": {
@@ -148,7 +148,7 @@
           "Latitude": 26.1818,
           "Cog": 94.2,
           "TrueHeading": 94,
-          "Timestamp": 30,
+          "Timestamp": 46,
           "ManeuverIndicator": 0,
           "Raim": false,
           "CommunicationState": 0
@@ -163,7 +163,7 @@
         "ShipName": "GULF TRADER",
         "latitude": 25.9344,
         "longitude": 56.683,
-        "time_utc": "2026-04-03T14:16:30.563Z"
+        "time_utc": "2026-04-03T14:29:46.377Z"
       },
       "Message": {
         "PositionReport": {
@@ -177,7 +177,7 @@
           "Latitude": 25.9344,
           "Cog": 286.8,
           "TrueHeading": 287,
-          "Timestamp": 30,
+          "Timestamp": 46,
           "ManeuverIndicator": 0,
           "Raim": false,
           "CommunicationState": 0

@@ -304,6 +304,72 @@
         "confidence": 0.78,
         "unsupported_assertions": []
       }
+    },
+    {
+      "name": "identity",
+      "anomaly_id": "anom:hormuz-real:huge-mmsi-churn",
+      "key": "identity::anom:hormuz-real:huge-mmsi-churn",
+      "cached_at": "2026-05-03T14:41:35Z",
+      "expected_verdict": "supported",
+      "test_input": {
+        "evidence": [
+          {
+            "id": "ev:ofac-sdn:15054",
+            "type": "SANCTIONS_RECORD",
+            "modality": "registry",
+            "observed_at": "2026-05-03T14:28:31Z",
+            "source": "OFAC_SDN",
+            "provenance": {
+              "url": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+              "sha256": "19358a11db50caab5523a55bee948e714587dd0ade98677756a9afe35a57eb72",
+              "row_id": 15054,
+              "program_tags": ["IRAN"],
+              "linked_to": "NATIONAL IRANIAN TANKER COMPANY"
+            }
+          },
+          {
+            "id": "ev:gfw-vessel-identity:9357183",
+            "type": "VESSEL_IDENTITY_RECORD",
+            "modality": "registry",
+            "observed_at": "2026-05-03T14:40:05Z",
+            "source": "GLOBAL_FISHING_WATCH",
+            "provenance": {
+              "url": "https://gateway.api.globalfishingwatch.org/v3/vessels/search?query=9357183&datasets%5B0%5D=public-global-vessel-identity%3Alatest&limit=10",
+              "dataset": "public-global-vessel-identity:latest",
+              "query_imo": "9357183"
+            }
+          }
+        ],
+        "claim": {
+          "id": "claim:hormuz-real:huge-mmsi-churn",
+          "posterior": 0.92
+        },
+        "identity_features": {
+          "imo_match": true,
+          "mmsi_match": false,
+          "flag_match": false,
+          "name_match": true
+        }
+      },
+      "output": {
+        "verdict": "supported",
+        "summary": "OFAC SDN row 15054 lists HUGE (IMO 9357183, NITC, Iran program) at MMSI 212256000. GFW vessel-identity history shows the same IMO has broadcast under 7 distinct (MMSI, flag, callsign, name) tuples between 2012-01-01 and 2026-03-20. Current AIS identity is MMSI 422206900 / IRN flag / callsign EPJE5, last received 2026-03-20. The OFAC-listed MMSI 212256000 was the 2012 Cyprus broadcast under the prior name HATEF.",
+        "cited_observation_ids": [
+          "ev:ofac-sdn:15054",
+          "ev:gfw-vessel-identity:9357183"
+        ],
+        "confidence": 0.92,
+        "identity_chain": [
+          { "name": "SVS GILBERT", "ssvid": "677036700", "flag": "TZA", "callsign": "5IM467", "window": ["2012-01-01", "2013-04-28"], "messages": 11078 },
+          { "name": "HATEF",       "ssvid": "212256000", "flag": "CYP", "callsign": "5BAZ2",  "window": ["2012-02-22", "2012-03-19"], "messages": 172,    "ofac_listed_mmsi": true },
+          { "name": "GLORY",       "ssvid": "572465210", "flag": "TUV", "callsign": "T2EG4",  "window": ["2012-07-24", "2012-10-04"], "messages": 2391 },
+          { "name": "HUGE",        "ssvid": "677036700", "flag": "TZA", "callsign": "5IM467", "window": ["2012-10-04", "2017-06-08"], "messages": 86738 },
+          { "name": "<unnamed>",   "ssvid": "677036700", "flag": "TZA", "callsign": "5IM467", "window": ["2015-11-24", "2015-12-15"], "messages": 2560 },
+          { "name": "HUGE",        "ssvid": "353549000", "flag": "PAN", "callsign": "3FAA8",  "window": ["2016-06-28", "2019-01-04"], "messages": 227094 },
+          { "name": "HUGE",        "ssvid": "422206900", "flag": "IRN", "callsign": "EPJE5",  "window": ["2019-03-05", "2026-03-20"], "messages": 845988, "currently_broadcasting": true }
+        ],
+        "unsupported_assertions": []
+      }
     }
   ],
   "reads": [

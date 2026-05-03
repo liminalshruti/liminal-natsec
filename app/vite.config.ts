@@ -5,6 +5,7 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 
 const repoRoot = fileURLToPath(new URL("..", import.meta.url));
+const appRoot = fileURLToPath(new URL(".", import.meta.url));
 const fixturesRoot = join(repoRoot, "fixtures");
 const serverTarget = process.env.SEAFORGE_SERVER_URL ?? "http://localhost:8787";
 const proxiedPaths = [
@@ -70,5 +71,13 @@ export default defineConfig({
     proxy: Object.fromEntries(
       proxiedPaths.map((path) => [path, { target: serverTarget, changeOrigin: true }])
     )
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: join(appRoot, "index.html"),
+        snapshot: join(appRoot, "snapshot.html")
+      }
+    }
   }
 });

@@ -1,6 +1,6 @@
 {
   "source": "PORTWATCH",
-  "generated_at": "2026-05-03T13:58:30.561Z",
+  "generated_at": "2026-05-03T14:11:46.371Z",
   "request": {
     "url": "https://services9.arcgis.com/weJ1QsnbMYJlCHdG/arcgis/rest/services/Daily_Chokepoints_Data/FeatureServer/0/query?f=json&where=portid%3D%27chokepoint6%27&outFields=*&returnGeometry=true&orderByFields=date+DESC&resultRecordCount=20",
     "method": "GET",

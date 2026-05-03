@@ -139,6 +139,86 @@ export function piAiStatus(options: PiAiCallOptions = {}): PiAiStatus {
   };
 }
 
+export interface AskPiAiResult {
+  answer: string;
+  model: string;
+  source: AuthSource;
+}
+
+const ASK_CONTEXT_BYTE_LIMIT = 80_000;
+
+export async function askPiAi(
+  question: string,
+  context: unknown,
+  options: PiAiCallOptions = {}
+): Promise<AskPiAiResult> {
+  const env = options.env ?? process.env;
+  if (!truthy(env.PI_AI_FALLBACK_ENABLED)) {
+    throw new Error("Pi-AI fallback is disabled");
+  }
+
+  const provider = env.PI_AI_PROVIDER?.trim() || OAUTH_PROVIDER;
+  const modelId = env.PI_AI_MODEL?.trim() || env.CODEX_FALLBACK_MODEL?.trim() || DEFAULT_MODEL;
+  if (provider !== OAUTH_PROVIDER) {
+    throw new Error(`Pi-AI fallback currently supports provider ${OAUTH_PROVIDER}; got ${provider}`);
+  }
+
+  const { apiKey, authSource } = await resolveApiKey(options);
+  const getModelImpl = options.getModelImpl ?? (piGetModel as unknown as GetModelImpl);
+  const completeImpl = options.completeImpl ?? (piComplete as unknown as CompleteImpl);
+  const model = getModelImpl(provider, modelId);
+
+  const serialized = JSON.stringify(context ?? null);
+  const truncated = serialized.length > ASK_CONTEXT_BYTE_LIMIT;
+  const contextPayload = truncated ? serialized.slice(0, ASK_CONTEXT_BYTE_LIMIT) : serialized;
+
+  const response = await completeImpl(
+    model,
+    {
+      systemPrompt: askSystemPrompt(),
+      messages: [
+        {
+          role: "user",
+          content: askUserPrompt(question, contextPayload, truncated),
+          timestamp: (options.now ?? Date.now)()
+        }
+      ]
+    },
+    {
+      apiKey,
+      signal: options.signal,
+      timeoutMs: Number(env.PI_AI_TIMEOUT_MS ?? "20000"),
+      maxRetries: 0,
+      reasoningEffort: env.PI_AI_REASONING_EFFORT ?? "minimal",
+      textVerbosity: env.PI_AI_TEXT_VERBOSITY ?? "low"
+    }
+  );
+
+  if (response.stopReason === "error" || response.stopReason === "aborted") {
+    throw new Error(`Pi-AI response failed: ${response.errorMessage ?? response.stopReason}`);
+  }
+
+  const answer = extractText(response);
+  return { answer, model: modelId, source: authSource };
+}
+
+function askSystemPrompt(): string {
+  return [
+    "You are an analyst assistant for the Liminal Custody operator console.",
+    "The user will ask a question about case data, which is provided as JSON.",
+    "Answer concisely (no more than six sentences) in plain prose; do not use markdown formatting.",
+    "Cite IDs from the JSON when relevant (e.g. anomaly ids, hypothesis ids, claim ids).",
+    "If the data does not support an answer, say so plainly rather than speculating."
+  ].join(" ");
+}
+
+function askUserPrompt(question: string, contextJson: string, truncated: boolean): string {
+  const note = truncated
+    ? "\n\n[Note: case data was truncated to fit the prompt budget.]"
+    : "";
+  return `Question: ${question}\n\nCase data (JSON):\n${contextJson}${note}`;
+}
+
 export async function callPiAi(
   name: SpecialistName,
   input: SpecialistInput,

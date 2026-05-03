@@ -149,12 +149,19 @@ button:hover {
      WorkflowStrip numbering: 01 SUBSTRATE → 02 STAGE → 03 WORKING.
      Below 800px viewport height the case file section collapses to a
      one-line affordance — see WorkingPanel.tsx. */
-  grid-template-columns: 320px 1fr 520px;
+  --substrate-pane-width: 320px;
+  --working-pane-width: 520px;
+  grid-template-columns:
+    var(--substrate-pane-width)
+    8px
+    minmax(420px, 1fr)
+    8px
+    var(--working-pane-width);
   grid-template-rows: 36px 1fr 32px;
   grid-template-areas:
-    "topbar topbar topbar"
-    "substrate stage working"
-    "command command command";
+    "topbar topbar topbar topbar topbar"
+    "substrate resize-left stage resize-right working"
+    "command command command command command";
   height: 100vh;
   background: var(--color-substrate);
 }
@@ -1828,6 +1835,200 @@ button.topbar-crumbs__seg--clickable:focus-visible {
 
 .alert-row__body > .tchip {
   max-width: 100%;
+}
+
+/* ── Watchfloor OSINT signal feed — lives below the custody queue ────────
+   The custody queue carries cases the operator has accepted custody of;
+   this feed carries the *raw signals the substrate has pulled in*. Same
+   visual register (compact rows, source chip + relative time on the
+   right, two-line clamped detail), so the eye reads the whole pane as a
+   single watchfloor surface rather than two separate widgets.
+   ──────────────────────────────────────────────────────────────────── */
+
+.watchfloor-osint-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-edge, rgba(255, 255, 255, 0.08));
+}
+
+.watchfloor-osint-feed__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  color: var(--color-ink-tertiary, #7a8696);
+  padding: 0 4px;
+}
+
+.watchfloor-osint-feed__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 0 4px 4px;
+}
+
+.watchfloor-osint-feed__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  color: var(--color-ink-tertiary, #7a8696);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.watchfloor-osint-feed__chip:hover {
+  background: var(--color-elevated, rgba(255, 255, 255, 0.04));
+  color: var(--color-ink-secondary, #c7d0db);
+}
+
+.watchfloor-osint-feed__chip[data-active="true"] {
+  background: rgba(110, 168, 254, 0.1);
+  border-color: rgba(110, 168, 254, 0.4);
+  color: var(--color-decision, #6ea8fe);
+}
+
+.watchfloor-osint-feed__chip-count {
+  color: var(--color-ink-tertiary, #7a8696);
+  font-variant-numeric: tabular-nums;
+  font-size: 9px;
+}
+
+.watchfloor-osint-feed__chip[data-active="true"] .watchfloor-osint-feed__chip-count {
+  color: var(--color-decision, #6ea8fe);
+}
+
+.watchfloor-osint-feed__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.osint-signal-row {
+  border-radius: 6px;
+  transition: background 120ms ease;
+}
+
+.osint-signal-row:hover {
+  background: var(--color-elevated, rgba(255, 255, 255, 0.04));
+}
+
+.osint-signal-row__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.osint-signal-row__inner {
+  cursor: pointer;
+}
+
+.osint-signal-row__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.osint-signal-row__source {
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-ink-tertiary, #7a8696);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.osint-signal-row[data-category="news"] .osint-signal-row__source { color: #b3c0d4; }
+.osint-signal-row[data-category="warnings"] .osint-signal-row__source { color: #e0a96d; }
+.osint-signal-row[data-category="sanctions"] .osint-signal-row__source { color: #d97a7a; }
+.osint-signal-row[data-category="vessel-events"] .osint-signal-row__source { color: #6ea8fe; }
+.osint-signal-row[data-category="imagery"] .osint-signal-row__source { color: #4ea08a; }
+.osint-signal-row[data-category="infra"] .osint-signal-row__source { color: #a98ed1; }
+
+.osint-signal-row__age {
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-tertiary, #7a8696);
+  white-space: nowrap;
+}
+
+.osint-signal-row__age--fresh { color: #4ea08a; }
+.osint-signal-row__age--settled { color: var(--color-ink-secondary, #c7d0db); }
+.osint-signal-row__age--stale { color: var(--color-ink-tertiary, #7a8696); }
+
+.osint-signal-row__title {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--color-ink-primary, #e6ecf3);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.osint-signal-row__detail {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-ink-secondary, #c7d0db);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.osint-signal-row__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.osint-signal-row__badge {
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-tertiary, #7a8696);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 3px;
+  padding: 1px 5px;
+  white-space: nowrap;
+}
+
+.watchfloor-osint-feed__more {
+  align-self: flex-start;
+  background: transparent;
+  border: none;
+  color: var(--color-decision, #6ea8fe);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 6px 4px;
+  text-transform: uppercase;
+}
+
+.watchfloor-osint-feed__more:hover {
+  text-decoration: underline;
 }
 
 .stage-placeholder {
@@ -4419,8 +4620,8 @@ details.case-file__section > summary:focus-visible {
    Toggled via the topbar chip, /mode demo|live, or Ctrl+Shift+M. Default is
    "demo" (full pitch register). "live" hides the editorial scaffolding that
    reads as walkthrough chrome — handwritten phase prompts on the stage, the
-   driven stipple backdrop, the hand-drawn ink coastline, the named-operator
-   persona card, the four-pane workflow tab strip — and disables the one-shot
+   driven stipple backdrop, the named-operator persona card, the four-pane
+   workflow tab strip — and disables the one-shot
    phase-pulse on the breadcrumb. Every functional surface (proof chain, map
    data layers, command line, replay controls, banners, animations that
    communicate state change) stays identical in both modes. The toggle is a
@@ -4429,7 +4630,6 @@ details.case-file__section > summary:focus-visible {
 
 .app-shell[data-ui-mode="live"] .demo-prompt,
 .app-shell[data-ui-mode="live"] .stage-backdrop,
-.app-shell[data-ui-mode="live"] .map-ink-base,
 .app-shell[data-ui-mode="live"] .named-operator,
 .app-shell[data-ui-mode="live"] .workflow-strip {
   display: none;
@@ -4963,6 +5163,43 @@ body {
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
+.pane-resizer {
+  position: relative;
+  z-index: 12;
+  min-width: 8px;
+  cursor: col-resize;
+  background:
+    linear-gradient(90deg, transparent 0 3px, rgba(122, 169, 255, 0.16) 3px 5px, transparent 5px);
+  touch-action: none;
+}
+
+.pane-resizer--substrate {
+  grid-area: resize-left;
+}
+
+.pane-resizer--working {
+  grid-area: resize-right;
+}
+
+.pane-resizer::after {
+  content: "";
+  position: absolute;
+  inset: 0 -5px;
+}
+
+.pane-resizer:hover,
+.pane-resizer:focus-visible,
+.app-shell[data-resizing-pane] .pane-resizer {
+  background:
+    linear-gradient(90deg, transparent 0 2px, rgba(122, 169, 255, 0.55) 2px 6px, transparent 6px);
+  outline: none;
+}
+
+.app-shell[data-resizing-pane] {
+  cursor: col-resize;
+  user-select: none;
+}
+
 /* Active pane gets a refined glow instead of the harsh top-border */
 .app-shell[data-active-pane="working"] .panel--working,
 .app-shell[data-active-pane="stage"] .panel--stage,
@@ -5316,15 +5553,13 @@ button:disabled {
   }
 }
 
-/* ─── STAGE REDESIGN: LAYERED INK MAP + ASCII INSTRUMENT BEZELS ─────────────
+/* ─── STAGE REDESIGN: LAYERED MAP + ASCII INSTRUMENT BEZELS ────────────────
    Implements the May-1 Whiteboard transcript's overhead-projector idea —
-   stacked translucent layers on top of the geographic substrate, with the
-   strait of Hormuz rendered as ink-drawn coastline (the "Liminal aesthetic")
-   instead of a generic raster basemap. Four new visual layers:
+   stacked translucent layers on top of the geographic substrate. Five visual
+   layers:
 
      z-index 0   StageBackdrop                   (existing, AI Ascent linework)
      z-index 1   MapWatchfloor (MapLibre canvas) (existing, hero tracks)
-     z-index 2   MapInkBase                     NEW — ink-drawn Hormuz
      z-index 3   MapOverlays                    NEW — cache-driven translucent
      z-index 4   MapInstrumentBezels            NEW — ASCII corner/edge frame
      z-index 5   DataSourcesChips, MapLayers, HUD, DemoPrompt (existing)
@@ -5334,57 +5569,6 @@ button:disabled {
    via the AOI bbox projection; layer toggles flow from MapLayers via
    the `liminal:map-layers-changed` window event.
    ───────────────────────────────────────────────────────────────────────── */
-
-/* MAP INK BASE — ink-drawn Hormuz coastline overlay */
-
-.map-ink-base {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 2;
-  opacity: 0.78;
-  mix-blend-mode: lighten;
-}
-
-.map-ink-base__coast .map-ink-base__stroke {
-  stroke: #b8c5d4;
-  stroke-width: 1.4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.78;
-  filter: url(#ink-grain);
-  stroke-dasharray: 1200 0;
-  animation: ink-living 18s ease-in-out infinite alternate;
-}
-
-.map-ink-base__centerline {
-  stroke: rgba(122, 169, 255, 0.32);
-  stroke-width: 1.2;
-  stroke-dasharray: 8 6;
-  fill: none;
-  stroke-linecap: round;
-}
-
-.map-ink-base__label {
-  font-family: "Geist Mono", ui-monospace, monospace;
-  font-size: 9.5px;
-  fill: rgba(184, 197, 212, 0.55);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
-.map-ink-base__label--strait {
-  font-size: 10px;
-  fill: rgba(122, 169, 255, 0.7);
-  letter-spacing: 0.24em;
-  font-weight: 500;
-}
-
-@keyframes ink-living {
-  0%   { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 12; }
-}
 
 /* MAP OVERLAYS — cache-driven translucent intel layers */
 
@@ -5592,7 +5776,8 @@ button:disabled {
 
 @media (max-width: 1439px) {
   .app-shell {
-    grid-template-columns: 296px 1fr 480px;
+    --substrate-pane-width: 296px;
+    --working-pane-width: 480px;
   }
   .app-topbar {
     gap: 14px;
@@ -5601,7 +5786,8 @@ button:disabled {
 
 @media (max-width: 1279px) {
   .app-shell {
-    grid-template-columns: 272px 1fr 432px;
+    --substrate-pane-width: 272px;
+    --working-pane-width: 432px;
   }
   .app-topbar {
     gap: 12px;
@@ -5625,7 +5811,8 @@ button:disabled {
 
 @media (max-width: 1023px) {
   .app-shell {
-    grid-template-columns: 240px 1fr 380px;
+    --substrate-pane-width: 240px;
+    --working-pane-width: 380px;
   }
 }
 

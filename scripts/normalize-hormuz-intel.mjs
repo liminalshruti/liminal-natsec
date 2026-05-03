@@ -37,7 +37,10 @@ export const REQUIRED_LIVE_CACHE_FILES = [
   "gfw-hormuz-port-visits.json",
   "overpass-hormuz-maritime.json",
   "overpass-hormuz-maritime.attempts.json",
-  "shodan-maritime-ais.json"
+  "shodan-maritime-ais.json",
+  "ofac-maritime-sanctions-matches.json",
+  "gfw-huge-imo9357183-identity-history.json",
+  "gfw-dark-vessel-identity-histories.json"
 ];
 
 const REPO_ROOT = resolve(fileURLToPath(new URL("../", import.meta.url)));
@@ -152,6 +155,9 @@ export function normalizeHormuzIntel(options = {}) {
   processGfwUnavailableEventFeeds();
   processOverpass();
   processShodan();
+  processOfacSanctions();
+  processGfwHugeIdentityHistory();
+  processGfwDarkVesselIdentityHistories();
 
   sourceDocuments.sort((left, right) => left.id.localeCompare(right.id));
   evidenceItems.sort((left, right) => left.id.localeCompare(right.id));
@@ -463,6 +469,7 @@ export function normalizeHormuzIntel(options = {}) {
         emitted += 1;
       }
     }
+    emitted += processDantiPaginatedShipSnapshot();
     if (doc.status !== "available" || emitted === 0) {
       evidenceItems.push(
         buildEvidence({
@@ -480,6 +487,85 @@ export function normalizeHormuzIntel(options = {}) {
         })
       );
     }
+  }
+
+  function processDantiPaginatedShipSnapshot() {
+    const file = loadFile("danti-hormuz-ship-paginated.json");
+    if (!file.exists) return 0;
+
+    const rows = asArray(file.json?.documents);
+    const capturedAt = latestTimestamp(rows.map((row) => stringValue(row.authoredOn)));
+    const doc = addSourceDocument("danti-hormuz-ship-paginated.json", {
+      source: "DANTI",
+      provider: "Danti / MarineTraffic",
+      title: "Danti paginated MarineTraffic ship snapshot",
+      categories: ["VESSEL_IDENTITY_CORROBORATION"],
+      responseOverride: {
+        ok: rows.length > 0,
+        status: rows.length > 0 ? 200 : null,
+        generatedAt: capturedAt
+      }
+    });
+
+    if (doc.status !== "available" || rows.length === 0) return 0;
+
+    const summary = summarizeDantiShipSnapshot(rows);
+    evidenceItems.push(
+      buildEvidence({
+        seed: ["danti-ship-paginated", "traffic-snapshot"],
+        title: "DANTI MarineTraffic ship-density snapshot",
+        source: "DANTI",
+        provider: "Danti / MarineTraffic",
+        category: "VESSEL_IDENTITY_CORROBORATION",
+        drawerGroup: "OSINT",
+        sourceDocuments: [doc],
+        observedAt: summary.time_max,
+        confidence: 0.64,
+        reliability: 0.66,
+        summary: `Danti cached ${summary.record_count} MarineTraffic ship-position records around Hormuz (${summary.unique_vessels} unique vessels, ${summary.tanker_records} tanker records, ${summary.iran_flag_records} Iran-flag records). Snapshot window ${summary.time_min} to ${summary.time_max}; identity/source context only, not current 72-hour behavior.`,
+        attributes: summary
+      })
+    );
+
+    let emitted = 1;
+    for (const vessel of representativeDantiShipSequences(rows).slice(0, 6)) {
+      const latest = vessel.points[vessel.points.length - 1];
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["danti-ship-paginated-vessel", vessel.mmsi ?? vessel.imo ?? vessel.name],
+          title: `${vessel.name} MarineTraffic position sequence`,
+          source: "DANTI",
+          provider: "Danti / MarineTraffic",
+          category: "VESSEL_IDENTITY_CORROBORATION",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          observedAt: vessel.time_max,
+          confidence: 0.62,
+          reliability: 0.66,
+          summary: `Danti cached ${vessel.points.length} MarineTraffic positions for ${vessel.name}${vessel.imo ? ` (IMO ${vessel.imo})` : ""} near Hormuz on April 2. Use as vessel identity/source and traffic-density context only, not intent.`,
+          geometry: pointGeometry(latest.lon, latest.lat),
+          entities: [vessel.name].filter(Boolean),
+          attributes: compactRecord({
+            mmsi: vessel.mmsi,
+            imo: vessel.imo,
+            flag: vessel.flag,
+            ship_type: vessel.ship_type,
+            first_seen: vessel.time_min,
+            last_seen: vessel.time_max,
+            point_count: vessel.points.length,
+            latest_status: latest.status,
+            latest_destination: latest.destination,
+            latest_speed_raw: latest.speed_raw,
+            latest_course: latest.course,
+            latest_current_port: latest.current_port,
+            note: "DANTI/MarineTraffic snapshot is archived April 2 data and is excluded from current 72-hour vessel-behavior claims."
+          })
+        })
+      );
+      emitted += 1;
+    }
+
+    return emitted;
   }
 
   function processExa() {
@@ -545,6 +631,28 @@ export function normalizeHormuzIntel(options = {}) {
       title: "GDELT DOC 2.0 Hormuz article list",
       categories: ["REGIONAL_SECURITY_CONTEXT"]
     });
+    if (doc.file.json?.fixture_mode === true) {
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["gdelt-fixture-excluded"],
+          title: "GDELT DOC 2.0 live article cache unavailable",
+          source: "GDELT",
+          provider: "GDELT DOC 2.0",
+          category: "REGIONAL_SECURITY_CONTEXT",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          status: "unavailable",
+          confidence: 0,
+          reliability: 0,
+          summary:
+            "GDELT live request was unavailable or rate-limited; fixture fallback articles are excluded from real OSINT signals.",
+          attributes: compactRecord({
+            fixture_reason: sanitizeText(stringValue(doc.file.json?.fixture_reason), 280)
+          })
+        })
+      );
+      return;
+    }
     const articles = asArray(doc.file.json?.body?.articles).slice(0, 8);
     if (doc.status !== "available" || articles.length === 0) {
       evidenceItems.push(
@@ -849,7 +957,9 @@ export function normalizeHormuzIntel(options = {}) {
     const collectionMode = stringValue(doc.file.json?.collection_mode);
     const aoiName = stringValue(doc.file.json?.aoi?.name);
     const collectionReason = stringValue(doc.file.json?.collection_reason);
+    const isFixtureFallback = doc.file.json?.fixture_mode === true;
     const isGlobalFallback =
+      isFixtureFallback ||
       collectionMode === "global_live" ||
       Boolean(aoiName && /global/i.test(aoiName)) ||
       Boolean(collectionReason && /free-tier coverage of the Persian Gulf is currently empty/i.test(collectionReason));
@@ -887,7 +997,9 @@ export function normalizeHormuzIntel(options = {}) {
           confidence: 0,
           reliability: 0.64,
           summary:
-            "AISstream returned no Hormuz-area messages during bounded collection; a global live sample is cached only to prove connector reachability and must not be used as Hormuz vessel behavior evidence.",
+            isFixtureFallback
+              ? "AISstream live collection did not produce usable Hormuz-area messages; fixture fallback samples are excluded from real vessel behavior evidence."
+              : "AISstream returned no Hormuz-area messages during bounded collection; a global live sample is cached only to prove connector reachability and must not be used as Hormuz vessel behavior evidence.",
           attributes: compactRecord({
             collection_mode: collectionMode,
             aoi_name: aoiName,
@@ -895,7 +1007,8 @@ export function normalizeHormuzIntel(options = {}) {
             raw_message_count: numberValue(doc.file.json?.raw_message_count),
             unique_mmsis: numberValue(doc.file.json?.unique_mmsis),
             collection_reason: sanitizeText(collectionReason, 280),
-            fixture_mode: Boolean(doc.file.json?.fixture_mode)
+            fixture_mode: isFixtureFallback,
+            fixture_reason: sanitizeText(stringValue(doc.file.json?.fixture_reason), 280)
           })
         })
       );
@@ -1152,6 +1265,247 @@ export function normalizeHormuzIntel(options = {}) {
     );
   }
 
+  function processOfacSanctions() {
+    const doc = addSourceDocument("ofac-maritime-sanctions-matches.json", {
+      source: "OFAC_SDN",
+      provider: "U.S. Treasury OFAC",
+      title: "OFAC SDN + Consolidated maritime/Iran filtered rows",
+      categories: ["ENTITY_RISK_ENRICHMENT"]
+    });
+    if (doc.status !== "available") {
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["ofac-sdn-unavailable"],
+          title: "OFAC sanctions snapshot unavailable",
+          source: "OFAC_SDN",
+          provider: "U.S. Treasury OFAC",
+          category: "ENTITY_RISK_ENRICHMENT",
+          drawerGroup: "Entity Risk",
+          sourceDocuments: [doc],
+          status: "unavailable",
+          confidence: 0,
+          reliability: 0,
+          summary:
+            "OFAC sanctions cache is unavailable; no entity-risk enrichment is added."
+        })
+      );
+      return;
+    }
+
+    const records = asArray(doc.file.json?.records);
+    const allMatches = records.flatMap((rec) => asArray(rec?.matches));
+    const iranVessels = allMatches.filter((match) => {
+      const csv = stringValue(match?.raw_csv);
+      if (!csv) return false;
+      return /"vessel"/.test(csv) && /IRAN|IRGC|NPWMD/i.test(csv);
+    });
+    const featured = iranVessels.slice(0, 5).map((match) => parseOfacRow(match.raw_csv));
+    const summaryAttrs = compactRecord({
+      sdn_total_lines: numberValue(records[0]?.total_lines),
+      sdn_match_count: numberValue(records[0]?.match_count),
+      consolidated_total_lines: numberValue(records[1]?.total_lines),
+      consolidated_match_count: numberValue(records[1]?.match_count),
+      iran_program_vessels: iranVessels.length,
+      iran_vessels_with_imo: iranVessels.filter((m) =>
+        /IMO\s+\d+/.test(stringValue(m?.raw_csv) ?? "")
+      ).length,
+      iran_vessels_with_mmsi: iranVessels.filter((m) =>
+        /MMSI\s+\d+/.test(stringValue(m?.raw_csv) ?? "")
+      ).length
+    });
+
+    evidenceItems.push(
+      buildEvidence({
+        seed: ["ofac-sdn", "iran-program-summary"],
+        title: `OFAC Iran-program maritime sanctions: ${iranVessels.length} vessels`,
+        source: "OFAC_SDN",
+        provider: "U.S. Treasury OFAC",
+        category: "ENTITY_RISK_ENRICHMENT",
+        drawerGroup: "Entity Risk",
+        sourceDocuments: [doc],
+        observedAt: doc.retrieved_at,
+        confidence: 0.88,
+        reliability: 0.92,
+        summary: `OFAC SDN + Consolidated downloads filtered to Iran-program rows tagged "vessel"; ${iranVessels.length} vessels (${summaryAttrs.iran_vessels_with_imo} with IMO, ${summaryAttrs.iran_vessels_with_mmsi} with MMSI), nearly all Linked To: NATIONAL IRANIAN TANKER COMPANY.`,
+        attributes: summaryAttrs
+      })
+    );
+
+    for (const vessel of featured) {
+      if (!vessel?.name) continue;
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["ofac-sdn", "vessel", vessel.imo ?? vessel.name],
+          title: `OFAC SDN listing: ${vessel.name}`,
+          source: "OFAC_SDN",
+          provider: "U.S. Treasury OFAC",
+          category: "ENTITY_RISK_ENRICHMENT",
+          drawerGroup: "Entity Risk",
+          sourceDocuments: [doc],
+          observedAt: doc.retrieved_at,
+          confidence: 0.9,
+          reliability: 0.94,
+          summary: `${vessel.name} (${vessel.vessel_class ?? "vessel"}, IMO ${vessel.imo ?? "—"}, MMSI ${vessel.mmsi ?? "—"}) listed under Iran program; ${vessel.linked_to ?? "linked entity unknown"}.`,
+          entities: [vessel.name],
+          attributes: compactRecord({
+            imo: vessel.imo,
+            mmsi: vessel.mmsi,
+            vessel_class: vessel.vessel_class,
+            country: vessel.country,
+            linked_to: vessel.linked_to,
+            former_flags: vessel.former_flags,
+            program_tags: ["IRAN"]
+          })
+        })
+      );
+    }
+  }
+
+  function processGfwHugeIdentityHistory() {
+    const doc = addSourceDocument("gfw-huge-imo9357183-identity-history.json", {
+      source: "GLOBAL_FISHING_WATCH",
+      provider: "Global Fishing Watch",
+      title: "GFW vessel-identity history for OFAC-listed HUGE (IMO 9357183)",
+      categories: ["VESSEL_IDENTITY_CORROBORATION"]
+    });
+    if (doc.status !== "available") {
+      return;
+    }
+    const entries = asArray(doc.file.json?.body?.entries);
+    const broadcasts = dedupeBroadcasts(
+      entries.flatMap((entry) => asArray(entry?.selfReportedInfo))
+    );
+    if (broadcasts.length === 0) return;
+
+    const current = broadcasts.find((b) => b.ssvid === "422206900");
+    const ofacListed = broadcasts.find((b) => b.ssvid === "212256000");
+
+    evidenceItems.push(
+      buildEvidence({
+        seed: ["gfw-identity-history", "huge", "9357183"],
+        title: "OFAC-listed HUGE: 7 broadcast identities under one IMO",
+        source: "GLOBAL_FISHING_WATCH",
+        provider: "Global Fishing Watch",
+        category: "VESSEL_IDENTITY_CORROBORATION",
+        drawerGroup: "OSINT",
+        sourceDocuments: [doc],
+        observedAt:
+          stringValue(current?.transmissionDateTo) ??
+          stringValue(broadcasts[broadcasts.length - 1]?.transmissionDateTo),
+        confidence: 0.92,
+        reliability: 0.9,
+        summary: `IMO 9357183 has broadcast under ${broadcasts.length} distinct (MMSI, flag, callsign, name) tuples since 2012. OFAC-listed MMSI ${ofacListed?.ssvid ?? "212256000"} corresponds to a 2012 Cyprus broadcast under the prior name HATEF; current AIS identity is MMSI ${current?.ssvid ?? "422206900"} under IRN flag, last received ${stringValue(current?.transmissionDateTo)?.slice(0, 10) ?? "2026-03-20"}. Identity-corroboration only; supports vessel_identity claims, not intent or kinematics.`,
+        entities: ["HUGE", "HATEF", "GLORY", "SVS GILBERT"],
+        attributes: compactRecord({
+          imo: "9357183",
+          ofac_listed_mmsi: ofacListed?.ssvid ?? "212256000",
+          current_mmsi: current?.ssvid,
+          current_flag: current?.flag,
+          current_callsign: current?.callsign,
+          identity_chain_length: broadcasts.length,
+          identity_chain: broadcasts.map((b) => ({
+            name: b.shipname ?? null,
+            mmsi: b.ssvid,
+            flag: b.flag,
+            callsign: b.callsign,
+            tx_from: stringValue(b.transmissionDateFrom)?.slice(0, 10) ?? null,
+            tx_to: stringValue(b.transmissionDateTo)?.slice(0, 10) ?? null,
+            messages: numberValue(b.messagesCounter)
+          }))
+        })
+      })
+    );
+  }
+
+  function processGfwDarkVesselIdentityHistories() {
+    const doc = addSourceDocument("gfw-dark-vessel-identity-histories.json", {
+      source: "GLOBAL_FISHING_WATCH",
+      provider: "Global Fishing Watch",
+      title: "GFW vessel-identity history for recent intentional-disabling AIS-gap MMSIs",
+      categories: ["VESSEL_IDENTITY_CORROBORATION"]
+    });
+    if (doc.status !== "available") {
+      return;
+    }
+    const records = asArray(doc.file.json?.records);
+    for (const rec of records) {
+      const queryMmsi = stringValue(rec?.query_mmsi);
+      const expectedName = stringValue(rec?.expected_name);
+      const broadcasts = dedupeBroadcasts(asArray(rec?.broadcast_history));
+      if (broadcasts.length === 0) continue;
+      const distinctNames = new Set(
+        broadcasts
+          .map((b) => stringValue(b.shipname))
+          .filter((name) => name && name.length > 0)
+      );
+      const distinctMmsis = new Set(
+        broadcasts.map((b) => stringValue(b.ssvid)).filter(Boolean)
+      );
+      const distinctFlags = new Set(
+        broadcasts.map((b) => stringValue(b.flag)).filter(Boolean)
+      );
+      const hasChurn =
+        distinctNames.size > 1 || distinctMmsis.size > 1 || distinctFlags.size > 1;
+      const summaryParts = [];
+      summaryParts.push(
+        `${expectedName ?? queryMmsi ?? "Unknown"} (current MMSI ${queryMmsi ?? "?"}) shows ${broadcasts.length} broadcast identity tuples`
+      );
+      if (distinctNames.size > 1) {
+        summaryParts.push(
+          `${distinctNames.size} distinct names: ${[...distinctNames].slice(0, 3).join(", ")}`
+        );
+      }
+      if (distinctFlags.size > 1) {
+        summaryParts.push(`${distinctFlags.size} flags (${[...distinctFlags].join(", ")})`);
+      }
+      if (distinctMmsis.size > 1) {
+        summaryParts.push(`${distinctMmsis.size} MMSIs`);
+      }
+      summaryParts.push(
+        hasChurn
+          ? "identity churn observed; supports vessel_identity claims only"
+          : "no identity churn observed"
+      );
+
+      evidenceItems.push(
+        buildEvidence({
+          seed: ["gfw-identity-history", "dark-vessel", queryMmsi ?? expectedName],
+          title: `${expectedName ?? "Vessel"} identity history (MMSI ${queryMmsi ?? "?"})`,
+          source: "GLOBAL_FISHING_WATCH",
+          provider: "Global Fishing Watch",
+          category: "VESSEL_IDENTITY_CORROBORATION",
+          drawerGroup: "OSINT",
+          sourceDocuments: [doc],
+          observedAt: stringValue(
+            broadcasts[broadcasts.length - 1]?.transmissionDateTo
+          ),
+          confidence: hasChurn ? 0.74 : 0.6,
+          reliability: 0.78,
+          summary: `${summaryParts.join("; ")}.`,
+          entities: [expectedName, ...distinctNames].filter(Boolean).slice(0, 5),
+          attributes: compactRecord({
+            query_mmsi: queryMmsi,
+            expected_name: expectedName,
+            identity_chain_length: broadcasts.length,
+            distinct_names: [...distinctNames],
+            distinct_mmsis: [...distinctMmsis],
+            distinct_flags: [...distinctFlags],
+            has_churn: hasChurn,
+            identity_chain: broadcasts.map((b) => ({
+              name: b.shipname ?? null,
+              mmsi: b.ssvid,
+              flag: b.flag,
+              imo: b.imo,
+              tx_from: stringValue(b.transmissionDateFrom)?.slice(0, 10) ?? null,
+              tx_to: stringValue(b.transmissionDateTo)?.slice(0, 10) ?? null,
+              messages: numberValue(b.messagesCounter)
+            }))
+          })
+        })
+      );
+    }
+  }
+
 
   function addSourceDocument(fileName, config) {
     if (docsByFile.has(fileName)) return docsByFile.get(fileName);
@@ -1356,7 +1710,10 @@ function deriveResponse(file, override) {
     stringValue(response.contentType) ??
     contentTypeForFile(file.fileName);
   const bytes = numberValue(response.bytes) ?? numberValue(json.bytes) ?? file.bytes;
-  const generatedAt = stringValue(json.generated_at) ?? latestTimestamp([stringValue(json.updated_at)]);
+  const generatedAt =
+    stringValue(override?.generatedAt) ??
+    stringValue(json.generated_at) ??
+    latestTimestamp([stringValue(json.updated_at)]);
   const url = sanitizeUrl(stringValue(json.request?.url) ?? stringValue(json.url));
   const error = sanitizeText(
     stringValue(json.error) ?? stringValue(json.body?.error) ?? stringValue(response.statusText),
@@ -1590,6 +1947,144 @@ function averageCurrent(samples) {
   };
 }
 
+function summarizeDantiShipSnapshot(rows) {
+  const ships = rows.map(dantiShipRecord).filter(Boolean);
+  const uniqueVessels = new Set(
+    ships.map((ship) => ship.mmsi ?? ship.imo ?? ship.name).filter(Boolean)
+  );
+  const times = ships.map((ship) => ship.observed_at).filter(Boolean).sort();
+  const tankerRecords = ships.filter((ship) => /tanker/i.test(ship.ship_type ?? "")).length;
+  const anchoredOrMooredTankers = ships.filter(
+    (ship) => /tanker/i.test(ship.ship_type ?? "") && /anchor|moored/i.test(ship.status ?? "")
+  ).length;
+  const underwayTankers = ships.filter(
+    (ship) => /tanker/i.test(ship.ship_type ?? "") && /under way/i.test(ship.status ?? "")
+  ).length;
+  const iranFlagRecords = ships.filter((ship) => ship.flag === "IR").length;
+  const bandarAbbasMentions = ships.filter((ship) =>
+    /BANDAR ABBAS|IRBND|BNDIRAN|B\.ABBAS|BND IR/i.test(
+      [ship.current_port, ship.last_port, ship.destination].filter(Boolean).join(" ")
+    )
+  ).length;
+  const fujairahMentions = ships.filter((ship) =>
+    /FUJAIRAH|AEFJR|FUJ/i.test(
+      [ship.current_port, ship.last_port, ship.destination].filter(Boolean).join(" ")
+    )
+  ).length;
+  const khorFakkanMentions = ships.filter((ship) =>
+    /KHOR FAKKAN|AEKLF|KLF/i.test(
+      [ship.current_port, ship.last_port, ship.destination].filter(Boolean).join(" ")
+    )
+  ).length;
+
+  return compactRecord({
+    record_count: ships.length,
+    unique_vessels: uniqueVessels.size,
+    time_min: times[0],
+    time_max: times[times.length - 1],
+    tanker_records: tankerRecords,
+    anchored_or_moored_tanker_records: anchoredOrMooredTankers,
+    underway_tanker_records: underwayTankers,
+    iran_flag_records: iranFlagRecords,
+    bandar_abbas_mentions: bandarAbbasMentions,
+    fujairah_mentions: fujairahMentions,
+    khor_fakkan_mentions: khorFakkanMentions,
+    top_ship_types: topCounts(ships.map((ship) => ship.ship_type), 10),
+    top_statuses: topCounts(ships.map((ship) => ship.status), 10),
+    top_flags: topCounts(ships.map((ship) => ship.flag), 10),
+    top_current_ports: topCounts(ships.map((ship) => ship.current_port), 10)
+  });
+}
+
+function representativeDantiShipSequences(rows) {
+  const byVessel = new Map();
+  for (const row of rows) {
+    const ship = dantiShipRecord(row);
+    if (!ship) continue;
+    if (!/tanker/i.test(ship.ship_type ?? "")) continue;
+    const key = ship.mmsi ?? ship.imo ?? ship.name;
+    if (!key) continue;
+    const vessel = byVessel.get(key) ?? {
+      name: ship.name,
+      mmsi: ship.mmsi,
+      imo: ship.imo,
+      flag: ship.flag,
+      ship_type: ship.ship_type,
+      points: []
+    };
+    vessel.points.push({
+      observed_at: ship.observed_at,
+      lon: ship.lon,
+      lat: ship.lat,
+      speed_raw: ship.speed_raw,
+      status: ship.status,
+      destination: ship.destination,
+      course: ship.course,
+      current_port: ship.current_port
+    });
+    byVessel.set(key, vessel);
+  }
+
+  return [...byVessel.values()]
+    .map((vessel) => {
+      vessel.points.sort((left, right) =>
+        String(left.observed_at ?? "").localeCompare(String(right.observed_at ?? ""))
+      );
+      return {
+        ...vessel,
+        time_min: vessel.points[0]?.observed_at,
+        time_max: vessel.points[vessel.points.length - 1]?.observed_at
+      };
+    })
+    .filter((vessel) => vessel.points.length >= 2)
+    .sort((left, right) => {
+      const leftUnderway = left.points.some((point) => /under way/i.test(point.status ?? ""));
+      const rightUnderway = right.points.some((point) => /under way/i.test(point.status ?? ""));
+      if (leftUnderway !== rightUnderway) return leftUnderway ? -1 : 1;
+      return right.points.length - left.points.length;
+    });
+}
+
+function dantiShipRecord(row) {
+  const item = record(row);
+  const props = record(item.properties);
+  const display = record(item.display);
+  const coordinates = asArray(record(item.geometry).coordinates);
+  const lon = numberFromString(coordinates[0]) ?? numberFromString(props.longitude);
+  const lat = numberFromString(coordinates[1]) ?? numberFromString(props.latitude);
+  const name =
+    sanitizeText(stringValue(props.ship_name) ?? stringValue(display.ship_name), 100) ??
+    "Unknown vessel";
+  return compactRecord({
+    name,
+    mmsi: stringValue(props.mmsi) ?? stringValue(display.mmsi),
+    imo: stringValue(props.imo) ?? stringValue(display.imo),
+    observed_at: stringValue(item.authoredOn) ?? stringValue(props.datetime),
+    lon,
+    lat,
+    speed_raw: numberFromString(props.speed) ?? numberFromString(display.speed),
+    course: numberFromString(props.course),
+    status: sanitizeText(stringValue(display.status) ?? stringValue(props.status), 120),
+    ship_type: sanitizeText(stringValue(props.type_name) ?? stringValue(display.ship_type), 100),
+    flag: sanitizeText(stringValue(props.flag) ?? stringValue(display.flag), 20),
+    current_port: sanitizeText(stringValue(props.current_port), 120),
+    last_port: sanitizeText(stringValue(props.last_port), 120),
+    destination: sanitizeText(stringValue(props.destination), 160)
+  });
+}
+
+function topCounts(values, limit = 10) {
+  const counts = new Map();
+  for (const value of values) {
+    const key = sanitizeText(stringValue(value), 120) ?? "unknown";
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
+    .slice(0, limit)
+    .map(([value, count]) => ({ value, count }));
+}
+
 function dantiCategory(sourceCategory) {
   const value = String(sourceCategory ?? "").toUpperCase();
   if (value === "IMAGE") return "CROSS_MODAL_CONTEXT";
@@ -1700,6 +2195,50 @@ function contentTypeForFile(fileName) {
 function clamp01(value) {
   if (typeof value !== "number" || !Number.isFinite(value)) return 0;
   return Math.max(0, Math.min(1, value));
+}
+
+function dedupeBroadcasts(broadcasts) {
+  const seen = new Set();
+  const out = [];
+  for (const b of broadcasts) {
+    if (!b || typeof b !== "object") continue;
+    const key = `${b.ssvid ?? "?"}|${b.imo ?? "?"}|${b.flag ?? "?"}|${b.callsign ?? "?"}|${b.transmissionDateFrom ?? "?"}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(b);
+  }
+  out.sort((a, b) => {
+    const aFrom = stringValue(a.transmissionDateFrom) ?? "";
+    const bFrom = stringValue(b.transmissionDateFrom) ?? "";
+    return aFrom.localeCompare(bFrom);
+  });
+  return out;
+}
+
+function parseOfacRow(rawCsv) {
+  if (typeof rawCsv !== "string") return null;
+  const name = rawCsv.match(/^\d+,"([^"]+)"/)?.[1] ?? null;
+  const imo = rawCsv.match(/IMO\s+(\d+)/)?.[1] ?? null;
+  const mmsi = rawCsv.match(/MMSI\s+(\d+)/)?.[1] ?? null;
+  const vesselClass = rawCsv.match(/"vessel","([^"]+)"/)?.[1] ?? null;
+  const linkedMatches = [...rawCsv.matchAll(/Linked To:\s+([^;.]+)/g)].map((m) =>
+    m[1].trim()
+  );
+  const formerFlags = [
+    ...rawCsv.matchAll(/Former Vessel Flag\s+([A-Za-z ]+?)(?=;|,|\.|"|alt)/g)
+  ]
+    .map((m) => m[1].trim())
+    .filter(Boolean);
+  const country = rawCsv.match(/"vessel","[^"]+","([^"]+)"/)?.[1] ?? null;
+  return {
+    name,
+    imo,
+    mmsi,
+    vessel_class: vesselClass,
+    country,
+    linked_to: linkedMatches[0] ?? null,
+    former_flags: formerFlags
+  };
 }
 
 function omit(value, keys) {
