@@ -4300,3 +4300,82 @@ details.case-file__section > summary:focus-visible {
   color: var(--color-decision);
   margin-top: 2px;
 }
+
+/* ─── D5 TYPOGRAPHY HIERARCHY ─── */
+
+/* Real operator interfaces use weight + size + tracking to create an
+   instrument scale: 32px display for the headline, 11px mono for the
+   labels around it, nothing in between. We had everything at 10-14px
+   reading as one flat field. D5 introduces three explicit tiers and
+   applies them at the highest-leverage hot spots — Zone 1 verb gets
+   display tier, posture line gets instrument tier. The eye lands on
+   the verb first because it's literally the only display-tier element
+   on the surface.
+
+   Three tokens, three classes, two hot-spot applications. Does not
+   re-style any existing rules — appends NEW rules whose later position
+   in the cascade lets them win on tie. */
+
+:root {
+  --text-display-size: 32px;
+  --text-display-line: 1.05;
+  --text-display-tracking: -0.02em;
+
+  --text-instrument-size: 11px;
+  --text-instrument-line: 1.3;
+  --text-instrument-tracking: 0.18em;
+
+  --text-body-size: 13px;
+  --text-body-line: 1.45;
+  --text-body-tracking: 0.01em;
+}
+
+/* Reusable utility classes — drop on any element that needs the tier. */
+
+.text-display {
+  font-family: var(--font-serif);
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-line);
+  letter-spacing: var(--text-display-tracking);
+  font-weight: 500;
+  font-feature-settings: "ss01" 1, "kern" 1, "tnum" 1;
+}
+
+.text-instrument {
+  font-family: var(--font-mono);
+  font-size: var(--text-instrument-size);
+  line-height: var(--text-instrument-line);
+  letter-spacing: var(--text-instrument-tracking);
+  text-transform: uppercase;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-body {
+  font-family: var(--font-mono);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  letter-spacing: var(--text-body-tracking);
+}
+
+/* Hot-spot application — Zone 1 verb gets display tier. This is THE
+   load-bearing element of the operative surface. Promoting it from
+   18px to 32px Fraunces makes the eye land on it first, every time.
+   Posture line gets instrument tier — small uppercase tracked-out
+   metadata around the display value. */
+
+.zone1__verb {
+  font-family: var(--font-serif);
+  font-size: var(--text-display-size);
+  font-weight: 500;
+  letter-spacing: var(--text-display-tracking);
+  line-height: var(--text-display-line);
+  font-feature-settings: "ss01" 1, "kern" 1;
+}
+
+.zone1__posture {
+  font-family: var(--font-mono);
+  font-size: var(--text-instrument-size);
+  letter-spacing: var(--text-instrument-tracking);
+  text-transform: uppercase;
+}
