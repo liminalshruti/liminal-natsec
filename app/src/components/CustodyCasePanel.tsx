@@ -146,22 +146,27 @@ export function CustodyCasePanel({ selectedAlert }: CustodyCasePanelProps) {
           )}
         </div>
 
-        {/* Zone 2 — hypothesis × specialist interleave (two columns).
-            HypothesisBoard left, SpecialistReads right. CSS-only causal
-            subordination; v3.3 promotes to schema-level. */}
-        <div className="zone2">
-          <div className="zone2__col">
-            <div className="zone2__col-header">Hypotheses</div>
+        {/* Zone 2 — causal flow, top to bottom: SUBSTRATE → VERDICT.
+            Specialist reads feed the Bayesian fusion that produces the
+            hypotheses' posteriors. Rendering them stacked (not side-by-
+            side) makes the causal relationship visible: 6 specialist
+            voices on top, 3 ranked hypotheses below as the verdict. */}
+        <div className="zone2 zone2--causal">
+          <div className="zone2__substrate">
+            <div className="zone2__row-label">Specialists</div>
+            <SpecialistReads reads={reads} />
+          </div>
+          <div className="zone2__causal-arrow" aria-hidden>
+            ▼
+          </div>
+          <div className="zone2__verdict">
+            <div className="zone2__row-label">Hypotheses</div>
             <HypothesisBoard
               hypotheses={hypotheses}
               primaryClaimId={primaryClaimId}
               selectedHypothesisId={selectedHypothesisId}
               onSelectHypothesis={setSelectedHypothesisId}
             />
-          </div>
-          <div className="zone2__col">
-            <div className="zone2__col-header">Specialist reads</div>
-            <SpecialistReads reads={reads} />
           </div>
         </div>
       </div>

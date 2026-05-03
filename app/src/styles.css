@@ -239,7 +239,9 @@ button:hover {
   opacity: 0.92;
 }
 
-/* Zone 2 — hypothesis × specialist interleave, two-column grid */
+/* Zone 2 — hypothesis × specialist interleave, two-column grid (legacy).
+   Replaced by the causal-flow stack below; kept for any non-Zone-2
+   consumer until a follow-up sweep removes them. */
 
 .zone2 {
   display: grid;
@@ -260,6 +262,64 @@ button:hover {
   text-transform: uppercase;
   color: var(--fg-2);
   margin-bottom: 4px;
+}
+
+/* ── Zone 2 — causal-flow layout (substrate → verdict, top to bottom) ─────
+   Specialist reads sit on top as the SUBSTRATE row. A small downward
+   arrow — the causal connector — sits between substrate and verdict.
+   Hypotheses sit below as the VERDICT row, posteriors lifted because
+   they're the outputs the operator ranks. Reading direction is now
+   monotonic top-to-bottom: 6 voices feed the Bayesian fusion that
+   produces the 3 ranked beliefs. The differentiator is visible.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.zone2--causal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: stretch;
+}
+
+.zone2__substrate,
+.zone2__verdict {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.zone2__row-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.zone2__row-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  margin-left: 4px;
+}
+
+.zone2__causal-arrow {
+  align-self: center;
+  font-size: 10px;
+  color: var(--accent, #6ea8fe);
+  letter-spacing: 0;
+  margin: 2px 0;
+  opacity: 0.6;
+}
+
+.zone2__verdict {
+  /* Verdict gets a subtle accent-tinted border-top to read as the
+     "this is what the system concluded" zone. The arrow above is the
+     causal handoff. */
+  padding-top: 6px;
+  border-top: 1px solid rgba(110, 168, 254, 0.15);
 }
 
 /* Specialist Reads — strip rendering, with subordination marker for the
