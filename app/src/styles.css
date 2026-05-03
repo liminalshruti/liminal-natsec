@@ -134,6 +134,21 @@ body {
   outline-offset: 2px;
 }
 
+/* AUDIT B1: Visually-hidden utility for semantic h1-h3 structure without
+   visual layout changes. Screen readers perceive full heading hierarchy;
+   sighted users see no text nodes. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -1896,8 +1911,8 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   padding: 8px 12px;
   border-bottom: 1px solid var(--color-edge);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 11px;
+  letter-spacing: 0.16em;
+  font-size: 14px;
   color: var(--color-ink-secondary);
   display: flex;
   justify-content: space-between;
@@ -1908,6 +1923,18 @@ button.topbar-crumbs__seg--clickable:focus-visible {
      spacing eats inter-word boundaries. Per audit
      §A0 (string-template concatenation bug). */
   gap: 8px;
+}
+
+/* AUDIT B1: h2 in .panel__header — semantic structure without visual override.
+   Reset default heading margins and inherit panel__header styles. */
+.panel__header h2 {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  font-size: inherit;
 }
 
 .panel__body {
@@ -4845,11 +4872,11 @@ details.case-file__section > summary:focus-visible {
 }
 
 .named-operator__header {
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-size: 10px;
-  color: var(--color-ink-tertiary);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 20px;
+  color: var(--color-ink-primary);
   margin-bottom: 6px;
 }
 

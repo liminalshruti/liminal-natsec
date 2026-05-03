@@ -126,6 +126,7 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
     <>
       {/* ── OPERATIVE SURFACE (pinned) ──────────────────────────────────────── */}
       <div className="working__operative">
+        <h3 className="visually-hidden">Verdict</h3>
         <CaseHandoffBanner caseId={caseId} ruleApplication={changedRuleApplication} />
 
         <div className="zone1">
@@ -185,6 +186,7 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
             side) makes the causal relationship visible: 6 specialist
             voices on top, 3 ranked hypotheses below as the verdict. */}
         <div className="zone2 zone2--causal">
+          <h3 className="visually-hidden">Refusal</h3>
           <div className="zone2__substrate">
             <div className="zone2__row-label">Specialists</div>
             <SpecialistReads reads={reads} />
@@ -220,6 +222,7 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
           Provenance chain, Evidence held) are demoted and closed by
           default — preserved for Q&A, kept off the focal path. */}
       <div className="working__forensic">
+        <h3 className="visually-hidden">Review memory</h3>
         <div className="case-file">
           <details className="case-file__section" open>
             <summary className="case-file__section-header">
@@ -292,6 +295,7 @@ export function CustodyCasePanel({ selectedAlert, replayPhase = 1 }: CustodyCase
 
           <details className="case-file__section">
             <summary className="case-file__section-header">
+              <h3 className="visually-hidden">Evidence</h3>
               <span>Evidence held</span>
               <span className="case-file__section-meta">supports · weakens · contradicts</span>
             </summary>

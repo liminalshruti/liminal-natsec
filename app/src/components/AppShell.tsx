@@ -231,6 +231,7 @@ export function AppShell({
       data-resizing-pane={resizingPane ?? undefined}
       style={shellStyle}
     >
+      <h1 className="visually-hidden">Liminal Custody Watchfloor</h1>
       {/* SHIP-5: Persistent broadcast chyron — operating context lower-
           third in archival monotype, anchored at the very top of the
           shell. Plays in the operator's peripheral vision the entire

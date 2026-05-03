@@ -55,7 +55,7 @@ export const StageViewport = forwardRef<HTMLElement, StageViewportProps>(
     return (
       <main ref={ref} className="panel panel--stage" aria-label="Stage" tabIndex={-1}>
       <div className="panel__header">
-        <span>Stage</span>
+        <h2>Stage</h2>
         <span className="tag">map · replay</span>
       </div>
       <div className="panel__body" style={{ padding: 0, position: "relative" }}>
