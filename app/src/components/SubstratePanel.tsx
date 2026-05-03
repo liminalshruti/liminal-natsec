@@ -1,3 +1,4 @@
+import { forwardRef } from "react";
 import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import { DRAFT_CASES } from "../lib/draftCase.ts";
 import { CustodyQueue } from "./CustodyQueue.tsx";
@@ -13,15 +14,19 @@ interface SubstratePanelProps {
   loading: boolean;
 }
 
-export function SubstratePanel({
-  alerts,
-  scenarioState,
-  selectedAlertId,
-  onSelectAlert,
-  loading
-}: SubstratePanelProps) {
-  return (
-    <aside className="panel panel--substrate" aria-label="Substrate">
+export const SubstratePanel = forwardRef<HTMLElement, SubstratePanelProps>(
+  function SubstratePanel(
+    {
+      alerts,
+      scenarioState,
+      selectedAlertId,
+      onSelectAlert,
+      loading
+    }: SubstratePanelProps,
+    ref
+  ) {
+    return (
+      <aside ref={ref} className="panel panel--substrate" aria-label="Substrate" tabIndex={-1}>
       <div className="panel__header">
         {/* Watch-floor framing: workshop principle — substrate is the
             operator's posture, not a list of signals. The header reads as
@@ -60,5 +65,6 @@ export function SubstratePanel({
         <WatchfloorOsintFeed />
       </div>
     </aside>
-  );
-}
+    );
+  }
+);

@@ -6,7 +6,8 @@ import {
   useState,
   type CSSProperties,
   type KeyboardEvent,
-  type PointerEvent as ReactPointerEvent
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode
 } from "react";
 
 import type { AlertView } from "../lib/types.ts";
@@ -70,6 +71,10 @@ export function AppShell({
   onToggleUiMode
 }: AppShellProps) {
   const shellRef = useRef<HTMLDivElement | null>(null);
+  const substrateRef = useRef<HTMLElement | null>(null);
+  const stageRef = useRef<HTMLElement | null>(null);
+  const workingRef = useRef<HTMLElement | null>(null);
+  const commandLineRef = useRef<HTMLDivElement | null>(null);
   const [paneWidths, setPaneWidths] = useState<PaneWidths>(() => {
     const width = viewportWidth();
     return clampPaneWidths(defaultPaneWidths(width), width, "working");
@@ -123,6 +128,43 @@ export function AppShell({
     });
     return () => window.cancelAnimationFrame(raf);
   }, [paneWidths]);
+
+  // D2: Cmd+1/2/3/4 skip-to-pane keyboard shortcuts
+  // macOS: Cmd (metaKey), others: Ctrl (ctrlKey)
+  useEffect(() => {
+    function onKeyDown(event: globalThis.KeyboardEvent) {
+      const isMac = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
+      const hasModifier = isMac ? event.metaKey : event.ctrlKey;
+
+      if (!hasModifier) return;
+
+      let target: HTMLElement | null = null;
+      switch (event.key) {
+        case "1":
+          target = substrateRef.current;
+          break;
+        case "2":
+          target = stageRef.current;
+          break;
+        case "3":
+          target = workingRef.current;
+          break;
+        case "4":
+          target = commandLineRef.current?.querySelector("input") as HTMLElement | null;
+          break;
+        default:
+          return;
+      }
+
+      if (target) {
+        event.preventDefault();
+        target.focus({ preventScroll: true });
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown as EventListener);
+    return () => window.removeEventListener("keydown", onKeyDown as EventListener);
+  }, []);
 
   const clampForShell = useCallback((next: PaneWidths, priority?: keyof PaneWidths) => {
     const width = shellRef.current?.getBoundingClientRect().width ?? viewportWidth();
@@ -211,6 +253,7 @@ export function AppShell({
         </div>
       </header>
       <SubstratePanel
+        ref={substrateRef}
         alerts={scenario?.state.alerts ?? []}
         scenarioState={scenario?.state ?? null}
         selectedAlertId={selectedAlertId}
@@ -224,6 +267,7 @@ export function AppShell({
         onNudge={(delta) => adjustPaneWidth("substrate", delta)}
       />
       <StageViewport
+        ref={stageRef}
         selectedAlert={selectedAlert}
         selectedCaseId={selectedCaseId}
         loading={!scenario}
@@ -240,6 +284,7 @@ export function AppShell({
         onNudge={(delta) => adjustPaneWidth("working", delta)}
       />
       <WorkingPanel
+        ref={workingRef}
         selectedAlert={selectedAlert}
         selectedAlertId={selectedAlertId}
         scenarioState={scenario?.state ?? null}
@@ -253,6 +298,7 @@ export function AppShell({
           INSPO_TO_SURFACE_MAP.md §STRETCH-1 (Source 10 · aerockrose). */}
       <SubstrateStateChyron scenario={scenario} scenarioState={mapScenarioState} />
       <CommandLine
+        ref={commandLineRef}
         scenario={scenario}
         mapScenarioState={mapScenarioState}
         onMapScenarioChange={onMapScenarioChange}
