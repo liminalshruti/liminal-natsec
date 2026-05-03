@@ -12,6 +12,13 @@ import { useEffect, useState } from "react";
 import { DRAFT_CASE, PROMOTE_THRESHOLD, type DraftCase, type DraftCandidateSignal } from "./draftCase.ts";
 
 let state: DraftCase = { ...DRAFT_CASE, candidateSignals: DRAFT_CASE.candidateSignals.map((s) => ({ ...s })) };
+
+/** B-3: signals that just flipped to attached. Used to drive a one-shot
+ *  celebration animation. Cleared per-id after RECENT_ATTACH_TTL_MS so the
+ *  animation can re-fire if the operator detaches and re-attaches. */
+let recentlyAttached: Set<string> = new Set();
+const RECENT_ATTACH_TTL_MS = 1200;
+
 const listeners = new Set<() => void>();
 
 function emit() {
@@ -22,6 +29,9 @@ export function useDraftCase(): {
   draft: DraftCase;
   attachedCount: number;
   canPromote: boolean;
+  /** True if this signal id was attached within the last RECENT_ATTACH_TTL_MS.
+   *  Drives the B-3 celebration animation on the corresponding row. */
+  isRecentlyAttached: (signalId: string) => boolean;
   toggleAttach: (signalId: string) => void;
   promote: () => void;
   reset: () => void;
@@ -42,14 +52,26 @@ export function useDraftCase(): {
     draft: state,
     attachedCount,
     canPromote,
+    isRecentlyAttached: (signalId: string) => recentlyAttached.has(signalId),
     toggleAttach: (signalId: string) => {
+      const wasAttached = state.candidateSignals.find((s) => s.id === signalId)?.attached ?? false;
       state = {
         ...state,
         candidateSignals: state.candidateSignals.map((s) =>
           s.id === signalId ? { ...s, attached: !s.attached } : s
         )
       };
-      emit();
+      // Trigger the B-3 celebration only on the attach side of the toggle.
+      if (!wasAttached) {
+        recentlyAttached.add(signalId);
+        emit();
+        setTimeout(() => {
+          recentlyAttached.delete(signalId);
+          emit();
+        }, RECENT_ATTACH_TTL_MS);
+      } else {
+        emit();
+      }
     },
     promote: () => {
       if (!canPromote) return;
@@ -58,6 +80,7 @@ export function useDraftCase(): {
     },
     reset: () => {
       state = { ...DRAFT_CASE, candidateSignals: DRAFT_CASE.candidateSignals.map((s) => ({ ...s })) };
+      recentlyAttached = new Set();
       emit();
     }
   };

@@ -6807,6 +6807,56 @@ button:disabled {
   font-weight: 700;
 }
 
+/* B-3 celebration — when a signal just attached (within last ~1.2s),
+   the row briefly flashes a resolved-tone glow + outline pulse. The
+   toggle button does a quick scale-pop to draw the eye. Subtle but
+   confirms the attach succeeded — pairs with B-2's ghost-ship
+   materialization on the map for full attach choreography. */
+.draft-case-signal--just-attached {
+  animation: draft-signal-celebrate 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes draft-signal-celebrate {
+  0% {
+    box-shadow: 0 0 0 0 rgba(110, 195, 168, 0);
+    transform: translateX(0);
+  }
+  10% {
+    box-shadow:
+      0 0 0 2px rgba(110, 195, 168, 0.6),
+      0 0 24px rgba(110, 195, 168, 0.4);
+    transform: translateX(0);
+  }
+  35% {
+    box-shadow:
+      0 0 0 1px rgba(110, 195, 168, 0.4),
+      0 0 18px rgba(110, 195, 168, 0.25);
+    transform: translateX(2px);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(110, 195, 168, 0);
+    transform: translateX(0);
+  }
+}
+
+.draft-case-signal--just-attached .draft-case-signal__toggle {
+  animation: draft-toggle-pop 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes draft-toggle-pop {
+  0%   { transform: scale(1); }
+  20%  { transform: scale(1.2) rotate(-6deg); }
+  40%  { transform: scale(0.94) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .draft-case-signal--just-attached,
+  .draft-case-signal--just-attached .draft-case-signal__toggle {
+    animation: none;
+  }
+}
+
 .draft-case-signal__toggle:disabled {
   cursor: default;
   opacity: 0.7;
