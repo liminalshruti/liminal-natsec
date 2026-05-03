@@ -3,7 +3,7 @@ import type { AlertView, ScenarioStateView } from "../lib/types.ts";
 import type { UiMode } from "../lib/uiModeStore.ts";
 import { CustodyCasePanel } from "./CustodyCasePanel.tsx";
 import { DraftCaseDetail } from "./DraftCaseDetail.tsx";
-import { isDraftCaseId } from "../lib/draftCase.ts";
+import { isDraftCaseId, DRAFT_CASE } from "../lib/draftCase.ts";
 
 interface WorkingPanelProps {
   selectedAlert: AlertView | null;
@@ -16,6 +16,8 @@ interface WorkingPanelProps {
   /** Current replay phase (1..6) from the map's scenario state. Used to drive
    *  the OSINT intake band's phase-keyed reveal inside CustodyCasePanel. */
   replayPhase?: number;
+  /** Callback to select a case. Called with null to clear selection. */
+  onSelectAlert?: (id: string | null) => void;
 }
 
 // v3.2 IA — Working Panel splits into two regions vertically:
@@ -33,7 +35,8 @@ export const WorkingPanel = forwardRef<HTMLElement, WorkingPanelProps>(
       selectedAlertId,
       loading,
       uiMode = "demo",
-      replayPhase = 1
+      replayPhase = 1,
+      onSelectAlert
     }: WorkingPanelProps,
     ref
   ) {
@@ -58,7 +61,7 @@ export const WorkingPanel = forwardRef<HTMLElement, WorkingPanelProps>(
       </div>
       <div className="working__content">
         {loading && <div className="empty" style={{ padding: 12 }}>loading case...</div>}
-        {!loading && !selectedAlert && !isDraftSelected && <EmptyStencil uiMode={uiMode} />}
+        {!loading && !selectedAlert && !isDraftSelected && <EmptyStencil uiMode={uiMode} onSelectAlert={onSelectAlert} />}
         {!loading && isDraftSelected && <DraftCaseDetail caseId={selectedAlertId} />}
         {!loading && selectedAlert && !isDraftSelected && (
           <CustodyCasePanel selectedAlert={selectedAlert} replayPhase={replayPhase} />
@@ -79,7 +82,7 @@ export const WorkingPanel = forwardRef<HTMLElement, WorkingPanelProps>(
  * operator already knows the architecture; the panel just needs to read as
  * "no case selected" without lecturing.
  */
-function EmptyStencil({ uiMode }: { uiMode: UiMode }) {
+function EmptyStencil({ uiMode, onSelectAlert }: { uiMode: UiMode; onSelectAlert?: (id: string | null) => void }) {
   if (uiMode === "live") {
     return (
       <div
@@ -94,6 +97,19 @@ function EmptyStencil({ uiMode }: { uiMode: UiMode }) {
       </div>
     );
   }
+
+  const handleOpenDraft = () => {
+    if (onSelectAlert) {
+      onSelectAlert(DRAFT_CASE.id);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Enter") {
+      handleOpenDraft();
+    }
+  };
+
   return (
     <div className="empty-stencil" role="region" aria-label="Custody artifact stencil">
       <div className="empty-stencil__lead">CUSTODY ARTIFACT — pending selection</div>
@@ -141,6 +157,16 @@ function EmptyStencil({ uiMode }: { uiMode: UiMode }) {
       </ol>
       <div className="empty-stencil__footnote">
         Maven is the foundation. We are the substrate.
+      </div>
+      <div className="empty-stencil__draft-action">
+        <button
+          className="empty-stencil__draft-button"
+          onClick={handleOpenDraft}
+          onKeyDown={handleKeyDown}
+          aria-label={`Open AI proposed case: ${DRAFT_CASE.title}`}
+        >
+          Open AI · proposed case
+        </button>
       </div>
     </div>
   );
