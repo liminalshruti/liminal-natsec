@@ -31,6 +31,25 @@
           "scope_note": "The review window is the real identity-history span needed to evaluate the OFAC/GFW MMSI mismatch."
         },
         "lead_summary": "OFAC lists Iranian crude tanker HUGE (IMO 9357183) under MMSI 212256000, while GFW shows the same IMO currently broadcasting as MMSI 422206900 / IRN after seven AIS identity tuples.",
+        "ship_data": {
+          "name": "HUGE",
+          "imo": "9357183",
+          "current_mmsi": "422206900",
+          "ofac_listed_mmsi": "212256000",
+          "flag": "IR",
+          "callsign": "EPJE5",
+          "ship_type": "Crude Oil Tanker",
+          "operator": "NITC / OFAC SDN",
+          "status": "Under way using engine",
+          "speed_kn": 15.1,
+          "course_deg": 307,
+          "destination": "FOR ORDER",
+          "last_known_area": "Malacca Strait",
+          "last_known_position": "2.14800 N, 102.02867 E",
+          "last_known_at": "2026-03-19T16:31:00Z",
+          "source": "MyShipTracking + VesselFinder + GFW identity history",
+          "evidence_use": "last-known third-party AIS identity/location context only; not current Hormuz behavior evidence"
+        },
         "key_findings": [
           "7 broadcast identities since 2012: SVS GILBERT -> HATEF -> GLORY -> HUGE -> unnamed -> HUGE/PAN -> HUGE/IRN.",
           "Current GFW identity: MMSI 422206900, IRN flag, callsign EPJE5, last received 2026-03-20.",
@@ -153,7 +172,26 @@
         "ofac_listed_mmsi": "212256000",
         "current_gfw_mmsi": "422206900",
         "current_flag": "IRN",
-        "identity_count": 7
+        "identity_count": 7,
+        "ship_data": {
+          "name": "HUGE",
+          "imo": "9357183",
+          "current_mmsi": "422206900",
+          "ofac_listed_mmsi": "212256000",
+          "flag": "IR",
+          "callsign": "EPJE5",
+          "ship_type": "Crude Oil Tanker",
+          "operator": "NITC / OFAC SDN",
+          "status": "Under way using engine",
+          "speed_kn": 15.1,
+          "course_deg": 307,
+          "destination": "FOR ORDER",
+          "last_known_area": "Malacca Strait",
+          "last_known_position": "2.14800 N, 102.02867 E",
+          "last_known_at": "2026-03-19T16:31:00Z",
+          "source": "MyShipTracking + VesselFinder + GFW identity history",
+          "evidence_use": "last-known third-party AIS identity/location context only; not current Hormuz behavior evidence"
+        }
       },
       "archetype": {
         "archetype_primary": "Sage",

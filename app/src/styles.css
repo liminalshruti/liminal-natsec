@@ -1220,6 +1220,90 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   line-height: 1.45;
 }
 
+.case-lead__ship {
+  display: grid;
+  gap: 6px;
+  padding: 7px 8px;
+  border: 1px solid rgba(122, 169, 255, 0.26);
+  border-left: 2px solid rgba(122, 169, 255, 0.58);
+  border-radius: 4px;
+  background: rgba(122, 169, 255, 0.055);
+}
+
+.case-lead__ship-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 0;
+}
+
+.case-lead__ship-name {
+  min-width: 0;
+  color: var(--color-ink-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.case-lead__ship-type {
+  min-width: 0;
+  color: var(--color-decision, #7aa9ff);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: right;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.case-lead__ship-kv {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
+  gap: 5px 10px;
+  margin: 0;
+}
+
+.case-lead__ship-kv > div {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  font-family: var(--font-mono);
+  line-height: 1.25;
+}
+
+.case-lead__ship-kv dt {
+  flex: 0 0 auto;
+  color: var(--color-ink-tertiary);
+  font-size: 8.5px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+}
+
+.case-lead__ship-kv dd {
+  min-width: 0;
+  margin: 0;
+  color: var(--color-ink-primary);
+  font-size: 10px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.case-lead__ship-meta,
+.case-lead__ship-note {
+  color: var(--color-ink-tertiary);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.case-lead__ship-note {
+  font-style: italic;
+}
+
 .case-lead__context {
   display: flex;
   flex-wrap: wrap;
@@ -6701,6 +6785,15 @@ button:disabled {
 
   .case-lead__online-row {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .case-lead__ship-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .case-lead__ship-type {
+    text-align: left;
   }
 
   .osint-intake__chips {

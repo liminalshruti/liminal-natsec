@@ -325,6 +325,7 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
   const onlineBackfill = Array.isArray(data.online_backfill)
     ? data.online_backfill.filter(isRecord).map(toOnlineBackfill).filter(isOnlineBackfill)
     : [];
+  const shipData = isRecord(data.ship_data) ? toShipData(data.ship_data) : null;
   const contextItems = [
     stringValue(context.watch_box_name) ?? stringValue(features.aoi_name),
     stringValue(context.primary_real_signal),
@@ -335,7 +336,14 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
   ].filter((item): item is string => Boolean(item));
   const scopeNote = stringValue(context.scope_note);
 
-  if (!leadSummary && keyFindings.length === 0 && contextItems.length === 0 && !scopeNote) {
+  if (
+    !leadSummary &&
+    !shipData &&
+    keyFindings.length === 0 &&
+    contextItems.length === 0 &&
+    !scopeNote &&
+    onlineBackfill.length === 0
+  ) {
     return null;
   }
 
@@ -359,6 +367,7 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
         </div>
       )}
       {leadSummary && <div className="case-lead__summary">{leadSummary}</div>}
+      {shipData && <ShipDataCard ship={shipData} />}
       {scopeNote && <div className="case-lead__scope">{scopeNote}</div>}
       {keyFindings.length > 0 && (
         <div className="case-lead__findings">
@@ -390,8 +399,92 @@ function CaseLead({ node }: { node: ReturnType<typeof nodeById> }) {
   );
 }
 
+function ShipDataCard({ ship }: { ship: ShipData }) {
+  const fields: Array<[string, string | null | undefined]> = [
+    ["IMO", ship.imo],
+    ["MMSI", ship.currentMmsi],
+    ["OFAC MMSI", ship.ofacListedMmsi],
+    ["Flag", ship.flag],
+    ["Call", ship.callsign],
+    ["Speed", formatNumber(ship.speedKn, " kn")],
+    ["Course", formatNumber(ship.courseDeg, " deg")],
+    ["Position", ship.lastKnownPosition],
+    ["Area", ship.lastKnownArea],
+    ["Dest", ship.destination],
+    ["Observed", formatIsoMinute(ship.lastKnownAt)]
+  ].filter((entry): entry is [string, string] => Boolean(entry[1]));
+
+  return (
+    <div className="case-lead__ship" aria-label="Primary vessel data">
+      <div className="case-lead__ship-head">
+        <span className="case-lead__ship-name">{ship.name ?? "UNKNOWN VESSEL"}</span>
+        {ship.shipType && <span className="case-lead__ship-type">{ship.shipType}</span>}
+      </div>
+      {fields.length > 0 && (
+        <dl className="case-lead__ship-kv">
+          {fields.map(([label, value]) => (
+            <div key={label}>
+              <dt>{label}</dt>
+              <dd>{value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+      {(ship.operator || ship.status || ship.source) && (
+        <div className="case-lead__ship-meta">
+          {[ship.operator, ship.status, ship.source].filter(Boolean).join(" · ")}
+        </div>
+      )}
+      {ship.evidenceUse && <div className="case-lead__ship-note">{ship.evidenceUse}</div>}
+    </div>
+  );
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+interface ShipData {
+  name?: string;
+  imo?: string;
+  currentMmsi?: string;
+  ofacListedMmsi?: string;
+  flag?: string;
+  callsign?: string;
+  shipType?: string;
+  operator?: string;
+  status?: string;
+  speedKn?: number;
+  courseDeg?: number;
+  destination?: string;
+  lastKnownArea?: string;
+  lastKnownPosition?: string;
+  lastKnownAt?: string;
+  source?: string;
+  evidenceUse?: string;
+}
+
+function toShipData(value: Record<string, unknown>): ShipData | null {
+  const ship: ShipData = {
+    name: stringValue(value.name) ?? stringValue(value.vessel_name),
+    imo: stringValue(value.imo),
+    currentMmsi: stringValue(value.current_mmsi) ?? stringValue(value.mmsi),
+    ofacListedMmsi: stringValue(value.ofac_listed_mmsi),
+    flag: stringValue(value.flag),
+    callsign: stringValue(value.callsign),
+    shipType: stringValue(value.ship_type),
+    operator: stringValue(value.operator),
+    status: stringValue(value.status),
+    speedKn: numberValue(value.speed_kn),
+    courseDeg: numberValue(value.course_deg),
+    destination: stringValue(value.destination),
+    lastKnownArea: stringValue(value.last_known_area),
+    lastKnownPosition: stringValue(value.last_known_position),
+    lastKnownAt: stringValue(value.last_known_at),
+    source: stringValue(value.source),
+    evidenceUse: stringValue(value.evidence_use)
+  };
+  return ship.name || ship.imo || ship.currentMmsi ? ship : null;
 }
 
 interface OnlineBackfill {
@@ -418,4 +511,18 @@ function isOnlineBackfill(value: Partial<OnlineBackfill>): value is OnlineBackfi
 
 function stringValue(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
+}
+
+function numberValue(value: unknown): number | undefined {
+  const num = typeof value === "number" ? value : typeof value === "string" ? Number(value) : NaN;
+  return Number.isFinite(num) ? num : undefined;
+}
+
+function formatNumber(value: number | undefined, suffix: string): string | null {
+  return typeof value === "number" ? `${Number.isInteger(value) ? value : value.toFixed(1)}${suffix}` : null;
+}
+
+function formatIsoMinute(value: string | undefined): string | null {
+  if (!value) return null;
+  return value.replace(/:00Z$/, "Z").replace("T", " ");
 }

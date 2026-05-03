@@ -88,6 +88,17 @@ describe("app spineGraph integration", () => {
     );
   });
 
+  it("event 1 exposes primary HUGE ship data", () => {
+    const graph = getMaritimeGraph();
+    const node = graph.getNode("case:alara-01:event-1");
+    const data = (node?.data ?? {}) as Record<string, any>;
+    assert.equal(data.ship_data?.name, "HUGE");
+    assert.equal(data.ship_data?.imo, "9357183");
+    assert.equal(data.ship_data?.current_mmsi, "422206900");
+    assert.equal(data.ship_data?.ofac_listed_mmsi, "212256000");
+    assert.match(data.ship_data?.evidence_use ?? "", /not current Hormuz behavior evidence/);
+  });
+
   it("actionsForCase returns the event-2 action options", () => {
     const actions = actionsForCase("case:alara-01:event-2");
     const ids = actions.map((node) => node.id).sort();
