@@ -51,7 +51,7 @@ const PANE_LIMITS = {
   substrateMin: 220,
   substrateMax: 560,
   workingMin: 360,
-  workingMax: 760,
+  workingMax: 640,
   stageMin: 420,
   resizeColumns: 16
 };
@@ -239,7 +239,7 @@ export function AppShell({
           (Source 10 · aerockrose · Sequoia AI Ascent register). */}
       <BroadcastChyron scenario={scenario} />
       <header className="app-topbar">
-        <span className="app-topbar__brand">Liminal Custody · Watchfloor</span>
+        <span className="app-topbar__brand">Liminal · Custody</span>
         <Breadcrumb
           scenario={scenario}
           eventId={eventId}
@@ -362,7 +362,7 @@ function defaultPaneWidths(width: number): PaneWidths {
   if (width < 1024) return { substrate: 240, working: 380 };
   if (width < 1280) return { substrate: 272, working: 460 };
   if (width < 1440) return { substrate: 296, working: 520 };
-  return { substrate: 320, working: 560 };
+  return { substrate: 320, working: 480 };
 }
 
 function clampPaneWidths(
