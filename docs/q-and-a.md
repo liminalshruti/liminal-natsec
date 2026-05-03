@@ -16,9 +16,9 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 > "It could be. The primitive — evidence custody under ambiguity — is portable. We'd happily build it as an AIP module. But the wedge is the *behavior*: refusal as a designed output, review memory as durable correction. Most platforms don't expose those as first-class concepts."
 
-### "Aren't you attacking Palantir?"
+### "How is this complementary to Maven, not competing with it?"
 
-> "No — we're identifying the layer Maven assumes already exists. The contrast is layer-before, not layer-better. Maven operates after signals are commandable. We operate while they're still contested."
+> "We operate one layer earlier. The contrast is layer-before, not layer-better. Maven operates *after* signals reach command. We operate *while* they're still contested. When custody resolves in our system, the resolved state can flow into a Maven or Foundry deployment cleanly — we feed Maven, we don't replace it."
 
 ---
 
@@ -82,7 +82,7 @@ The judges in the room are ex-operators (Shield Capital, IQT) and procurement-ad
 
 ### "Why your team?"
 
-> Shayaun: "I'm OffSec-certified — OSCP/OSCE-class, top 100 on Hack The Box. Signal-chain compromise and spoofing is what I do."
+> Shayaun: "I'm an OffSec-certified offensive-security professional — top 100 on Hack The Box. Signal-chain integrity is my domain."
 > Shruti: "I'm building Liminal — infrastructure for the pre-decisional state. Two years of architecture work on evidence custody is what made Liminal Custody buildable in 24 hours."
 
 ### "How did you build this in a weekend?"

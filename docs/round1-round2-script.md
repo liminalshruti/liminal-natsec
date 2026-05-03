@@ -58,7 +58,7 @@
 **Team + ask (2:30 – 2:50) — Shruti opens, Shayaun closes:**
 
 > Shruti: "I'm building Liminal — infrastructure for the pre-decisional state."
-> Shayaun: "I'm OffSec-certified, top 100 on Hack The Box. Spoofing and signal-chain compromise is what I do. We want a 90-day pilot with a maritime watchfloor or xTech sponsor on contested AIS replay data."
+> Shayaun: "I'm an OffSec-certified offensive-security professional — top 100 on Hack The Box. Signal-chain integrity is my domain. We want a 90-day pilot with a maritime watchfloor or xTech sponsor on contested AIS replay data."
 
 ### Round 1 — what NOT to say
 
@@ -121,7 +121,7 @@
 
 **Team + ask (2:45 – 3:00) — Shayaun closes:**
 
-> "I'm OffSec-certified, top 100 on Hack The Box — my domain is spoofing and signal-chain compromise. Shruti is building Liminal, infrastructure for pre-decisional state. We want a 90-day pilot with a maritime watchfloor or an xTech sponsor on contested AIS replay data — and we want to talk to anyone here who's working on the layer below CJADC2."
+> "I'm an OffSec-certified offensive-security professional — top 100 on Hack The Box. Signal-chain integrity is my domain. Shruti is building Liminal, infrastructure for pre-decisional state. We want a 90-day pilot with a maritime watchfloor or an xTech sponsor on contested AIS replay data — and we want to talk to anyone here who's working on the layer below CJADC2."
 
 ### Round 2 — what to do differently
 

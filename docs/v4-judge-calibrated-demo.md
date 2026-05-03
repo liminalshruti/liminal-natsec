@@ -11,7 +11,7 @@ Use this in the first sentence of every pitch — Round 1 and Round 2.
 > **A maritime watch officer at U.S. 5th Fleet, 0200 local, monitoring AIS disruptions near a strategic chokepoint in the Strait of Hormuz, deciding whether a dark-gap reappearance deserves immediate escalation or second-source collection.**
 
 Why this persona:
-- 5th Fleet AOR includes Hormuz / Bab al-Mandab — both have *documented* AIS spoofing incidents (Iran-attributed, since ~2019).
+- 5th Fleet AOR includes Hormuz / Bab al-Mandab — both have documented AIS spoofing across multiple state and non-state actors (2019+).
 - 0200 makes the cognitive-load problem visceral.
 - "Escalate vs second-source collection" is the *exact* decision Liminal Custody surfaces.
 - Naming a unit (not "operators in general") signals operator literacy to Shield / IQT / DCVC judges.
@@ -98,7 +98,7 @@ The named judges in the room and what they're listening for. **One sentence in t
 ### Shield Capital
 
 - Listening for: dual-use credibility, founder pattern-match (ex-operator or close), technical depth.
-- Their sentence: *"Shayaun is OffSec-certified, top 100 on Hack The Box. Signal-chain compromise is his domain."*
+- Their sentence: *"Shayaun is an OffSec-certified offensive-security professional, top 100 on Hack The Box. Signal-chain integrity is his domain."*
 
 ### IQT (In-Q-Tel)
 
