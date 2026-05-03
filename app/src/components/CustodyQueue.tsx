@@ -19,6 +19,14 @@ export function CustodyQueue({
   onSelectAlert,
   loading
 }: CustodyQueueProps) {
+  // AUDIT A2: aria-selected + role="option" on each alert-row inside a
+  // role="listbox" parent — standard ARIA contract for a list-with-
+  // selection so assistive tech announces "EV N · selected" on focus.
+  // Auto-focus on mount was considered and deferred: it puts a visible
+  // focus ring on the active row at app load, which reads to sighted
+  // judges as "did I click that?" — adds confusion, not clarity. The
+  // demo opens without grabbing focus; keyboard users still Tab into
+  // the listbox normally.
   // Tick every 30s so relative-time strings stay accurate without per-row
   // state. Operators care about "fresh / settled / stale" classifications
   // changing over the course of a watch. D2 ambient motion: tick every
@@ -39,7 +47,12 @@ export function CustodyQueue({
   }
   const ranked = [...alerts].sort((a, b) => a.rank - b.rank);
   return (
-    <div className="custody-queue">
+    // AUDIT A2: listbox/option a11y contract. The custody queue is the
+    // canonical "list-with-selection" surface — assistive tech needs to
+    // announce "EV 1 · selected" on focus. role="listbox" on the
+    // parent + role="option" + aria-selected on each alert-row is the
+    // standard ARIA pattern for this shape.
+    <div className="custody-queue" role="listbox" aria-label="Custody queue">
       {ranked.map((alert) => {
         const caseId = alert.caseId ?? caseIdFromAlertId(alert.id);
         const eventId = eventIdFromCaseId(caseId);
@@ -53,7 +66,8 @@ export function CustodyQueue({
             data-active={isActive}
             data-event={eventId ?? undefined}
             data-staleness={staleness}
-            role="button"
+            role="option"
+            aria-selected={isActive}
             tabIndex={0}
             onClick={() => onSelectAlert(alert.id)}
             onKeyDown={(event) => {

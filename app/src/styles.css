@@ -124,6 +124,16 @@ body {
   letter-spacing: 0.01em;
 }
 
+/* AUDIT A2: global focus-visible ring. Per-component focus rings already
+   exist (button.topbar-crumbs__seg, .evidence-card, .replay-controls__btn,
+   etc.) — this catches everything else (alert-row, action-row, the
+   listbox-pattern surfaces). Decision-color outline + 2px offset is the
+   audit-prescribed contract. */
+:focus-visible {
+  outline: 2px solid var(--color-decision);
+  outline-offset: 2px;
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -931,7 +941,27 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   overflow-y: auto;
   overflow-x: hidden;
   overscroll-behavior: contain;
+  /* AUDIT A1: visible scrollbar (not just stable gutter) so the scroll
+     thumb signals "more content below." Skip the bottom-fade mask —
+     mask-image renders unconditionally and would fade the bottom 24px
+     even when content doesn't overflow, reading as a render bug. */
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-edge) transparent;
+}
+
+.working__operative::-webkit-scrollbar {
+  width: 8px;
+}
+.working__operative::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 4px;
+}
+.working__operative::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-tertiary);
+}
+.working__operative::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .working__forensic {
@@ -945,7 +975,25 @@ button.topbar-crumbs__seg--clickable:focus-visible {
   min-width: 0;
   min-height: 0; /* allow flex child to shrink so overflow works in Chromium */
   overscroll-behavior: contain;
+  /* AUDIT A1: visible scrollbar (not just stable gutter) so the scroll
+     thumb itself signals "more content below" the visible viewport. */
   scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-edge) transparent;
+}
+
+.working__forensic::-webkit-scrollbar {
+  width: 8px;
+}
+.working__forensic::-webkit-scrollbar-thumb {
+  background: var(--color-edge);
+  border-radius: 4px;
+}
+.working__forensic::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-tertiary);
+}
+.working__forensic::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* Zone 1 — verb + posture inline, with optional hero banner above.
