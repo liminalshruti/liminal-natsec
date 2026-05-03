@@ -11,6 +11,7 @@ import {
   familyForSourceFile,
   type SourceFamily
 } from "../lib/sourceFamilies.ts";
+import { publicSourcePath, publicStatusLabel, publicText } from "../lib/presentationText.ts";
 
 interface SpecialistReadsProps {
   reads: SpecialistReadRecord[];
@@ -130,7 +131,7 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
             ]
               .filter(Boolean)
               .join(" ")}
-            title={read.summary ?? ""}
+            title={read.summary ? publicText(read.summary) : ""}
             role="listitem"
           >
             <span
@@ -142,7 +143,9 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
               </span>
               <span className="specialist-row__name-full">{read.specialist}</span>
             </span>
-            <span className="specialist-row__summary">{read.summary ?? "—"}</span>
+            <span className="specialist-row__summary">
+              {read.summary ? publicText(read.summary) : "—"}
+            </span>
             <span className="specialist-row__status-group">
               <SpecialistFamilyChips specialistName={read.specialist} />
               <span className="specialist-row__status">{read.status}</span>
@@ -175,11 +178,11 @@ export function SpecialistReads({ reads }: SpecialistReadsProps) {
                 <span className="specialist-row__causal-target">Intent refused</span>
               </div>
             )}
-            {/* Cited inputs strip — names the real cached files this specialist
+            {/* Cited inputs strip — names the real source files this specialist
                 deliberates over. The strip is collapsed (chip-row) by default
                 and expands on click to show the full footnote with sha256 +
                 jq pointer. Q&A move: "click any specialist → see exactly which
-                cached source it's reading, with hash for tamper-verification."
+                source it's reading, with hash for tamper-verification."
                 Intent has no inputs (refusal is structural, not source-driven).*/}
             <SpecialistInputsStrip specialistName={read.specialist} />
             {/* (existing redirect + override blocks rendered below) */}
@@ -323,7 +326,7 @@ function OverrideAffordance({
 }
 
 /**
- * Cited-inputs strip — shows the real cached files each specialist would
+ * Cited-inputs strip — shows the real source files each specialist would
  * deliberate over. Chip-row when collapsed; full footnote when expanded.
  * Renders after each specialist row, before the redirect/override blocks.
  *
@@ -378,11 +381,11 @@ function SpecialistInputsStrip({ specialistName }: { specialistName: string }) {
             key={c.source_file}
             className="specialist-row__inputs-chip"
             data-status={c.source_status}
-            title={c.source_file}
+            title={publicSourcePath(c.source_file)}
           >
             <span className="specialist-row__inputs-chip-label">{c.label}</span>
             <span className="specialist-row__inputs-chip-status">
-              {c.source_status}
+              {publicStatusLabel(c.source_status)}
             </span>
           </span>
         ))}
@@ -409,23 +412,23 @@ function SpecialistCitationFootnote({
       data-status={citation.source_status}
     >
       <div className="specialist-row__footnote-head">
-        <span className="specialist-row__footnote-label">{citation.label}</span>
+        <span className="specialist-row__footnote-label">{publicText(citation.label)}</span>
         <span className="specialist-row__footnote-provider">
-          {citation.source_provider}
+          {publicText(citation.source_provider)}
         </span>
       </div>
-      <div className="specialist-row__footnote-path" title="cached source on disk">
-        {citation.source_file}
+      <div className="specialist-row__footnote-path" title="source on disk">
+        {publicSourcePath(citation.source_file)}
       </div>
       <div className="specialist-row__footnote-pointer">
         pointer: {citation.source_pointer}
       </div>
-      <div className="specialist-row__footnote-sha" title="sha256 of cached file">
+      <div className="specialist-row__footnote-sha" title="source file sha256">
         sha256: {citation.source_sha256.slice(0, 16)}…{citation.source_sha256.slice(-8)}
       </div>
       {citation.records_hint && (
         <div className="specialist-row__footnote-hint">
-          contains: {citation.records_hint}
+          contains: {publicText(citation.records_hint)}
         </div>
       )}
     </div>

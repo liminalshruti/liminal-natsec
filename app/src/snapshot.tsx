@@ -21,6 +21,7 @@ import { CustodyCasePanel } from "./components/CustodyCasePanel.tsx";
 import { CustodyQueue } from "./components/CustodyQueue.tsx";
 import { DataSourcesChips } from "./components/DataSourcesChips.tsx";
 import { DraftCaseCard } from "./components/DraftCaseCard.tsx";
+import { DRAFT_CASES } from "./lib/draftCase.ts";
 import { DraftCaseDetail } from "./components/DraftCaseDetail.tsx";
 import { EvidenceChain } from "./components/EvidenceChain.tsx";
 import { EvidenceDrawer } from "./components/EvidenceDrawer.tsx";
@@ -218,6 +219,7 @@ const registry: Record<string, { label: string; render: Renderer; wide?: boolean
     render: () => (
       <div style={{ padding: 12, maxWidth: 320 }}>
         <DraftCaseCard
+          draftCaseId={DRAFT_CASES[0]!.id}
           selectedAlertId={null}
           onSelect={() => undefined}
         />

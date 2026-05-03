@@ -29,9 +29,11 @@ export interface FitBoundsOptions {
 export type CameraOptions = FlyOptions | FitBoundsOptions;
 
 const SOFT = { speed: 0.8, curve: 1.4 };
+const CAMERA_CENTER_EPSILON = 0.00001;
+const CAMERA_ZOOM_EPSILON = 0.01;
 
 // Per-phase target. Phase 1 stays wide; phases 2–5 zoom into the dark gap;
-// phase 6 jumps east to the second fixture track. Coordinates pulled from the fixture
+// phase 6 frames the later review beat. Coordinates pulled from the fixture
 // metadata so a future fixture update doesn't drift the camera.
 export function flyForPhaseOptions(
   fixture: TracksFixture,
@@ -161,10 +163,12 @@ export function executeCamera(
       // animations chain rapidly). easeTo with a short duration is stable
       // here; jumpTo is the absolute fallback. We pick easeTo so the camera
       // still feels animated to a viewer.
+      if (isCameraAtTarget(map, options.center, options.zoom)) return;
+      stopCurrentCamera(map);
       map.easeTo({
         center: options.center,
         zoom: options.zoom,
-        duration: 600
+        duration: options.duration ?? 600
       });
       return;
     }
@@ -184,10 +188,13 @@ export function executeCamera(
             (camCenter as { lon?: number }).lon!,
           (camCenter as { lat: number }).lat
         ];
+    if (!Number.isFinite(center[0]) || !Number.isFinite(center[1])) return;
+    if (isCameraAtTarget(map, center, cam.zoom)) return;
+    stopCurrentCamera(map);
     map.easeTo({
       center,
       zoom: cam.zoom,
-      duration: 700
+      duration: options.duration ?? 700
     });
   } catch (err) {
     // eslint-disable-next-line no-console
@@ -225,6 +232,35 @@ function boundsFromPoints(
     padding: 90,
     maxZoom: 10
   };
+}
+
+function isCameraAtTarget(
+  map: maplibregl.Map,
+  center: [number, number],
+  zoom: number
+): boolean {
+  if (!Number.isFinite(center[0]) || !Number.isFinite(center[1]) || !Number.isFinite(zoom)) {
+    return false;
+  }
+  const current = map.getCenter();
+  const currentZoom = map.getZoom();
+  if (!Number.isFinite(current.lng) || !Number.isFinite(current.lat) || !Number.isFinite(currentZoom)) {
+    return false;
+  }
+  return (
+    Math.abs(current.lng - center[0]) < CAMERA_CENTER_EPSILON &&
+    Math.abs(current.lat - center[1]) < CAMERA_CENTER_EPSILON &&
+    Math.abs(currentZoom - zoom) < CAMERA_ZOOM_EPSILON
+  );
+}
+
+function stopCurrentCamera(map: maplibregl.Map): void {
+  try {
+    if (map.isMoving()) map.stop();
+  } catch {
+    // Ignore pre-layout transform states; the following camera call will fail
+    // through the outer guard if MapLibre is not ready yet.
+  }
 }
 
 function featureCentroid(

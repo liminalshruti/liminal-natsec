@@ -35,6 +35,7 @@ interface StageViewportProps {
   scenarioState: ScenarioState | undefined;
   onScenarioStateChange: (next: ScenarioState) => void;
   resetSignal: number;
+  onClearCaseSelection?: () => void;
 }
 
 export function StageViewport({

@@ -12,6 +12,7 @@
 
 import { nodeById, type ReviewRuleApplication, type SpineNode } from "../lib/spineGraph.ts";
 import type { SpecialistReadRecord } from "../lib/specialistReads.ts";
+import { publicText } from "../lib/presentationText.ts";
 
 import { TypedObjectChip } from "./TypedObjectChip.tsx";
 
@@ -82,7 +83,7 @@ export function ExecSummary({
         )}
       </p>
 
-      {leadSummary && <p>{leadSummary}</p>}
+      {leadSummary && <p>{publicText(leadSummary)}</p>}
 
       {integrity && (
         <p>
@@ -120,7 +121,7 @@ export function ExecSummary({
             status={collection.status}
             size="sm"
           />{" "}
-          {collection.summary}
+          {publicText(collection.summary)}
         </p>
       )}
 
