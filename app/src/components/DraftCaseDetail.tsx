@@ -28,7 +28,7 @@ const SIGNAL_KIND_LABELS: Record<string, { label: string; tone: string }> = {
 };
 
 export function DraftCaseDetail() {
-  const { draft, attachedCount, canPromote, toggleAttach, promote } = useDraftCase();
+  const { draft, attachedCount, canPromote, isRecentlyAttached, toggleAttach, promote } = useDraftCase();
 
   const isPromoted = draft.status === "promoted";
 
@@ -77,7 +77,13 @@ export function DraftCaseDetail() {
             return (
               <li
                 key={signal.id}
-                className={`draft-case-signal${signal.attached ? " draft-case-signal--attached" : ""}`}
+                className={[
+                  "draft-case-signal",
+                  signal.attached ? "draft-case-signal--attached" : "",
+                  isRecentlyAttached(signal.id) ? "draft-case-signal--just-attached" : ""
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
                 data-tone={kindMeta.tone}
                 draggable={!isPromoted && !signal.attached}
                 onDragStart={(e) => {
