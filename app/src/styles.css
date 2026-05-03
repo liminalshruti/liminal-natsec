@@ -1490,3 +1490,52 @@ button:hover {
   font-size: 11px;
   line-height: 1.5;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Action list — typed-grammar register for the case file's action options.
+   When a rule fires, one row gets PRIOR TOP (the recommendation that would
+   have applied without the rule) and one row gets RECOMMENDED (the one the
+   rule promoted). The visual diff between those two rows is the rule-fire
+   beat in the forensic surface — Zone 1 shows it as verb crossfade, the
+   case file shows it as labeled action diff.
+   ────────────────────────────────────────────────────────────────────────── */
+
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.action-list__row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--bg-2);
+}
+
+.action-list__row--recommended {
+  border-left: 2px solid var(--ok, #4ea08a);
+  background: rgba(78, 160, 138, 0.04);
+}
+
+.action-list__row--prior {
+  border-left: 2px solid var(--warn, #d18b3c);
+  background: rgba(209, 139, 60, 0.04);
+  opacity: 0.85;
+}
+
+.action-list__row[data-rule-fire="true"].action-list__row--recommended {
+  /* When a rule has fired, the RECOMMENDED row is the one judges should
+     read first. Subtle box-shadow lifts it slightly from the strip. */
+  box-shadow: 0 0 0 1px rgba(78, 160, 138, 0.2);
+}
+
+.action-list__kind {
+  font-size: 10px;
+  color: var(--fg-2);
+  letter-spacing: 0.04em;
+  padding-left: 4px;
+}
