@@ -8601,3 +8601,119 @@ body.liminal-dragging-signal .draft-case-signal[draggable="true"]:hover {
   flex: 1 1 auto;
   min-width: 0;
 }
+
+/* ─── STRETCH-3: SERVER-STAMPED GUARD-LAYER VERDICT ────────────────────────
+   Per docs/design/INSPO_TO_SURFACE_MAP.md STRETCH-3.
+   Reads as if guard.ts typed it directly into the page — teletype
+   register, not a UI label. The unforgettable Shield/IQT moment.
+
+   HARD CONSTRAINT honored: zero hardcoded copy. Stamp text comes
+   entirely from refusalReason payload (parsed by GuardLayerStamp).
+   ───────────────────────────────────────────────────────────────────────── */
+
+.guard-stamp {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: rgba(8, 9, 12, 0.6);
+  border: 1px solid var(--color-edge);
+  border-left: 3px solid var(--color-refused);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink-secondary);
+  background-image:
+    radial-gradient(circle at 25% 30%, rgba(214, 207, 190, 0.020) 0%, transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(176, 136, 80, 0.018) 0%, transparent 60%);
+  /* Slight typewriter-imprint shadow — letters look slightly debossed. */
+  text-shadow: 0 0.5px 0 rgba(0, 0, 0, 0.6);
+}
+
+.guard-stamp__rule {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  color: var(--color-refused);
+  text-align: center;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.guard-stamp__body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.guard-stamp__line {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 2px 0;
+}
+
+.guard-stamp__seg-kind {
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-refused);
+  flex-shrink: 0;
+  min-width: 130px;
+}
+
+.guard-stamp__seg-arrow {
+  color: var(--color-ink-tertiary);
+  flex-shrink: 0;
+}
+
+.guard-stamp__seg-payload {
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--color-ink-primary);
+  font-weight: 500;
+}
+
+.guard-stamp__footer {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--color-edge);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-quaternary, rgba(184, 197, 212, 0.32));
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.guard-stamp__author {
+  color: var(--color-refused);
+  font-weight: 500;
+}
+
+/* Archival-register stamp inside .panel--working — warm-paper version */
+.panel--working .guard-stamp {
+  background: var(--archival-paper);
+  border-color: var(--archival-edge);
+  border-left-color: var(--archival-stamp);
+  color: var(--archival-ink-muted);
+  background-image:
+    radial-gradient(circle at 25% 30%, rgba(176, 136, 80, 0.04) 0%, transparent 55%),
+    radial-gradient(circle at 75% 70%, rgba(214, 207, 190, 0.030) 0%, transparent 60%);
+}
+
+.panel--working .guard-stamp__rule,
+.panel--working .guard-stamp__seg-kind,
+.panel--working .guard-stamp__author {
+  color: var(--archival-stamp);
+}
+
+.panel--working .guard-stamp__seg-payload {
+  color: var(--archival-ink);
+}
+
+.panel--working .guard-stamp__footer {
+  border-top-color: var(--archival-edge);
+  color: var(--archival-ink-faint);
+}
