@@ -10,6 +10,7 @@ import {
   type HormuzIntelStatus,
   type HormuzSourceDocument
 } from "../../../shared/hormuz/types.ts";
+import { publicText } from "./presentationText.ts";
 
 export interface RequiredHormuzSource {
   source: HormuzIntelSource;
@@ -225,22 +226,22 @@ function evidenceRow(
   const sourceDoc = sourceDocuments.find((doc) => doc.id === item.source_document_id);
   return {
     id: item.id,
-    title: item.title,
+    title: publicText(item.title),
     source: item.source,
     provider: item.provider,
     category: item.category,
     drawerGroup: item.drawer_group,
     status: item.status,
-    summary: item.summary,
-    detail: item.detail,
+    summary: publicText(item.summary),
+    detail: item.detail ? publicText(item.detail) : null,
     sourceFile: item.source_file,
     sourceDocumentId: item.source_document_id,
     confidence: item.confidence,
     reliability: item.reliability,
     imageSrc: item.browser_asset_path ?? null,
-    policyNote: item.policy.note,
+    policyNote: publicText(item.policy.note),
     unavailableReason:
-      item.status === "unavailable" ? sourceDoc?.status_detail ?? item.summary : null
+      item.status === "unavailable" ? publicText(sourceDoc?.status_detail ?? item.summary) : null
   };
 }
 
@@ -254,13 +255,13 @@ function unavailableRow(
 ): HormuzIntelDrawerRow {
   return {
     id,
-    title,
+    title: publicText(title),
     source: source.source,
     provider: source.label,
     category: source.category,
     drawerGroup: source.drawerGroup,
     status: "unavailable",
-    summary: `${source.label} is unavailable: ${reason}.`,
+    summary: publicText(`${source.label} is unavailable: ${reason}.`),
     detail: null,
     sourceFile,
     sourceDocumentId,
@@ -271,7 +272,7 @@ function unavailableRow(
       source.category === "INFRASTRUCTURE_CONTEXT_ONLY"
         ? "Infrastructure-only; not vessel behavior evidence."
         : "Unavailable source; no scoring contribution.",
-    unavailableReason: reason
+    unavailableReason: publicText(reason)
   };
 }
 
