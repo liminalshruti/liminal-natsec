@@ -1,103 +1,199 @@
-# Liminal Custody — 60-Second Demo Video Script
+# Liminal Custody — 60-Second Demo Video Script (v3 · post-dry-run · cognitive-pipeline framing)
 
-A beat-by-beat shooting script for the **1-minute submission video** required by
-`details.md` §13. The video is what a judge clicks first — uploaded as a YouTube
-unlisted / Loom link in the submission form, mirrored offline at
-`docs/liminal-custody-demo-60s.mp4`, and watched on 2× speed in an inbox.
+The 1-minute submission video required by `details.md` §13. The video is what a
+judge clicks first — uploaded as a YouTube unlisted / Loom link in the submission
+form, mirrored offline at `docs/liminal-custody-demo-60s.mp4`, and watched on 2×
+speed in an inbox.
 
-**Voice-over rule:** every VO line in this script is a verbatim subset of a Round 1
-narration line in `docs/round1-round2-script.md`. Judges who watch the video *and*
-sit in the Round 1 judging group must hear the same vocabulary or the pitch
-reads as two products. If a beat changes here, change it there in the same edit.
+**v3 changes (replacement-with-absorption):**
 
-The make-or-break beat is the second-case recommendation change (beat 8). The
-load-bearing differentiator is the causal pair: *Signal Integrity contested →
-Intent refused*. Everything else is staging.
+The dry-run reframed the demo from a 9-beat temporal phase progression
+(cold-open → dark-gap → … → second-case-changed) to a **left-to-right cognitive
+pipeline** that the viewer reads spatially in one glance. The four shipped
+real-world findings from the Danti pipeline become the substantive payload.
 
-## Pre-roll setup (run once, off camera)
+**The new mental model · LEFT TO RIGHT:**
 
-- `bun run dev:desktop` is up · server on `:8787` · app on `:5173`.
-- localStorage `seaforge:review-rules:v1` cleared (or hit `Ctrl+Shift+R`).
-- Window 100 %, full screen, dark UI mode, desktop app (not browser tab).
-- Selected alert: leave the first event-1 anomaly highlighted.
-- Map paused at Phase 1 (background traffic only).
-- Recording app primed (QuickTime / OBS, 1× capture; 2× pass is the editor's job).
+```
+INGEST    →    RELATE    →    HYPOTHESIZE    →    REVIEW-WITH-REASONING
+(OSINT)        (graph)        (agent proposes)     (analyst clicks · aha)
+```
 
-## Beats
+Every product decision maps back to this sequence. The operator stays in the
+**judgment seat**, not the correlation seat — agents handle the pre-rationalized
+correlation work; the operator reviews the reasoning chain.
 
-| t | duration | beat | spoken cue (VO) | what the screen shows |
-|---:|---:|---|---|---|
-| 0:00 | 5 s | 1. Cold-open hook | "0200 at the U.S. 5th Fleet watchfloor. A vessel in the Strait of Hormuz goes dark." | App shell · map showing background traffic in the Hormuz AOI · `LIMINAL CUSTODY · WATCHFLOOR` wordmark in topbar. |
-| 0:05 | 5 s | 2. Dark gap | "38 minutes of silence inside the corridor." | Phase advances · `P2 · Dark gap alert` badge in topbar · zone pulse on map · alert appears in Substrate. |
-| 0:10 | 5 s | 3. Second identity | "A different MMSI appears where Kalman expected — 4 nautical miles away." | `P3 · Second identity` · Track B pings inside the predicted ellipse on the map. |
-| 0:15 | 5 s | 4. Custody case opens | "Three custody hypotheses preserved — the system doesn't pick one." | Operator clicks alert · Working Panel renders HypothesisBoard with PRIMARY 70 %, ALTERNATIVE 19 %, ALTERNATIVE 11 % · evidence counts visible. |
-| 0:20 | 8 s | 5. **Signal Integrity contested** *(hero)* | "Identity flags MMSI mismatch. Visual flags AIS-class mismatch. Kinematics flags continuity inside a known spoofing envelope. **Three independent specialists converge on source-chain compromise.**" | Specialist Reads strip · `signal_integrity` row CONTESTED · expanded summary visible · dashed connector down to `intent`. |
-| 0:28 | 7 s | 6. **Intent refused — structurally** | "Because Signal Integrity is contested, **Intent refuses to overclaim** — and refusal is enforced server-side, not requested. AI can't talk its way past it." | `intent` row REFUSED · `STRUCTURAL GUARD` tag · redirect arrow to `collection`. |
-| 0:35 | 5 s | 7. Save the rule | "The watch officer writes a rule: identity churn alone is insufficient without second-source collection." | ReviewMemory · `+ save R-001 to memory` · green toast · Saved Rules list shows R-001 ACTIVE. |
-| 0:40 | 10 s | 8. Second case changed *(make-or-break)* | "Two hours later, a similar case. The prior rule has changed the recommendation — `monitor` is now PRIOR TOP, `request-sar-rf` is RECOMMENDED. The system learned from a human's correction." | Click event-2 alert · staged crossfade in Zone 1: posture line → verb line → `[R-001]` chip · CaseHandoffBanner fires · ActionOptions reorders. |
-| 0:50 | 8 s | 9. Pre-command evidence integrity | "Pre-command evidence integrity. Restraint as a security feature. Liminal Custody protects the evidence chain before it becomes command." | App holds on the running shell · `LIMINAL CUSTODY · WATCHFLOOR` wordmark visible in topbar (no separate slide; v4 §7 explicitly: stay in-app). |
-| 0:58 | 2 s | 10. Brand close | *(silent)* | Wordmark held on screen until fade. |
+**The new "aha" beat is the reasoning-chain reveal** — the analyst clicks into a
+hypothesis and sees the full chain of logic that connects the markers. **Not**
+the structural-refusal stamp (that's now a Q&A defense surface, not a pitch
+surface). **Not** the second-case-rule-applied banner (that's a future-state
+mention, demonstrated only if the 60s allows).
 
-Total: 60 s.
+**What survives from v2:** named operator (5th Fleet · 0200 · Strait of Hormuz),
+substrate → custody → command architecture, structural guard as Q&A backbone,
+all 56 PRs of shipped UI register.
 
-## Concrete-language audit
+**What evolves:** demo arc, make-or-break beat, closing claim, visual emphasis.
 
-Across the 60 seconds the VO must include each of these tokens at least once
-(this is what makes the video read as operator-literate, not generic):
+**What recedes (still wired, but no longer load-bearing in the 60s):**
+wet/drying/dry typography, server-stamped guard verdict, rule-compounding edges,
+substrate-state chyron narrative.
 
-| Token | Beat |
+**Voice-over rule:** **two-voice 60/40 split** — Shruti owns ~36s (60%) on the
+narrative spine and the operator/positioning frame; Shayaun owns ~24s (40%) on
+the technical beats — the reasoning chain reveal and the agent-rationalization
+mechanic. Hand-off cues are explicit in the table below. **Authoritative arc
+reference:** `docs/demo-arc-v3-cognitive-pipeline.md`.
+
+---
+
+## Pre-roll setup (run once, off camera) — VERIFY EACH STEP
+
+1. **Server up.** `bun run dev:desktop` running. `curl -s http://localhost:8787/health` returns 200.
+2. **State reset.** Hit **`Ctrl+Shift+R`** in the desktop app. Clears localStorage rules, resets replay to P1.
+3. **Verify the bottom chyron reads:** `substrate :: settling · 0 nodes wet · 0 specialists drying · watchfloor at rest`. If anything else, repeat step 2.
+4. **Window 100% zoom, full screen**, dark UI mode, **desktop Electron app** (not browser).
+5. **Default selection:** EV1 (OFAC-listed HUGE) selected. AI-discovery toast `LIMINAL AGENTS · DISCOVERY · 72%` visible.
+6. **Map state:** paused at P1, scrubber-left, Hormuz Watch Box 01 outlined.
+7. **Recording app primed** (QuickTime / OBS / ScreenStudio, 1× capture).
+8. **Mute notifications** (`do not disturb`).
+
+**If any step fails, do not start recording — fix and retry.**
+
+---
+
+## The 60-second script · 5 beats · two-voice 60/40 (Shruti 36s · Shayaun 24s)
+
+**Voice-share by beat:**
+
+| Beat | Speaker | Seconds | Why |
+|---|---|---|---|
+| 1 · Cold open · OSINT ingestion | Shruti | 8s | Sets the operator + positioning frame |
+| 2 · Knowledge graph + hypothesis | Shruti | 10s | Names the system's read; carries the marquee finding |
+| 3 · "Aha" · reasoning chain reveal | **Shayaun** | 14s | Technical mechanic — agent rationalization, chain semantics, marker enumeration |
+| 4 · Real-world findings · chain-of-behaviors | **Shayaun** | 10s of 18 visual; Shruti picks up at 0:42 with 8s | Shayaun lists the four findings (technical), Shruti closes with the cognitive-load claim (positioning) |
+| 5 · Close · judgment seat | Shruti | 10s | Brand close — operator-principal claim |
+
+**Totals:** Shruti = 8 + 10 + 8 + 10 = **36s (60%)** · Shayaun = 14 + 10 = **24s (40%)**
+
+| t | duration | beat | speaker | spoken cue (VO) | what the screen shows · LEFT TO RIGHT |
+|---:|---:|---|---|---|---|
+| 0:00 | 8 s | **1. Cold open + the left side: OSINT ingestion** | **Shruti** | *"It's 0200 at the U.S. 5th Fleet watchfloor. Open-source intelligence is streaming in — sanctions lists, fishing-watch records, Sentinel imagery, archived AIS — all on the left."* | Cold app shell. **Substrate pane on the left**: `WATCHFLOOR · 7 OPEN`, `AI · PROPOSED · 6`, `OSINT SIGNALS · 308`. Three-register stratification. Broadcast chyron at top: `LIMINAL · CUSTODY · 5TH FLEET · 0200Z`. |
+| 0:08 | 10 s | **2. Aggregation: knowledge graph + hypothesis generation** | **Shruti** | *"Our system aggregates that intelligence into a knowledge graph and proposes hypotheses. The agent has already noticed: an Iranian crude tanker in the Strait of Hormuz is spoofing its MMSI."* | **Stage center**: map shows Hormuz Watch Box 01, MMSI-111 / MV CALDERA on track. AI-discovery toast in working pane: `LIMINAL AGENTS · DISCOVERY · 72% · Hormuz Watch Box dark-vessel proposal · 11 vessels`. |
+| 0:18 | 14 s | **3. The "aha": click into the hypothesis · reasoning chain on the right** | **Shayaun** *(handoff cue: Shruti finishes "spoofing its MMSI" → cuts to Shayaun)* | *"When the analyst clicks into it, the full reasoning chain populates on the right — seven broadcast identities since 2012, OFAC sanctions, Global Fishing Watch identity history. Each marker, alone, is normal. Chained together, the agent rationalizes a pattern of suspicious intent."* | Operator clicks EV1. **Working pane on the right** populates with the reasoning chain: `RECOMMEND COLLECTION · SUPPORTED 92%`. Real OSINT Case body: OFAC SDN, GFW, OpenSanctions citations. Bullet list visible: 7 broadcast identities, current GFW identity, OFAC-listed MMSI 212256000 trail. |
+| 0:32 | 10 s | **4a. Real-world findings · the chain across cases** | **Shayaun** | *"This isn't theoretical. The same pipeline surfaces gray-market sanctions evasion, loitering clusters, and ships changing identity over time. Each behavior, in isolation, falls under the radar."* | Map continues to render the full Hormuz watch box with multiple vessel pins. Substrate pane shows the spread of cases (`Sanctioned-fleet…`, `Hormuz sanction…`, `Qeshm and Bandar…`, `Foreign-flag Iran…`, `Grey-market and …`, `ROSHAK signal-in…`). |
+| 0:42 | 8 s | **4b. The cognitive-load claim** | **Shruti** *(handoff cue: Shayaun finishes "falls under the radar" → Shruti picks up)* | *"Chained, the system surfaces the pattern. The analyst doesn't construct it manually — they review the reasoning."* | The AI-PROPOSED · 6 register glows briefly to show additional agent-surfaced drafts; substrate-state chyron at bottom updates: `substrate :: holding · 8 nodes wet · 6 specialists drying · agents pre-rationalize`. |
+| 0:50 | 10 s | **5. Close · operator stays principal · custody before command** | **Shruti** | *"Liminal Custody: ingest, relate, hypothesize, review with reasoning. The operator stays in the judgment seat — not the correlation seat. Pre-command evidence integrity. Restraint as a security feature."* | App holds full-shell. Substrate-state chyron at bottom: `substrate :: holding · 8 nodes wet · 6 specialists drying · operator decides`. Liminal Custody wordmark visible in broadcast chyron. |
+| 1:00 | — | end | — | *(silent fade if editing)* | — |
+
+**Total: 60 s · 5 beats · two-voice 60/40.**
+
+**Hand-off cues (rehearse these once before recording):**
+
+- **Shruti → Shayaun at 0:18** · Shruti's closing word is *"MMSI."* · Shayaun begins on *"When the analyst clicks…"* · the EV1 click happens on Shayaun's first syllable.
+- **Shayaun → Shruti at 0:42** · Shayaun's closing phrase is *"falls under the radar."* · Shruti picks up on *"Chained, the system surfaces…"* · no click; the chyron-update is the visual transition.
+
+These two hand-offs are the only timing-critical moments. Practice them once.
+
+---
+
+## Operator action checklist (for the screen-recorder driver)
+
+The action sequence is intentionally simpler than v2 — only **one click** during
+the recording, at 0:18 (open EV1 to reveal the reasoning chain).
+
+| Action | When | How |
+|---|---|---|
+| Hit `Ctrl+Shift+R` | Pre-roll | Resets state |
+| Verify substrate chyron reads `settling · watchfloor at rest` | Pre-roll | If not, repeat reset |
+| Begin recording · stay on cold open | 0:00 | Don't click anything · let the substrate stratification + AI-discovery toast establish |
+| Click EV1 (`OFAC-listed HUGE…` row) | 0:18 (start of beat 3) | This is the "aha" click · the reasoning chain populates the right rail |
+| Hold on the working-pane reasoning chain | 0:18–0:50 | No further clicks · let VO walk through the four real-world findings while the screen shows the populated case |
+| Hold final frame | 0:50–1:00 | Wordmark + chyron close · no clicks |
+
+**Single-click recording.** This is the safest possible take: no replay engine
+to misfire, no rule-save to validate, no second-case to navigate to. The agent
+has already done the work; the operator's only action is **clicking into the
+hypothesis to read the reasoning**. That click *is* the demo's argument.
+
+---
+
+## Concrete-language audit · operator literacy
+
+These tokens must appear at least once in the 60s VO:
+
+| Token | Beat | Why it matters |
+|---|---|---|
+| `5th Fleet` / `0200` / `Strait of Hormuz` | 1 | Operator-literate cold open |
+| `open-source intelligence` / `OSINT` | 1 | Names the input layer |
+| `knowledge graph` | 2 | Names the relate layer |
+| `Iranian crude tanker` / `spoofing` / `MMSI` | 2 | The marquee real-world finding |
+| `chain of behaviors` / `chained together` | 3 | The cognitive-pipeline structural claim |
+| `pattern of suspicious intent` | 3 | Names what the chain becomes |
+| `OFAC` / `Global Fishing Watch` / `seven broadcast identities` | 3 | Real-data provenance · system-credibility tokens |
+| `gray-market` / `loitering clusters` / `ships changing identity` | 4 | The four real-world findings |
+| `judgment seat, not the correlation seat` | 5 | The product principle |
+| `pre-command evidence integrity` / `restraint as a security feature` | 5 | The closing positioning claim |
+
+**If any token disappears in a re-record, restore it before publishing.**
+
+---
+
+## What we are NOT doing in this take
+
+These are part of the product but **not** part of this 60s narrative. If asked
+in Q&A, point to them:
+
+| What | Where it lives in the product | Mention only if asked |
+|---|---|---|
+| Server-stamped guard refusal verdict | Working pane · structural-guard surfaces fire on phase advance | Q&A: *"How is refusal enforced?"* |
+| Wet/drying/dry typography state | Evidence chain rows | Q&A: *"What does that color-shift mean?"* |
+| Substrate-state chyron handoff text | Bottom of shell, all phases | Q&A: *"What's that bottom strip?"* |
+| Rule-compounding edges visualization | EV2 rule-applied beat | Q&A: *"What happens when the analyst writes a rule?"* |
+| Phase-keyed focus management | Cmd+1/2/3/4 + dimming | Q&A: *"How is the operator workflow structured?"* |
+| Drag-and-drop signal attach | AI-PROPOSED draft → stage | Q&A: *"How does the operator interact with the agent?"* |
+
+**These are V2 demo features that are still wired and demonstrable. They support
+the v3 cognitive-pipeline narrative — they're the technical proof underneath the
+left-to-right reading. Use them as Q&A surfaces, not as 60s primary visuals.**
+
+---
+
+## Failure modes — what to do when the take goes wrong
+
+| Failure | Fix |
 |---|---|
-| `5th Fleet` | 1 |
-| `0200` | 1 |
-| `Strait of Hormuz` | 1 |
-| `dark` / `dark gap` | 2 (`38 minutes of silence`), implicit |
-| `second-source` (`second-source collection`) | 7 |
-| `Signal Integrity` | 5 |
-| `structurally` (refusal enforcement) | 6 |
-| `evidence chain` | 9 |
+| Bottom chyron says "reviewing" on cold open | Replay state lingered. `Ctrl+Shift+R` and restart take. |
+| AI-discovery toast not visible | localStorage may have dismissed it. Reset: `Ctrl+Shift+R`. |
+| Working pane is empty after EV1 click | Click didn't register. Re-click on the row body, not on a chip. |
+| Real-OSINT case body doesn't show citations | Danti pipeline cache may have rotated. Verify `fixtures/maritime/live-cache/` contains recent files. |
+| Window not full-screen / wordmark wraps | Bring desktop Electron app to focus, full-screen, 100% zoom. |
+| Some other case is selected (not EV1 OFAC HUGE) | Manual click on EV1 to ensure default. |
 
-If any token disappears in a re-record, restore it before publishing.
+---
+
+## Two voices, single voices, 11Labs
+
+- **Single-voice (Shruti) — recommended.** The dry run read in this voice and the cognitive-pipeline framing carries through one narrator more naturally. Less production overhead.
+- **Two-voice (Shruti + Shayaun) — preserved for Round 1/2 stage pitches.** See `round1-round2-script.md` for the two-voice version.
+- **11Labs:** **not recommended for the submission video.** The substantive claim is *"trust earned by restraint"* and *"the operator stays in the judgment seat"*; AI-cloned VO undermines those meta-messages. Use only if a clean live take is impossible by deadline.
+
+---
 
 ## Fallback recording
 
-- Record the same beat sequence at 1× speed using QuickTime / OBS · save as
-  `docs/liminal-custody-demo-60s.mp4`.
-- A still frame of the CaseHandoffBanner moment (beat 8) is the hero image.
-- Keep the recording in the repo so the demo survives a wifi / server outage and
-  so judges who can't replay live still see the make-or-break beat.
+- Record at 1× speed using QuickTime / OBS / ScreenStudio · save as `docs/liminal-custody-demo-60s.mp4`.
+- Hero image candidate: still frame at **0:18–0:32** during beat 3 — the reasoning chain populated on the right rail with substrate stratification visible on the left. That single frame summarizes the cognitive-pipeline read.
+- Keep the recording in the repo so the demo survives a wifi / server outage and so judges who can't replay live still see the make-or-break beat.
 
-## Things to never cut
+---
 
-Per `docs/v3-sequencing-plan.md` §"Never cut (v3)" and `docs/v4-judge-calibrated-demo.md` §7:
+## Cross-references
 
-- Beat 5 (Signal Integrity contested) and beat 6 (Intent refused) must read as a
-  *causal pair*, not two independent rows. The line *"Intent refused **because**
-  Signal Integrity contested"* is the v3 differentiator and the load-bearing PS4
-  beat — it carries both the convergence story and the structural-guard
-  invariant. If the connector or the narration fails to land, no other beat
-  compensates.
-- Beat 8 (second-case changed by review rule) is non-negotiable. This is the
-  make-or-break moment per v3-sequencing-plan §"One thing to protect" — the
-  proof that human correction becomes durable doctrine.
-- Beat 9's closing line *"Pre-command evidence integrity. Restraint as a
-  security feature. Liminal Custody protects the evidence chain before it
-  becomes command."* is the v4 §7 close. Do not paraphrase.
-- The phase badge in the topbar must visibly advance through P1 → P3 → P5
-  during beats 1–6.
-
-## Things safe to cut on time pressure
-
-- Beat 4 (hypothesis posteriors narration) can compress to 3 s if total runs long.
-- Beat 7 (rule save) narration can shorten — the green toast does the work.
-- Slash-command flourish (`/event 2`) can be replaced with a click.
-
-## Q&A drills (post-demo)
-
-- *"How do you avoid false-association?"* — JPDA on the kinematic specialist
-  + Identity specialist's metadata conflict + the contested status on the
-  custody claim. The system explicitly preserves the alternative hypotheses.
-- *"What runs locally vs. server-side?"* — Tier B server is Hono on Bun;
-  graph-spine is portable; the maritime adapter is the only domain layer.
-- *"Where does this generalize?"* — `graph-spine/` has zero maritime terms.
-  Switch the fixture pack and the same Evidence Custody Loop applies to any
-  contested-artifact domain (Liminal personal-knowledge, Watchstander, etc.).
+- **Demo arc canonical (cognitive-pipeline framing):** `docs/demo-arc-v3-cognitive-pipeline.md` (next doc to write)
+- **Demo arc v2 (preserved-but-superseded · 9-beat temporal):** `docs/demo-arc-v2.md`
+- **Round 1 / Round 2 stage narration:** `docs/round1-round2-script.md` (uses two-voice + temporal-phase framing — appropriate for stage)
+- **Q&A drills:** `docs/q-and-a.md`
+- **Module → beat → pitch language:** `docs/integration-state.md` §3
+- **Real / fixture / not claimed:** `docs/public-repo-notes.md`
+- **Judge-by-judge calibration:** `docs/v4-judge-calibrated-demo.md`
