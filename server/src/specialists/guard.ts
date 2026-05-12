@@ -47,6 +47,7 @@ export function applyGuard(
   let forced_refused = false;
   let downgraded = false;
   const floor = input.confidence_floor ?? DEFAULT_CONFIDENCE_FLOOR;
+  const cited = citedEvidence(input, raw);
 
   // Layer 7 — operator question phrasing without an INTENT_INDICATOR
   if (
@@ -85,7 +86,6 @@ export function applyGuard(
     verdict !== "refused" &&
     (input.name === "kinematics" || input.name === "intent")
   ) {
-    const cited = citedEvidence(input, raw);
     if (cited.length > 0 && cited.every((e) => e.source === "SHODAN")) {
       layers.push("shodan_vessel_behavior");
       verdict = "refused";
@@ -121,7 +121,6 @@ export function applyGuard(
 
   // Layer 5 — purely textual evidence (no time + no geometry) downgrades
   if (verdict === "supported") {
-    const cited = citedEvidence(input, raw);
     if (
       cited.length > 0 &&
       cited.every(
