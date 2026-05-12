@@ -1,4 +1,4 @@
-const NON_PRESENTATION_KEYS = new Set([
+const NON_PRESENTATION_FIELD_NAMES = [
   "id",
   "object_id",
   "objectId",
@@ -15,7 +15,17 @@ const NON_PRESENTATION_KEYS = new Set([
   "mmsi",
   "status",
   "source_status"
-]);
+] as const;
+
+type NonPresentationField = (typeof NON_PRESENTATION_FIELD_NAMES)[number];
+
+const NON_PRESENTATION_KEYS: ReadonlySet<string> = new Set<string>(
+  NON_PRESENTATION_FIELD_NAMES
+);
+
+function isNonPresentationKey(key: string): key is NonPresentationField {
+  return NON_PRESENTATION_KEYS.has(key);
+}
 
 const PHRASE_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\b[Cc]ached sanctioned-fleet coordinate watch\b/g, "Sanctioned-fleet coordinate watch"],
@@ -38,7 +48,6 @@ const PHRASE_REPLACEMENTS: Array<[RegExp, string]> = [
   [/\b[Cc]ached DANTI pull\b/g, "DANTI pull"],
   [/\b[Cc]ached DANTI rows?\b/g, "DANTI rows"],
   [/\b[Cc]ached DANTI vessels\b/g, "DANTI vessels"],
-  [/\b[Cc]ached DANTI rows?\b/g, "DANTI rows"],
   [/\bin the cached DANTI row\b/g, "in the DANTI row"],
   [/\bcarries cached destination\b/g, "carries destination"],
   [/\bcached destination\b/g, "destination"],
@@ -91,7 +100,7 @@ export function fixturePackForPresentation<T>(pack: T): T {
 
 function scrubValue(value: unknown, key: string | null): unknown {
   if (typeof value === "string") {
-    return key && NON_PRESENTATION_KEYS.has(key) ? value : publicText(value);
+    return key && isNonPresentationKey(key) ? value : publicText(value);
   }
   if (Array.isArray(value)) {
     return value.map((item) => scrubValue(item, null));
