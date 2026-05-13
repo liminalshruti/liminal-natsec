@@ -769,7 +769,7 @@
   }
   .slated .slated-x:hover { color: var(--text); background: var(--judgment-bg); }
 
-  /* sparkline tile · Brian DRIFT primary read */
+  /* sparkline tile · Devon DRIFT primary read */
   .slated.is-sparkline {
     width: 100%;
     background: var(--frame-bg-2);
@@ -1933,7 +1933,7 @@
      · plays only when body has [data-boot="staged"] · removed after run
      · honors prefers-reduced-motion · regions appear instantly when set
      · stagger order: frame · titlebar · product-row · left rail (with
-       Brian/canonical-case hot) · slate header · slate tiles ·
+       Devon/canonical-case hot) · slate header · slate tiles ·
        agency rail · audit ribbon · tray pill nudge
      ════════════════════════════════════════════════════════════════ */
   @keyframes boot-fade-up {
@@ -1996,7 +1996,7 @@
   }
 
   /* canonical-case left-rail row · subtle glow on first boot so the eye
-     lands on the actual demo subject (Brian DRIFT / insider-threat case)
+     lands on the actual demo subject (Devon DRIFT / insider-threat case)
      · class is added in JS when the boot runs and removed after */
   .subject-item.is-canonical,
   .case-item.is-canonical {
@@ -2362,7 +2362,7 @@
      ENTRY OVERLAY · three doors · per UI_GAP_SPEC §2.4
      · first-session only · dismisses on click · routes to (surface, context)
      · the wedge sentence holds the masthead · Founder/Operator/Creative ICPs
-     · Founder=Team-Brian, Operator=Personal-self_baseline, Creative=Personal-Field_Studio
+     · Founder=Team-Devon, Operator=Personal-self_baseline, Creative=Personal-Field_Studio
      ════════════════════════════════════════════════════════════════ */
   .entry-overlay {
     position: fixed; inset: 0; z-index: 250;

@@ -1,7 +1,7 @@
 # Pattern Port · liminal-prototype → liminal-natsec
 
 **Date:** 2026-05-03
-**Source:** `~/liminal/liminal-prototype/cuts/01-slate-tray-speedrun.html` (Maya Chen Speedrun cut), `~/liminal/liminal-prototype/cuts/08-liminal-custody.html` (existing custody cut), `~/liminal/liminal-prototype/index.html` (catalog), `~/liminal/liminal-prototype/design-system/tokens/design-tokens.css`
+**Source:** `~/liminal/liminal-prototype/cuts/01-slate-tray-speedrun.html` (Maia Speedrun cut), `~/liminal/liminal-prototype/cuts/08-liminal-custody.html` (existing custody cut), `~/liminal/liminal-prototype/index.html` (catalog), `~/liminal/liminal-prototype/design-system/tokens/design-tokens.css`
 **Target:** `liminal-natsec/app/src/`
 **Lane:** brand + experience refinement. NOT bug-fixes, NOT scope-creep, NOT new components from scratch.
 
@@ -150,7 +150,7 @@ Keep the existing row text. Add a thin label + plate edge above each group. Appl
 
 These are present in the prototype but should NOT port to natsec:
 
-- **The 12-agent orbital diagram** — built for Maya Chen's founder-OS vault context. The natsec specialist set is fundamentally smaller (5–6) and the metaphor is wrong (custody is hierarchical and military, not 4-register editorial).
+- **The 12-agent orbital diagram** — built for Maia's founder-OS vault context. The natsec specialist set is fundamentally smaller (5–6) and the metaphor is wrong (custody is hierarchical and military, not 4-register editorial).
 - **The personal/team/business tabs** — speedrun-cut-specific, founder-OS register. Wrong sub-domain.
 - **The "tray" right rail** with drop-window-here affordance — that's vault-of-windows, not custody-record. Different IP.
 - **Newsreader for body copy at large sizes** — beautiful in editorial register, less readable for dense operator-grade lists. Keep mono primary; lift to Newsreader only for hero verbs and italic prose pull-quotes.
